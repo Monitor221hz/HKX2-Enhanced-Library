@@ -3,17 +3,17 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbEventRaisedInfo Signatire: 0xc02da3 size: 48 flags: FLAGS_NONE
+    // hkb@eventRaisedInfo Signatire: 0xc02da3 size: 48 flags: FLAGS_NONE
 
     // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // eventName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // @eventName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     // raisedBySdk class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     // senderId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
     // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    public partial class hkbEventRaisedInfo : hkReferencedObject, IEquatable<hkbEventRaisedInfo?>
+    public partial class hkb@eventRaisedInfo : hkReferencedObject, IEquatable<hkb@eventRaisedInfo?>
     {
         public ulong characterId { set; get; }
-        public string eventName { set; get; } = "";
+        public string @eventName { set; get; } = "";
         public bool raisedBySdk { set; get; }
         public int senderId { set; get; }
         public int padding { set; get; }
@@ -24,7 +24,7 @@ namespace HKX2
         {
             base.Read(des, br);
             characterId = br.ReadUInt64();
-            eventName = des.ReadStringPointer(br);
+            @eventName = des.ReadStringPointer(br);
             raisedBySdk = br.ReadBoolean();
             br.Position += 3;
             senderId = br.ReadInt32();
@@ -36,7 +36,7 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.WriteUInt64(characterId);
-            s.WriteStringPointer(bw, eventName);
+            s.WriteStringPointer(bw, @eventName);
             bw.WriteBoolean(raisedBySdk);
             bw.Position += 3;
             bw.WriteInt32(senderId);
@@ -48,7 +48,7 @@ namespace HKX2
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            eventName = xd.ReadString(xe, nameof(eventName));
+            @eventName = xd.ReadString(xe, nameof(@eventName));
             raisedBySdk = xd.ReadBoolean(xe, nameof(raisedBySdk));
             senderId = xd.ReadInt32(xe, nameof(senderId));
             padding = xd.ReadInt32(xe, nameof(padding));
@@ -58,7 +58,7 @@ namespace HKX2
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);
-            xs.WriteString(xe, nameof(eventName), eventName);
+            xs.WriteString(xe, nameof(@eventName), @eventName);
             xs.WriteBoolean(xe, nameof(raisedBySdk), raisedBySdk);
             xs.WriteNumber(xe, nameof(senderId), senderId);
             xs.WriteNumber(xe, nameof(padding), padding);
@@ -66,15 +66,15 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbEventRaisedInfo);
+            return Equals(obj as hkb@eventRaisedInfo);
         }
 
-        public bool Equals(hkbEventRaisedInfo? other)
+        public bool Equals(hkb@eventRaisedInfo? other)
         {
             return other is not null &&
                    base.Equals(other) &&
                    characterId.Equals(other.characterId) &&
-                   (eventName is null && other.eventName is null || eventName == other.eventName || eventName is null && other.eventName == "" || eventName == "" && other.eventName is null) &&
+                   (@eventName is null && other.@eventName is null || @eventName == other.@eventName || @eventName is null && other.@eventName == "" || @eventName == "" && other.@eventName is null) &&
                    raisedBySdk.Equals(other.raisedBySdk) &&
                    senderId.Equals(other.senderId) &&
                    padding.Equals(other.padding) &&
@@ -86,7 +86,7 @@ namespace HKX2
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
             hashcode.Add(characterId);
-            hashcode.Add(eventName);
+            hashcode.Add(@eventName);
             hashcode.Add(raisedBySdk);
             hashcode.Add(senderId);
             hashcode.Add(padding);

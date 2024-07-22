@@ -3,10 +3,10 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbEventDrivenModifierInternalState Signatire: 0xd14bf000 size: 24 flags: FLAGS_NONE
+    // hkb@eventDrivenModifierInternalState Signatire: 0xd14bf000 size: 24 flags: FLAGS_NONE
 
     // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbEventDrivenModifierInternalState : hkReferencedObject, IEquatable<hkbEventDrivenModifierInternalState?>
+    public partial class hkb@eventDrivenModifierInternalState : hkReferencedObject, IEquatable<hkb@eventDrivenModifierInternalState?>
     {
         public bool isActive { set; get; }
 
@@ -40,10 +40,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbEventDrivenModifierInternalState);
+            return Equals(obj as hkb@eventDrivenModifierInternalState);
         }
 
-        public bool Equals(hkbEventDrivenModifierInternalState? other)
+        public bool Equals(hkb@eventDrivenModifierInternalState? other)
         {
             return other is not null &&
                    base.Equals(other) &&

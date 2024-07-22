@@ -26,7 +26,7 @@ namespace HKX2
     // keepFirstSensedHandle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 214 flags: FLAGS_NONE enum: 
     // foundHandleOut class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 215 flags: FLAGS_NONE enum: 
     // timeSinceLastModify class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // rangeIndexForEventToSendNextUpdate class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // rangeIndexFor@eventToSendNextUpdate class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbSenseHandleModifier : hkbModifier, IEquatable<hkbSenseHandleModifier?>
     {
         public hkbHandle handle { set; get; } = new();
@@ -47,7 +47,7 @@ namespace HKX2
         public bool keepFirstSensedHandle { set; get; }
         public bool foundHandleOut { set; get; }
         private float timeSinceLastModify { set; get; }
-        private int rangeIndexForEventToSendNextUpdate { set; get; }
+        private int rangeIndexFor@eventToSendNextUpdate { set; get; }
 
         public override uint Signature { set; get; } = 0x2a064d99;
 
@@ -72,7 +72,7 @@ namespace HKX2
             keepFirstSensedHandle = br.ReadBoolean();
             foundHandleOut = br.ReadBoolean();
             timeSinceLastModify = br.ReadSingle();
-            rangeIndexForEventToSendNextUpdate = br.ReadInt32();
+            rangeIndexFor@eventToSendNextUpdate = br.ReadInt32();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -96,7 +96,7 @@ namespace HKX2
             bw.WriteBoolean(keepFirstSensedHandle);
             bw.WriteBoolean(foundHandleOut);
             bw.WriteSingle(timeSinceLastModify);
-            bw.WriteInt32(rangeIndexForEventToSendNextUpdate);
+            bw.WriteInt32(rangeIndexFor@eventToSendNextUpdate);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
@@ -141,7 +141,7 @@ namespace HKX2
             xs.WriteBoolean(xe, nameof(keepFirstSensedHandle), keepFirstSensedHandle);
             xs.WriteBoolean(xe, nameof(foundHandleOut), foundHandleOut);
             xs.WriteSerializeIgnored(xe, nameof(timeSinceLastModify));
-            xs.WriteSerializeIgnored(xe, nameof(rangeIndexForEventToSendNextUpdate));
+            xs.WriteSerializeIgnored(xe, nameof(rangeIndexFor@eventToSendNextUpdate));
         }
 
         public override bool Equals(object? obj)

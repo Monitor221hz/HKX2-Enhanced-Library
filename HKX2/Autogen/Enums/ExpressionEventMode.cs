@@ -1,6 +1,6 @@
 namespace HKX2
 {
-    public enum ExpressionEventMode : sbyte
+    public enum Expression@eventMode : sbyte
     {
         EVENT_MODE_SEND_ONCE = 0,
         EVENT_MODE_SEND_ON_TRUE = 1,

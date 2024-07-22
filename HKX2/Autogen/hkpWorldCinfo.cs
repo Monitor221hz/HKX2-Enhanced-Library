@@ -20,7 +20,7 @@ namespace HKX2
     // collisionFilter class: hkpCollisionFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
     // convexListFilter class: hkpConvexListFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     // expectedMaxLinearVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // sizeOfToiEventQueue class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
+    // sizeOfToi@eventQueue class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
     // expectedMinPsiDeltaTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
     // memoryWatchDog class: hkWorldMemoryAvailableWatchDog Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
     // broadPhaseNumMarkers class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
@@ -79,7 +79,7 @@ namespace HKX2
         public hkpCollisionFilter? collisionFilter { set; get; }
         public hkpConvexListFilter? convexListFilter { set; get; }
         public float expectedMaxLinearVelocity { set; get; }
-        public int sizeOfToiEventQueue { set; get; }
+        public int sizeOfToi@eventQueue { set; get; }
         public float expectedMinPsiDeltaTime { set; get; }
         public hkWorldMemoryAvailableWatchDog? memoryWatchDog { set; get; }
         public int broadPhaseNumMarkers { set; get; }
@@ -143,7 +143,7 @@ namespace HKX2
             collisionFilter = des.ReadClassPointer<hkpCollisionFilter>(br);
             convexListFilter = des.ReadClassPointer<hkpConvexListFilter>(br);
             expectedMaxLinearVelocity = br.ReadSingle();
-            sizeOfToiEventQueue = br.ReadInt32();
+            sizeOfToi@eventQueue = br.ReadInt32();
             expectedMinPsiDeltaTime = br.ReadSingle();
             br.Position += 4;
             memoryWatchDog = des.ReadClassPointer<hkWorldMemoryAvailableWatchDog>(br);
@@ -214,7 +214,7 @@ namespace HKX2
             s.WriteClassPointer(bw, collisionFilter);
             s.WriteClassPointer(bw, convexListFilter);
             bw.WriteSingle(expectedMaxLinearVelocity);
-            bw.WriteInt32(sizeOfToiEventQueue);
+            bw.WriteInt32(sizeOfToi@eventQueue);
             bw.WriteSingle(expectedMinPsiDeltaTime);
             bw.Position += 4;
             s.WriteClassPointer(bw, memoryWatchDog);
@@ -284,7 +284,7 @@ namespace HKX2
             collisionFilter = xd.ReadClassPointer<hkpCollisionFilter>(xe, nameof(collisionFilter));
             convexListFilter = xd.ReadClassPointer<hkpConvexListFilter>(xe, nameof(convexListFilter));
             expectedMaxLinearVelocity = xd.ReadSingle(xe, nameof(expectedMaxLinearVelocity));
-            sizeOfToiEventQueue = xd.ReadInt32(xe, nameof(sizeOfToiEventQueue));
+            sizeOfToi@eventQueue = xd.ReadInt32(xe, nameof(sizeOfToi@eventQueue));
             expectedMinPsiDeltaTime = xd.ReadSingle(xe, nameof(expectedMinPsiDeltaTime));
             memoryWatchDog = xd.ReadClassPointer<hkWorldMemoryAvailableWatchDog>(xe, nameof(memoryWatchDog));
             broadPhaseNumMarkers = xd.ReadInt32(xe, nameof(broadPhaseNumMarkers));
@@ -346,7 +346,7 @@ namespace HKX2
             xs.WriteClassPointer(xe, nameof(collisionFilter), collisionFilter);
             xs.WriteClassPointer(xe, nameof(convexListFilter), convexListFilter);
             xs.WriteFloat(xe, nameof(expectedMaxLinearVelocity), expectedMaxLinearVelocity);
-            xs.WriteNumber(xe, nameof(sizeOfToiEventQueue), sizeOfToiEventQueue);
+            xs.WriteNumber(xe, nameof(sizeOfToi@eventQueue), sizeOfToi@eventQueue);
             xs.WriteFloat(xe, nameof(expectedMinPsiDeltaTime), expectedMinPsiDeltaTime);
             xs.WriteClassPointer(xe, nameof(memoryWatchDog), memoryWatchDog);
             xs.WriteNumber(xe, nameof(broadPhaseNumMarkers), broadPhaseNumMarkers);
@@ -414,7 +414,7 @@ namespace HKX2
                    ((collisionFilter is null && other.collisionFilter is null) || (collisionFilter is not null && other.collisionFilter is not null && collisionFilter.Equals((IHavokObject)other.collisionFilter))) &&
                    ((convexListFilter is null && other.convexListFilter is null) || (convexListFilter is not null && other.convexListFilter is not null && convexListFilter.Equals((IHavokObject)other.convexListFilter))) &&
                    expectedMaxLinearVelocity.Equals(other.expectedMaxLinearVelocity) &&
-                   sizeOfToiEventQueue.Equals(other.sizeOfToiEventQueue) &&
+                   sizeOfToi@eventQueue.Equals(other.sizeOfToi@eventQueue) &&
                    expectedMinPsiDeltaTime.Equals(other.expectedMinPsiDeltaTime) &&
                    ((memoryWatchDog is null && other.memoryWatchDog is null) || (memoryWatchDog is not null && other.memoryWatchDog is not null && memoryWatchDog.Equals((IHavokObject)other.memoryWatchDog))) &&
                    broadPhaseNumMarkers.Equals(other.broadPhaseNumMarkers) &&
@@ -478,7 +478,7 @@ namespace HKX2
             hashcode.Add(collisionFilter);
             hashcode.Add(convexListFilter);
             hashcode.Add(expectedMaxLinearVelocity);
-            hashcode.Add(sizeOfToiEventQueue);
+            hashcode.Add(sizeOfToi@eventQueue);
             hashcode.Add(expectedMinPsiDeltaTime);
             hashcode.Add(memoryWatchDog);
             hashcode.Add(broadPhaseNumMarkers);

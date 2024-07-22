@@ -6,13 +6,13 @@ namespace HKX2
     // BSTimerModifier Signatire: 0x531f3292 size: 112 flags: FLAGS_NONE
 
     // alarmTimeSeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // alarmEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // alarm@event class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
     // resetAlarm class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
     // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class BSTimerModifier : hkbModifier, IEquatable<BSTimerModifier?>
     {
         public float alarmTimeSeconds { set; get; }
-        public hkbEventProperty alarmEvent { set; get; } = new();
+        public hkb@eventProperty alarm@event { set; get; } = new();
         public bool resetAlarm { set; get; }
         private float secondsElapsed { set; get; }
 
@@ -23,7 +23,7 @@ namespace HKX2
             base.Read(des, br);
             alarmTimeSeconds = br.ReadSingle();
             br.Position += 4;
-            alarmEvent.Read(des, br);
+            alarm@event.Read(des, br);
             resetAlarm = br.ReadBoolean();
             br.Position += 3;
             secondsElapsed = br.ReadSingle();
@@ -34,7 +34,7 @@ namespace HKX2
             base.Write(s, bw);
             bw.WriteSingle(alarmTimeSeconds);
             bw.Position += 4;
-            alarmEvent.Write(s, bw);
+            alarm@event.Write(s, bw);
             bw.WriteBoolean(resetAlarm);
             bw.Position += 3;
             bw.WriteSingle(secondsElapsed);
@@ -44,7 +44,7 @@ namespace HKX2
         {
             base.ReadXml(xd, xe);
             alarmTimeSeconds = xd.ReadSingle(xe, nameof(alarmTimeSeconds));
-            alarmEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(alarmEvent));
+            alarm@event = xd.ReadClass<hkb@eventProperty>(xe, nameof(alarm@event));
             resetAlarm = xd.ReadBoolean(xe, nameof(resetAlarm));
         }
 
@@ -52,7 +52,7 @@ namespace HKX2
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(alarmTimeSeconds), alarmTimeSeconds);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(alarmEvent), alarmEvent);
+            xs.WriteClass<hkb@eventProperty>(xe, nameof(alarm@event), alarm@event);
             xs.WriteBoolean(xe, nameof(resetAlarm), resetAlarm);
             xs.WriteSerializeIgnored(xe, nameof(secondsElapsed));
         }
@@ -67,7 +67,7 @@ namespace HKX2
             return other is not null &&
                    base.Equals(other) &&
                    alarmTimeSeconds.Equals(other.alarmTimeSeconds) &&
-                   ((alarmEvent is null && other.alarmEvent is null) || (alarmEvent is not null && other.alarmEvent is not null && alarmEvent.Equals((IHavokObject)other.alarmEvent))) &&
+                   ((alarm@event is null && other.alarm@event is null) || (alarm@event is not null && other.alarm@event is not null && alarm@event.Equals((IHavokObject)other.alarm@event))) &&
                    resetAlarm.Equals(other.resetAlarm) &&
                    Signature == other.Signature; ;
         }
@@ -77,7 +77,7 @@ namespace HKX2
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
             hashcode.Add(alarmTimeSeconds);
-            hashcode.Add(alarmEvent);
+            hashcode.Add(alarm@event);
             hashcode.Add(resetAlarm);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();

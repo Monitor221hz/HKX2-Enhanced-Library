@@ -3,11 +3,11 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbCameraShakeEventPayload Signatire: 0x64136982 size: 24 flags: FLAGS_NONE
+    // hkbCameraShake@eventPayload Signatire: 0x64136982 size: 24 flags: FLAGS_NONE
 
     // amplitude class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // halfLife class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    public partial class hkbCameraShakeEventPayload : hkbEventPayload, IEquatable<hkbCameraShakeEventPayload?>
+    public partial class hkbCameraShake@eventPayload : hkb@eventPayload, IEquatable<hkbCameraShake@eventPayload?>
     {
         public float amplitude { set; get; }
         public float halfLife { set; get; }
@@ -44,10 +44,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbCameraShakeEventPayload);
+            return Equals(obj as hkbCameraShake@eventPayload);
         }
 
-        public bool Equals(hkbCameraShakeEventPayload? other)
+        public bool Equals(hkbCameraShake@eventPayload? other)
         {
             return other is not null &&
                    base.Equals(other) &&

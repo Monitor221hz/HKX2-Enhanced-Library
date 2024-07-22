@@ -3,12 +3,12 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkpTriggerVolumeEventInfo Signatire: 0xeb60f431 size: 24 flags: FLAGS_NONE
+    // hkpTriggerVolume@eventInfo Signatire: 0xeb60f431 size: 24 flags: FLAGS_NONE
 
     // sortValue class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     // body class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     // operation class:  Type.TYPE_ENUM Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: Operation
-    public partial class hkpTriggerVolumeEventInfo : IHavokObject, IEquatable<hkpTriggerVolumeEventInfo?>
+    public partial class hkpTriggerVolume@eventInfo : IHavokObject, IEquatable<hkpTriggerVolume@eventInfo?>
     {
         public ulong sortValue { set; get; }
         public hkpRigidBody? body { set; get; }
@@ -48,10 +48,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkpTriggerVolumeEventInfo);
+            return Equals(obj as hkpTriggerVolume@eventInfo);
         }
 
-        public bool Equals(hkpTriggerVolumeEventInfo? other)
+        public bool Equals(hkpTriggerVolume@eventInfo? other)
         {
             return other is not null &&
                    sortValue.Equals(other.sortValue) &&

@@ -6,12 +6,12 @@ namespace HKX2
     // hkbCharacterInfo Signatire: 0xd9709ff2 size: 32 flags: FLAGS_NONE
 
     // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // event class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: Event
+    // @event class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: @event
     // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
     public partial class hkbCharacterInfo : hkReferencedObject, IEquatable<hkbCharacterInfo?>
     {
         public ulong characterId { set; get; }
-        public byte event { set; get; }
+        public byte @event { set; get; }
         public int padding { set; get; }
 
         public override uint Signature { set; get; } = 0xd9709ff2;
@@ -20,7 +20,7 @@ namespace HKX2
         {
             base.Read(des, br);
             characterId = br.ReadUInt64();
-            event = br.ReadByte();
+            @event = br.ReadByte();
             br.Position += 3;
             padding = br.ReadInt32();
         }
@@ -29,7 +29,7 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.WriteUInt64(characterId);
-            bw.WriteByte(event);
+            bw.WriteByte(@event);
             bw.Position += 3;
             bw.WriteInt32(padding);
         }
@@ -38,7 +38,7 @@ namespace HKX2
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            event = xd.ReadFlag<Event, byte>(xe, nameof(event));
+            @event = xd.ReadFlag<@event, byte>(xe, nameof(@event));
             padding = xd.ReadInt32(xe, nameof(padding));
         }
 
@@ -46,7 +46,7 @@ namespace HKX2
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);
-            xs.WriteEnum<Event, byte>(xe, nameof(event), event);
+            xs.WriteEnum<@event, byte>(xe, nameof(@event), @event);
             xs.WriteNumber(xe, nameof(padding), padding);
         }
 
@@ -60,7 +60,7 @@ namespace HKX2
             return other is not null &&
                    base.Equals(other) &&
                    characterId.Equals(other.characterId) &&
-                   event.Equals(other.event) &&
+                   @event.Equals(other.@event) &&
                    padding.Equals(other.padding) &&
                    Signature == other.Signature; ;
         }
@@ -70,7 +70,7 @@ namespace HKX2
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
             hashcode.Add(characterId);
-            hashcode.Add(event);
+            hashcode.Add(@event);
             hashcode.Add(padding);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();

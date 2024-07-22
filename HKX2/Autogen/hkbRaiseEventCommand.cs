@@ -3,12 +3,12 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbRaiseEventCommand Signatire: 0xa0a7bf9c size: 32 flags: FLAGS_NONE
+    // hkbRaise@eventCommand Signatire: 0xa0a7bf9c size: 32 flags: FLAGS_NONE
 
     // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // global class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     // externalId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    public partial class hkbRaiseEventCommand : hkReferencedObject, IEquatable<hkbRaiseEventCommand?>
+    public partial class hkbRaise@eventCommand : hkReferencedObject, IEquatable<hkbRaise@eventCommand?>
     {
         public ulong characterId { set; get; }
         public bool global { set; get; }
@@ -52,10 +52,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbRaiseEventCommand);
+            return Equals(obj as hkbRaise@eventCommand);
         }
 
-        public bool Equals(hkbRaiseEventCommand? other)
+        public bool Equals(hkbRaise@eventCommand? other)
         {
             return other is not null &&
                    base.Equals(other) &&

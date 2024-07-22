@@ -1,6 +1,6 @@
 namespace HKX2
 {
-    public enum EventMode : sbyte
+    public enum @eventMode : sbyte
     {
         EVENT_MODE_DEFAULT = 0,
         EVENT_MODE_PROCESS_ALL = 1,

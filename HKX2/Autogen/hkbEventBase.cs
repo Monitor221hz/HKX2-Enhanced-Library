@@ -3,14 +3,14 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbEventBase Signatire: 0x76bddb31 size: 16 flags: FLAGS_NONE
+    // hkb@eventBase Signatire: 0x76bddb31 size: 16 flags: FLAGS_NONE
 
     // id class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // payload class: hkbEventPayload Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkbEventBase : IHavokObject, IEquatable<hkbEventBase?>
+    // payload class: hkb@eventPayload Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    public partial class hkb@eventBase : IHavokObject, IEquatable<hkb@eventBase?>
     {
         public int id { set; get; }
-        public hkbEventPayload? payload { set; get; }
+        public hkb@eventPayload? payload { set; get; }
 
         public virtual uint Signature { set; get; } = 0x76bddb31;
 
@@ -18,7 +18,7 @@ namespace HKX2
         {
             id = br.ReadInt32();
             br.Position += 4;
-            payload = des.ReadClassPointer<hkbEventPayload>(br);
+            payload = des.ReadClassPointer<hkb@eventPayload>(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -31,7 +31,7 @@ namespace HKX2
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
             id = xd.ReadInt32(xe, nameof(id));
-            payload = xd.ReadClassPointer<hkbEventPayload>(xe, nameof(payload));
+            payload = xd.ReadClassPointer<hkb@eventPayload>(xe, nameof(payload));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
@@ -42,10 +42,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbEventBase);
+            return Equals(obj as hkb@eventBase);
         }
 
-        public bool Equals(hkbEventBase? other)
+        public bool Equals(hkb@eventBase? other)
         {
             return other is not null &&
                    id.Equals(other.id) &&

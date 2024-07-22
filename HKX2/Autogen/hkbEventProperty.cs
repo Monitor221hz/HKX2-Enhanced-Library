@@ -3,10 +3,10 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbEventProperty Signatire: 0xdb38a15 size: 16 flags: FLAGS_NONE
+    // hkb@eventProperty Signatire: 0xdb38a15 size: 16 flags: FLAGS_NONE
 
 
-    public partial class hkbEventProperty : hkbEventBase, IEquatable<hkbEventProperty?>
+    public partial class hkb@eventProperty : hkb@eventBase, IEquatable<hkb@eventProperty?>
     {
 
 
@@ -34,10 +34,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbEventProperty);
+            return Equals(obj as hkb@eventProperty);
         }
 
-        public bool Equals(hkbEventProperty? other)
+        public bool Equals(hkb@eventProperty? other)
         {
             return other is not null &&
                    base.Equals(other) &&

@@ -1,6 +1,6 @@
 namespace HKX2
 {
-    public enum Event : byte
+    public enum @event : byte
     {
         REMOVED_FROWORLD = 0,
         SHOWN = 1,

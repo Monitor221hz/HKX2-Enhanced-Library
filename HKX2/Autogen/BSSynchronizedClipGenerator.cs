@@ -20,7 +20,7 @@ namespace HKX2
     // StartMarkMS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // fCurrentLerp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // pLocalSyncBinding class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pEventMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // p@eventMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // sAnimationBindingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 296 flags: FLAGS_NONE enum: 
     // bAtMark class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 298 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // bAllCharactersInScene class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 299 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
@@ -41,7 +41,7 @@ namespace HKX2
         private Matrix4x4 StartMarkMS { set; get; }
         private float fCurrentLerp { set; get; }
         private object? pLocalSyncBinding { set; get; }
-        private object? pEventMap { set; get; }
+        private object? p@eventMap { set; get; }
         public short sAnimationBindingIndex { set; get; }
         private bool bAtMark { set; get; }
         private bool bAllCharactersInScene { set; get; }
@@ -140,7 +140,7 @@ namespace HKX2
             xs.WriteSerializeIgnored(xe, nameof(StartMarkMS));
             xs.WriteSerializeIgnored(xe, nameof(fCurrentLerp));
             xs.WriteSerializeIgnored(xe, nameof(pLocalSyncBinding));
-            xs.WriteSerializeIgnored(xe, nameof(pEventMap));
+            xs.WriteSerializeIgnored(xe, nameof(p@eventMap));
             xs.WriteNumber(xe, nameof(sAnimationBindingIndex), sAnimationBindingIndex);
             xs.WriteSerializeIgnored(xe, nameof(bAtMark));
             xs.WriteSerializeIgnored(xe, nameof(bAllCharactersInScene));

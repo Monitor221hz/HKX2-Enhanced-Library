@@ -5,36 +5,36 @@ namespace HKX2
 {
     // hkbEvaluateExpressionModifierInternalExpressionData Signatire: 0xb8686f6b size: 2 flags: FLAGS_NONE
 
-    // raisedEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // raised@event class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     // wasTrueInPreviousFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 1 flags: FLAGS_NONE enum: 
     public partial class hkbEvaluateExpressionModifierInternalExpressionData : IHavokObject, IEquatable<hkbEvaluateExpressionModifierInternalExpressionData?>
     {
-        public bool raisedEvent { set; get; }
+        public bool raised@event { set; get; }
         public bool wasTrueInPreviousFrame { set; get; }
 
         public virtual uint Signature { set; get; } = 0xb8686f6b;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            raisedEvent = br.ReadBoolean();
+            raised@event = br.ReadBoolean();
             wasTrueInPreviousFrame = br.ReadBoolean();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteBoolean(raisedEvent);
+            bw.WriteBoolean(raised@event);
             bw.WriteBoolean(wasTrueInPreviousFrame);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            raisedEvent = xd.ReadBoolean(xe, nameof(raisedEvent));
+            raised@event = xd.ReadBoolean(xe, nameof(raised@event));
             wasTrueInPreviousFrame = xd.ReadBoolean(xe, nameof(wasTrueInPreviousFrame));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteBoolean(xe, nameof(raisedEvent), raisedEvent);
+            xs.WriteBoolean(xe, nameof(raised@event), raised@event);
             xs.WriteBoolean(xe, nameof(wasTrueInPreviousFrame), wasTrueInPreviousFrame);
         }
 
@@ -46,7 +46,7 @@ namespace HKX2
         public bool Equals(hkbEvaluateExpressionModifierInternalExpressionData? other)
         {
             return other is not null &&
-                   raisedEvent.Equals(other.raisedEvent) &&
+                   raised@event.Equals(other.raised@event) &&
                    wasTrueInPreviousFrame.Equals(other.wasTrueInPreviousFrame) &&
                    Signature == other.Signature; ;
         }
@@ -54,7 +54,7 @@ namespace HKX2
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(raisedEvent);
+            hashcode.Add(raised@event);
             hashcode.Add(wasTrueInPreviousFrame);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();

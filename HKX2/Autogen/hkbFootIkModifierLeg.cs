@@ -10,7 +10,7 @@ namespace HKX2
     // prevAnkleRotLS class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // kneeAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     // footEndLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // ungroundedEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // ungrounded@event class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     // footPlantedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
     // footRaisedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum: 
     // maxAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
@@ -31,7 +31,7 @@ namespace HKX2
         private Quaternion prevAnkleRotLS { set; get; }
         public Vector4 kneeAxisLS { set; get; }
         public Vector4 footEndLS { set; get; }
-        public hkbEventProperty ungroundedEvent { set; get; } = new();
+        public hkb@eventProperty ungrounded@event { set; get; } = new();
         public float footPlantedAnkleHeightMS { set; get; }
         public float footRaisedAnkleHeightMS { set; get; }
         public float maxAnkleHeightMS { set; get; }
@@ -55,7 +55,7 @@ namespace HKX2
             prevAnkleRotLS = des.ReadQuaternion(br);
             kneeAxisLS = br.ReadVector4();
             footEndLS = br.ReadVector4();
-            ungroundedEvent.Read(des, br);
+            ungrounded@event.Read(des, br);
             footPlantedAnkleHeightMS = br.ReadSingle();
             footRaisedAnkleHeightMS = br.ReadSingle();
             maxAnkleHeightMS = br.ReadSingle();
@@ -79,7 +79,7 @@ namespace HKX2
             s.WriteQuaternion(bw, prevAnkleRotLS);
             bw.WriteVector4(kneeAxisLS);
             bw.WriteVector4(footEndLS);
-            ungroundedEvent.Write(s, bw);
+            ungrounded@event.Write(s, bw);
             bw.WriteSingle(footPlantedAnkleHeightMS);
             bw.WriteSingle(footRaisedAnkleHeightMS);
             bw.WriteSingle(maxAnkleHeightMS);
@@ -102,7 +102,7 @@ namespace HKX2
             originalAnkleTransformMS = xd.ReadQSTransform(xe, nameof(originalAnkleTransformMS));
             kneeAxisLS = xd.ReadVector4(xe, nameof(kneeAxisLS));
             footEndLS = xd.ReadVector4(xe, nameof(footEndLS));
-            ungroundedEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(ungroundedEvent));
+            ungrounded@event = xd.ReadClass<hkb@eventProperty>(xe, nameof(ungrounded@event));
             footPlantedAnkleHeightMS = xd.ReadSingle(xe, nameof(footPlantedAnkleHeightMS));
             footRaisedAnkleHeightMS = xd.ReadSingle(xe, nameof(footRaisedAnkleHeightMS));
             maxAnkleHeightMS = xd.ReadSingle(xe, nameof(maxAnkleHeightMS));
@@ -125,7 +125,7 @@ namespace HKX2
             xs.WriteSerializeIgnored(xe, nameof(prevAnkleRotLS));
             xs.WriteVector4(xe, nameof(kneeAxisLS), kneeAxisLS);
             xs.WriteVector4(xe, nameof(footEndLS), footEndLS);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(ungroundedEvent), ungroundedEvent);
+            xs.WriteClass<hkb@eventProperty>(xe, nameof(ungrounded@event), ungrounded@event);
             xs.WriteFloat(xe, nameof(footPlantedAnkleHeightMS), footPlantedAnkleHeightMS);
             xs.WriteFloat(xe, nameof(footRaisedAnkleHeightMS), footRaisedAnkleHeightMS);
             xs.WriteFloat(xe, nameof(maxAnkleHeightMS), maxAnkleHeightMS);
@@ -153,7 +153,7 @@ namespace HKX2
                    originalAnkleTransformMS.Equals(other.originalAnkleTransformMS) &&
                    kneeAxisLS.Equals(other.kneeAxisLS) &&
                    footEndLS.Equals(other.footEndLS) &&
-                   ((ungroundedEvent is null && other.ungroundedEvent is null) || (ungroundedEvent is not null && other.ungroundedEvent is not null && ungroundedEvent.Equals((IHavokObject)other.ungroundedEvent))) &&
+                   ((ungrounded@event is null && other.ungrounded@event is null) || (ungrounded@event is not null && other.ungrounded@event is not null && ungrounded@event.Equals((IHavokObject)other.ungrounded@event))) &&
                    footPlantedAnkleHeightMS.Equals(other.footPlantedAnkleHeightMS) &&
                    footRaisedAnkleHeightMS.Equals(other.footRaisedAnkleHeightMS) &&
                    maxAnkleHeightMS.Equals(other.maxAnkleHeightMS) &&
@@ -177,7 +177,7 @@ namespace HKX2
             hashcode.Add(originalAnkleTransformMS);
             hashcode.Add(kneeAxisLS);
             hashcode.Add(footEndLS);
-            hashcode.Add(ungroundedEvent);
+            hashcode.Add(ungrounded@event);
             hashcode.Add(footPlantedAnkleHeightMS);
             hashcode.Add(footRaisedAnkleHeightMS);
             hashcode.Add(maxAnkleHeightMS);

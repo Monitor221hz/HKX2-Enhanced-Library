@@ -8,12 +8,12 @@ namespace HKX2
 
     // worldUpWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // stringData class: hkbProjectStringData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // defaultEventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 40 flags: FLAGS_NONE enum: EventMode
+    // default@eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 40 flags: FLAGS_NONE enum: @eventMode
     public partial class hkbProjectData : hkReferencedObject, IEquatable<hkbProjectData?>
     {
         public Vector4 worldUpWS { set; get; }
         public hkbProjectStringData? stringData { set; get; }
-        public sbyte defaultEventMode { set; get; }
+        public sbyte default@eventMode { set; get; }
 
         public override uint Signature { set; get; } = 0x13a39ba7;
 
@@ -22,7 +22,7 @@ namespace HKX2
             base.Read(des, br);
             worldUpWS = br.ReadVector4();
             stringData = des.ReadClassPointer<hkbProjectStringData>(br);
-            defaultEventMode = br.ReadSByte();
+            default@eventMode = br.ReadSByte();
             br.Position += 7;
         }
 
@@ -31,7 +31,7 @@ namespace HKX2
             base.Write(s, bw);
             bw.WriteVector4(worldUpWS);
             s.WriteClassPointer(bw, stringData);
-            bw.WriteSByte(defaultEventMode);
+            bw.WriteSByte(default@eventMode);
             bw.Position += 7;
         }
 
@@ -40,7 +40,7 @@ namespace HKX2
             base.ReadXml(xd, xe);
             worldUpWS = xd.ReadVector4(xe, nameof(worldUpWS));
             stringData = xd.ReadClassPointer<hkbProjectStringData>(xe, nameof(stringData));
-            defaultEventMode = xd.ReadFlag<EventMode, sbyte>(xe, nameof(defaultEventMode));
+            default@eventMode = xd.ReadFlag<@eventMode, sbyte>(xe, nameof(default@eventMode));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
@@ -48,7 +48,7 @@ namespace HKX2
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(worldUpWS), worldUpWS);
             xs.WriteClassPointer(xe, nameof(stringData), stringData);
-            xs.WriteEnum<EventMode, sbyte>(xe, nameof(defaultEventMode), defaultEventMode);
+            xs.WriteEnum<@eventMode, sbyte>(xe, nameof(default@eventMode), default@eventMode);
         }
 
         public override bool Equals(object? obj)
@@ -62,7 +62,7 @@ namespace HKX2
                    base.Equals(other) &&
                    worldUpWS.Equals(other.worldUpWS) &&
                    ((stringData is null && other.stringData is null) || (stringData is not null && other.stringData is not null && stringData.Equals((IHavokObject)other.stringData))) &&
-                   defaultEventMode.Equals(other.defaultEventMode) &&
+                   default@eventMode.Equals(other.default@eventMode) &&
                    Signature == other.Signature; ;
         }
 
@@ -72,7 +72,7 @@ namespace HKX2
             hashcode.Add(base.GetHashCode());
             hashcode.Add(worldUpWS);
             hashcode.Add(stringData);
-            hashcode.Add(defaultEventMode);
+            hashcode.Add(default@eventMode);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

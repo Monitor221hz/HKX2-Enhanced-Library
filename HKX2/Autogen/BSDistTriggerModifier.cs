@@ -9,13 +9,13 @@ namespace HKX2
     // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     // distance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     // distanceTrigger class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // triggerEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // trigger@event class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
     public partial class BSDistTriggerModifier : hkbModifier, IEquatable<BSDistTriggerModifier?>
     {
         public Vector4 targetPosition { set; get; }
         public float distance { set; get; }
         public float distanceTrigger { set; get; }
-        public hkbEventProperty triggerEvent { set; get; } = new();
+        public hkb@eventProperty trigger@event { set; get; } = new();
 
         public override uint Signature { set; get; } = 0xb34d2bbd;
 
@@ -25,7 +25,7 @@ namespace HKX2
             targetPosition = br.ReadVector4();
             distance = br.ReadSingle();
             distanceTrigger = br.ReadSingle();
-            triggerEvent.Read(des, br);
+            trigger@event.Read(des, br);
             br.Position += 8;
         }
 
@@ -35,7 +35,7 @@ namespace HKX2
             bw.WriteVector4(targetPosition);
             bw.WriteSingle(distance);
             bw.WriteSingle(distanceTrigger);
-            triggerEvent.Write(s, bw);
+            trigger@event.Write(s, bw);
             bw.Position += 8;
         }
 
@@ -45,7 +45,7 @@ namespace HKX2
             targetPosition = xd.ReadVector4(xe, nameof(targetPosition));
             distance = xd.ReadSingle(xe, nameof(distance));
             distanceTrigger = xd.ReadSingle(xe, nameof(distanceTrigger));
-            triggerEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(triggerEvent));
+            trigger@event = xd.ReadClass<hkb@eventProperty>(xe, nameof(trigger@event));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
@@ -54,7 +54,7 @@ namespace HKX2
             xs.WriteVector4(xe, nameof(targetPosition), targetPosition);
             xs.WriteFloat(xe, nameof(distance), distance);
             xs.WriteFloat(xe, nameof(distanceTrigger), distanceTrigger);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(triggerEvent), triggerEvent);
+            xs.WriteClass<hkb@eventProperty>(xe, nameof(trigger@event), trigger@event);
         }
 
         public override bool Equals(object? obj)
@@ -69,7 +69,7 @@ namespace HKX2
                    targetPosition.Equals(other.targetPosition) &&
                    distance.Equals(other.distance) &&
                    distanceTrigger.Equals(other.distanceTrigger) &&
-                   ((triggerEvent is null && other.triggerEvent is null) || (triggerEvent is not null && other.triggerEvent is not null && triggerEvent.Equals((IHavokObject)other.triggerEvent))) &&
+                   ((trigger@event is null && other.trigger@event is null) || (trigger@event is not null && other.trigger@event is not null && trigger@event.Equals((IHavokObject)other.trigger@event))) &&
                    Signature == other.Signature; ;
         }
 
@@ -80,7 +80,7 @@ namespace HKX2
             hashcode.Add(targetPosition);
             hashcode.Add(distance);
             hashcode.Add(distanceTrigger);
-            hashcode.Add(triggerEvent);
+            hashcode.Add(trigger@event);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

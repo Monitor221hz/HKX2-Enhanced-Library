@@ -9,7 +9,7 @@ namespace HKX2
     // pSequence class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
     // eBlendModeFunction class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: BlendModeFunction
     // fPercent class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // events class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // @events class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // fTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // bDelayedActivate class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 108 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // bLooping class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 109 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
@@ -18,7 +18,7 @@ namespace HKX2
         public string pSequence { set; get; } = "";
         public sbyte eBlendModeFunction { set; get; }
         public float fPercent { set; get; }
-        public IList<object> events { set; get; } = Array.Empty<object>();
+        public IList<object> @events { set; get; } = Array.Empty<object>();
         private float fTime { set; get; }
         private bool bDelayedActivate { set; get; }
         private bool bLooping { set; get; }
@@ -67,7 +67,7 @@ namespace HKX2
             xs.WriteString(xe, nameof(pSequence), pSequence);
             xs.WriteEnum<BlendModeFunction, sbyte>(xe, nameof(eBlendModeFunction), eBlendModeFunction);
             xs.WriteFloat(xe, nameof(fPercent), fPercent);
-            xs.WriteSerializeIgnored(xe, nameof(events));
+            xs.WriteSerializeIgnored(xe, nameof(@events));
             xs.WriteSerializeIgnored(xe, nameof(fTime));
             xs.WriteSerializeIgnored(xe, nameof(bDelayedActivate));
             xs.WriteSerializeIgnored(xe, nameof(bLooping));

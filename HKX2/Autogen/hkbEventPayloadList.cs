@@ -5,19 +5,19 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbEventPayloadList Signatire: 0x3d2dbd34 size: 32 flags: FLAGS_NONE
+    // hkb@eventPayloadList Signatire: 0x3d2dbd34 size: 32 flags: FLAGS_NONE
 
-    // payloads class: hkbEventPayload Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbEventPayloadList : hkbEventPayload, IEquatable<hkbEventPayloadList?>
+    // payloads class: hkb@eventPayload Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    public partial class hkb@eventPayloadList : hkb@eventPayload, IEquatable<hkb@eventPayloadList?>
     {
-        public IList<hkbEventPayload> payloads { set; get; } = Array.Empty<hkbEventPayload>();
+        public IList<hkb@eventPayload> payloads { set; get; } = Array.Empty<hkb@eventPayload>();
 
         public override uint Signature { set; get; } = 0x3d2dbd34;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            payloads = des.ReadClassPointerArray<hkbEventPayload>(br);
+            payloads = des.ReadClassPointerArray<hkb@eventPayload>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -29,7 +29,7 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            payloads = xd.ReadClassPointerArray<hkbEventPayload>(xe, nameof(payloads));
+            payloads = xd.ReadClassPointerArray<hkb@eventPayload>(xe, nameof(payloads));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
@@ -40,10 +40,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbEventPayloadList);
+            return Equals(obj as hkb@eventPayloadList);
         }
 
-        public bool Equals(hkbEventPayloadList? other)
+        public bool Equals(hkb@eventPayloadList? other)
         {
             return other is not null &&
                    base.Equals(other) &&

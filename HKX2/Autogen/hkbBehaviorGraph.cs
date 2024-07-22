@@ -18,7 +18,7 @@ namespace HKX2
     // activeNodeTemplateToIndexMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // activeNodesChildrenIndices class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // globalTransitionData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // @eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // attributeIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // variableIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // characterPropertyIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
@@ -50,7 +50,7 @@ namespace HKX2
         private object? activeNodeTemplateToIndexMap { set; get; }
         private object? activeNodesChildrenIndices { set; get; }
         private object? globalTransitionData { set; get; }
-        private object? eventIdMap { set; get; }
+        private object? @eventIdMap { set; get; }
         private object? attributeIdMap { set; get; }
         private object? variableIdMap { set; get; }
         private object? characterPropertyIdMap { set; get; }
@@ -168,7 +168,7 @@ namespace HKX2
             xs.WriteSerializeIgnored(xe, nameof(activeNodeTemplateToIndexMap));
             xs.WriteSerializeIgnored(xe, nameof(activeNodesChildrenIndices));
             xs.WriteSerializeIgnored(xe, nameof(globalTransitionData));
-            xs.WriteSerializeIgnored(xe, nameof(eventIdMap));
+            xs.WriteSerializeIgnored(xe, nameof(@eventIdMap));
             xs.WriteSerializeIgnored(xe, nameof(attributeIdMap));
             xs.WriteSerializeIgnored(xe, nameof(variableIdMap));
             xs.WriteSerializeIgnored(xe, nameof(characterPropertyIdMap));
