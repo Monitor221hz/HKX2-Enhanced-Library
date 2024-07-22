@@ -5,51 +5,51 @@ namespace HKX2
 {
     // hkbWorldFromModelModeData Signatire: 0xa3af8783 size: 8 flags: FLAGS_NONE
 
-    // poseMatchingBone0 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // poseMatchingBone1 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // poseMatchingBone2 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // mode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 6 flags: FLAGS_NONE enum: WorldFromModelMode
+    // m_poseMatchingBone0 m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_poseMatchingBone1 m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // m_poseMatchingBone2 m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // m_mode m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 6 flags: FLAGS_NONE enum: WorldFromModelMode
     public partial class hkbWorldFromModelModeData : IHavokObject, IEquatable<hkbWorldFromModelModeData?>
     {
-        public short poseMatchingBone0 { set; get; }
-        public short poseMatchingBone1 { set; get; }
-        public short poseMatchingBone2 { set; get; }
-        public sbyte mode { set; get; }
+        public short m_poseMatchingBone0 { set; get; }
+        public short m_poseMatchingBone1 { set; get; }
+        public short m_poseMatchingBone2 { set; get; }
+        public sbyte m_mode { set; get; }
 
         public virtual uint Signature { set; get; } = 0xa3af8783;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            poseMatchingBone0 = br.ReadInt16();
-            poseMatchingBone1 = br.ReadInt16();
-            poseMatchingBone2 = br.ReadInt16();
-            mode = br.ReadSByte();
+            m_poseMatchingBone0 = br.ReadInt16();
+            m_poseMatchingBone1 = br.ReadInt16();
+            m_poseMatchingBone2 = br.ReadInt16();
+            m_mode = br.ReadSByte();
             br.Position += 1;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteInt16(poseMatchingBone0);
-            bw.WriteInt16(poseMatchingBone1);
-            bw.WriteInt16(poseMatchingBone2);
-            bw.WriteSByte(mode);
+            bw.WriteInt16(m_poseMatchingBone0);
+            bw.WriteInt16(m_poseMatchingBone1);
+            bw.WriteInt16(m_poseMatchingBone2);
+            bw.WriteSByte(m_mode);
             bw.Position += 1;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            poseMatchingBone0 = xd.ReadInt16(xe, nameof(poseMatchingBone0));
-            poseMatchingBone1 = xd.ReadInt16(xe, nameof(poseMatchingBone1));
-            poseMatchingBone2 = xd.ReadInt16(xe, nameof(poseMatchingBone2));
-            mode = xd.ReadFlag<WorldFromModelMode, sbyte>(xe, nameof(mode));
+            m_poseMatchingBone0 = xd.ReadInt16(xe, nameof(m_poseMatchingBone0));
+            m_poseMatchingBone1 = xd.ReadInt16(xe, nameof(m_poseMatchingBone1));
+            m_poseMatchingBone2 = xd.ReadInt16(xe, nameof(m_poseMatchingBone2));
+            m_mode = xd.ReadFlag<WorldFromModelMode, sbyte>(xe, nameof(m_mode));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteNumber(xe, nameof(poseMatchingBone0), poseMatchingBone0);
-            xs.WriteNumber(xe, nameof(poseMatchingBone1), poseMatchingBone1);
-            xs.WriteNumber(xe, nameof(poseMatchingBone2), poseMatchingBone2);
-            xs.WriteEnum<WorldFromModelMode, sbyte>(xe, nameof(mode), mode);
+            xs.WriteNumber(xe, nameof(m_poseMatchingBone0), m_poseMatchingBone0);
+            xs.WriteNumber(xe, nameof(m_poseMatchingBone1), m_poseMatchingBone1);
+            xs.WriteNumber(xe, nameof(m_poseMatchingBone2), m_poseMatchingBone2);
+            xs.WriteEnum<WorldFromModelMode, sbyte>(xe, nameof(m_mode), m_mode);
         }
 
         public override bool Equals(object? obj)
@@ -60,20 +60,20 @@ namespace HKX2
         public bool Equals(hkbWorldFromModelModeData? other)
         {
             return other is not null &&
-                   poseMatchingBone0.Equals(other.poseMatchingBone0) &&
-                   poseMatchingBone1.Equals(other.poseMatchingBone1) &&
-                   poseMatchingBone2.Equals(other.poseMatchingBone2) &&
-                   mode.Equals(other.mode) &&
+                   m_poseMatchingBone0.Equals(other.m_poseMatchingBone0) &&
+                   m_poseMatchingBone1.Equals(other.m_poseMatchingBone1) &&
+                   m_poseMatchingBone2.Equals(other.m_poseMatchingBone2) &&
+                   m_mode.Equals(other.m_mode) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(poseMatchingBone0);
-            hashcode.Add(poseMatchingBone1);
-            hashcode.Add(poseMatchingBone2);
-            hashcode.Add(mode);
+            hashcode.Add(m_poseMatchingBone0);
+            hashcode.Add(m_poseMatchingBone1);
+            hashcode.Add(m_poseMatchingBone2);
+            hashcode.Add(m_mode);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -6,29 +6,29 @@ namespace HKX2
 {
     // BSComputeAddBoneAnimModifier Signatire: 0xa67f8c46 size: 160 flags: FLAGS_NONE
 
-    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // translationLSOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // rotationLSOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // scaleLSOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_boneIndex m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_translationLSOut m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_rotationLSOut m_class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // m_scaleLSOut m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // m_pSkeletonMemory m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class BSComputeAddBoneAnimModifier : hkbModifier, IEquatable<BSComputeAddBoneAnimModifier?>
     {
-        public short boneIndex { set; get; }
-        public Vector4 translationLSOut { set; get; }
-        public Quaternion rotationLSOut { set; get; }
-        public Vector4 scaleLSOut { set; get; }
-        private object? pSkeletonMemory { set; get; }
+        public short m_boneIndex { set; get; }
+        public Vector4 m_translationLSOut { set; get; }
+        public Quaternion m_rotationLSOut { set; get; }
+        public Vector4 m_scaleLSOut { set; get; }
+        private object? m_pSkeletonMemory { set; get; }
 
         public override uint Signature { set; get; } = 0xa67f8c46;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            boneIndex = br.ReadInt16();
+            m_boneIndex = br.ReadInt16();
             br.Position += 14;
-            translationLSOut = br.ReadVector4();
-            rotationLSOut = des.ReadQuaternion(br);
-            scaleLSOut = br.ReadVector4();
+            m_translationLSOut = br.ReadVector4();
+            m_rotationLSOut = des.ReadQuaternion(br);
+            m_scaleLSOut = br.ReadVector4();
             des.ReadEmptyPointer(br);
             br.Position += 8;
         }
@@ -36,11 +36,11 @@ namespace HKX2
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteInt16(boneIndex);
+            bw.WriteInt16(m_boneIndex);
             bw.Position += 14;
-            bw.WriteVector4(translationLSOut);
-            s.WriteQuaternion(bw, rotationLSOut);
-            bw.WriteVector4(scaleLSOut);
+            bw.WriteVector4(m_translationLSOut);
+            s.WriteQuaternion(bw, m_rotationLSOut);
+            bw.WriteVector4(m_scaleLSOut);
             s.WriteVoidPointer(bw);
             bw.Position += 8;
         }
@@ -48,20 +48,20 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            boneIndex = xd.ReadInt16(xe, nameof(boneIndex));
-            translationLSOut = xd.ReadVector4(xe, nameof(translationLSOut));
-            rotationLSOut = xd.ReadQuaternion(xe, nameof(rotationLSOut));
-            scaleLSOut = xd.ReadVector4(xe, nameof(scaleLSOut));
+            m_boneIndex = xd.ReadInt16(xe, nameof(m_boneIndex));
+            m_translationLSOut = xd.ReadVector4(xe, nameof(m_translationLSOut));
+            m_rotationLSOut = xd.ReadQuaternion(xe, nameof(m_rotationLSOut));
+            m_scaleLSOut = xd.ReadVector4(xe, nameof(m_scaleLSOut));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(boneIndex), boneIndex);
-            xs.WriteVector4(xe, nameof(translationLSOut), translationLSOut);
-            xs.WriteQuaternion(xe, nameof(rotationLSOut), rotationLSOut);
-            xs.WriteVector4(xe, nameof(scaleLSOut), scaleLSOut);
-            xs.WriteSerializeIgnored(xe, nameof(pSkeletonMemory));
+            xs.WriteNumber(xe, nameof(m_boneIndex), m_boneIndex);
+            xs.WriteVector4(xe, nameof(m_translationLSOut), m_translationLSOut);
+            xs.WriteQuaternion(xe, nameof(m_rotationLSOut), m_rotationLSOut);
+            xs.WriteVector4(xe, nameof(m_scaleLSOut), m_scaleLSOut);
+            xs.WriteSerializeIgnored(xe, nameof(m_pSkeletonMemory));
         }
 
         public override bool Equals(object? obj)
@@ -73,10 +73,10 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   boneIndex.Equals(other.boneIndex) &&
-                   translationLSOut.Equals(other.translationLSOut) &&
-                   rotationLSOut.Equals(other.rotationLSOut) &&
-                   scaleLSOut.Equals(other.scaleLSOut) &&
+                   m_boneIndex.Equals(other.m_boneIndex) &&
+                   m_translationLSOut.Equals(other.m_translationLSOut) &&
+                   m_rotationLSOut.Equals(other.m_rotationLSOut) &&
+                   m_scaleLSOut.Equals(other.m_scaleLSOut) &&
                    Signature == other.Signature; ;
         }
 
@@ -84,10 +84,10 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(boneIndex);
-            hashcode.Add(translationLSOut);
-            hashcode.Add(rotationLSOut);
-            hashcode.Add(scaleLSOut);
+            hashcode.Add(m_boneIndex);
+            hashcode.Add(m_translationLSOut);
+            hashcode.Add(m_rotationLSOut);
+            hashcode.Add(m_scaleLSOut);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

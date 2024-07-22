@@ -6,56 +6,56 @@ namespace HKX2
 {
     // hkbRotateCharacterModifier Signatire: 0x877ebc0b size: 128 flags: FLAGS_NONE
 
-    // degreesPerSecond class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // speedMultiplier class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // axisOfRotation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_degreesPerSecond m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_speedMultiplier m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
+    // m_axisOfRotation m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_angle m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbRotateCharacterModifier : hkbModifier, IEquatable<hkbRotateCharacterModifier?>
     {
-        public float degreesPerSecond { set; get; }
-        public float speedMultiplier { set; get; }
-        public Vector4 axisOfRotation { set; get; }
-        private float angle { set; get; }
+        public float m_degreesPerSecond { set; get; }
+        public float m_speedMultiplier { set; get; }
+        public Vector4 m_axisOfRotation { set; get; }
+        private float m_angle { set; get; }
 
         public override uint Signature { set; get; } = 0x877ebc0b;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            degreesPerSecond = br.ReadSingle();
-            speedMultiplier = br.ReadSingle();
+            m_degreesPerSecond = br.ReadSingle();
+            m_speedMultiplier = br.ReadSingle();
             br.Position += 8;
-            axisOfRotation = br.ReadVector4();
-            angle = br.ReadSingle();
+            m_axisOfRotation = br.ReadVector4();
+            m_angle = br.ReadSingle();
             br.Position += 12;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteSingle(degreesPerSecond);
-            bw.WriteSingle(speedMultiplier);
+            bw.WriteSingle(m_degreesPerSecond);
+            bw.WriteSingle(m_speedMultiplier);
             bw.Position += 8;
-            bw.WriteVector4(axisOfRotation);
-            bw.WriteSingle(angle);
+            bw.WriteVector4(m_axisOfRotation);
+            bw.WriteSingle(m_angle);
             bw.Position += 12;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            degreesPerSecond = xd.ReadSingle(xe, nameof(degreesPerSecond));
-            speedMultiplier = xd.ReadSingle(xe, nameof(speedMultiplier));
-            axisOfRotation = xd.ReadVector4(xe, nameof(axisOfRotation));
+            m_degreesPerSecond = xd.ReadSingle(xe, nameof(m_degreesPerSecond));
+            m_speedMultiplier = xd.ReadSingle(xe, nameof(m_speedMultiplier));
+            m_axisOfRotation = xd.ReadVector4(xe, nameof(m_axisOfRotation));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteFloat(xe, nameof(degreesPerSecond), degreesPerSecond);
-            xs.WriteFloat(xe, nameof(speedMultiplier), speedMultiplier);
-            xs.WriteVector4(xe, nameof(axisOfRotation), axisOfRotation);
-            xs.WriteSerializeIgnored(xe, nameof(angle));
+            xs.WriteFloat(xe, nameof(m_degreesPerSecond), m_degreesPerSecond);
+            xs.WriteFloat(xe, nameof(m_speedMultiplier), m_speedMultiplier);
+            xs.WriteVector4(xe, nameof(m_axisOfRotation), m_axisOfRotation);
+            xs.WriteSerializeIgnored(xe, nameof(m_angle));
         }
 
         public override bool Equals(object? obj)
@@ -67,9 +67,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   degreesPerSecond.Equals(other.degreesPerSecond) &&
-                   speedMultiplier.Equals(other.speedMultiplier) &&
-                   axisOfRotation.Equals(other.axisOfRotation) &&
+                   m_degreesPerSecond.Equals(other.m_degreesPerSecond) &&
+                   m_speedMultiplier.Equals(other.m_speedMultiplier) &&
+                   m_axisOfRotation.Equals(other.m_axisOfRotation) &&
                    Signature == other.Signature; ;
         }
 
@@ -77,9 +77,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(degreesPerSecond);
-            hashcode.Add(speedMultiplier);
-            hashcode.Add(axisOfRotation);
+            hashcode.Add(m_degreesPerSecond);
+            hashcode.Add(m_speedMultiplier);
+            hashcode.Add(m_axisOfRotation);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

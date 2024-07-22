@@ -7,73 +7,73 @@ namespace HKX2
 {
     // hkpPhysicsSystem Signatire: 0xff724c17 size: 104 flags: FLAGS_NONE
 
-    // rigidBodies class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // constraints class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // actions class: hkpAction Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // phantoms class: hkpPhantom Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // active class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_rigidBodies m_class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_constraints m_class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_actions m_class: hkpAction Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_phantoms m_class: hkpPhantom Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_userData m_class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // m_active m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     public partial class hkpPhysicsSystem : hkReferencedObject, IEquatable<hkpPhysicsSystem?>
     {
-        public IList<hkpRigidBody> rigidBodies { set; get; } = Array.Empty<hkpRigidBody>();
-        public IList<hkpConstraintInstance> constraints { set; get; } = Array.Empty<hkpConstraintInstance>();
-        public IList<hkpAction> actions { set; get; } = Array.Empty<hkpAction>();
-        public IList<hkpPhantom> phantoms { set; get; } = Array.Empty<hkpPhantom>();
-        public string name { set; get; } = "";
-        public ulong userData { set; get; }
-        public bool active { set; get; }
+        public IList<hkpRigidBody> m_rigidBodies { set; get; } = Array.Empty<hkpRigidBody>();
+        public IList<hkpConstraintInstance> m_constraints { set; get; } = Array.Empty<hkpConstraintInstance>();
+        public IList<hkpAction> m_actions { set; get; } = Array.Empty<hkpAction>();
+        public IList<hkpPhantom> m_phantoms { set; get; } = Array.Empty<hkpPhantom>();
+        public string m_name { set; get; } = "";
+        public ulong m_userData { set; get; }
+        public bool m_active { set; get; }
 
         public override uint Signature { set; get; } = 0xff724c17;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            rigidBodies = des.ReadClassPointerArray<hkpRigidBody>(br);
-            constraints = des.ReadClassPointerArray<hkpConstraintInstance>(br);
-            actions = des.ReadClassPointerArray<hkpAction>(br);
-            phantoms = des.ReadClassPointerArray<hkpPhantom>(br);
-            name = des.ReadStringPointer(br);
-            userData = br.ReadUInt64();
-            active = br.ReadBoolean();
+            m_rigidBodies = des.ReadClassPointerArray<hkpRigidBody>(br);
+            m_constraints = des.ReadClassPointerArray<hkpConstraintInstance>(br);
+            m_actions = des.ReadClassPointerArray<hkpAction>(br);
+            m_phantoms = des.ReadClassPointerArray<hkpPhantom>(br);
+            m_name = des.ReadStringPointer(br);
+            m_userData = br.ReadUInt64();
+            m_active = br.ReadBoolean();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointerArray(bw, rigidBodies);
-            s.WriteClassPointerArray(bw, constraints);
-            s.WriteClassPointerArray(bw, actions);
-            s.WriteClassPointerArray(bw, phantoms);
-            s.WriteStringPointer(bw, name);
-            bw.WriteUInt64(userData);
-            bw.WriteBoolean(active);
+            s.WriteClassPointerArray(bw, m_rigidBodies);
+            s.WriteClassPointerArray(bw, m_constraints);
+            s.WriteClassPointerArray(bw, m_actions);
+            s.WriteClassPointerArray(bw, m_phantoms);
+            s.WriteStringPointer(bw, m_name);
+            bw.WriteUInt64(m_userData);
+            bw.WriteBoolean(m_active);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(rigidBodies));
-            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(xe, nameof(constraints));
-            actions = xd.ReadClassPointerArray<hkpAction>(xe, nameof(actions));
-            phantoms = xd.ReadClassPointerArray<hkpPhantom>(xe, nameof(phantoms));
-            name = xd.ReadString(xe, nameof(name));
-            userData = xd.ReadUInt64(xe, nameof(userData));
-            active = xd.ReadBoolean(xe, nameof(active));
+            m_rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(m_rigidBodies));
+            m_constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(xe, nameof(m_constraints));
+            m_actions = xd.ReadClassPointerArray<hkpAction>(xe, nameof(m_actions));
+            m_phantoms = xd.ReadClassPointerArray<hkpPhantom>(xe, nameof(m_phantoms));
+            m_name = xd.ReadString(xe, nameof(m_name));
+            m_userData = xd.ReadUInt64(xe, nameof(m_userData));
+            m_active = xd.ReadBoolean(xe, nameof(m_active));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(rigidBodies), rigidBodies);
-            xs.WriteClassPointerArray(xe, nameof(constraints), constraints);
-            xs.WriteClassPointerArray(xe, nameof(actions), actions);
-            xs.WriteClassPointerArray(xe, nameof(phantoms), phantoms);
-            xs.WriteString(xe, nameof(name), name);
-            xs.WriteNumber(xe, nameof(userData), userData);
-            xs.WriteBoolean(xe, nameof(active), active);
+            xs.WriteClassPointerArray(xe, nameof(m_rigidBodies), m_rigidBodies);
+            xs.WriteClassPointerArray(xe, nameof(m_constraints), m_constraints);
+            xs.WriteClassPointerArray(xe, nameof(m_actions), m_actions);
+            xs.WriteClassPointerArray(xe, nameof(m_phantoms), m_phantoms);
+            xs.WriteString(xe, nameof(m_name), m_name);
+            xs.WriteNumber(xe, nameof(m_userData), m_userData);
+            xs.WriteBoolean(xe, nameof(m_active), m_active);
         }
 
         public override bool Equals(object? obj)
@@ -85,13 +85,13 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   rigidBodies.SequenceEqual(other.rigidBodies) &&
-                   constraints.SequenceEqual(other.constraints) &&
-                   actions.SequenceEqual(other.actions) &&
-                   phantoms.SequenceEqual(other.phantoms) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   userData.Equals(other.userData) &&
-                   active.Equals(other.active) &&
+                   m_rigidBodies.SequenceEqual(other.m_rigidBodies) &&
+                   m_constraints.SequenceEqual(other.m_constraints) &&
+                   m_actions.SequenceEqual(other.m_actions) &&
+                   m_phantoms.SequenceEqual(other.m_phantoms) &&
+                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
+                   m_userData.Equals(other.m_userData) &&
+                   m_active.Equals(other.m_active) &&
                    Signature == other.Signature; ;
         }
 
@@ -99,13 +99,13 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(rigidBodies.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(constraints.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(actions.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(phantoms.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(name);
-            hashcode.Add(userData);
-            hashcode.Add(active);
+            hashcode.Add(m_rigidBodies.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_constraints.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_actions.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_phantoms.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_name);
+            hashcode.Add(m_userData);
+            hashcode.Add(m_active);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

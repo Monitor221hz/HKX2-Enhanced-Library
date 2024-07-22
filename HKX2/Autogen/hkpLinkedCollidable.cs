@@ -6,10 +6,10 @@ namespace HKX2
 {
     // hkpLinkedCollidable Signatire: 0xe1a81497 size: 128 flags: FLAGS_NONE
 
-    // collisionEntries class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_collisionEntries m_class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpLinkedCollidable : hkpCollidable, IEquatable<hkpLinkedCollidable?>
     {
-        public IList<object> collisionEntries { set; get; } = Array.Empty<object>();
+        public IList<object> m_collisionEntries { set; get; } = Array.Empty<object>();
 
         public override uint Signature { set; get; } = 0xe1a81497;
 
@@ -33,7 +33,7 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(collisionEntries));
+            xs.WriteSerializeIgnored(xe, nameof(m_collisionEntries));
         }
 
         public override bool Equals(object? obj)

@@ -6,7 +6,7 @@ namespace HKX2
         HINT_IGNORE = 1,
         HINT_TRANSFORM = 2,
         HINT_SCALE = 4,
-        HINT_TRANSFORAND_SCALE = 6,
+        HINT_TRANSFORM_AND_SCALE = 6,
         HINT_FLIP = 8,
     }
 }

@@ -5,101 +5,101 @@ namespace HKX2
 {
     // hkbAttachmentModifier Signatire: 0xcc0aab32 size: 200 flags: FLAGS_NONE
 
-    // sendToAttacherOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // sendToAttacheeOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // sendToAttacherOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // sendToAttacheeOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // attachmentSetup class: hkbAttachmentSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // attacherHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // attacheeHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // attacheeLayer class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // attacheeRB class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // oldMotionType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // oldFilterInfo class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 188 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // attachment class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_sendToAttacherOnAttach m_class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_sendToAttacheeOnAttach m_class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_sendToAttacherOnDetach m_class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // m_sendToAttacheeOnDetach m_class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // m_attachmentSetup m_class: hkbAttachmentSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // m_attacherHandle m_class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
+    // m_attacheeHandle m_class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
+    // m_attacheeLayer m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
+    // m_attacheeRB m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_oldMotionType m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_oldFilterInfo m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 188 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_attachment m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbAttachmentModifier : hkbModifier, IEquatable<hkbAttachmentModifier?>
     {
-        public hkbEventProperty sendToAttacherOnAttach { set; get; } = new();
-        public hkbEventProperty sendToAttacheeOnAttach { set; get; } = new();
-        public hkbEventProperty sendToAttacherOnDetach { set; get; } = new();
-        public hkbEventProperty sendToAttacheeOnDetach { set; get; } = new();
-        public hkbAttachmentSetup? attachmentSetup { set; get; }
-        public hkbHandle? attacherHandle { set; get; }
-        public hkbHandle? attacheeHandle { set; get; }
-        public int attacheeLayer { set; get; }
-        private object? attacheeRB { set; get; }
-        private byte oldMotionType { set; get; }
-        private int oldFilterInfo { set; get; }
-        private object? attachment { set; get; }
+        public hkbEventProperty m_sendToAttacherOnAttach { set; get; } = new();
+        public hkbEventProperty m_sendToAttacheeOnAttach { set; get; } = new();
+        public hkbEventProperty m_sendToAttacherOnDetach { set; get; } = new();
+        public hkbEventProperty m_sendToAttacheeOnDetach { set; get; } = new();
+        public hkbAttachmentSetup? m_attachmentSetup { set; get; }
+        public hkbHandle? m_attacherHandle { set; get; }
+        public hkbHandle? m_attacheeHandle { set; get; }
+        public int m_attacheeLayer { set; get; }
+        private object? m_attacheeRB { set; get; }
+        private byte m_oldMotionType { set; get; }
+        private int m_oldFilterInfo { set; get; }
+        private object? m_attachment { set; get; }
 
         public override uint Signature { set; get; } = 0xcc0aab32;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            sendToAttacherOnAttach.Read(des, br);
-            sendToAttacheeOnAttach.Read(des, br);
-            sendToAttacherOnDetach.Read(des, br);
-            sendToAttacheeOnDetach.Read(des, br);
-            attachmentSetup = des.ReadClassPointer<hkbAttachmentSetup>(br);
-            attacherHandle = des.ReadClassPointer<hkbHandle>(br);
-            attacheeHandle = des.ReadClassPointer<hkbHandle>(br);
-            attacheeLayer = br.ReadInt32();
+            m_sendToAttacherOnAttach.Read(des, br);
+            m_sendToAttacheeOnAttach.Read(des, br);
+            m_sendToAttacherOnDetach.Read(des, br);
+            m_sendToAttacheeOnDetach.Read(des, br);
+            m_attachmentSetup = des.ReadClassPointer<hkbAttachmentSetup>(br);
+            m_attacherHandle = des.ReadClassPointer<hkbHandle>(br);
+            m_attacheeHandle = des.ReadClassPointer<hkbHandle>(br);
+            m_attacheeLayer = br.ReadInt32();
             br.Position += 4;
             des.ReadEmptyPointer(br);
-            oldMotionType = br.ReadByte();
+            m_oldMotionType = br.ReadByte();
             br.Position += 3;
-            oldFilterInfo = br.ReadInt32();
+            m_oldFilterInfo = br.ReadInt32();
             des.ReadEmptyPointer(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            sendToAttacherOnAttach.Write(s, bw);
-            sendToAttacheeOnAttach.Write(s, bw);
-            sendToAttacherOnDetach.Write(s, bw);
-            sendToAttacheeOnDetach.Write(s, bw);
-            s.WriteClassPointer(bw, attachmentSetup);
-            s.WriteClassPointer(bw, attacherHandle);
-            s.WriteClassPointer(bw, attacheeHandle);
-            bw.WriteInt32(attacheeLayer);
+            m_sendToAttacherOnAttach.Write(s, bw);
+            m_sendToAttacheeOnAttach.Write(s, bw);
+            m_sendToAttacherOnDetach.Write(s, bw);
+            m_sendToAttacheeOnDetach.Write(s, bw);
+            s.WriteClassPointer(bw, m_attachmentSetup);
+            s.WriteClassPointer(bw, m_attacherHandle);
+            s.WriteClassPointer(bw, m_attacheeHandle);
+            bw.WriteInt32(m_attacheeLayer);
             bw.Position += 4;
             s.WriteVoidPointer(bw);
-            bw.WriteByte(oldMotionType);
+            bw.WriteByte(m_oldMotionType);
             bw.Position += 3;
-            bw.WriteInt32(oldFilterInfo);
+            bw.WriteInt32(m_oldFilterInfo);
             s.WriteVoidPointer(bw);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            sendToAttacherOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach));
-            sendToAttacheeOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnAttach));
-            sendToAttacherOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnDetach));
-            sendToAttacheeOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnDetach));
-            attachmentSetup = xd.ReadClassPointer<hkbAttachmentSetup>(xe, nameof(attachmentSetup));
-            attacherHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(attacherHandle));
-            attacheeHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(attacheeHandle));
-            attacheeLayer = xd.ReadInt32(xe, nameof(attacheeLayer));
+            m_sendToAttacherOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(m_sendToAttacherOnAttach));
+            m_sendToAttacheeOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(m_sendToAttacheeOnAttach));
+            m_sendToAttacherOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(m_sendToAttacherOnDetach));
+            m_sendToAttacheeOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(m_sendToAttacheeOnDetach));
+            m_attachmentSetup = xd.ReadClassPointer<hkbAttachmentSetup>(xe, nameof(m_attachmentSetup));
+            m_attacherHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(m_attacherHandle));
+            m_attacheeHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(m_attacheeHandle));
+            m_attacheeLayer = xd.ReadInt32(xe, nameof(m_attacheeLayer));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach), sendToAttacherOnAttach);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnAttach), sendToAttacheeOnAttach);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacherOnDetach), sendToAttacherOnDetach);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnDetach), sendToAttacheeOnDetach);
-            xs.WriteClassPointer(xe, nameof(attachmentSetup), attachmentSetup);
-            xs.WriteClassPointer(xe, nameof(attacherHandle), attacherHandle);
-            xs.WriteClassPointer(xe, nameof(attacheeHandle), attacheeHandle);
-            xs.WriteNumber(xe, nameof(attacheeLayer), attacheeLayer);
-            xs.WriteSerializeIgnored(xe, nameof(attacheeRB));
-            xs.WriteSerializeIgnored(xe, nameof(oldMotionType));
-            xs.WriteSerializeIgnored(xe, nameof(oldFilterInfo));
-            xs.WriteSerializeIgnored(xe, nameof(attachment));
+            xs.WriteClass<hkbEventProperty>(xe, nameof(m_sendToAttacherOnAttach), m_sendToAttacherOnAttach);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(m_sendToAttacheeOnAttach), m_sendToAttacheeOnAttach);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(m_sendToAttacherOnDetach), m_sendToAttacherOnDetach);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(m_sendToAttacheeOnDetach), m_sendToAttacheeOnDetach);
+            xs.WriteClassPointer(xe, nameof(m_attachmentSetup), m_attachmentSetup);
+            xs.WriteClassPointer(xe, nameof(m_attacherHandle), m_attacherHandle);
+            xs.WriteClassPointer(xe, nameof(m_attacheeHandle), m_attacheeHandle);
+            xs.WriteNumber(xe, nameof(m_attacheeLayer), m_attacheeLayer);
+            xs.WriteSerializeIgnored(xe, nameof(m_attacheeRB));
+            xs.WriteSerializeIgnored(xe, nameof(m_oldMotionType));
+            xs.WriteSerializeIgnored(xe, nameof(m_oldFilterInfo));
+            xs.WriteSerializeIgnored(xe, nameof(m_attachment));
         }
 
         public override bool Equals(object? obj)
@@ -111,14 +111,14 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((sendToAttacherOnAttach is null && other.sendToAttacherOnAttach is null) || (sendToAttacherOnAttach is not null && other.sendToAttacherOnAttach is not null && sendToAttacherOnAttach.Equals((IHavokObject)other.sendToAttacherOnAttach))) &&
-                   ((sendToAttacheeOnAttach is null && other.sendToAttacheeOnAttach is null) || (sendToAttacheeOnAttach is not null && other.sendToAttacheeOnAttach is not null && sendToAttacheeOnAttach.Equals((IHavokObject)other.sendToAttacheeOnAttach))) &&
-                   ((sendToAttacherOnDetach is null && other.sendToAttacherOnDetach is null) || (sendToAttacherOnDetach is not null && other.sendToAttacherOnDetach is not null && sendToAttacherOnDetach.Equals((IHavokObject)other.sendToAttacherOnDetach))) &&
-                   ((sendToAttacheeOnDetach is null && other.sendToAttacheeOnDetach is null) || (sendToAttacheeOnDetach is not null && other.sendToAttacheeOnDetach is not null && sendToAttacheeOnDetach.Equals((IHavokObject)other.sendToAttacheeOnDetach))) &&
-                   ((attachmentSetup is null && other.attachmentSetup is null) || (attachmentSetup is not null && other.attachmentSetup is not null && attachmentSetup.Equals((IHavokObject)other.attachmentSetup))) &&
-                   ((attacherHandle is null && other.attacherHandle is null) || (attacherHandle is not null && other.attacherHandle is not null && attacherHandle.Equals((IHavokObject)other.attacherHandle))) &&
-                   ((attacheeHandle is null && other.attacheeHandle is null) || (attacheeHandle is not null && other.attacheeHandle is not null && attacheeHandle.Equals((IHavokObject)other.attacheeHandle))) &&
-                   attacheeLayer.Equals(other.attacheeLayer) &&
+                   ((m_sendToAttacherOnAttach is null && other.m_sendToAttacherOnAttach is null) || (m_sendToAttacherOnAttach is not null && other.m_sendToAttacherOnAttach is not null && m_sendToAttacherOnAttach.Equals((IHavokObject)other.m_sendToAttacherOnAttach))) &&
+                   ((m_sendToAttacheeOnAttach is null && other.m_sendToAttacheeOnAttach is null) || (m_sendToAttacheeOnAttach is not null && other.m_sendToAttacheeOnAttach is not null && m_sendToAttacheeOnAttach.Equals((IHavokObject)other.m_sendToAttacheeOnAttach))) &&
+                   ((m_sendToAttacherOnDetach is null && other.m_sendToAttacherOnDetach is null) || (m_sendToAttacherOnDetach is not null && other.m_sendToAttacherOnDetach is not null && m_sendToAttacherOnDetach.Equals((IHavokObject)other.m_sendToAttacherOnDetach))) &&
+                   ((m_sendToAttacheeOnDetach is null && other.m_sendToAttacheeOnDetach is null) || (m_sendToAttacheeOnDetach is not null && other.m_sendToAttacheeOnDetach is not null && m_sendToAttacheeOnDetach.Equals((IHavokObject)other.m_sendToAttacheeOnDetach))) &&
+                   ((m_attachmentSetup is null && other.m_attachmentSetup is null) || (m_attachmentSetup is not null && other.m_attachmentSetup is not null && m_attachmentSetup.Equals((IHavokObject)other.m_attachmentSetup))) &&
+                   ((m_attacherHandle is null && other.m_attacherHandle is null) || (m_attacherHandle is not null && other.m_attacherHandle is not null && m_attacherHandle.Equals((IHavokObject)other.m_attacherHandle))) &&
+                   ((m_attacheeHandle is null && other.m_attacheeHandle is null) || (m_attacheeHandle is not null && other.m_attacheeHandle is not null && m_attacheeHandle.Equals((IHavokObject)other.m_attacheeHandle))) &&
+                   m_attacheeLayer.Equals(other.m_attacheeLayer) &&
                    Signature == other.Signature; ;
         }
 
@@ -126,14 +126,14 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(sendToAttacherOnAttach);
-            hashcode.Add(sendToAttacheeOnAttach);
-            hashcode.Add(sendToAttacherOnDetach);
-            hashcode.Add(sendToAttacheeOnDetach);
-            hashcode.Add(attachmentSetup);
-            hashcode.Add(attacherHandle);
-            hashcode.Add(attacheeHandle);
-            hashcode.Add(attacheeLayer);
+            hashcode.Add(m_sendToAttacherOnAttach);
+            hashcode.Add(m_sendToAttacheeOnAttach);
+            hashcode.Add(m_sendToAttacherOnDetach);
+            hashcode.Add(m_sendToAttacheeOnDetach);
+            hashcode.Add(m_attachmentSetup);
+            hashcode.Add(m_attacherHandle);
+            hashcode.Add(m_attacheeHandle);
+            hashcode.Add(m_attacheeLayer);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

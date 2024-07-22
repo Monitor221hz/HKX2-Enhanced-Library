@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkbMirrorModifier Signatire: 0xa9a271ea size: 88 flags: FLAGS_NONE
 
-    // isAdditive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_isAdditive m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkbMirrorModifier : hkbModifier, IEquatable<hkbMirrorModifier?>
     {
-        public bool isAdditive { set; get; }
+        public bool m_isAdditive { set; get; }
 
         public override uint Signature { set; get; } = 0xa9a271ea;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            isAdditive = br.ReadBoolean();
+            m_isAdditive = br.ReadBoolean();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteBoolean(isAdditive);
+            bw.WriteBoolean(m_isAdditive);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            isAdditive = xd.ReadBoolean(xe, nameof(isAdditive));
+            m_isAdditive = xd.ReadBoolean(xe, nameof(m_isAdditive));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteBoolean(xe, nameof(isAdditive), isAdditive);
+            xs.WriteBoolean(xe, nameof(m_isAdditive), m_isAdditive);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   isAdditive.Equals(other.isAdditive) &&
+                   m_isAdditive.Equals(other.m_isAdditive) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(isAdditive);
+            hashcode.Add(m_isAdditive);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

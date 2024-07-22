@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkpConstraintAtom Signatire: 0x59d67ef6 size: 2 flags: FLAGS_NONE
 
-    // type class:  Type.TYPE_ENUM Type.TYPE_UINT16 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: AtomType
+    // m_type m_class:  Type.TYPE_ENUM Type.TYPE_UINT16 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: AtomType
     public partial class hkpConstraintAtom : IHavokObject, IEquatable<hkpConstraintAtom?>
     {
-        public ushort type { set; get; }
+        public ushort m_type { set; get; }
 
         public virtual uint Signature { set; get; } = 0x59d67ef6;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            type = br.ReadUInt16();
+            m_type = br.ReadUInt16();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteUInt16(type);
+            bw.WriteUInt16(m_type);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            type = xd.ReadFlag<AtomType, ushort>(xe, nameof(type));
+            m_type = xd.ReadFlag<AtomType, ushort>(xe, nameof(m_type));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteEnum<AtomType, ushort>(xe, nameof(type), type);
+            xs.WriteEnum<AtomType, ushort>(xe, nameof(m_type), m_type);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkpConstraintAtom? other)
         {
             return other is not null &&
-                   type.Equals(other.type) &&
+                   m_type.Equals(other.m_type) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(type);
+            hashcode.Add(m_type);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

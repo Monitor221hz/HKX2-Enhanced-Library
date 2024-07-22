@@ -6,28 +6,28 @@ namespace HKX2
 {
     // hkpSimpleShapePhantom Signatire: 0x32a2a8a8 size: 448 flags: FLAGS_NONE
 
-    // collisionDetails class: hkpSimpleShapePhantomCollisionDetail Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_collisionDetails m_class: hkpSimpleShapePhantomCollisionDetail Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_orderDirty m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpSimpleShapePhantom : hkpShapePhantom, IEquatable<hkpSimpleShapePhantom?>
     {
-        public IList<hkpSimpleShapePhantomCollisionDetail> collisionDetails { set; get; } = Array.Empty<hkpSimpleShapePhantomCollisionDetail>();
-        private bool orderDirty { set; get; }
+        public IList<hkpSimpleShapePhantomCollisionDetail> m_collisionDetails { set; get; } = Array.Empty<hkpSimpleShapePhantomCollisionDetail>();
+        private bool m_orderDirty { set; get; }
 
         public override uint Signature { set; get; } = 0x32a2a8a8;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            collisionDetails = des.ReadClassArray<hkpSimpleShapePhantomCollisionDetail>(br);
-            orderDirty = br.ReadBoolean();
+            m_collisionDetails = des.ReadClassArray<hkpSimpleShapePhantomCollisionDetail>(br);
+            m_orderDirty = br.ReadBoolean();
             br.Position += 15;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassArray(bw, collisionDetails);
-            bw.WriteBoolean(orderDirty);
+            s.WriteClassArray(bw, m_collisionDetails);
+            bw.WriteBoolean(m_orderDirty);
             bw.Position += 15;
         }
 
@@ -39,8 +39,8 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(collisionDetails));
-            xs.WriteSerializeIgnored(xe, nameof(orderDirty));
+            xs.WriteSerializeIgnored(xe, nameof(m_collisionDetails));
+            xs.WriteSerializeIgnored(xe, nameof(m_orderDirty));
         }
 
         public override bool Equals(object? obj)

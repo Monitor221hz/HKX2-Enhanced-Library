@@ -7,35 +7,35 @@ namespace HKX2
 {
     // hkpArrayAction Signatire: 0x674bcd2d size: 64 flags: FLAGS_NONE
 
-    // entities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_entities m_class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkpArrayAction : hkpAction, IEquatable<hkpArrayAction?>
     {
-        public IList<hkpEntity> entities { set; get; } = Array.Empty<hkpEntity>();
+        public IList<hkpEntity> m_entities { set; get; } = Array.Empty<hkpEntity>();
 
         public override uint Signature { set; get; } = 0x674bcd2d;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            entities = des.ReadClassPointerArray<hkpEntity>(br);
+            m_entities = des.ReadClassPointerArray<hkpEntity>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointerArray(bw, entities);
+            s.WriteClassPointerArray(bw, m_entities);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            entities = xd.ReadClassPointerArray<hkpEntity>(xe, nameof(entities));
+            m_entities = xd.ReadClassPointerArray<hkpEntity>(xe, nameof(m_entities));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(entities), entities);
+            xs.WriteClassPointerArray(xe, nameof(m_entities), m_entities);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   entities.SequenceEqual(other.entities) &&
+                   m_entities.SequenceEqual(other.m_entities) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(entities.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_entities.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

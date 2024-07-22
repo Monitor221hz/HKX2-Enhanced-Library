@@ -6,31 +6,31 @@ namespace HKX2
 {
     // hkSphere Signatire: 0x143dff99 size: 16 flags: FLAGS_NONE
 
-    // pos class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_pos m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkSphere : IHavokObject, IEquatable<hkSphere?>
     {
-        public Vector4 pos { set; get; }
+        public Vector4 m_pos { set; get; }
 
         public virtual uint Signature { set; get; } = 0x143dff99;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            pos = br.ReadVector4();
+            m_pos = br.ReadVector4();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteVector4(pos);
+            bw.WriteVector4(m_pos);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            pos = xd.ReadVector4(xe, nameof(pos));
+            m_pos = xd.ReadVector4(xe, nameof(m_pos));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteVector4(xe, nameof(pos), pos);
+            xs.WriteVector4(xe, nameof(m_pos), m_pos);
         }
 
         public override bool Equals(object? obj)
@@ -41,14 +41,14 @@ namespace HKX2
         public bool Equals(hkSphere? other)
         {
             return other is not null &&
-                   pos.Equals(other.pos) &&
+                   m_pos.Equals(other.m_pos) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(pos);
+            hashcode.Add(m_pos);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

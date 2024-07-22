@@ -5,41 +5,41 @@ namespace HKX2
 {
     // hkbModifierGenerator Signatire: 0x1f81fae6 size: 88 flags: FLAGS_NONE
 
-    // modifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // generator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_modifier m_class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // m_generator m_class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkbModifierGenerator : hkbGenerator, IEquatable<hkbModifierGenerator?>
     {
-        public hkbModifier? modifier { set; get; }
-        public hkbGenerator? generator { set; get; }
+        public hkbModifier? m_modifier { set; get; }
+        public hkbGenerator? m_generator { set; get; }
 
         public override uint Signature { set; get; } = 0x1f81fae6;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            modifier = des.ReadClassPointer<hkbModifier>(br);
-            generator = des.ReadClassPointer<hkbGenerator>(br);
+            m_modifier = des.ReadClassPointer<hkbModifier>(br);
+            m_generator = des.ReadClassPointer<hkbGenerator>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointer(bw, modifier);
-            s.WriteClassPointer(bw, generator);
+            s.WriteClassPointer(bw, m_modifier);
+            s.WriteClassPointer(bw, m_generator);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            modifier = xd.ReadClassPointer<hkbModifier>(xe, nameof(modifier));
-            generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
+            m_modifier = xd.ReadClassPointer<hkbModifier>(xe, nameof(m_modifier));
+            m_generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(m_generator));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(modifier), modifier);
-            xs.WriteClassPointer(xe, nameof(generator), generator);
+            xs.WriteClassPointer(xe, nameof(m_modifier), m_modifier);
+            xs.WriteClassPointer(xe, nameof(m_generator), m_generator);
         }
 
         public override bool Equals(object? obj)
@@ -51,8 +51,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((modifier is null && other.modifier is null) || (modifier is not null && other.modifier is not null && modifier.Equals((IHavokObject)other.modifier))) &&
-                   ((generator is null && other.generator is null) || (generator is not null && other.generator is not null && generator.Equals((IHavokObject)other.generator))) &&
+                   ((m_modifier is null && other.m_modifier is null) || (m_modifier is not null && other.m_modifier is not null && m_modifier.Equals((IHavokObject)other.m_modifier))) &&
+                   ((m_generator is null && other.m_generator is null) || (m_generator is not null && other.m_generator is not null && m_generator.Equals((IHavokObject)other.m_generator))) &&
                    Signature == other.Signature; ;
         }
 
@@ -60,8 +60,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(modifier);
-            hashcode.Add(generator);
+            hashcode.Add(m_modifier);
+            hashcode.Add(m_generator);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

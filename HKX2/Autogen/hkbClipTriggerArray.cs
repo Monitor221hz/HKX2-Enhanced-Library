@@ -7,35 +7,35 @@ namespace HKX2
 {
     // hkbClipTriggerArray Signatire: 0x59c23a0f size: 32 flags: FLAGS_NONE
 
-    // triggers class: hkbClipTrigger Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_triggers m_class: hkbClipTrigger Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkbClipTriggerArray : hkReferencedObject, IEquatable<hkbClipTriggerArray?>
     {
-        public IList<hkbClipTrigger> triggers { set; get; } = Array.Empty<hkbClipTrigger>();
+        public IList<hkbClipTrigger> m_triggers { set; get; } = Array.Empty<hkbClipTrigger>();
 
         public override uint Signature { set; get; } = 0x59c23a0f;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            triggers = des.ReadClassArray<hkbClipTrigger>(br);
+            m_triggers = des.ReadClassArray<hkbClipTrigger>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassArray(bw, triggers);
+            s.WriteClassArray(bw, m_triggers);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            triggers = xd.ReadClassArray<hkbClipTrigger>(xe, nameof(triggers));
+            m_triggers = xd.ReadClassArray<hkbClipTrigger>(xe, nameof(m_triggers));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassArray(xe, nameof(triggers), triggers);
+            xs.WriteClassArray(xe, nameof(m_triggers), m_triggers);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   triggers.SequenceEqual(other.triggers) &&
+                   m_triggers.SequenceEqual(other.m_triggers) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(triggers.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_triggers.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

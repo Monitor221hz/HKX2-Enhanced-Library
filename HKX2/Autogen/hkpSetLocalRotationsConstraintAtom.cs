@@ -6,12 +6,12 @@ namespace HKX2
 {
     // hkpSetLocalRotationsConstraintAtom Signatire: 0xf81db8e size: 112 flags: FLAGS_NONE
 
-    // rotationA class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // rotationB class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_rotationA m_class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_rotationB m_class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     public partial class hkpSetLocalRotationsConstraintAtom : hkpConstraintAtom, IEquatable<hkpSetLocalRotationsConstraintAtom?>
     {
-        public Matrix4x4 rotationA { set; get; }
-        public Matrix4x4 rotationB { set; get; }
+        public Matrix4x4 m_rotationA { set; get; }
+        public Matrix4x4 m_rotationB { set; get; }
 
         public override uint Signature { set; get; } = 0xf81db8e;
 
@@ -19,30 +19,30 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 14;
-            rotationA = des.ReadMatrix3(br); //TYPE_ROTATION
-            rotationB = des.ReadMatrix3(br); //TYPE_ROTATION
+            m_rotationA = des.ReadMatrix3(br); //TYPE_ROTATION
+            m_rotationB = des.ReadMatrix3(br); //TYPE_ROTATION
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 14;
-            s.WriteMatrix3(bw, rotationA);
-            s.WriteMatrix3(bw, rotationB);
+            s.WriteMatrix3(bw, m_rotationA);
+            s.WriteMatrix3(bw, m_rotationB);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rotationA = xd.ReadRotation(xe, nameof(rotationA));
-            rotationB = xd.ReadRotation(xe, nameof(rotationB));
+            m_rotationA = xd.ReadRotation(xe, nameof(m_rotationA));
+            m_rotationB = xd.ReadRotation(xe, nameof(m_rotationB));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteRotation(xe, nameof(rotationA), rotationA);
-            xs.WriteRotation(xe, nameof(rotationB), rotationB);
+            xs.WriteRotation(xe, nameof(m_rotationA), m_rotationA);
+            xs.WriteRotation(xe, nameof(m_rotationB), m_rotationB);
         }
 
         public override bool Equals(object? obj)
@@ -54,8 +54,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   rotationA.Equals(other.rotationA) &&
-                   rotationB.Equals(other.rotationB) &&
+                   m_rotationA.Equals(other.m_rotationA) &&
+                   m_rotationB.Equals(other.m_rotationB) &&
                    Signature == other.Signature; ;
         }
 
@@ -63,8 +63,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(rotationA);
-            hashcode.Add(rotationB);
+            hashcode.Add(m_rotationA);
+            hashcode.Add(m_rotationB);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -6,16 +6,16 @@ namespace HKX2
 {
     // hkpReorientAction Signatire: 0x2dc0ec6a size: 112 flags: FLAGS_NONE
 
-    // rotationAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // upAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
+    // m_rotationAxis m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_upAxis m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_strength m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_damping m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
     public partial class hkpReorientAction : hkpUnaryAction, IEquatable<hkpReorientAction?>
     {
-        public Vector4 rotationAxis { set; get; }
-        public Vector4 upAxis { set; get; }
-        public float strength { set; get; }
-        public float damping { set; get; }
+        public Vector4 m_rotationAxis { set; get; }
+        public Vector4 m_upAxis { set; get; }
+        public float m_strength { set; get; }
+        public float m_damping { set; get; }
 
         public override uint Signature { set; get; } = 0x2dc0ec6a;
 
@@ -23,10 +23,10 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            rotationAxis = br.ReadVector4();
-            upAxis = br.ReadVector4();
-            strength = br.ReadSingle();
-            damping = br.ReadSingle();
+            m_rotationAxis = br.ReadVector4();
+            m_upAxis = br.ReadVector4();
+            m_strength = br.ReadSingle();
+            m_damping = br.ReadSingle();
             br.Position += 8;
         }
 
@@ -34,29 +34,29 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.Position += 8;
-            bw.WriteVector4(rotationAxis);
-            bw.WriteVector4(upAxis);
-            bw.WriteSingle(strength);
-            bw.WriteSingle(damping);
+            bw.WriteVector4(m_rotationAxis);
+            bw.WriteVector4(m_upAxis);
+            bw.WriteSingle(m_strength);
+            bw.WriteSingle(m_damping);
             bw.Position += 8;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rotationAxis = xd.ReadVector4(xe, nameof(rotationAxis));
-            upAxis = xd.ReadVector4(xe, nameof(upAxis));
-            strength = xd.ReadSingle(xe, nameof(strength));
-            damping = xd.ReadSingle(xe, nameof(damping));
+            m_rotationAxis = xd.ReadVector4(xe, nameof(m_rotationAxis));
+            m_upAxis = xd.ReadVector4(xe, nameof(m_upAxis));
+            m_strength = xd.ReadSingle(xe, nameof(m_strength));
+            m_damping = xd.ReadSingle(xe, nameof(m_damping));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(rotationAxis), rotationAxis);
-            xs.WriteVector4(xe, nameof(upAxis), upAxis);
-            xs.WriteFloat(xe, nameof(strength), strength);
-            xs.WriteFloat(xe, nameof(damping), damping);
+            xs.WriteVector4(xe, nameof(m_rotationAxis), m_rotationAxis);
+            xs.WriteVector4(xe, nameof(m_upAxis), m_upAxis);
+            xs.WriteFloat(xe, nameof(m_strength), m_strength);
+            xs.WriteFloat(xe, nameof(m_damping), m_damping);
         }
 
         public override bool Equals(object? obj)
@@ -68,10 +68,10 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   rotationAxis.Equals(other.rotationAxis) &&
-                   upAxis.Equals(other.upAxis) &&
-                   strength.Equals(other.strength) &&
-                   damping.Equals(other.damping) &&
+                   m_rotationAxis.Equals(other.m_rotationAxis) &&
+                   m_upAxis.Equals(other.m_upAxis) &&
+                   m_strength.Equals(other.m_strength) &&
+                   m_damping.Equals(other.m_damping) &&
                    Signature == other.Signature; ;
         }
 
@@ -79,10 +79,10 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(rotationAxis);
-            hashcode.Add(upAxis);
-            hashcode.Add(strength);
-            hashcode.Add(damping);
+            hashcode.Add(m_rotationAxis);
+            hashcode.Add(m_upAxis);
+            hashcode.Add(m_strength);
+            hashcode.Add(m_damping);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -6,49 +6,49 @@ namespace HKX2
 {
     // hkpSetupStabilizationAtom Signatire: 0xf05d137e size: 16 flags: FLAGS_NONE
 
-    // enabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 8 offset: 8 flags: FLAGS_NONE enum: 
+    // m_enabled m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // m_maxAngle m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // m_padding m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 8 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkpSetupStabilizationAtom : hkpConstraintAtom, IEquatable<hkpSetupStabilizationAtom?>
     {
-        public bool enabled { set; get; }
-        public float maxAngle { set; get; }
-        public byte[] padding = new byte[8];
+        public bool m_enabled { set; get; }
+        public float m_maxAngle { set; get; }
+        public byte[] m_padding = new byte[8];
 
         public override uint Signature { set; get; } = 0xf05d137e;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            enabled = br.ReadBoolean();
+            m_enabled = br.ReadBoolean();
             br.Position += 1;
-            maxAngle = br.ReadSingle();
-            padding = des.ReadByteCStyleArray(br, 8);
+            m_maxAngle = br.ReadSingle();
+            m_padding = des.ReadByteCStyleArray(br, 8);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteBoolean(enabled);
+            bw.WriteBoolean(m_enabled);
             bw.Position += 1;
-            bw.WriteSingle(maxAngle);
-            s.WriteByteCStyleArray(bw, padding);
+            bw.WriteSingle(m_maxAngle);
+            s.WriteByteCStyleArray(bw, m_padding);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            enabled = xd.ReadBoolean(xe, nameof(enabled));
-            maxAngle = xd.ReadSingle(xe, nameof(maxAngle));
-            padding = xd.ReadByteCStyleArray(xe, nameof(padding), 8);
+            m_enabled = xd.ReadBoolean(xe, nameof(m_enabled));
+            m_maxAngle = xd.ReadSingle(xe, nameof(m_maxAngle));
+            m_padding = xd.ReadByteCStyleArray(xe, nameof(m_padding), 8);
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteBoolean(xe, nameof(enabled), enabled);
-            xs.WriteFloat(xe, nameof(maxAngle), maxAngle);
-            xs.WriteNumberArray(xe, nameof(padding), padding);
+            xs.WriteBoolean(xe, nameof(m_enabled), m_enabled);
+            xs.WriteFloat(xe, nameof(m_maxAngle), m_maxAngle);
+            xs.WriteNumberArray(xe, nameof(m_padding), m_padding);
         }
 
         public override bool Equals(object? obj)
@@ -60,9 +60,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   enabled.Equals(other.enabled) &&
-                   maxAngle.Equals(other.maxAngle) &&
-                   padding.SequenceEqual(other.padding) &&
+                   m_enabled.Equals(other.m_enabled) &&
+                   m_maxAngle.Equals(other.m_maxAngle) &&
+                   m_padding.SequenceEqual(other.m_padding) &&
                    Signature == other.Signature; ;
         }
 
@@ -70,9 +70,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(enabled);
-            hashcode.Add(maxAngle);
-            hashcode.Add(padding.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_enabled);
+            hashcode.Add(m_maxAngle);
+            hashcode.Add(m_padding.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

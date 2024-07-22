@@ -5,14 +5,14 @@ namespace HKX2
 {
     // BSiStateTaggingGenerator Signatire: 0xf0826fc1 size: 96 flags: FLAGS_NONE
 
-    // pDefaultGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum: 
-    // iStateToSetAs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // iPriority class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
+    // m_pDefaultGenerator m_class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum: 
+    // m_iStateToSetAs m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // m_iPriority m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
     public partial class BSiStateTaggingGenerator : hkbGenerator, IEquatable<BSiStateTaggingGenerator?>
     {
-        public hkbGenerator? pDefaultGenerator { set; get; }
-        public int iStateToSetAs { set; get; }
-        public int iPriority { set; get; }
+        public hkbGenerator? m_pDefaultGenerator { set; get; }
+        public int m_iStateToSetAs { set; get; }
+        public int m_iPriority { set; get; }
 
         public override uint Signature { set; get; } = 0xf0826fc1;
 
@@ -20,34 +20,34 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            pDefaultGenerator = des.ReadClassPointer<hkbGenerator>(br);
-            iStateToSetAs = br.ReadInt32();
-            iPriority = br.ReadInt32();
+            m_pDefaultGenerator = des.ReadClassPointer<hkbGenerator>(br);
+            m_iStateToSetAs = br.ReadInt32();
+            m_iPriority = br.ReadInt32();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 8;
-            s.WriteClassPointer(bw, pDefaultGenerator);
-            bw.WriteInt32(iStateToSetAs);
-            bw.WriteInt32(iPriority);
+            s.WriteClassPointer(bw, m_pDefaultGenerator);
+            bw.WriteInt32(m_iStateToSetAs);
+            bw.WriteInt32(m_iPriority);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pDefaultGenerator));
-            iStateToSetAs = xd.ReadInt32(xe, nameof(iStateToSetAs));
-            iPriority = xd.ReadInt32(xe, nameof(iPriority));
+            m_pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(m_pDefaultGenerator));
+            m_iStateToSetAs = xd.ReadInt32(xe, nameof(m_iStateToSetAs));
+            m_iPriority = xd.ReadInt32(xe, nameof(m_iPriority));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(pDefaultGenerator), pDefaultGenerator);
-            xs.WriteNumber(xe, nameof(iStateToSetAs), iStateToSetAs);
-            xs.WriteNumber(xe, nameof(iPriority), iPriority);
+            xs.WriteClassPointer(xe, nameof(m_pDefaultGenerator), m_pDefaultGenerator);
+            xs.WriteNumber(xe, nameof(m_iStateToSetAs), m_iStateToSetAs);
+            xs.WriteNumber(xe, nameof(m_iPriority), m_iPriority);
         }
 
         public override bool Equals(object? obj)
@@ -59,9 +59,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((pDefaultGenerator is null && other.pDefaultGenerator is null) || (pDefaultGenerator is not null && other.pDefaultGenerator is not null && pDefaultGenerator.Equals((IHavokObject)other.pDefaultGenerator))) &&
-                   iStateToSetAs.Equals(other.iStateToSetAs) &&
-                   iPriority.Equals(other.iPriority) &&
+                   ((m_pDefaultGenerator is null && other.m_pDefaultGenerator is null) || (m_pDefaultGenerator is not null && other.m_pDefaultGenerator is not null && m_pDefaultGenerator.Equals((IHavokObject)other.m_pDefaultGenerator))) &&
+                   m_iStateToSetAs.Equals(other.m_iStateToSetAs) &&
+                   m_iPriority.Equals(other.m_iPriority) &&
                    Signature == other.Signature; ;
         }
 
@@ -69,9 +69,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(pDefaultGenerator);
-            hashcode.Add(iStateToSetAs);
-            hashcode.Add(iPriority);
+            hashcode.Add(m_pDefaultGenerator);
+            hashcode.Add(m_iStateToSetAs);
+            hashcode.Add(m_iPriority);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

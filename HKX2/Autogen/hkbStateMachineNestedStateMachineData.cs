@@ -5,12 +5,12 @@ namespace HKX2
 {
     // hkbStateMachineNestedStateMachineData Signatire: 0x7358f5da size: 16 flags: FLAGS_NONE
 
-    // nestedStateMachine class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_nestedStateMachine m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_eventIdMap m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbStateMachineNestedStateMachineData : IHavokObject, IEquatable<hkbStateMachineNestedStateMachineData?>
     {
-        private object? nestedStateMachine { set; get; }
-        private object? eventIdMap { set; get; }
+        private object? m_nestedStateMachine { set; get; }
+        private object? m_eventIdMap { set; get; }
 
         public virtual uint Signature { set; get; } = 0x7358f5da;
 
@@ -33,8 +33,8 @@ namespace HKX2
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteSerializeIgnored(xe, nameof(nestedStateMachine));
-            xs.WriteSerializeIgnored(xe, nameof(eventIdMap));
+            xs.WriteSerializeIgnored(xe, nameof(m_nestedStateMachine));
+            xs.WriteSerializeIgnored(xe, nameof(m_eventIdMap));
         }
 
         public override bool Equals(object? obj)

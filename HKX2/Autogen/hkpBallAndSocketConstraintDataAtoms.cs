@@ -5,43 +5,43 @@ namespace HKX2
 {
     // hkpBallAndSocketConstraintDataAtoms Signatire: 0xc73dcaf9 size: 80 flags: FLAGS_NONE
 
-    // pivots class: hkpSetLocalTranslationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // setupStabilization class: hkpSetupStabilizationAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // ballSocket class: hkpBallSocketConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_pivots m_class: hkpSetLocalTranslationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_setupStabilization m_class: hkpSetupStabilizationAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_ballSocket m_class: hkpBallSocketConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     public partial class hkpBallAndSocketConstraintDataAtoms : IHavokObject, IEquatable<hkpBallAndSocketConstraintDataAtoms?>
     {
-        public hkpSetLocalTranslationsConstraintAtom pivots { set; get; } = new();
-        public hkpSetupStabilizationAtom setupStabilization { set; get; } = new();
-        public hkpBallSocketConstraintAtom ballSocket { set; get; } = new();
+        public hkpSetLocalTranslationsConstraintAtom m_pivots { set; get; } = new();
+        public hkpSetupStabilizationAtom m_setupStabilization { set; get; } = new();
+        public hkpBallSocketConstraintAtom m_ballSocket { set; get; } = new();
 
         public virtual uint Signature { set; get; } = 0xc73dcaf9;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            pivots.Read(des, br);
-            setupStabilization.Read(des, br);
-            ballSocket.Read(des, br);
+            m_pivots.Read(des, br);
+            m_setupStabilization.Read(des, br);
+            m_ballSocket.Read(des, br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            pivots.Write(s, bw);
-            setupStabilization.Write(s, bw);
-            ballSocket.Write(s, bw);
+            m_pivots.Write(s, bw);
+            m_setupStabilization.Write(s, bw);
+            m_ballSocket.Write(s, bw);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            pivots = xd.ReadClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(pivots));
-            setupStabilization = xd.ReadClass<hkpSetupStabilizationAtom>(xe, nameof(setupStabilization));
-            ballSocket = xd.ReadClass<hkpBallSocketConstraintAtom>(xe, nameof(ballSocket));
+            m_pivots = xd.ReadClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(m_pivots));
+            m_setupStabilization = xd.ReadClass<hkpSetupStabilizationAtom>(xe, nameof(m_setupStabilization));
+            m_ballSocket = xd.ReadClass<hkpBallSocketConstraintAtom>(xe, nameof(m_ballSocket));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(pivots), pivots);
-            xs.WriteClass<hkpSetupStabilizationAtom>(xe, nameof(setupStabilization), setupStabilization);
-            xs.WriteClass<hkpBallSocketConstraintAtom>(xe, nameof(ballSocket), ballSocket);
+            xs.WriteClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(m_pivots), m_pivots);
+            xs.WriteClass<hkpSetupStabilizationAtom>(xe, nameof(m_setupStabilization), m_setupStabilization);
+            xs.WriteClass<hkpBallSocketConstraintAtom>(xe, nameof(m_ballSocket), m_ballSocket);
         }
 
         public override bool Equals(object? obj)
@@ -52,18 +52,18 @@ namespace HKX2
         public bool Equals(hkpBallAndSocketConstraintDataAtoms? other)
         {
             return other is not null &&
-                   ((pivots is null && other.pivots is null) || (pivots is not null && other.pivots is not null && pivots.Equals((IHavokObject)other.pivots))) &&
-                   ((setupStabilization is null && other.setupStabilization is null) || (setupStabilization is not null && other.setupStabilization is not null && setupStabilization.Equals((IHavokObject)other.setupStabilization))) &&
-                   ((ballSocket is null && other.ballSocket is null) || (ballSocket is not null && other.ballSocket is not null && ballSocket.Equals((IHavokObject)other.ballSocket))) &&
+                   ((m_pivots is null && other.m_pivots is null) || (m_pivots is not null && other.m_pivots is not null && m_pivots.Equals((IHavokObject)other.m_pivots))) &&
+                   ((m_setupStabilization is null && other.m_setupStabilization is null) || (m_setupStabilization is not null && other.m_setupStabilization is not null && m_setupStabilization.Equals((IHavokObject)other.m_setupStabilization))) &&
+                   ((m_ballSocket is null && other.m_ballSocket is null) || (m_ballSocket is not null && other.m_ballSocket is not null && m_ballSocket.Equals((IHavokObject)other.m_ballSocket))) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(pivots);
-            hashcode.Add(setupStabilization);
-            hashcode.Add(ballSocket);
+            hashcode.Add(m_pivots);
+            hashcode.Add(m_setupStabilization);
+            hashcode.Add(m_ballSocket);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -8,160 +8,160 @@ namespace HKX2
 {
     // hkbFootIkModifier Signatire: 0xed8966c0 size: 256 flags: FLAGS_NONE
 
-    // gains class: hkbFootIkGains Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // legs class: hkbFootIkModifierLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // raycastDistanceUp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // raycastDistanceDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum: 
-    // originalGroundHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // errorOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum: 
-    // errorOutTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // alignWithGroundRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // verticalOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // forwardAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    // sidewaysAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
-    // sidewaysSampleWidth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
-    // useTrackData class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum: 
-    // lockFeetWhenPlanted class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 213 flags: FLAGS_NONE enum: 
-    // useCharacterUpVector class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 214 flags: FLAGS_NONE enum: 
-    // alignMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 215 flags: FLAGS_NONE enum: AlignMode
-    // internalLegData class: hkbFootIkModifierInternalLegData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // prevIsFootIkEnabled class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isSetUp class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 236 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isGroundPositionValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 237 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_gains m_class: hkbFootIkGains Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_legs m_class: hkbFootIkModifierLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // m_raycastDistanceUp m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // m_raycastDistanceDown m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum: 
+    // m_originalGroundHeightMS m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
+    // m_errorOut m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum: 
+    // m_errorOutTranslation m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
+    // m_alignWithGroundRotation m_class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
+    // m_verticalOffset m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
+    // m_collisionFilterInfo m_class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
+    // m_forwardAlignFraction m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
+    // m_sidewaysAlignFraction m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
+    // m_sidewaysSampleWidth m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
+    // m_useTrackData m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum: 
+    // m_lockFeetWhenPlanted m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 213 flags: FLAGS_NONE enum: 
+    // m_useCharacterUpVector m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 214 flags: FLAGS_NONE enum: 
+    // m_alignMode m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 215 flags: FLAGS_NONE enum: AlignMode
+    // m_internalLegData m_class: hkbFootIkModifierInternalLegData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_prevIsFootIkEnabled m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_isSetUp m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 236 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_isGroundPositionValid m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 237 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_timeStep m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbFootIkModifier : hkbModifier, IEquatable<hkbFootIkModifier?>
     {
-        public hkbFootIkGains gains { set; get; } = new();
-        public IList<hkbFootIkModifierLeg> legs { set; get; } = Array.Empty<hkbFootIkModifierLeg>();
-        public float raycastDistanceUp { set; get; }
-        public float raycastDistanceDown { set; get; }
-        public float originalGroundHeightMS { set; get; }
-        public float errorOut { set; get; }
-        public Vector4 errorOutTranslation { set; get; }
-        public Quaternion alignWithGroundRotation { set; get; }
-        public float verticalOffset { set; get; }
-        public uint collisionFilterInfo { set; get; }
-        public float forwardAlignFraction { set; get; }
-        public float sidewaysAlignFraction { set; get; }
-        public float sidewaysSampleWidth { set; get; }
-        public bool useTrackData { set; get; }
-        public bool lockFeetWhenPlanted { set; get; }
-        public bool useCharacterUpVector { set; get; }
-        public sbyte alignMode { set; get; }
-        public IList<hkbFootIkModifierInternalLegData> internalLegData { set; get; } = Array.Empty<hkbFootIkModifierInternalLegData>();
-        private float prevIsFootIkEnabled { set; get; }
-        private bool isSetUp { set; get; }
-        private bool isGroundPositionValid { set; get; }
-        private float timeStep { set; get; }
+        public hkbFootIkGains m_gains { set; get; } = new();
+        public IList<hkbFootIkModifierLeg> m_legs { set; get; } = Array.Empty<hkbFootIkModifierLeg>();
+        public float m_raycastDistanceUp { set; get; }
+        public float m_raycastDistanceDown { set; get; }
+        public float m_originalGroundHeightMS { set; get; }
+        public float m_errorOut { set; get; }
+        public Vector4 m_errorOutTranslation { set; get; }
+        public Quaternion m_alignWithGroundRotation { set; get; }
+        public float m_verticalOffset { set; get; }
+        public uint m_collisionFilterInfo { set; get; }
+        public float m_forwardAlignFraction { set; get; }
+        public float m_sidewaysAlignFraction { set; get; }
+        public float m_sidewaysSampleWidth { set; get; }
+        public bool m_useTrackData { set; get; }
+        public bool m_lockFeetWhenPlanted { set; get; }
+        public bool m_useCharacterUpVector { set; get; }
+        public sbyte m_alignMode { set; get; }
+        public IList<hkbFootIkModifierInternalLegData> m_internalLegData { set; get; } = Array.Empty<hkbFootIkModifierInternalLegData>();
+        private float m_prevIsFootIkEnabled { set; get; }
+        private bool m_isSetUp { set; get; }
+        private bool m_isGroundPositionValid { set; get; }
+        private float m_timeStep { set; get; }
 
         public override uint Signature { set; get; } = 0xed8966c0;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            gains.Read(des, br);
-            legs = des.ReadClassArray<hkbFootIkModifierLeg>(br);
-            raycastDistanceUp = br.ReadSingle();
-            raycastDistanceDown = br.ReadSingle();
-            originalGroundHeightMS = br.ReadSingle();
-            errorOut = br.ReadSingle();
-            errorOutTranslation = br.ReadVector4();
-            alignWithGroundRotation = des.ReadQuaternion(br);
-            verticalOffset = br.ReadSingle();
-            collisionFilterInfo = br.ReadUInt32();
-            forwardAlignFraction = br.ReadSingle();
-            sidewaysAlignFraction = br.ReadSingle();
-            sidewaysSampleWidth = br.ReadSingle();
-            useTrackData = br.ReadBoolean();
-            lockFeetWhenPlanted = br.ReadBoolean();
-            useCharacterUpVector = br.ReadBoolean();
-            alignMode = br.ReadSByte();
-            internalLegData = des.ReadClassArray<hkbFootIkModifierInternalLegData>(br);
-            prevIsFootIkEnabled = br.ReadSingle();
-            isSetUp = br.ReadBoolean();
-            isGroundPositionValid = br.ReadBoolean();
+            m_gains.Read(des, br);
+            m_legs = des.ReadClassArray<hkbFootIkModifierLeg>(br);
+            m_raycastDistanceUp = br.ReadSingle();
+            m_raycastDistanceDown = br.ReadSingle();
+            m_originalGroundHeightMS = br.ReadSingle();
+            m_errorOut = br.ReadSingle();
+            m_errorOutTranslation = br.ReadVector4();
+            m_alignWithGroundRotation = des.ReadQuaternion(br);
+            m_verticalOffset = br.ReadSingle();
+            m_collisionFilterInfo = br.ReadUInt32();
+            m_forwardAlignFraction = br.ReadSingle();
+            m_sidewaysAlignFraction = br.ReadSingle();
+            m_sidewaysSampleWidth = br.ReadSingle();
+            m_useTrackData = br.ReadBoolean();
+            m_lockFeetWhenPlanted = br.ReadBoolean();
+            m_useCharacterUpVector = br.ReadBoolean();
+            m_alignMode = br.ReadSByte();
+            m_internalLegData = des.ReadClassArray<hkbFootIkModifierInternalLegData>(br);
+            m_prevIsFootIkEnabled = br.ReadSingle();
+            m_isSetUp = br.ReadBoolean();
+            m_isGroundPositionValid = br.ReadBoolean();
             br.Position += 2;
-            timeStep = br.ReadSingle();
+            m_timeStep = br.ReadSingle();
             br.Position += 12;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            gains.Write(s, bw);
-            s.WriteClassArray(bw, legs);
-            bw.WriteSingle(raycastDistanceUp);
-            bw.WriteSingle(raycastDistanceDown);
-            bw.WriteSingle(originalGroundHeightMS);
-            bw.WriteSingle(errorOut);
-            bw.WriteVector4(errorOutTranslation);
-            s.WriteQuaternion(bw, alignWithGroundRotation);
-            bw.WriteSingle(verticalOffset);
-            bw.WriteUInt32(collisionFilterInfo);
-            bw.WriteSingle(forwardAlignFraction);
-            bw.WriteSingle(sidewaysAlignFraction);
-            bw.WriteSingle(sidewaysSampleWidth);
-            bw.WriteBoolean(useTrackData);
-            bw.WriteBoolean(lockFeetWhenPlanted);
-            bw.WriteBoolean(useCharacterUpVector);
-            bw.WriteSByte(alignMode);
-            s.WriteClassArray(bw, internalLegData);
-            bw.WriteSingle(prevIsFootIkEnabled);
-            bw.WriteBoolean(isSetUp);
-            bw.WriteBoolean(isGroundPositionValid);
+            m_gains.Write(s, bw);
+            s.WriteClassArray(bw, m_legs);
+            bw.WriteSingle(m_raycastDistanceUp);
+            bw.WriteSingle(m_raycastDistanceDown);
+            bw.WriteSingle(m_originalGroundHeightMS);
+            bw.WriteSingle(m_errorOut);
+            bw.WriteVector4(m_errorOutTranslation);
+            s.WriteQuaternion(bw, m_alignWithGroundRotation);
+            bw.WriteSingle(m_verticalOffset);
+            bw.WriteUInt32(m_collisionFilterInfo);
+            bw.WriteSingle(m_forwardAlignFraction);
+            bw.WriteSingle(m_sidewaysAlignFraction);
+            bw.WriteSingle(m_sidewaysSampleWidth);
+            bw.WriteBoolean(m_useTrackData);
+            bw.WriteBoolean(m_lockFeetWhenPlanted);
+            bw.WriteBoolean(m_useCharacterUpVector);
+            bw.WriteSByte(m_alignMode);
+            s.WriteClassArray(bw, m_internalLegData);
+            bw.WriteSingle(m_prevIsFootIkEnabled);
+            bw.WriteBoolean(m_isSetUp);
+            bw.WriteBoolean(m_isGroundPositionValid);
             bw.Position += 2;
-            bw.WriteSingle(timeStep);
+            bw.WriteSingle(m_timeStep);
             bw.Position += 12;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            gains = xd.ReadClass<hkbFootIkGains>(xe, nameof(gains));
-            legs = xd.ReadClassArray<hkbFootIkModifierLeg>(xe, nameof(legs));
-            raycastDistanceUp = xd.ReadSingle(xe, nameof(raycastDistanceUp));
-            raycastDistanceDown = xd.ReadSingle(xe, nameof(raycastDistanceDown));
-            originalGroundHeightMS = xd.ReadSingle(xe, nameof(originalGroundHeightMS));
-            errorOut = xd.ReadSingle(xe, nameof(errorOut));
-            errorOutTranslation = xd.ReadVector4(xe, nameof(errorOutTranslation));
-            alignWithGroundRotation = xd.ReadQuaternion(xe, nameof(alignWithGroundRotation));
-            verticalOffset = xd.ReadSingle(xe, nameof(verticalOffset));
-            collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
-            forwardAlignFraction = xd.ReadSingle(xe, nameof(forwardAlignFraction));
-            sidewaysAlignFraction = xd.ReadSingle(xe, nameof(sidewaysAlignFraction));
-            sidewaysSampleWidth = xd.ReadSingle(xe, nameof(sidewaysSampleWidth));
-            useTrackData = xd.ReadBoolean(xe, nameof(useTrackData));
-            lockFeetWhenPlanted = xd.ReadBoolean(xe, nameof(lockFeetWhenPlanted));
-            useCharacterUpVector = xd.ReadBoolean(xe, nameof(useCharacterUpVector));
-            alignMode = xd.ReadFlag<AlignMode, sbyte>(xe, nameof(alignMode));
+            m_gains = xd.ReadClass<hkbFootIkGains>(xe, nameof(m_gains));
+            m_legs = xd.ReadClassArray<hkbFootIkModifierLeg>(xe, nameof(m_legs));
+            m_raycastDistanceUp = xd.ReadSingle(xe, nameof(m_raycastDistanceUp));
+            m_raycastDistanceDown = xd.ReadSingle(xe, nameof(m_raycastDistanceDown));
+            m_originalGroundHeightMS = xd.ReadSingle(xe, nameof(m_originalGroundHeightMS));
+            m_errorOut = xd.ReadSingle(xe, nameof(m_errorOut));
+            m_errorOutTranslation = xd.ReadVector4(xe, nameof(m_errorOutTranslation));
+            m_alignWithGroundRotation = xd.ReadQuaternion(xe, nameof(m_alignWithGroundRotation));
+            m_verticalOffset = xd.ReadSingle(xe, nameof(m_verticalOffset));
+            m_collisionFilterInfo = xd.ReadUInt32(xe, nameof(m_collisionFilterInfo));
+            m_forwardAlignFraction = xd.ReadSingle(xe, nameof(m_forwardAlignFraction));
+            m_sidewaysAlignFraction = xd.ReadSingle(xe, nameof(m_sidewaysAlignFraction));
+            m_sidewaysSampleWidth = xd.ReadSingle(xe, nameof(m_sidewaysSampleWidth));
+            m_useTrackData = xd.ReadBoolean(xe, nameof(m_useTrackData));
+            m_lockFeetWhenPlanted = xd.ReadBoolean(xe, nameof(m_lockFeetWhenPlanted));
+            m_useCharacterUpVector = xd.ReadBoolean(xe, nameof(m_useCharacterUpVector));
+            m_alignMode = xd.ReadFlag<AlignMode, sbyte>(xe, nameof(m_alignMode));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkbFootIkGains>(xe, nameof(gains), gains);
-            xs.WriteClassArray(xe, nameof(legs), legs);
-            xs.WriteFloat(xe, nameof(raycastDistanceUp), raycastDistanceUp);
-            xs.WriteFloat(xe, nameof(raycastDistanceDown), raycastDistanceDown);
-            xs.WriteFloat(xe, nameof(originalGroundHeightMS), originalGroundHeightMS);
-            xs.WriteFloat(xe, nameof(errorOut), errorOut);
-            xs.WriteVector4(xe, nameof(errorOutTranslation), errorOutTranslation);
-            xs.WriteQuaternion(xe, nameof(alignWithGroundRotation), alignWithGroundRotation);
-            xs.WriteFloat(xe, nameof(verticalOffset), verticalOffset);
-            xs.WriteNumber(xe, nameof(collisionFilterInfo), collisionFilterInfo);
-            xs.WriteFloat(xe, nameof(forwardAlignFraction), forwardAlignFraction);
-            xs.WriteFloat(xe, nameof(sidewaysAlignFraction), sidewaysAlignFraction);
-            xs.WriteFloat(xe, nameof(sidewaysSampleWidth), sidewaysSampleWidth);
-            xs.WriteBoolean(xe, nameof(useTrackData), useTrackData);
-            xs.WriteBoolean(xe, nameof(lockFeetWhenPlanted), lockFeetWhenPlanted);
-            xs.WriteBoolean(xe, nameof(useCharacterUpVector), useCharacterUpVector);
-            xs.WriteEnum<AlignMode, sbyte>(xe, nameof(alignMode), alignMode);
-            xs.WriteSerializeIgnored(xe, nameof(internalLegData));
-            xs.WriteSerializeIgnored(xe, nameof(prevIsFootIkEnabled));
-            xs.WriteSerializeIgnored(xe, nameof(isSetUp));
-            xs.WriteSerializeIgnored(xe, nameof(isGroundPositionValid));
-            xs.WriteSerializeIgnored(xe, nameof(timeStep));
+            xs.WriteClass<hkbFootIkGains>(xe, nameof(m_gains), m_gains);
+            xs.WriteClassArray(xe, nameof(m_legs), m_legs);
+            xs.WriteFloat(xe, nameof(m_raycastDistanceUp), m_raycastDistanceUp);
+            xs.WriteFloat(xe, nameof(m_raycastDistanceDown), m_raycastDistanceDown);
+            xs.WriteFloat(xe, nameof(m_originalGroundHeightMS), m_originalGroundHeightMS);
+            xs.WriteFloat(xe, nameof(m_errorOut), m_errorOut);
+            xs.WriteVector4(xe, nameof(m_errorOutTranslation), m_errorOutTranslation);
+            xs.WriteQuaternion(xe, nameof(m_alignWithGroundRotation), m_alignWithGroundRotation);
+            xs.WriteFloat(xe, nameof(m_verticalOffset), m_verticalOffset);
+            xs.WriteNumber(xe, nameof(m_collisionFilterInfo), m_collisionFilterInfo);
+            xs.WriteFloat(xe, nameof(m_forwardAlignFraction), m_forwardAlignFraction);
+            xs.WriteFloat(xe, nameof(m_sidewaysAlignFraction), m_sidewaysAlignFraction);
+            xs.WriteFloat(xe, nameof(m_sidewaysSampleWidth), m_sidewaysSampleWidth);
+            xs.WriteBoolean(xe, nameof(m_useTrackData), m_useTrackData);
+            xs.WriteBoolean(xe, nameof(m_lockFeetWhenPlanted), m_lockFeetWhenPlanted);
+            xs.WriteBoolean(xe, nameof(m_useCharacterUpVector), m_useCharacterUpVector);
+            xs.WriteEnum<AlignMode, sbyte>(xe, nameof(m_alignMode), m_alignMode);
+            xs.WriteSerializeIgnored(xe, nameof(m_internalLegData));
+            xs.WriteSerializeIgnored(xe, nameof(m_prevIsFootIkEnabled));
+            xs.WriteSerializeIgnored(xe, nameof(m_isSetUp));
+            xs.WriteSerializeIgnored(xe, nameof(m_isGroundPositionValid));
+            xs.WriteSerializeIgnored(xe, nameof(m_timeStep));
         }
 
         public override bool Equals(object? obj)
@@ -173,23 +173,23 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((gains is null && other.gains is null) || (gains is not null && other.gains is not null && gains.Equals((IHavokObject)other.gains))) &&
-                   legs.SequenceEqual(other.legs) &&
-                   raycastDistanceUp.Equals(other.raycastDistanceUp) &&
-                   raycastDistanceDown.Equals(other.raycastDistanceDown) &&
-                   originalGroundHeightMS.Equals(other.originalGroundHeightMS) &&
-                   errorOut.Equals(other.errorOut) &&
-                   errorOutTranslation.Equals(other.errorOutTranslation) &&
-                   alignWithGroundRotation.Equals(other.alignWithGroundRotation) &&
-                   verticalOffset.Equals(other.verticalOffset) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   forwardAlignFraction.Equals(other.forwardAlignFraction) &&
-                   sidewaysAlignFraction.Equals(other.sidewaysAlignFraction) &&
-                   sidewaysSampleWidth.Equals(other.sidewaysSampleWidth) &&
-                   useTrackData.Equals(other.useTrackData) &&
-                   lockFeetWhenPlanted.Equals(other.lockFeetWhenPlanted) &&
-                   useCharacterUpVector.Equals(other.useCharacterUpVector) &&
-                   alignMode.Equals(other.alignMode) &&
+                   ((m_gains is null && other.m_gains is null) || (m_gains is not null && other.m_gains is not null && m_gains.Equals((IHavokObject)other.m_gains))) &&
+                   m_legs.SequenceEqual(other.m_legs) &&
+                   m_raycastDistanceUp.Equals(other.m_raycastDistanceUp) &&
+                   m_raycastDistanceDown.Equals(other.m_raycastDistanceDown) &&
+                   m_originalGroundHeightMS.Equals(other.m_originalGroundHeightMS) &&
+                   m_errorOut.Equals(other.m_errorOut) &&
+                   m_errorOutTranslation.Equals(other.m_errorOutTranslation) &&
+                   m_alignWithGroundRotation.Equals(other.m_alignWithGroundRotation) &&
+                   m_verticalOffset.Equals(other.m_verticalOffset) &&
+                   m_collisionFilterInfo.Equals(other.m_collisionFilterInfo) &&
+                   m_forwardAlignFraction.Equals(other.m_forwardAlignFraction) &&
+                   m_sidewaysAlignFraction.Equals(other.m_sidewaysAlignFraction) &&
+                   m_sidewaysSampleWidth.Equals(other.m_sidewaysSampleWidth) &&
+                   m_useTrackData.Equals(other.m_useTrackData) &&
+                   m_lockFeetWhenPlanted.Equals(other.m_lockFeetWhenPlanted) &&
+                   m_useCharacterUpVector.Equals(other.m_useCharacterUpVector) &&
+                   m_alignMode.Equals(other.m_alignMode) &&
                    Signature == other.Signature; ;
         }
 
@@ -197,23 +197,23 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(gains);
-            hashcode.Add(legs.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(raycastDistanceUp);
-            hashcode.Add(raycastDistanceDown);
-            hashcode.Add(originalGroundHeightMS);
-            hashcode.Add(errorOut);
-            hashcode.Add(errorOutTranslation);
-            hashcode.Add(alignWithGroundRotation);
-            hashcode.Add(verticalOffset);
-            hashcode.Add(collisionFilterInfo);
-            hashcode.Add(forwardAlignFraction);
-            hashcode.Add(sidewaysAlignFraction);
-            hashcode.Add(sidewaysSampleWidth);
-            hashcode.Add(useTrackData);
-            hashcode.Add(lockFeetWhenPlanted);
-            hashcode.Add(useCharacterUpVector);
-            hashcode.Add(alignMode);
+            hashcode.Add(m_gains);
+            hashcode.Add(m_legs.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_raycastDistanceUp);
+            hashcode.Add(m_raycastDistanceDown);
+            hashcode.Add(m_originalGroundHeightMS);
+            hashcode.Add(m_errorOut);
+            hashcode.Add(m_errorOutTranslation);
+            hashcode.Add(m_alignWithGroundRotation);
+            hashcode.Add(m_verticalOffset);
+            hashcode.Add(m_collisionFilterInfo);
+            hashcode.Add(m_forwardAlignFraction);
+            hashcode.Add(m_sidewaysAlignFraction);
+            hashcode.Add(m_sidewaysSampleWidth);
+            hashcode.Add(m_useTrackData);
+            hashcode.Add(m_lockFeetWhenPlanted);
+            hashcode.Add(m_useCharacterUpVector);
+            hashcode.Add(m_alignMode);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

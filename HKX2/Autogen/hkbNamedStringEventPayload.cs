@@ -5,35 +5,35 @@ namespace HKX2
 {
     // hkbNamedStringEventPayload Signatire: 0x6caa9113 size: 32 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // m_data m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     public partial class hkbNamedStringEventPayload : hkbNamedEventPayload, IEquatable<hkbNamedStringEventPayload?>
     {
-        public string data { set; get; } = "";
+        public string m_data { set; get; } = "";
 
         public override uint Signature { set; get; } = 0x6caa9113;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            data = des.ReadStringPointer(br);
+            m_data = des.ReadStringPointer(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteStringPointer(bw, data);
+            s.WriteStringPointer(bw, m_data);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            data = xd.ReadString(xe, nameof(data));
+            m_data = xd.ReadString(xe, nameof(m_data));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteString(xe, nameof(data), data);
+            xs.WriteString(xe, nameof(m_data), m_data);
         }
 
         public override bool Equals(object? obj)
@@ -45,7 +45,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   (data is null && other.data is null || data == other.data || data is null && other.data == "" || data == "" && other.data is null) &&
+                   (m_data is null && other.m_data is null || m_data == other.m_data || m_data is null && other.m_data == "" || m_data == "" && other.m_data is null) &&
                    Signature == other.Signature; ;
         }
 
@@ -53,7 +53,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(data);
+            hashcode.Add(m_data);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

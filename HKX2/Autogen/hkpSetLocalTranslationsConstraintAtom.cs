@@ -6,12 +6,12 @@ namespace HKX2
 {
     // hkpSetLocalTranslationsConstraintAtom Signatire: 0x5cbfcf4a size: 48 flags: FLAGS_NONE
 
-    // translationA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // translationB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_translationA m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_translationB m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     public partial class hkpSetLocalTranslationsConstraintAtom : hkpConstraintAtom, IEquatable<hkpSetLocalTranslationsConstraintAtom?>
     {
-        public Vector4 translationA { set; get; }
-        public Vector4 translationB { set; get; }
+        public Vector4 m_translationA { set; get; }
+        public Vector4 m_translationB { set; get; }
 
         public override uint Signature { set; get; } = 0x5cbfcf4a;
 
@@ -19,30 +19,30 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 14;
-            translationA = br.ReadVector4();
-            translationB = br.ReadVector4();
+            m_translationA = br.ReadVector4();
+            m_translationB = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 14;
-            bw.WriteVector4(translationA);
-            bw.WriteVector4(translationB);
+            bw.WriteVector4(m_translationA);
+            bw.WriteVector4(m_translationB);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            translationA = xd.ReadVector4(xe, nameof(translationA));
-            translationB = xd.ReadVector4(xe, nameof(translationB));
+            m_translationA = xd.ReadVector4(xe, nameof(m_translationA));
+            m_translationB = xd.ReadVector4(xe, nameof(m_translationB));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(translationA), translationA);
-            xs.WriteVector4(xe, nameof(translationB), translationB);
+            xs.WriteVector4(xe, nameof(m_translationA), m_translationA);
+            xs.WriteVector4(xe, nameof(m_translationB), m_translationB);
         }
 
         public override bool Equals(object? obj)
@@ -54,8 +54,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   translationA.Equals(other.translationA) &&
-                   translationB.Equals(other.translationB) &&
+                   m_translationA.Equals(other.m_translationA) &&
+                   m_translationB.Equals(other.m_translationB) &&
                    Signature == other.Signature; ;
         }
 
@@ -63,8 +63,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(translationA);
-            hashcode.Add(translationB);
+            hashcode.Add(m_translationA);
+            hashcode.Add(m_translationB);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

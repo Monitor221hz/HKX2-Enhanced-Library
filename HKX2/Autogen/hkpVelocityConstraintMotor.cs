@@ -5,49 +5,49 @@ namespace HKX2
 {
     // hkpVelocityConstraintMotor Signatire: 0xfca2fcc3 size: 48 flags: FLAGS_NONE
 
-    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // velocityTarget class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // useVelocityTargetFromConstraintTargets class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // m_tau m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_velocityTarget m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
+    // m_useVelocityTargetFromConstraintTargets m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
     public partial class hkpVelocityConstraintMotor : hkpLimitedForceConstraintMotor, IEquatable<hkpVelocityConstraintMotor?>
     {
-        public float tau { set; get; }
-        public float velocityTarget { set; get; }
-        public bool useVelocityTargetFromConstraintTargets { set; get; }
+        public float m_tau { set; get; }
+        public float m_velocityTarget { set; get; }
+        public bool m_useVelocityTargetFromConstraintTargets { set; get; }
 
         public override uint Signature { set; get; } = 0xfca2fcc3;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            tau = br.ReadSingle();
-            velocityTarget = br.ReadSingle();
-            useVelocityTargetFromConstraintTargets = br.ReadBoolean();
+            m_tau = br.ReadSingle();
+            m_velocityTarget = br.ReadSingle();
+            m_useVelocityTargetFromConstraintTargets = br.ReadBoolean();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteSingle(tau);
-            bw.WriteSingle(velocityTarget);
-            bw.WriteBoolean(useVelocityTargetFromConstraintTargets);
+            bw.WriteSingle(m_tau);
+            bw.WriteSingle(m_velocityTarget);
+            bw.WriteBoolean(m_useVelocityTargetFromConstraintTargets);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            tau = xd.ReadSingle(xe, nameof(tau));
-            velocityTarget = xd.ReadSingle(xe, nameof(velocityTarget));
-            useVelocityTargetFromConstraintTargets = xd.ReadBoolean(xe, nameof(useVelocityTargetFromConstraintTargets));
+            m_tau = xd.ReadSingle(xe, nameof(m_tau));
+            m_velocityTarget = xd.ReadSingle(xe, nameof(m_velocityTarget));
+            m_useVelocityTargetFromConstraintTargets = xd.ReadBoolean(xe, nameof(m_useVelocityTargetFromConstraintTargets));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteFloat(xe, nameof(tau), tau);
-            xs.WriteFloat(xe, nameof(velocityTarget), velocityTarget);
-            xs.WriteBoolean(xe, nameof(useVelocityTargetFromConstraintTargets), useVelocityTargetFromConstraintTargets);
+            xs.WriteFloat(xe, nameof(m_tau), m_tau);
+            xs.WriteFloat(xe, nameof(m_velocityTarget), m_velocityTarget);
+            xs.WriteBoolean(xe, nameof(m_useVelocityTargetFromConstraintTargets), m_useVelocityTargetFromConstraintTargets);
         }
 
         public override bool Equals(object? obj)
@@ -59,9 +59,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   tau.Equals(other.tau) &&
-                   velocityTarget.Equals(other.velocityTarget) &&
-                   useVelocityTargetFromConstraintTargets.Equals(other.useVelocityTargetFromConstraintTargets) &&
+                   m_tau.Equals(other.m_tau) &&
+                   m_velocityTarget.Equals(other.m_velocityTarget) &&
+                   m_useVelocityTargetFromConstraintTargets.Equals(other.m_useVelocityTargetFromConstraintTargets) &&
                    Signature == other.Signature; ;
         }
 
@@ -69,9 +69,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(tau);
-            hashcode.Add(velocityTarget);
-            hashcode.Add(useVelocityTargetFromConstraintTargets);
+            hashcode.Add(m_tau);
+            hashcode.Add(m_velocityTarget);
+            hashcode.Add(m_useVelocityTargetFromConstraintTargets);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

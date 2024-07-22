@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkp2dAngConstraintAtom Signatire: 0xdcdb8b8b size: 4 flags: FLAGS_NONE
 
-    // freeRotationAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // m_freeRotationAxis m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
     public partial class hkp2dAngConstraintAtom : hkpConstraintAtom, IEquatable<hkp2dAngConstraintAtom?>
     {
-        public byte freeRotationAxis { set; get; }
+        public byte m_freeRotationAxis { set; get; }
 
         public override uint Signature { set; get; } = 0xdcdb8b8b;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            freeRotationAxis = br.ReadByte();
+            m_freeRotationAxis = br.ReadByte();
             br.Position += 1;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(freeRotationAxis);
+            bw.WriteByte(m_freeRotationAxis);
             bw.Position += 1;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            freeRotationAxis = xd.ReadByte(xe, nameof(freeRotationAxis));
+            m_freeRotationAxis = xd.ReadByte(xe, nameof(m_freeRotationAxis));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(freeRotationAxis), freeRotationAxis);
+            xs.WriteNumber(xe, nameof(m_freeRotationAxis), m_freeRotationAxis);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   freeRotationAxis.Equals(other.freeRotationAxis) &&
+                   m_freeRotationAxis.Equals(other.m_freeRotationAxis) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(freeRotationAxis);
+            hashcode.Add(m_freeRotationAxis);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -6,12 +6,12 @@ namespace HKX2
 {
     // hkpPhantom Signatire: 0x9b7e6f86 size: 240 flags: FLAGS_NONE
 
-    // overlapListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // phantomListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_overlapListeners m_class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_phantomListeners m_class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpPhantom : hkpWorldObject, IEquatable<hkpPhantom?>
     {
-        public IList<object> overlapListeners { set; get; } = Array.Empty<object>();
-        public IList<object> phantomListeners { set; get; } = Array.Empty<object>();
+        public IList<object> m_overlapListeners { set; get; } = Array.Empty<object>();
+        public IList<object> m_phantomListeners { set; get; } = Array.Empty<object>();
 
         public override uint Signature { set; get; } = 0x9b7e6f86;
 
@@ -37,8 +37,8 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(overlapListeners));
-            xs.WriteSerializeIgnored(xe, nameof(phantomListeners));
+            xs.WriteSerializeIgnored(xe, nameof(m_overlapListeners));
+            xs.WriteSerializeIgnored(xe, nameof(m_phantomListeners));
         }
 
         public override bool Equals(object? obj)

@@ -5,10 +5,10 @@ namespace HKX2
 {
     // BSIStateManagerModifierBSIStateManagerStateListener Signatire: 0x99463586 size: 24 flags: FLAGS_NONE
 
-    // pStateManager class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_pStateManager m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class BSIStateManagerModifierBSIStateManagerStateListener : hkbStateListener, IEquatable<BSIStateManagerModifierBSIStateManagerStateListener?>
     {
-        private object? pStateManager { set; get; }
+        private object? m_pStateManager { set; get; }
 
         public override uint Signature { set; get; } = 0x99463586;
 
@@ -32,7 +32,7 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(pStateManager));
+            xs.WriteSerializeIgnored(xe, nameof(m_pStateManager));
         }
 
         public override bool Equals(object? obj)

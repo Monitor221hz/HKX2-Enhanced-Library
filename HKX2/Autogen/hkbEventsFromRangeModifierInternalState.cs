@@ -7,35 +7,35 @@ namespace HKX2
 {
     // hkbEventsFromRangeModifierInternalState Signatire: 0xcc47b48d size: 32 flags: FLAGS_NONE
 
-    // wasActiveInPreviousFrame class:  Type.TYPE_ARRAY Type.TYPE_BOOL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_wasActiveInPreviousFrame m_class:  Type.TYPE_ARRAY Type.TYPE_BOOL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkbEventsFromRangeModifierInternalState : hkReferencedObject, IEquatable<hkbEventsFromRangeModifierInternalState?>
     {
-        public IList<bool> wasActiveInPreviousFrame { set; get; } = Array.Empty<bool>();
+        public IList<bool> m_wasActiveInPreviousFrame { set; get; } = Array.Empty<bool>();
 
         public override uint Signature { set; get; } = 0xcc47b48d;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            wasActiveInPreviousFrame = des.ReadBooleanArray(br);
+            m_wasActiveInPreviousFrame = des.ReadBooleanArray(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteBooleanArray(bw, wasActiveInPreviousFrame);
+            s.WriteBooleanArray(bw, m_wasActiveInPreviousFrame);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            wasActiveInPreviousFrame = xd.ReadBooleanArray(xe, nameof(wasActiveInPreviousFrame));
+            m_wasActiveInPreviousFrame = xd.ReadBooleanArray(xe, nameof(m_wasActiveInPreviousFrame));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteBooleanArray(xe, nameof(wasActiveInPreviousFrame), wasActiveInPreviousFrame);
+            xs.WriteBooleanArray(xe, nameof(m_wasActiveInPreviousFrame), m_wasActiveInPreviousFrame);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   wasActiveInPreviousFrame.SequenceEqual(other.wasActiveInPreviousFrame) &&
+                   m_wasActiveInPreviousFrame.SequenceEqual(other.m_wasActiveInPreviousFrame) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(wasActiveInPreviousFrame.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_wasActiveInPreviousFrame.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

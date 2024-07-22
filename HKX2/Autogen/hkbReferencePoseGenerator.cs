@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkbReferencePoseGenerator Signatire: 0x26a5675a size: 80 flags: FLAGS_NONE
 
-    // skeleton class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_skeleton m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbReferencePoseGenerator : hkbGenerator, IEquatable<hkbReferencePoseGenerator?>
     {
-        private object? skeleton { set; get; }
+        private object? m_skeleton { set; get; }
 
         public override uint Signature { set; get; } = 0x26a5675a;
 
@@ -32,7 +32,7 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(skeleton));
+            xs.WriteSerializeIgnored(xe, nameof(m_skeleton));
         }
 
         public override bool Equals(object? obj)

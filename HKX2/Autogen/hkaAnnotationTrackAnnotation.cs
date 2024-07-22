@@ -5,39 +5,39 @@ namespace HKX2
 {
     // hkaAnnotationTrackAnnotation Signatire: 0x623bf34f size: 16 flags: FLAGS_NONE
 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // text class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // m_time m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_text m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkaAnnotationTrackAnnotation : IHavokObject, IEquatable<hkaAnnotationTrackAnnotation?>
     {
-        public float time { set; get; }
-        public string text { set; get; } = "";
+        public float m_time { set; get; }
+        public string m_text { set; get; } = "";
 
         public virtual uint Signature { set; get; } = 0x623bf34f;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            time = br.ReadSingle();
+            m_time = br.ReadSingle();
             br.Position += 4;
-            text = des.ReadStringPointer(br);
+            m_text = des.ReadStringPointer(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteSingle(time);
+            bw.WriteSingle(m_time);
             bw.Position += 4;
-            s.WriteStringPointer(bw, text);
+            s.WriteStringPointer(bw, m_text);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            time = xd.ReadSingle(xe, nameof(time));
-            text = xd.ReadString(xe, nameof(text));
+            m_time = xd.ReadSingle(xe, nameof(m_time));
+            m_text = xd.ReadString(xe, nameof(m_text));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteFloat(xe, nameof(time), time);
-            xs.WriteString(xe, nameof(text), text);
+            xs.WriteFloat(xe, nameof(m_time), m_time);
+            xs.WriteString(xe, nameof(m_text), m_text);
         }
 
         public override bool Equals(object? obj)
@@ -48,16 +48,16 @@ namespace HKX2
         public bool Equals(hkaAnnotationTrackAnnotation? other)
         {
             return other is not null &&
-                   time.Equals(other.time) &&
-                   (text is null && other.text is null || text == other.text || text is null && other.text == "" || text == "" && other.text is null) &&
+                   m_time.Equals(other.m_time) &&
+                   (m_text is null && other.m_text is null || m_text == other.m_text || m_text is null && other.m_text == "" || m_text == "" && other.m_text is null) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(time);
-            hashcode.Add(text);
+            hashcode.Add(m_time);
+            hashcode.Add(m_text);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

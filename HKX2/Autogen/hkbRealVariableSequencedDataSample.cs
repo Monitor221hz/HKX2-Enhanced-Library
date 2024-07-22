@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkbRealVariableSequencedDataSample Signatire: 0xbb708bbd size: 8 flags: FLAGS_NONE
 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // value class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // m_time m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_value m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
     public partial class hkbRealVariableSequencedDataSample : IHavokObject, IEquatable<hkbRealVariableSequencedDataSample?>
     {
-        public float time { set; get; }
-        public float value { set; get; }
+        public float m_time { set; get; }
+        public float m_value { set; get; }
 
         public virtual uint Signature { set; get; } = 0xbb708bbd;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            time = br.ReadSingle();
-            value = br.ReadSingle();
+            m_time = br.ReadSingle();
+            m_value = br.ReadSingle();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteSingle(time);
-            bw.WriteSingle(value);
+            bw.WriteSingle(m_time);
+            bw.WriteSingle(m_value);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            time = xd.ReadSingle(xe, nameof(time));
-            value = xd.ReadSingle(xe, nameof(value));
+            m_time = xd.ReadSingle(xe, nameof(m_time));
+            m_value = xd.ReadSingle(xe, nameof(m_value));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteFloat(xe, nameof(time), time);
-            xs.WriteFloat(xe, nameof(value), value);
+            xs.WriteFloat(xe, nameof(m_time), m_time);
+            xs.WriteFloat(xe, nameof(m_value), m_value);
         }
 
         public override bool Equals(object? obj)
@@ -46,16 +46,16 @@ namespace HKX2
         public bool Equals(hkbRealVariableSequencedDataSample? other)
         {
             return other is not null &&
-                   time.Equals(other.time) &&
-                   value.Equals(other.value) &&
+                   m_time.Equals(other.m_time) &&
+                   m_value.Equals(other.m_value) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(time);
-            hashcode.Add(value);
+            hashcode.Add(m_time);
+            hashcode.Add(m_value);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

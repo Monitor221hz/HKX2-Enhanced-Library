@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkPostFinishAttribute Signatire: 0x903abb2c size: 8 flags: FLAGS_NONE
 
-    // postFinishFunction class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_postFinishFunction m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkPostFinishAttribute : IHavokObject, IEquatable<hkPostFinishAttribute?>
     {
-        private object? postFinishFunction { set; get; }
+        private object? m_postFinishFunction { set; get; }
 
         public virtual uint Signature { set; get; } = 0x903abb2c;
 
@@ -29,7 +29,7 @@ namespace HKX2
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteSerializeIgnored(xe, nameof(postFinishFunction));
+            xs.WriteSerializeIgnored(xe, nameof(m_postFinishFunction));
         }
 
         public override bool Equals(object? obj)

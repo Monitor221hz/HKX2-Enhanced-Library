@@ -6,16 +6,16 @@ namespace HKX2
 {
     // BSRagdollContactListenerModifier Signatire: 0x8003d8ce size: 136 flags: FLAGS_NONE
 
-    // contactEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // bones class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // throwEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // ragdollRigidBodies class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_contactEvent m_class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // m_bones m_class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // m_throwEvent m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_ragdollRigidBodies m_class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class BSRagdollContactListenerModifier : hkbModifier, IEquatable<BSRagdollContactListenerModifier?>
     {
-        public hkbEventProperty contactEvent { set; get; } = new();
-        public hkbBoneIndexArray? bones { set; get; }
-        private bool throwEvent { set; get; }
-        public IList<object> ragdollRigidBodies { set; get; } = Array.Empty<object>();
+        public hkbEventProperty m_contactEvent { set; get; } = new();
+        public hkbBoneIndexArray? m_bones { set; get; }
+        private bool m_throwEvent { set; get; }
+        public IList<object> m_ragdollRigidBodies { set; get; } = Array.Empty<object>();
 
         public override uint Signature { set; get; } = 0x8003d8ce;
 
@@ -23,9 +23,9 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            contactEvent.Read(des, br);
-            bones = des.ReadClassPointer<hkbBoneIndexArray>(br);
-            throwEvent = br.ReadBoolean();
+            m_contactEvent.Read(des, br);
+            m_bones = des.ReadClassPointer<hkbBoneIndexArray>(br);
+            m_throwEvent = br.ReadBoolean();
             br.Position += 7;
             des.ReadEmptyArray(br);
         }
@@ -34,9 +34,9 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.Position += 8;
-            contactEvent.Write(s, bw);
-            s.WriteClassPointer(bw, bones);
-            bw.WriteBoolean(throwEvent);
+            m_contactEvent.Write(s, bw);
+            s.WriteClassPointer(bw, m_bones);
+            bw.WriteBoolean(m_throwEvent);
             bw.Position += 7;
             s.WriteVoidArray(bw);
         }
@@ -44,17 +44,17 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            contactEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(contactEvent));
-            bones = xd.ReadClassPointer<hkbBoneIndexArray>(xe, nameof(bones));
+            m_contactEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(m_contactEvent));
+            m_bones = xd.ReadClassPointer<hkbBoneIndexArray>(xe, nameof(m_bones));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(contactEvent), contactEvent);
-            xs.WriteClassPointer(xe, nameof(bones), bones);
-            xs.WriteSerializeIgnored(xe, nameof(throwEvent));
-            xs.WriteSerializeIgnored(xe, nameof(ragdollRigidBodies));
+            xs.WriteClass<hkbEventProperty>(xe, nameof(m_contactEvent), m_contactEvent);
+            xs.WriteClassPointer(xe, nameof(m_bones), m_bones);
+            xs.WriteSerializeIgnored(xe, nameof(m_throwEvent));
+            xs.WriteSerializeIgnored(xe, nameof(m_ragdollRigidBodies));
         }
 
         public override bool Equals(object? obj)
@@ -66,8 +66,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((contactEvent is null && other.contactEvent is null) || (contactEvent is not null && other.contactEvent is not null && contactEvent.Equals((IHavokObject)other.contactEvent))) &&
-                   ((bones is null && other.bones is null) || (bones is not null && other.bones is not null && bones.Equals((IHavokObject)other.bones))) &&
+                   ((m_contactEvent is null && other.m_contactEvent is null) || (m_contactEvent is not null && other.m_contactEvent is not null && m_contactEvent.Equals((IHavokObject)other.m_contactEvent))) &&
+                   ((m_bones is null && other.m_bones is null) || (m_bones is not null && other.m_bones is not null && m_bones.Equals((IHavokObject)other.m_bones))) &&
                    Signature == other.Signature; ;
         }
 
@@ -75,8 +75,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(contactEvent);
-            hashcode.Add(bones);
+            hashcode.Add(m_contactEvent);
+            hashcode.Add(m_bones);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

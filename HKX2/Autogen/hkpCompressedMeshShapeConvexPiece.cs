@@ -8,63 +8,63 @@ namespace HKX2
 {
     // hkpCompressedMeshShapeConvexPiece Signatire: 0x385bb842 size: 80 flags: FLAGS_NONE
 
-    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // vertices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // faceVertices class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // faceOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // reference class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // transformIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum: 
+    // m_offset m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_vertices m_class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_faceVertices m_class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_faceOffsets m_class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_reference m_class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_transformIndex m_class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum: 
     public partial class hkpCompressedMeshShapeConvexPiece : IHavokObject, IEquatable<hkpCompressedMeshShapeConvexPiece?>
     {
-        public Vector4 offset { set; get; }
-        public IList<ushort> vertices { set; get; } = Array.Empty<ushort>();
-        public IList<byte> faceVertices { set; get; } = Array.Empty<byte>();
-        public IList<ushort> faceOffsets { set; get; } = Array.Empty<ushort>();
-        public ushort reference { set; get; }
-        public ushort transformIndex { set; get; }
+        public Vector4 m_offset { set; get; }
+        public IList<ushort> m_vertices { set; get; } = Array.Empty<ushort>();
+        public IList<byte> m_faceVertices { set; get; } = Array.Empty<byte>();
+        public IList<ushort> m_faceOffsets { set; get; } = Array.Empty<ushort>();
+        public ushort m_reference { set; get; }
+        public ushort m_transformIndex { set; get; }
 
         public virtual uint Signature { set; get; } = 0x385bb842;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            offset = br.ReadVector4();
-            vertices = des.ReadUInt16Array(br);
-            faceVertices = des.ReadByteArray(br);
-            faceOffsets = des.ReadUInt16Array(br);
-            reference = br.ReadUInt16();
-            transformIndex = br.ReadUInt16();
+            m_offset = br.ReadVector4();
+            m_vertices = des.ReadUInt16Array(br);
+            m_faceVertices = des.ReadByteArray(br);
+            m_faceOffsets = des.ReadUInt16Array(br);
+            m_reference = br.ReadUInt16();
+            m_transformIndex = br.ReadUInt16();
             br.Position += 12;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteVector4(offset);
-            s.WriteUInt16Array(bw, vertices);
-            s.WriteByteArray(bw, faceVertices);
-            s.WriteUInt16Array(bw, faceOffsets);
-            bw.WriteUInt16(reference);
-            bw.WriteUInt16(transformIndex);
+            bw.WriteVector4(m_offset);
+            s.WriteUInt16Array(bw, m_vertices);
+            s.WriteByteArray(bw, m_faceVertices);
+            s.WriteUInt16Array(bw, m_faceOffsets);
+            bw.WriteUInt16(m_reference);
+            bw.WriteUInt16(m_transformIndex);
             bw.Position += 12;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            offset = xd.ReadVector4(xe, nameof(offset));
-            vertices = xd.ReadUInt16Array(xe, nameof(vertices));
-            faceVertices = xd.ReadByteArray(xe, nameof(faceVertices));
-            faceOffsets = xd.ReadUInt16Array(xe, nameof(faceOffsets));
-            reference = xd.ReadUInt16(xe, nameof(reference));
-            transformIndex = xd.ReadUInt16(xe, nameof(transformIndex));
+            m_offset = xd.ReadVector4(xe, nameof(m_offset));
+            m_vertices = xd.ReadUInt16Array(xe, nameof(m_vertices));
+            m_faceVertices = xd.ReadByteArray(xe, nameof(m_faceVertices));
+            m_faceOffsets = xd.ReadUInt16Array(xe, nameof(m_faceOffsets));
+            m_reference = xd.ReadUInt16(xe, nameof(m_reference));
+            m_transformIndex = xd.ReadUInt16(xe, nameof(m_transformIndex));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteVector4(xe, nameof(offset), offset);
-            xs.WriteNumberArray(xe, nameof(vertices), vertices);
-            xs.WriteNumberArray(xe, nameof(faceVertices), faceVertices);
-            xs.WriteNumberArray(xe, nameof(faceOffsets), faceOffsets);
-            xs.WriteNumber(xe, nameof(reference), reference);
-            xs.WriteNumber(xe, nameof(transformIndex), transformIndex);
+            xs.WriteVector4(xe, nameof(m_offset), m_offset);
+            xs.WriteNumberArray(xe, nameof(m_vertices), m_vertices);
+            xs.WriteNumberArray(xe, nameof(m_faceVertices), m_faceVertices);
+            xs.WriteNumberArray(xe, nameof(m_faceOffsets), m_faceOffsets);
+            xs.WriteNumber(xe, nameof(m_reference), m_reference);
+            xs.WriteNumber(xe, nameof(m_transformIndex), m_transformIndex);
         }
 
         public override bool Equals(object? obj)
@@ -75,24 +75,24 @@ namespace HKX2
         public bool Equals(hkpCompressedMeshShapeConvexPiece? other)
         {
             return other is not null &&
-                   offset.Equals(other.offset) &&
-                   vertices.SequenceEqual(other.vertices) &&
-                   faceVertices.SequenceEqual(other.faceVertices) &&
-                   faceOffsets.SequenceEqual(other.faceOffsets) &&
-                   reference.Equals(other.reference) &&
-                   transformIndex.Equals(other.transformIndex) &&
+                   m_offset.Equals(other.m_offset) &&
+                   m_vertices.SequenceEqual(other.m_vertices) &&
+                   m_faceVertices.SequenceEqual(other.m_faceVertices) &&
+                   m_faceOffsets.SequenceEqual(other.m_faceOffsets) &&
+                   m_reference.Equals(other.m_reference) &&
+                   m_transformIndex.Equals(other.m_transformIndex) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(offset);
-            hashcode.Add(vertices.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(faceVertices.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(faceOffsets.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(reference);
-            hashcode.Add(transformIndex);
+            hashcode.Add(m_offset);
+            hashcode.Add(m_vertices.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_faceVertices.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_faceOffsets.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_reference);
+            hashcode.Add(m_transformIndex);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

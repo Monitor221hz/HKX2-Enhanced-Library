@@ -7,85 +7,85 @@ namespace HKX2
 {
     // hkbStateMachineStateInfo Signatire: 0xed7f9d0 size: 120 flags: FLAGS_NONE
 
-    // listeners class: hkbStateListener Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // enterNotifyEvents class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // exitNotifyEvents class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // transitions class: hkbStateMachineTransitionInfoArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // generator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // stateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // probability class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // m_listeners m_class: hkbStateListener Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_enterNotifyEvents m_class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_exitNotifyEvents m_class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // m_transitions m_class: hkbStateMachineTransitionInfoArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_generator m_class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_stateId m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // m_probability m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
+    // m_enable m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
     public partial class hkbStateMachineStateInfo : hkbBindable, IEquatable<hkbStateMachineStateInfo?>
     {
-        public IList<hkbStateListener> listeners { set; get; } = Array.Empty<hkbStateListener>();
-        public hkbStateMachineEventPropertyArray? enterNotifyEvents { set; get; }
-        public hkbStateMachineEventPropertyArray? exitNotifyEvents { set; get; }
-        public hkbStateMachineTransitionInfoArray? transitions { set; get; }
-        public hkbGenerator? generator { set; get; }
-        public string name { set; get; } = "";
-        public int stateId { set; get; }
-        public float probability { set; get; }
-        public bool enable { set; get; }
+        public IList<hkbStateListener> m_listeners { set; get; } = Array.Empty<hkbStateListener>();
+        public hkbStateMachineEventPropertyArray? m_enterNotifyEvents { set; get; }
+        public hkbStateMachineEventPropertyArray? m_exitNotifyEvents { set; get; }
+        public hkbStateMachineTransitionInfoArray? m_transitions { set; get; }
+        public hkbGenerator? m_generator { set; get; }
+        public string m_name { set; get; } = "";
+        public int m_stateId { set; get; }
+        public float m_probability { set; get; }
+        public bool m_enable { set; get; }
 
         public override uint Signature { set; get; } = 0xed7f9d0;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            listeners = des.ReadClassPointerArray<hkbStateListener>(br);
-            enterNotifyEvents = des.ReadClassPointer<hkbStateMachineEventPropertyArray>(br);
-            exitNotifyEvents = des.ReadClassPointer<hkbStateMachineEventPropertyArray>(br);
-            transitions = des.ReadClassPointer<hkbStateMachineTransitionInfoArray>(br);
-            generator = des.ReadClassPointer<hkbGenerator>(br);
-            name = des.ReadStringPointer(br);
-            stateId = br.ReadInt32();
-            probability = br.ReadSingle();
-            enable = br.ReadBoolean();
+            m_listeners = des.ReadClassPointerArray<hkbStateListener>(br);
+            m_enterNotifyEvents = des.ReadClassPointer<hkbStateMachineEventPropertyArray>(br);
+            m_exitNotifyEvents = des.ReadClassPointer<hkbStateMachineEventPropertyArray>(br);
+            m_transitions = des.ReadClassPointer<hkbStateMachineTransitionInfoArray>(br);
+            m_generator = des.ReadClassPointer<hkbGenerator>(br);
+            m_name = des.ReadStringPointer(br);
+            m_stateId = br.ReadInt32();
+            m_probability = br.ReadSingle();
+            m_enable = br.ReadBoolean();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointerArray(bw, listeners);
-            s.WriteClassPointer(bw, enterNotifyEvents);
-            s.WriteClassPointer(bw, exitNotifyEvents);
-            s.WriteClassPointer(bw, transitions);
-            s.WriteClassPointer(bw, generator);
-            s.WriteStringPointer(bw, name);
-            bw.WriteInt32(stateId);
-            bw.WriteSingle(probability);
-            bw.WriteBoolean(enable);
+            s.WriteClassPointerArray(bw, m_listeners);
+            s.WriteClassPointer(bw, m_enterNotifyEvents);
+            s.WriteClassPointer(bw, m_exitNotifyEvents);
+            s.WriteClassPointer(bw, m_transitions);
+            s.WriteClassPointer(bw, m_generator);
+            s.WriteStringPointer(bw, m_name);
+            bw.WriteInt32(m_stateId);
+            bw.WriteSingle(m_probability);
+            bw.WriteBoolean(m_enable);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            listeners = xd.ReadClassPointerArray<hkbStateListener>(xe, nameof(listeners));
-            enterNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(xe, nameof(enterNotifyEvents));
-            exitNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(xe, nameof(exitNotifyEvents));
-            transitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(xe, nameof(transitions));
-            generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
-            name = xd.ReadString(xe, nameof(name));
-            stateId = xd.ReadInt32(xe, nameof(stateId));
-            probability = xd.ReadSingle(xe, nameof(probability));
-            enable = xd.ReadBoolean(xe, nameof(enable));
+            m_listeners = xd.ReadClassPointerArray<hkbStateListener>(xe, nameof(m_listeners));
+            m_enterNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(xe, nameof(m_enterNotifyEvents));
+            m_exitNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(xe, nameof(m_exitNotifyEvents));
+            m_transitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(xe, nameof(m_transitions));
+            m_generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(m_generator));
+            m_name = xd.ReadString(xe, nameof(m_name));
+            m_stateId = xd.ReadInt32(xe, nameof(m_stateId));
+            m_probability = xd.ReadSingle(xe, nameof(m_probability));
+            m_enable = xd.ReadBoolean(xe, nameof(m_enable));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(listeners), listeners);
-            xs.WriteClassPointer(xe, nameof(enterNotifyEvents), enterNotifyEvents);
-            xs.WriteClassPointer(xe, nameof(exitNotifyEvents), exitNotifyEvents);
-            xs.WriteClassPointer(xe, nameof(transitions), transitions);
-            xs.WriteClassPointer(xe, nameof(generator), generator);
-            xs.WriteString(xe, nameof(name), name);
-            xs.WriteNumber(xe, nameof(stateId), stateId);
-            xs.WriteFloat(xe, nameof(probability), probability);
-            xs.WriteBoolean(xe, nameof(enable), enable);
+            xs.WriteClassPointerArray(xe, nameof(m_listeners), m_listeners);
+            xs.WriteClassPointer(xe, nameof(m_enterNotifyEvents), m_enterNotifyEvents);
+            xs.WriteClassPointer(xe, nameof(m_exitNotifyEvents), m_exitNotifyEvents);
+            xs.WriteClassPointer(xe, nameof(m_transitions), m_transitions);
+            xs.WriteClassPointer(xe, nameof(m_generator), m_generator);
+            xs.WriteString(xe, nameof(m_name), m_name);
+            xs.WriteNumber(xe, nameof(m_stateId), m_stateId);
+            xs.WriteFloat(xe, nameof(m_probability), m_probability);
+            xs.WriteBoolean(xe, nameof(m_enable), m_enable);
         }
 
         public override bool Equals(object? obj)
@@ -97,15 +97,15 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   listeners.SequenceEqual(other.listeners) &&
-                   ((enterNotifyEvents is null && other.enterNotifyEvents is null) || (enterNotifyEvents is not null && other.enterNotifyEvents is not null && enterNotifyEvents.Equals((IHavokObject)other.enterNotifyEvents))) &&
-                   ((exitNotifyEvents is null && other.exitNotifyEvents is null) || (exitNotifyEvents is not null && other.exitNotifyEvents is not null && exitNotifyEvents.Equals((IHavokObject)other.exitNotifyEvents))) &&
-                   ((transitions is null && other.transitions is null) || (transitions is not null && other.transitions is not null && transitions.Equals((IHavokObject)other.transitions))) &&
-                   ((generator is null && other.generator is null) || (generator is not null && other.generator is not null && generator.Equals((IHavokObject)other.generator))) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   stateId.Equals(other.stateId) &&
-                   probability.Equals(other.probability) &&
-                   enable.Equals(other.enable) &&
+                   m_listeners.SequenceEqual(other.m_listeners) &&
+                   ((m_enterNotifyEvents is null && other.m_enterNotifyEvents is null) || (m_enterNotifyEvents is not null && other.m_enterNotifyEvents is not null && m_enterNotifyEvents.Equals((IHavokObject)other.m_enterNotifyEvents))) &&
+                   ((m_exitNotifyEvents is null && other.m_exitNotifyEvents is null) || (m_exitNotifyEvents is not null && other.m_exitNotifyEvents is not null && m_exitNotifyEvents.Equals((IHavokObject)other.m_exitNotifyEvents))) &&
+                   ((m_transitions is null && other.m_transitions is null) || (m_transitions is not null && other.m_transitions is not null && m_transitions.Equals((IHavokObject)other.m_transitions))) &&
+                   ((m_generator is null && other.m_generator is null) || (m_generator is not null && other.m_generator is not null && m_generator.Equals((IHavokObject)other.m_generator))) &&
+                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
+                   m_stateId.Equals(other.m_stateId) &&
+                   m_probability.Equals(other.m_probability) &&
+                   m_enable.Equals(other.m_enable) &&
                    Signature == other.Signature; ;
         }
 
@@ -113,15 +113,15 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(listeners.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(enterNotifyEvents);
-            hashcode.Add(exitNotifyEvents);
-            hashcode.Add(transitions);
-            hashcode.Add(generator);
-            hashcode.Add(name);
-            hashcode.Add(stateId);
-            hashcode.Add(probability);
-            hashcode.Add(enable);
+            hashcode.Add(m_listeners.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_enterNotifyEvents);
+            hashcode.Add(m_exitNotifyEvents);
+            hashcode.Add(m_transitions);
+            hashcode.Add(m_generator);
+            hashcode.Add(m_name);
+            hashcode.Add(m_stateId);
+            hashcode.Add(m_probability);
+            hashcode.Add(m_enable);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

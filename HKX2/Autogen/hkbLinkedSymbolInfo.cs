@@ -7,41 +7,41 @@ namespace HKX2
 {
     // hkbLinkedSymbolInfo Signatire: 0x6a5094e3 size: 48 flags: FLAGS_NONE
 
-    // eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // variableNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_eventNames m_class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_variableNames m_class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     public partial class hkbLinkedSymbolInfo : hkReferencedObject, IEquatable<hkbLinkedSymbolInfo?>
     {
-        public IList<string> eventNames { set; get; } = Array.Empty<string>();
-        public IList<string> variableNames { set; get; } = Array.Empty<string>();
+        public IList<string> m_eventNames { set; get; } = Array.Empty<string>();
+        public IList<string> m_variableNames { set; get; } = Array.Empty<string>();
 
         public override uint Signature { set; get; } = 0x6a5094e3;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            eventNames = des.ReadStringPointerArray(br);
-            variableNames = des.ReadStringPointerArray(br);
+            m_eventNames = des.ReadStringPointerArray(br);
+            m_variableNames = des.ReadStringPointerArray(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteStringPointerArray(bw, eventNames);
-            s.WriteStringPointerArray(bw, variableNames);
+            s.WriteStringPointerArray(bw, m_eventNames);
+            s.WriteStringPointerArray(bw, m_variableNames);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            eventNames = xd.ReadStringArray(xe, nameof(eventNames));
-            variableNames = xd.ReadStringArray(xe, nameof(variableNames));
+            m_eventNames = xd.ReadStringArray(xe, nameof(m_eventNames));
+            m_variableNames = xd.ReadStringArray(xe, nameof(m_variableNames));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteStringArray(xe, nameof(eventNames), eventNames);
-            xs.WriteStringArray(xe, nameof(variableNames), variableNames);
+            xs.WriteStringArray(xe, nameof(m_eventNames), m_eventNames);
+            xs.WriteStringArray(xe, nameof(m_variableNames), m_variableNames);
         }
 
         public override bool Equals(object? obj)
@@ -53,8 +53,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   eventNames.SequenceEqual(other.eventNames) &&
-                   variableNames.SequenceEqual(other.variableNames) &&
+                   m_eventNames.SequenceEqual(other.m_eventNames) &&
+                   m_variableNames.SequenceEqual(other.m_variableNames) &&
                    Signature == other.Signature; ;
         }
 
@@ -62,8 +62,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(eventNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(variableNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_eventNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_variableNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

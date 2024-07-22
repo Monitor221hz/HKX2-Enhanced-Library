@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkbEvent Signatire: 0x3e0fd810 size: 24 flags: FLAGS_NONE
 
-    // sender class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_sender m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbEvent : hkbEventBase, IEquatable<hkbEvent?>
     {
-        private object? sender { set; get; }
+        private object? m_sender { set; get; }
 
         public override uint Signature { set; get; } = 0x3e0fd810;
 
@@ -32,7 +32,7 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(sender));
+            xs.WriteSerializeIgnored(xe, nameof(m_sender));
         }
 
         public override bool Equals(object? obj)

@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkpNamedMeshMaterial Signatire: 0x66b42df1 size: 16 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkpNamedMeshMaterial : hkpMeshMaterial, IEquatable<hkpNamedMeshMaterial?>
     {
-        public string name { set; get; } = "";
+        public string m_name { set; get; } = "";
 
         public override uint Signature { set; get; } = 0x66b42df1;
 
@@ -16,26 +16,26 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 4;
-            name = des.ReadStringPointer(br);
+            m_name = des.ReadStringPointer(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 4;
-            s.WriteStringPointer(bw, name);
+            s.WriteStringPointer(bw, m_name);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            name = xd.ReadString(xe, nameof(name));
+            m_name = xd.ReadString(xe, nameof(m_name));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteString(xe, nameof(name), name);
+            xs.WriteString(xe, nameof(m_name), m_name);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(name);
+            hashcode.Add(m_name);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

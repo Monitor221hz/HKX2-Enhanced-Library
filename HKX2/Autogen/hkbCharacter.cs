@@ -7,132 +7,132 @@ namespace HKX2
 {
     // hkbCharacter Signatire: 0x3088a5c5 size: 160 flags: FLAGS_NONE
 
-    // nearbyCharacters class: hkbCharacter Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // currentLod class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // numTracksInLod class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // ragdollDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // characterControllerDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // footIkDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // handIkDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // setup class: hkbCharacterSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // behaviorGraph class: hkbBehaviorGraph Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // projectData class: hkbProjectData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // animationBindingSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // raycastInterface class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|NOT_OWNED|FLAGS_NONE enum: 
-    // eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // worldFromModel class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // poseLocal class:  Type.TYPE_SIMPLEARRAY Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // deleteWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // deletePoseLocal class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 157 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_nearbyCharacters m_class: hkbCharacter Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_currentLod m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_numTracksInLod m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // m_ragdollDriver m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_characterControllerDriver m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_footIkDriver m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_handIkDriver m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_setup m_class: hkbCharacterSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_behaviorGraph m_class: hkbBehaviorGraph Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // m_projectData m_class: hkbProjectData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_animationBindingSet m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_raycastInterface m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_world m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|NOT_OWNED|FLAGS_NONE enum: 
+    // m_eventQueue m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_worldFromModel m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_poseLocal m_class:  Type.TYPE_SIMPLEARRAY Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_deleteWorldFromModel m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_deletePoseLocal m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 157 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbCharacter : hkReferencedObject, IEquatable<hkbCharacter?>
     {
-        public IList<hkbCharacter> nearbyCharacters { set; get; } = Array.Empty<hkbCharacter>();
-        public short currentLod { set; get; }
-        private short numTracksInLod { set; get; }
-        public string name { set; get; } = "";
-        private object? ragdollDriver { set; get; }
-        private object? characterControllerDriver { set; get; }
-        private object? footIkDriver { set; get; }
-        private object? handIkDriver { set; get; }
-        public hkbCharacterSetup? setup { set; get; }
-        public hkbBehaviorGraph? behaviorGraph { set; get; }
-        public hkbProjectData? projectData { set; get; }
-        private object? animationBindingSet { set; get; }
-        private object? raycastInterface { set; get; }
-        private object? world { set; get; }
-        private object? eventQueue { set; get; }
-        private object? worldFromModel { set; get; }
-        private object? poseLocal { set; get; }
-        private bool deleteWorldFromModel { set; get; }
-        private bool deletePoseLocal { set; get; }
+        public IList<hkbCharacter> m_nearbyCharacters { set; get; } = Array.Empty<hkbCharacter>();
+        public short m_currentLod { set; get; }
+        private short m_numTracksInLod { set; get; }
+        public string m_name { set; get; } = "";
+        private object? m_ragdollDriver { set; get; }
+        private object? m_characterControllerDriver { set; get; }
+        private object? m_footIkDriver { set; get; }
+        private object? m_handIkDriver { set; get; }
+        public hkbCharacterSetup? m_setup { set; get; }
+        public hkbBehaviorGraph? m_behaviorGraph { set; get; }
+        public hkbProjectData? m_projectData { set; get; }
+        private object? m_animationBindingSet { set; get; }
+        private object? m_raycastInterface { set; get; }
+        private object? m_world { set; get; }
+        private object? m_eventQueue { set; get; }
+        private object? m_worldFromModel { set; get; }
+        private object? m_poseLocal { set; get; }
+        private bool m_deleteWorldFromModel { set; get; }
+        private bool m_deletePoseLocal { set; get; }
 
         public override uint Signature { set; get; } = 0x3088a5c5;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            nearbyCharacters = des.ReadClassPointerArray<hkbCharacter>(br);
-            currentLod = br.ReadInt16();
-            numTracksInLod = br.ReadInt16();
+            m_nearbyCharacters = des.ReadClassPointerArray<hkbCharacter>(br);
+            m_currentLod = br.ReadInt16();
+            m_numTracksInLod = br.ReadInt16();
             br.Position += 4;
-            name = des.ReadStringPointer(br);
+            m_name = des.ReadStringPointer(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
-            setup = des.ReadClassPointer<hkbCharacterSetup>(br);
-            behaviorGraph = des.ReadClassPointer<hkbBehaviorGraph>(br);
-            projectData = des.ReadClassPointer<hkbProjectData>(br);
+            m_setup = des.ReadClassPointer<hkbCharacterSetup>(br);
+            m_behaviorGraph = des.ReadClassPointer<hkbBehaviorGraph>(br);
+            m_projectData = des.ReadClassPointer<hkbProjectData>(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            deleteWorldFromModel = br.ReadBoolean();
-            deletePoseLocal = br.ReadBoolean();
+            m_deleteWorldFromModel = br.ReadBoolean();
+            m_deletePoseLocal = br.ReadBoolean();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointerArray(bw, nearbyCharacters);
-            bw.WriteInt16(currentLod);
-            bw.WriteInt16(numTracksInLod);
+            s.WriteClassPointerArray(bw, m_nearbyCharacters);
+            bw.WriteInt16(m_currentLod);
+            bw.WriteInt16(m_numTracksInLod);
             bw.Position += 4;
-            s.WriteStringPointer(bw, name);
+            s.WriteStringPointer(bw, m_name);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
-            s.WriteClassPointer(bw, setup);
-            s.WriteClassPointer(bw, behaviorGraph);
-            s.WriteClassPointer(bw, projectData);
+            s.WriteClassPointer(bw, m_setup);
+            s.WriteClassPointer(bw, m_behaviorGraph);
+            s.WriteClassPointer(bw, m_projectData);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            bw.WriteBoolean(deleteWorldFromModel);
-            bw.WriteBoolean(deletePoseLocal);
+            bw.WriteBoolean(m_deleteWorldFromModel);
+            bw.WriteBoolean(m_deletePoseLocal);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            nearbyCharacters = xd.ReadClassPointerArray<hkbCharacter>(xe, nameof(nearbyCharacters));
-            currentLod = xd.ReadInt16(xe, nameof(currentLod));
-            name = xd.ReadString(xe, nameof(name));
-            setup = xd.ReadClassPointer<hkbCharacterSetup>(xe, nameof(setup));
-            behaviorGraph = xd.ReadClassPointer<hkbBehaviorGraph>(xe, nameof(behaviorGraph));
-            projectData = xd.ReadClassPointer<hkbProjectData>(xe, nameof(projectData));
+            m_nearbyCharacters = xd.ReadClassPointerArray<hkbCharacter>(xe, nameof(m_nearbyCharacters));
+            m_currentLod = xd.ReadInt16(xe, nameof(m_currentLod));
+            m_name = xd.ReadString(xe, nameof(m_name));
+            m_setup = xd.ReadClassPointer<hkbCharacterSetup>(xe, nameof(m_setup));
+            m_behaviorGraph = xd.ReadClassPointer<hkbBehaviorGraph>(xe, nameof(m_behaviorGraph));
+            m_projectData = xd.ReadClassPointer<hkbProjectData>(xe, nameof(m_projectData));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(nearbyCharacters), nearbyCharacters);
-            xs.WriteNumber(xe, nameof(currentLod), currentLod);
-            xs.WriteSerializeIgnored(xe, nameof(numTracksInLod));
-            xs.WriteString(xe, nameof(name), name);
-            xs.WriteSerializeIgnored(xe, nameof(ragdollDriver));
-            xs.WriteSerializeIgnored(xe, nameof(characterControllerDriver));
-            xs.WriteSerializeIgnored(xe, nameof(footIkDriver));
-            xs.WriteSerializeIgnored(xe, nameof(handIkDriver));
-            xs.WriteClassPointer(xe, nameof(setup), setup);
-            xs.WriteClassPointer(xe, nameof(behaviorGraph), behaviorGraph);
-            xs.WriteClassPointer(xe, nameof(projectData), projectData);
-            xs.WriteSerializeIgnored(xe, nameof(animationBindingSet));
-            xs.WriteSerializeIgnored(xe, nameof(raycastInterface));
-            xs.WriteSerializeIgnored(xe, nameof(world));
-            xs.WriteSerializeIgnored(xe, nameof(eventQueue));
-            xs.WriteSerializeIgnored(xe, nameof(worldFromModel));
-            xs.WriteSerializeIgnored(xe, nameof(poseLocal));
-            xs.WriteSerializeIgnored(xe, nameof(deleteWorldFromModel));
-            xs.WriteSerializeIgnored(xe, nameof(deletePoseLocal));
+            xs.WriteClassPointerArray(xe, nameof(m_nearbyCharacters), m_nearbyCharacters);
+            xs.WriteNumber(xe, nameof(m_currentLod), m_currentLod);
+            xs.WriteSerializeIgnored(xe, nameof(m_numTracksInLod));
+            xs.WriteString(xe, nameof(m_name), m_name);
+            xs.WriteSerializeIgnored(xe, nameof(m_ragdollDriver));
+            xs.WriteSerializeIgnored(xe, nameof(m_characterControllerDriver));
+            xs.WriteSerializeIgnored(xe, nameof(m_footIkDriver));
+            xs.WriteSerializeIgnored(xe, nameof(m_handIkDriver));
+            xs.WriteClassPointer(xe, nameof(m_setup), m_setup);
+            xs.WriteClassPointer(xe, nameof(m_behaviorGraph), m_behaviorGraph);
+            xs.WriteClassPointer(xe, nameof(m_projectData), m_projectData);
+            xs.WriteSerializeIgnored(xe, nameof(m_animationBindingSet));
+            xs.WriteSerializeIgnored(xe, nameof(m_raycastInterface));
+            xs.WriteSerializeIgnored(xe, nameof(m_world));
+            xs.WriteSerializeIgnored(xe, nameof(m_eventQueue));
+            xs.WriteSerializeIgnored(xe, nameof(m_worldFromModel));
+            xs.WriteSerializeIgnored(xe, nameof(m_poseLocal));
+            xs.WriteSerializeIgnored(xe, nameof(m_deleteWorldFromModel));
+            xs.WriteSerializeIgnored(xe, nameof(m_deletePoseLocal));
         }
 
         public override bool Equals(object? obj)
@@ -144,12 +144,12 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   nearbyCharacters.SequenceEqual(other.nearbyCharacters) &&
-                   currentLod.Equals(other.currentLod) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   ((setup is null && other.setup is null) || (setup is not null && other.setup is not null && setup.Equals((IHavokObject)other.setup))) &&
-                   ((behaviorGraph is null && other.behaviorGraph is null) || (behaviorGraph is not null && other.behaviorGraph is not null && behaviorGraph.Equals((IHavokObject)other.behaviorGraph))) &&
-                   ((projectData is null && other.projectData is null) || (projectData is not null && other.projectData is not null && projectData.Equals((IHavokObject)other.projectData))) &&
+                   m_nearbyCharacters.SequenceEqual(other.m_nearbyCharacters) &&
+                   m_currentLod.Equals(other.m_currentLod) &&
+                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
+                   ((m_setup is null && other.m_setup is null) || (m_setup is not null && other.m_setup is not null && m_setup.Equals((IHavokObject)other.m_setup))) &&
+                   ((m_behaviorGraph is null && other.m_behaviorGraph is null) || (m_behaviorGraph is not null && other.m_behaviorGraph is not null && m_behaviorGraph.Equals((IHavokObject)other.m_behaviorGraph))) &&
+                   ((m_projectData is null && other.m_projectData is null) || (m_projectData is not null && other.m_projectData is not null && m_projectData.Equals((IHavokObject)other.m_projectData))) &&
                    Signature == other.Signature; ;
         }
 
@@ -157,12 +157,12 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(nearbyCharacters.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(currentLod);
-            hashcode.Add(name);
-            hashcode.Add(setup);
-            hashcode.Add(behaviorGraph);
-            hashcode.Add(projectData);
+            hashcode.Add(m_nearbyCharacters.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_currentLod);
+            hashcode.Add(m_name);
+            hashcode.Add(m_setup);
+            hashcode.Add(m_behaviorGraph);
+            hashcode.Add(m_projectData);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

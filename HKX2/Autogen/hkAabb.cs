@@ -6,37 +6,37 @@ namespace HKX2
 {
     // hkAabb Signatire: 0x4a948b16 size: 32 flags: FLAGS_NONE
 
-    // min class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // max class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_min m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_max m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkAabb : IHavokObject, IEquatable<hkAabb?>
     {
-        public Vector4 min { set; get; }
-        public Vector4 max { set; get; }
+        public Vector4 m_min { set; get; }
+        public Vector4 m_max { set; get; }
 
         public virtual uint Signature { set; get; } = 0x4a948b16;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            min = br.ReadVector4();
-            max = br.ReadVector4();
+            m_min = br.ReadVector4();
+            m_max = br.ReadVector4();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteVector4(min);
-            bw.WriteVector4(max);
+            bw.WriteVector4(m_min);
+            bw.WriteVector4(m_max);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            min = xd.ReadVector4(xe, nameof(min));
-            max = xd.ReadVector4(xe, nameof(max));
+            m_min = xd.ReadVector4(xe, nameof(m_min));
+            m_max = xd.ReadVector4(xe, nameof(m_max));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteVector4(xe, nameof(min), min);
-            xs.WriteVector4(xe, nameof(max), max);
+            xs.WriteVector4(xe, nameof(m_min), m_min);
+            xs.WriteVector4(xe, nameof(m_max), m_max);
         }
 
         public override bool Equals(object? obj)
@@ -47,16 +47,16 @@ namespace HKX2
         public bool Equals(hkAabb? other)
         {
             return other is not null &&
-                   min.Equals(other.min) &&
-                   max.Equals(other.max) &&
+                   m_min.Equals(other.m_min) &&
+                   m_max.Equals(other.m_max) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(min);
-            hashcode.Add(max);
+            hashcode.Add(m_min);
+            hashcode.Add(m_max);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

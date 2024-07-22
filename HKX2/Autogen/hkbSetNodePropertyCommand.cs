@@ -5,59 +5,59 @@ namespace HKX2
 {
     // hkbSetNodePropertyCommand Signatire: 0xc5160b64 size: 48 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // nodeName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // propertyName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // propertyValue class: hkbVariableValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
+    // m_characterId m_class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_nodeName m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // m_propertyName m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_propertyValue m_class: hkbVariableValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // m_padding m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
     public partial class hkbSetNodePropertyCommand : hkReferencedObject, IEquatable<hkbSetNodePropertyCommand?>
     {
-        public ulong characterId { set; get; }
-        public string nodeName { set; get; } = "";
-        public string propertyName { set; get; } = "";
-        public hkbVariableValue propertyValue { set; get; } = new();
-        public int padding { set; get; }
+        public ulong m_characterId { set; get; }
+        public string m_nodeName { set; get; } = "";
+        public string m_propertyName { set; get; } = "";
+        public hkbVariableValue m_propertyValue { set; get; } = new();
+        public int m_padding { set; get; }
 
         public override uint Signature { set; get; } = 0xc5160b64;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            characterId = br.ReadUInt64();
-            nodeName = des.ReadStringPointer(br);
-            propertyName = des.ReadStringPointer(br);
-            propertyValue.Read(des, br);
-            padding = br.ReadInt32();
+            m_characterId = br.ReadUInt64();
+            m_nodeName = des.ReadStringPointer(br);
+            m_propertyName = des.ReadStringPointer(br);
+            m_propertyValue.Read(des, br);
+            m_padding = br.ReadInt32();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteUInt64(characterId);
-            s.WriteStringPointer(bw, nodeName);
-            s.WriteStringPointer(bw, propertyName);
-            propertyValue.Write(s, bw);
-            bw.WriteInt32(padding);
+            bw.WriteUInt64(m_characterId);
+            s.WriteStringPointer(bw, m_nodeName);
+            s.WriteStringPointer(bw, m_propertyName);
+            m_propertyValue.Write(s, bw);
+            bw.WriteInt32(m_padding);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            characterId = xd.ReadUInt64(xe, nameof(characterId));
-            nodeName = xd.ReadString(xe, nameof(nodeName));
-            propertyName = xd.ReadString(xe, nameof(propertyName));
-            propertyValue = xd.ReadClass<hkbVariableValue>(xe, nameof(propertyValue));
-            padding = xd.ReadInt32(xe, nameof(padding));
+            m_characterId = xd.ReadUInt64(xe, nameof(m_characterId));
+            m_nodeName = xd.ReadString(xe, nameof(m_nodeName));
+            m_propertyName = xd.ReadString(xe, nameof(m_propertyName));
+            m_propertyValue = xd.ReadClass<hkbVariableValue>(xe, nameof(m_propertyValue));
+            m_padding = xd.ReadInt32(xe, nameof(m_padding));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(characterId), characterId);
-            xs.WriteString(xe, nameof(nodeName), nodeName);
-            xs.WriteString(xe, nameof(propertyName), propertyName);
-            xs.WriteClass<hkbVariableValue>(xe, nameof(propertyValue), propertyValue);
-            xs.WriteNumber(xe, nameof(padding), padding);
+            xs.WriteNumber(xe, nameof(m_characterId), m_characterId);
+            xs.WriteString(xe, nameof(m_nodeName), m_nodeName);
+            xs.WriteString(xe, nameof(m_propertyName), m_propertyName);
+            xs.WriteClass<hkbVariableValue>(xe, nameof(m_propertyValue), m_propertyValue);
+            xs.WriteNumber(xe, nameof(m_padding), m_padding);
         }
 
         public override bool Equals(object? obj)
@@ -69,11 +69,11 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   (nodeName is null && other.nodeName is null || nodeName == other.nodeName || nodeName is null && other.nodeName == "" || nodeName == "" && other.nodeName is null) &&
-                   (propertyName is null && other.propertyName is null || propertyName == other.propertyName || propertyName is null && other.propertyName == "" || propertyName == "" && other.propertyName is null) &&
-                   ((propertyValue is null && other.propertyValue is null) || (propertyValue is not null && other.propertyValue is not null && propertyValue.Equals((IHavokObject)other.propertyValue))) &&
-                   padding.Equals(other.padding) &&
+                   m_characterId.Equals(other.m_characterId) &&
+                   (m_nodeName is null && other.m_nodeName is null || m_nodeName == other.m_nodeName || m_nodeName is null && other.m_nodeName == "" || m_nodeName == "" && other.m_nodeName is null) &&
+                   (m_propertyName is null && other.m_propertyName is null || m_propertyName == other.m_propertyName || m_propertyName is null && other.m_propertyName == "" || m_propertyName == "" && other.m_propertyName is null) &&
+                   ((m_propertyValue is null && other.m_propertyValue is null) || (m_propertyValue is not null && other.m_propertyValue is not null && m_propertyValue.Equals((IHavokObject)other.m_propertyValue))) &&
+                   m_padding.Equals(other.m_padding) &&
                    Signature == other.Signature; ;
         }
 
@@ -81,11 +81,11 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(characterId);
-            hashcode.Add(nodeName);
-            hashcode.Add(propertyName);
-            hashcode.Add(propertyValue);
-            hashcode.Add(padding);
+            hashcode.Add(m_characterId);
+            hashcode.Add(m_nodeName);
+            hashcode.Add(m_propertyName);
+            hashcode.Add(m_propertyValue);
+            hashcode.Add(m_padding);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkpRackAndPinionConstraintData Signatire: 0xd180ebe0 size: 192 flags: FLAGS_NONE
 
-    // atoms class: hkpRackAndPinionConstraintDataAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: ALIGN_16|FLAGS_NONE enum: 
+    // m_atoms m_class: hkpRackAndPinionConstraintDataAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: ALIGN_16|FLAGS_NONE enum: 
     public partial class hkpRackAndPinionConstraintData : hkpConstraintData, IEquatable<hkpRackAndPinionConstraintData?>
     {
-        public hkpRackAndPinionConstraintDataAtoms atoms { set; get; } = new();
+        public hkpRackAndPinionConstraintDataAtoms m_atoms { set; get; } = new();
 
         public override uint Signature { set; get; } = 0xd180ebe0;
 
@@ -16,26 +16,26 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            atoms.Read(des, br);
+            m_atoms.Read(des, br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 8;
-            atoms.Write(s, bw);
+            m_atoms.Write(s, bw);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            atoms = xd.ReadClass<hkpRackAndPinionConstraintDataAtoms>(xe, nameof(atoms));
+            m_atoms = xd.ReadClass<hkpRackAndPinionConstraintDataAtoms>(xe, nameof(m_atoms));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkpRackAndPinionConstraintDataAtoms>(xe, nameof(atoms), atoms);
+            xs.WriteClass<hkpRackAndPinionConstraintDataAtoms>(xe, nameof(m_atoms), m_atoms);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
+                   ((m_atoms is null && other.m_atoms is null) || (m_atoms is not null && other.m_atoms is not null && m_atoms.Equals((IHavokObject)other.m_atoms))) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(atoms);
+            hashcode.Add(m_atoms);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

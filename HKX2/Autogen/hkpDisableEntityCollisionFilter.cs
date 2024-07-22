@@ -7,10 +7,10 @@ namespace HKX2
 {
     // hkpDisableEntityCollisionFilter Signatire: 0xfac3351c size: 96 flags: FLAGS_NONE
 
-    // disabledEntities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_disabledEntities m_class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkpDisableEntityCollisionFilter : hkpCollisionFilter, IEquatable<hkpDisableEntityCollisionFilter?>
     {
-        public IList<hkpEntity> disabledEntities { set; get; } = Array.Empty<hkpEntity>();
+        public IList<hkpEntity> m_disabledEntities { set; get; } = Array.Empty<hkpEntity>();
 
         public override uint Signature { set; get; } = 0xfac3351c;
 
@@ -18,26 +18,26 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            disabledEntities = des.ReadClassPointerArray<hkpEntity>(br);
+            m_disabledEntities = des.ReadClassPointerArray<hkpEntity>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 8;
-            s.WriteClassPointerArray(bw, disabledEntities);
+            s.WriteClassPointerArray(bw, m_disabledEntities);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            disabledEntities = xd.ReadClassPointerArray<hkpEntity>(xe, nameof(disabledEntities));
+            m_disabledEntities = xd.ReadClassPointerArray<hkpEntity>(xe, nameof(m_disabledEntities));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(disabledEntities), disabledEntities);
+            xs.WriteClassPointerArray(xe, nameof(m_disabledEntities), m_disabledEntities);
         }
 
         public override bool Equals(object? obj)
@@ -49,7 +49,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   disabledEntities.SequenceEqual(other.disabledEntities) &&
+                   m_disabledEntities.SequenceEqual(other.m_disabledEntities) &&
                    Signature == other.Signature; ;
         }
 
@@ -57,7 +57,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(disabledEntities.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_disabledEntities.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

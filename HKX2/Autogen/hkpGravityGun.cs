@@ -7,24 +7,24 @@ namespace HKX2
 {
     // hkpGravityGun Signatire: 0x5e2754cd size: 128 flags: FLAGS_NONE
 
-    // grabbedBodies class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // maxNumObjectsPicked class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // maxMassOfObjectPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // maxDistOfObjectPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // impulseAppliedWhenObjectNotPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // throwVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // capturedObjectPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // capturedObjectsOffset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // m_grabbedBodies m_class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_maxNumObjectsPicked m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // m_maxMassOfObjectPicked m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
+    // m_maxDistOfObjectPicked m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_impulseAppliedWhenObjectNotPicked m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
+    // m_throwVelocity m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // m_capturedObjectPosition m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_capturedObjectsOffset m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
     public partial class hkpGravityGun : hkpFirstPersonGun, IEquatable<hkpGravityGun?>
     {
-        public IList<object> grabbedBodies { set; get; } = Array.Empty<object>();
-        public int maxNumObjectsPicked { set; get; }
-        public float maxMassOfObjectPicked { set; get; }
-        public float maxDistOfObjectPicked { set; get; }
-        public float impulseAppliedWhenObjectNotPicked { set; get; }
-        public float throwVelocity { set; get; }
-        public Vector4 capturedObjectPosition { set; get; }
-        public Vector4 capturedObjectsOffset { set; get; }
+        public IList<object> m_grabbedBodies { set; get; } = Array.Empty<object>();
+        public int m_maxNumObjectsPicked { set; get; }
+        public float m_maxMassOfObjectPicked { set; get; }
+        public float m_maxDistOfObjectPicked { set; get; }
+        public float m_impulseAppliedWhenObjectNotPicked { set; get; }
+        public float m_throwVelocity { set; get; }
+        public Vector4 m_capturedObjectPosition { set; get; }
+        public Vector4 m_capturedObjectsOffset { set; get; }
 
         public override uint Signature { set; get; } = 0x5e2754cd;
 
@@ -32,53 +32,53 @@ namespace HKX2
         {
             base.Read(des, br);
             des.ReadEmptyArray(br);
-            maxNumObjectsPicked = br.ReadInt32();
-            maxMassOfObjectPicked = br.ReadSingle();
-            maxDistOfObjectPicked = br.ReadSingle();
-            impulseAppliedWhenObjectNotPicked = br.ReadSingle();
-            throwVelocity = br.ReadSingle();
+            m_maxNumObjectsPicked = br.ReadInt32();
+            m_maxMassOfObjectPicked = br.ReadSingle();
+            m_maxDistOfObjectPicked = br.ReadSingle();
+            m_impulseAppliedWhenObjectNotPicked = br.ReadSingle();
+            m_throwVelocity = br.ReadSingle();
             br.Position += 4;
-            capturedObjectPosition = br.ReadVector4();
-            capturedObjectsOffset = br.ReadVector4();
+            m_capturedObjectPosition = br.ReadVector4();
+            m_capturedObjectsOffset = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             s.WriteVoidArray(bw);
-            bw.WriteInt32(maxNumObjectsPicked);
-            bw.WriteSingle(maxMassOfObjectPicked);
-            bw.WriteSingle(maxDistOfObjectPicked);
-            bw.WriteSingle(impulseAppliedWhenObjectNotPicked);
-            bw.WriteSingle(throwVelocity);
+            bw.WriteInt32(m_maxNumObjectsPicked);
+            bw.WriteSingle(m_maxMassOfObjectPicked);
+            bw.WriteSingle(m_maxDistOfObjectPicked);
+            bw.WriteSingle(m_impulseAppliedWhenObjectNotPicked);
+            bw.WriteSingle(m_throwVelocity);
             bw.Position += 4;
-            bw.WriteVector4(capturedObjectPosition);
-            bw.WriteVector4(capturedObjectsOffset);
+            bw.WriteVector4(m_capturedObjectPosition);
+            bw.WriteVector4(m_capturedObjectsOffset);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            maxNumObjectsPicked = xd.ReadInt32(xe, nameof(maxNumObjectsPicked));
-            maxMassOfObjectPicked = xd.ReadSingle(xe, nameof(maxMassOfObjectPicked));
-            maxDistOfObjectPicked = xd.ReadSingle(xe, nameof(maxDistOfObjectPicked));
-            impulseAppliedWhenObjectNotPicked = xd.ReadSingle(xe, nameof(impulseAppliedWhenObjectNotPicked));
-            throwVelocity = xd.ReadSingle(xe, nameof(throwVelocity));
-            capturedObjectPosition = xd.ReadVector4(xe, nameof(capturedObjectPosition));
-            capturedObjectsOffset = xd.ReadVector4(xe, nameof(capturedObjectsOffset));
+            m_maxNumObjectsPicked = xd.ReadInt32(xe, nameof(m_maxNumObjectsPicked));
+            m_maxMassOfObjectPicked = xd.ReadSingle(xe, nameof(m_maxMassOfObjectPicked));
+            m_maxDistOfObjectPicked = xd.ReadSingle(xe, nameof(m_maxDistOfObjectPicked));
+            m_impulseAppliedWhenObjectNotPicked = xd.ReadSingle(xe, nameof(m_impulseAppliedWhenObjectNotPicked));
+            m_throwVelocity = xd.ReadSingle(xe, nameof(m_throwVelocity));
+            m_capturedObjectPosition = xd.ReadVector4(xe, nameof(m_capturedObjectPosition));
+            m_capturedObjectsOffset = xd.ReadVector4(xe, nameof(m_capturedObjectsOffset));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(grabbedBodies));
-            xs.WriteNumber(xe, nameof(maxNumObjectsPicked), maxNumObjectsPicked);
-            xs.WriteFloat(xe, nameof(maxMassOfObjectPicked), maxMassOfObjectPicked);
-            xs.WriteFloat(xe, nameof(maxDistOfObjectPicked), maxDistOfObjectPicked);
-            xs.WriteFloat(xe, nameof(impulseAppliedWhenObjectNotPicked), impulseAppliedWhenObjectNotPicked);
-            xs.WriteFloat(xe, nameof(throwVelocity), throwVelocity);
-            xs.WriteVector4(xe, nameof(capturedObjectPosition), capturedObjectPosition);
-            xs.WriteVector4(xe, nameof(capturedObjectsOffset), capturedObjectsOffset);
+            xs.WriteSerializeIgnored(xe, nameof(m_grabbedBodies));
+            xs.WriteNumber(xe, nameof(m_maxNumObjectsPicked), m_maxNumObjectsPicked);
+            xs.WriteFloat(xe, nameof(m_maxMassOfObjectPicked), m_maxMassOfObjectPicked);
+            xs.WriteFloat(xe, nameof(m_maxDistOfObjectPicked), m_maxDistOfObjectPicked);
+            xs.WriteFloat(xe, nameof(m_impulseAppliedWhenObjectNotPicked), m_impulseAppliedWhenObjectNotPicked);
+            xs.WriteFloat(xe, nameof(m_throwVelocity), m_throwVelocity);
+            xs.WriteVector4(xe, nameof(m_capturedObjectPosition), m_capturedObjectPosition);
+            xs.WriteVector4(xe, nameof(m_capturedObjectsOffset), m_capturedObjectsOffset);
         }
 
         public override bool Equals(object? obj)
@@ -90,13 +90,13 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   maxNumObjectsPicked.Equals(other.maxNumObjectsPicked) &&
-                   maxMassOfObjectPicked.Equals(other.maxMassOfObjectPicked) &&
-                   maxDistOfObjectPicked.Equals(other.maxDistOfObjectPicked) &&
-                   impulseAppliedWhenObjectNotPicked.Equals(other.impulseAppliedWhenObjectNotPicked) &&
-                   throwVelocity.Equals(other.throwVelocity) &&
-                   capturedObjectPosition.Equals(other.capturedObjectPosition) &&
-                   capturedObjectsOffset.Equals(other.capturedObjectsOffset) &&
+                   m_maxNumObjectsPicked.Equals(other.m_maxNumObjectsPicked) &&
+                   m_maxMassOfObjectPicked.Equals(other.m_maxMassOfObjectPicked) &&
+                   m_maxDistOfObjectPicked.Equals(other.m_maxDistOfObjectPicked) &&
+                   m_impulseAppliedWhenObjectNotPicked.Equals(other.m_impulseAppliedWhenObjectNotPicked) &&
+                   m_throwVelocity.Equals(other.m_throwVelocity) &&
+                   m_capturedObjectPosition.Equals(other.m_capturedObjectPosition) &&
+                   m_capturedObjectsOffset.Equals(other.m_capturedObjectsOffset) &&
                    Signature == other.Signature; ;
         }
 
@@ -104,13 +104,13 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(maxNumObjectsPicked);
-            hashcode.Add(maxMassOfObjectPicked);
-            hashcode.Add(maxDistOfObjectPicked);
-            hashcode.Add(impulseAppliedWhenObjectNotPicked);
-            hashcode.Add(throwVelocity);
-            hashcode.Add(capturedObjectPosition);
-            hashcode.Add(capturedObjectsOffset);
+            hashcode.Add(m_maxNumObjectsPicked);
+            hashcode.Add(m_maxMassOfObjectPicked);
+            hashcode.Add(m_maxDistOfObjectPicked);
+            hashcode.Add(m_impulseAppliedWhenObjectNotPicked);
+            hashcode.Add(m_throwVelocity);
+            hashcode.Add(m_capturedObjectPosition);
+            hashcode.Add(m_capturedObjectsOffset);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

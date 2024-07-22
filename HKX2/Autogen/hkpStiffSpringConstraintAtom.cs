@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkpStiffSpringConstraintAtom Signatire: 0x6c128096 size: 8 flags: FLAGS_NONE
 
-    // length class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // m_length m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
     public partial class hkpStiffSpringConstraintAtom : hkpConstraintAtom, IEquatable<hkpStiffSpringConstraintAtom?>
     {
-        public float length { set; get; }
+        public float m_length { set; get; }
 
         public override uint Signature { set; get; } = 0x6c128096;
 
@@ -16,26 +16,26 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 2;
-            length = br.ReadSingle();
+            m_length = br.ReadSingle();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 2;
-            bw.WriteSingle(length);
+            bw.WriteSingle(m_length);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            length = xd.ReadSingle(xe, nameof(length));
+            m_length = xd.ReadSingle(xe, nameof(m_length));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteFloat(xe, nameof(length), length);
+            xs.WriteFloat(xe, nameof(m_length), m_length);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   length.Equals(other.length) &&
+                   m_length.Equals(other.m_length) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(length);
+            hashcode.Add(m_length);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

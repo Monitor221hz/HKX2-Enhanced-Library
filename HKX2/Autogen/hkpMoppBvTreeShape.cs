@@ -5,42 +5,42 @@ namespace HKX2
 {
     // hkpMoppBvTreeShape Signatire: 0x90b29d39 size: 112 flags: FLAGS_NONE
 
-    // child class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // childSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_child m_class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_childSize m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpMoppBvTreeShape : hkMoppBvTreeShapeBase, IEquatable<hkpMoppBvTreeShape?>
     {
-        public hkpSingleShapeContainer child { set; get; } = new();
-        private int childSize { set; get; }
+        public hkpSingleShapeContainer m_child { set; get; } = new();
+        private int m_childSize { set; get; }
 
         public override uint Signature { set; get; } = 0x90b29d39;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            child.Read(des, br);
-            childSize = br.ReadInt32();
+            m_child.Read(des, br);
+            m_childSize = br.ReadInt32();
             br.Position += 12;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            child.Write(s, bw);
-            bw.WriteInt32(childSize);
+            m_child.Write(s, bw);
+            bw.WriteInt32(m_childSize);
             bw.Position += 12;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            child = xd.ReadClass<hkpSingleShapeContainer>(xe, nameof(child));
+            m_child = xd.ReadClass<hkpSingleShapeContainer>(xe, nameof(m_child));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkpSingleShapeContainer>(xe, nameof(child), child);
-            xs.WriteSerializeIgnored(xe, nameof(childSize));
+            xs.WriteClass<hkpSingleShapeContainer>(xe, nameof(m_child), m_child);
+            xs.WriteSerializeIgnored(xe, nameof(m_childSize));
         }
 
         public override bool Equals(object? obj)
@@ -52,7 +52,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((child is null && other.child is null) || (child is not null && other.child is not null && child.Equals((IHavokObject)other.child))) &&
+                   ((m_child is null && other.m_child is null) || (m_child is not null && other.m_child is not null && m_child.Equals((IHavokObject)other.m_child))) &&
                    Signature == other.Signature; ;
         }
 
@@ -60,7 +60,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(child);
+            hashcode.Add(m_child);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

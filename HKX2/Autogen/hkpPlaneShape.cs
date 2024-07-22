@@ -6,47 +6,47 @@ namespace HKX2
 {
     // hkpPlaneShape Signatire: 0xc36bbd30 size: 80 flags: FLAGS_NONE
 
-    // plane class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // aabbCenter class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // aabbHalfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_plane m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_aabbCenter m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_aabbHalfExtents m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     public partial class hkpPlaneShape : hkpHeightFieldShape, IEquatable<hkpPlaneShape?>
     {
-        public Vector4 plane { set; get; }
-        public Vector4 aabbCenter { set; get; }
-        public Vector4 aabbHalfExtents { set; get; }
+        public Vector4 m_plane { set; get; }
+        public Vector4 m_aabbCenter { set; get; }
+        public Vector4 m_aabbHalfExtents { set; get; }
 
         public override uint Signature { set; get; } = 0xc36bbd30;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            plane = br.ReadVector4();
-            aabbCenter = br.ReadVector4();
-            aabbHalfExtents = br.ReadVector4();
+            m_plane = br.ReadVector4();
+            m_aabbCenter = br.ReadVector4();
+            m_aabbHalfExtents = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteVector4(plane);
-            bw.WriteVector4(aabbCenter);
-            bw.WriteVector4(aabbHalfExtents);
+            bw.WriteVector4(m_plane);
+            bw.WriteVector4(m_aabbCenter);
+            bw.WriteVector4(m_aabbHalfExtents);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            plane = xd.ReadVector4(xe, nameof(plane));
-            aabbCenter = xd.ReadVector4(xe, nameof(aabbCenter));
-            aabbHalfExtents = xd.ReadVector4(xe, nameof(aabbHalfExtents));
+            m_plane = xd.ReadVector4(xe, nameof(m_plane));
+            m_aabbCenter = xd.ReadVector4(xe, nameof(m_aabbCenter));
+            m_aabbHalfExtents = xd.ReadVector4(xe, nameof(m_aabbHalfExtents));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(plane), plane);
-            xs.WriteVector4(xe, nameof(aabbCenter), aabbCenter);
-            xs.WriteVector4(xe, nameof(aabbHalfExtents), aabbHalfExtents);
+            xs.WriteVector4(xe, nameof(m_plane), m_plane);
+            xs.WriteVector4(xe, nameof(m_aabbCenter), m_aabbCenter);
+            xs.WriteVector4(xe, nameof(m_aabbHalfExtents), m_aabbHalfExtents);
         }
 
         public override bool Equals(object? obj)
@@ -58,9 +58,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   plane.Equals(other.plane) &&
-                   aabbCenter.Equals(other.aabbCenter) &&
-                   aabbHalfExtents.Equals(other.aabbHalfExtents) &&
+                   m_plane.Equals(other.m_plane) &&
+                   m_aabbCenter.Equals(other.m_aabbCenter) &&
+                   m_aabbHalfExtents.Equals(other.m_aabbHalfExtents) &&
                    Signature == other.Signature; ;
         }
 
@@ -68,9 +68,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(plane);
-            hashcode.Add(aabbCenter);
-            hashcode.Add(aabbHalfExtents);
+            hashcode.Add(m_plane);
+            hashcode.Add(m_aabbCenter);
+            hashcode.Add(m_aabbHalfExtents);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkbRotateCharacterModifierInternalState Signatire: 0xdc40bf4a size: 24 flags: FLAGS_NONE
 
-    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_angle m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkbRotateCharacterModifierInternalState : hkReferencedObject, IEquatable<hkbRotateCharacterModifierInternalState?>
     {
-        public float angle { set; get; }
+        public float m_angle { set; get; }
 
         public override uint Signature { set; get; } = 0xdc40bf4a;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            angle = br.ReadSingle();
+            m_angle = br.ReadSingle();
             br.Position += 4;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteSingle(angle);
+            bw.WriteSingle(m_angle);
             bw.Position += 4;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            angle = xd.ReadSingle(xe, nameof(angle));
+            m_angle = xd.ReadSingle(xe, nameof(m_angle));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteFloat(xe, nameof(angle), angle);
+            xs.WriteFloat(xe, nameof(m_angle), m_angle);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   angle.Equals(other.angle) &&
+                   m_angle.Equals(other.m_angle) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(angle);
+            hashcode.Add(m_angle);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

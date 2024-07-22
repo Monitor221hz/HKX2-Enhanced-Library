@@ -5,58 +5,58 @@ namespace HKX2
 {
     // hkbNode Signatire: 0x6d26f61d size: 72 flags: FLAGS_NONE
 
-    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // id class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // cloneState class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 66 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // padNode class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 1 offset: 67 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_userData m_class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
+    // m_id m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_cloneState m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 66 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_padNode m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 1 offset: 67 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbNode : hkbBindable, IEquatable<hkbNode?>
     {
-        public ulong userData { set; get; }
-        public string name { set; get; } = "";
-        private short id { set; get; }
-        private sbyte cloneState { set; get; }
-        public bool[] padNode = new bool[1];
+        public ulong m_userData { set; get; }
+        public string m_name { set; get; } = "";
+        private short m_id { set; get; }
+        private sbyte m_cloneState { set; get; }
+        public bool[] m_padNode = new bool[1];
 
         public override uint Signature { set; get; } = 0x6d26f61d;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            userData = br.ReadUInt64();
-            name = des.ReadStringPointer(br);
-            id = br.ReadInt16();
-            cloneState = br.ReadSByte();
-            padNode = des.ReadBooleanCStyleArray(br, 1);
+            m_userData = br.ReadUInt64();
+            m_name = des.ReadStringPointer(br);
+            m_id = br.ReadInt16();
+            m_cloneState = br.ReadSByte();
+            m_padNode = des.ReadBooleanCStyleArray(br, 1);
             br.Position += 4;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteUInt64(userData);
-            s.WriteStringPointer(bw, name);
-            bw.WriteInt16(id);
-            bw.WriteSByte(cloneState);
-            s.WriteBooleanCStyleArray(bw, padNode);
+            bw.WriteUInt64(m_userData);
+            s.WriteStringPointer(bw, m_name);
+            bw.WriteInt16(m_id);
+            bw.WriteSByte(m_cloneState);
+            s.WriteBooleanCStyleArray(bw, m_padNode);
             bw.Position += 4;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            userData = xd.ReadUInt64(xe, nameof(userData));
-            name = xd.ReadString(xe, nameof(name));
+            m_userData = xd.ReadUInt64(xe, nameof(m_userData));
+            m_name = xd.ReadString(xe, nameof(m_name));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(userData), userData);
-            xs.WriteString(xe, nameof(name), name);
-            xs.WriteSerializeIgnored(xe, nameof(id));
-            xs.WriteSerializeIgnored(xe, nameof(cloneState));
-            xs.WriteSerializeIgnored(xe, nameof(padNode));
+            xs.WriteNumber(xe, nameof(m_userData), m_userData);
+            xs.WriteString(xe, nameof(m_name), m_name);
+            xs.WriteSerializeIgnored(xe, nameof(m_id));
+            xs.WriteSerializeIgnored(xe, nameof(m_cloneState));
+            xs.WriteSerializeIgnored(xe, nameof(m_padNode));
         }
 
         public override bool Equals(object? obj)
@@ -68,8 +68,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   userData.Equals(other.userData) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   m_userData.Equals(other.m_userData) &&
+                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
                    Signature == other.Signature; ;
         }
 
@@ -77,8 +77,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(userData);
-            hashcode.Add(name);
+            hashcode.Add(m_userData);
+            hashcode.Add(m_name);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -5,43 +5,43 @@ namespace HKX2
 {
     // hkbStateMachineProspectiveTransitionInfo Signatire: 0x3ab09a2e size: 16 flags: FLAGS_NONE
 
-    // transitionInfoReference class: hkbStateMachineTransitionInfoReference Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // transitionInfoReferenceForTE class: hkbStateMachineTransitionInfoReference Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
-    // toStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
+    // m_transitionInfoReference m_class: hkbStateMachineTransitionInfoReference Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_transitionInfoReferenceForTE m_class: hkbStateMachineTransitionInfoReference Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
+    // m_toStateId m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
     public partial class hkbStateMachineProspectiveTransitionInfo : IHavokObject, IEquatable<hkbStateMachineProspectiveTransitionInfo?>
     {
-        public hkbStateMachineTransitionInfoReference transitionInfoReference { set; get; } = new();
-        public hkbStateMachineTransitionInfoReference transitionInfoReferenceForTE { set; get; } = new();
-        public int toStateId { set; get; }
+        public hkbStateMachineTransitionInfoReference m_transitionInfoReference { set; get; } = new();
+        public hkbStateMachineTransitionInfoReference m_transitionInfoReferenceForTE { set; get; } = new();
+        public int m_toStateId { set; get; }
 
         public virtual uint Signature { set; get; } = 0x3ab09a2e;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            transitionInfoReference.Read(des, br);
-            transitionInfoReferenceForTE.Read(des, br);
-            toStateId = br.ReadInt32();
+            m_transitionInfoReference.Read(des, br);
+            m_transitionInfoReferenceForTE.Read(des, br);
+            m_toStateId = br.ReadInt32();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            transitionInfoReference.Write(s, bw);
-            transitionInfoReferenceForTE.Write(s, bw);
-            bw.WriteInt32(toStateId);
+            m_transitionInfoReference.Write(s, bw);
+            m_transitionInfoReferenceForTE.Write(s, bw);
+            bw.WriteInt32(m_toStateId);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            transitionInfoReference = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReference));
-            transitionInfoReferenceForTE = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReferenceForTE));
-            toStateId = xd.ReadInt32(xe, nameof(toStateId));
+            m_transitionInfoReference = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(m_transitionInfoReference));
+            m_transitionInfoReferenceForTE = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(m_transitionInfoReferenceForTE));
+            m_toStateId = xd.ReadInt32(xe, nameof(m_toStateId));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReference), transitionInfoReference);
-            xs.WriteClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReferenceForTE), transitionInfoReferenceForTE);
-            xs.WriteNumber(xe, nameof(toStateId), toStateId);
+            xs.WriteClass<hkbStateMachineTransitionInfoReference>(xe, nameof(m_transitionInfoReference), m_transitionInfoReference);
+            xs.WriteClass<hkbStateMachineTransitionInfoReference>(xe, nameof(m_transitionInfoReferenceForTE), m_transitionInfoReferenceForTE);
+            xs.WriteNumber(xe, nameof(m_toStateId), m_toStateId);
         }
 
         public override bool Equals(object? obj)
@@ -52,18 +52,18 @@ namespace HKX2
         public bool Equals(hkbStateMachineProspectiveTransitionInfo? other)
         {
             return other is not null &&
-                   ((transitionInfoReference is null && other.transitionInfoReference is null) || (transitionInfoReference is not null && other.transitionInfoReference is not null && transitionInfoReference.Equals((IHavokObject)other.transitionInfoReference))) &&
-                   ((transitionInfoReferenceForTE is null && other.transitionInfoReferenceForTE is null) || (transitionInfoReferenceForTE is not null && other.transitionInfoReferenceForTE is not null && transitionInfoReferenceForTE.Equals((IHavokObject)other.transitionInfoReferenceForTE))) &&
-                   toStateId.Equals(other.toStateId) &&
+                   ((m_transitionInfoReference is null && other.m_transitionInfoReference is null) || (m_transitionInfoReference is not null && other.m_transitionInfoReference is not null && m_transitionInfoReference.Equals((IHavokObject)other.m_transitionInfoReference))) &&
+                   ((m_transitionInfoReferenceForTE is null && other.m_transitionInfoReferenceForTE is null) || (m_transitionInfoReferenceForTE is not null && other.m_transitionInfoReferenceForTE is not null && m_transitionInfoReferenceForTE.Equals((IHavokObject)other.m_transitionInfoReferenceForTE))) &&
+                   m_toStateId.Equals(other.m_toStateId) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(transitionInfoReference);
-            hashcode.Add(transitionInfoReferenceForTE);
-            hashcode.Add(toStateId);
+            hashcode.Add(m_transitionInfoReference);
+            hashcode.Add(m_transitionInfoReferenceForTE);
+            hashcode.Add(m_toStateId);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

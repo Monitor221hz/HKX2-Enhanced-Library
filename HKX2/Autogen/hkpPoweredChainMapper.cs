@@ -7,47 +7,47 @@ namespace HKX2
 {
     // hkpPoweredChainMapper Signatire: 0x7a77ef5 size: 64 flags: FLAGS_NONE
 
-    // links class: hkpPoweredChainMapperLinkInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // targets class: hkpPoweredChainMapperTarget Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // chains class: hkpConstraintChainInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_links m_class: hkpPoweredChainMapperLinkInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_targets m_class: hkpPoweredChainMapperTarget Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_chains m_class: hkpConstraintChainInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkpPoweredChainMapper : hkReferencedObject, IEquatable<hkpPoweredChainMapper?>
     {
-        public IList<hkpPoweredChainMapperLinkInfo> links { set; get; } = Array.Empty<hkpPoweredChainMapperLinkInfo>();
-        public IList<hkpPoweredChainMapperTarget> targets { set; get; } = Array.Empty<hkpPoweredChainMapperTarget>();
-        public IList<hkpConstraintChainInstance> chains { set; get; } = Array.Empty<hkpConstraintChainInstance>();
+        public IList<hkpPoweredChainMapperLinkInfo> m_links { set; get; } = Array.Empty<hkpPoweredChainMapperLinkInfo>();
+        public IList<hkpPoweredChainMapperTarget> m_targets { set; get; } = Array.Empty<hkpPoweredChainMapperTarget>();
+        public IList<hkpConstraintChainInstance> m_chains { set; get; } = Array.Empty<hkpConstraintChainInstance>();
 
         public override uint Signature { set; get; } = 0x7a77ef5;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            links = des.ReadClassArray<hkpPoweredChainMapperLinkInfo>(br);
-            targets = des.ReadClassArray<hkpPoweredChainMapperTarget>(br);
-            chains = des.ReadClassPointerArray<hkpConstraintChainInstance>(br);
+            m_links = des.ReadClassArray<hkpPoweredChainMapperLinkInfo>(br);
+            m_targets = des.ReadClassArray<hkpPoweredChainMapperTarget>(br);
+            m_chains = des.ReadClassPointerArray<hkpConstraintChainInstance>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassArray(bw, links);
-            s.WriteClassArray(bw, targets);
-            s.WriteClassPointerArray(bw, chains);
+            s.WriteClassArray(bw, m_links);
+            s.WriteClassArray(bw, m_targets);
+            s.WriteClassPointerArray(bw, m_chains);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            links = xd.ReadClassArray<hkpPoweredChainMapperLinkInfo>(xe, nameof(links));
-            targets = xd.ReadClassArray<hkpPoweredChainMapperTarget>(xe, nameof(targets));
-            chains = xd.ReadClassPointerArray<hkpConstraintChainInstance>(xe, nameof(chains));
+            m_links = xd.ReadClassArray<hkpPoweredChainMapperLinkInfo>(xe, nameof(m_links));
+            m_targets = xd.ReadClassArray<hkpPoweredChainMapperTarget>(xe, nameof(m_targets));
+            m_chains = xd.ReadClassPointerArray<hkpConstraintChainInstance>(xe, nameof(m_chains));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassArray(xe, nameof(links), links);
-            xs.WriteClassArray(xe, nameof(targets), targets);
-            xs.WriteClassPointerArray(xe, nameof(chains), chains);
+            xs.WriteClassArray(xe, nameof(m_links), m_links);
+            xs.WriteClassArray(xe, nameof(m_targets), m_targets);
+            xs.WriteClassPointerArray(xe, nameof(m_chains), m_chains);
         }
 
         public override bool Equals(object? obj)
@@ -59,9 +59,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   links.SequenceEqual(other.links) &&
-                   targets.SequenceEqual(other.targets) &&
-                   chains.SequenceEqual(other.chains) &&
+                   m_links.SequenceEqual(other.m_links) &&
+                   m_targets.SequenceEqual(other.m_targets) &&
+                   m_chains.SequenceEqual(other.m_chains) &&
                    Signature == other.Signature; ;
         }
 
@@ -69,9 +69,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(links.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(targets.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(chains.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_links.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_targets.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_chains.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

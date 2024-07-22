@@ -5,25 +5,25 @@ namespace HKX2
 {
     // hkpEntityExtendedListeners Signatire: 0xf557023c size: 32 flags: FLAGS_NONE
 
-    // activationListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // entityListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_activationListeners m_class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_entityListeners m_class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpEntityExtendedListeners : IHavokObject, IEquatable<hkpEntityExtendedListeners?>
     {
-        public hkpEntitySmallArraySerializeOverrideType activationListeners { set; get; } = new();
-        public hkpEntitySmallArraySerializeOverrideType entityListeners { set; get; } = new();
+        public hkpEntitySmallArraySerializeOverrideType m_activationListeners { set; get; } = new();
+        public hkpEntitySmallArraySerializeOverrideType m_entityListeners { set; get; } = new();
 
         public virtual uint Signature { set; get; } = 0xf557023c;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            activationListeners.Read(des, br);
-            entityListeners.Read(des, br);
+            m_activationListeners.Read(des, br);
+            m_entityListeners.Read(des, br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            activationListeners.Write(s, bw);
-            entityListeners.Write(s, bw);
+            m_activationListeners.Write(s, bw);
+            m_entityListeners.Write(s, bw);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
@@ -33,8 +33,8 @@ namespace HKX2
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteSerializeIgnored(xe, nameof(activationListeners));
-            xs.WriteSerializeIgnored(xe, nameof(entityListeners));
+            xs.WriteSerializeIgnored(xe, nameof(m_activationListeners));
+            xs.WriteSerializeIgnored(xe, nameof(m_entityListeners));
         }
 
         public override bool Equals(object? obj)

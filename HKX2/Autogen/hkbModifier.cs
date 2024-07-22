@@ -5,42 +5,42 @@ namespace HKX2
 {
     // hkbModifier Signatire: 0x96ec5ced size: 80 flags: FLAGS_NONE
 
-    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // padModifier class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 3 offset: 73 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_enable m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // m_padModifier m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 3 offset: 73 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbModifier : hkbNode, IEquatable<hkbModifier?>
     {
-        public bool enable { set; get; }
-        public bool[] padModifier = new bool[3];
+        public bool m_enable { set; get; }
+        public bool[] m_padModifier = new bool[3];
 
         public override uint Signature { set; get; } = 0x96ec5ced;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            enable = br.ReadBoolean();
-            padModifier = des.ReadBooleanCStyleArray(br, 3);
+            m_enable = br.ReadBoolean();
+            m_padModifier = des.ReadBooleanCStyleArray(br, 3);
             br.Position += 4;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteBoolean(enable);
-            s.WriteBooleanCStyleArray(bw, padModifier);
+            bw.WriteBoolean(m_enable);
+            s.WriteBooleanCStyleArray(bw, m_padModifier);
             bw.Position += 4;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            enable = xd.ReadBoolean(xe, nameof(enable));
+            m_enable = xd.ReadBoolean(xe, nameof(m_enable));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteBoolean(xe, nameof(enable), enable);
-            xs.WriteSerializeIgnored(xe, nameof(padModifier));
+            xs.WriteBoolean(xe, nameof(m_enable), m_enable);
+            xs.WriteSerializeIgnored(xe, nameof(m_padModifier));
         }
 
         public override bool Equals(object? obj)
@@ -52,7 +52,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   enable.Equals(other.enable) &&
+                   m_enable.Equals(other.m_enable) &&
                    Signature == other.Signature; ;
         }
 
@@ -60,7 +60,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(enable);
+            hashcode.Add(m_enable);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

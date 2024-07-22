@@ -6,85 +6,85 @@ namespace HKX2
 {
     // hkpSampledHeightFieldShape Signatire: 0x11213421 size: 112 flags: FLAGS_NONE
 
-    // xRes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // zRes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // heightCenter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // useProjectionBasedHeight class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    // heightfieldType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 45 flags: FLAGS_NONE enum: HeightFieldType
-    // intToFloatScale class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // floatToIntScale class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // floatToIntOffsetFloorCorrected class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // extents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_xRes m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_zRes m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
+    // m_heightCenter m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // m_useProjectionBasedHeight m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
+    // m_heightfieldType m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 45 flags: FLAGS_NONE enum: HeightFieldType
+    // m_intToFloatScale m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_floatToIntScale m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_floatToIntOffsetFloorCorrected m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_extents m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     public partial class hkpSampledHeightFieldShape : hkpHeightFieldShape, IEquatable<hkpSampledHeightFieldShape?>
     {
-        public int xRes { set; get; }
-        public int zRes { set; get; }
-        public float heightCenter { set; get; }
-        public bool useProjectionBasedHeight { set; get; }
-        public byte heightfieldType { set; get; }
-        public Vector4 intToFloatScale { set; get; }
-        public Vector4 floatToIntScale { set; get; }
-        public Vector4 floatToIntOffsetFloorCorrected { set; get; }
-        public Vector4 extents { set; get; }
+        public int m_xRes { set; get; }
+        public int m_zRes { set; get; }
+        public float m_heightCenter { set; get; }
+        public bool m_useProjectionBasedHeight { set; get; }
+        public byte m_heightfieldType { set; get; }
+        public Vector4 m_intToFloatScale { set; get; }
+        public Vector4 m_floatToIntScale { set; get; }
+        public Vector4 m_floatToIntOffsetFloorCorrected { set; get; }
+        public Vector4 m_extents { set; get; }
 
         public override uint Signature { set; get; } = 0x11213421;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            xRes = br.ReadInt32();
-            zRes = br.ReadInt32();
-            heightCenter = br.ReadSingle();
-            useProjectionBasedHeight = br.ReadBoolean();
-            heightfieldType = br.ReadByte();
+            m_xRes = br.ReadInt32();
+            m_zRes = br.ReadInt32();
+            m_heightCenter = br.ReadSingle();
+            m_useProjectionBasedHeight = br.ReadBoolean();
+            m_heightfieldType = br.ReadByte();
             br.Position += 2;
-            intToFloatScale = br.ReadVector4();
-            floatToIntScale = br.ReadVector4();
-            floatToIntOffsetFloorCorrected = br.ReadVector4();
-            extents = br.ReadVector4();
+            m_intToFloatScale = br.ReadVector4();
+            m_floatToIntScale = br.ReadVector4();
+            m_floatToIntOffsetFloorCorrected = br.ReadVector4();
+            m_extents = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteInt32(xRes);
-            bw.WriteInt32(zRes);
-            bw.WriteSingle(heightCenter);
-            bw.WriteBoolean(useProjectionBasedHeight);
-            bw.WriteByte(heightfieldType);
+            bw.WriteInt32(m_xRes);
+            bw.WriteInt32(m_zRes);
+            bw.WriteSingle(m_heightCenter);
+            bw.WriteBoolean(m_useProjectionBasedHeight);
+            bw.WriteByte(m_heightfieldType);
             bw.Position += 2;
-            bw.WriteVector4(intToFloatScale);
-            bw.WriteVector4(floatToIntScale);
-            bw.WriteVector4(floatToIntOffsetFloorCorrected);
-            bw.WriteVector4(extents);
+            bw.WriteVector4(m_intToFloatScale);
+            bw.WriteVector4(m_floatToIntScale);
+            bw.WriteVector4(m_floatToIntOffsetFloorCorrected);
+            bw.WriteVector4(m_extents);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            xRes = xd.ReadInt32(xe, nameof(xRes));
-            zRes = xd.ReadInt32(xe, nameof(zRes));
-            heightCenter = xd.ReadSingle(xe, nameof(heightCenter));
-            useProjectionBasedHeight = xd.ReadBoolean(xe, nameof(useProjectionBasedHeight));
-            heightfieldType = xd.ReadFlag<HeightFieldType, byte>(xe, nameof(heightfieldType));
-            intToFloatScale = xd.ReadVector4(xe, nameof(intToFloatScale));
-            floatToIntScale = xd.ReadVector4(xe, nameof(floatToIntScale));
-            floatToIntOffsetFloorCorrected = xd.ReadVector4(xe, nameof(floatToIntOffsetFloorCorrected));
-            extents = xd.ReadVector4(xe, nameof(extents));
+            m_xRes = xd.ReadInt32(xe, nameof(m_xRes));
+            m_zRes = xd.ReadInt32(xe, nameof(m_zRes));
+            m_heightCenter = xd.ReadSingle(xe, nameof(m_heightCenter));
+            m_useProjectionBasedHeight = xd.ReadBoolean(xe, nameof(m_useProjectionBasedHeight));
+            m_heightfieldType = xd.ReadFlag<HeightFieldType, byte>(xe, nameof(m_heightfieldType));
+            m_intToFloatScale = xd.ReadVector4(xe, nameof(m_intToFloatScale));
+            m_floatToIntScale = xd.ReadVector4(xe, nameof(m_floatToIntScale));
+            m_floatToIntOffsetFloorCorrected = xd.ReadVector4(xe, nameof(m_floatToIntOffsetFloorCorrected));
+            m_extents = xd.ReadVector4(xe, nameof(m_extents));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(xRes), xRes);
-            xs.WriteNumber(xe, nameof(zRes), zRes);
-            xs.WriteFloat(xe, nameof(heightCenter), heightCenter);
-            xs.WriteBoolean(xe, nameof(useProjectionBasedHeight), useProjectionBasedHeight);
-            xs.WriteEnum<HeightFieldType, byte>(xe, nameof(heightfieldType), heightfieldType);
-            xs.WriteVector4(xe, nameof(intToFloatScale), intToFloatScale);
-            xs.WriteVector4(xe, nameof(floatToIntScale), floatToIntScale);
-            xs.WriteVector4(xe, nameof(floatToIntOffsetFloorCorrected), floatToIntOffsetFloorCorrected);
-            xs.WriteVector4(xe, nameof(extents), extents);
+            xs.WriteNumber(xe, nameof(m_xRes), m_xRes);
+            xs.WriteNumber(xe, nameof(m_zRes), m_zRes);
+            xs.WriteFloat(xe, nameof(m_heightCenter), m_heightCenter);
+            xs.WriteBoolean(xe, nameof(m_useProjectionBasedHeight), m_useProjectionBasedHeight);
+            xs.WriteEnum<HeightFieldType, byte>(xe, nameof(m_heightfieldType), m_heightfieldType);
+            xs.WriteVector4(xe, nameof(m_intToFloatScale), m_intToFloatScale);
+            xs.WriteVector4(xe, nameof(m_floatToIntScale), m_floatToIntScale);
+            xs.WriteVector4(xe, nameof(m_floatToIntOffsetFloorCorrected), m_floatToIntOffsetFloorCorrected);
+            xs.WriteVector4(xe, nameof(m_extents), m_extents);
         }
 
         public override bool Equals(object? obj)
@@ -96,15 +96,15 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   xRes.Equals(other.xRes) &&
-                   zRes.Equals(other.zRes) &&
-                   heightCenter.Equals(other.heightCenter) &&
-                   useProjectionBasedHeight.Equals(other.useProjectionBasedHeight) &&
-                   heightfieldType.Equals(other.heightfieldType) &&
-                   intToFloatScale.Equals(other.intToFloatScale) &&
-                   floatToIntScale.Equals(other.floatToIntScale) &&
-                   floatToIntOffsetFloorCorrected.Equals(other.floatToIntOffsetFloorCorrected) &&
-                   extents.Equals(other.extents) &&
+                   m_xRes.Equals(other.m_xRes) &&
+                   m_zRes.Equals(other.m_zRes) &&
+                   m_heightCenter.Equals(other.m_heightCenter) &&
+                   m_useProjectionBasedHeight.Equals(other.m_useProjectionBasedHeight) &&
+                   m_heightfieldType.Equals(other.m_heightfieldType) &&
+                   m_intToFloatScale.Equals(other.m_intToFloatScale) &&
+                   m_floatToIntScale.Equals(other.m_floatToIntScale) &&
+                   m_floatToIntOffsetFloorCorrected.Equals(other.m_floatToIntOffsetFloorCorrected) &&
+                   m_extents.Equals(other.m_extents) &&
                    Signature == other.Signature; ;
         }
 
@@ -112,15 +112,15 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(xRes);
-            hashcode.Add(zRes);
-            hashcode.Add(heightCenter);
-            hashcode.Add(useProjectionBasedHeight);
-            hashcode.Add(heightfieldType);
-            hashcode.Add(intToFloatScale);
-            hashcode.Add(floatToIntScale);
-            hashcode.Add(floatToIntOffsetFloorCorrected);
-            hashcode.Add(extents);
+            hashcode.Add(m_xRes);
+            hashcode.Add(m_zRes);
+            hashcode.Add(m_heightCenter);
+            hashcode.Add(m_useProjectionBasedHeight);
+            hashcode.Add(m_heightfieldType);
+            hashcode.Add(m_intToFloatScale);
+            hashcode.Add(m_floatToIntScale);
+            hashcode.Add(m_floatToIntOffsetFloorCorrected);
+            hashcode.Add(m_extents);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

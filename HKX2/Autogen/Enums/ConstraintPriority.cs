@@ -8,7 +8,7 @@ namespace HKX2
         PRIORITY_TOI = 3,
         PRIORITY_TOI_HIGHER = 4,
         PRIORITY_TOI_FORCED = 5,
-        NUPRIORITIES = 6,
+        NUM_PRIORITIES = 6,
     }
 }
 

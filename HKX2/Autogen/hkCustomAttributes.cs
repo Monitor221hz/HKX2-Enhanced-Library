@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkCustomAttributes Signatire: 0xbff19005 size: 16 flags: FLAGS_NONE
 
-    // attributes class: hkCustomAttributesAttribute Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_attributes m_class: hkCustomAttributesAttribute Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkCustomAttributes : IHavokObject, IEquatable<hkCustomAttributes?>
     {
-        public object? attributes { set; get; }
+        public object? m_attributes { set; get; }
 
         public virtual uint Signature { set; get; } = 0xbff19005;
 
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkCustomAttributes? other)
         {
             return other is not null &&
-                   attributes.Equals(other.attributes) &&
+                   m_attributes.Equals(other.m_attributes) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(attributes);
+            hashcode.Add(m_attributes);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

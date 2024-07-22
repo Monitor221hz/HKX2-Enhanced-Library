@@ -5,38 +5,38 @@ namespace HKX2
 {
     // hkCustomAttributesAttribute Signatire: 0x1388d601 size: 24 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // value class:  Type.TYPE_VARIANT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // m_name m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_value m_class:  Type.TYPE_VARIANT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkCustomAttributesAttribute : IHavokObject, IEquatable<hkCustomAttributesAttribute?>
     {
-        public string name { set; get; } = "";
-        public object? value { set; get; }
+        public string m_name { set; get; } = "";
+        public object? m_value { set; get; }
 
         public virtual uint Signature { set; get; } = 0x1388d601;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            name = des.ReadCString(br);
+            m_name = des.ReadCString(br);
             throw new NotImplementedException("TPYE_VARIANT");
             br.Position += 8;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteCString(bw, name);
+            s.WriteCString(bw, m_name);
             throw new NotImplementedException("TPYE_VARIANT");
             bw.Position += 8;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            name = xd.ReadString(xe, nameof(name));
+            m_name = xd.ReadString(xe, nameof(m_name));
             throw new NotImplementedException("TPYE_VARIANT");
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(name), name);
+            xs.WriteString(xe, nameof(m_name), m_name);
             throw new NotImplementedException("TPYE_VARIANT");
         }
 
@@ -48,16 +48,16 @@ namespace HKX2
         public bool Equals(hkCustomAttributesAttribute? other)
         {
             return other is not null &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   value.Equals(other.value) &&
+                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
+                   m_value.Equals(other.m_value) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(name);
-            hashcode.Add(value);
+            hashcode.Add(m_name);
+            hashcode.Add(m_value);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

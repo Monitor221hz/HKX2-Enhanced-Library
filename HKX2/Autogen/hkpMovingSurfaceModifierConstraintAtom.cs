@@ -6,35 +6,35 @@ namespace HKX2
 {
     // hkpMovingSurfaceModifierConstraintAtom Signatire: 0x79ab517d size: 64 flags: FLAGS_NONE
 
-    // velocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_velocity m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkpMovingSurfaceModifierConstraintAtom : hkpModifierConstraintAtom, IEquatable<hkpMovingSurfaceModifierConstraintAtom?>
     {
-        public Vector4 velocity { set; get; }
+        public Vector4 m_velocity { set; get; }
 
         public override uint Signature { set; get; } = 0x79ab517d;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            velocity = br.ReadVector4();
+            m_velocity = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteVector4(velocity);
+            bw.WriteVector4(m_velocity);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            velocity = xd.ReadVector4(xe, nameof(velocity));
+            m_velocity = xd.ReadVector4(xe, nameof(m_velocity));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(velocity), velocity);
+            xs.WriteVector4(xe, nameof(m_velocity), m_velocity);
         }
 
         public override bool Equals(object? obj)
@@ -46,7 +46,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   velocity.Equals(other.velocity) &&
+                   m_velocity.Equals(other.m_velocity) &&
                    Signature == other.Signature; ;
         }
 
@@ -54,7 +54,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(velocity);
+            hashcode.Add(m_velocity);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

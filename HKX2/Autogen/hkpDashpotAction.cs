@@ -7,55 +7,55 @@ namespace HKX2
 {
     // hkpDashpotAction Signatire: 0x50746c6e size: 128 flags: FLAGS_NONE
 
-    // point class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 2 offset: 64 flags: FLAGS_NONE enum: 
-    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // impulse class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // m_point m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 2 offset: 64 flags: FLAGS_NONE enum: 
+    // m_strength m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_damping m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
+    // m_impulse m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
     public partial class hkpDashpotAction : hkpBinaryAction, IEquatable<hkpDashpotAction?>
     {
-        public Vector4[] point = new Vector4[2];
-        public float strength { set; get; }
-        public float damping { set; get; }
-        public Vector4 impulse { set; get; }
+        public Vector4[] m_point = new Vector4[2];
+        public float m_strength { set; get; }
+        public float m_damping { set; get; }
+        public Vector4 m_impulse { set; get; }
 
         public override uint Signature { set; get; } = 0x50746c6e;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            point = des.ReadVector4CStyleArray(br, 2);
-            strength = br.ReadSingle();
-            damping = br.ReadSingle();
+            m_point = des.ReadVector4CStyleArray(br, 2);
+            m_strength = br.ReadSingle();
+            m_damping = br.ReadSingle();
             br.Position += 8;
-            impulse = br.ReadVector4();
+            m_impulse = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteVector4CStyleArray(bw, point);
-            bw.WriteSingle(strength);
-            bw.WriteSingle(damping);
+            s.WriteVector4CStyleArray(bw, m_point);
+            bw.WriteSingle(m_strength);
+            bw.WriteSingle(m_damping);
             bw.Position += 8;
-            bw.WriteVector4(impulse);
+            bw.WriteVector4(m_impulse);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            point = xd.ReadVector4CStyleArray(xe, nameof(point), 2);
-            strength = xd.ReadSingle(xe, nameof(strength));
-            damping = xd.ReadSingle(xe, nameof(damping));
-            impulse = xd.ReadVector4(xe, nameof(impulse));
+            m_point = xd.ReadVector4CStyleArray(xe, nameof(m_point), 2);
+            m_strength = xd.ReadSingle(xe, nameof(m_strength));
+            m_damping = xd.ReadSingle(xe, nameof(m_damping));
+            m_impulse = xd.ReadVector4(xe, nameof(m_impulse));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4Array(xe, nameof(point), point);
-            xs.WriteFloat(xe, nameof(strength), strength);
-            xs.WriteFloat(xe, nameof(damping), damping);
-            xs.WriteVector4(xe, nameof(impulse), impulse);
+            xs.WriteVector4Array(xe, nameof(m_point), m_point);
+            xs.WriteFloat(xe, nameof(m_strength), m_strength);
+            xs.WriteFloat(xe, nameof(m_damping), m_damping);
+            xs.WriteVector4(xe, nameof(m_impulse), m_impulse);
         }
 
         public override bool Equals(object? obj)
@@ -67,10 +67,10 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   point.SequenceEqual(other.point) &&
-                   strength.Equals(other.strength) &&
-                   damping.Equals(other.damping) &&
-                   impulse.Equals(other.impulse) &&
+                   m_point.SequenceEqual(other.m_point) &&
+                   m_strength.Equals(other.m_strength) &&
+                   m_damping.Equals(other.m_damping) &&
+                   m_impulse.Equals(other.m_impulse) &&
                    Signature == other.Signature; ;
         }
 
@@ -78,10 +78,10 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(point.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(strength);
-            hashcode.Add(damping);
-            hashcode.Add(impulse);
+            hashcode.Add(m_point.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_strength);
+            hashcode.Add(m_damping);
+            hashcode.Add(m_impulse);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

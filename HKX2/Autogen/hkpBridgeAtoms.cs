@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkpBridgeAtoms Signatire: 0xde152a4d size: 24 flags: FLAGS_NONE
 
-    // bridgeAtom class: hkpBridgeConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_bridgeAtom m_class: hkpBridgeConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkpBridgeAtoms : IHavokObject, IEquatable<hkpBridgeAtoms?>
     {
-        public hkpBridgeConstraintAtom bridgeAtom { set; get; } = new();
+        public hkpBridgeConstraintAtom m_bridgeAtom { set; get; } = new();
 
         public virtual uint Signature { set; get; } = 0xde152a4d;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            bridgeAtom.Read(des, br);
+            m_bridgeAtom.Read(des, br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bridgeAtom.Write(s, bw);
+            m_bridgeAtom.Write(s, bw);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            bridgeAtom = xd.ReadClass<hkpBridgeConstraintAtom>(xe, nameof(bridgeAtom));
+            m_bridgeAtom = xd.ReadClass<hkpBridgeConstraintAtom>(xe, nameof(m_bridgeAtom));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkpBridgeConstraintAtom>(xe, nameof(bridgeAtom), bridgeAtom);
+            xs.WriteClass<hkpBridgeConstraintAtom>(xe, nameof(m_bridgeAtom), m_bridgeAtom);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkpBridgeAtoms? other)
         {
             return other is not null &&
-                   ((bridgeAtom is null && other.bridgeAtom is null) || (bridgeAtom is not null && other.bridgeAtom is not null && bridgeAtom.Equals((IHavokObject)other.bridgeAtom))) &&
+                   ((m_bridgeAtom is null && other.m_bridgeAtom is null) || (m_bridgeAtom is not null && other.m_bridgeAtom is not null && m_bridgeAtom.Equals((IHavokObject)other.m_bridgeAtom))) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(bridgeAtom);
+            hashcode.Add(m_bridgeAtom);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

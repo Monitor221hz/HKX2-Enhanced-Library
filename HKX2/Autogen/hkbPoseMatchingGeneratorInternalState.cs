@@ -5,61 +5,61 @@ namespace HKX2
 {
     // hkbPoseMatchingGeneratorInternalState Signatire: 0x552d9dd4 size: 40 flags: FLAGS_NONE
 
-    // currentMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // bestMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // timeSinceBetterMatch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // error class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // resetCurrentMatchLocalTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_currentMatch m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_bestMatch m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
+    // m_timeSinceBetterMatch m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // m_error m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
+    // m_resetCurrentMatchLocalTime m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     public partial class hkbPoseMatchingGeneratorInternalState : hkReferencedObject, IEquatable<hkbPoseMatchingGeneratorInternalState?>
     {
-        public int currentMatch { set; get; }
-        public int bestMatch { set; get; }
-        public float timeSinceBetterMatch { set; get; }
-        public float error { set; get; }
-        public bool resetCurrentMatchLocalTime { set; get; }
+        public int m_currentMatch { set; get; }
+        public int m_bestMatch { set; get; }
+        public float m_timeSinceBetterMatch { set; get; }
+        public float m_error { set; get; }
+        public bool m_resetCurrentMatchLocalTime { set; get; }
 
         public override uint Signature { set; get; } = 0x552d9dd4;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            currentMatch = br.ReadInt32();
-            bestMatch = br.ReadInt32();
-            timeSinceBetterMatch = br.ReadSingle();
-            error = br.ReadSingle();
-            resetCurrentMatchLocalTime = br.ReadBoolean();
+            m_currentMatch = br.ReadInt32();
+            m_bestMatch = br.ReadInt32();
+            m_timeSinceBetterMatch = br.ReadSingle();
+            m_error = br.ReadSingle();
+            m_resetCurrentMatchLocalTime = br.ReadBoolean();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteInt32(currentMatch);
-            bw.WriteInt32(bestMatch);
-            bw.WriteSingle(timeSinceBetterMatch);
-            bw.WriteSingle(error);
-            bw.WriteBoolean(resetCurrentMatchLocalTime);
+            bw.WriteInt32(m_currentMatch);
+            bw.WriteInt32(m_bestMatch);
+            bw.WriteSingle(m_timeSinceBetterMatch);
+            bw.WriteSingle(m_error);
+            bw.WriteBoolean(m_resetCurrentMatchLocalTime);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            currentMatch = xd.ReadInt32(xe, nameof(currentMatch));
-            bestMatch = xd.ReadInt32(xe, nameof(bestMatch));
-            timeSinceBetterMatch = xd.ReadSingle(xe, nameof(timeSinceBetterMatch));
-            error = xd.ReadSingle(xe, nameof(error));
-            resetCurrentMatchLocalTime = xd.ReadBoolean(xe, nameof(resetCurrentMatchLocalTime));
+            m_currentMatch = xd.ReadInt32(xe, nameof(m_currentMatch));
+            m_bestMatch = xd.ReadInt32(xe, nameof(m_bestMatch));
+            m_timeSinceBetterMatch = xd.ReadSingle(xe, nameof(m_timeSinceBetterMatch));
+            m_error = xd.ReadSingle(xe, nameof(m_error));
+            m_resetCurrentMatchLocalTime = xd.ReadBoolean(xe, nameof(m_resetCurrentMatchLocalTime));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(currentMatch), currentMatch);
-            xs.WriteNumber(xe, nameof(bestMatch), bestMatch);
-            xs.WriteFloat(xe, nameof(timeSinceBetterMatch), timeSinceBetterMatch);
-            xs.WriteFloat(xe, nameof(error), error);
-            xs.WriteBoolean(xe, nameof(resetCurrentMatchLocalTime), resetCurrentMatchLocalTime);
+            xs.WriteNumber(xe, nameof(m_currentMatch), m_currentMatch);
+            xs.WriteNumber(xe, nameof(m_bestMatch), m_bestMatch);
+            xs.WriteFloat(xe, nameof(m_timeSinceBetterMatch), m_timeSinceBetterMatch);
+            xs.WriteFloat(xe, nameof(m_error), m_error);
+            xs.WriteBoolean(xe, nameof(m_resetCurrentMatchLocalTime), m_resetCurrentMatchLocalTime);
         }
 
         public override bool Equals(object? obj)
@@ -71,11 +71,11 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   currentMatch.Equals(other.currentMatch) &&
-                   bestMatch.Equals(other.bestMatch) &&
-                   timeSinceBetterMatch.Equals(other.timeSinceBetterMatch) &&
-                   error.Equals(other.error) &&
-                   resetCurrentMatchLocalTime.Equals(other.resetCurrentMatchLocalTime) &&
+                   m_currentMatch.Equals(other.m_currentMatch) &&
+                   m_bestMatch.Equals(other.m_bestMatch) &&
+                   m_timeSinceBetterMatch.Equals(other.m_timeSinceBetterMatch) &&
+                   m_error.Equals(other.m_error) &&
+                   m_resetCurrentMatchLocalTime.Equals(other.m_resetCurrentMatchLocalTime) &&
                    Signature == other.Signature; ;
         }
 
@@ -83,11 +83,11 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(currentMatch);
-            hashcode.Add(bestMatch);
-            hashcode.Add(timeSinceBetterMatch);
-            hashcode.Add(error);
-            hashcode.Add(resetCurrentMatchLocalTime);
+            hashcode.Add(m_currentMatch);
+            hashcode.Add(m_bestMatch);
+            hashcode.Add(m_timeSinceBetterMatch);
+            hashcode.Add(m_error);
+            hashcode.Add(m_resetCurrentMatchLocalTime);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

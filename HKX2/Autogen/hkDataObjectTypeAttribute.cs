@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkDataObjectTypeAttribute Signatire: 0x1e3857bb size: 8 flags: FLAGS_NONE
 
-    // typeName class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_typeName m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkDataObjectTypeAttribute : IHavokObject, IEquatable<hkDataObjectTypeAttribute?>
     {
-        public string typeName { set; get; } = "";
+        public string m_typeName { set; get; } = "";
 
         public virtual uint Signature { set; get; } = 0x1e3857bb;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            typeName = des.ReadCString(br);
+            m_typeName = des.ReadCString(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteCString(bw, typeName);
+            s.WriteCString(bw, m_typeName);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            typeName = xd.ReadString(xe, nameof(typeName));
+            m_typeName = xd.ReadString(xe, nameof(m_typeName));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(typeName), typeName);
+            xs.WriteString(xe, nameof(m_typeName), m_typeName);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkDataObjectTypeAttribute? other)
         {
             return other is not null &&
-                   (typeName is null && other.typeName is null || typeName == other.typeName || typeName is null && other.typeName == "" || typeName == "" && other.typeName is null) &&
+                   (m_typeName is null && other.m_typeName is null || m_typeName == other.m_typeName || m_typeName is null && other.m_typeName == "" || m_typeName == "" && other.m_typeName is null) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(typeName);
+            hashcode.Add(m_typeName);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -5,45 +5,45 @@ namespace HKX2
 {
     // hkbHandIkControlsModifierHand Signatire: 0x9c72e9e3 size: 112 flags: FLAGS_NONE
 
-    // controlData class: hkbHandIkControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // handIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
+    // m_controlData m_class: hkbHandIkControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_handIndex m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_enable m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
     public partial class hkbHandIkControlsModifierHand : IHavokObject, IEquatable<hkbHandIkControlsModifierHand?>
     {
-        public hkbHandIkControlData controlData { set; get; } = new();
-        public int handIndex { set; get; }
-        public bool enable { set; get; }
+        public hkbHandIkControlData m_controlData { set; get; } = new();
+        public int m_handIndex { set; get; }
+        public bool m_enable { set; get; }
 
         public virtual uint Signature { set; get; } = 0x9c72e9e3;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            controlData.Read(des, br);
-            handIndex = br.ReadInt32();
-            enable = br.ReadBoolean();
+            m_controlData.Read(des, br);
+            m_handIndex = br.ReadInt32();
+            m_enable = br.ReadBoolean();
             br.Position += 11;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            controlData.Write(s, bw);
-            bw.WriteInt32(handIndex);
-            bw.WriteBoolean(enable);
+            m_controlData.Write(s, bw);
+            bw.WriteInt32(m_handIndex);
+            bw.WriteBoolean(m_enable);
             bw.Position += 11;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            controlData = xd.ReadClass<hkbHandIkControlData>(xe, nameof(controlData));
-            handIndex = xd.ReadInt32(xe, nameof(handIndex));
-            enable = xd.ReadBoolean(xe, nameof(enable));
+            m_controlData = xd.ReadClass<hkbHandIkControlData>(xe, nameof(m_controlData));
+            m_handIndex = xd.ReadInt32(xe, nameof(m_handIndex));
+            m_enable = xd.ReadBoolean(xe, nameof(m_enable));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkbHandIkControlData>(xe, nameof(controlData), controlData);
-            xs.WriteNumber(xe, nameof(handIndex), handIndex);
-            xs.WriteBoolean(xe, nameof(enable), enable);
+            xs.WriteClass<hkbHandIkControlData>(xe, nameof(m_controlData), m_controlData);
+            xs.WriteNumber(xe, nameof(m_handIndex), m_handIndex);
+            xs.WriteBoolean(xe, nameof(m_enable), m_enable);
         }
 
         public override bool Equals(object? obj)
@@ -54,18 +54,18 @@ namespace HKX2
         public bool Equals(hkbHandIkControlsModifierHand? other)
         {
             return other is not null &&
-                   ((controlData is null && other.controlData is null) || (controlData is not null && other.controlData is not null && controlData.Equals((IHavokObject)other.controlData))) &&
-                   handIndex.Equals(other.handIndex) &&
-                   enable.Equals(other.enable) &&
+                   ((m_controlData is null && other.m_controlData is null) || (m_controlData is not null && other.m_controlData is not null && m_controlData.Equals((IHavokObject)other.m_controlData))) &&
+                   m_handIndex.Equals(other.m_handIndex) &&
+                   m_enable.Equals(other.m_enable) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(controlData);
-            hashcode.Add(handIndex);
-            hashcode.Add(enable);
+            hashcode.Add(m_controlData);
+            hashcode.Add(m_handIndex);
+            hashcode.Add(m_enable);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

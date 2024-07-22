@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkbEventInfo Signatire: 0x5874eed4 size: 4 flags: FLAGS_NONE
 
-    // flags class:  Type.TYPE_FLAGS Type.TYPE_UINT32 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: Flags
+    // m_flags m_class:  Type.TYPE_FLAGS Type.TYPE_UINT32 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: Flags
     public partial class hkbEventInfo : IHavokObject, IEquatable<hkbEventInfo?>
     {
-        public uint flags { set; get; }
+        public uint m_flags { set; get; }
 
         public virtual uint Signature { set; get; } = 0x5874eed4;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            flags = br.ReadUInt32();
+            m_flags = br.ReadUInt32();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteUInt32(flags);
+            bw.WriteUInt32(m_flags);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            flags = xd.ReadFlag<Flags, uint>(xe, nameof(flags));
+            m_flags = xd.ReadFlag<Flags, uint>(xe, nameof(m_flags));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteFlag<Flags, uint>(xe, nameof(flags), flags);
+            xs.WriteFlag<Flags, uint>(xe, nameof(m_flags), m_flags);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkbEventInfo? other)
         {
             return other is not null &&
-                   flags.Equals(other.flags) &&
+                   m_flags.Equals(other.m_flags) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(flags);
+            hashcode.Add(m_flags);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -8,43 +8,43 @@ namespace HKX2
 {
     // hkxAnimatedVector Signatire: 0x34b1a197 size: 40 flags: FLAGS_NONE
 
-    // vectors class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // hint class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: Hint
+    // m_vectors m_class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_hint m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: Hint
     public partial class hkxAnimatedVector : hkReferencedObject, IEquatable<hkxAnimatedVector?>
     {
-        public IList<Vector4> vectors { set; get; } = Array.Empty<Vector4>();
-        public byte hint { set; get; }
+        public IList<Vector4> m_vectors { set; get; } = Array.Empty<Vector4>();
+        public byte m_hint { set; get; }
 
         public override uint Signature { set; get; } = 0x34b1a197;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            vectors = des.ReadVector4Array(br);
-            hint = br.ReadByte();
+            m_vectors = des.ReadVector4Array(br);
+            m_hint = br.ReadByte();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteVector4Array(bw, vectors);
-            bw.WriteByte(hint);
+            s.WriteVector4Array(bw, m_vectors);
+            bw.WriteByte(m_hint);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            vectors = xd.ReadVector4Array(xe, nameof(vectors));
-            hint = xd.ReadFlag<Hint, byte>(xe, nameof(hint));
+            m_vectors = xd.ReadVector4Array(xe, nameof(m_vectors));
+            m_hint = xd.ReadFlag<Hint, byte>(xe, nameof(m_hint));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4Array(xe, nameof(vectors), vectors);
-            xs.WriteEnum<Hint, byte>(xe, nameof(hint), hint);
+            xs.WriteVector4Array(xe, nameof(m_vectors), m_vectors);
+            xs.WriteEnum<Hint, byte>(xe, nameof(m_hint), m_hint);
         }
 
         public override bool Equals(object? obj)
@@ -56,8 +56,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   vectors.SequenceEqual(other.vectors) &&
-                   hint.Equals(other.hint) &&
+                   m_vectors.SequenceEqual(other.m_vectors) &&
+                   m_hint.Equals(other.m_hint) &&
                    Signature == other.Signature; ;
         }
 
@@ -65,8 +65,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(vectors.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(hint);
+            hashcode.Add(m_vectors.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(m_hint);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

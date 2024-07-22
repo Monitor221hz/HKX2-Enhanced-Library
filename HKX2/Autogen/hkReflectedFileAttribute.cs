@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkReflectedFileAttribute Signatire: 0xedb6b8f7 size: 8 flags: FLAGS_NONE
 
-    // value class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_value m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkReflectedFileAttribute : IHavokObject, IEquatable<hkReflectedFileAttribute?>
     {
-        public string value { set; get; } = "";
+        public string m_value { set; get; } = "";
 
         public virtual uint Signature { set; get; } = 0xedb6b8f7;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            value = des.ReadCString(br);
+            m_value = des.ReadCString(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteCString(bw, value);
+            s.WriteCString(bw, m_value);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            value = xd.ReadString(xe, nameof(value));
+            m_value = xd.ReadString(xe, nameof(m_value));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(value), value);
+            xs.WriteString(xe, nameof(m_value), m_value);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkReflectedFileAttribute? other)
         {
             return other is not null &&
-                   (value is null && other.value is null || value == other.value || value is null && other.value == "" || value == "" && other.value is null) &&
+                   (m_value is null && other.m_value is null || m_value == other.m_value || m_value is null && other.m_value == "" || m_value == "" && other.m_value is null) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(value);
+            hashcode.Add(m_value);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

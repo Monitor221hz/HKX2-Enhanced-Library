@@ -5,39 +5,39 @@ namespace HKX2
 {
     // hkpPointToPlaneConstraintDataAtoms Signatire: 0x749bc260 size: 160 flags: FLAGS_NONE
 
-    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // lin class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // m_transforms m_class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_lin m_class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
     public partial class hkpPointToPlaneConstraintDataAtoms : IHavokObject, IEquatable<hkpPointToPlaneConstraintDataAtoms?>
     {
-        public hkpSetLocalTransformsConstraintAtom transforms { set; get; } = new();
-        public hkpLinConstraintAtom lin { set; get; } = new();
+        public hkpSetLocalTransformsConstraintAtom m_transforms { set; get; } = new();
+        public hkpLinConstraintAtom m_lin { set; get; } = new();
 
         public virtual uint Signature { set; get; } = 0x749bc260;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            transforms.Read(des, br);
-            lin.Read(des, br);
+            m_transforms.Read(des, br);
+            m_lin.Read(des, br);
             br.Position += 12;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            transforms.Write(s, bw);
-            lin.Write(s, bw);
+            m_transforms.Write(s, bw);
+            m_lin.Write(s, bw);
             bw.Position += 12;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            transforms = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(transforms));
-            lin = xd.ReadClass<hkpLinConstraintAtom>(xe, nameof(lin));
+            m_transforms = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(m_transforms));
+            m_lin = xd.ReadClass<hkpLinConstraintAtom>(xe, nameof(m_lin));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(transforms), transforms);
-            xs.WriteClass<hkpLinConstraintAtom>(xe, nameof(lin), lin);
+            xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(m_transforms), m_transforms);
+            xs.WriteClass<hkpLinConstraintAtom>(xe, nameof(m_lin), m_lin);
         }
 
         public override bool Equals(object? obj)
@@ -48,16 +48,16 @@ namespace HKX2
         public bool Equals(hkpPointToPlaneConstraintDataAtoms? other)
         {
             return other is not null &&
-                   ((transforms is null && other.transforms is null) || (transforms is not null && other.transforms is not null && transforms.Equals((IHavokObject)other.transforms))) &&
-                   ((lin is null && other.lin is null) || (lin is not null && other.lin is not null && lin.Equals((IHavokObject)other.lin))) &&
+                   ((m_transforms is null && other.m_transforms is null) || (m_transforms is not null && other.m_transforms is not null && m_transforms.Equals((IHavokObject)other.m_transforms))) &&
+                   ((m_lin is null && other.m_lin is null) || (m_lin is not null && other.m_lin is not null && m_lin.Equals((IHavokObject)other.m_lin))) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(transforms);
-            hashcode.Add(lin);
+            hashcode.Add(m_transforms);
+            hashcode.Add(m_lin);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

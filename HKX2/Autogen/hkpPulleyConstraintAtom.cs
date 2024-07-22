@@ -6,16 +6,16 @@ namespace HKX2
 {
     // hkpPulleyConstraintAtom Signatire: 0x94a08848 size: 64 flags: FLAGS_NONE
 
-    // fixedPivotAinWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // fixedPivotBinWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // ropeLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // leverageOnBodyB class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
+    // m_fixedPivotAinWorld m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_fixedPivotBinWorld m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // m_ropeLength m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // m_leverageOnBodyB m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
     public partial class hkpPulleyConstraintAtom : hkpConstraintAtom, IEquatable<hkpPulleyConstraintAtom?>
     {
-        public Vector4 fixedPivotAinWorld { set; get; }
-        public Vector4 fixedPivotBinWorld { set; get; }
-        public float ropeLength { set; get; }
-        public float leverageOnBodyB { set; get; }
+        public Vector4 m_fixedPivotAinWorld { set; get; }
+        public Vector4 m_fixedPivotBinWorld { set; get; }
+        public float m_ropeLength { set; get; }
+        public float m_leverageOnBodyB { set; get; }
 
         public override uint Signature { set; get; } = 0x94a08848;
 
@@ -23,10 +23,10 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 14;
-            fixedPivotAinWorld = br.ReadVector4();
-            fixedPivotBinWorld = br.ReadVector4();
-            ropeLength = br.ReadSingle();
-            leverageOnBodyB = br.ReadSingle();
+            m_fixedPivotAinWorld = br.ReadVector4();
+            m_fixedPivotBinWorld = br.ReadVector4();
+            m_ropeLength = br.ReadSingle();
+            m_leverageOnBodyB = br.ReadSingle();
             br.Position += 8;
         }
 
@@ -34,29 +34,29 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.Position += 14;
-            bw.WriteVector4(fixedPivotAinWorld);
-            bw.WriteVector4(fixedPivotBinWorld);
-            bw.WriteSingle(ropeLength);
-            bw.WriteSingle(leverageOnBodyB);
+            bw.WriteVector4(m_fixedPivotAinWorld);
+            bw.WriteVector4(m_fixedPivotBinWorld);
+            bw.WriteSingle(m_ropeLength);
+            bw.WriteSingle(m_leverageOnBodyB);
             bw.Position += 8;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            fixedPivotAinWorld = xd.ReadVector4(xe, nameof(fixedPivotAinWorld));
-            fixedPivotBinWorld = xd.ReadVector4(xe, nameof(fixedPivotBinWorld));
-            ropeLength = xd.ReadSingle(xe, nameof(ropeLength));
-            leverageOnBodyB = xd.ReadSingle(xe, nameof(leverageOnBodyB));
+            m_fixedPivotAinWorld = xd.ReadVector4(xe, nameof(m_fixedPivotAinWorld));
+            m_fixedPivotBinWorld = xd.ReadVector4(xe, nameof(m_fixedPivotBinWorld));
+            m_ropeLength = xd.ReadSingle(xe, nameof(m_ropeLength));
+            m_leverageOnBodyB = xd.ReadSingle(xe, nameof(m_leverageOnBodyB));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(fixedPivotAinWorld), fixedPivotAinWorld);
-            xs.WriteVector4(xe, nameof(fixedPivotBinWorld), fixedPivotBinWorld);
-            xs.WriteFloat(xe, nameof(ropeLength), ropeLength);
-            xs.WriteFloat(xe, nameof(leverageOnBodyB), leverageOnBodyB);
+            xs.WriteVector4(xe, nameof(m_fixedPivotAinWorld), m_fixedPivotAinWorld);
+            xs.WriteVector4(xe, nameof(m_fixedPivotBinWorld), m_fixedPivotBinWorld);
+            xs.WriteFloat(xe, nameof(m_ropeLength), m_ropeLength);
+            xs.WriteFloat(xe, nameof(m_leverageOnBodyB), m_leverageOnBodyB);
         }
 
         public override bool Equals(object? obj)
@@ -68,10 +68,10 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   fixedPivotAinWorld.Equals(other.fixedPivotAinWorld) &&
-                   fixedPivotBinWorld.Equals(other.fixedPivotBinWorld) &&
-                   ropeLength.Equals(other.ropeLength) &&
-                   leverageOnBodyB.Equals(other.leverageOnBodyB) &&
+                   m_fixedPivotAinWorld.Equals(other.m_fixedPivotAinWorld) &&
+                   m_fixedPivotBinWorld.Equals(other.m_fixedPivotBinWorld) &&
+                   m_ropeLength.Equals(other.m_ropeLength) &&
+                   m_leverageOnBodyB.Equals(other.m_leverageOnBodyB) &&
                    Signature == other.Signature; ;
         }
 
@@ -79,10 +79,10 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(fixedPivotAinWorld);
-            hashcode.Add(fixedPivotBinWorld);
-            hashcode.Add(ropeLength);
-            hashcode.Add(leverageOnBodyB);
+            hashcode.Add(m_fixedPivotAinWorld);
+            hashcode.Add(m_fixedPivotBinWorld);
+            hashcode.Add(m_ropeLength);
+            hashcode.Add(m_leverageOnBodyB);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

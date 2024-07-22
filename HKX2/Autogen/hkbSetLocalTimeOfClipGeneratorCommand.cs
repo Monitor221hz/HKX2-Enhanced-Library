@@ -5,49 +5,49 @@ namespace HKX2
 {
     // hkbSetLocalTimeOfClipGeneratorCommand Signatire: 0xfab12b45 size: 32 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // nodeId class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
+    // m_characterId m_class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_localTime m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // m_nodeId m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
     public partial class hkbSetLocalTimeOfClipGeneratorCommand : hkReferencedObject, IEquatable<hkbSetLocalTimeOfClipGeneratorCommand?>
     {
-        public ulong characterId { set; get; }
-        public float localTime { set; get; }
-        public short nodeId { set; get; }
+        public ulong m_characterId { set; get; }
+        public float m_localTime { set; get; }
+        public short m_nodeId { set; get; }
 
         public override uint Signature { set; get; } = 0xfab12b45;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            characterId = br.ReadUInt64();
-            localTime = br.ReadSingle();
-            nodeId = br.ReadInt16();
+            m_characterId = br.ReadUInt64();
+            m_localTime = br.ReadSingle();
+            m_nodeId = br.ReadInt16();
             br.Position += 2;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteUInt64(characterId);
-            bw.WriteSingle(localTime);
-            bw.WriteInt16(nodeId);
+            bw.WriteUInt64(m_characterId);
+            bw.WriteSingle(m_localTime);
+            bw.WriteInt16(m_nodeId);
             bw.Position += 2;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            characterId = xd.ReadUInt64(xe, nameof(characterId));
-            localTime = xd.ReadSingle(xe, nameof(localTime));
-            nodeId = xd.ReadInt16(xe, nameof(nodeId));
+            m_characterId = xd.ReadUInt64(xe, nameof(m_characterId));
+            m_localTime = xd.ReadSingle(xe, nameof(m_localTime));
+            m_nodeId = xd.ReadInt16(xe, nameof(m_nodeId));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(characterId), characterId);
-            xs.WriteFloat(xe, nameof(localTime), localTime);
-            xs.WriteNumber(xe, nameof(nodeId), nodeId);
+            xs.WriteNumber(xe, nameof(m_characterId), m_characterId);
+            xs.WriteFloat(xe, nameof(m_localTime), m_localTime);
+            xs.WriteNumber(xe, nameof(m_nodeId), m_nodeId);
         }
 
         public override bool Equals(object? obj)
@@ -59,9 +59,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   localTime.Equals(other.localTime) &&
-                   nodeId.Equals(other.nodeId) &&
+                   m_characterId.Equals(other.m_characterId) &&
+                   m_localTime.Equals(other.m_localTime) &&
+                   m_nodeId.Equals(other.m_nodeId) &&
                    Signature == other.Signature; ;
         }
 
@@ -69,9 +69,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(characterId);
-            hashcode.Add(localTime);
-            hashcode.Add(nodeId);
+            hashcode.Add(m_characterId);
+            hashcode.Add(m_localTime);
+            hashcode.Add(m_nodeId);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

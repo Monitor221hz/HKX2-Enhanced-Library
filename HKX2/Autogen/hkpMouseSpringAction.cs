@@ -7,24 +7,24 @@ namespace HKX2
 {
     // hkpMouseSpringAction Signatire: 0x6e087fd6 size: 144 flags: FLAGS_NONE
 
-    // positionInRbLocal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // mousePositionInWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // springDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // springElasticity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // maxRelativeForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // objectDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // shapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // applyCallbacks class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // m_positionInRbLocal m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_mousePositionInWorld m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // m_springDamping m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // m_springElasticity m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
+    // m_maxRelativeForce m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // m_objectDamping m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
+    // m_shapeKey m_class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // m_applyCallbacks m_class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpMouseSpringAction : hkpUnaryAction, IEquatable<hkpMouseSpringAction?>
     {
-        public Vector4 positionInRbLocal { set; get; }
-        public Vector4 mousePositionInWorld { set; get; }
-        public float springDamping { set; get; }
-        public float springElasticity { set; get; }
-        public float maxRelativeForce { set; get; }
-        public float objectDamping { set; get; }
-        public uint shapeKey { set; get; }
-        public IList<object> applyCallbacks { set; get; } = Array.Empty<object>();
+        public Vector4 m_positionInRbLocal { set; get; }
+        public Vector4 m_mousePositionInWorld { set; get; }
+        public float m_springDamping { set; get; }
+        public float m_springElasticity { set; get; }
+        public float m_maxRelativeForce { set; get; }
+        public float m_objectDamping { set; get; }
+        public uint m_shapeKey { set; get; }
+        public IList<object> m_applyCallbacks { set; get; } = Array.Empty<object>();
 
         public override uint Signature { set; get; } = 0x6e087fd6;
 
@@ -32,13 +32,13 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            positionInRbLocal = br.ReadVector4();
-            mousePositionInWorld = br.ReadVector4();
-            springDamping = br.ReadSingle();
-            springElasticity = br.ReadSingle();
-            maxRelativeForce = br.ReadSingle();
-            objectDamping = br.ReadSingle();
-            shapeKey = br.ReadUInt32();
+            m_positionInRbLocal = br.ReadVector4();
+            m_mousePositionInWorld = br.ReadVector4();
+            m_springDamping = br.ReadSingle();
+            m_springElasticity = br.ReadSingle();
+            m_maxRelativeForce = br.ReadSingle();
+            m_objectDamping = br.ReadSingle();
+            m_shapeKey = br.ReadUInt32();
             br.Position += 4;
             des.ReadEmptyArray(br);
             br.Position += 8;
@@ -48,13 +48,13 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.Position += 8;
-            bw.WriteVector4(positionInRbLocal);
-            bw.WriteVector4(mousePositionInWorld);
-            bw.WriteSingle(springDamping);
-            bw.WriteSingle(springElasticity);
-            bw.WriteSingle(maxRelativeForce);
-            bw.WriteSingle(objectDamping);
-            bw.WriteUInt32(shapeKey);
+            bw.WriteVector4(m_positionInRbLocal);
+            bw.WriteVector4(m_mousePositionInWorld);
+            bw.WriteSingle(m_springDamping);
+            bw.WriteSingle(m_springElasticity);
+            bw.WriteSingle(m_maxRelativeForce);
+            bw.WriteSingle(m_objectDamping);
+            bw.WriteUInt32(m_shapeKey);
             bw.Position += 4;
             s.WriteVoidArray(bw);
             bw.Position += 8;
@@ -63,26 +63,26 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            positionInRbLocal = xd.ReadVector4(xe, nameof(positionInRbLocal));
-            mousePositionInWorld = xd.ReadVector4(xe, nameof(mousePositionInWorld));
-            springDamping = xd.ReadSingle(xe, nameof(springDamping));
-            springElasticity = xd.ReadSingle(xe, nameof(springElasticity));
-            maxRelativeForce = xd.ReadSingle(xe, nameof(maxRelativeForce));
-            objectDamping = xd.ReadSingle(xe, nameof(objectDamping));
-            shapeKey = xd.ReadUInt32(xe, nameof(shapeKey));
+            m_positionInRbLocal = xd.ReadVector4(xe, nameof(m_positionInRbLocal));
+            m_mousePositionInWorld = xd.ReadVector4(xe, nameof(m_mousePositionInWorld));
+            m_springDamping = xd.ReadSingle(xe, nameof(m_springDamping));
+            m_springElasticity = xd.ReadSingle(xe, nameof(m_springElasticity));
+            m_maxRelativeForce = xd.ReadSingle(xe, nameof(m_maxRelativeForce));
+            m_objectDamping = xd.ReadSingle(xe, nameof(m_objectDamping));
+            m_shapeKey = xd.ReadUInt32(xe, nameof(m_shapeKey));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(positionInRbLocal), positionInRbLocal);
-            xs.WriteVector4(xe, nameof(mousePositionInWorld), mousePositionInWorld);
-            xs.WriteFloat(xe, nameof(springDamping), springDamping);
-            xs.WriteFloat(xe, nameof(springElasticity), springElasticity);
-            xs.WriteFloat(xe, nameof(maxRelativeForce), maxRelativeForce);
-            xs.WriteFloat(xe, nameof(objectDamping), objectDamping);
-            xs.WriteNumber(xe, nameof(shapeKey), shapeKey);
-            xs.WriteSerializeIgnored(xe, nameof(applyCallbacks));
+            xs.WriteVector4(xe, nameof(m_positionInRbLocal), m_positionInRbLocal);
+            xs.WriteVector4(xe, nameof(m_mousePositionInWorld), m_mousePositionInWorld);
+            xs.WriteFloat(xe, nameof(m_springDamping), m_springDamping);
+            xs.WriteFloat(xe, nameof(m_springElasticity), m_springElasticity);
+            xs.WriteFloat(xe, nameof(m_maxRelativeForce), m_maxRelativeForce);
+            xs.WriteFloat(xe, nameof(m_objectDamping), m_objectDamping);
+            xs.WriteNumber(xe, nameof(m_shapeKey), m_shapeKey);
+            xs.WriteSerializeIgnored(xe, nameof(m_applyCallbacks));
         }
 
         public override bool Equals(object? obj)
@@ -94,13 +94,13 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   positionInRbLocal.Equals(other.positionInRbLocal) &&
-                   mousePositionInWorld.Equals(other.mousePositionInWorld) &&
-                   springDamping.Equals(other.springDamping) &&
-                   springElasticity.Equals(other.springElasticity) &&
-                   maxRelativeForce.Equals(other.maxRelativeForce) &&
-                   objectDamping.Equals(other.objectDamping) &&
-                   shapeKey.Equals(other.shapeKey) &&
+                   m_positionInRbLocal.Equals(other.m_positionInRbLocal) &&
+                   m_mousePositionInWorld.Equals(other.m_mousePositionInWorld) &&
+                   m_springDamping.Equals(other.m_springDamping) &&
+                   m_springElasticity.Equals(other.m_springElasticity) &&
+                   m_maxRelativeForce.Equals(other.m_maxRelativeForce) &&
+                   m_objectDamping.Equals(other.m_objectDamping) &&
+                   m_shapeKey.Equals(other.m_shapeKey) &&
                    Signature == other.Signature; ;
         }
 
@@ -108,13 +108,13 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(positionInRbLocal);
-            hashcode.Add(mousePositionInWorld);
-            hashcode.Add(springDamping);
-            hashcode.Add(springElasticity);
-            hashcode.Add(maxRelativeForce);
-            hashcode.Add(objectDamping);
-            hashcode.Add(shapeKey);
+            hashcode.Add(m_positionInRbLocal);
+            hashcode.Add(m_mousePositionInWorld);
+            hashcode.Add(m_springDamping);
+            hashcode.Add(m_springElasticity);
+            hashcode.Add(m_maxRelativeForce);
+            hashcode.Add(m_objectDamping);
+            hashcode.Add(m_shapeKey);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

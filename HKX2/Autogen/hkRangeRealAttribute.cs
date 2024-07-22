@@ -5,49 +5,49 @@ namespace HKX2
 {
     // hkRangeRealAttribute Signatire: 0x949db24f size: 16 flags: FLAGS_NONE
 
-    // absmin class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // absmax class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // softmin class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // softmax class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
+    // m_absmin m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_absmax m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // m_softmin m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // m_softmax m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
     public partial class hkRangeRealAttribute : IHavokObject, IEquatable<hkRangeRealAttribute?>
     {
-        public float absmin { set; get; }
-        public float absmax { set; get; }
-        public float softmin { set; get; }
-        public float softmax { set; get; }
+        public float m_absmin { set; get; }
+        public float m_absmax { set; get; }
+        public float m_softmin { set; get; }
+        public float m_softmax { set; get; }
 
         public virtual uint Signature { set; get; } = 0x949db24f;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            absmin = br.ReadSingle();
-            absmax = br.ReadSingle();
-            softmin = br.ReadSingle();
-            softmax = br.ReadSingle();
+            m_absmin = br.ReadSingle();
+            m_absmax = br.ReadSingle();
+            m_softmin = br.ReadSingle();
+            m_softmax = br.ReadSingle();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteSingle(absmin);
-            bw.WriteSingle(absmax);
-            bw.WriteSingle(softmin);
-            bw.WriteSingle(softmax);
+            bw.WriteSingle(m_absmin);
+            bw.WriteSingle(m_absmax);
+            bw.WriteSingle(m_softmin);
+            bw.WriteSingle(m_softmax);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            absmin = xd.ReadSingle(xe, nameof(absmin));
-            absmax = xd.ReadSingle(xe, nameof(absmax));
-            softmin = xd.ReadSingle(xe, nameof(softmin));
-            softmax = xd.ReadSingle(xe, nameof(softmax));
+            m_absmin = xd.ReadSingle(xe, nameof(m_absmin));
+            m_absmax = xd.ReadSingle(xe, nameof(m_absmax));
+            m_softmin = xd.ReadSingle(xe, nameof(m_softmin));
+            m_softmax = xd.ReadSingle(xe, nameof(m_softmax));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteFloat(xe, nameof(absmin), absmin);
-            xs.WriteFloat(xe, nameof(absmax), absmax);
-            xs.WriteFloat(xe, nameof(softmin), softmin);
-            xs.WriteFloat(xe, nameof(softmax), softmax);
+            xs.WriteFloat(xe, nameof(m_absmin), m_absmin);
+            xs.WriteFloat(xe, nameof(m_absmax), m_absmax);
+            xs.WriteFloat(xe, nameof(m_softmin), m_softmin);
+            xs.WriteFloat(xe, nameof(m_softmax), m_softmax);
         }
 
         public override bool Equals(object? obj)
@@ -58,20 +58,20 @@ namespace HKX2
         public bool Equals(hkRangeRealAttribute? other)
         {
             return other is not null &&
-                   absmin.Equals(other.absmin) &&
-                   absmax.Equals(other.absmax) &&
-                   softmin.Equals(other.softmin) &&
-                   softmax.Equals(other.softmax) &&
+                   m_absmin.Equals(other.m_absmin) &&
+                   m_absmax.Equals(other.m_absmax) &&
+                   m_softmin.Equals(other.m_softmin) &&
+                   m_softmax.Equals(other.m_softmax) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(absmin);
-            hashcode.Add(absmax);
-            hashcode.Add(softmin);
-            hashcode.Add(softmax);
+            hashcode.Add(m_absmin);
+            hashcode.Add(m_absmax);
+            hashcode.Add(m_softmin);
+            hashcode.Add(m_softmax);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

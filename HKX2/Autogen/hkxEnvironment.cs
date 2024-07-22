@@ -7,35 +7,35 @@ namespace HKX2
 {
     // hkxEnvironment Signatire: 0x41e1aa5 size: 32 flags: FLAGS_NONE
 
-    // variables class: hkxEnvironmentVariable Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // m_variables m_class: hkxEnvironmentVariable Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkxEnvironment : hkReferencedObject, IEquatable<hkxEnvironment?>
     {
-        public IList<hkxEnvironmentVariable> variables { set; get; } = Array.Empty<hkxEnvironmentVariable>();
+        public IList<hkxEnvironmentVariable> m_variables { set; get; } = Array.Empty<hkxEnvironmentVariable>();
 
         public override uint Signature { set; get; } = 0x41e1aa5;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            variables = des.ReadClassArray<hkxEnvironmentVariable>(br);
+            m_variables = des.ReadClassArray<hkxEnvironmentVariable>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassArray(bw, variables);
+            s.WriteClassArray(bw, m_variables);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            variables = xd.ReadClassArray<hkxEnvironmentVariable>(xe, nameof(variables));
+            m_variables = xd.ReadClassArray<hkxEnvironmentVariable>(xe, nameof(m_variables));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassArray(xe, nameof(variables), variables);
+            xs.WriteClassArray(xe, nameof(m_variables), m_variables);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   variables.SequenceEqual(other.variables) &&
+                   m_variables.SequenceEqual(other.m_variables) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(variables.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(m_variables.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

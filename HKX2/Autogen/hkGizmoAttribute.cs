@@ -5,47 +5,47 @@ namespace HKX2
 {
     // hkGizmoAttribute Signatire: 0x23aadfb6 size: 24 flags: FLAGS_NONE
 
-    // visible class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // label class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: GizmoType
+    // m_visible m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_label m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // m_type m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: GizmoType
     public partial class hkGizmoAttribute : IHavokObject, IEquatable<hkGizmoAttribute?>
     {
-        public bool visible { set; get; }
-        public string label { set; get; } = "";
-        public sbyte type { set; get; }
+        public bool m_visible { set; get; }
+        public string m_label { set; get; } = "";
+        public sbyte m_type { set; get; }
 
         public virtual uint Signature { set; get; } = 0x23aadfb6;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            visible = br.ReadBoolean();
+            m_visible = br.ReadBoolean();
             br.Position += 7;
-            label = des.ReadCString(br);
-            type = br.ReadSByte();
+            m_label = des.ReadCString(br);
+            m_type = br.ReadSByte();
             br.Position += 7;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteBoolean(visible);
+            bw.WriteBoolean(m_visible);
             bw.Position += 7;
-            s.WriteCString(bw, label);
-            bw.WriteSByte(type);
+            s.WriteCString(bw, m_label);
+            bw.WriteSByte(m_type);
             bw.Position += 7;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            visible = xd.ReadBoolean(xe, nameof(visible));
-            label = xd.ReadString(xe, nameof(label));
-            type = xd.ReadFlag<GizmoType, sbyte>(xe, nameof(type));
+            m_visible = xd.ReadBoolean(xe, nameof(m_visible));
+            m_label = xd.ReadString(xe, nameof(m_label));
+            m_type = xd.ReadFlag<GizmoType, sbyte>(xe, nameof(m_type));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteBoolean(xe, nameof(visible), visible);
-            xs.WriteString(xe, nameof(label), label);
-            xs.WriteEnum<GizmoType, sbyte>(xe, nameof(type), type);
+            xs.WriteBoolean(xe, nameof(m_visible), m_visible);
+            xs.WriteString(xe, nameof(m_label), m_label);
+            xs.WriteEnum<GizmoType, sbyte>(xe, nameof(m_type), m_type);
         }
 
         public override bool Equals(object? obj)
@@ -56,18 +56,18 @@ namespace HKX2
         public bool Equals(hkGizmoAttribute? other)
         {
             return other is not null &&
-                   visible.Equals(other.visible) &&
-                   (label is null && other.label is null || label == other.label || label is null && other.label == "" || label == "" && other.label is null) &&
-                   type.Equals(other.type) &&
+                   m_visible.Equals(other.m_visible) &&
+                   (m_label is null && other.m_label is null || m_label == other.m_label || m_label is null && other.m_label == "" || m_label == "" && other.m_label is null) &&
+                   m_type.Equals(other.m_type) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(visible);
-            hashcode.Add(label);
-            hashcode.Add(type);
+            hashcode.Add(m_visible);
+            hashcode.Add(m_label);
+            hashcode.Add(m_type);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

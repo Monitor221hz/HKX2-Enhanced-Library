@@ -5,35 +5,35 @@ namespace HKX2
 {
     // hkpSingleShapeContainer Signatire: 0x73aa1d38 size: 16 flags: FLAGS_NONE
 
-    // childShape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // m_childShape m_class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkpSingleShapeContainer : hkpShapeContainer, IEquatable<hkpSingleShapeContainer?>
     {
-        public hkpShape? childShape { set; get; }
+        public hkpShape? m_childShape { set; get; }
 
         public override uint Signature { set; get; } = 0x73aa1d38;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            childShape = des.ReadClassPointer<hkpShape>(br);
+            m_childShape = des.ReadClassPointer<hkpShape>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointer(bw, childShape);
+            s.WriteClassPointer(bw, m_childShape);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            childShape = xd.ReadClassPointer<hkpShape>(xe, nameof(childShape));
+            m_childShape = xd.ReadClassPointer<hkpShape>(xe, nameof(m_childShape));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(childShape), childShape);
+            xs.WriteClassPointer(xe, nameof(m_childShape), m_childShape);
         }
 
         public override bool Equals(object? obj)
@@ -45,7 +45,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((childShape is null && other.childShape is null) || (childShape is not null && other.childShape is not null && childShape.Equals((IHavokObject)other.childShape))) &&
+                   ((m_childShape is null && other.m_childShape is null) || (m_childShape is not null && other.m_childShape is not null && m_childShape.Equals((IHavokObject)other.m_childShape))) &&
                    Signature == other.Signature; ;
         }
 
@@ -53,7 +53,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(childShape);
+            hashcode.Add(m_childShape);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

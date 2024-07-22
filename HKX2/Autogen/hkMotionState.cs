@@ -6,87 +6,87 @@ namespace HKX2
 {
     // hkMotionState Signatire: 0x5797386e size: 176 flags: FLAGS_NONE
 
-    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // sweptTransform class: hkSweptTransform Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // deltaAngle class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // objectRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // linearDamping class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 164 flags: FLAGS_NONE enum: 
-    // angularDamping class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 166 flags: FLAGS_NONE enum: 
-    // timeFactor class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // maxLinearVelocity class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 170 flags: FLAGS_NONE enum: 
-    // maxAngularVelocity class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 171 flags: FLAGS_NONE enum: 
-    // deactivationClass class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum: 
+    // m_transform m_class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // m_sweptTransform m_class: hkSweptTransform Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // m_deltaAngle m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // m_objectRadius m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
+    // m_linearDamping m_class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 164 flags: FLAGS_NONE enum: 
+    // m_angularDamping m_class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 166 flags: FLAGS_NONE enum: 
+    // m_timeFactor m_class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
+    // m_maxLinearVelocity m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 170 flags: FLAGS_NONE enum: 
+    // m_maxAngularVelocity m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 171 flags: FLAGS_NONE enum: 
+    // m_deactivationClass m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum: 
     public partial class hkMotionState : IHavokObject, IEquatable<hkMotionState?>
     {
-        public Matrix4x4 transform { set; get; }
-        public hkSweptTransform sweptTransform { set; get; } = new();
-        public Vector4 deltaAngle { set; get; }
-        public float objectRadius { set; get; }
-        public Half linearDamping { set; get; }
-        public Half angularDamping { set; get; }
-        public Half timeFactor { set; get; }
-        public byte maxLinearVelocity { set; get; }
-        public byte maxAngularVelocity { set; get; }
-        public byte deactivationClass { set; get; }
+        public Matrix4x4 m_transform { set; get; }
+        public hkSweptTransform m_sweptTransform { set; get; } = new();
+        public Vector4 m_deltaAngle { set; get; }
+        public float m_objectRadius { set; get; }
+        public Half m_linearDamping { set; get; }
+        public Half m_angularDamping { set; get; }
+        public Half m_timeFactor { set; get; }
+        public byte m_maxLinearVelocity { set; get; }
+        public byte m_maxAngularVelocity { set; get; }
+        public byte m_deactivationClass { set; get; }
 
         public virtual uint Signature { set; get; } = 0x5797386e;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            transform = des.ReadTransform(br);
-            sweptTransform.Read(des, br);
-            deltaAngle = br.ReadVector4();
-            objectRadius = br.ReadSingle();
-            linearDamping = br.ReadHalf();
-            angularDamping = br.ReadHalf();
-            timeFactor = br.ReadHalf();
-            maxLinearVelocity = br.ReadByte();
-            maxAngularVelocity = br.ReadByte();
-            deactivationClass = br.ReadByte();
+            m_transform = des.ReadTransform(br);
+            m_sweptTransform.Read(des, br);
+            m_deltaAngle = br.ReadVector4();
+            m_objectRadius = br.ReadSingle();
+            m_linearDamping = br.ReadHalf();
+            m_angularDamping = br.ReadHalf();
+            m_timeFactor = br.ReadHalf();
+            m_maxLinearVelocity = br.ReadByte();
+            m_maxAngularVelocity = br.ReadByte();
+            m_deactivationClass = br.ReadByte();
             br.Position += 3;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteTransform(bw, transform);
-            sweptTransform.Write(s, bw);
-            bw.WriteVector4(deltaAngle);
-            bw.WriteSingle(objectRadius);
-            bw.WriteHalf(linearDamping);
-            bw.WriteHalf(angularDamping);
-            bw.WriteHalf(timeFactor);
-            bw.WriteByte(maxLinearVelocity);
-            bw.WriteByte(maxAngularVelocity);
-            bw.WriteByte(deactivationClass);
+            s.WriteTransform(bw, m_transform);
+            m_sweptTransform.Write(s, bw);
+            bw.WriteVector4(m_deltaAngle);
+            bw.WriteSingle(m_objectRadius);
+            bw.WriteHalf(m_linearDamping);
+            bw.WriteHalf(m_angularDamping);
+            bw.WriteHalf(m_timeFactor);
+            bw.WriteByte(m_maxLinearVelocity);
+            bw.WriteByte(m_maxAngularVelocity);
+            bw.WriteByte(m_deactivationClass);
             bw.Position += 3;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            transform = xd.ReadTransform(xe, nameof(transform));
-            sweptTransform = xd.ReadClass<hkSweptTransform>(xe, nameof(sweptTransform));
-            deltaAngle = xd.ReadVector4(xe, nameof(deltaAngle));
-            objectRadius = xd.ReadSingle(xe, nameof(objectRadius));
-            linearDamping = xd.ReadHalf(xe, nameof(linearDamping));
-            angularDamping = xd.ReadHalf(xe, nameof(angularDamping));
-            timeFactor = xd.ReadHalf(xe, nameof(timeFactor));
-            maxLinearVelocity = xd.ReadByte(xe, nameof(maxLinearVelocity));
-            maxAngularVelocity = xd.ReadByte(xe, nameof(maxAngularVelocity));
-            deactivationClass = xd.ReadByte(xe, nameof(deactivationClass));
+            m_transform = xd.ReadTransform(xe, nameof(m_transform));
+            m_sweptTransform = xd.ReadClass<hkSweptTransform>(xe, nameof(m_sweptTransform));
+            m_deltaAngle = xd.ReadVector4(xe, nameof(m_deltaAngle));
+            m_objectRadius = xd.ReadSingle(xe, nameof(m_objectRadius));
+            m_linearDamping = xd.ReadHalf(xe, nameof(m_linearDamping));
+            m_angularDamping = xd.ReadHalf(xe, nameof(m_angularDamping));
+            m_timeFactor = xd.ReadHalf(xe, nameof(m_timeFactor));
+            m_maxLinearVelocity = xd.ReadByte(xe, nameof(m_maxLinearVelocity));
+            m_maxAngularVelocity = xd.ReadByte(xe, nameof(m_maxAngularVelocity));
+            m_deactivationClass = xd.ReadByte(xe, nameof(m_deactivationClass));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteTransform(xe, nameof(transform), transform);
-            xs.WriteClass<hkSweptTransform>(xe, nameof(sweptTransform), sweptTransform);
-            xs.WriteVector4(xe, nameof(deltaAngle), deltaAngle);
-            xs.WriteFloat(xe, nameof(objectRadius), objectRadius);
-            xs.WriteFloat(xe, nameof(linearDamping), linearDamping);
-            xs.WriteFloat(xe, nameof(angularDamping), angularDamping);
-            xs.WriteFloat(xe, nameof(timeFactor), timeFactor);
-            xs.WriteNumber(xe, nameof(maxLinearVelocity), maxLinearVelocity);
-            xs.WriteNumber(xe, nameof(maxAngularVelocity), maxAngularVelocity);
-            xs.WriteNumber(xe, nameof(deactivationClass), deactivationClass);
+            xs.WriteTransform(xe, nameof(m_transform), m_transform);
+            xs.WriteClass<hkSweptTransform>(xe, nameof(m_sweptTransform), m_sweptTransform);
+            xs.WriteVector4(xe, nameof(m_deltaAngle), m_deltaAngle);
+            xs.WriteFloat(xe, nameof(m_objectRadius), m_objectRadius);
+            xs.WriteFloat(xe, nameof(m_linearDamping), m_linearDamping);
+            xs.WriteFloat(xe, nameof(m_angularDamping), m_angularDamping);
+            xs.WriteFloat(xe, nameof(m_timeFactor), m_timeFactor);
+            xs.WriteNumber(xe, nameof(m_maxLinearVelocity), m_maxLinearVelocity);
+            xs.WriteNumber(xe, nameof(m_maxAngularVelocity), m_maxAngularVelocity);
+            xs.WriteNumber(xe, nameof(m_deactivationClass), m_deactivationClass);
         }
 
         public override bool Equals(object? obj)
@@ -97,32 +97,32 @@ namespace HKX2
         public bool Equals(hkMotionState? other)
         {
             return other is not null &&
-                   transform.Equals(other.transform) &&
-                   ((sweptTransform is null && other.sweptTransform is null) || (sweptTransform is not null && other.sweptTransform is not null && sweptTransform.Equals((IHavokObject)other.sweptTransform))) &&
-                   deltaAngle.Equals(other.deltaAngle) &&
-                   objectRadius.Equals(other.objectRadius) &&
-                   linearDamping.Equals(other.linearDamping) &&
-                   angularDamping.Equals(other.angularDamping) &&
-                   timeFactor.Equals(other.timeFactor) &&
-                   maxLinearVelocity.Equals(other.maxLinearVelocity) &&
-                   maxAngularVelocity.Equals(other.maxAngularVelocity) &&
-                   deactivationClass.Equals(other.deactivationClass) &&
+                   m_transform.Equals(other.m_transform) &&
+                   ((m_sweptTransform is null && other.m_sweptTransform is null) || (m_sweptTransform is not null && other.m_sweptTransform is not null && m_sweptTransform.Equals((IHavokObject)other.m_sweptTransform))) &&
+                   m_deltaAngle.Equals(other.m_deltaAngle) &&
+                   m_objectRadius.Equals(other.m_objectRadius) &&
+                   m_linearDamping.Equals(other.m_linearDamping) &&
+                   m_angularDamping.Equals(other.m_angularDamping) &&
+                   m_timeFactor.Equals(other.m_timeFactor) &&
+                   m_maxLinearVelocity.Equals(other.m_maxLinearVelocity) &&
+                   m_maxAngularVelocity.Equals(other.m_maxAngularVelocity) &&
+                   m_deactivationClass.Equals(other.m_deactivationClass) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(transform);
-            hashcode.Add(sweptTransform);
-            hashcode.Add(deltaAngle);
-            hashcode.Add(objectRadius);
-            hashcode.Add(linearDamping);
-            hashcode.Add(angularDamping);
-            hashcode.Add(timeFactor);
-            hashcode.Add(maxLinearVelocity);
-            hashcode.Add(maxAngularVelocity);
-            hashcode.Add(deactivationClass);
+            hashcode.Add(m_transform);
+            hashcode.Add(m_sweptTransform);
+            hashcode.Add(m_deltaAngle);
+            hashcode.Add(m_objectRadius);
+            hashcode.Add(m_linearDamping);
+            hashcode.Add(m_angularDamping);
+            hashcode.Add(m_timeFactor);
+            hashcode.Add(m_maxLinearVelocity);
+            hashcode.Add(m_maxAngularVelocity);
+            hashcode.Add(m_deactivationClass);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }
