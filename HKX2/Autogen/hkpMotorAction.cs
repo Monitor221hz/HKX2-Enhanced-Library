@@ -6,16 +6,16 @@ namespace HKX2
 {
     // hkpMotorAction Signatire: 0x8ff131d9 size: 96 flags: FLAGS_NONE
 
-    // m_axis m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // m_spinRate m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_gain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // m_active m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // axis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // spinRate class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
+    // active class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
     public partial class hkpMotorAction : hkpUnaryAction, IEquatable<hkpMotorAction?>
     {
-        public Vector4 m_axis { set; get; }
-        public float m_spinRate { set; get; }
-        public float m_gain { set; get; }
-        public bool m_active { set; get; }
+        public Vector4 axis { set; get; }
+        public float spinRate { set; get; }
+        public float gain { set; get; }
+        public bool active { set; get; }
 
         public override uint Signature { set; get; } = 0x8ff131d9;
 
@@ -23,10 +23,10 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            m_axis = br.ReadVector4();
-            m_spinRate = br.ReadSingle();
-            m_gain = br.ReadSingle();
-            m_active = br.ReadBoolean();
+            axis = br.ReadVector4();
+            spinRate = br.ReadSingle();
+            gain = br.ReadSingle();
+            active = br.ReadBoolean();
             br.Position += 7;
         }
 
@@ -34,29 +34,29 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.Position += 8;
-            bw.WriteVector4(m_axis);
-            bw.WriteSingle(m_spinRate);
-            bw.WriteSingle(m_gain);
-            bw.WriteBoolean(m_active);
+            bw.WriteVector4(axis);
+            bw.WriteSingle(spinRate);
+            bw.WriteSingle(gain);
+            bw.WriteBoolean(active);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_axis = xd.ReadVector4(xe, nameof(m_axis));
-            m_spinRate = xd.ReadSingle(xe, nameof(m_spinRate));
-            m_gain = xd.ReadSingle(xe, nameof(m_gain));
-            m_active = xd.ReadBoolean(xe, nameof(m_active));
+            axis = xd.ReadVector4(xe, nameof(axis));
+            spinRate = xd.ReadSingle(xe, nameof(spinRate));
+            gain = xd.ReadSingle(xe, nameof(gain));
+            active = xd.ReadBoolean(xe, nameof(active));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(m_axis), m_axis);
-            xs.WriteFloat(xe, nameof(m_spinRate), m_spinRate);
-            xs.WriteFloat(xe, nameof(m_gain), m_gain);
-            xs.WriteBoolean(xe, nameof(m_active), m_active);
+            xs.WriteVector4(xe, nameof(axis), axis);
+            xs.WriteFloat(xe, nameof(spinRate), spinRate);
+            xs.WriteFloat(xe, nameof(gain), gain);
+            xs.WriteBoolean(xe, nameof(active), active);
         }
 
         public override bool Equals(object? obj)
@@ -68,10 +68,10 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_axis.Equals(other.m_axis) &&
-                   m_spinRate.Equals(other.m_spinRate) &&
-                   m_gain.Equals(other.m_gain) &&
-                   m_active.Equals(other.m_active) &&
+                   axis.Equals(other.axis) &&
+                   spinRate.Equals(other.spinRate) &&
+                   gain.Equals(other.gain) &&
+                   active.Equals(other.active) &&
                    Signature == other.Signature; ;
         }
 
@@ -79,10 +79,10 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_axis);
-            hashcode.Add(m_spinRate);
-            hashcode.Add(m_gain);
-            hashcode.Add(m_active);
+            hashcode.Add(axis);
+            hashcode.Add(spinRate);
+            hashcode.Add(gain);
+            hashcode.Add(active);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -3,51 +3,51 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkp2dAngConstraintAtom Signatire: 0xdcdb8b8b size: 4 flags: FLAGS_NONE
+    // hkp_2dAngConstraintAtom Signatire: 0xdcdb8b8b size: 4 flags: FLAGS_NONE
 
-    // m_freeRotationAxis m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    public partial class hkp2dAngConstraintAtom : hkpConstraintAtom, IEquatable<hkp2dAngConstraintAtom?>
+    // freeRotationAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    public partial class hkp_2dAngConstraintAtom : hkpConstraintAtom, IEquatable<hkp_2dAngConstraintAtom?>
     {
-        public byte m_freeRotationAxis { set; get; }
+        public byte freeRotationAxis { set; get; }
 
         public override uint Signature { set; get; } = 0xdcdb8b8b;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_freeRotationAxis = br.ReadByte();
+            freeRotationAxis = br.ReadByte();
             br.Position += 1;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(m_freeRotationAxis);
+            bw.WriteByte(freeRotationAxis);
             bw.Position += 1;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_freeRotationAxis = xd.ReadByte(xe, nameof(m_freeRotationAxis));
+            freeRotationAxis = xd.ReadByte(xe, nameof(freeRotationAxis));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(m_freeRotationAxis), m_freeRotationAxis);
+            xs.WriteNumber(xe, nameof(freeRotationAxis), freeRotationAxis);
         }
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkp2dAngConstraintAtom);
+            return Equals(obj as hkp_2dAngConstraintAtom);
         }
 
-        public bool Equals(hkp2dAngConstraintAtom? other)
+        public bool Equals(hkp_2dAngConstraintAtom? other)
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_freeRotationAxis.Equals(other.m_freeRotationAxis) &&
+                   freeRotationAxis.Equals(other.freeRotationAxis) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_freeRotationAxis);
+            hashcode.Add(freeRotationAxis);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

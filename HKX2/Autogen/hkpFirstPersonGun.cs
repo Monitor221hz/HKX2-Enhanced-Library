@@ -6,26 +6,26 @@ namespace HKX2
 {
     // hkpFirstPersonGun Signatire: 0x852ab70b size: 56 flags: FLAGS_NONE
 
-    // m_type m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // m_keyboardKey m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: KeyboardKey
-    // m_listeners m_class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // keyboardKey class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: KeyboardKey
+    // listeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpFirstPersonGun : hkReferencedObject, IEquatable<hkpFirstPersonGun?>
     {
-        private byte m_type { set; get; }
-        public string m_name { set; get; } = "";
-        public byte m_keyboardKey { set; get; }
-        public IList<object> m_listeners { set; get; } = Array.Empty<object>();
+        private byte type { set; get; }
+        public string name { set; get; } = "";
+        public byte keyboardKey { set; get; }
+        public IList<object> listeners { set; get; } = Array.Empty<object>();
 
         public override uint Signature { set; get; } = 0x852ab70b;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_type = br.ReadByte();
+            type = br.ReadByte();
             br.Position += 7;
-            m_name = des.ReadStringPointer(br);
-            m_keyboardKey = br.ReadByte();
+            name = des.ReadStringPointer(br);
+            keyboardKey = br.ReadByte();
             br.Position += 7;
             des.ReadEmptyArray(br);
         }
@@ -33,10 +33,10 @@ namespace HKX2
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(m_type);
+            bw.WriteByte(type);
             bw.Position += 7;
-            s.WriteStringPointer(bw, m_name);
-            bw.WriteByte(m_keyboardKey);
+            s.WriteStringPointer(bw, name);
+            bw.WriteByte(keyboardKey);
             bw.Position += 7;
             s.WriteVoidArray(bw);
         }
@@ -44,17 +44,17 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_keyboardKey = xd.ReadFlag<KeyboardKey, byte>(xe, nameof(m_keyboardKey));
+            name = xd.ReadString(xe, nameof(name));
+            keyboardKey = xd.ReadFlag<KeyboardKey, byte>(xe, nameof(keyboardKey));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(m_type));
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteEnum<KeyboardKey, byte>(xe, nameof(m_keyboardKey), m_keyboardKey);
-            xs.WriteSerializeIgnored(xe, nameof(m_listeners));
+            xs.WriteSerializeIgnored(xe, nameof(type));
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteEnum<KeyboardKey, byte>(xe, nameof(keyboardKey), keyboardKey);
+            xs.WriteSerializeIgnored(xe, nameof(listeners));
         }
 
         public override bool Equals(object? obj)
@@ -66,8 +66,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   m_keyboardKey.Equals(other.m_keyboardKey) &&
+                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   keyboardKey.Equals(other.keyboardKey) &&
                    Signature == other.Signature; ;
         }
 
@@ -75,8 +75,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_name);
-            hashcode.Add(m_keyboardKey);
+            hashcode.Add(name);
+            hashcode.Add(keyboardKey);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

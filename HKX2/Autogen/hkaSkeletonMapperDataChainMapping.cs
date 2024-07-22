@@ -6,63 +6,63 @@ namespace HKX2
 {
     // hkaSkeletonMapperDataChainMapping Signatire: 0xa528f7cf size: 112 flags: FLAGS_NONE
 
-    // m_startBoneA m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_endBoneA m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // m_startBoneB m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // m_endBoneB m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
-    // m_startAFromBTransform m_class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_endAFromBTransform m_class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // startBoneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // endBoneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // startBoneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // endBoneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
+    // startAFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // endAFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     public partial class hkaSkeletonMapperDataChainMapping : IHavokObject, IEquatable<hkaSkeletonMapperDataChainMapping?>
     {
-        public short m_startBoneA { set; get; }
-        public short m_endBoneA { set; get; }
-        public short m_startBoneB { set; get; }
-        public short m_endBoneB { set; get; }
-        public Matrix4x4 m_startAFromBTransform { set; get; }
-        public Matrix4x4 m_endAFromBTransform { set; get; }
+        public short startBoneA { set; get; }
+        public short endBoneA { set; get; }
+        public short startBoneB { set; get; }
+        public short endBoneB { set; get; }
+        public Matrix4x4 startAFromBTransform { set; get; }
+        public Matrix4x4 endAFromBTransform { set; get; }
 
         public virtual uint Signature { set; get; } = 0xa528f7cf;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_startBoneA = br.ReadInt16();
-            m_endBoneA = br.ReadInt16();
-            m_startBoneB = br.ReadInt16();
-            m_endBoneB = br.ReadInt16();
+            startBoneA = br.ReadInt16();
+            endBoneA = br.ReadInt16();
+            startBoneB = br.ReadInt16();
+            endBoneB = br.ReadInt16();
             br.Position += 8;
-            m_startAFromBTransform = des.ReadQSTransform(br);
-            m_endAFromBTransform = des.ReadQSTransform(br);
+            startAFromBTransform = des.ReadQSTransform(br);
+            endAFromBTransform = des.ReadQSTransform(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteInt16(m_startBoneA);
-            bw.WriteInt16(m_endBoneA);
-            bw.WriteInt16(m_startBoneB);
-            bw.WriteInt16(m_endBoneB);
+            bw.WriteInt16(startBoneA);
+            bw.WriteInt16(endBoneA);
+            bw.WriteInt16(startBoneB);
+            bw.WriteInt16(endBoneB);
             bw.Position += 8;
-            s.WriteQSTransform(bw, m_startAFromBTransform);
-            s.WriteQSTransform(bw, m_endAFromBTransform);
+            s.WriteQSTransform(bw, startAFromBTransform);
+            s.WriteQSTransform(bw, endAFromBTransform);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_startBoneA = xd.ReadInt16(xe, nameof(m_startBoneA));
-            m_endBoneA = xd.ReadInt16(xe, nameof(m_endBoneA));
-            m_startBoneB = xd.ReadInt16(xe, nameof(m_startBoneB));
-            m_endBoneB = xd.ReadInt16(xe, nameof(m_endBoneB));
-            m_startAFromBTransform = xd.ReadQSTransform(xe, nameof(m_startAFromBTransform));
-            m_endAFromBTransform = xd.ReadQSTransform(xe, nameof(m_endAFromBTransform));
+            startBoneA = xd.ReadInt16(xe, nameof(startBoneA));
+            endBoneA = xd.ReadInt16(xe, nameof(endBoneA));
+            startBoneB = xd.ReadInt16(xe, nameof(startBoneB));
+            endBoneB = xd.ReadInt16(xe, nameof(endBoneB));
+            startAFromBTransform = xd.ReadQSTransform(xe, nameof(startAFromBTransform));
+            endAFromBTransform = xd.ReadQSTransform(xe, nameof(endAFromBTransform));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteNumber(xe, nameof(m_startBoneA), m_startBoneA);
-            xs.WriteNumber(xe, nameof(m_endBoneA), m_endBoneA);
-            xs.WriteNumber(xe, nameof(m_startBoneB), m_startBoneB);
-            xs.WriteNumber(xe, nameof(m_endBoneB), m_endBoneB);
-            xs.WriteQSTransform(xe, nameof(m_startAFromBTransform), m_startAFromBTransform);
-            xs.WriteQSTransform(xe, nameof(m_endAFromBTransform), m_endAFromBTransform);
+            xs.WriteNumber(xe, nameof(startBoneA), startBoneA);
+            xs.WriteNumber(xe, nameof(endBoneA), endBoneA);
+            xs.WriteNumber(xe, nameof(startBoneB), startBoneB);
+            xs.WriteNumber(xe, nameof(endBoneB), endBoneB);
+            xs.WriteQSTransform(xe, nameof(startAFromBTransform), startAFromBTransform);
+            xs.WriteQSTransform(xe, nameof(endAFromBTransform), endAFromBTransform);
         }
 
         public override bool Equals(object? obj)
@@ -73,24 +73,24 @@ namespace HKX2
         public bool Equals(hkaSkeletonMapperDataChainMapping? other)
         {
             return other is not null &&
-                   m_startBoneA.Equals(other.m_startBoneA) &&
-                   m_endBoneA.Equals(other.m_endBoneA) &&
-                   m_startBoneB.Equals(other.m_startBoneB) &&
-                   m_endBoneB.Equals(other.m_endBoneB) &&
-                   m_startAFromBTransform.Equals(other.m_startAFromBTransform) &&
-                   m_endAFromBTransform.Equals(other.m_endAFromBTransform) &&
+                   startBoneA.Equals(other.startBoneA) &&
+                   endBoneA.Equals(other.endBoneA) &&
+                   startBoneB.Equals(other.startBoneB) &&
+                   endBoneB.Equals(other.endBoneB) &&
+                   startAFromBTransform.Equals(other.startAFromBTransform) &&
+                   endAFromBTransform.Equals(other.endAFromBTransform) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_startBoneA);
-            hashcode.Add(m_endBoneA);
-            hashcode.Add(m_startBoneB);
-            hashcode.Add(m_endBoneB);
-            hashcode.Add(m_startAFromBTransform);
-            hashcode.Add(m_endAFromBTransform);
+            hashcode.Add(startBoneA);
+            hashcode.Add(endBoneA);
+            hashcode.Add(startBoneB);
+            hashcode.Add(endBoneB);
+            hashcode.Add(startAFromBTransform);
+            hashcode.Add(endAFromBTransform);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

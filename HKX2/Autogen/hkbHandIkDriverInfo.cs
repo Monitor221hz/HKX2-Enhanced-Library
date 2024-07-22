@@ -7,43 +7,43 @@ namespace HKX2
 {
     // hkbHandIkDriverInfo Signatire: 0xc299090a size: 40 flags: FLAGS_NONE
 
-    // m_hands m_class: hkbHandIkDriverInfoHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_fadeInOutCurve m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: BlendCurve
+    // hands class: hkbHandIkDriverInfoHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // fadeInOutCurve class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: BlendCurve
     public partial class hkbHandIkDriverInfo : hkReferencedObject, IEquatable<hkbHandIkDriverInfo?>
     {
-        public IList<hkbHandIkDriverInfoHand> m_hands { set; get; } = Array.Empty<hkbHandIkDriverInfoHand>();
-        public sbyte m_fadeInOutCurve { set; get; }
+        public IList<hkbHandIkDriverInfoHand> hands { set; get; } = Array.Empty<hkbHandIkDriverInfoHand>();
+        public sbyte fadeInOutCurve { set; get; }
 
         public override uint Signature { set; get; } = 0xc299090a;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_hands = des.ReadClassArray<hkbHandIkDriverInfoHand>(br);
-            m_fadeInOutCurve = br.ReadSByte();
+            hands = des.ReadClassArray<hkbHandIkDriverInfoHand>(br);
+            fadeInOutCurve = br.ReadSByte();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassArray(bw, m_hands);
-            bw.WriteSByte(m_fadeInOutCurve);
+            s.WriteClassArray(bw, hands);
+            bw.WriteSByte(fadeInOutCurve);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_hands = xd.ReadClassArray<hkbHandIkDriverInfoHand>(xe, nameof(m_hands));
-            m_fadeInOutCurve = xd.ReadFlag<BlendCurve, sbyte>(xe, nameof(m_fadeInOutCurve));
+            hands = xd.ReadClassArray<hkbHandIkDriverInfoHand>(xe, nameof(hands));
+            fadeInOutCurve = xd.ReadFlag<BlendCurve, sbyte>(xe, nameof(fadeInOutCurve));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassArray(xe, nameof(m_hands), m_hands);
-            xs.WriteEnum<BlendCurve, sbyte>(xe, nameof(m_fadeInOutCurve), m_fadeInOutCurve);
+            xs.WriteClassArray(xe, nameof(hands), hands);
+            xs.WriteEnum<BlendCurve, sbyte>(xe, nameof(fadeInOutCurve), fadeInOutCurve);
         }
 
         public override bool Equals(object? obj)
@@ -55,8 +55,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_hands.SequenceEqual(other.m_hands) &&
-                   m_fadeInOutCurve.Equals(other.m_fadeInOutCurve) &&
+                   hands.SequenceEqual(other.hands) &&
+                   fadeInOutCurve.Equals(other.fadeInOutCurve) &&
                    Signature == other.Signature; ;
         }
 
@@ -64,8 +64,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_hands.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_fadeInOutCurve);
+            hashcode.Add(hands.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(fadeInOutCurve);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

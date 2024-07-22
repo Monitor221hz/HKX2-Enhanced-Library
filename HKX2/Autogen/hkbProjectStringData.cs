@@ -7,82 +7,82 @@ namespace HKX2
 {
     // hkbProjectStringData Signatire: 0x76ad60a size: 120 flags: FLAGS_NONE
 
-    // m_animationFilenames m_class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_behaviorFilenames m_class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_characterFilenames m_class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_eventNames m_class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // m_animationPath m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_behaviorPath m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // m_characterPath m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // m_fullPathToSource m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // m_rootPath m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // animationFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // behaviorFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // characterFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // animationPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // behaviorPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // characterPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // fullPathToSource class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // rootPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbProjectStringData : hkReferencedObject, IEquatable<hkbProjectStringData?>
     {
-        public IList<string> m_animationFilenames { set; get; } = Array.Empty<string>();
-        public IList<string> m_behaviorFilenames { set; get; } = Array.Empty<string>();
-        public IList<string> m_characterFilenames { set; get; } = Array.Empty<string>();
-        public IList<string> m_eventNames { set; get; } = Array.Empty<string>();
-        public string m_animationPath { set; get; } = "";
-        public string m_behaviorPath { set; get; } = "";
-        public string m_characterPath { set; get; } = "";
-        public string m_fullPathToSource { set; get; } = "";
-        public string m_rootPath { set; get; } = "";
+        public IList<string> animationFilenames { set; get; } = Array.Empty<string>();
+        public IList<string> behaviorFilenames { set; get; } = Array.Empty<string>();
+        public IList<string> characterFilenames { set; get; } = Array.Empty<string>();
+        public IList<string> eventNames { set; get; } = Array.Empty<string>();
+        public string animationPath { set; get; } = "";
+        public string behaviorPath { set; get; } = "";
+        public string characterPath { set; get; } = "";
+        public string fullPathToSource { set; get; } = "";
+        public string rootPath { set; get; } = "";
 
         public override uint Signature { set; get; } = 0x76ad60a;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_animationFilenames = des.ReadStringPointerArray(br);
-            m_behaviorFilenames = des.ReadStringPointerArray(br);
-            m_characterFilenames = des.ReadStringPointerArray(br);
-            m_eventNames = des.ReadStringPointerArray(br);
-            m_animationPath = des.ReadStringPointer(br);
-            m_behaviorPath = des.ReadStringPointer(br);
-            m_characterPath = des.ReadStringPointer(br);
-            m_fullPathToSource = des.ReadStringPointer(br);
-            m_rootPath = des.ReadStringPointer(br);
+            animationFilenames = des.ReadStringPointerArray(br);
+            behaviorFilenames = des.ReadStringPointerArray(br);
+            characterFilenames = des.ReadStringPointerArray(br);
+            eventNames = des.ReadStringPointerArray(br);
+            animationPath = des.ReadStringPointer(br);
+            behaviorPath = des.ReadStringPointer(br);
+            characterPath = des.ReadStringPointer(br);
+            fullPathToSource = des.ReadStringPointer(br);
+            rootPath = des.ReadStringPointer(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteStringPointerArray(bw, m_animationFilenames);
-            s.WriteStringPointerArray(bw, m_behaviorFilenames);
-            s.WriteStringPointerArray(bw, m_characterFilenames);
-            s.WriteStringPointerArray(bw, m_eventNames);
-            s.WriteStringPointer(bw, m_animationPath);
-            s.WriteStringPointer(bw, m_behaviorPath);
-            s.WriteStringPointer(bw, m_characterPath);
-            s.WriteStringPointer(bw, m_fullPathToSource);
-            s.WriteStringPointer(bw, m_rootPath);
+            s.WriteStringPointerArray(bw, animationFilenames);
+            s.WriteStringPointerArray(bw, behaviorFilenames);
+            s.WriteStringPointerArray(bw, characterFilenames);
+            s.WriteStringPointerArray(bw, eventNames);
+            s.WriteStringPointer(bw, animationPath);
+            s.WriteStringPointer(bw, behaviorPath);
+            s.WriteStringPointer(bw, characterPath);
+            s.WriteStringPointer(bw, fullPathToSource);
+            s.WriteStringPointer(bw, rootPath);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_animationFilenames = xd.ReadStringArray(xe, nameof(m_animationFilenames));
-            m_behaviorFilenames = xd.ReadStringArray(xe, nameof(m_behaviorFilenames));
-            m_characterFilenames = xd.ReadStringArray(xe, nameof(m_characterFilenames));
-            m_eventNames = xd.ReadStringArray(xe, nameof(m_eventNames));
-            m_animationPath = xd.ReadString(xe, nameof(m_animationPath));
-            m_behaviorPath = xd.ReadString(xe, nameof(m_behaviorPath));
-            m_characterPath = xd.ReadString(xe, nameof(m_characterPath));
-            m_fullPathToSource = xd.ReadString(xe, nameof(m_fullPathToSource));
+            animationFilenames = xd.ReadStringArray(xe, nameof(animationFilenames));
+            behaviorFilenames = xd.ReadStringArray(xe, nameof(behaviorFilenames));
+            characterFilenames = xd.ReadStringArray(xe, nameof(characterFilenames));
+            eventNames = xd.ReadStringArray(xe, nameof(eventNames));
+            animationPath = xd.ReadString(xe, nameof(animationPath));
+            behaviorPath = xd.ReadString(xe, nameof(behaviorPath));
+            characterPath = xd.ReadString(xe, nameof(characterPath));
+            fullPathToSource = xd.ReadString(xe, nameof(fullPathToSource));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteStringArray(xe, nameof(m_animationFilenames), m_animationFilenames);
-            xs.WriteStringArray(xe, nameof(m_behaviorFilenames), m_behaviorFilenames);
-            xs.WriteStringArray(xe, nameof(m_characterFilenames), m_characterFilenames);
-            xs.WriteStringArray(xe, nameof(m_eventNames), m_eventNames);
-            xs.WriteString(xe, nameof(m_animationPath), m_animationPath);
-            xs.WriteString(xe, nameof(m_behaviorPath), m_behaviorPath);
-            xs.WriteString(xe, nameof(m_characterPath), m_characterPath);
-            xs.WriteString(xe, nameof(m_fullPathToSource), m_fullPathToSource);
-            xs.WriteSerializeIgnored(xe, nameof(m_rootPath));
+            xs.WriteStringArray(xe, nameof(animationFilenames), animationFilenames);
+            xs.WriteStringArray(xe, nameof(behaviorFilenames), behaviorFilenames);
+            xs.WriteStringArray(xe, nameof(characterFilenames), characterFilenames);
+            xs.WriteStringArray(xe, nameof(eventNames), eventNames);
+            xs.WriteString(xe, nameof(animationPath), animationPath);
+            xs.WriteString(xe, nameof(behaviorPath), behaviorPath);
+            xs.WriteString(xe, nameof(characterPath), characterPath);
+            xs.WriteString(xe, nameof(fullPathToSource), fullPathToSource);
+            xs.WriteSerializeIgnored(xe, nameof(rootPath));
         }
 
         public override bool Equals(object? obj)
@@ -94,14 +94,14 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_animationFilenames.SequenceEqual(other.m_animationFilenames) &&
-                   m_behaviorFilenames.SequenceEqual(other.m_behaviorFilenames) &&
-                   m_characterFilenames.SequenceEqual(other.m_characterFilenames) &&
-                   m_eventNames.SequenceEqual(other.m_eventNames) &&
-                   (m_animationPath is null && other.m_animationPath is null || m_animationPath == other.m_animationPath || m_animationPath is null && other.m_animationPath == "" || m_animationPath == "" && other.m_animationPath is null) &&
-                   (m_behaviorPath is null && other.m_behaviorPath is null || m_behaviorPath == other.m_behaviorPath || m_behaviorPath is null && other.m_behaviorPath == "" || m_behaviorPath == "" && other.m_behaviorPath is null) &&
-                   (m_characterPath is null && other.m_characterPath is null || m_characterPath == other.m_characterPath || m_characterPath is null && other.m_characterPath == "" || m_characterPath == "" && other.m_characterPath is null) &&
-                   (m_fullPathToSource is null && other.m_fullPathToSource is null || m_fullPathToSource == other.m_fullPathToSource || m_fullPathToSource is null && other.m_fullPathToSource == "" || m_fullPathToSource == "" && other.m_fullPathToSource is null) &&
+                   animationFilenames.SequenceEqual(other.animationFilenames) &&
+                   behaviorFilenames.SequenceEqual(other.behaviorFilenames) &&
+                   characterFilenames.SequenceEqual(other.characterFilenames) &&
+                   eventNames.SequenceEqual(other.eventNames) &&
+                   (animationPath is null && other.animationPath is null || animationPath == other.animationPath || animationPath is null && other.animationPath == "" || animationPath == "" && other.animationPath is null) &&
+                   (behaviorPath is null && other.behaviorPath is null || behaviorPath == other.behaviorPath || behaviorPath is null && other.behaviorPath == "" || behaviorPath == "" && other.behaviorPath is null) &&
+                   (characterPath is null && other.characterPath is null || characterPath == other.characterPath || characterPath is null && other.characterPath == "" || characterPath == "" && other.characterPath is null) &&
+                   (fullPathToSource is null && other.fullPathToSource is null || fullPathToSource == other.fullPathToSource || fullPathToSource is null && other.fullPathToSource == "" || fullPathToSource == "" && other.fullPathToSource is null) &&
                    Signature == other.Signature; ;
         }
 
@@ -109,14 +109,14 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_animationFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_behaviorFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_characterFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_eventNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_animationPath);
-            hashcode.Add(m_behaviorPath);
-            hashcode.Add(m_characterPath);
-            hashcode.Add(m_fullPathToSource);
+            hashcode.Add(animationFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(behaviorFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(characterFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(eventNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(animationPath);
+            hashcode.Add(behaviorPath);
+            hashcode.Add(characterPath);
+            hashcode.Add(fullPathToSource);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

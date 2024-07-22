@@ -6,10 +6,10 @@ namespace HKX2
 {
     // hkpBoxShape Signatire: 0x3444d2d5 size: 64 flags: FLAGS_NONE
 
-    // m_halfExtents m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // halfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkpBoxShape : hkpConvexShape, IEquatable<hkpBoxShape?>
     {
-        public Vector4 m_halfExtents { set; get; }
+        public Vector4 halfExtents { set; get; }
 
         public override uint Signature { set; get; } = 0x3444d2d5;
 
@@ -17,26 +17,26 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            m_halfExtents = br.ReadVector4();
+            halfExtents = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 8;
-            bw.WriteVector4(m_halfExtents);
+            bw.WriteVector4(halfExtents);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_halfExtents = xd.ReadVector4(xe, nameof(m_halfExtents));
+            halfExtents = xd.ReadVector4(xe, nameof(halfExtents));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(m_halfExtents), m_halfExtents);
+            xs.WriteVector4(xe, nameof(halfExtents), halfExtents);
         }
 
         public override bool Equals(object? obj)
@@ -48,7 +48,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_halfExtents.Equals(other.m_halfExtents) &&
+                   halfExtents.Equals(other.halfExtents) &&
                    Signature == other.Signature; ;
         }
 
@@ -56,7 +56,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_halfExtents);
+            hashcode.Add(halfExtents);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -6,104 +6,104 @@ namespace HKX2
 {
     // hkbFootIkDriverInfoLeg Signatire: 0x224b18d1 size: 96 flags: FLAGS_NONE
 
-    // m_prevAnkleRotLS m_class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_kneeAxisLS m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_footEndLS m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_footPlantedAnkleHeightMS m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_footRaisedAnkleHeightMS m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    // m_maxAnkleHeightMS m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // m_minAnkleHeightMS m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // m_maxKneeAngleDegrees m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // m_minKneeAngleDegrees m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // m_maxAnkleAngleDegrees m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // m_hipIndex m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // m_kneeIndex m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 78 flags: FLAGS_NONE enum: 
-    // m_ankleIndex m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // prevAnkleRotLS class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // kneeAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // footEndLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // footPlantedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // footRaisedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
+    // maxAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
+    // minAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
+    // maxKneeAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // minKneeAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
+    // maxAnkleAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // hipIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
+    // kneeIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 78 flags: FLAGS_NONE enum: 
+    // ankleIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkbFootIkDriverInfoLeg : IHavokObject, IEquatable<hkbFootIkDriverInfoLeg?>
     {
-        private Quaternion m_prevAnkleRotLS { set; get; }
-        public Vector4 m_kneeAxisLS { set; get; }
-        public Vector4 m_footEndLS { set; get; }
-        public float m_footPlantedAnkleHeightMS { set; get; }
-        public float m_footRaisedAnkleHeightMS { set; get; }
-        public float m_maxAnkleHeightMS { set; get; }
-        public float m_minAnkleHeightMS { set; get; }
-        public float m_maxKneeAngleDegrees { set; get; }
-        public float m_minKneeAngleDegrees { set; get; }
-        public float m_maxAnkleAngleDegrees { set; get; }
-        public short m_hipIndex { set; get; }
-        public short m_kneeIndex { set; get; }
-        public short m_ankleIndex { set; get; }
+        private Quaternion prevAnkleRotLS { set; get; }
+        public Vector4 kneeAxisLS { set; get; }
+        public Vector4 footEndLS { set; get; }
+        public float footPlantedAnkleHeightMS { set; get; }
+        public float footRaisedAnkleHeightMS { set; get; }
+        public float maxAnkleHeightMS { set; get; }
+        public float minAnkleHeightMS { set; get; }
+        public float maxKneeAngleDegrees { set; get; }
+        public float minKneeAngleDegrees { set; get; }
+        public float maxAnkleAngleDegrees { set; get; }
+        public short hipIndex { set; get; }
+        public short kneeIndex { set; get; }
+        public short ankleIndex { set; get; }
 
         public virtual uint Signature { set; get; } = 0x224b18d1;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_prevAnkleRotLS = des.ReadQuaternion(br);
-            m_kneeAxisLS = br.ReadVector4();
-            m_footEndLS = br.ReadVector4();
-            m_footPlantedAnkleHeightMS = br.ReadSingle();
-            m_footRaisedAnkleHeightMS = br.ReadSingle();
-            m_maxAnkleHeightMS = br.ReadSingle();
-            m_minAnkleHeightMS = br.ReadSingle();
-            m_maxKneeAngleDegrees = br.ReadSingle();
-            m_minKneeAngleDegrees = br.ReadSingle();
-            m_maxAnkleAngleDegrees = br.ReadSingle();
-            m_hipIndex = br.ReadInt16();
-            m_kneeIndex = br.ReadInt16();
-            m_ankleIndex = br.ReadInt16();
+            prevAnkleRotLS = des.ReadQuaternion(br);
+            kneeAxisLS = br.ReadVector4();
+            footEndLS = br.ReadVector4();
+            footPlantedAnkleHeightMS = br.ReadSingle();
+            footRaisedAnkleHeightMS = br.ReadSingle();
+            maxAnkleHeightMS = br.ReadSingle();
+            minAnkleHeightMS = br.ReadSingle();
+            maxKneeAngleDegrees = br.ReadSingle();
+            minKneeAngleDegrees = br.ReadSingle();
+            maxAnkleAngleDegrees = br.ReadSingle();
+            hipIndex = br.ReadInt16();
+            kneeIndex = br.ReadInt16();
+            ankleIndex = br.ReadInt16();
             br.Position += 14;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteQuaternion(bw, m_prevAnkleRotLS);
-            bw.WriteVector4(m_kneeAxisLS);
-            bw.WriteVector4(m_footEndLS);
-            bw.WriteSingle(m_footPlantedAnkleHeightMS);
-            bw.WriteSingle(m_footRaisedAnkleHeightMS);
-            bw.WriteSingle(m_maxAnkleHeightMS);
-            bw.WriteSingle(m_minAnkleHeightMS);
-            bw.WriteSingle(m_maxKneeAngleDegrees);
-            bw.WriteSingle(m_minKneeAngleDegrees);
-            bw.WriteSingle(m_maxAnkleAngleDegrees);
-            bw.WriteInt16(m_hipIndex);
-            bw.WriteInt16(m_kneeIndex);
-            bw.WriteInt16(m_ankleIndex);
+            s.WriteQuaternion(bw, prevAnkleRotLS);
+            bw.WriteVector4(kneeAxisLS);
+            bw.WriteVector4(footEndLS);
+            bw.WriteSingle(footPlantedAnkleHeightMS);
+            bw.WriteSingle(footRaisedAnkleHeightMS);
+            bw.WriteSingle(maxAnkleHeightMS);
+            bw.WriteSingle(minAnkleHeightMS);
+            bw.WriteSingle(maxKneeAngleDegrees);
+            bw.WriteSingle(minKneeAngleDegrees);
+            bw.WriteSingle(maxAnkleAngleDegrees);
+            bw.WriteInt16(hipIndex);
+            bw.WriteInt16(kneeIndex);
+            bw.WriteInt16(ankleIndex);
             bw.Position += 14;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_kneeAxisLS = xd.ReadVector4(xe, nameof(m_kneeAxisLS));
-            m_footEndLS = xd.ReadVector4(xe, nameof(m_footEndLS));
-            m_footPlantedAnkleHeightMS = xd.ReadSingle(xe, nameof(m_footPlantedAnkleHeightMS));
-            m_footRaisedAnkleHeightMS = xd.ReadSingle(xe, nameof(m_footRaisedAnkleHeightMS));
-            m_maxAnkleHeightMS = xd.ReadSingle(xe, nameof(m_maxAnkleHeightMS));
-            m_minAnkleHeightMS = xd.ReadSingle(xe, nameof(m_minAnkleHeightMS));
-            m_maxKneeAngleDegrees = xd.ReadSingle(xe, nameof(m_maxKneeAngleDegrees));
-            m_minKneeAngleDegrees = xd.ReadSingle(xe, nameof(m_minKneeAngleDegrees));
-            m_maxAnkleAngleDegrees = xd.ReadSingle(xe, nameof(m_maxAnkleAngleDegrees));
-            m_hipIndex = xd.ReadInt16(xe, nameof(m_hipIndex));
-            m_kneeIndex = xd.ReadInt16(xe, nameof(m_kneeIndex));
-            m_ankleIndex = xd.ReadInt16(xe, nameof(m_ankleIndex));
+            kneeAxisLS = xd.ReadVector4(xe, nameof(kneeAxisLS));
+            footEndLS = xd.ReadVector4(xe, nameof(footEndLS));
+            footPlantedAnkleHeightMS = xd.ReadSingle(xe, nameof(footPlantedAnkleHeightMS));
+            footRaisedAnkleHeightMS = xd.ReadSingle(xe, nameof(footRaisedAnkleHeightMS));
+            maxAnkleHeightMS = xd.ReadSingle(xe, nameof(maxAnkleHeightMS));
+            minAnkleHeightMS = xd.ReadSingle(xe, nameof(minAnkleHeightMS));
+            maxKneeAngleDegrees = xd.ReadSingle(xe, nameof(maxKneeAngleDegrees));
+            minKneeAngleDegrees = xd.ReadSingle(xe, nameof(minKneeAngleDegrees));
+            maxAnkleAngleDegrees = xd.ReadSingle(xe, nameof(maxAnkleAngleDegrees));
+            hipIndex = xd.ReadInt16(xe, nameof(hipIndex));
+            kneeIndex = xd.ReadInt16(xe, nameof(kneeIndex));
+            ankleIndex = xd.ReadInt16(xe, nameof(ankleIndex));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteSerializeIgnored(xe, nameof(m_prevAnkleRotLS));
-            xs.WriteVector4(xe, nameof(m_kneeAxisLS), m_kneeAxisLS);
-            xs.WriteVector4(xe, nameof(m_footEndLS), m_footEndLS);
-            xs.WriteFloat(xe, nameof(m_footPlantedAnkleHeightMS), m_footPlantedAnkleHeightMS);
-            xs.WriteFloat(xe, nameof(m_footRaisedAnkleHeightMS), m_footRaisedAnkleHeightMS);
-            xs.WriteFloat(xe, nameof(m_maxAnkleHeightMS), m_maxAnkleHeightMS);
-            xs.WriteFloat(xe, nameof(m_minAnkleHeightMS), m_minAnkleHeightMS);
-            xs.WriteFloat(xe, nameof(m_maxKneeAngleDegrees), m_maxKneeAngleDegrees);
-            xs.WriteFloat(xe, nameof(m_minKneeAngleDegrees), m_minKneeAngleDegrees);
-            xs.WriteFloat(xe, nameof(m_maxAnkleAngleDegrees), m_maxAnkleAngleDegrees);
-            xs.WriteNumber(xe, nameof(m_hipIndex), m_hipIndex);
-            xs.WriteNumber(xe, nameof(m_kneeIndex), m_kneeIndex);
-            xs.WriteNumber(xe, nameof(m_ankleIndex), m_ankleIndex);
+            xs.WriteSerializeIgnored(xe, nameof(prevAnkleRotLS));
+            xs.WriteVector4(xe, nameof(kneeAxisLS), kneeAxisLS);
+            xs.WriteVector4(xe, nameof(footEndLS), footEndLS);
+            xs.WriteFloat(xe, nameof(footPlantedAnkleHeightMS), footPlantedAnkleHeightMS);
+            xs.WriteFloat(xe, nameof(footRaisedAnkleHeightMS), footRaisedAnkleHeightMS);
+            xs.WriteFloat(xe, nameof(maxAnkleHeightMS), maxAnkleHeightMS);
+            xs.WriteFloat(xe, nameof(minAnkleHeightMS), minAnkleHeightMS);
+            xs.WriteFloat(xe, nameof(maxKneeAngleDegrees), maxKneeAngleDegrees);
+            xs.WriteFloat(xe, nameof(minKneeAngleDegrees), minKneeAngleDegrees);
+            xs.WriteFloat(xe, nameof(maxAnkleAngleDegrees), maxAnkleAngleDegrees);
+            xs.WriteNumber(xe, nameof(hipIndex), hipIndex);
+            xs.WriteNumber(xe, nameof(kneeIndex), kneeIndex);
+            xs.WriteNumber(xe, nameof(ankleIndex), ankleIndex);
         }
 
         public override bool Equals(object? obj)
@@ -114,36 +114,36 @@ namespace HKX2
         public bool Equals(hkbFootIkDriverInfoLeg? other)
         {
             return other is not null &&
-                   m_kneeAxisLS.Equals(other.m_kneeAxisLS) &&
-                   m_footEndLS.Equals(other.m_footEndLS) &&
-                   m_footPlantedAnkleHeightMS.Equals(other.m_footPlantedAnkleHeightMS) &&
-                   m_footRaisedAnkleHeightMS.Equals(other.m_footRaisedAnkleHeightMS) &&
-                   m_maxAnkleHeightMS.Equals(other.m_maxAnkleHeightMS) &&
-                   m_minAnkleHeightMS.Equals(other.m_minAnkleHeightMS) &&
-                   m_maxKneeAngleDegrees.Equals(other.m_maxKneeAngleDegrees) &&
-                   m_minKneeAngleDegrees.Equals(other.m_minKneeAngleDegrees) &&
-                   m_maxAnkleAngleDegrees.Equals(other.m_maxAnkleAngleDegrees) &&
-                   m_hipIndex.Equals(other.m_hipIndex) &&
-                   m_kneeIndex.Equals(other.m_kneeIndex) &&
-                   m_ankleIndex.Equals(other.m_ankleIndex) &&
+                   kneeAxisLS.Equals(other.kneeAxisLS) &&
+                   footEndLS.Equals(other.footEndLS) &&
+                   footPlantedAnkleHeightMS.Equals(other.footPlantedAnkleHeightMS) &&
+                   footRaisedAnkleHeightMS.Equals(other.footRaisedAnkleHeightMS) &&
+                   maxAnkleHeightMS.Equals(other.maxAnkleHeightMS) &&
+                   minAnkleHeightMS.Equals(other.minAnkleHeightMS) &&
+                   maxKneeAngleDegrees.Equals(other.maxKneeAngleDegrees) &&
+                   minKneeAngleDegrees.Equals(other.minKneeAngleDegrees) &&
+                   maxAnkleAngleDegrees.Equals(other.maxAnkleAngleDegrees) &&
+                   hipIndex.Equals(other.hipIndex) &&
+                   kneeIndex.Equals(other.kneeIndex) &&
+                   ankleIndex.Equals(other.ankleIndex) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_kneeAxisLS);
-            hashcode.Add(m_footEndLS);
-            hashcode.Add(m_footPlantedAnkleHeightMS);
-            hashcode.Add(m_footRaisedAnkleHeightMS);
-            hashcode.Add(m_maxAnkleHeightMS);
-            hashcode.Add(m_minAnkleHeightMS);
-            hashcode.Add(m_maxKneeAngleDegrees);
-            hashcode.Add(m_minKneeAngleDegrees);
-            hashcode.Add(m_maxAnkleAngleDegrees);
-            hashcode.Add(m_hipIndex);
-            hashcode.Add(m_kneeIndex);
-            hashcode.Add(m_ankleIndex);
+            hashcode.Add(kneeAxisLS);
+            hashcode.Add(footEndLS);
+            hashcode.Add(footPlantedAnkleHeightMS);
+            hashcode.Add(footRaisedAnkleHeightMS);
+            hashcode.Add(maxAnkleHeightMS);
+            hashcode.Add(minAnkleHeightMS);
+            hashcode.Add(maxKneeAngleDegrees);
+            hashcode.Add(minKneeAngleDegrees);
+            hashcode.Add(maxAnkleAngleDegrees);
+            hashcode.Add(hipIndex);
+            hashcode.Add(kneeIndex);
+            hashcode.Add(ankleIndex);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

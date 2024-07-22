@@ -6,65 +6,65 @@ namespace HKX2
 {
     // hkpCylinderShape Signatire: 0x3e463c3a size: 112 flags: FLAGS_NONE
 
-    // m_cylRadius m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // m_cylBaseRadiusFactorForHeightFieldCollisions m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    // m_vertexA m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_vertexB m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // m_perpendicular1 m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_perpendicular2 m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // cylRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // cylBaseRadiusFactorForHeightFieldCollisions class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
+    // vertexA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // vertexB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // perpendicular1 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // perpendicular2 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     public partial class hkpCylinderShape : hkpConvexShape, IEquatable<hkpCylinderShape?>
     {
-        public float m_cylRadius { set; get; }
-        public float m_cylBaseRadiusFactorForHeightFieldCollisions { set; get; }
-        public Vector4 m_vertexA { set; get; }
-        public Vector4 m_vertexB { set; get; }
-        public Vector4 m_perpendicular1 { set; get; }
-        public Vector4 m_perpendicular2 { set; get; }
+        public float cylRadius { set; get; }
+        public float cylBaseRadiusFactorForHeightFieldCollisions { set; get; }
+        public Vector4 vertexA { set; get; }
+        public Vector4 vertexB { set; get; }
+        public Vector4 perpendicular1 { set; get; }
+        public Vector4 perpendicular2 { set; get; }
 
         public override uint Signature { set; get; } = 0x3e463c3a;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_cylRadius = br.ReadSingle();
-            m_cylBaseRadiusFactorForHeightFieldCollisions = br.ReadSingle();
-            m_vertexA = br.ReadVector4();
-            m_vertexB = br.ReadVector4();
-            m_perpendicular1 = br.ReadVector4();
-            m_perpendicular2 = br.ReadVector4();
+            cylRadius = br.ReadSingle();
+            cylBaseRadiusFactorForHeightFieldCollisions = br.ReadSingle();
+            vertexA = br.ReadVector4();
+            vertexB = br.ReadVector4();
+            perpendicular1 = br.ReadVector4();
+            perpendicular2 = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteSingle(m_cylRadius);
-            bw.WriteSingle(m_cylBaseRadiusFactorForHeightFieldCollisions);
-            bw.WriteVector4(m_vertexA);
-            bw.WriteVector4(m_vertexB);
-            bw.WriteVector4(m_perpendicular1);
-            bw.WriteVector4(m_perpendicular2);
+            bw.WriteSingle(cylRadius);
+            bw.WriteSingle(cylBaseRadiusFactorForHeightFieldCollisions);
+            bw.WriteVector4(vertexA);
+            bw.WriteVector4(vertexB);
+            bw.WriteVector4(perpendicular1);
+            bw.WriteVector4(perpendicular2);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_cylRadius = xd.ReadSingle(xe, nameof(m_cylRadius));
-            m_cylBaseRadiusFactorForHeightFieldCollisions = xd.ReadSingle(xe, nameof(m_cylBaseRadiusFactorForHeightFieldCollisions));
-            m_vertexA = xd.ReadVector4(xe, nameof(m_vertexA));
-            m_vertexB = xd.ReadVector4(xe, nameof(m_vertexB));
-            m_perpendicular1 = xd.ReadVector4(xe, nameof(m_perpendicular1));
-            m_perpendicular2 = xd.ReadVector4(xe, nameof(m_perpendicular2));
+            cylRadius = xd.ReadSingle(xe, nameof(cylRadius));
+            cylBaseRadiusFactorForHeightFieldCollisions = xd.ReadSingle(xe, nameof(cylBaseRadiusFactorForHeightFieldCollisions));
+            vertexA = xd.ReadVector4(xe, nameof(vertexA));
+            vertexB = xd.ReadVector4(xe, nameof(vertexB));
+            perpendicular1 = xd.ReadVector4(xe, nameof(perpendicular1));
+            perpendicular2 = xd.ReadVector4(xe, nameof(perpendicular2));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteFloat(xe, nameof(m_cylRadius), m_cylRadius);
-            xs.WriteFloat(xe, nameof(m_cylBaseRadiusFactorForHeightFieldCollisions), m_cylBaseRadiusFactorForHeightFieldCollisions);
-            xs.WriteVector4(xe, nameof(m_vertexA), m_vertexA);
-            xs.WriteVector4(xe, nameof(m_vertexB), m_vertexB);
-            xs.WriteVector4(xe, nameof(m_perpendicular1), m_perpendicular1);
-            xs.WriteVector4(xe, nameof(m_perpendicular2), m_perpendicular2);
+            xs.WriteFloat(xe, nameof(cylRadius), cylRadius);
+            xs.WriteFloat(xe, nameof(cylBaseRadiusFactorForHeightFieldCollisions), cylBaseRadiusFactorForHeightFieldCollisions);
+            xs.WriteVector4(xe, nameof(vertexA), vertexA);
+            xs.WriteVector4(xe, nameof(vertexB), vertexB);
+            xs.WriteVector4(xe, nameof(perpendicular1), perpendicular1);
+            xs.WriteVector4(xe, nameof(perpendicular2), perpendicular2);
         }
 
         public override bool Equals(object? obj)
@@ -76,12 +76,12 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_cylRadius.Equals(other.m_cylRadius) &&
-                   m_cylBaseRadiusFactorForHeightFieldCollisions.Equals(other.m_cylBaseRadiusFactorForHeightFieldCollisions) &&
-                   m_vertexA.Equals(other.m_vertexA) &&
-                   m_vertexB.Equals(other.m_vertexB) &&
-                   m_perpendicular1.Equals(other.m_perpendicular1) &&
-                   m_perpendicular2.Equals(other.m_perpendicular2) &&
+                   cylRadius.Equals(other.cylRadius) &&
+                   cylBaseRadiusFactorForHeightFieldCollisions.Equals(other.cylBaseRadiusFactorForHeightFieldCollisions) &&
+                   vertexA.Equals(other.vertexA) &&
+                   vertexB.Equals(other.vertexB) &&
+                   perpendicular1.Equals(other.perpendicular1) &&
+                   perpendicular2.Equals(other.perpendicular2) &&
                    Signature == other.Signature; ;
         }
 
@@ -89,12 +89,12 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_cylRadius);
-            hashcode.Add(m_cylBaseRadiusFactorForHeightFieldCollisions);
-            hashcode.Add(m_vertexA);
-            hashcode.Add(m_vertexB);
-            hashcode.Add(m_perpendicular1);
-            hashcode.Add(m_perpendicular2);
+            hashcode.Add(cylRadius);
+            hashcode.Add(cylBaseRadiusFactorForHeightFieldCollisions);
+            hashcode.Add(vertexA);
+            hashcode.Add(vertexB);
+            hashcode.Add(perpendicular1);
+            hashcode.Add(perpendicular2);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

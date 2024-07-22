@@ -5,49 +5,49 @@ namespace HKX2
 {
     // hkpLinSoftConstraintAtom Signatire: 0x52b27d69 size: 12 flags: FLAGS_NONE
 
-    // m_axisIndex m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // m_tau m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // m_damping m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // axisIndex class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkpLinSoftConstraintAtom : hkpConstraintAtom, IEquatable<hkpLinSoftConstraintAtom?>
     {
-        public byte m_axisIndex { set; get; }
-        public float m_tau { set; get; }
-        public float m_damping { set; get; }
+        public byte axisIndex { set; get; }
+        public float tau { set; get; }
+        public float damping { set; get; }
 
         public override uint Signature { set; get; } = 0x52b27d69;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_axisIndex = br.ReadByte();
+            axisIndex = br.ReadByte();
             br.Position += 1;
-            m_tau = br.ReadSingle();
-            m_damping = br.ReadSingle();
+            tau = br.ReadSingle();
+            damping = br.ReadSingle();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(m_axisIndex);
+            bw.WriteByte(axisIndex);
             bw.Position += 1;
-            bw.WriteSingle(m_tau);
-            bw.WriteSingle(m_damping);
+            bw.WriteSingle(tau);
+            bw.WriteSingle(damping);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_axisIndex = xd.ReadByte(xe, nameof(m_axisIndex));
-            m_tau = xd.ReadSingle(xe, nameof(m_tau));
-            m_damping = xd.ReadSingle(xe, nameof(m_damping));
+            axisIndex = xd.ReadByte(xe, nameof(axisIndex));
+            tau = xd.ReadSingle(xe, nameof(tau));
+            damping = xd.ReadSingle(xe, nameof(damping));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(m_axisIndex), m_axisIndex);
-            xs.WriteFloat(xe, nameof(m_tau), m_tau);
-            xs.WriteFloat(xe, nameof(m_damping), m_damping);
+            xs.WriteNumber(xe, nameof(axisIndex), axisIndex);
+            xs.WriteFloat(xe, nameof(tau), tau);
+            xs.WriteFloat(xe, nameof(damping), damping);
         }
 
         public override bool Equals(object? obj)
@@ -59,9 +59,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_axisIndex.Equals(other.m_axisIndex) &&
-                   m_tau.Equals(other.m_tau) &&
-                   m_damping.Equals(other.m_damping) &&
+                   axisIndex.Equals(other.axisIndex) &&
+                   tau.Equals(other.tau) &&
+                   damping.Equals(other.damping) &&
                    Signature == other.Signature; ;
         }
 
@@ -69,9 +69,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_axisIndex);
-            hashcode.Add(m_tau);
-            hashcode.Add(m_damping);
+            hashcode.Add(axisIndex);
+            hashcode.Add(tau);
+            hashcode.Add(damping);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

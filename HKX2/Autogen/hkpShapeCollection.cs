@@ -5,12 +5,12 @@ namespace HKX2
 {
     // hkpShapeCollection Signatire: 0xe8c3991d size: 48 flags: FLAGS_NONE
 
-    // m_disableWelding m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // m_collectionType m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 41 flags: FLAGS_NONE enum: CollectionType
+    // disableWelding class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // collectionType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 41 flags: FLAGS_NONE enum: CollectionType
     public partial class hkpShapeCollection : hkpShape, IEquatable<hkpShapeCollection?>
     {
-        public bool m_disableWelding { set; get; }
-        public byte m_collectionType { set; get; }
+        public bool disableWelding { set; get; }
+        public byte collectionType { set; get; }
 
         public override uint Signature { set; get; } = 0xe8c3991d;
 
@@ -18,8 +18,8 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            m_disableWelding = br.ReadBoolean();
-            m_collectionType = br.ReadByte();
+            disableWelding = br.ReadBoolean();
+            collectionType = br.ReadByte();
             br.Position += 6;
         }
 
@@ -27,23 +27,23 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.Position += 8;
-            bw.WriteBoolean(m_disableWelding);
-            bw.WriteByte(m_collectionType);
+            bw.WriteBoolean(disableWelding);
+            bw.WriteByte(collectionType);
             bw.Position += 6;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_disableWelding = xd.ReadBoolean(xe, nameof(m_disableWelding));
-            m_collectionType = xd.ReadFlag<CollectionType, byte>(xe, nameof(m_collectionType));
+            disableWelding = xd.ReadBoolean(xe, nameof(disableWelding));
+            collectionType = xd.ReadFlag<CollectionType, byte>(xe, nameof(collectionType));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteBoolean(xe, nameof(m_disableWelding), m_disableWelding);
-            xs.WriteEnum<CollectionType, byte>(xe, nameof(m_collectionType), m_collectionType);
+            xs.WriteBoolean(xe, nameof(disableWelding), disableWelding);
+            xs.WriteEnum<CollectionType, byte>(xe, nameof(collectionType), collectionType);
         }
 
         public override bool Equals(object? obj)
@@ -55,8 +55,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_disableWelding.Equals(other.m_disableWelding) &&
-                   m_collectionType.Equals(other.m_collectionType) &&
+                   disableWelding.Equals(other.disableWelding) &&
+                   collectionType.Equals(other.collectionType) &&
                    Signature == other.Signature; ;
         }
 
@@ -64,8 +64,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_disableWelding);
-            hashcode.Add(m_collectionType);
+            hashcode.Add(disableWelding);
+            hashcode.Add(collectionType);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkpOverwritePivotConstraintAtom Signatire: 0x1f11b467 size: 4 flags: FLAGS_NONE
 
-    // m_copyToPivotBFromPivotA m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // copyToPivotBFromPivotA class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
     public partial class hkpOverwritePivotConstraintAtom : hkpConstraintAtom, IEquatable<hkpOverwritePivotConstraintAtom?>
     {
-        public byte m_copyToPivotBFromPivotA { set; get; }
+        public byte copyToPivotBFromPivotA { set; get; }
 
         public override uint Signature { set; get; } = 0x1f11b467;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_copyToPivotBFromPivotA = br.ReadByte();
+            copyToPivotBFromPivotA = br.ReadByte();
             br.Position += 1;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(m_copyToPivotBFromPivotA);
+            bw.WriteByte(copyToPivotBFromPivotA);
             bw.Position += 1;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_copyToPivotBFromPivotA = xd.ReadByte(xe, nameof(m_copyToPivotBFromPivotA));
+            copyToPivotBFromPivotA = xd.ReadByte(xe, nameof(copyToPivotBFromPivotA));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(m_copyToPivotBFromPivotA), m_copyToPivotBFromPivotA);
+            xs.WriteNumber(xe, nameof(copyToPivotBFromPivotA), copyToPivotBFromPivotA);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_copyToPivotBFromPivotA.Equals(other.m_copyToPivotBFromPivotA) &&
+                   copyToPivotBFromPivotA.Equals(other.copyToPivotBFromPivotA) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_copyToPivotBFromPivotA);
+            hashcode.Add(copyToPivotBFromPivotA);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

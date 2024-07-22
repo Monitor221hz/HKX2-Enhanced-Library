@@ -7,35 +7,35 @@ namespace HKX2
 {
     // hkxTriangleSelectionChannel Signatire: 0xa02cfca9 size: 32 flags: FLAGS_NONE
 
-    // m_selectedTriangles m_class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // selectedTriangles class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkxTriangleSelectionChannel : hkReferencedObject, IEquatable<hkxTriangleSelectionChannel?>
     {
-        public IList<int> m_selectedTriangles { set; get; } = Array.Empty<int>();
+        public IList<int> selectedTriangles { set; get; } = Array.Empty<int>();
 
         public override uint Signature { set; get; } = 0xa02cfca9;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_selectedTriangles = des.ReadInt32Array(br);
+            selectedTriangles = des.ReadInt32Array(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteInt32Array(bw, m_selectedTriangles);
+            s.WriteInt32Array(bw, selectedTriangles);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_selectedTriangles = xd.ReadInt32Array(xe, nameof(m_selectedTriangles));
+            selectedTriangles = xd.ReadInt32Array(xe, nameof(selectedTriangles));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumberArray(xe, nameof(m_selectedTriangles), m_selectedTriangles);
+            xs.WriteNumberArray(xe, nameof(selectedTriangles), selectedTriangles);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_selectedTriangles.SequenceEqual(other.m_selectedTriangles) &&
+                   selectedTriangles.SequenceEqual(other.selectedTriangles) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_selectedTriangles.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(selectedTriangles.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

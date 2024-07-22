@@ -8,35 +8,35 @@ namespace HKX2
 {
     // hkxVertexVectorDataChannel Signatire: 0x2ea63179 size: 32 flags: FLAGS_NONE
 
-    // m_perVertexVectors m_class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // perVertexVectors class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkxVertexVectorDataChannel : hkReferencedObject, IEquatable<hkxVertexVectorDataChannel?>
     {
-        public IList<Vector4> m_perVertexVectors { set; get; } = Array.Empty<Vector4>();
+        public IList<Vector4> perVertexVectors { set; get; } = Array.Empty<Vector4>();
 
         public override uint Signature { set; get; } = 0x2ea63179;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_perVertexVectors = des.ReadVector4Array(br);
+            perVertexVectors = des.ReadVector4Array(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteVector4Array(bw, m_perVertexVectors);
+            s.WriteVector4Array(bw, perVertexVectors);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_perVertexVectors = xd.ReadVector4Array(xe, nameof(m_perVertexVectors));
+            perVertexVectors = xd.ReadVector4Array(xe, nameof(perVertexVectors));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4Array(xe, nameof(m_perVertexVectors), m_perVertexVectors);
+            xs.WriteVector4Array(xe, nameof(perVertexVectors), perVertexVectors);
         }
 
         public override bool Equals(object? obj)
@@ -48,7 +48,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_perVertexVectors.SequenceEqual(other.m_perVertexVectors) &&
+                   perVertexVectors.SequenceEqual(other.perVertexVectors) &&
                    Signature == other.Signature; ;
         }
 
@@ -56,7 +56,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_perVertexVectors.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(perVertexVectors.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

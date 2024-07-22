@@ -6,41 +6,41 @@ namespace HKX2
 {
     // hkpCenterOfMassChangerModifierConstraintAtom Signatire: 0x1d7dbdd2 size: 80 flags: FLAGS_NONE
 
-    // m_displacementA m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_displacementB m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // displacementA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // displacementB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     public partial class hkpCenterOfMassChangerModifierConstraintAtom : hkpModifierConstraintAtom, IEquatable<hkpCenterOfMassChangerModifierConstraintAtom?>
     {
-        public Vector4 m_displacementA { set; get; }
-        public Vector4 m_displacementB { set; get; }
+        public Vector4 displacementA { set; get; }
+        public Vector4 displacementB { set; get; }
 
         public override uint Signature { set; get; } = 0x1d7dbdd2;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_displacementA = br.ReadVector4();
-            m_displacementB = br.ReadVector4();
+            displacementA = br.ReadVector4();
+            displacementB = br.ReadVector4();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteVector4(m_displacementA);
-            bw.WriteVector4(m_displacementB);
+            bw.WriteVector4(displacementA);
+            bw.WriteVector4(displacementB);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_displacementA = xd.ReadVector4(xe, nameof(m_displacementA));
-            m_displacementB = xd.ReadVector4(xe, nameof(m_displacementB));
+            displacementA = xd.ReadVector4(xe, nameof(displacementA));
+            displacementB = xd.ReadVector4(xe, nameof(displacementB));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(m_displacementA), m_displacementA);
-            xs.WriteVector4(xe, nameof(m_displacementB), m_displacementB);
+            xs.WriteVector4(xe, nameof(displacementA), displacementA);
+            xs.WriteVector4(xe, nameof(displacementB), displacementB);
         }
 
         public override bool Equals(object? obj)
@@ -52,8 +52,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_displacementA.Equals(other.m_displacementA) &&
-                   m_displacementB.Equals(other.m_displacementB) &&
+                   displacementA.Equals(other.displacementA) &&
+                   displacementB.Equals(other.displacementB) &&
                    Signature == other.Signature; ;
         }
 
@@ -61,8 +61,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_displacementA);
-            hashcode.Add(m_displacementB);
+            hashcode.Add(displacementA);
+            hashcode.Add(displacementB);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

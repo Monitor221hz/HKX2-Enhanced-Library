@@ -7,41 +7,41 @@ namespace HKX2
 {
     // hkpDisplayBindingDataPhysicsSystem Signatire: 0xc8ae86a7 size: 40 flags: FLAGS_NONE
 
-    // m_bindings m_class: hkpDisplayBindingDataRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_system m_class: hkpPhysicsSystem Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // bindings class: hkpDisplayBindingDataRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // system class: hkpPhysicsSystem Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     public partial class hkpDisplayBindingDataPhysicsSystem : hkReferencedObject, IEquatable<hkpDisplayBindingDataPhysicsSystem?>
     {
-        public IList<hkpDisplayBindingDataRigidBody> m_bindings { set; get; } = Array.Empty<hkpDisplayBindingDataRigidBody>();
-        public hkpPhysicsSystem? m_system { set; get; }
+        public IList<hkpDisplayBindingDataRigidBody> bindings { set; get; } = Array.Empty<hkpDisplayBindingDataRigidBody>();
+        public hkpPhysicsSystem? system { set; get; }
 
         public override uint Signature { set; get; } = 0xc8ae86a7;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_bindings = des.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(br);
-            m_system = des.ReadClassPointer<hkpPhysicsSystem>(br);
+            bindings = des.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(br);
+            system = des.ReadClassPointer<hkpPhysicsSystem>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointerArray(bw, m_bindings);
-            s.WriteClassPointer(bw, m_system);
+            s.WriteClassPointerArray(bw, bindings);
+            s.WriteClassPointer(bw, system);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_bindings = xd.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(xe, nameof(m_bindings));
-            m_system = xd.ReadClassPointer<hkpPhysicsSystem>(xe, nameof(m_system));
+            bindings = xd.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(xe, nameof(bindings));
+            system = xd.ReadClassPointer<hkpPhysicsSystem>(xe, nameof(system));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(m_bindings), m_bindings);
-            xs.WriteClassPointer(xe, nameof(m_system), m_system);
+            xs.WriteClassPointerArray(xe, nameof(bindings), bindings);
+            xs.WriteClassPointer(xe, nameof(system), system);
         }
 
         public override bool Equals(object? obj)
@@ -53,8 +53,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_bindings.SequenceEqual(other.m_bindings) &&
-                   ((m_system is null && other.m_system is null) || (m_system is not null && other.m_system is not null && m_system.Equals((IHavokObject)other.m_system))) &&
+                   bindings.SequenceEqual(other.bindings) &&
+                   ((system is null && other.system is null) || (system is not null && other.system is not null && system.Equals((IHavokObject)other.system))) &&
                    Signature == other.Signature; ;
         }
 
@@ -62,8 +62,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_bindings.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_system);
+            hashcode.Add(bindings.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(system);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

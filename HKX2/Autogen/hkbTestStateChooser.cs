@@ -5,13 +5,13 @@ namespace HKX2
 {
     // hkbTestStateChooser Signatire: 0xc0fcc436 size: 32 flags: FLAGS_NONE
 
-    // @int m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_real m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // @string m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // @int class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // real class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
+    // @string class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     public partial class hkbTestStateChooser : hkbStateChooser, IEquatable<hkbTestStateChooser?>
     {
         public int @int { set; get; }
-        public float m_real { set; get; }
+        public float real { set; get; }
         public string @string { set; get; } = "";
 
         public override uint Signature { set; get; } = 0xc0fcc436;
@@ -20,7 +20,7 @@ namespace HKX2
         {
             base.Read(des, br);
             @int = br.ReadInt32();
-            m_real = br.ReadSingle();
+            real = br.ReadSingle();
             @string = des.ReadStringPointer(br);
         }
 
@@ -28,7 +28,7 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.WriteInt32(@int);
-            bw.WriteSingle(m_real);
+            bw.WriteSingle(real);
             s.WriteStringPointer(bw, @string);
         }
 
@@ -36,7 +36,7 @@ namespace HKX2
         {
             base.ReadXml(xd, xe);
             @int = xd.ReadInt32(xe, nameof(@int));
-            m_real = xd.ReadSingle(xe, nameof(m_real));
+            real = xd.ReadSingle(xe, nameof(real));
             @string = xd.ReadString(xe, nameof(@string));
         }
 
@@ -44,7 +44,7 @@ namespace HKX2
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(@int), @int);
-            xs.WriteFloat(xe, nameof(m_real), m_real);
+            xs.WriteFloat(xe, nameof(real), real);
             xs.WriteString(xe, nameof(@string), @string);
         }
 
@@ -58,7 +58,7 @@ namespace HKX2
             return other is not null &&
                    base.Equals(other) &&
                    @int.Equals(other.@int) &&
-                   m_real.Equals(other.m_real) &&
+                   real.Equals(other.real) &&
                    (@string is null && other.@string is null || @string == other.@string || @string is null && other.@string == "" || @string == "" && other.@string is null) &&
                    Signature == other.Signature; ;
         }
@@ -68,7 +68,7 @@ namespace HKX2
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
             hashcode.Add(@int);
-            hashcode.Add(m_real);
+            hashcode.Add(real);
             hashcode.Add(@string);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();

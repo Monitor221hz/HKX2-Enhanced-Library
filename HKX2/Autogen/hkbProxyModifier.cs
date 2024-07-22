@@ -6,198 +6,198 @@ namespace HKX2
 {
     // hkbProxyModifier Signatire: 0x8a41554f size: 288 flags: FLAGS_NONE
 
-    // m_proxyInfo m_class: hkbProxyModifierProxyInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_linearVelocity m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // m_horizontalGain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // m_verticalGain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum: 
-    // m_maxHorizontalSeparation m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // m_maxVerticalSeparation m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    // m_verticalDisplacementError m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // m_verticalDisplacementErrorGain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // m_maxVerticalDisplacement m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    // m_minVerticalDisplacement m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
-    // m_capsuleHeight m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
-    // m_capsuleRadius m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum: 
-    // m_maxSlopeForRotation m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 216 flags: FLAGS_NONE enum: 
-    // m_collisionFilterInfo m_class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: FLAGS_NONE enum: 
-    // m_phantomType m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 224 flags: FLAGS_NONE enum: PhantomType
-    // m_linearVelocityMode m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 225 flags: FLAGS_NONE enum: LinearVelocityMode
-    // m_ignoreIncomingRotation m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 226 flags: FLAGS_NONE enum: 
-    // m_ignoreCollisionDuringRotation m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 227 flags: FLAGS_NONE enum: 
-    // m_ignoreIncomingTranslation m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 228 flags: FLAGS_NONE enum: 
-    // m_includeDownwardMomentum m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 229 flags: FLAGS_NONE enum: 
-    // m_followWorldFromModel m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 230 flags: FLAGS_NONE enum: 
-    // m_isTouchingGround m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 231 flags: FLAGS_NONE enum: 
-    // m_characterProxy m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_phantom m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_phantomShape m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_horizontalDisplacement m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_verticalDisplacement m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_timestep m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 276 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_previousFrameFollowWorldFromModel m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // proxyInfo class: hkbProxyModifierProxyInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // linearVelocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
+    // horizontalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
+    // verticalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum: 
+    // maxHorizontalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
+    // maxVerticalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
+    // verticalDisplacementError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
+    // verticalDisplacementErrorGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
+    // maxVerticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
+    // minVerticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
+    // capsuleHeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
+    // capsuleRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum: 
+    // maxSlopeForRotation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 216 flags: FLAGS_NONE enum: 
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: FLAGS_NONE enum: 
+    // phantomType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 224 flags: FLAGS_NONE enum: PhantomType
+    // linearVelocityMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 225 flags: FLAGS_NONE enum: LinearVelocityMode
+    // ignoreIncomingRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 226 flags: FLAGS_NONE enum: 
+    // ignoreCollisionDuringRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 227 flags: FLAGS_NONE enum: 
+    // ignoreIncomingTranslation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 228 flags: FLAGS_NONE enum: 
+    // includeDownwardMomentum class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 229 flags: FLAGS_NONE enum: 
+    // followWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 230 flags: FLAGS_NONE enum: 
+    // isTouchingGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 231 flags: FLAGS_NONE enum: 
+    // characterProxy class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // phantom class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // phantomShape class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // horizontalDisplacement class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // verticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // timestep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 276 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // previousFrameFollowWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbProxyModifier : hkbModifier, IEquatable<hkbProxyModifier?>
     {
-        public hkbProxyModifierProxyInfo m_proxyInfo { set; get; } = new();
-        public Vector4 m_linearVelocity { set; get; }
-        public float m_horizontalGain { set; get; }
-        public float m_verticalGain { set; get; }
-        public float m_maxHorizontalSeparation { set; get; }
-        public float m_maxVerticalSeparation { set; get; }
-        public float m_verticalDisplacementError { set; get; }
-        public float m_verticalDisplacementErrorGain { set; get; }
-        public float m_maxVerticalDisplacement { set; get; }
-        public float m_minVerticalDisplacement { set; get; }
-        public float m_capsuleHeight { set; get; }
-        public float m_capsuleRadius { set; get; }
-        public float m_maxSlopeForRotation { set; get; }
-        public uint m_collisionFilterInfo { set; get; }
-        public sbyte m_phantomType { set; get; }
-        public sbyte m_linearVelocityMode { set; get; }
-        public bool m_ignoreIncomingRotation { set; get; }
-        public bool m_ignoreCollisionDuringRotation { set; get; }
-        public bool m_ignoreIncomingTranslation { set; get; }
-        public bool m_includeDownwardMomentum { set; get; }
-        public bool m_followWorldFromModel { set; get; }
-        public bool m_isTouchingGround { set; get; }
-        private object? m_characterProxy { set; get; }
-        private object? m_phantom { set; get; }
-        private object? m_phantomShape { set; get; }
-        private Vector4 m_horizontalDisplacement { set; get; }
-        private float m_verticalDisplacement { set; get; }
-        private float m_timestep { set; get; }
-        private bool m_previousFrameFollowWorldFromModel { set; get; }
+        public hkbProxyModifierProxyInfo proxyInfo { set; get; } = new();
+        public Vector4 linearVelocity { set; get; }
+        public float horizontalGain { set; get; }
+        public float verticalGain { set; get; }
+        public float maxHorizontalSeparation { set; get; }
+        public float maxVerticalSeparation { set; get; }
+        public float verticalDisplacementError { set; get; }
+        public float verticalDisplacementErrorGain { set; get; }
+        public float maxVerticalDisplacement { set; get; }
+        public float minVerticalDisplacement { set; get; }
+        public float capsuleHeight { set; get; }
+        public float capsuleRadius { set; get; }
+        public float maxSlopeForRotation { set; get; }
+        public uint collisionFilterInfo { set; get; }
+        public sbyte phantomType { set; get; }
+        public sbyte linearVelocityMode { set; get; }
+        public bool ignoreIncomingRotation { set; get; }
+        public bool ignoreCollisionDuringRotation { set; get; }
+        public bool ignoreIncomingTranslation { set; get; }
+        public bool includeDownwardMomentum { set; get; }
+        public bool followWorldFromModel { set; get; }
+        public bool isTouchingGround { set; get; }
+        private object? characterProxy { set; get; }
+        private object? phantom { set; get; }
+        private object? phantomShape { set; get; }
+        private Vector4 horizontalDisplacement { set; get; }
+        private float verticalDisplacement { set; get; }
+        private float timestep { set; get; }
+        private bool previousFrameFollowWorldFromModel { set; get; }
 
         public override uint Signature { set; get; } = 0x8a41554f;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_proxyInfo.Read(des, br);
-            m_linearVelocity = br.ReadVector4();
-            m_horizontalGain = br.ReadSingle();
-            m_verticalGain = br.ReadSingle();
-            m_maxHorizontalSeparation = br.ReadSingle();
-            m_maxVerticalSeparation = br.ReadSingle();
-            m_verticalDisplacementError = br.ReadSingle();
-            m_verticalDisplacementErrorGain = br.ReadSingle();
-            m_maxVerticalDisplacement = br.ReadSingle();
-            m_minVerticalDisplacement = br.ReadSingle();
-            m_capsuleHeight = br.ReadSingle();
-            m_capsuleRadius = br.ReadSingle();
-            m_maxSlopeForRotation = br.ReadSingle();
-            m_collisionFilterInfo = br.ReadUInt32();
-            m_phantomType = br.ReadSByte();
-            m_linearVelocityMode = br.ReadSByte();
-            m_ignoreIncomingRotation = br.ReadBoolean();
-            m_ignoreCollisionDuringRotation = br.ReadBoolean();
-            m_ignoreIncomingTranslation = br.ReadBoolean();
-            m_includeDownwardMomentum = br.ReadBoolean();
-            m_followWorldFromModel = br.ReadBoolean();
-            m_isTouchingGround = br.ReadBoolean();
+            proxyInfo.Read(des, br);
+            linearVelocity = br.ReadVector4();
+            horizontalGain = br.ReadSingle();
+            verticalGain = br.ReadSingle();
+            maxHorizontalSeparation = br.ReadSingle();
+            maxVerticalSeparation = br.ReadSingle();
+            verticalDisplacementError = br.ReadSingle();
+            verticalDisplacementErrorGain = br.ReadSingle();
+            maxVerticalDisplacement = br.ReadSingle();
+            minVerticalDisplacement = br.ReadSingle();
+            capsuleHeight = br.ReadSingle();
+            capsuleRadius = br.ReadSingle();
+            maxSlopeForRotation = br.ReadSingle();
+            collisionFilterInfo = br.ReadUInt32();
+            phantomType = br.ReadSByte();
+            linearVelocityMode = br.ReadSByte();
+            ignoreIncomingRotation = br.ReadBoolean();
+            ignoreCollisionDuringRotation = br.ReadBoolean();
+            ignoreIncomingTranslation = br.ReadBoolean();
+            includeDownwardMomentum = br.ReadBoolean();
+            followWorldFromModel = br.ReadBoolean();
+            isTouchingGround = br.ReadBoolean();
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
-            m_horizontalDisplacement = br.ReadVector4();
-            m_verticalDisplacement = br.ReadSingle();
-            m_timestep = br.ReadSingle();
-            m_previousFrameFollowWorldFromModel = br.ReadBoolean();
+            horizontalDisplacement = br.ReadVector4();
+            verticalDisplacement = br.ReadSingle();
+            timestep = br.ReadSingle();
+            previousFrameFollowWorldFromModel = br.ReadBoolean();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            m_proxyInfo.Write(s, bw);
-            bw.WriteVector4(m_linearVelocity);
-            bw.WriteSingle(m_horizontalGain);
-            bw.WriteSingle(m_verticalGain);
-            bw.WriteSingle(m_maxHorizontalSeparation);
-            bw.WriteSingle(m_maxVerticalSeparation);
-            bw.WriteSingle(m_verticalDisplacementError);
-            bw.WriteSingle(m_verticalDisplacementErrorGain);
-            bw.WriteSingle(m_maxVerticalDisplacement);
-            bw.WriteSingle(m_minVerticalDisplacement);
-            bw.WriteSingle(m_capsuleHeight);
-            bw.WriteSingle(m_capsuleRadius);
-            bw.WriteSingle(m_maxSlopeForRotation);
-            bw.WriteUInt32(m_collisionFilterInfo);
-            bw.WriteSByte(m_phantomType);
-            bw.WriteSByte(m_linearVelocityMode);
-            bw.WriteBoolean(m_ignoreIncomingRotation);
-            bw.WriteBoolean(m_ignoreCollisionDuringRotation);
-            bw.WriteBoolean(m_ignoreIncomingTranslation);
-            bw.WriteBoolean(m_includeDownwardMomentum);
-            bw.WriteBoolean(m_followWorldFromModel);
-            bw.WriteBoolean(m_isTouchingGround);
+            proxyInfo.Write(s, bw);
+            bw.WriteVector4(linearVelocity);
+            bw.WriteSingle(horizontalGain);
+            bw.WriteSingle(verticalGain);
+            bw.WriteSingle(maxHorizontalSeparation);
+            bw.WriteSingle(maxVerticalSeparation);
+            bw.WriteSingle(verticalDisplacementError);
+            bw.WriteSingle(verticalDisplacementErrorGain);
+            bw.WriteSingle(maxVerticalDisplacement);
+            bw.WriteSingle(minVerticalDisplacement);
+            bw.WriteSingle(capsuleHeight);
+            bw.WriteSingle(capsuleRadius);
+            bw.WriteSingle(maxSlopeForRotation);
+            bw.WriteUInt32(collisionFilterInfo);
+            bw.WriteSByte(phantomType);
+            bw.WriteSByte(linearVelocityMode);
+            bw.WriteBoolean(ignoreIncomingRotation);
+            bw.WriteBoolean(ignoreCollisionDuringRotation);
+            bw.WriteBoolean(ignoreIncomingTranslation);
+            bw.WriteBoolean(includeDownwardMomentum);
+            bw.WriteBoolean(followWorldFromModel);
+            bw.WriteBoolean(isTouchingGround);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
-            bw.WriteVector4(m_horizontalDisplacement);
-            bw.WriteSingle(m_verticalDisplacement);
-            bw.WriteSingle(m_timestep);
-            bw.WriteBoolean(m_previousFrameFollowWorldFromModel);
+            bw.WriteVector4(horizontalDisplacement);
+            bw.WriteSingle(verticalDisplacement);
+            bw.WriteSingle(timestep);
+            bw.WriteBoolean(previousFrameFollowWorldFromModel);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_proxyInfo = xd.ReadClass<hkbProxyModifierProxyInfo>(xe, nameof(m_proxyInfo));
-            m_linearVelocity = xd.ReadVector4(xe, nameof(m_linearVelocity));
-            m_horizontalGain = xd.ReadSingle(xe, nameof(m_horizontalGain));
-            m_verticalGain = xd.ReadSingle(xe, nameof(m_verticalGain));
-            m_maxHorizontalSeparation = xd.ReadSingle(xe, nameof(m_maxHorizontalSeparation));
-            m_maxVerticalSeparation = xd.ReadSingle(xe, nameof(m_maxVerticalSeparation));
-            m_verticalDisplacementError = xd.ReadSingle(xe, nameof(m_verticalDisplacementError));
-            m_verticalDisplacementErrorGain = xd.ReadSingle(xe, nameof(m_verticalDisplacementErrorGain));
-            m_maxVerticalDisplacement = xd.ReadSingle(xe, nameof(m_maxVerticalDisplacement));
-            m_minVerticalDisplacement = xd.ReadSingle(xe, nameof(m_minVerticalDisplacement));
-            m_capsuleHeight = xd.ReadSingle(xe, nameof(m_capsuleHeight));
-            m_capsuleRadius = xd.ReadSingle(xe, nameof(m_capsuleRadius));
-            m_maxSlopeForRotation = xd.ReadSingle(xe, nameof(m_maxSlopeForRotation));
-            m_collisionFilterInfo = xd.ReadUInt32(xe, nameof(m_collisionFilterInfo));
-            m_phantomType = xd.ReadFlag<PhantomType, sbyte>(xe, nameof(m_phantomType));
-            m_linearVelocityMode = xd.ReadFlag<LinearVelocityMode, sbyte>(xe, nameof(m_linearVelocityMode));
-            m_ignoreIncomingRotation = xd.ReadBoolean(xe, nameof(m_ignoreIncomingRotation));
-            m_ignoreCollisionDuringRotation = xd.ReadBoolean(xe, nameof(m_ignoreCollisionDuringRotation));
-            m_ignoreIncomingTranslation = xd.ReadBoolean(xe, nameof(m_ignoreIncomingTranslation));
-            m_includeDownwardMomentum = xd.ReadBoolean(xe, nameof(m_includeDownwardMomentum));
-            m_followWorldFromModel = xd.ReadBoolean(xe, nameof(m_followWorldFromModel));
-            m_isTouchingGround = xd.ReadBoolean(xe, nameof(m_isTouchingGround));
+            proxyInfo = xd.ReadClass<hkbProxyModifierProxyInfo>(xe, nameof(proxyInfo));
+            linearVelocity = xd.ReadVector4(xe, nameof(linearVelocity));
+            horizontalGain = xd.ReadSingle(xe, nameof(horizontalGain));
+            verticalGain = xd.ReadSingle(xe, nameof(verticalGain));
+            maxHorizontalSeparation = xd.ReadSingle(xe, nameof(maxHorizontalSeparation));
+            maxVerticalSeparation = xd.ReadSingle(xe, nameof(maxVerticalSeparation));
+            verticalDisplacementError = xd.ReadSingle(xe, nameof(verticalDisplacementError));
+            verticalDisplacementErrorGain = xd.ReadSingle(xe, nameof(verticalDisplacementErrorGain));
+            maxVerticalDisplacement = xd.ReadSingle(xe, nameof(maxVerticalDisplacement));
+            minVerticalDisplacement = xd.ReadSingle(xe, nameof(minVerticalDisplacement));
+            capsuleHeight = xd.ReadSingle(xe, nameof(capsuleHeight));
+            capsuleRadius = xd.ReadSingle(xe, nameof(capsuleRadius));
+            maxSlopeForRotation = xd.ReadSingle(xe, nameof(maxSlopeForRotation));
+            collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
+            phantomType = xd.ReadFlag<PhantomType, sbyte>(xe, nameof(phantomType));
+            linearVelocityMode = xd.ReadFlag<LinearVelocityMode, sbyte>(xe, nameof(linearVelocityMode));
+            ignoreIncomingRotation = xd.ReadBoolean(xe, nameof(ignoreIncomingRotation));
+            ignoreCollisionDuringRotation = xd.ReadBoolean(xe, nameof(ignoreCollisionDuringRotation));
+            ignoreIncomingTranslation = xd.ReadBoolean(xe, nameof(ignoreIncomingTranslation));
+            includeDownwardMomentum = xd.ReadBoolean(xe, nameof(includeDownwardMomentum));
+            followWorldFromModel = xd.ReadBoolean(xe, nameof(followWorldFromModel));
+            isTouchingGround = xd.ReadBoolean(xe, nameof(isTouchingGround));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkbProxyModifierProxyInfo>(xe, nameof(m_proxyInfo), m_proxyInfo);
-            xs.WriteVector4(xe, nameof(m_linearVelocity), m_linearVelocity);
-            xs.WriteFloat(xe, nameof(m_horizontalGain), m_horizontalGain);
-            xs.WriteFloat(xe, nameof(m_verticalGain), m_verticalGain);
-            xs.WriteFloat(xe, nameof(m_maxHorizontalSeparation), m_maxHorizontalSeparation);
-            xs.WriteFloat(xe, nameof(m_maxVerticalSeparation), m_maxVerticalSeparation);
-            xs.WriteFloat(xe, nameof(m_verticalDisplacementError), m_verticalDisplacementError);
-            xs.WriteFloat(xe, nameof(m_verticalDisplacementErrorGain), m_verticalDisplacementErrorGain);
-            xs.WriteFloat(xe, nameof(m_maxVerticalDisplacement), m_maxVerticalDisplacement);
-            xs.WriteFloat(xe, nameof(m_minVerticalDisplacement), m_minVerticalDisplacement);
-            xs.WriteFloat(xe, nameof(m_capsuleHeight), m_capsuleHeight);
-            xs.WriteFloat(xe, nameof(m_capsuleRadius), m_capsuleRadius);
-            xs.WriteFloat(xe, nameof(m_maxSlopeForRotation), m_maxSlopeForRotation);
-            xs.WriteNumber(xe, nameof(m_collisionFilterInfo), m_collisionFilterInfo);
-            xs.WriteEnum<PhantomType, sbyte>(xe, nameof(m_phantomType), m_phantomType);
-            xs.WriteEnum<LinearVelocityMode, sbyte>(xe, nameof(m_linearVelocityMode), m_linearVelocityMode);
-            xs.WriteBoolean(xe, nameof(m_ignoreIncomingRotation), m_ignoreIncomingRotation);
-            xs.WriteBoolean(xe, nameof(m_ignoreCollisionDuringRotation), m_ignoreCollisionDuringRotation);
-            xs.WriteBoolean(xe, nameof(m_ignoreIncomingTranslation), m_ignoreIncomingTranslation);
-            xs.WriteBoolean(xe, nameof(m_includeDownwardMomentum), m_includeDownwardMomentum);
-            xs.WriteBoolean(xe, nameof(m_followWorldFromModel), m_followWorldFromModel);
-            xs.WriteBoolean(xe, nameof(m_isTouchingGround), m_isTouchingGround);
-            xs.WriteSerializeIgnored(xe, nameof(m_characterProxy));
-            xs.WriteSerializeIgnored(xe, nameof(m_phantom));
-            xs.WriteSerializeIgnored(xe, nameof(m_phantomShape));
-            xs.WriteSerializeIgnored(xe, nameof(m_horizontalDisplacement));
-            xs.WriteSerializeIgnored(xe, nameof(m_verticalDisplacement));
-            xs.WriteSerializeIgnored(xe, nameof(m_timestep));
-            xs.WriteSerializeIgnored(xe, nameof(m_previousFrameFollowWorldFromModel));
+            xs.WriteClass<hkbProxyModifierProxyInfo>(xe, nameof(proxyInfo), proxyInfo);
+            xs.WriteVector4(xe, nameof(linearVelocity), linearVelocity);
+            xs.WriteFloat(xe, nameof(horizontalGain), horizontalGain);
+            xs.WriteFloat(xe, nameof(verticalGain), verticalGain);
+            xs.WriteFloat(xe, nameof(maxHorizontalSeparation), maxHorizontalSeparation);
+            xs.WriteFloat(xe, nameof(maxVerticalSeparation), maxVerticalSeparation);
+            xs.WriteFloat(xe, nameof(verticalDisplacementError), verticalDisplacementError);
+            xs.WriteFloat(xe, nameof(verticalDisplacementErrorGain), verticalDisplacementErrorGain);
+            xs.WriteFloat(xe, nameof(maxVerticalDisplacement), maxVerticalDisplacement);
+            xs.WriteFloat(xe, nameof(minVerticalDisplacement), minVerticalDisplacement);
+            xs.WriteFloat(xe, nameof(capsuleHeight), capsuleHeight);
+            xs.WriteFloat(xe, nameof(capsuleRadius), capsuleRadius);
+            xs.WriteFloat(xe, nameof(maxSlopeForRotation), maxSlopeForRotation);
+            xs.WriteNumber(xe, nameof(collisionFilterInfo), collisionFilterInfo);
+            xs.WriteEnum<PhantomType, sbyte>(xe, nameof(phantomType), phantomType);
+            xs.WriteEnum<LinearVelocityMode, sbyte>(xe, nameof(linearVelocityMode), linearVelocityMode);
+            xs.WriteBoolean(xe, nameof(ignoreIncomingRotation), ignoreIncomingRotation);
+            xs.WriteBoolean(xe, nameof(ignoreCollisionDuringRotation), ignoreCollisionDuringRotation);
+            xs.WriteBoolean(xe, nameof(ignoreIncomingTranslation), ignoreIncomingTranslation);
+            xs.WriteBoolean(xe, nameof(includeDownwardMomentum), includeDownwardMomentum);
+            xs.WriteBoolean(xe, nameof(followWorldFromModel), followWorldFromModel);
+            xs.WriteBoolean(xe, nameof(isTouchingGround), isTouchingGround);
+            xs.WriteSerializeIgnored(xe, nameof(characterProxy));
+            xs.WriteSerializeIgnored(xe, nameof(phantom));
+            xs.WriteSerializeIgnored(xe, nameof(phantomShape));
+            xs.WriteSerializeIgnored(xe, nameof(horizontalDisplacement));
+            xs.WriteSerializeIgnored(xe, nameof(verticalDisplacement));
+            xs.WriteSerializeIgnored(xe, nameof(timestep));
+            xs.WriteSerializeIgnored(xe, nameof(previousFrameFollowWorldFromModel));
         }
 
         public override bool Equals(object? obj)
@@ -209,28 +209,28 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((m_proxyInfo is null && other.m_proxyInfo is null) || (m_proxyInfo is not null && other.m_proxyInfo is not null && m_proxyInfo.Equals((IHavokObject)other.m_proxyInfo))) &&
-                   m_linearVelocity.Equals(other.m_linearVelocity) &&
-                   m_horizontalGain.Equals(other.m_horizontalGain) &&
-                   m_verticalGain.Equals(other.m_verticalGain) &&
-                   m_maxHorizontalSeparation.Equals(other.m_maxHorizontalSeparation) &&
-                   m_maxVerticalSeparation.Equals(other.m_maxVerticalSeparation) &&
-                   m_verticalDisplacementError.Equals(other.m_verticalDisplacementError) &&
-                   m_verticalDisplacementErrorGain.Equals(other.m_verticalDisplacementErrorGain) &&
-                   m_maxVerticalDisplacement.Equals(other.m_maxVerticalDisplacement) &&
-                   m_minVerticalDisplacement.Equals(other.m_minVerticalDisplacement) &&
-                   m_capsuleHeight.Equals(other.m_capsuleHeight) &&
-                   m_capsuleRadius.Equals(other.m_capsuleRadius) &&
-                   m_maxSlopeForRotation.Equals(other.m_maxSlopeForRotation) &&
-                   m_collisionFilterInfo.Equals(other.m_collisionFilterInfo) &&
-                   m_phantomType.Equals(other.m_phantomType) &&
-                   m_linearVelocityMode.Equals(other.m_linearVelocityMode) &&
-                   m_ignoreIncomingRotation.Equals(other.m_ignoreIncomingRotation) &&
-                   m_ignoreCollisionDuringRotation.Equals(other.m_ignoreCollisionDuringRotation) &&
-                   m_ignoreIncomingTranslation.Equals(other.m_ignoreIncomingTranslation) &&
-                   m_includeDownwardMomentum.Equals(other.m_includeDownwardMomentum) &&
-                   m_followWorldFromModel.Equals(other.m_followWorldFromModel) &&
-                   m_isTouchingGround.Equals(other.m_isTouchingGround) &&
+                   ((proxyInfo is null && other.proxyInfo is null) || (proxyInfo is not null && other.proxyInfo is not null && proxyInfo.Equals((IHavokObject)other.proxyInfo))) &&
+                   linearVelocity.Equals(other.linearVelocity) &&
+                   horizontalGain.Equals(other.horizontalGain) &&
+                   verticalGain.Equals(other.verticalGain) &&
+                   maxHorizontalSeparation.Equals(other.maxHorizontalSeparation) &&
+                   maxVerticalSeparation.Equals(other.maxVerticalSeparation) &&
+                   verticalDisplacementError.Equals(other.verticalDisplacementError) &&
+                   verticalDisplacementErrorGain.Equals(other.verticalDisplacementErrorGain) &&
+                   maxVerticalDisplacement.Equals(other.maxVerticalDisplacement) &&
+                   minVerticalDisplacement.Equals(other.minVerticalDisplacement) &&
+                   capsuleHeight.Equals(other.capsuleHeight) &&
+                   capsuleRadius.Equals(other.capsuleRadius) &&
+                   maxSlopeForRotation.Equals(other.maxSlopeForRotation) &&
+                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
+                   phantomType.Equals(other.phantomType) &&
+                   linearVelocityMode.Equals(other.linearVelocityMode) &&
+                   ignoreIncomingRotation.Equals(other.ignoreIncomingRotation) &&
+                   ignoreCollisionDuringRotation.Equals(other.ignoreCollisionDuringRotation) &&
+                   ignoreIncomingTranslation.Equals(other.ignoreIncomingTranslation) &&
+                   includeDownwardMomentum.Equals(other.includeDownwardMomentum) &&
+                   followWorldFromModel.Equals(other.followWorldFromModel) &&
+                   isTouchingGround.Equals(other.isTouchingGround) &&
                    Signature == other.Signature; ;
         }
 
@@ -238,28 +238,28 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_proxyInfo);
-            hashcode.Add(m_linearVelocity);
-            hashcode.Add(m_horizontalGain);
-            hashcode.Add(m_verticalGain);
-            hashcode.Add(m_maxHorizontalSeparation);
-            hashcode.Add(m_maxVerticalSeparation);
-            hashcode.Add(m_verticalDisplacementError);
-            hashcode.Add(m_verticalDisplacementErrorGain);
-            hashcode.Add(m_maxVerticalDisplacement);
-            hashcode.Add(m_minVerticalDisplacement);
-            hashcode.Add(m_capsuleHeight);
-            hashcode.Add(m_capsuleRadius);
-            hashcode.Add(m_maxSlopeForRotation);
-            hashcode.Add(m_collisionFilterInfo);
-            hashcode.Add(m_phantomType);
-            hashcode.Add(m_linearVelocityMode);
-            hashcode.Add(m_ignoreIncomingRotation);
-            hashcode.Add(m_ignoreCollisionDuringRotation);
-            hashcode.Add(m_ignoreIncomingTranslation);
-            hashcode.Add(m_includeDownwardMomentum);
-            hashcode.Add(m_followWorldFromModel);
-            hashcode.Add(m_isTouchingGround);
+            hashcode.Add(proxyInfo);
+            hashcode.Add(linearVelocity);
+            hashcode.Add(horizontalGain);
+            hashcode.Add(verticalGain);
+            hashcode.Add(maxHorizontalSeparation);
+            hashcode.Add(maxVerticalSeparation);
+            hashcode.Add(verticalDisplacementError);
+            hashcode.Add(verticalDisplacementErrorGain);
+            hashcode.Add(maxVerticalDisplacement);
+            hashcode.Add(minVerticalDisplacement);
+            hashcode.Add(capsuleHeight);
+            hashcode.Add(capsuleRadius);
+            hashcode.Add(maxSlopeForRotation);
+            hashcode.Add(collisionFilterInfo);
+            hashcode.Add(phantomType);
+            hashcode.Add(linearVelocityMode);
+            hashcode.Add(ignoreIncomingRotation);
+            hashcode.Add(ignoreCollisionDuringRotation);
+            hashcode.Add(ignoreIncomingTranslation);
+            hashcode.Add(includeDownwardMomentum);
+            hashcode.Add(followWorldFromModel);
+            hashcode.Add(isTouchingGround);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

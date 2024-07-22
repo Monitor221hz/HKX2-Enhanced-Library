@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkpCogWheelConstraintDataAtoms Signatire: 0xf855ba44 size: 160 flags: FLAGS_NONE
 
-    // m_transforms m_class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_cogWheels m_class: hkpCogWheelConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // cogWheels class: hkpCogWheelConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
     public partial class hkpCogWheelConstraintDataAtoms : IHavokObject, IEquatable<hkpCogWheelConstraintDataAtoms?>
     {
-        public hkpSetLocalTransformsConstraintAtom m_transforms { set; get; } = new();
-        public hkpCogWheelConstraintAtom m_cogWheels { set; get; } = new();
+        public hkpSetLocalTransformsConstraintAtom transforms { set; get; } = new();
+        public hkpCogWheelConstraintAtom cogWheels { set; get; } = new();
 
         public virtual uint Signature { set; get; } = 0xf855ba44;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_transforms.Read(des, br);
-            m_cogWheels.Read(des, br);
+            transforms.Read(des, br);
+            cogWheels.Read(des, br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            m_transforms.Write(s, bw);
-            m_cogWheels.Write(s, bw);
+            transforms.Write(s, bw);
+            cogWheels.Write(s, bw);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_transforms = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(m_transforms));
-            m_cogWheels = xd.ReadClass<hkpCogWheelConstraintAtom>(xe, nameof(m_cogWheels));
+            transforms = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(transforms));
+            cogWheels = xd.ReadClass<hkpCogWheelConstraintAtom>(xe, nameof(cogWheels));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(m_transforms), m_transforms);
-            xs.WriteClass<hkpCogWheelConstraintAtom>(xe, nameof(m_cogWheels), m_cogWheels);
+            xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(transforms), transforms);
+            xs.WriteClass<hkpCogWheelConstraintAtom>(xe, nameof(cogWheels), cogWheels);
         }
 
         public override bool Equals(object? obj)
@@ -46,16 +46,16 @@ namespace HKX2
         public bool Equals(hkpCogWheelConstraintDataAtoms? other)
         {
             return other is not null &&
-                   ((m_transforms is null && other.m_transforms is null) || (m_transforms is not null && other.m_transforms is not null && m_transforms.Equals((IHavokObject)other.m_transforms))) &&
-                   ((m_cogWheels is null && other.m_cogWheels is null) || (m_cogWheels is not null && other.m_cogWheels is not null && m_cogWheels.Equals((IHavokObject)other.m_cogWheels))) &&
+                   ((transforms is null && other.transforms is null) || (transforms is not null && other.transforms is not null && transforms.Equals((IHavokObject)other.transforms))) &&
+                   ((cogWheels is null && other.cogWheels is null) || (cogWheels is not null && other.cogWheels is not null && cogWheels.Equals((IHavokObject)other.cogWheels))) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_transforms);
-            hashcode.Add(m_cogWheels);
+            hashcode.Add(transforms);
+            hashcode.Add(cogWheels);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

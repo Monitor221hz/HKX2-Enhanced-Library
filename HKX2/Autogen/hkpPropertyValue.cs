@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkpPropertyValue Signatire: 0xc75925aa size: 8 flags: FLAGS_NONE
 
-    // m_data m_class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // data class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkpPropertyValue : IHavokObject, IEquatable<hkpPropertyValue?>
     {
-        public ulong m_data { set; get; }
+        public ulong data { set; get; }
 
         public virtual uint Signature { set; get; } = 0xc75925aa;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_data = br.ReadUInt64();
+            data = br.ReadUInt64();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteUInt64(m_data);
+            bw.WriteUInt64(data);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_data = xd.ReadUInt64(xe, nameof(m_data));
+            data = xd.ReadUInt64(xe, nameof(data));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteNumber(xe, nameof(m_data), m_data);
+            xs.WriteNumber(xe, nameof(data), data);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkpPropertyValue? other)
         {
             return other is not null &&
-                   m_data.Equals(other.m_data) &&
+                   data.Equals(other.data) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_data);
+            hashcode.Add(data);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

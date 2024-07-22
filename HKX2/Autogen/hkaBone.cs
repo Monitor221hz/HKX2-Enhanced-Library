@@ -5,39 +5,39 @@ namespace HKX2
 {
     // hkaBone Signatire: 0x35912f8a size: 16 flags: FLAGS_NONE
 
-    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_lockTranslation m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // lockTranslation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkaBone : IHavokObject, IEquatable<hkaBone?>
     {
-        public string m_name { set; get; } = "";
-        public bool m_lockTranslation { set; get; }
+        public string name { set; get; } = "";
+        public bool lockTranslation { set; get; }
 
         public virtual uint Signature { set; get; } = 0x35912f8a;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_name = des.ReadStringPointer(br);
-            m_lockTranslation = br.ReadBoolean();
+            name = des.ReadStringPointer(br);
+            lockTranslation = br.ReadBoolean();
             br.Position += 7;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteStringPointer(bw, m_name);
-            bw.WriteBoolean(m_lockTranslation);
+            s.WriteStringPointer(bw, name);
+            bw.WriteBoolean(lockTranslation);
             bw.Position += 7;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_lockTranslation = xd.ReadBoolean(xe, nameof(m_lockTranslation));
+            name = xd.ReadString(xe, nameof(name));
+            lockTranslation = xd.ReadBoolean(xe, nameof(lockTranslation));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteBoolean(xe, nameof(m_lockTranslation), m_lockTranslation);
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteBoolean(xe, nameof(lockTranslation), lockTranslation);
         }
 
         public override bool Equals(object? obj)
@@ -48,16 +48,16 @@ namespace HKX2
         public bool Equals(hkaBone? other)
         {
             return other is not null &&
-                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   m_lockTranslation.Equals(other.m_lockTranslation) &&
+                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   lockTranslation.Equals(other.lockTranslation) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_name);
-            hashcode.Add(m_lockTranslation);
+            hashcode.Add(name);
+            hashcode.Add(lockTranslation);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -6,12 +6,12 @@ namespace HKX2
 {
     // hkpSetLocalTransformsConstraintAtom Signatire: 0x6e2a5198 size: 144 flags: FLAGS_NONE
 
-    // m_transformA m_class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_transformB m_class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // transformA class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // transformB class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkpSetLocalTransformsConstraintAtom : hkpConstraintAtom, IEquatable<hkpSetLocalTransformsConstraintAtom?>
     {
-        public Matrix4x4 m_transformA { set; get; }
-        public Matrix4x4 m_transformB { set; get; }
+        public Matrix4x4 transformA { set; get; }
+        public Matrix4x4 transformB { set; get; }
 
         public override uint Signature { set; get; } = 0x6e2a5198;
 
@@ -19,30 +19,30 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 14;
-            m_transformA = des.ReadTransform(br);
-            m_transformB = des.ReadTransform(br);
+            transformA = des.ReadTransform(br);
+            transformB = des.ReadTransform(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 14;
-            s.WriteTransform(bw, m_transformA);
-            s.WriteTransform(bw, m_transformB);
+            s.WriteTransform(bw, transformA);
+            s.WriteTransform(bw, transformB);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_transformA = xd.ReadTransform(xe, nameof(m_transformA));
-            m_transformB = xd.ReadTransform(xe, nameof(m_transformB));
+            transformA = xd.ReadTransform(xe, nameof(transformA));
+            transformB = xd.ReadTransform(xe, nameof(transformB));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteTransform(xe, nameof(m_transformA), m_transformA);
-            xs.WriteTransform(xe, nameof(m_transformB), m_transformB);
+            xs.WriteTransform(xe, nameof(transformA), transformA);
+            xs.WriteTransform(xe, nameof(transformB), transformB);
         }
 
         public override bool Equals(object? obj)
@@ -54,8 +54,8 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_transformA.Equals(other.m_transformA) &&
-                   m_transformB.Equals(other.m_transformB) &&
+                   transformA.Equals(other.transformA) &&
+                   transformB.Equals(other.transformB) &&
                    Signature == other.Signature; ;
         }
 
@@ -63,8 +63,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_transformA);
-            hashcode.Add(m_transformB);
+            hashcode.Add(transformA);
+            hashcode.Add(transformB);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

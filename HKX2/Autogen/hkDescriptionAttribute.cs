@@ -5,7 +5,7 @@ namespace HKX2
 {
     // hkDescriptionAttribute Signatire: 0xe9f9578a size: 8 flags: FLAGS_NONE
 
-    // @string m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // @string class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkDescriptionAttribute : IHavokObject, IEquatable<hkDescriptionAttribute?>
     {
         public string @string { set; get; } = "";

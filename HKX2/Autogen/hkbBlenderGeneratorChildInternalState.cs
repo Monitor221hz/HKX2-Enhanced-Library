@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkbBlenderGeneratorChildInternalState Signatire: 0xff7327c0 size: 2 flags: FLAGS_NONE
 
-    // m_isActive m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_syncNextFrame m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 1 flags: FLAGS_NONE enum: 
+    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // syncNextFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 1 flags: FLAGS_NONE enum: 
     public partial class hkbBlenderGeneratorChildInternalState : IHavokObject, IEquatable<hkbBlenderGeneratorChildInternalState?>
     {
-        public bool m_isActive { set; get; }
-        public bool m_syncNextFrame { set; get; }
+        public bool isActive { set; get; }
+        public bool syncNextFrame { set; get; }
 
         public virtual uint Signature { set; get; } = 0xff7327c0;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_isActive = br.ReadBoolean();
-            m_syncNextFrame = br.ReadBoolean();
+            isActive = br.ReadBoolean();
+            syncNextFrame = br.ReadBoolean();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteBoolean(m_isActive);
-            bw.WriteBoolean(m_syncNextFrame);
+            bw.WriteBoolean(isActive);
+            bw.WriteBoolean(syncNextFrame);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_isActive = xd.ReadBoolean(xe, nameof(m_isActive));
-            m_syncNextFrame = xd.ReadBoolean(xe, nameof(m_syncNextFrame));
+            isActive = xd.ReadBoolean(xe, nameof(isActive));
+            syncNextFrame = xd.ReadBoolean(xe, nameof(syncNextFrame));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteBoolean(xe, nameof(m_isActive), m_isActive);
-            xs.WriteBoolean(xe, nameof(m_syncNextFrame), m_syncNextFrame);
+            xs.WriteBoolean(xe, nameof(isActive), isActive);
+            xs.WriteBoolean(xe, nameof(syncNextFrame), syncNextFrame);
         }
 
         public override bool Equals(object? obj)
@@ -46,16 +46,16 @@ namespace HKX2
         public bool Equals(hkbBlenderGeneratorChildInternalState? other)
         {
             return other is not null &&
-                   m_isActive.Equals(other.m_isActive) &&
-                   m_syncNextFrame.Equals(other.m_syncNextFrame) &&
+                   isActive.Equals(other.isActive) &&
+                   syncNextFrame.Equals(other.syncNextFrame) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_isActive);
-            hashcode.Add(m_syncNextFrame);
+            hashcode.Add(isActive);
+            hashcode.Add(syncNextFrame);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

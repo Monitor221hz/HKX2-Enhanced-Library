@@ -6,35 +6,35 @@ namespace HKX2
 {
     // hkpConvexTransformShape Signatire: 0xae3e5017 size: 128 flags: FLAGS_NONE
 
-    // m_transform m_class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     public partial class hkpConvexTransformShape : hkpConvexTransformShapeBase, IEquatable<hkpConvexTransformShape?>
     {
-        public Matrix4x4 m_transform { set; get; }
+        public Matrix4x4 transform { set; get; }
 
         public override uint Signature { set; get; } = 0xae3e5017;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_transform = des.ReadTransform(br);
+            transform = des.ReadTransform(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteTransform(bw, m_transform);
+            s.WriteTransform(bw, transform);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_transform = xd.ReadTransform(xe, nameof(m_transform));
+            transform = xd.ReadTransform(xe, nameof(transform));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteTransform(xe, nameof(m_transform), m_transform);
+            xs.WriteTransform(xe, nameof(transform), transform);
         }
 
         public override bool Equals(object? obj)
@@ -46,7 +46,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_transform.Equals(other.m_transform) &&
+                   transform.Equals(other.transform) &&
                    Signature == other.Signature; ;
         }
 
@@ -54,7 +54,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_transform);
+            hashcode.Add(transform);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

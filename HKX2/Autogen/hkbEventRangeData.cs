@@ -5,47 +5,47 @@ namespace HKX2
 {
     // hkbEventRangeData Signatire: 0x6cb92c76 size: 32 flags: FLAGS_NONE
 
-    // m_upperBound m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // @eventm_class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // m_eventMode m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: EventRangeMode
+    // upperBound class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // @eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: EventRangeMode
     public partial class hkbEventRangeData : IHavokObject, IEquatable<hkbEventRangeData?>
     {
-        public float m_upperBound { set; get; }
+        public float upperBound { set; get; }
         public hkbEventProperty @event{ set; get; } = new();
-        public sbyte m_eventMode { set; get; }
+        public sbyte eventMode { set; get; }
 
         public virtual uint Signature { set; get; } = 0x6cb92c76;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_upperBound = br.ReadSingle();
+            upperBound = br.ReadSingle();
             br.Position += 4;
             @event.Read(des, br);
-            m_eventMode = br.ReadSByte();
+            eventMode = br.ReadSByte();
             br.Position += 7;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteSingle(m_upperBound);
+            bw.WriteSingle(upperBound);
             bw.Position += 4;
             @event.Write(s, bw);
-            bw.WriteSByte(m_eventMode);
+            bw.WriteSByte(eventMode);
             bw.Position += 7;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_upperBound = xd.ReadSingle(xe, nameof(m_upperBound));
+            upperBound = xd.ReadSingle(xe, nameof(upperBound));
             @event= xd.ReadClass<hkbEventProperty>(xe, nameof(@event));
-            m_eventMode = xd.ReadFlag<EventRangeMode, sbyte>(xe, nameof(m_eventMode));
+            eventMode = xd.ReadFlag<EventRangeMode, sbyte>(xe, nameof(eventMode));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteFloat(xe, nameof(m_upperBound), m_upperBound);
+            xs.WriteFloat(xe, nameof(upperBound), upperBound);
             xs.WriteClass<hkbEventProperty>(xe, nameof(@event), @event);
-            xs.WriteEnum<EventRangeMode, sbyte>(xe, nameof(m_eventMode), m_eventMode);
+            xs.WriteEnum<EventRangeMode, sbyte>(xe, nameof(eventMode), eventMode);
         }
 
         public override bool Equals(object? obj)
@@ -56,18 +56,18 @@ namespace HKX2
         public bool Equals(hkbEventRangeData? other)
         {
             return other is not null &&
-                   m_upperBound.Equals(other.m_upperBound) &&
+                   upperBound.Equals(other.upperBound) &&
                    ((@event is null && other.@event is null) || (@event is not null && other.@event is not null && @event.Equals((IHavokObject)other.@event))) &&
-                   m_eventMode.Equals(other.m_eventMode) &&
+                   eventMode.Equals(other.eventMode) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_upperBound);
+            hashcode.Add(upperBound);
             hashcode.Add(@event);
-            hashcode.Add(m_eventMode);
+            hashcode.Add(eventMode);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

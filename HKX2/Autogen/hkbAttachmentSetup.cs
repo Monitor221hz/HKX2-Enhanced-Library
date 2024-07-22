@@ -5,79 +5,79 @@ namespace HKX2
 {
     // hkbAttachmentSetup Signatire: 0x774632b size: 48 flags: FLAGS_NONE
 
-    // m_blendInTime m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_moveAttacherFraction m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // m_gain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // m_extrapolationTimeStep m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // m_fixUpGain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_maxLinearDistance m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // m_maxAngularDistance m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // m_attachmentType m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 44 flags: FLAGS_NONE enum: AttachmentType
+    // blendInTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // moveAttacherFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
+    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // extrapolationTimeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
+    // fixUpGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // maxLinearDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
+    // maxAngularDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // attachmentType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 44 flags: FLAGS_NONE enum: AttachmentType
     public partial class hkbAttachmentSetup : hkReferencedObject, IEquatable<hkbAttachmentSetup?>
     {
-        public float m_blendInTime { set; get; }
-        public float m_moveAttacherFraction { set; get; }
-        public float m_gain { set; get; }
-        public float m_extrapolationTimeStep { set; get; }
-        public float m_fixUpGain { set; get; }
-        public float m_maxLinearDistance { set; get; }
-        public float m_maxAngularDistance { set; get; }
-        public sbyte m_attachmentType { set; get; }
+        public float blendInTime { set; get; }
+        public float moveAttacherFraction { set; get; }
+        public float gain { set; get; }
+        public float extrapolationTimeStep { set; get; }
+        public float fixUpGain { set; get; }
+        public float maxLinearDistance { set; get; }
+        public float maxAngularDistance { set; get; }
+        public sbyte attachmentType { set; get; }
 
         public override uint Signature { set; get; } = 0x774632b;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_blendInTime = br.ReadSingle();
-            m_moveAttacherFraction = br.ReadSingle();
-            m_gain = br.ReadSingle();
-            m_extrapolationTimeStep = br.ReadSingle();
-            m_fixUpGain = br.ReadSingle();
-            m_maxLinearDistance = br.ReadSingle();
-            m_maxAngularDistance = br.ReadSingle();
-            m_attachmentType = br.ReadSByte();
+            blendInTime = br.ReadSingle();
+            moveAttacherFraction = br.ReadSingle();
+            gain = br.ReadSingle();
+            extrapolationTimeStep = br.ReadSingle();
+            fixUpGain = br.ReadSingle();
+            maxLinearDistance = br.ReadSingle();
+            maxAngularDistance = br.ReadSingle();
+            attachmentType = br.ReadSByte();
             br.Position += 3;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteSingle(m_blendInTime);
-            bw.WriteSingle(m_moveAttacherFraction);
-            bw.WriteSingle(m_gain);
-            bw.WriteSingle(m_extrapolationTimeStep);
-            bw.WriteSingle(m_fixUpGain);
-            bw.WriteSingle(m_maxLinearDistance);
-            bw.WriteSingle(m_maxAngularDistance);
-            bw.WriteSByte(m_attachmentType);
+            bw.WriteSingle(blendInTime);
+            bw.WriteSingle(moveAttacherFraction);
+            bw.WriteSingle(gain);
+            bw.WriteSingle(extrapolationTimeStep);
+            bw.WriteSingle(fixUpGain);
+            bw.WriteSingle(maxLinearDistance);
+            bw.WriteSingle(maxAngularDistance);
+            bw.WriteSByte(attachmentType);
             bw.Position += 3;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_blendInTime = xd.ReadSingle(xe, nameof(m_blendInTime));
-            m_moveAttacherFraction = xd.ReadSingle(xe, nameof(m_moveAttacherFraction));
-            m_gain = xd.ReadSingle(xe, nameof(m_gain));
-            m_extrapolationTimeStep = xd.ReadSingle(xe, nameof(m_extrapolationTimeStep));
-            m_fixUpGain = xd.ReadSingle(xe, nameof(m_fixUpGain));
-            m_maxLinearDistance = xd.ReadSingle(xe, nameof(m_maxLinearDistance));
-            m_maxAngularDistance = xd.ReadSingle(xe, nameof(m_maxAngularDistance));
-            m_attachmentType = xd.ReadFlag<AttachmentType, sbyte>(xe, nameof(m_attachmentType));
+            blendInTime = xd.ReadSingle(xe, nameof(blendInTime));
+            moveAttacherFraction = xd.ReadSingle(xe, nameof(moveAttacherFraction));
+            gain = xd.ReadSingle(xe, nameof(gain));
+            extrapolationTimeStep = xd.ReadSingle(xe, nameof(extrapolationTimeStep));
+            fixUpGain = xd.ReadSingle(xe, nameof(fixUpGain));
+            maxLinearDistance = xd.ReadSingle(xe, nameof(maxLinearDistance));
+            maxAngularDistance = xd.ReadSingle(xe, nameof(maxAngularDistance));
+            attachmentType = xd.ReadFlag<AttachmentType, sbyte>(xe, nameof(attachmentType));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteFloat(xe, nameof(m_blendInTime), m_blendInTime);
-            xs.WriteFloat(xe, nameof(m_moveAttacherFraction), m_moveAttacherFraction);
-            xs.WriteFloat(xe, nameof(m_gain), m_gain);
-            xs.WriteFloat(xe, nameof(m_extrapolationTimeStep), m_extrapolationTimeStep);
-            xs.WriteFloat(xe, nameof(m_fixUpGain), m_fixUpGain);
-            xs.WriteFloat(xe, nameof(m_maxLinearDistance), m_maxLinearDistance);
-            xs.WriteFloat(xe, nameof(m_maxAngularDistance), m_maxAngularDistance);
-            xs.WriteEnum<AttachmentType, sbyte>(xe, nameof(m_attachmentType), m_attachmentType);
+            xs.WriteFloat(xe, nameof(blendInTime), blendInTime);
+            xs.WriteFloat(xe, nameof(moveAttacherFraction), moveAttacherFraction);
+            xs.WriteFloat(xe, nameof(gain), gain);
+            xs.WriteFloat(xe, nameof(extrapolationTimeStep), extrapolationTimeStep);
+            xs.WriteFloat(xe, nameof(fixUpGain), fixUpGain);
+            xs.WriteFloat(xe, nameof(maxLinearDistance), maxLinearDistance);
+            xs.WriteFloat(xe, nameof(maxAngularDistance), maxAngularDistance);
+            xs.WriteEnum<AttachmentType, sbyte>(xe, nameof(attachmentType), attachmentType);
         }
 
         public override bool Equals(object? obj)
@@ -89,14 +89,14 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_blendInTime.Equals(other.m_blendInTime) &&
-                   m_moveAttacherFraction.Equals(other.m_moveAttacherFraction) &&
-                   m_gain.Equals(other.m_gain) &&
-                   m_extrapolationTimeStep.Equals(other.m_extrapolationTimeStep) &&
-                   m_fixUpGain.Equals(other.m_fixUpGain) &&
-                   m_maxLinearDistance.Equals(other.m_maxLinearDistance) &&
-                   m_maxAngularDistance.Equals(other.m_maxAngularDistance) &&
-                   m_attachmentType.Equals(other.m_attachmentType) &&
+                   blendInTime.Equals(other.blendInTime) &&
+                   moveAttacherFraction.Equals(other.moveAttacherFraction) &&
+                   gain.Equals(other.gain) &&
+                   extrapolationTimeStep.Equals(other.extrapolationTimeStep) &&
+                   fixUpGain.Equals(other.fixUpGain) &&
+                   maxLinearDistance.Equals(other.maxLinearDistance) &&
+                   maxAngularDistance.Equals(other.maxAngularDistance) &&
+                   attachmentType.Equals(other.attachmentType) &&
                    Signature == other.Signature; ;
         }
 
@@ -104,14 +104,14 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_blendInTime);
-            hashcode.Add(m_moveAttacherFraction);
-            hashcode.Add(m_gain);
-            hashcode.Add(m_extrapolationTimeStep);
-            hashcode.Add(m_fixUpGain);
-            hashcode.Add(m_maxLinearDistance);
-            hashcode.Add(m_maxAngularDistance);
-            hashcode.Add(m_attachmentType);
+            hashcode.Add(blendInTime);
+            hashcode.Add(moveAttacherFraction);
+            hashcode.Add(gain);
+            hashcode.Add(extrapolationTimeStep);
+            hashcode.Add(fixUpGain);
+            hashcode.Add(maxLinearDistance);
+            hashcode.Add(maxAngularDistance);
+            hashcode.Add(attachmentType);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

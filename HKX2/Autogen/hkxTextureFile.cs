@@ -5,47 +5,47 @@ namespace HKX2
 {
     // hkxTextureFile Signatire: 0x1e289259 size: 40 flags: FLAGS_NONE
 
-    // m_filename m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // m_originalFilename m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // filename class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // originalFilename class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     public partial class hkxTextureFile : hkReferencedObject, IEquatable<hkxTextureFile?>
     {
-        public string m_filename { set; get; } = "";
-        public string m_name { set; get; } = "";
-        public string m_originalFilename { set; get; } = "";
+        public string filename { set; get; } = "";
+        public string name { set; get; } = "";
+        public string originalFilename { set; get; } = "";
 
         public override uint Signature { set; get; } = 0x1e289259;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_filename = des.ReadStringPointer(br);
-            m_name = des.ReadStringPointer(br);
-            m_originalFilename = des.ReadStringPointer(br);
+            filename = des.ReadStringPointer(br);
+            name = des.ReadStringPointer(br);
+            originalFilename = des.ReadStringPointer(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteStringPointer(bw, m_filename);
-            s.WriteStringPointer(bw, m_name);
-            s.WriteStringPointer(bw, m_originalFilename);
+            s.WriteStringPointer(bw, filename);
+            s.WriteStringPointer(bw, name);
+            s.WriteStringPointer(bw, originalFilename);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_filename = xd.ReadString(xe, nameof(m_filename));
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_originalFilename = xd.ReadString(xe, nameof(m_originalFilename));
+            filename = xd.ReadString(xe, nameof(filename));
+            name = xd.ReadString(xe, nameof(name));
+            originalFilename = xd.ReadString(xe, nameof(originalFilename));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteString(xe, nameof(m_filename), m_filename);
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteString(xe, nameof(m_originalFilename), m_originalFilename);
+            xs.WriteString(xe, nameof(filename), filename);
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteString(xe, nameof(originalFilename), originalFilename);
         }
 
         public override bool Equals(object? obj)
@@ -57,9 +57,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   (m_filename is null && other.m_filename is null || m_filename == other.m_filename || m_filename is null && other.m_filename == "" || m_filename == "" && other.m_filename is null) &&
-                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   (m_originalFilename is null && other.m_originalFilename is null || m_originalFilename == other.m_originalFilename || m_originalFilename is null && other.m_originalFilename == "" || m_originalFilename == "" && other.m_originalFilename is null) &&
+                   (filename is null && other.filename is null || filename == other.filename || filename is null && other.filename == "" || filename == "" && other.filename is null) &&
+                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   (originalFilename is null && other.originalFilename is null || originalFilename == other.originalFilename || originalFilename is null && other.originalFilename == "" || originalFilename == "" && other.originalFilename is null) &&
                    Signature == other.Signature; ;
         }
 
@@ -67,9 +67,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_filename);
-            hashcode.Add(m_name);
-            hashcode.Add(m_originalFilename);
+            hashcode.Add(filename);
+            hashcode.Add(name);
+            hashcode.Add(originalFilename);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

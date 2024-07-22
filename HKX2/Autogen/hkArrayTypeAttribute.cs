@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkArrayTypeAttribute Signatire: 0xd404a39a size: 1 flags: FLAGS_NONE
 
-    // m_type m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: ArrayType
+    // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: ArrayType
     public partial class hkArrayTypeAttribute : IHavokObject, IEquatable<hkArrayTypeAttribute?>
     {
-        public sbyte m_type { set; get; }
+        public sbyte type { set; get; }
 
         public virtual uint Signature { set; get; } = 0xd404a39a;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_type = br.ReadSByte();
+            type = br.ReadSByte();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteSByte(m_type);
+            bw.WriteSByte(type);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_type = xd.ReadFlag<ArrayType, sbyte>(xe, nameof(m_type));
+            type = xd.ReadFlag<ArrayType, sbyte>(xe, nameof(type));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteEnum<ArrayType, sbyte>(xe, nameof(m_type), m_type);
+            xs.WriteEnum<ArrayType, sbyte>(xe, nameof(type), type);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkArrayTypeAttribute? other)
         {
             return other is not null &&
-                   m_type.Equals(other.m_type) &&
+                   type.Equals(other.type) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_type);
+            hashcode.Add(type);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

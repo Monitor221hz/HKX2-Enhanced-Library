@@ -6,31 +6,31 @@ namespace HKX2
 {
     // hkTraceStreamTitle Signatire: 0x6a4ca82c size: 32 flags: FLAGS_NOT_SERIALIZABLE
 
-    // m_value m_class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 32 offset: 0 flags: FLAGS_NONE enum: 
+    // value class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 32 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkTraceStreamTitle : IHavokObject, IEquatable<hkTraceStreamTitle?>
     {
-        public string m_value { set; get; } = "";
+        public string value { set; get; } = "";
 
         public virtual uint Signature { set; get; } = 0x6a4ca82c;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_value = br.ReadASCII(32);
+            value = br.ReadASCII(32);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteASCII(m_value);
+            bw.WriteASCII(value);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_value = xd.ReadString(xe, nameof(m_value));
+            value = xd.ReadString(xe, nameof(value));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(m_value), m_value);
+            xs.WriteString(xe, nameof(value), value);
         }
 
         public override bool Equals(object? obj)
@@ -41,14 +41,14 @@ namespace HKX2
         public bool Equals(hkTraceStreamTitle? other)
         {
             return other is not null &&
-                   m_value.SequenceEqual(other.m_value) &&
+                   value.SequenceEqual(other.value) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_value.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(value.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

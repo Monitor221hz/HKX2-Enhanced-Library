@@ -5,39 +5,39 @@ namespace HKX2
 {
     // hkpPoweredChainMapperTarget Signatire: 0xf651c74d size: 16 flags: FLAGS_NONE
 
-    // m_chain m_class: hkpPoweredChainData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_infoIndex m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // chain class: hkpPoweredChainData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // infoIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkpPoweredChainMapperTarget : IHavokObject, IEquatable<hkpPoweredChainMapperTarget?>
     {
-        public hkpPoweredChainData? m_chain { set; get; }
-        public int m_infoIndex { set; get; }
+        public hkpPoweredChainData? chain { set; get; }
+        public int infoIndex { set; get; }
 
         public virtual uint Signature { set; get; } = 0xf651c74d;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_chain = des.ReadClassPointer<hkpPoweredChainData>(br);
-            m_infoIndex = br.ReadInt32();
+            chain = des.ReadClassPointer<hkpPoweredChainData>(br);
+            infoIndex = br.ReadInt32();
             br.Position += 4;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteClassPointer(bw, m_chain);
-            bw.WriteInt32(m_infoIndex);
+            s.WriteClassPointer(bw, chain);
+            bw.WriteInt32(infoIndex);
             bw.Position += 4;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_chain = xd.ReadClassPointer<hkpPoweredChainData>(xe, nameof(m_chain));
-            m_infoIndex = xd.ReadInt32(xe, nameof(m_infoIndex));
+            chain = xd.ReadClassPointer<hkpPoweredChainData>(xe, nameof(chain));
+            infoIndex = xd.ReadInt32(xe, nameof(infoIndex));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClassPointer(xe, nameof(m_chain), m_chain);
-            xs.WriteNumber(xe, nameof(m_infoIndex), m_infoIndex);
+            xs.WriteClassPointer(xe, nameof(chain), chain);
+            xs.WriteNumber(xe, nameof(infoIndex), infoIndex);
         }
 
         public override bool Equals(object? obj)
@@ -48,16 +48,16 @@ namespace HKX2
         public bool Equals(hkpPoweredChainMapperTarget? other)
         {
             return other is not null &&
-                   ((m_chain is null && other.m_chain is null) || (m_chain is not null && other.m_chain is not null && m_chain.Equals((IHavokObject)other.m_chain))) &&
-                   m_infoIndex.Equals(other.m_infoIndex) &&
+                   ((chain is null && other.chain is null) || (chain is not null && other.chain is not null && chain.Equals((IHavokObject)other.chain))) &&
+                   infoIndex.Equals(other.infoIndex) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_chain);
-            hashcode.Add(m_infoIndex);
+            hashcode.Add(chain);
+            hashcode.Add(infoIndex);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }
