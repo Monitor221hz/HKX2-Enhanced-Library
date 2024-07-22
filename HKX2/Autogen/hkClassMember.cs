@@ -7,7 +7,7 @@ namespace HKX2
 
     // m_name m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     //@class m_class: hkClass Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // m_enum m_class: hkClassEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // @enum m_class: hkClassEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // m_type m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: Type
     // m_subtype m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 25 flags: FLAGS_NONE enum: Type
     // m_cArraySize m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 26 flags: FLAGS_NONE enum: 
@@ -18,7 +18,7 @@ namespace HKX2
     {
         public string m_name { set; get; } = "";
         public hkClass?@class { set; get; }
-        public hkClassEnum? m_enum { set; get; }
+        public hkClassEnum? @enum { set; get; }
         public byte m_type { set; get; }
         public byte m_subtype { set; get; }
         public short m_cArraySize { set; get; }
@@ -32,7 +32,7 @@ namespace HKX2
         {
             m_name = des.ReadCString(br);
            @class = des.ReadClassPointer<hkClass>(br);
-            m_enum = des.ReadClassPointer<hkClassEnum>(br);
+            @enum = des.ReadClassPointer<hkClassEnum>(br);
             m_type = br.ReadByte();
             m_subtype = br.ReadByte();
             m_cArraySize = br.ReadInt16();
@@ -45,7 +45,7 @@ namespace HKX2
         {
             s.WriteCString(bw, m_name);
             s.WriteClassPointer(bw, @class);
-            s.WriteClassPointer(bw, m_enum);
+            s.WriteClassPointer(bw, @enum);
             bw.WriteByte(m_type);
             bw.WriteByte(m_subtype);
             bw.WriteInt16(m_cArraySize);
@@ -58,7 +58,7 @@ namespace HKX2
         {
             m_name = xd.ReadString(xe, nameof(m_name));
           @class = xd.ReadClassPointer<hkClass>(xe, nameof(@class));
-            m_enum = xd.ReadClassPointer<hkClassEnum>(xe, nameof(m_enum));
+            @enum = xd.ReadClassPointer<hkClassEnum>(xe, nameof(@enum));
             m_type = xd.ReadFlag<Type, byte>(xe, nameof(m_type));
             m_subtype = xd.ReadFlag<Type, byte>(xe, nameof(m_subtype));
             m_cArraySize = xd.ReadInt16(xe, nameof(m_cArraySize));
@@ -70,7 +70,7 @@ namespace HKX2
         {
             xs.WriteString(xe, nameof(m_name), m_name);
             xs.WriteClassPointer(xe, nameof(@class), @class);
-            xs.WriteClassPointer(xe, nameof(m_enum), m_enum);
+            xs.WriteClassPointer(xe, nameof(@enum), @enum);
             xs.WriteEnum<Type, byte>(xe, nameof(m_type), m_type);
             xs.WriteEnum<Type, byte>(xe, nameof(m_subtype), m_subtype);
             xs.WriteNumber(xe, nameof(m_cArraySize), m_cArraySize);
@@ -89,7 +89,7 @@ namespace HKX2
             return other is not null &&
                    (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
                    ((@class is null && other.@class is null) || (@class is not null && other.@class is not null && @class.Equals((IHavokObject)other.@class))) &&
-                   ((m_enum is null && other.m_enum is null) || (m_enum is not null && other.m_enum is not null && m_enum.Equals((IHavokObject)other.m_enum))) &&
+                   ((@enum is null && other.@enum is null) || (@enum is not null && other.@enum is not null && @enum.Equals((IHavokObject)other.@enum))) &&
                    m_type.Equals(other.m_type) &&
                    m_subtype.Equals(other.m_subtype) &&
                    m_cArraySize.Equals(other.m_cArraySize) &&
@@ -103,7 +103,7 @@ namespace HKX2
             var hashcode = new HashCode();
             hashcode.Add(m_name);
             hashcode.Add(@class);
-            hashcode.Add(m_enum);
+            hashcode.Add(@enum);
             hashcode.Add(m_type);
             hashcode.Add(m_subtype);
             hashcode.Add(m_cArraySize);
