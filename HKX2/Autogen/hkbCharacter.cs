@@ -21,7 +21,7 @@ namespace HKX2
     // animationBindingSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // raycastInterface class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|NOT_OWNED|FLAGS_NONE enum: 
-    // @eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // worldFromModel class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // poseLocal class:  Type.TYPE_SIMPLEARRAY Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // deleteWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
@@ -42,7 +42,7 @@ namespace HKX2
         private object? animationBindingSet { set; get; }
         private object? raycastInterface { set; get; }
         private object? world { set; get; }
-        private object? @eventQueue { set; get; }
+        private object? eventQueue { set; get; }
         private object? worldFromModel { set; get; }
         private object? poseLocal { set; get; }
         private bool deleteWorldFromModel { set; get; }
@@ -128,7 +128,7 @@ namespace HKX2
             xs.WriteSerializeIgnored(xe, nameof(animationBindingSet));
             xs.WriteSerializeIgnored(xe, nameof(raycastInterface));
             xs.WriteSerializeIgnored(xe, nameof(world));
-            xs.WriteSerializeIgnored(xe, nameof(@eventQueue));
+            xs.WriteSerializeIgnored(xe, nameof(eventQueue));
             xs.WriteSerializeIgnored(xe, nameof(worldFromModel));
             xs.WriteSerializeIgnored(xe, nameof(poseLocal));
             xs.WriteSerializeIgnored(xe, nameof(deleteWorldFromModel));

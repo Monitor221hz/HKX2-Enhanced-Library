@@ -7,7 +7,7 @@ namespace HKX2
 {
     // hkbSequenceInternalState Signatire: 0x419b9a05 size: 88 flags: FLAGS_NONE
 
-    // nextSample@events class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // nextSampleEvents class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // nextSampleReals class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     // nextSampleBools class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     // nextSampleInts class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
@@ -15,7 +15,7 @@ namespace HKX2
     // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
     public partial class hkbSequenceInternalState : hkReferencedObject, IEquatable<hkbSequenceInternalState?>
     {
-        public IList<int> nextSample@events { set; get; } = Array.Empty<int>();
+        public IList<int> nextSampleEvents { set; get; } = Array.Empty<int>();
         public IList<int> nextSampleReals { set; get; } = Array.Empty<int>();
         public IList<int> nextSampleBools { set; get; } = Array.Empty<int>();
         public IList<int> nextSampleInts { set; get; } = Array.Empty<int>();
@@ -27,7 +27,7 @@ namespace HKX2
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            nextSample@events = des.ReadInt32Array(br);
+            nextSampleEvents = des.ReadInt32Array(br);
             nextSampleReals = des.ReadInt32Array(br);
             nextSampleBools = des.ReadInt32Array(br);
             nextSampleInts = des.ReadInt32Array(br);
@@ -39,7 +39,7 @@ namespace HKX2
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteInt32Array(bw, nextSample@events);
+            s.WriteInt32Array(bw, nextSampleEvents);
             s.WriteInt32Array(bw, nextSampleReals);
             s.WriteInt32Array(bw, nextSampleBools);
             s.WriteInt32Array(bw, nextSampleInts);
@@ -51,7 +51,7 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            nextSample@events = xd.ReadInt32Array(xe, nameof(nextSample@events));
+            nextSampleEvents = xd.ReadInt32Array(xe, nameof(nextSampleEvents));
             nextSampleReals = xd.ReadInt32Array(xe, nameof(nextSampleReals));
             nextSampleBools = xd.ReadInt32Array(xe, nameof(nextSampleBools));
             nextSampleInts = xd.ReadInt32Array(xe, nameof(nextSampleInts));
@@ -62,7 +62,7 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumberArray(xe, nameof(nextSample@events), nextSample@events);
+            xs.WriteNumberArray(xe, nameof(nextSampleEvents), nextSampleEvents);
             xs.WriteNumberArray(xe, nameof(nextSampleReals), nextSampleReals);
             xs.WriteNumberArray(xe, nameof(nextSampleBools), nextSampleBools);
             xs.WriteNumberArray(xe, nameof(nextSampleInts), nextSampleInts);
@@ -79,7 +79,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   nextSample@events.SequenceEqual(other.nextSample@events) &&
+                   nextSampleEvents.SequenceEqual(other.nextSampleEvents) &&
                    nextSampleReals.SequenceEqual(other.nextSampleReals) &&
                    nextSampleBools.SequenceEqual(other.nextSampleBools) &&
                    nextSampleInts.SequenceEqual(other.nextSampleInts) &&
@@ -92,7 +92,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(nextSample@events.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nextSampleEvents.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(nextSampleReals.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(nextSampleBools.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(nextSampleInts.Aggregate(0, (x, y) => x ^ y.GetHashCode()));

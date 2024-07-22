@@ -10,7 +10,7 @@ namespace HKX2
     // attributeDefaults class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // variableInfos class: hkbVariableInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     // characterPropertyInfos class: hkbVariableInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // @eventInfos class: hkb@eventInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // eventInfos class: hkbEventInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     // wordMinVariableValues class: hkbVariableValue Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     // wordMaxVariableValues class: hkbVariableValue Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     // variableInitialValues class: hkbVariableValueSet Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
@@ -20,7 +20,7 @@ namespace HKX2
         public IList<float> attributeDefaults { set; get; } = Array.Empty<float>();
         public IList<hkbVariableInfo> variableInfos { set; get; } = Array.Empty<hkbVariableInfo>();
         public IList<hkbVariableInfo> characterPropertyInfos { set; get; } = Array.Empty<hkbVariableInfo>();
-        public IList<hkb@eventInfo> @eventInfos { set; get; } = Array.Empty<hkb@eventInfo>();
+        public IList<hkbEventInfo> eventInfos { set; get; } = Array.Empty<hkbEventInfo>();
         public IList<hkbVariableValue> wordMinVariableValues { set; get; } = Array.Empty<hkbVariableValue>();
         public IList<hkbVariableValue> wordMaxVariableValues { set; get; } = Array.Empty<hkbVariableValue>();
         public hkbVariableValueSet? variableInitialValues { set; get; }
@@ -34,7 +34,7 @@ namespace HKX2
             attributeDefaults = des.ReadSingleArray(br);
             variableInfos = des.ReadClassArray<hkbVariableInfo>(br);
             characterPropertyInfos = des.ReadClassArray<hkbVariableInfo>(br);
-            @eventInfos = des.ReadClassArray<hkb@eventInfo>(br);
+            eventInfos = des.ReadClassArray<hkbEventInfo>(br);
             wordMinVariableValues = des.ReadClassArray<hkbVariableValue>(br);
             wordMaxVariableValues = des.ReadClassArray<hkbVariableValue>(br);
             variableInitialValues = des.ReadClassPointer<hkbVariableValueSet>(br);
@@ -47,7 +47,7 @@ namespace HKX2
             s.WriteSingleArray(bw, attributeDefaults);
             s.WriteClassArray(bw, variableInfos);
             s.WriteClassArray(bw, characterPropertyInfos);
-            s.WriteClassArray(bw, @eventInfos);
+            s.WriteClassArray(bw, eventInfos);
             s.WriteClassArray(bw, wordMinVariableValues);
             s.WriteClassArray(bw, wordMaxVariableValues);
             s.WriteClassPointer(bw, variableInitialValues);
@@ -60,7 +60,7 @@ namespace HKX2
             attributeDefaults = xd.ReadSingleArray(xe, nameof(attributeDefaults));
             variableInfos = xd.ReadClassArray<hkbVariableInfo>(xe, nameof(variableInfos));
             characterPropertyInfos = xd.ReadClassArray<hkbVariableInfo>(xe, nameof(characterPropertyInfos));
-            @eventInfos = xd.ReadClassArray<hkb@eventInfo>(xe, nameof(@eventInfos));
+            eventInfos = xd.ReadClassArray<hkbEventInfo>(xe, nameof(eventInfos));
             wordMinVariableValues = xd.ReadClassArray<hkbVariableValue>(xe, nameof(wordMinVariableValues));
             wordMaxVariableValues = xd.ReadClassArray<hkbVariableValue>(xe, nameof(wordMaxVariableValues));
             variableInitialValues = xd.ReadClassPointer<hkbVariableValueSet>(xe, nameof(variableInitialValues));
@@ -73,7 +73,7 @@ namespace HKX2
             xs.WriteFloatArray(xe, nameof(attributeDefaults), attributeDefaults);
             xs.WriteClassArray(xe, nameof(variableInfos), variableInfos);
             xs.WriteClassArray(xe, nameof(characterPropertyInfos), characterPropertyInfos);
-            xs.WriteClassArray(xe, nameof(@eventInfos), @eventInfos);
+            xs.WriteClassArray(xe, nameof(eventInfos), eventInfos);
             xs.WriteClassArray(xe, nameof(wordMinVariableValues), wordMinVariableValues);
             xs.WriteClassArray(xe, nameof(wordMaxVariableValues), wordMaxVariableValues);
             xs.WriteClassPointer(xe, nameof(variableInitialValues), variableInitialValues);
@@ -92,7 +92,7 @@ namespace HKX2
                    attributeDefaults.SequenceEqual(other.attributeDefaults) &&
                    variableInfos.SequenceEqual(other.variableInfos) &&
                    characterPropertyInfos.SequenceEqual(other.characterPropertyInfos) &&
-                   @eventInfos.SequenceEqual(other.@eventInfos) &&
+                   eventInfos.SequenceEqual(other.eventInfos) &&
                    wordMinVariableValues.SequenceEqual(other.wordMinVariableValues) &&
                    wordMaxVariableValues.SequenceEqual(other.wordMaxVariableValues) &&
                    ((variableInitialValues is null && other.variableInitialValues is null) || (variableInitialValues is not null && other.variableInitialValues is not null && variableInitialValues.Equals((IHavokObject)other.variableInitialValues))) &&
@@ -107,7 +107,7 @@ namespace HKX2
             hashcode.Add(attributeDefaults.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(variableInfos.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(characterPropertyInfos.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(@eventInfos.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(eventInfos.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(wordMinVariableValues.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(wordMaxVariableValues.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(variableInitialValues);

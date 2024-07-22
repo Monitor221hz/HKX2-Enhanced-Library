@@ -19,7 +19,7 @@ namespace HKX2
     // useBoneGains class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum: 
     // targetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
     // targetOutsideLimits class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // targetOutOfLimit@event class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
+    // targetOutOfLimitEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
     // lookAtCamera class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
     // lookAtCameraX class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
     // lookAtCameraY class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
@@ -40,7 +40,7 @@ namespace HKX2
         public bool useBoneGains { set; get; }
         public Vector4 targetLocation { set; get; }
         public bool targetOutsideLimits { set; get; }
-        public hkb@eventProperty targetOutOfLimit@event { set; get; } = new();
+        public hkbEventProperty targetOutOfLimitEvent { set; get; } = new();
         public bool lookAtCamera { set; get; }
         public float lookAtCameraX { set; get; }
         public float lookAtCameraY { set; get; }
@@ -69,7 +69,7 @@ namespace HKX2
             targetLocation = br.ReadVector4();
             targetOutsideLimits = br.ReadBoolean();
             br.Position += 7;
-            targetOutOfLimit@event.Read(des, br);
+            targetOutOfLimitEvent.Read(des, br);
             lookAtCamera = br.ReadBoolean();
             br.Position += 3;
             lookAtCameraX = br.ReadSingle();
@@ -100,7 +100,7 @@ namespace HKX2
             bw.WriteVector4(targetLocation);
             bw.WriteBoolean(targetOutsideLimits);
             bw.Position += 7;
-            targetOutOfLimit@event.Write(s, bw);
+            targetOutOfLimitEvent.Write(s, bw);
             bw.WriteBoolean(lookAtCamera);
             bw.Position += 3;
             bw.WriteSingle(lookAtCameraX);
@@ -127,7 +127,7 @@ namespace HKX2
             useBoneGains = xd.ReadBoolean(xe, nameof(useBoneGains));
             targetLocation = xd.ReadVector4(xe, nameof(targetLocation));
             targetOutsideLimits = xd.ReadBoolean(xe, nameof(targetOutsideLimits));
-            targetOutOfLimit@event = xd.ReadClass<hkb@eventProperty>(xe, nameof(targetOutOfLimit@event));
+            targetOutOfLimitEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(targetOutOfLimitEvent));
             lookAtCamera = xd.ReadBoolean(xe, nameof(lookAtCamera));
             lookAtCameraX = xd.ReadSingle(xe, nameof(lookAtCameraX));
             lookAtCameraY = xd.ReadSingle(xe, nameof(lookAtCameraY));
@@ -148,7 +148,7 @@ namespace HKX2
             xs.WriteBoolean(xe, nameof(useBoneGains), useBoneGains);
             xs.WriteVector4(xe, nameof(targetLocation), targetLocation);
             xs.WriteBoolean(xe, nameof(targetOutsideLimits), targetOutsideLimits);
-            xs.WriteClass<hkb@eventProperty>(xe, nameof(targetOutOfLimit@event), targetOutOfLimit@event);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(targetOutOfLimitEvent), targetOutOfLimitEvent);
             xs.WriteBoolean(xe, nameof(lookAtCamera), lookAtCamera);
             xs.WriteFloat(xe, nameof(lookAtCameraX), lookAtCameraX);
             xs.WriteFloat(xe, nameof(lookAtCameraY), lookAtCameraY);
@@ -178,7 +178,7 @@ namespace HKX2
                    useBoneGains.Equals(other.useBoneGains) &&
                    targetLocation.Equals(other.targetLocation) &&
                    targetOutsideLimits.Equals(other.targetOutsideLimits) &&
-                   ((targetOutOfLimit@event is null && other.targetOutOfLimit@event is null) || (targetOutOfLimit@event is not null && other.targetOutOfLimit@event is not null && targetOutOfLimit@event.Equals((IHavokObject)other.targetOutOfLimit@event))) &&
+                   ((targetOutOfLimitEvent is null && other.targetOutOfLimitEvent is null) || (targetOutOfLimitEvent is not null && other.targetOutOfLimitEvent is not null && targetOutOfLimitEvent.Equals((IHavokObject)other.targetOutOfLimitEvent))) &&
                    lookAtCamera.Equals(other.lookAtCamera) &&
                    lookAtCameraX.Equals(other.lookAtCameraX) &&
                    lookAtCameraY.Equals(other.lookAtCameraY) &&
@@ -201,7 +201,7 @@ namespace HKX2
             hashcode.Add(useBoneGains);
             hashcode.Add(targetLocation);
             hashcode.Add(targetOutsideLimits);
-            hashcode.Add(targetOutOfLimit@event);
+            hashcode.Add(targetOutOfLimitEvent);
             hashcode.Add(lookAtCamera);
             hashcode.Add(lookAtCameraX);
             hashcode.Add(lookAtCameraY);

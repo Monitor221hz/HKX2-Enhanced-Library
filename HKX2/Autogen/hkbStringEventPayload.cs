@@ -3,10 +3,10 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbString@eventPayload Signatire: 0xed04256a size: 24 flags: FLAGS_NONE
+    // hkbStringEventPayload Signatire: 0xed04256a size: 24 flags: FLAGS_NONE
 
     // data class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbString@eventPayload : hkb@eventPayload, IEquatable<hkbString@eventPayload?>
+    public partial class hkbStringEventPayload : hkbEventPayload, IEquatable<hkbStringEventPayload?>
     {
         public string data { set; get; } = "";
 
@@ -38,10 +38,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbString@eventPayload);
+            return Equals(obj as hkbStringEventPayload);
         }
 
-        public bool Equals(hkbString@eventPayload? other)
+        public bool Equals(hkbStringEventPayload? other)
         {
             return other is not null &&
                    base.Equals(other) &&

@@ -5,10 +5,10 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkb@eventsFromRangeModifierInternalState Signatire: 0xcc47b48d size: 32 flags: FLAGS_NONE
+    // hkbEventsFromRangeModifierInternalState Signatire: 0xcc47b48d size: 32 flags: FLAGS_NONE
 
     // wasActiveInPreviousFrame class:  Type.TYPE_ARRAY Type.TYPE_BOOL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkb@eventsFromRangeModifierInternalState : hkReferencedObject, IEquatable<hkb@eventsFromRangeModifierInternalState?>
+    public partial class hkbEventsFromRangeModifierInternalState : hkReferencedObject, IEquatable<hkbEventsFromRangeModifierInternalState?>
     {
         public IList<bool> wasActiveInPreviousFrame { set; get; } = Array.Empty<bool>();
 
@@ -40,10 +40,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkb@eventsFromRangeModifierInternalState);
+            return Equals(obj as hkbEventsFromRangeModifierInternalState);
         }
 
-        public bool Equals(hkb@eventsFromRangeModifierInternalState? other)
+        public bool Equals(hkbEventsFromRangeModifierInternalState? other)
         {
             return other is not null &&
                    base.Equals(other) &&

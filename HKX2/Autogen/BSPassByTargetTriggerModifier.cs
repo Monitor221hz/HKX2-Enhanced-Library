@@ -9,14 +9,14 @@ namespace HKX2
     // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     // movementDirection class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // trigger@event class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // triggerEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
     // targetPassed class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class BSPassByTargetTriggerModifier : hkbModifier, IEquatable<BSPassByTargetTriggerModifier?>
     {
         public Vector4 targetPosition { set; get; }
         public float radius { set; get; }
         public Vector4 movementDirection { set; get; }
-        public hkb@eventProperty trigger@event { set; get; } = new();
+        public hkbEventProperty triggerEvent { set; get; } = new();
         private bool targetPassed { set; get; }
 
         public override uint Signature { set; get; } = 0x703d7b66;
@@ -28,7 +28,7 @@ namespace HKX2
             radius = br.ReadSingle();
             br.Position += 12;
             movementDirection = br.ReadVector4();
-            trigger@event.Read(des, br);
+            triggerEvent.Read(des, br);
             targetPassed = br.ReadBoolean();
             br.Position += 15;
         }
@@ -40,7 +40,7 @@ namespace HKX2
             bw.WriteSingle(radius);
             bw.Position += 12;
             bw.WriteVector4(movementDirection);
-            trigger@event.Write(s, bw);
+            triggerEvent.Write(s, bw);
             bw.WriteBoolean(targetPassed);
             bw.Position += 15;
         }
@@ -51,7 +51,7 @@ namespace HKX2
             targetPosition = xd.ReadVector4(xe, nameof(targetPosition));
             radius = xd.ReadSingle(xe, nameof(radius));
             movementDirection = xd.ReadVector4(xe, nameof(movementDirection));
-            trigger@event = xd.ReadClass<hkb@eventProperty>(xe, nameof(trigger@event));
+            triggerEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(triggerEvent));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
@@ -60,7 +60,7 @@ namespace HKX2
             xs.WriteVector4(xe, nameof(targetPosition), targetPosition);
             xs.WriteFloat(xe, nameof(radius), radius);
             xs.WriteVector4(xe, nameof(movementDirection), movementDirection);
-            xs.WriteClass<hkb@eventProperty>(xe, nameof(trigger@event), trigger@event);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(triggerEvent), triggerEvent);
             xs.WriteSerializeIgnored(xe, nameof(targetPassed));
         }
 
@@ -76,7 +76,7 @@ namespace HKX2
                    targetPosition.Equals(other.targetPosition) &&
                    radius.Equals(other.radius) &&
                    movementDirection.Equals(other.movementDirection) &&
-                   ((trigger@event is null && other.trigger@event is null) || (trigger@event is not null && other.trigger@event is not null && trigger@event.Equals((IHavokObject)other.trigger@event))) &&
+                   ((triggerEvent is null && other.triggerEvent is null) || (triggerEvent is not null && other.triggerEvent is not null && triggerEvent.Equals((IHavokObject)other.triggerEvent))) &&
                    Signature == other.Signature; ;
         }
 
@@ -87,7 +87,7 @@ namespace HKX2
             hashcode.Add(targetPosition);
             hashcode.Add(radius);
             hashcode.Add(movementDirection);
-            hashcode.Add(trigger@event);
+            hashcode.Add(triggerEvent);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

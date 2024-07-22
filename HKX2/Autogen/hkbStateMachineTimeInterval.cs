@@ -5,14 +5,14 @@ namespace HKX2
 {
     // hkbStateMachineTimeInterval Signatire: 0x60a881e5 size: 16 flags: FLAGS_NONE
 
-    // enter@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // exit@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // enterEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // exitEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
     // enterTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     // exitTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
     public partial class hkbStateMachineTimeInterval : IHavokObject, IEquatable<hkbStateMachineTimeInterval?>
     {
-        public int enter@eventId { set; get; }
-        public int exit@eventId { set; get; }
+        public int enterEventId { set; get; }
+        public int exitEventId { set; get; }
         public float enterTime { set; get; }
         public float exitTime { set; get; }
 
@@ -20,32 +20,32 @@ namespace HKX2
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            enter@eventId = br.ReadInt32();
-            exit@eventId = br.ReadInt32();
+            enterEventId = br.ReadInt32();
+            exitEventId = br.ReadInt32();
             enterTime = br.ReadSingle();
             exitTime = br.ReadSingle();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteInt32(enter@eventId);
-            bw.WriteInt32(exit@eventId);
+            bw.WriteInt32(enterEventId);
+            bw.WriteInt32(exitEventId);
             bw.WriteSingle(enterTime);
             bw.WriteSingle(exitTime);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            enter@eventId = xd.ReadInt32(xe, nameof(enter@eventId));
-            exit@eventId = xd.ReadInt32(xe, nameof(exit@eventId));
+            enterEventId = xd.ReadInt32(xe, nameof(enterEventId));
+            exitEventId = xd.ReadInt32(xe, nameof(exitEventId));
             enterTime = xd.ReadSingle(xe, nameof(enterTime));
             exitTime = xd.ReadSingle(xe, nameof(exitTime));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteNumber(xe, nameof(enter@eventId), enter@eventId);
-            xs.WriteNumber(xe, nameof(exit@eventId), exit@eventId);
+            xs.WriteNumber(xe, nameof(enterEventId), enterEventId);
+            xs.WriteNumber(xe, nameof(exitEventId), exitEventId);
             xs.WriteFloat(xe, nameof(enterTime), enterTime);
             xs.WriteFloat(xe, nameof(exitTime), exitTime);
         }
@@ -58,8 +58,8 @@ namespace HKX2
         public bool Equals(hkbStateMachineTimeInterval? other)
         {
             return other is not null &&
-                   enter@eventId.Equals(other.enter@eventId) &&
-                   exit@eventId.Equals(other.exit@eventId) &&
+                   enterEventId.Equals(other.enterEventId) &&
+                   exitEventId.Equals(other.exitEventId) &&
                    enterTime.Equals(other.enterTime) &&
                    exitTime.Equals(other.exitTime) &&
                    Signature == other.Signature; ;
@@ -68,8 +68,8 @@ namespace HKX2
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(enter@eventId);
-            hashcode.Add(exit@eventId);
+            hashcode.Add(enterEventId);
+            hashcode.Add(exitEventId);
             hashcode.Add(enterTime);
             hashcode.Add(exitTime);
             hashcode.Add(Signature);

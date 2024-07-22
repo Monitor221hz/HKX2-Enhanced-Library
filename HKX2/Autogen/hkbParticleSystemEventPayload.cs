@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbParticleSystem@eventPayload Signatire: 0x9df46cd6 size: 80 flags: FLAGS_NONE
+    // hkbParticleSystemEventPayload Signatire: 0x9df46cd6 size: 80 flags: FLAGS_NONE
 
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: SystemType
     // emitBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum: 
@@ -12,7 +12,7 @@ namespace HKX2
     // direction class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     // numParticles class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     // speed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    public partial class hkbParticleSystem@eventPayload : hkb@eventPayload, IEquatable<hkbParticleSystem@eventPayload?>
+    public partial class hkbParticleSystemEventPayload : hkbEventPayload, IEquatable<hkbParticleSystemEventPayload?>
     {
         public byte type { set; get; }
         public short emitBoneIndex { set; get; }
@@ -75,10 +75,10 @@ namespace HKX2
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbParticleSystem@eventPayload);
+            return Equals(obj as hkbParticleSystemEventPayload);
         }
 
-        public bool Equals(hkbParticleSystem@eventPayload? other)
+        public bool Equals(hkbParticleSystemEventPayload? other)
         {
             return other is not null &&
                    base.Equals(other) &&

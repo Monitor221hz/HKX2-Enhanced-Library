@@ -11,8 +11,8 @@ namespace HKX2
     // minSpeedToSwitch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum: 
     // minSwitchTimeNoError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
     // minSwitchTimeFullError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    // startPlaying@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // startMatching@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
+    // startPlayingEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
+    // startMatchingEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
     // rootBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
     // otherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 202 flags: FLAGS_NONE enum: 
     // anotherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
@@ -31,8 +31,8 @@ namespace HKX2
         public float minSpeedToSwitch { set; get; }
         public float minSwitchTimeNoError { set; get; }
         public float minSwitchTimeFullError { set; get; }
-        public int startPlaying@eventId { set; get; }
-        public int startMatching@eventId { set; get; }
+        public int startPlayingEventId { set; get; }
+        public int startMatchingEventId { set; get; }
         public short rootBoneIndex { set; get; }
         public short otherBoneIndex { set; get; }
         public short anotherBoneIndex { set; get; }
@@ -55,8 +55,8 @@ namespace HKX2
             minSpeedToSwitch = br.ReadSingle();
             minSwitchTimeNoError = br.ReadSingle();
             minSwitchTimeFullError = br.ReadSingle();
-            startPlaying@eventId = br.ReadInt32();
-            startMatching@eventId = br.ReadInt32();
+            startPlayingEventId = br.ReadInt32();
+            startMatchingEventId = br.ReadInt32();
             rootBoneIndex = br.ReadInt16();
             otherBoneIndex = br.ReadInt16();
             anotherBoneIndex = br.ReadInt16();
@@ -80,8 +80,8 @@ namespace HKX2
             bw.WriteSingle(minSpeedToSwitch);
             bw.WriteSingle(minSwitchTimeNoError);
             bw.WriteSingle(minSwitchTimeFullError);
-            bw.WriteInt32(startPlaying@eventId);
-            bw.WriteInt32(startMatching@eventId);
+            bw.WriteInt32(startPlayingEventId);
+            bw.WriteInt32(startMatchingEventId);
             bw.WriteInt16(rootBoneIndex);
             bw.WriteInt16(otherBoneIndex);
             bw.WriteInt16(anotherBoneIndex);
@@ -105,8 +105,8 @@ namespace HKX2
             minSpeedToSwitch = xd.ReadSingle(xe, nameof(minSpeedToSwitch));
             minSwitchTimeNoError = xd.ReadSingle(xe, nameof(minSwitchTimeNoError));
             minSwitchTimeFullError = xd.ReadSingle(xe, nameof(minSwitchTimeFullError));
-            startPlaying@eventId = xd.ReadInt32(xe, nameof(startPlaying@eventId));
-            startMatching@eventId = xd.ReadInt32(xe, nameof(startMatching@eventId));
+            startPlayingEventId = xd.ReadInt32(xe, nameof(startPlayingEventId));
+            startMatchingEventId = xd.ReadInt32(xe, nameof(startMatchingEventId));
             rootBoneIndex = xd.ReadInt16(xe, nameof(rootBoneIndex));
             otherBoneIndex = xd.ReadInt16(xe, nameof(otherBoneIndex));
             anotherBoneIndex = xd.ReadInt16(xe, nameof(anotherBoneIndex));
@@ -122,8 +122,8 @@ namespace HKX2
             xs.WriteFloat(xe, nameof(minSpeedToSwitch), minSpeedToSwitch);
             xs.WriteFloat(xe, nameof(minSwitchTimeNoError), minSwitchTimeNoError);
             xs.WriteFloat(xe, nameof(minSwitchTimeFullError), minSwitchTimeFullError);
-            xs.WriteNumber(xe, nameof(startPlaying@eventId), startPlaying@eventId);
-            xs.WriteNumber(xe, nameof(startMatching@eventId), startMatching@eventId);
+            xs.WriteNumber(xe, nameof(startPlayingEventId), startPlayingEventId);
+            xs.WriteNumber(xe, nameof(startMatchingEventId), startMatchingEventId);
             xs.WriteNumber(xe, nameof(rootBoneIndex), rootBoneIndex);
             xs.WriteNumber(xe, nameof(otherBoneIndex), otherBoneIndex);
             xs.WriteNumber(xe, nameof(anotherBoneIndex), anotherBoneIndex);
@@ -151,8 +151,8 @@ namespace HKX2
                    minSpeedToSwitch.Equals(other.minSpeedToSwitch) &&
                    minSwitchTimeNoError.Equals(other.minSwitchTimeNoError) &&
                    minSwitchTimeFullError.Equals(other.minSwitchTimeFullError) &&
-                   startPlaying@eventId.Equals(other.startPlaying@eventId) &&
-                   startMatching@eventId.Equals(other.startMatching@eventId) &&
+                   startPlayingEventId.Equals(other.startPlayingEventId) &&
+                   startMatchingEventId.Equals(other.startMatchingEventId) &&
                    rootBoneIndex.Equals(other.rootBoneIndex) &&
                    otherBoneIndex.Equals(other.otherBoneIndex) &&
                    anotherBoneIndex.Equals(other.anotherBoneIndex) &&
@@ -170,8 +170,8 @@ namespace HKX2
             hashcode.Add(minSpeedToSwitch);
             hashcode.Add(minSwitchTimeNoError);
             hashcode.Add(minSwitchTimeFullError);
-            hashcode.Add(startPlaying@eventId);
-            hashcode.Add(startMatching@eventId);
+            hashcode.Add(startPlayingEventId);
+            hashcode.Add(startMatchingEventId);
             hashcode.Add(rootBoneIndex);
             hashcode.Add(otherBoneIndex);
             hashcode.Add(anotherBoneIndex);

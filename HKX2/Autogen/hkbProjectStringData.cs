@@ -10,7 +10,7 @@ namespace HKX2
     // animationFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // behaviorFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     // characterFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // @eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     // animationPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     // behaviorPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
     // characterPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
@@ -21,7 +21,7 @@ namespace HKX2
         public IList<string> animationFilenames { set; get; } = Array.Empty<string>();
         public IList<string> behaviorFilenames { set; get; } = Array.Empty<string>();
         public IList<string> characterFilenames { set; get; } = Array.Empty<string>();
-        public IList<string> @eventNames { set; get; } = Array.Empty<string>();
+        public IList<string> eventNames { set; get; } = Array.Empty<string>();
         public string animationPath { set; get; } = "";
         public string behaviorPath { set; get; } = "";
         public string characterPath { set; get; } = "";
@@ -36,7 +36,7 @@ namespace HKX2
             animationFilenames = des.ReadStringPointerArray(br);
             behaviorFilenames = des.ReadStringPointerArray(br);
             characterFilenames = des.ReadStringPointerArray(br);
-            @eventNames = des.ReadStringPointerArray(br);
+            eventNames = des.ReadStringPointerArray(br);
             animationPath = des.ReadStringPointer(br);
             behaviorPath = des.ReadStringPointer(br);
             characterPath = des.ReadStringPointer(br);
@@ -50,7 +50,7 @@ namespace HKX2
             s.WriteStringPointerArray(bw, animationFilenames);
             s.WriteStringPointerArray(bw, behaviorFilenames);
             s.WriteStringPointerArray(bw, characterFilenames);
-            s.WriteStringPointerArray(bw, @eventNames);
+            s.WriteStringPointerArray(bw, eventNames);
             s.WriteStringPointer(bw, animationPath);
             s.WriteStringPointer(bw, behaviorPath);
             s.WriteStringPointer(bw, characterPath);
@@ -64,7 +64,7 @@ namespace HKX2
             animationFilenames = xd.ReadStringArray(xe, nameof(animationFilenames));
             behaviorFilenames = xd.ReadStringArray(xe, nameof(behaviorFilenames));
             characterFilenames = xd.ReadStringArray(xe, nameof(characterFilenames));
-            @eventNames = xd.ReadStringArray(xe, nameof(@eventNames));
+            eventNames = xd.ReadStringArray(xe, nameof(eventNames));
             animationPath = xd.ReadString(xe, nameof(animationPath));
             behaviorPath = xd.ReadString(xe, nameof(behaviorPath));
             characterPath = xd.ReadString(xe, nameof(characterPath));
@@ -77,7 +77,7 @@ namespace HKX2
             xs.WriteStringArray(xe, nameof(animationFilenames), animationFilenames);
             xs.WriteStringArray(xe, nameof(behaviorFilenames), behaviorFilenames);
             xs.WriteStringArray(xe, nameof(characterFilenames), characterFilenames);
-            xs.WriteStringArray(xe, nameof(@eventNames), @eventNames);
+            xs.WriteStringArray(xe, nameof(eventNames), eventNames);
             xs.WriteString(xe, nameof(animationPath), animationPath);
             xs.WriteString(xe, nameof(behaviorPath), behaviorPath);
             xs.WriteString(xe, nameof(characterPath), characterPath);
@@ -97,7 +97,7 @@ namespace HKX2
                    animationFilenames.SequenceEqual(other.animationFilenames) &&
                    behaviorFilenames.SequenceEqual(other.behaviorFilenames) &&
                    characterFilenames.SequenceEqual(other.characterFilenames) &&
-                   @eventNames.SequenceEqual(other.@eventNames) &&
+                   eventNames.SequenceEqual(other.eventNames) &&
                    (animationPath is null && other.animationPath is null || animationPath == other.animationPath || animationPath is null && other.animationPath == "" || animationPath == "" && other.animationPath is null) &&
                    (behaviorPath is null && other.behaviorPath is null || behaviorPath == other.behaviorPath || behaviorPath is null && other.behaviorPath == "" || behaviorPath == "" && other.behaviorPath is null) &&
                    (characterPath is null && other.characterPath is null || characterPath == other.characterPath || characterPath is null && other.characterPath == "" || characterPath == "" && other.characterPath is null) &&
@@ -112,7 +112,7 @@ namespace HKX2
             hashcode.Add(animationFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(behaviorFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(characterFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(@eventNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(eventNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(animationPath);
             hashcode.Add(behaviorPath);
             hashcode.Add(characterPath);

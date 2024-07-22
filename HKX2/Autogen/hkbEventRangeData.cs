@@ -3,16 +3,16 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkb@eventRangeData Signatire: 0x6cb92c76 size: 32 flags: FLAGS_NONE
+    // hkbEventRangeData Signatire: 0x6cb92c76 size: 32 flags: FLAGS_NONE
 
     // upperBound class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // @event class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // @eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: @eventRangeMode
-    public partial class hkb@eventRangeData : IHavokObject, IEquatable<hkb@eventRangeData?>
+    // event class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: EventRangeMode
+    public partial class hkbEventRangeData : IHavokObject, IEquatable<hkbEventRangeData?>
     {
         public float upperBound { set; get; }
-        public hkb@eventProperty @event { set; get; } = new();
-        public sbyte @eventMode { set; get; }
+        public hkbEventProperty event { set; get; } = new();
+        public sbyte eventMode { set; get; }
 
         public virtual uint Signature { set; get; } = 0x6cb92c76;
 
@@ -20,8 +20,8 @@ namespace HKX2
         {
             upperBound = br.ReadSingle();
             br.Position += 4;
-            @event.Read(des, br);
-            @eventMode = br.ReadSByte();
+            event.Read(des, br);
+            eventMode = br.ReadSByte();
             br.Position += 7;
         }
 
@@ -29,36 +29,36 @@ namespace HKX2
         {
             bw.WriteSingle(upperBound);
             bw.Position += 4;
-            @event.Write(s, bw);
-            bw.WriteSByte(@eventMode);
+            event.Write(s, bw);
+            bw.WriteSByte(eventMode);
             bw.Position += 7;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
             upperBound = xd.ReadSingle(xe, nameof(upperBound));
-            @event = xd.ReadClass<hkb@eventProperty>(xe, nameof(@event));
-            @eventMode = xd.ReadFlag<@eventRangeMode, sbyte>(xe, nameof(@eventMode));
+            event = xd.ReadClass<hkbEventProperty>(xe, nameof(event));
+            eventMode = xd.ReadFlag<EventRangeMode, sbyte>(xe, nameof(eventMode));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(upperBound), upperBound);
-            xs.WriteClass<hkb@eventProperty>(xe, nameof(@event), @event);
-            xs.WriteEnum<@eventRangeMode, sbyte>(xe, nameof(@eventMode), @eventMode);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(event), event);
+            xs.WriteEnum<EventRangeMode, sbyte>(xe, nameof(eventMode), eventMode);
         }
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkb@eventRangeData);
+            return Equals(obj as hkbEventRangeData);
         }
 
-        public bool Equals(hkb@eventRangeData? other)
+        public bool Equals(hkbEventRangeData? other)
         {
             return other is not null &&
                    upperBound.Equals(other.upperBound) &&
-                   ((@event is null && other.@event is null) || (@event is not null && other.@event is not null && @event.Equals((IHavokObject)other.@event))) &&
-                   @eventMode.Equals(other.@eventMode) &&
+                   ((event is null && other.event is null) || (event is not null && other.event is not null && event.Equals((IHavokObject)other.event))) &&
+                   eventMode.Equals(other.eventMode) &&
                    Signature == other.Signature; ;
         }
 
@@ -66,8 +66,8 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(upperBound);
-            hashcode.Add(@event);
-            hashcode.Add(@eventMode);
+            hashcode.Add(event);
+            hashcode.Add(eventMode);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

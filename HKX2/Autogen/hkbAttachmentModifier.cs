@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkbAttachmentModifier Signatire: 0xcc0aab32 size: 200 flags: FLAGS_NONE
 
-    // sendToAttacherOnAttach class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // sendToAttacheeOnAttach class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // sendToAttacherOnDetach class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // sendToAttacheeOnDetach class: hkb@eventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // sendToAttacherOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // sendToAttacheeOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // sendToAttacherOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // sendToAttacheeOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
     // attachmentSetup class: hkbAttachmentSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
     // attacherHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
     // attacheeHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
@@ -19,10 +19,10 @@ namespace HKX2
     // attachment class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbAttachmentModifier : hkbModifier, IEquatable<hkbAttachmentModifier?>
     {
-        public hkb@eventProperty sendToAttacherOnAttach { set; get; } = new();
-        public hkb@eventProperty sendToAttacheeOnAttach { set; get; } = new();
-        public hkb@eventProperty sendToAttacherOnDetach { set; get; } = new();
-        public hkb@eventProperty sendToAttacheeOnDetach { set; get; } = new();
+        public hkbEventProperty sendToAttacherOnAttach { set; get; } = new();
+        public hkbEventProperty sendToAttacheeOnAttach { set; get; } = new();
+        public hkbEventProperty sendToAttacherOnDetach { set; get; } = new();
+        public hkbEventProperty sendToAttacheeOnDetach { set; get; } = new();
         public hkbAttachmentSetup? attachmentSetup { set; get; }
         public hkbHandle? attacherHandle { set; get; }
         public hkbHandle? attacheeHandle { set; get; }
@@ -75,10 +75,10 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            sendToAttacherOnAttach = xd.ReadClass<hkb@eventProperty>(xe, nameof(sendToAttacherOnAttach));
-            sendToAttacheeOnAttach = xd.ReadClass<hkb@eventProperty>(xe, nameof(sendToAttacheeOnAttach));
-            sendToAttacherOnDetach = xd.ReadClass<hkb@eventProperty>(xe, nameof(sendToAttacherOnDetach));
-            sendToAttacheeOnDetach = xd.ReadClass<hkb@eventProperty>(xe, nameof(sendToAttacheeOnDetach));
+            sendToAttacherOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach));
+            sendToAttacheeOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnAttach));
+            sendToAttacherOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnDetach));
+            sendToAttacheeOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnDetach));
             attachmentSetup = xd.ReadClassPointer<hkbAttachmentSetup>(xe, nameof(attachmentSetup));
             attacherHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(attacherHandle));
             attacheeHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(attacheeHandle));
@@ -88,10 +88,10 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkb@eventProperty>(xe, nameof(sendToAttacherOnAttach), sendToAttacherOnAttach);
-            xs.WriteClass<hkb@eventProperty>(xe, nameof(sendToAttacheeOnAttach), sendToAttacheeOnAttach);
-            xs.WriteClass<hkb@eventProperty>(xe, nameof(sendToAttacherOnDetach), sendToAttacherOnDetach);
-            xs.WriteClass<hkb@eventProperty>(xe, nameof(sendToAttacheeOnDetach), sendToAttacheeOnDetach);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach), sendToAttacherOnAttach);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnAttach), sendToAttacheeOnAttach);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacherOnDetach), sendToAttacherOnDetach);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnDetach), sendToAttacheeOnDetach);
             xs.WriteClassPointer(xe, nameof(attachmentSetup), attachmentSetup);
             xs.WriteClassPointer(xe, nameof(attacherHandle), attacherHandle);
             xs.WriteClassPointer(xe, nameof(attacheeHandle), attacheeHandle);

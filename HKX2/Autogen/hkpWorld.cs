@@ -91,7 +91,7 @@ namespace HKX2
     // npWorld class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 672 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // broadPhaseExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 2 offset: 1008 flags: FLAGS_NONE enum: 
     // broadPhaseNumMarkers class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1040 flags: FLAGS_NONE enum: 
-    // sizeOfToi@eventQueue class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1044 flags: FLAGS_NONE enum: 
+    // sizeOfToiEventQueue class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1044 flags: FLAGS_NONE enum: 
     // broadPhaseQuerySize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1048 flags: FLAGS_NONE enum: 
     // broadPhaseUpdateSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1052 flags: FLAGS_NONE enum: 
     // contactPointGeneration class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 1056 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
@@ -180,7 +180,7 @@ namespace HKX2
         private object? npWorld { set; get; }
         public Vector4[] broadPhaseExtents = new Vector4[2];
         public int broadPhaseNumMarkers { set; get; }
-        public int sizeOfToi@eventQueue { set; get; }
+        public int sizeOfToiEventQueue { set; get; }
         public int broadPhaseQuerySize { set; get; }
         public int broadPhaseUpdateSize { set; get; }
         private sbyte contactPointGeneration { set; get; }
@@ -283,7 +283,7 @@ namespace HKX2
             br.Position += 328;
             broadPhaseExtents = des.ReadVector4CStyleArray(br, 2);
             broadPhaseNumMarkers = br.ReadInt32();
-            sizeOfToi@eventQueue = br.ReadInt32();
+            sizeOfToiEventQueue = br.ReadInt32();
             broadPhaseQuerySize = br.ReadInt32();
             broadPhaseUpdateSize = br.ReadInt32();
             contactPointGeneration = br.ReadSByte();
@@ -386,7 +386,7 @@ namespace HKX2
             bw.Position += 328;
             s.WriteVector4CStyleArray(bw, broadPhaseExtents);
             bw.WriteInt32(broadPhaseNumMarkers);
-            bw.WriteInt32(sizeOfToi@eventQueue);
+            bw.WriteInt32(sizeOfToiEventQueue);
             bw.WriteInt32(broadPhaseQuerySize);
             bw.WriteInt32(broadPhaseUpdateSize);
             bw.WriteSByte(contactPointGeneration);
@@ -434,7 +434,7 @@ namespace HKX2
             phantoms = xd.ReadClassPointerArray<hkpPhantom>(xe, nameof(phantoms));
             broadPhaseExtents = xd.ReadVector4CStyleArray(xe, nameof(broadPhaseExtents), 2);
             broadPhaseNumMarkers = xd.ReadInt32(xe, nameof(broadPhaseNumMarkers));
-            sizeOfToi@eventQueue = xd.ReadInt32(xe, nameof(sizeOfToi@eventQueue));
+            sizeOfToiEventQueue = xd.ReadInt32(xe, nameof(sizeOfToiEventQueue));
             broadPhaseQuerySize = xd.ReadInt32(xe, nameof(broadPhaseQuerySize));
             broadPhaseUpdateSize = xd.ReadInt32(xe, nameof(broadPhaseUpdateSize));
         }
@@ -525,7 +525,7 @@ namespace HKX2
             xs.WriteSerializeIgnored(xe, nameof(npWorld));
             xs.WriteVector4Array(xe, nameof(broadPhaseExtents), broadPhaseExtents);
             xs.WriteNumber(xe, nameof(broadPhaseNumMarkers), broadPhaseNumMarkers);
-            xs.WriteNumber(xe, nameof(sizeOfToi@eventQueue), sizeOfToi@eventQueue);
+            xs.WriteNumber(xe, nameof(sizeOfToiEventQueue), sizeOfToiEventQueue);
             xs.WriteNumber(xe, nameof(broadPhaseQuerySize), broadPhaseQuerySize);
             xs.WriteNumber(xe, nameof(broadPhaseUpdateSize), broadPhaseUpdateSize);
             xs.WriteSerializeIgnored(xe, nameof(contactPointGeneration));
@@ -578,7 +578,7 @@ namespace HKX2
                    phantoms.SequenceEqual(other.phantoms) &&
                    broadPhaseExtents.SequenceEqual(other.broadPhaseExtents) &&
                    broadPhaseNumMarkers.Equals(other.broadPhaseNumMarkers) &&
-                   sizeOfToi@eventQueue.Equals(other.sizeOfToi@eventQueue) &&
+                   sizeOfToiEventQueue.Equals(other.sizeOfToiEventQueue) &&
                    broadPhaseQuerySize.Equals(other.broadPhaseQuerySize) &&
                    broadPhaseUpdateSize.Equals(other.broadPhaseUpdateSize) &&
                    Signature == other.Signature; ;
@@ -626,7 +626,7 @@ namespace HKX2
             hashcode.Add(phantoms.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(broadPhaseExtents.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(broadPhaseNumMarkers);
-            hashcode.Add(sizeOfToi@eventQueue);
+            hashcode.Add(sizeOfToiEventQueue);
             hashcode.Add(broadPhaseQuerySize);
             hashcode.Add(broadPhaseUpdateSize);
             hashcode.Add(Signature);

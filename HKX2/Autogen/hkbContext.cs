@@ -8,10 +8,10 @@ namespace HKX2
     // character class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // behavior class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // nodeToIndexMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // @eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // shared@eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // sharedEventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // generatorOutputListener class: hkbGeneratorOutputListener Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // @eventTriggeredTransition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // eventTriggeredTransition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // attachmentManager class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // animationCache class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
@@ -20,10 +20,10 @@ namespace HKX2
         private object? character { set; get; }
         private object? behavior { set; get; }
         private object? nodeToIndexMap { set; get; }
-        private object? @eventQueue { set; get; }
-        private object? shared@eventQueue { set; get; }
+        private object? eventQueue { set; get; }
+        private object? sharedEventQueue { set; get; }
         public hkbGeneratorOutputListener? generatorOutputListener { set; get; }
-        private bool @eventTriggeredTransition { set; get; }
+        private bool eventTriggeredTransition { set; get; }
         private object? world { set; get; }
         private object? attachmentManager { set; get; }
         private object? animationCache { set; get; }
@@ -38,7 +38,7 @@ namespace HKX2
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             generatorOutputListener = des.ReadClassPointer<hkbGeneratorOutputListener>(br);
-            @eventTriggeredTransition = br.ReadBoolean();
+            eventTriggeredTransition = br.ReadBoolean();
             br.Position += 7;
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
@@ -53,7 +53,7 @@ namespace HKX2
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             s.WriteClassPointer(bw, generatorOutputListener);
-            bw.WriteBoolean(@eventTriggeredTransition);
+            bw.WriteBoolean(eventTriggeredTransition);
             bw.Position += 7;
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
@@ -70,10 +70,10 @@ namespace HKX2
             xs.WriteSerializeIgnored(xe, nameof(character));
             xs.WriteSerializeIgnored(xe, nameof(behavior));
             xs.WriteSerializeIgnored(xe, nameof(nodeToIndexMap));
-            xs.WriteSerializeIgnored(xe, nameof(@eventQueue));
-            xs.WriteSerializeIgnored(xe, nameof(shared@eventQueue));
+            xs.WriteSerializeIgnored(xe, nameof(eventQueue));
+            xs.WriteSerializeIgnored(xe, nameof(sharedEventQueue));
             xs.WriteClassPointer(xe, nameof(generatorOutputListener), generatorOutputListener);
-            xs.WriteSerializeIgnored(xe, nameof(@eventTriggeredTransition));
+            xs.WriteSerializeIgnored(xe, nameof(eventTriggeredTransition));
             xs.WriteSerializeIgnored(xe, nameof(world));
             xs.WriteSerializeIgnored(xe, nameof(attachmentManager));
             xs.WriteSerializeIgnored(xe, nameof(animationCache));

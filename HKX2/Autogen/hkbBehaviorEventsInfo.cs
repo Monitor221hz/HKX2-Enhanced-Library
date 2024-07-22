@@ -5,15 +5,15 @@ using System.Xml.Linq;
 
 namespace HKX2
 {
-    // hkbBehavior@eventsInfo Signatire: 0x66840004 size: 48 flags: FLAGS_NONE
+    // hkbBehaviorEventsInfo Signatire: 0x66840004 size: 48 flags: FLAGS_NONE
 
     // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // external@eventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // externalEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    public partial class hkbBehavior@eventsInfo : hkReferencedObject, IEquatable<hkbBehavior@eventsInfo?>
+    public partial class hkbBehaviorEventsInfo : hkReferencedObject, IEquatable<hkbBehaviorEventsInfo?>
     {
         public ulong characterId { set; get; }
-        public IList<short> external@eventIds { set; get; } = Array.Empty<short>();
+        public IList<short> externalEventIds { set; get; } = Array.Empty<short>();
         public int padding { set; get; }
 
         public override uint Signature { set; get; } = 0x66840004;
@@ -22,7 +22,7 @@ namespace HKX2
         {
             base.Read(des, br);
             characterId = br.ReadUInt64();
-            external@eventIds = des.ReadInt16Array(br);
+            externalEventIds = des.ReadInt16Array(br);
             padding = br.ReadInt32();
             br.Position += 4;
         }
@@ -31,7 +31,7 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.WriteUInt64(characterId);
-            s.WriteInt16Array(bw, external@eventIds);
+            s.WriteInt16Array(bw, externalEventIds);
             bw.WriteInt32(padding);
             bw.Position += 4;
         }
@@ -40,7 +40,7 @@ namespace HKX2
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            external@eventIds = xd.ReadInt16Array(xe, nameof(external@eventIds));
+            externalEventIds = xd.ReadInt16Array(xe, nameof(externalEventIds));
             padding = xd.ReadInt32(xe, nameof(padding));
         }
 
@@ -48,21 +48,21 @@ namespace HKX2
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);
-            xs.WriteNumberArray(xe, nameof(external@eventIds), external@eventIds);
+            xs.WriteNumberArray(xe, nameof(externalEventIds), externalEventIds);
             xs.WriteNumber(xe, nameof(padding), padding);
         }
 
         public override bool Equals(object? obj)
         {
-            return Equals(obj as hkbBehavior@eventsInfo);
+            return Equals(obj as hkbBehaviorEventsInfo);
         }
 
-        public bool Equals(hkbBehavior@eventsInfo? other)
+        public bool Equals(hkbBehaviorEventsInfo? other)
         {
             return other is not null &&
                    base.Equals(other) &&
                    characterId.Equals(other.characterId) &&
-                   external@eventIds.SequenceEqual(other.external@eventIds) &&
+                   externalEventIds.SequenceEqual(other.externalEventIds) &&
                    padding.Equals(other.padding) &&
                    Signature == other.Signature; ;
         }
@@ -72,7 +72,7 @@ namespace HKX2
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
             hashcode.Add(characterId);
-            hashcode.Add(external@eventIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(externalEventIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(padding);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();

@@ -7,13 +7,13 @@ namespace HKX2
 {
     // hkbStateMachine Signatire: 0x816c1dcb size: 264 flags: FLAGS_NONE
 
-    // @eventToSendWhenStateOrTransitionChanges class: hkb@event Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // eventToSendWhenStateOrTransitionChanges class: hkbEvent Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
     // startStateChooser class: hkbStateChooser Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     // startStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // returnToPreviousState@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // randomTransition@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // transitionToNextHigherState@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum: 
-    // transitionToNextLowerState@eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
+    // returnToPreviousStateEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
+    // randomTransitionEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // transitionToNextHigherStateEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum: 
+    // transitionToNextLowerStateEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
     // syncVariableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
     // currentStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     // wrapAroundStateId class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
@@ -37,13 +37,13 @@ namespace HKX2
     // sCurrentStateIndexAndEntered class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 258 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbStateMachine : hkbGenerator, IEquatable<hkbStateMachine?>
     {
-        public hkb@event @eventToSendWhenStateOrTransitionChanges { set; get; } = new();
+        public hkbEvent eventToSendWhenStateOrTransitionChanges { set; get; } = new();
         public hkbStateChooser? startStateChooser { set; get; }
         public int startStateId { set; get; }
-        public int returnToPreviousState@eventId { set; get; }
-        public int randomTransition@eventId { set; get; }
-        public int transitionToNextHigherState@eventId { set; get; }
-        public int transitionToNextLowerState@eventId { set; get; }
+        public int returnToPreviousStateEventId { set; get; }
+        public int randomTransitionEventId { set; get; }
+        public int transitionToNextHigherStateEventId { set; get; }
+        public int transitionToNextLowerStateEventId { set; get; }
         public int syncVariableIndex { set; get; }
         private int currentStateId { set; get; }
         public bool wrapAroundStateId { set; get; }
@@ -71,13 +71,13 @@ namespace HKX2
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            @eventToSendWhenStateOrTransitionChanges.Read(des, br);
+            eventToSendWhenStateOrTransitionChanges.Read(des, br);
             startStateChooser = des.ReadClassPointer<hkbStateChooser>(br);
             startStateId = br.ReadInt32();
-            returnToPreviousState@eventId = br.ReadInt32();
-            randomTransition@eventId = br.ReadInt32();
-            transitionToNextHigherState@eventId = br.ReadInt32();
-            transitionToNextLowerState@eventId = br.ReadInt32();
+            returnToPreviousStateEventId = br.ReadInt32();
+            randomTransitionEventId = br.ReadInt32();
+            transitionToNextHigherStateEventId = br.ReadInt32();
+            transitionToNextLowerStateEventId = br.ReadInt32();
             syncVariableIndex = br.ReadInt32();
             currentStateId = br.ReadInt32();
             wrapAroundStateId = br.ReadBoolean();
@@ -106,13 +106,13 @@ namespace HKX2
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            @eventToSendWhenStateOrTransitionChanges.Write(s, bw);
+            eventToSendWhenStateOrTransitionChanges.Write(s, bw);
             s.WriteClassPointer(bw, startStateChooser);
             bw.WriteInt32(startStateId);
-            bw.WriteInt32(returnToPreviousState@eventId);
-            bw.WriteInt32(randomTransition@eventId);
-            bw.WriteInt32(transitionToNextHigherState@eventId);
-            bw.WriteInt32(transitionToNextLowerState@eventId);
+            bw.WriteInt32(returnToPreviousStateEventId);
+            bw.WriteInt32(randomTransitionEventId);
+            bw.WriteInt32(transitionToNextHigherStateEventId);
+            bw.WriteInt32(transitionToNextLowerStateEventId);
             bw.WriteInt32(syncVariableIndex);
             bw.WriteInt32(currentStateId);
             bw.WriteBoolean(wrapAroundStateId);
@@ -141,13 +141,13 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            @eventToSendWhenStateOrTransitionChanges = xd.ReadClass<hkb@event>(xe, nameof(@eventToSendWhenStateOrTransitionChanges));
+            eventToSendWhenStateOrTransitionChanges = xd.ReadClass<hkbEvent>(xe, nameof(eventToSendWhenStateOrTransitionChanges));
             startStateChooser = xd.ReadClassPointer<hkbStateChooser>(xe, nameof(startStateChooser));
             startStateId = xd.ReadInt32(xe, nameof(startStateId));
-            returnToPreviousState@eventId = xd.ReadInt32(xe, nameof(returnToPreviousState@eventId));
-            randomTransition@eventId = xd.ReadInt32(xe, nameof(randomTransition@eventId));
-            transitionToNextHigherState@eventId = xd.ReadInt32(xe, nameof(transitionToNextHigherState@eventId));
-            transitionToNextLowerState@eventId = xd.ReadInt32(xe, nameof(transitionToNextLowerState@eventId));
+            returnToPreviousStateEventId = xd.ReadInt32(xe, nameof(returnToPreviousStateEventId));
+            randomTransitionEventId = xd.ReadInt32(xe, nameof(randomTransitionEventId));
+            transitionToNextHigherStateEventId = xd.ReadInt32(xe, nameof(transitionToNextHigherStateEventId));
+            transitionToNextLowerStateEventId = xd.ReadInt32(xe, nameof(transitionToNextLowerStateEventId));
             syncVariableIndex = xd.ReadInt32(xe, nameof(syncVariableIndex));
             wrapAroundStateId = xd.ReadBoolean(xe, nameof(wrapAroundStateId));
             maxSimultaneousTransitions = xd.ReadSByte(xe, nameof(maxSimultaneousTransitions));
@@ -160,13 +160,13 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkb@event>(xe, nameof(@eventToSendWhenStateOrTransitionChanges), @eventToSendWhenStateOrTransitionChanges);
+            xs.WriteClass<hkbEvent>(xe, nameof(eventToSendWhenStateOrTransitionChanges), eventToSendWhenStateOrTransitionChanges);
             xs.WriteClassPointer(xe, nameof(startStateChooser), startStateChooser);
             xs.WriteNumber(xe, nameof(startStateId), startStateId);
-            xs.WriteNumber(xe, nameof(returnToPreviousState@eventId), returnToPreviousState@eventId);
-            xs.WriteNumber(xe, nameof(randomTransition@eventId), randomTransition@eventId);
-            xs.WriteNumber(xe, nameof(transitionToNextHigherState@eventId), transitionToNextHigherState@eventId);
-            xs.WriteNumber(xe, nameof(transitionToNextLowerState@eventId), transitionToNextLowerState@eventId);
+            xs.WriteNumber(xe, nameof(returnToPreviousStateEventId), returnToPreviousStateEventId);
+            xs.WriteNumber(xe, nameof(randomTransitionEventId), randomTransitionEventId);
+            xs.WriteNumber(xe, nameof(transitionToNextHigherStateEventId), transitionToNextHigherStateEventId);
+            xs.WriteNumber(xe, nameof(transitionToNextLowerStateEventId), transitionToNextLowerStateEventId);
             xs.WriteNumber(xe, nameof(syncVariableIndex), syncVariableIndex);
             xs.WriteSerializeIgnored(xe, nameof(currentStateId));
             xs.WriteBoolean(xe, nameof(wrapAroundStateId), wrapAroundStateId);
@@ -199,13 +199,13 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((@eventToSendWhenStateOrTransitionChanges is null && other.@eventToSendWhenStateOrTransitionChanges is null) || (@eventToSendWhenStateOrTransitionChanges is not null && other.@eventToSendWhenStateOrTransitionChanges is not null && @eventToSendWhenStateOrTransitionChanges.Equals((IHavokObject)other.@eventToSendWhenStateOrTransitionChanges))) &&
+                   ((eventToSendWhenStateOrTransitionChanges is null && other.eventToSendWhenStateOrTransitionChanges is null) || (eventToSendWhenStateOrTransitionChanges is not null && other.eventToSendWhenStateOrTransitionChanges is not null && eventToSendWhenStateOrTransitionChanges.Equals((IHavokObject)other.eventToSendWhenStateOrTransitionChanges))) &&
                    ((startStateChooser is null && other.startStateChooser is null) || (startStateChooser is not null && other.startStateChooser is not null && startStateChooser.Equals((IHavokObject)other.startStateChooser))) &&
                    startStateId.Equals(other.startStateId) &&
-                   returnToPreviousState@eventId.Equals(other.returnToPreviousState@eventId) &&
-                   randomTransition@eventId.Equals(other.randomTransition@eventId) &&
-                   transitionToNextHigherState@eventId.Equals(other.transitionToNextHigherState@eventId) &&
-                   transitionToNextLowerState@eventId.Equals(other.transitionToNextLowerState@eventId) &&
+                   returnToPreviousStateEventId.Equals(other.returnToPreviousStateEventId) &&
+                   randomTransitionEventId.Equals(other.randomTransitionEventId) &&
+                   transitionToNextHigherStateEventId.Equals(other.transitionToNextHigherStateEventId) &&
+                   transitionToNextLowerStateEventId.Equals(other.transitionToNextLowerStateEventId) &&
                    syncVariableIndex.Equals(other.syncVariableIndex) &&
                    wrapAroundStateId.Equals(other.wrapAroundStateId) &&
                    maxSimultaneousTransitions.Equals(other.maxSimultaneousTransitions) &&
@@ -220,13 +220,13 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(@eventToSendWhenStateOrTransitionChanges);
+            hashcode.Add(eventToSendWhenStateOrTransitionChanges);
             hashcode.Add(startStateChooser);
             hashcode.Add(startStateId);
-            hashcode.Add(returnToPreviousState@eventId);
-            hashcode.Add(randomTransition@eventId);
-            hashcode.Add(transitionToNextHigherState@eventId);
-            hashcode.Add(transitionToNextLowerState@eventId);
+            hashcode.Add(returnToPreviousStateEventId);
+            hashcode.Add(randomTransitionEventId);
+            hashcode.Add(transitionToNextHigherStateEventId);
+            hashcode.Add(transitionToNextLowerStateEventId);
             hashcode.Add(syncVariableIndex);
             hashcode.Add(wrapAroundStateId);
             hashcode.Add(maxSimultaneousTransitions);

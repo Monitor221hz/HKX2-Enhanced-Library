@@ -10,9 +10,9 @@ namespace HKX2
 
     // deformableSkinIds class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // rigidSkinIds class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // external@eventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // externalEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     // auxiliaryInfo class: hkbAuxiliaryNodeInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // active@eventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // activeEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     // activeVariableIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
     // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
     // instanceName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
@@ -31,9 +31,9 @@ namespace HKX2
     {
         public IList<ulong> deformableSkinIds { set; get; } = Array.Empty<ulong>();
         public IList<ulong> rigidSkinIds { set; get; } = Array.Empty<ulong>();
-        public IList<short> external@eventIds { set; get; } = Array.Empty<short>();
+        public IList<short> externalEventIds { set; get; } = Array.Empty<short>();
         public IList<hkbAuxiliaryNodeInfo> auxiliaryInfo { set; get; } = Array.Empty<hkbAuxiliaryNodeInfo>();
-        public IList<short> active@eventIds { set; get; } = Array.Empty<short>();
+        public IList<short> activeEventIds { set; get; } = Array.Empty<short>();
         public IList<short> activeVariableIds { set; get; } = Array.Empty<short>();
         public ulong characterId { set; get; }
         public string instanceName { set; get; } = "";
@@ -56,9 +56,9 @@ namespace HKX2
             base.Read(des, br);
             deformableSkinIds = des.ReadUInt64Array(br);
             rigidSkinIds = des.ReadUInt64Array(br);
-            external@eventIds = des.ReadInt16Array(br);
+            externalEventIds = des.ReadInt16Array(br);
             auxiliaryInfo = des.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(br);
-            active@eventIds = des.ReadInt16Array(br);
+            activeEventIds = des.ReadInt16Array(br);
             activeVariableIds = des.ReadInt16Array(br);
             characterId = br.ReadUInt64();
             instanceName = des.ReadStringPointer(br);
@@ -82,9 +82,9 @@ namespace HKX2
             base.Write(s, bw);
             s.WriteUInt64Array(bw, deformableSkinIds);
             s.WriteUInt64Array(bw, rigidSkinIds);
-            s.WriteInt16Array(bw, external@eventIds);
+            s.WriteInt16Array(bw, externalEventIds);
             s.WriteClassPointerArray(bw, auxiliaryInfo);
-            s.WriteInt16Array(bw, active@eventIds);
+            s.WriteInt16Array(bw, activeEventIds);
             s.WriteInt16Array(bw, activeVariableIds);
             bw.WriteUInt64(characterId);
             s.WriteStringPointer(bw, instanceName);
@@ -108,9 +108,9 @@ namespace HKX2
             base.ReadXml(xd, xe);
             deformableSkinIds = xd.ReadUInt64Array(xe, nameof(deformableSkinIds));
             rigidSkinIds = xd.ReadUInt64Array(xe, nameof(rigidSkinIds));
-            external@eventIds = xd.ReadInt16Array(xe, nameof(external@eventIds));
+            externalEventIds = xd.ReadInt16Array(xe, nameof(externalEventIds));
             auxiliaryInfo = xd.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(xe, nameof(auxiliaryInfo));
-            active@eventIds = xd.ReadInt16Array(xe, nameof(active@eventIds));
+            activeEventIds = xd.ReadInt16Array(xe, nameof(activeEventIds));
             activeVariableIds = xd.ReadInt16Array(xe, nameof(activeVariableIds));
             characterId = xd.ReadUInt64(xe, nameof(characterId));
             instanceName = xd.ReadString(xe, nameof(instanceName));
@@ -131,9 +131,9 @@ namespace HKX2
             base.WriteXml(xs, xe);
             xs.WriteNumberArray(xe, nameof(deformableSkinIds), deformableSkinIds);
             xs.WriteNumberArray(xe, nameof(rigidSkinIds), rigidSkinIds);
-            xs.WriteNumberArray(xe, nameof(external@eventIds), external@eventIds);
+            xs.WriteNumberArray(xe, nameof(externalEventIds), externalEventIds);
             xs.WriteClassPointerArray(xe, nameof(auxiliaryInfo), auxiliaryInfo);
-            xs.WriteNumberArray(xe, nameof(active@eventIds), active@eventIds);
+            xs.WriteNumberArray(xe, nameof(activeEventIds), activeEventIds);
             xs.WriteNumberArray(xe, nameof(activeVariableIds), activeVariableIds);
             xs.WriteNumber(xe, nameof(characterId), characterId);
             xs.WriteString(xe, nameof(instanceName), instanceName);
@@ -161,9 +161,9 @@ namespace HKX2
                    base.Equals(other) &&
                    deformableSkinIds.SequenceEqual(other.deformableSkinIds) &&
                    rigidSkinIds.SequenceEqual(other.rigidSkinIds) &&
-                   external@eventIds.SequenceEqual(other.external@eventIds) &&
+                   externalEventIds.SequenceEqual(other.externalEventIds) &&
                    auxiliaryInfo.SequenceEqual(other.auxiliaryInfo) &&
-                   active@eventIds.SequenceEqual(other.active@eventIds) &&
+                   activeEventIds.SequenceEqual(other.activeEventIds) &&
                    activeVariableIds.SequenceEqual(other.activeVariableIds) &&
                    characterId.Equals(other.characterId) &&
                    (instanceName is null && other.instanceName is null || instanceName == other.instanceName || instanceName is null && other.instanceName == "" || instanceName == "" && other.instanceName is null) &&
@@ -186,9 +186,9 @@ namespace HKX2
             hashcode.Add(base.GetHashCode());
             hashcode.Add(deformableSkinIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(rigidSkinIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(external@eventIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(externalEventIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(auxiliaryInfo.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(active@eventIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(activeEventIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(activeVariableIds.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(characterId);
             hashcode.Add(instanceName);

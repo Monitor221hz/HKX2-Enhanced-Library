@@ -9,7 +9,7 @@ namespace HKX2
     // initiateInterval class: hkbStateMachineTimeInterval Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // transition class: hkbTransitionEffect Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
     // condition class: hkbCondition Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // @eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // eventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     // toStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
     // fromNestedStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
     // toNestedStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
@@ -21,7 +21,7 @@ namespace HKX2
         public hkbStateMachineTimeInterval initiateInterval { set; get; } = new();
         public hkbTransitionEffect? transition { set; get; }
         public hkbCondition? condition { set; get; }
-        public int @eventId { set; get; }
+        public int eventId { set; get; }
         public int toStateId { set; get; }
         public int fromNestedStateId { set; get; }
         public int toNestedStateId { set; get; }
@@ -36,7 +36,7 @@ namespace HKX2
             initiateInterval.Read(des, br);
             transition = des.ReadClassPointer<hkbTransitionEffect>(br);
             condition = des.ReadClassPointer<hkbCondition>(br);
-            @eventId = br.ReadInt32();
+            eventId = br.ReadInt32();
             toStateId = br.ReadInt32();
             fromNestedStateId = br.ReadInt32();
             toNestedStateId = br.ReadInt32();
@@ -51,7 +51,7 @@ namespace HKX2
             initiateInterval.Write(s, bw);
             s.WriteClassPointer(bw, transition);
             s.WriteClassPointer(bw, condition);
-            bw.WriteInt32(@eventId);
+            bw.WriteInt32(eventId);
             bw.WriteInt32(toStateId);
             bw.WriteInt32(fromNestedStateId);
             bw.WriteInt32(toNestedStateId);
@@ -66,7 +66,7 @@ namespace HKX2
             initiateInterval = xd.ReadClass<hkbStateMachineTimeInterval>(xe, nameof(initiateInterval));
             transition = xd.ReadClassPointer<hkbTransitionEffect>(xe, nameof(transition));
             condition = xd.ReadClassPointer<hkbCondition>(xe, nameof(condition));
-            @eventId = xd.ReadInt32(xe, nameof(@eventId));
+            eventId = xd.ReadInt32(xe, nameof(eventId));
             toStateId = xd.ReadInt32(xe, nameof(toStateId));
             fromNestedStateId = xd.ReadInt32(xe, nameof(fromNestedStateId));
             toNestedStateId = xd.ReadInt32(xe, nameof(toNestedStateId));
@@ -80,7 +80,7 @@ namespace HKX2
             xs.WriteClass<hkbStateMachineTimeInterval>(xe, nameof(initiateInterval), initiateInterval);
             xs.WriteClassPointer(xe, nameof(transition), transition);
             xs.WriteClassPointer(xe, nameof(condition), condition);
-            xs.WriteNumber(xe, nameof(@eventId), @eventId);
+            xs.WriteNumber(xe, nameof(eventId), eventId);
             xs.WriteNumber(xe, nameof(toStateId), toStateId);
             xs.WriteNumber(xe, nameof(fromNestedStateId), fromNestedStateId);
             xs.WriteNumber(xe, nameof(toNestedStateId), toNestedStateId);
@@ -100,7 +100,7 @@ namespace HKX2
                    ((initiateInterval is null && other.initiateInterval is null) || (initiateInterval is not null && other.initiateInterval is not null && initiateInterval.Equals((IHavokObject)other.initiateInterval))) &&
                    ((transition is null && other.transition is null) || (transition is not null && other.transition is not null && transition.Equals((IHavokObject)other.transition))) &&
                    ((condition is null && other.condition is null) || (condition is not null && other.condition is not null && condition.Equals((IHavokObject)other.condition))) &&
-                   @eventId.Equals(other.@eventId) &&
+                   eventId.Equals(other.eventId) &&
                    toStateId.Equals(other.toStateId) &&
                    fromNestedStateId.Equals(other.fromNestedStateId) &&
                    toNestedStateId.Equals(other.toNestedStateId) &&
@@ -116,7 +116,7 @@ namespace HKX2
             hashcode.Add(initiateInterval);
             hashcode.Add(transition);
             hashcode.Add(condition);
-            hashcode.Add(@eventId);
+            hashcode.Add(eventId);
             hashcode.Add(toStateId);
             hashcode.Add(fromNestedStateId);
             hashcode.Add(toNestedStateId);
