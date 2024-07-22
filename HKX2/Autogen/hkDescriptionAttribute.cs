@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkDescriptionAttribute Signatire: 0xe9f9578a size: 8 flags: FLAGS_NONE
 
-    // m_string m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // @string m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkDescriptionAttribute : IHavokObject, IEquatable<hkDescriptionAttribute?>
     {
-        public string m_string { set; get; } = "";
+        public string @string { set; get; } = "";
 
         public virtual uint Signature { set; get; } = 0xe9f9578a;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_string = des.ReadCString(br);
+            @string = des.ReadCString(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteCString(bw, m_string);
+            s.WriteCString(bw, @string);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_string = xd.ReadString(xe, nameof(m_string));
+            @string = xd.ReadString(xe, nameof(@string));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(m_string), m_string);
+            xs.WriteString(xe, nameof(@string), @string);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkDescriptionAttribute? other)
         {
             return other is not null &&
-                   (m_string is null && other.m_string is null || m_string == other.m_string || m_string is null && other.m_string == "" || m_string == "" && other.m_string is null) &&
+                   (@string is null && other.@string is null || @string == other.@string || @string is null && other.@string == "" || @string == "" && other.@string is null) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_string);
+            hashcode.Add(@string);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

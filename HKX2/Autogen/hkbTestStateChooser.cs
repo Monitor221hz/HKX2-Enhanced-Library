@@ -5,47 +5,47 @@ namespace HKX2
 {
     // hkbTestStateChooser Signatire: 0xc0fcc436 size: 32 flags: FLAGS_NONE
 
-    // m_int m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // @int m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // m_real m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // m_string m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // @string m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     public partial class hkbTestStateChooser : hkbStateChooser, IEquatable<hkbTestStateChooser?>
     {
-        public int m_int { set; get; }
+        public int @int { set; get; }
         public float m_real { set; get; }
-        public string m_string { set; get; } = "";
+        public string @string { set; get; } = "";
 
         public override uint Signature { set; get; } = 0xc0fcc436;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_int = br.ReadInt32();
+            @int = br.ReadInt32();
             m_real = br.ReadSingle();
-            m_string = des.ReadStringPointer(br);
+            @string = des.ReadStringPointer(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteInt32(m_int);
+            bw.WriteInt32(@int);
             bw.WriteSingle(m_real);
-            s.WriteStringPointer(bw, m_string);
+            s.WriteStringPointer(bw, @string);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_int = xd.ReadInt32(xe, nameof(m_int));
+            @int = xd.ReadInt32(xe, nameof(@int));
             m_real = xd.ReadSingle(xe, nameof(m_real));
-            m_string = xd.ReadString(xe, nameof(m_string));
+            @string = xd.ReadString(xe, nameof(@string));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(m_int), m_int);
+            xs.WriteNumber(xe, nameof(@int), @int);
             xs.WriteFloat(xe, nameof(m_real), m_real);
-            xs.WriteString(xe, nameof(m_string), m_string);
+            xs.WriteString(xe, nameof(@string), @string);
         }
 
         public override bool Equals(object? obj)
@@ -57,9 +57,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_int.Equals(other.m_int) &&
+                   @int.Equals(other.@int) &&
                    m_real.Equals(other.m_real) &&
-                   (m_string is null && other.m_string is null || m_string == other.m_string || m_string is null && other.m_string == "" || m_string == "" && other.m_string is null) &&
+                   (@string is null && other.@string is null || @string == other.@string || @string is null && other.@string == "" || @string == "" && other.@string is null) &&
                    Signature == other.Signature; ;
         }
 
@@ -67,9 +67,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_int);
+            hashcode.Add(@int);
             hashcode.Add(m_real);
-            hashcode.Add(m_string);
+            hashcode.Add(@string);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }
