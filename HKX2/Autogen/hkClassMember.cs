@@ -6,7 +6,7 @@ namespace HKX2
     // hkClassMember Signatire: 0x5c7ea4c2 size: 40 flags: FLAGS_NONE
 
     // m_name m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_class m_class: hkClass Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    //@class m_class: hkClass Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     // m_enum m_class: hkClassEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // m_type m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: Type
     // m_subtype m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 25 flags: FLAGS_NONE enum: Type
@@ -17,7 +17,7 @@ namespace HKX2
     public partial class hkClassMember : IHavokObject, IEquatable<hkClassMember?>
     {
         public string m_name { set; get; } = "";
-        public hkClass? m_class { set; get; }
+        public hkClass?@class { set; get; }
         public hkClassEnum? m_enum { set; get; }
         public byte m_type { set; get; }
         public byte m_subtype { set; get; }
@@ -31,7 +31,7 @@ namespace HKX2
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             m_name = des.ReadCString(br);
-            m_class = des.ReadClassPointer<hkClass>(br);
+           @class = des.ReadClassPointer<hkClass>(br);
             m_enum = des.ReadClassPointer<hkClassEnum>(br);
             m_type = br.ReadByte();
             m_subtype = br.ReadByte();
@@ -44,7 +44,7 @@ namespace HKX2
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             s.WriteCString(bw, m_name);
-            s.WriteClassPointer(bw, m_class);
+            s.WriteClassPointer(bw, @class);
             s.WriteClassPointer(bw, m_enum);
             bw.WriteByte(m_type);
             bw.WriteByte(m_subtype);
@@ -57,7 +57,7 @@ namespace HKX2
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
             m_name = xd.ReadString(xe, nameof(m_name));
-            m_class = xd.ReadClassPointer<hkClass>(xe, nameof(m_class));
+          @class = xd.ReadClassPointer<hkClass>(xe, nameof(@class));
             m_enum = xd.ReadClassPointer<hkClassEnum>(xe, nameof(m_enum));
             m_type = xd.ReadFlag<Type, byte>(xe, nameof(m_type));
             m_subtype = xd.ReadFlag<Type, byte>(xe, nameof(m_subtype));
@@ -69,7 +69,7 @@ namespace HKX2
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteClassPointer(xe, nameof(m_class), m_class);
+            xs.WriteClassPointer(xe, nameof(@class), @class);
             xs.WriteClassPointer(xe, nameof(m_enum), m_enum);
             xs.WriteEnum<Type, byte>(xe, nameof(m_type), m_type);
             xs.WriteEnum<Type, byte>(xe, nameof(m_subtype), m_subtype);
@@ -88,7 +88,7 @@ namespace HKX2
         {
             return other is not null &&
                    (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   ((m_class is null && other.m_class is null) || (m_class is not null && other.m_class is not null && m_class.Equals((IHavokObject)other.m_class))) &&
+                   ((@class is null && other.@class is null) || (@class is not null && other.@class is not null && @class.Equals((IHavokObject)other.@class))) &&
                    ((m_enum is null && other.m_enum is null) || (m_enum is not null && other.m_enum is not null && m_enum.Equals((IHavokObject)other.m_enum))) &&
                    m_type.Equals(other.m_type) &&
                    m_subtype.Equals(other.m_subtype) &&
@@ -102,7 +102,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(m_name);
-            hashcode.Add(m_class);
+            hashcode.Add(@class);
             hashcode.Add(m_enum);
             hashcode.Add(m_type);
             hashcode.Add(m_subtype);
