@@ -5,45 +5,45 @@ namespace HKX2
 {
     // hkbClipGeneratorEcho Signatire: 0x750edf40 size: 16 flags: FLAGS_NONE
 
-    // m_offsetLocalTime m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
-    // m_weight m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // m_dwdt m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // offsetLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
+    // weight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // dwdt class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkbClipGeneratorEcho : IHavokObject, IEquatable<hkbClipGeneratorEcho?>
     {
-        public float m_offsetLocalTime { set; get; }
-        public float m_weight { set; get; }
-        public float m_dwdt { set; get; }
+        public float offsetLocalTime { set; get; }
+        public float weight { set; get; }
+        public float dwdt { set; get; }
 
         public virtual uint Signature { set; get; } = 0x750edf40;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_offsetLocalTime = br.ReadSingle();
-            m_weight = br.ReadSingle();
-            m_dwdt = br.ReadSingle();
+            offsetLocalTime = br.ReadSingle();
+            weight = br.ReadSingle();
+            dwdt = br.ReadSingle();
             br.Position += 4;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteSingle(m_offsetLocalTime);
-            bw.WriteSingle(m_weight);
-            bw.WriteSingle(m_dwdt);
+            bw.WriteSingle(offsetLocalTime);
+            bw.WriteSingle(weight);
+            bw.WriteSingle(dwdt);
             bw.Position += 4;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_offsetLocalTime = xd.ReadSingle(xe, nameof(m_offsetLocalTime));
-            m_weight = xd.ReadSingle(xe, nameof(m_weight));
-            m_dwdt = xd.ReadSingle(xe, nameof(m_dwdt));
+            offsetLocalTime = xd.ReadSingle(xe, nameof(offsetLocalTime));
+            weight = xd.ReadSingle(xe, nameof(weight));
+            dwdt = xd.ReadSingle(xe, nameof(dwdt));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteFloat(xe, nameof(m_offsetLocalTime), m_offsetLocalTime);
-            xs.WriteFloat(xe, nameof(m_weight), m_weight);
-            xs.WriteFloat(xe, nameof(m_dwdt), m_dwdt);
+            xs.WriteFloat(xe, nameof(offsetLocalTime), offsetLocalTime);
+            xs.WriteFloat(xe, nameof(weight), weight);
+            xs.WriteFloat(xe, nameof(dwdt), dwdt);
         }
 
         public override bool Equals(object? obj)
@@ -54,18 +54,18 @@ namespace HKX2
         public bool Equals(hkbClipGeneratorEcho? other)
         {
             return other is not null &&
-                   m_offsetLocalTime.Equals(other.m_offsetLocalTime) &&
-                   m_weight.Equals(other.m_weight) &&
-                   m_dwdt.Equals(other.m_dwdt) &&
+                   offsetLocalTime.Equals(other.offsetLocalTime) &&
+                   weight.Equals(other.weight) &&
+                   dwdt.Equals(other.dwdt) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_offsetLocalTime);
-            hashcode.Add(m_weight);
-            hashcode.Add(m_dwdt);
+            hashcode.Add(offsetLocalTime);
+            hashcode.Add(weight);
+            hashcode.Add(dwdt);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

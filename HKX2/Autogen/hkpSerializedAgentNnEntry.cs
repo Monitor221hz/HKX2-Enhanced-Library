@@ -7,117 +7,117 @@ namespace HKX2
 {
     // hkpSerializedAgentNnEntry Signatire: 0x49ec7de3 size: 368 flags: FLAGS_NONE
 
-    // m_bodyA m_class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_bodyB m_class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // m_bodyAId m_class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_bodyBId m_class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // m_useEntityIds m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_agentType m_class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 49 flags: FLAGS_NONE enum: SerializedAgentType
-    // m_atom m_class: hkpSimpleContactConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // m_propertiesStream m_class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // m_contactPoints m_class: hkContactPoint Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // m_cpIdMgr m_class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // m_nnEntryData m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 160 offset: 160 flags: FLAGS_NONE enum: 
-    // m_trackInfo m_class: hkpSerializedTrack1nInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 320 flags: FLAGS_NONE enum: 
-    // m_endianCheckBuffer m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 4 offset: 352 flags: FLAGS_NONE enum: 
-    // m_version m_class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 356 flags: FLAGS_NONE enum: 
+    // bodyA class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // bodyB class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // bodyAId class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // bodyBId class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // useEntityIds class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // agentType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 49 flags: FLAGS_NONE enum: SerializedAgentType
+    // atom class: hkpSimpleContactConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // propertiesStream class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // contactPoints class: hkContactPoint Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // cpIdMgr class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // nnEntryData class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 160 offset: 160 flags: FLAGS_NONE enum: 
+    // trackInfo class: hkpSerializedTrack1nInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 320 flags: FLAGS_NONE enum: 
+    // endianCheckBuffer class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 4 offset: 352 flags: FLAGS_NONE enum: 
+    // version class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 356 flags: FLAGS_NONE enum: 
     public partial class hkpSerializedAgentNnEntry : hkReferencedObject, IEquatable<hkpSerializedAgentNnEntry?>
     {
-        public hkpEntity? m_bodyA { set; get; }
-        public hkpEntity? m_bodyB { set; get; }
-        public ulong m_bodyAId { set; get; }
-        public ulong m_bodyBId { set; get; }
-        public bool m_useEntityIds { set; get; }
-        public sbyte m_agentType { set; get; }
-        public hkpSimpleContactConstraintAtom m_atom { set; get; } = new();
-        public IList<byte> m_propertiesStream { set; get; } = Array.Empty<byte>();
-        public IList<hkContactPoint> m_contactPoints { set; get; } = Array.Empty<hkContactPoint>();
-        public IList<byte> m_cpIdMgr { set; get; } = Array.Empty<byte>();
-        public byte[] m_nnEntryData = new byte[160];
-        public hkpSerializedTrack1nInfo m_trackInfo { set; get; } = new();
-        public byte[] m_endianCheckBuffer = new byte[4];
-        public uint m_version { set; get; }
+        public hkpEntity? bodyA { set; get; }
+        public hkpEntity? bodyB { set; get; }
+        public ulong bodyAId { set; get; }
+        public ulong bodyBId { set; get; }
+        public bool useEntityIds { set; get; }
+        public sbyte agentType { set; get; }
+        public hkpSimpleContactConstraintAtom atom { set; get; } = new();
+        public IList<byte> propertiesStream { set; get; } = Array.Empty<byte>();
+        public IList<hkContactPoint> contactPoints { set; get; } = Array.Empty<hkContactPoint>();
+        public IList<byte> cpIdMgr { set; get; } = Array.Empty<byte>();
+        public byte[] nnEntryData = new byte[160];
+        public hkpSerializedTrack1nInfo trackInfo { set; get; } = new();
+        public byte[] endianCheckBuffer = new byte[4];
+        public uint version { set; get; }
 
         public override uint Signature { set; get; } = 0x49ec7de3;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_bodyA = des.ReadClassPointer<hkpEntity>(br);
-            m_bodyB = des.ReadClassPointer<hkpEntity>(br);
-            m_bodyAId = br.ReadUInt64();
-            m_bodyBId = br.ReadUInt64();
-            m_useEntityIds = br.ReadBoolean();
-            m_agentType = br.ReadSByte();
+            bodyA = des.ReadClassPointer<hkpEntity>(br);
+            bodyB = des.ReadClassPointer<hkpEntity>(br);
+            bodyAId = br.ReadUInt64();
+            bodyBId = br.ReadUInt64();
+            useEntityIds = br.ReadBoolean();
+            agentType = br.ReadSByte();
             br.Position += 14;
-            m_atom.Read(des, br);
-            m_propertiesStream = des.ReadByteArray(br);
-            m_contactPoints = des.ReadClassArray<hkContactPoint>(br);
-            m_cpIdMgr = des.ReadByteArray(br);
-            m_nnEntryData = des.ReadByteCStyleArray(br, 160);
-            m_trackInfo.Read(des, br);
-            m_endianCheckBuffer = des.ReadByteCStyleArray(br, 4);
-            m_version = br.ReadUInt32();
+            atom.Read(des, br);
+            propertiesStream = des.ReadByteArray(br);
+            contactPoints = des.ReadClassArray<hkContactPoint>(br);
+            cpIdMgr = des.ReadByteArray(br);
+            nnEntryData = des.ReadByteCStyleArray(br, 160);
+            trackInfo.Read(des, br);
+            endianCheckBuffer = des.ReadByteCStyleArray(br, 4);
+            version = br.ReadUInt32();
             br.Position += 8;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointer(bw, m_bodyA);
-            s.WriteClassPointer(bw, m_bodyB);
-            bw.WriteUInt64(m_bodyAId);
-            bw.WriteUInt64(m_bodyBId);
-            bw.WriteBoolean(m_useEntityIds);
-            bw.WriteSByte(m_agentType);
+            s.WriteClassPointer(bw, bodyA);
+            s.WriteClassPointer(bw, bodyB);
+            bw.WriteUInt64(bodyAId);
+            bw.WriteUInt64(bodyBId);
+            bw.WriteBoolean(useEntityIds);
+            bw.WriteSByte(agentType);
             bw.Position += 14;
-            m_atom.Write(s, bw);
-            s.WriteByteArray(bw, m_propertiesStream);
-            s.WriteClassArray(bw, m_contactPoints);
-            s.WriteByteArray(bw, m_cpIdMgr);
-            s.WriteByteCStyleArray(bw, m_nnEntryData);
-            m_trackInfo.Write(s, bw);
-            s.WriteByteCStyleArray(bw, m_endianCheckBuffer);
-            bw.WriteUInt32(m_version);
+            atom.Write(s, bw);
+            s.WriteByteArray(bw, propertiesStream);
+            s.WriteClassArray(bw, contactPoints);
+            s.WriteByteArray(bw, cpIdMgr);
+            s.WriteByteCStyleArray(bw, nnEntryData);
+            trackInfo.Write(s, bw);
+            s.WriteByteCStyleArray(bw, endianCheckBuffer);
+            bw.WriteUInt32(version);
             bw.Position += 8;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_bodyA = xd.ReadClassPointer<hkpEntity>(xe, nameof(m_bodyA));
-            m_bodyB = xd.ReadClassPointer<hkpEntity>(xe, nameof(m_bodyB));
-            m_bodyAId = xd.ReadUInt64(xe, nameof(m_bodyAId));
-            m_bodyBId = xd.ReadUInt64(xe, nameof(m_bodyBId));
-            m_useEntityIds = xd.ReadBoolean(xe, nameof(m_useEntityIds));
-            m_agentType = xd.ReadFlag<SerializedAgentType, sbyte>(xe, nameof(m_agentType));
-            m_atom = xd.ReadClass<hkpSimpleContactConstraintAtom>(xe, nameof(m_atom));
-            m_propertiesStream = xd.ReadByteArray(xe, nameof(m_propertiesStream));
-            m_contactPoints = xd.ReadClassArray<hkContactPoint>(xe, nameof(m_contactPoints));
-            m_cpIdMgr = xd.ReadByteArray(xe, nameof(m_cpIdMgr));
-            m_nnEntryData = xd.ReadByteCStyleArray(xe, nameof(m_nnEntryData), 160);
-            m_trackInfo = xd.ReadClass<hkpSerializedTrack1nInfo>(xe, nameof(m_trackInfo));
-            m_endianCheckBuffer = xd.ReadByteCStyleArray(xe, nameof(m_endianCheckBuffer), 4);
-            m_version = xd.ReadUInt32(xe, nameof(m_version));
+            bodyA = xd.ReadClassPointer<hkpEntity>(xe, nameof(bodyA));
+            bodyB = xd.ReadClassPointer<hkpEntity>(xe, nameof(bodyB));
+            bodyAId = xd.ReadUInt64(xe, nameof(bodyAId));
+            bodyBId = xd.ReadUInt64(xe, nameof(bodyBId));
+            useEntityIds = xd.ReadBoolean(xe, nameof(useEntityIds));
+            agentType = xd.ReadFlag<SerializedAgentType, sbyte>(xe, nameof(agentType));
+            atom = xd.ReadClass<hkpSimpleContactConstraintAtom>(xe, nameof(atom));
+            propertiesStream = xd.ReadByteArray(xe, nameof(propertiesStream));
+            contactPoints = xd.ReadClassArray<hkContactPoint>(xe, nameof(contactPoints));
+            cpIdMgr = xd.ReadByteArray(xe, nameof(cpIdMgr));
+            nnEntryData = xd.ReadByteCStyleArray(xe, nameof(nnEntryData), 160);
+            trackInfo = xd.ReadClass<hkpSerializedTrack1nInfo>(xe, nameof(trackInfo));
+            endianCheckBuffer = xd.ReadByteCStyleArray(xe, nameof(endianCheckBuffer), 4);
+            version = xd.ReadUInt32(xe, nameof(version));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(m_bodyA), m_bodyA);
-            xs.WriteClassPointer(xe, nameof(m_bodyB), m_bodyB);
-            xs.WriteNumber(xe, nameof(m_bodyAId), m_bodyAId);
-            xs.WriteNumber(xe, nameof(m_bodyBId), m_bodyBId);
-            xs.WriteBoolean(xe, nameof(m_useEntityIds), m_useEntityIds);
-            xs.WriteEnum<SerializedAgentType, sbyte>(xe, nameof(m_agentType), m_agentType);
-            xs.WriteClass<hkpSimpleContactConstraintAtom>(xe, nameof(m_atom), m_atom);
-            xs.WriteNumberArray(xe, nameof(m_propertiesStream), m_propertiesStream);
-            xs.WriteClassArray(xe, nameof(m_contactPoints), m_contactPoints);
-            xs.WriteNumberArray(xe, nameof(m_cpIdMgr), m_cpIdMgr);
-            xs.WriteNumberArray(xe, nameof(m_nnEntryData), m_nnEntryData);
-            xs.WriteClass<hkpSerializedTrack1nInfo>(xe, nameof(m_trackInfo), m_trackInfo);
-            xs.WriteNumberArray(xe, nameof(m_endianCheckBuffer), m_endianCheckBuffer);
-            xs.WriteNumber(xe, nameof(m_version), m_version);
+            xs.WriteClassPointer(xe, nameof(bodyA), bodyA);
+            xs.WriteClassPointer(xe, nameof(bodyB), bodyB);
+            xs.WriteNumber(xe, nameof(bodyAId), bodyAId);
+            xs.WriteNumber(xe, nameof(bodyBId), bodyBId);
+            xs.WriteBoolean(xe, nameof(useEntityIds), useEntityIds);
+            xs.WriteEnum<SerializedAgentType, sbyte>(xe, nameof(agentType), agentType);
+            xs.WriteClass<hkpSimpleContactConstraintAtom>(xe, nameof(atom), atom);
+            xs.WriteNumberArray(xe, nameof(propertiesStream), propertiesStream);
+            xs.WriteClassArray(xe, nameof(contactPoints), contactPoints);
+            xs.WriteNumberArray(xe, nameof(cpIdMgr), cpIdMgr);
+            xs.WriteNumberArray(xe, nameof(nnEntryData), nnEntryData);
+            xs.WriteClass<hkpSerializedTrack1nInfo>(xe, nameof(trackInfo), trackInfo);
+            xs.WriteNumberArray(xe, nameof(endianCheckBuffer), endianCheckBuffer);
+            xs.WriteNumber(xe, nameof(version), version);
         }
 
         public override bool Equals(object? obj)
@@ -129,20 +129,20 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((m_bodyA is null && other.m_bodyA is null) || (m_bodyA is not null && other.m_bodyA is not null && m_bodyA.Equals((IHavokObject)other.m_bodyA))) &&
-                   ((m_bodyB is null && other.m_bodyB is null) || (m_bodyB is not null && other.m_bodyB is not null && m_bodyB.Equals((IHavokObject)other.m_bodyB))) &&
-                   m_bodyAId.Equals(other.m_bodyAId) &&
-                   m_bodyBId.Equals(other.m_bodyBId) &&
-                   m_useEntityIds.Equals(other.m_useEntityIds) &&
-                   m_agentType.Equals(other.m_agentType) &&
-                   ((m_atom is null && other.m_atom is null) || (m_atom is not null && other.m_atom is not null && m_atom.Equals((IHavokObject)other.m_atom))) &&
-                   m_propertiesStream.SequenceEqual(other.m_propertiesStream) &&
-                   m_contactPoints.SequenceEqual(other.m_contactPoints) &&
-                   m_cpIdMgr.SequenceEqual(other.m_cpIdMgr) &&
-                   m_nnEntryData.SequenceEqual(other.m_nnEntryData) &&
-                   ((m_trackInfo is null && other.m_trackInfo is null) || (m_trackInfo is not null && other.m_trackInfo is not null && m_trackInfo.Equals((IHavokObject)other.m_trackInfo))) &&
-                   m_endianCheckBuffer.SequenceEqual(other.m_endianCheckBuffer) &&
-                   m_version.Equals(other.m_version) &&
+                   ((bodyA is null && other.bodyA is null) || (bodyA is not null && other.bodyA is not null && bodyA.Equals((IHavokObject)other.bodyA))) &&
+                   ((bodyB is null && other.bodyB is null) || (bodyB is not null && other.bodyB is not null && bodyB.Equals((IHavokObject)other.bodyB))) &&
+                   bodyAId.Equals(other.bodyAId) &&
+                   bodyBId.Equals(other.bodyBId) &&
+                   useEntityIds.Equals(other.useEntityIds) &&
+                   agentType.Equals(other.agentType) &&
+                   ((atom is null && other.atom is null) || (atom is not null && other.atom is not null && atom.Equals((IHavokObject)other.atom))) &&
+                   propertiesStream.SequenceEqual(other.propertiesStream) &&
+                   contactPoints.SequenceEqual(other.contactPoints) &&
+                   cpIdMgr.SequenceEqual(other.cpIdMgr) &&
+                   nnEntryData.SequenceEqual(other.nnEntryData) &&
+                   ((trackInfo is null && other.trackInfo is null) || (trackInfo is not null && other.trackInfo is not null && trackInfo.Equals((IHavokObject)other.trackInfo))) &&
+                   endianCheckBuffer.SequenceEqual(other.endianCheckBuffer) &&
+                   version.Equals(other.version) &&
                    Signature == other.Signature; ;
         }
 
@@ -150,20 +150,20 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_bodyA);
-            hashcode.Add(m_bodyB);
-            hashcode.Add(m_bodyAId);
-            hashcode.Add(m_bodyBId);
-            hashcode.Add(m_useEntityIds);
-            hashcode.Add(m_agentType);
-            hashcode.Add(m_atom);
-            hashcode.Add(m_propertiesStream.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_contactPoints.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_cpIdMgr.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nnEntryData.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_trackInfo);
-            hashcode.Add(m_endianCheckBuffer.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_version);
+            hashcode.Add(bodyA);
+            hashcode.Add(bodyB);
+            hashcode.Add(bodyAId);
+            hashcode.Add(bodyBId);
+            hashcode.Add(useEntityIds);
+            hashcode.Add(agentType);
+            hashcode.Add(atom);
+            hashcode.Add(propertiesStream.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(contactPoints.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(cpIdMgr.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nnEntryData.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(trackInfo);
+            hashcode.Add(endianCheckBuffer.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(version);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

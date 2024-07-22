@@ -5,39 +5,39 @@ namespace HKX2
 {
     // hkpStiffSpringConstraintDataAtoms Signatire: 0x207eb376 size: 64 flags: FLAGS_NONE
 
-    // m_pivots m_class: hkpSetLocalTranslationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_spring m_class: hkpStiffSpringConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // pivots class: hkpSetLocalTranslationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // spring class: hkpStiffSpringConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkpStiffSpringConstraintDataAtoms : IHavokObject, IEquatable<hkpStiffSpringConstraintDataAtoms?>
     {
-        public hkpSetLocalTranslationsConstraintAtom m_pivots { set; get; } = new();
-        public hkpStiffSpringConstraintAtom m_spring { set; get; } = new();
+        public hkpSetLocalTranslationsConstraintAtom pivots { set; get; } = new();
+        public hkpStiffSpringConstraintAtom spring { set; get; } = new();
 
         public virtual uint Signature { set; get; } = 0x207eb376;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_pivots.Read(des, br);
-            m_spring.Read(des, br);
+            pivots.Read(des, br);
+            spring.Read(des, br);
             br.Position += 8;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            m_pivots.Write(s, bw);
-            m_spring.Write(s, bw);
+            pivots.Write(s, bw);
+            spring.Write(s, bw);
             bw.Position += 8;
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_pivots = xd.ReadClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(m_pivots));
-            m_spring = xd.ReadClass<hkpStiffSpringConstraintAtom>(xe, nameof(m_spring));
+            pivots = xd.ReadClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(pivots));
+            spring = xd.ReadClass<hkpStiffSpringConstraintAtom>(xe, nameof(spring));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(m_pivots), m_pivots);
-            xs.WriteClass<hkpStiffSpringConstraintAtom>(xe, nameof(m_spring), m_spring);
+            xs.WriteClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(pivots), pivots);
+            xs.WriteClass<hkpStiffSpringConstraintAtom>(xe, nameof(spring), spring);
         }
 
         public override bool Equals(object? obj)
@@ -48,16 +48,16 @@ namespace HKX2
         public bool Equals(hkpStiffSpringConstraintDataAtoms? other)
         {
             return other is not null &&
-                   ((m_pivots is null && other.m_pivots is null) || (m_pivots is not null && other.m_pivots is not null && m_pivots.Equals((IHavokObject)other.m_pivots))) &&
-                   ((m_spring is null && other.m_spring is null) || (m_spring is not null && other.m_spring is not null && m_spring.Equals((IHavokObject)other.m_spring))) &&
+                   ((pivots is null && other.pivots is null) || (pivots is not null && other.pivots is not null && pivots.Equals((IHavokObject)other.pivots))) &&
+                   ((spring is null && other.spring is null) || (spring is not null && other.spring is not null && spring.Equals((IHavokObject)other.spring))) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_pivots);
-            hashcode.Add(m_spring);
+            hashcode.Add(pivots);
+            hashcode.Add(spring);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

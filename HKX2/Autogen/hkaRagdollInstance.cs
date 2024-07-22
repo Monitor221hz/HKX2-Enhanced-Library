@@ -7,53 +7,53 @@ namespace HKX2
 {
     // hkaRagdollInstance Signatire: 0x154948e8 size: 72 flags: FLAGS_NONE
 
-    // m_rigidBodies m_class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_constraints m_class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_boneToRigidBodyMap m_class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_skeleton m_class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // rigidBodies class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // constraints class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // boneToRigidBodyMap class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // skeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
     public partial class hkaRagdollInstance : hkReferencedObject, IEquatable<hkaRagdollInstance?>
     {
-        public IList<hkpRigidBody> m_rigidBodies { set; get; } = Array.Empty<hkpRigidBody>();
-        public IList<hkpConstraintInstance> m_constraints { set; get; } = Array.Empty<hkpConstraintInstance>();
-        public IList<int> m_boneToRigidBodyMap { set; get; } = Array.Empty<int>();
-        public hkaSkeleton? m_skeleton { set; get; }
+        public IList<hkpRigidBody> rigidBodies { set; get; } = Array.Empty<hkpRigidBody>();
+        public IList<hkpConstraintInstance> constraints { set; get; } = Array.Empty<hkpConstraintInstance>();
+        public IList<int> boneToRigidBodyMap { set; get; } = Array.Empty<int>();
+        public hkaSkeleton? skeleton { set; get; }
 
         public override uint Signature { set; get; } = 0x154948e8;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_rigidBodies = des.ReadClassPointerArray<hkpRigidBody>(br);
-            m_constraints = des.ReadClassPointerArray<hkpConstraintInstance>(br);
-            m_boneToRigidBodyMap = des.ReadInt32Array(br);
-            m_skeleton = des.ReadClassPointer<hkaSkeleton>(br);
+            rigidBodies = des.ReadClassPointerArray<hkpRigidBody>(br);
+            constraints = des.ReadClassPointerArray<hkpConstraintInstance>(br);
+            boneToRigidBodyMap = des.ReadInt32Array(br);
+            skeleton = des.ReadClassPointer<hkaSkeleton>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointerArray(bw, m_rigidBodies);
-            s.WriteClassPointerArray(bw, m_constraints);
-            s.WriteInt32Array(bw, m_boneToRigidBodyMap);
-            s.WriteClassPointer(bw, m_skeleton);
+            s.WriteClassPointerArray(bw, rigidBodies);
+            s.WriteClassPointerArray(bw, constraints);
+            s.WriteInt32Array(bw, boneToRigidBodyMap);
+            s.WriteClassPointer(bw, skeleton);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(m_rigidBodies));
-            m_constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(xe, nameof(m_constraints));
-            m_boneToRigidBodyMap = xd.ReadInt32Array(xe, nameof(m_boneToRigidBodyMap));
-            m_skeleton = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(m_skeleton));
+            rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(rigidBodies));
+            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(xe, nameof(constraints));
+            boneToRigidBodyMap = xd.ReadInt32Array(xe, nameof(boneToRigidBodyMap));
+            skeleton = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeleton));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(m_rigidBodies), m_rigidBodies);
-            xs.WriteClassPointerArray(xe, nameof(m_constraints), m_constraints);
-            xs.WriteNumberArray(xe, nameof(m_boneToRigidBodyMap), m_boneToRigidBodyMap);
-            xs.WriteClassPointer(xe, nameof(m_skeleton), m_skeleton);
+            xs.WriteClassPointerArray(xe, nameof(rigidBodies), rigidBodies);
+            xs.WriteClassPointerArray(xe, nameof(constraints), constraints);
+            xs.WriteNumberArray(xe, nameof(boneToRigidBodyMap), boneToRigidBodyMap);
+            xs.WriteClassPointer(xe, nameof(skeleton), skeleton);
         }
 
         public override bool Equals(object? obj)
@@ -65,10 +65,10 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_rigidBodies.SequenceEqual(other.m_rigidBodies) &&
-                   m_constraints.SequenceEqual(other.m_constraints) &&
-                   m_boneToRigidBodyMap.SequenceEqual(other.m_boneToRigidBodyMap) &&
-                   ((m_skeleton is null && other.m_skeleton is null) || (m_skeleton is not null && other.m_skeleton is not null && m_skeleton.Equals((IHavokObject)other.m_skeleton))) &&
+                   rigidBodies.SequenceEqual(other.rigidBodies) &&
+                   constraints.SequenceEqual(other.constraints) &&
+                   boneToRigidBodyMap.SequenceEqual(other.boneToRigidBodyMap) &&
+                   ((skeleton is null && other.skeleton is null) || (skeleton is not null && other.skeleton is not null && skeleton.Equals((IHavokObject)other.skeleton))) &&
                    Signature == other.Signature; ;
         }
 
@@ -76,10 +76,10 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_rigidBodies.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_constraints.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_boneToRigidBodyMap.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_skeleton);
+            hashcode.Add(rigidBodies.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(constraints.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(boneToRigidBodyMap.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(skeleton);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

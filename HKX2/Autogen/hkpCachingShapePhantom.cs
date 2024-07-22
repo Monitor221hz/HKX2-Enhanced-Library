@@ -6,12 +6,12 @@ namespace HKX2
 {
     // hkpCachingShapePhantom Signatire: 0xcf227f58 size: 448 flags: FLAGS_NONE
 
-    // m_collisionDetails m_class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_orderDirty m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // collisionDetails class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpCachingShapePhantom : hkpShapePhantom, IEquatable<hkpCachingShapePhantom?>
     {
-        public IList<object> m_collisionDetails { set; get; } = Array.Empty<object>();
-        private bool m_orderDirty { set; get; }
+        public IList<object> collisionDetails { set; get; } = Array.Empty<object>();
+        private bool orderDirty { set; get; }
 
         public override uint Signature { set; get; } = 0xcf227f58;
 
@@ -19,7 +19,7 @@ namespace HKX2
         {
             base.Read(des, br);
             des.ReadEmptyArray(br);
-            m_orderDirty = br.ReadBoolean();
+            orderDirty = br.ReadBoolean();
             br.Position += 15;
         }
 
@@ -27,7 +27,7 @@ namespace HKX2
         {
             base.Write(s, bw);
             s.WriteVoidArray(bw);
-            bw.WriteBoolean(m_orderDirty);
+            bw.WriteBoolean(orderDirty);
             bw.Position += 15;
         }
 
@@ -39,8 +39,8 @@ namespace HKX2
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(m_collisionDetails));
-            xs.WriteSerializeIgnored(xe, nameof(m_orderDirty));
+            xs.WriteSerializeIgnored(xe, nameof(collisionDetails));
+            xs.WriteSerializeIgnored(xe, nameof(orderDirty));
         }
 
         public override bool Equals(object? obj)

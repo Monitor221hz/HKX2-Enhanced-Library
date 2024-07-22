@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkbSimulationStateInfo Signatire: 0xa40822b4 size: 24 flags: FLAGS_NONE
 
-    // m_simulationState m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: SimulationState
+    // simulationState class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: SimulationState
     public partial class hkbSimulationStateInfo : hkReferencedObject, IEquatable<hkbSimulationStateInfo?>
     {
-        public byte m_simulationState { set; get; }
+        public byte simulationState { set; get; }
 
         public override uint Signature { set; get; } = 0xa40822b4;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_simulationState = br.ReadByte();
+            simulationState = br.ReadByte();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(m_simulationState);
+            bw.WriteByte(simulationState);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_simulationState = xd.ReadFlag<SimulationState, byte>(xe, nameof(m_simulationState));
+            simulationState = xd.ReadFlag<SimulationState, byte>(xe, nameof(simulationState));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteEnum<SimulationState, byte>(xe, nameof(m_simulationState), m_simulationState);
+            xs.WriteEnum<SimulationState, byte>(xe, nameof(simulationState), simulationState);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_simulationState.Equals(other.m_simulationState) &&
+                   simulationState.Equals(other.simulationState) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_simulationState);
+            hashcode.Add(simulationState);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

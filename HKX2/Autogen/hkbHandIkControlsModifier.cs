@@ -7,35 +7,35 @@ namespace HKX2
 {
     // hkbHandIkControlsModifier Signatire: 0x9f0488bb size: 96 flags: FLAGS_NONE
 
-    // m_hands m_class: hkbHandIkControlsModifierHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // hands class: hkbHandIkControlsModifierHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkbHandIkControlsModifier : hkbModifier, IEquatable<hkbHandIkControlsModifier?>
     {
-        public IList<hkbHandIkControlsModifierHand> m_hands { set; get; } = Array.Empty<hkbHandIkControlsModifierHand>();
+        public IList<hkbHandIkControlsModifierHand> hands { set; get; } = Array.Empty<hkbHandIkControlsModifierHand>();
 
         public override uint Signature { set; get; } = 0x9f0488bb;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_hands = des.ReadClassArray<hkbHandIkControlsModifierHand>(br);
+            hands = des.ReadClassArray<hkbHandIkControlsModifierHand>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassArray(bw, m_hands);
+            s.WriteClassArray(bw, hands);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_hands = xd.ReadClassArray<hkbHandIkControlsModifierHand>(xe, nameof(m_hands));
+            hands = xd.ReadClassArray<hkbHandIkControlsModifierHand>(xe, nameof(hands));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassArray(xe, nameof(m_hands), m_hands);
+            xs.WriteClassArray(xe, nameof(hands), hands);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_hands.SequenceEqual(other.m_hands) &&
+                   hands.SequenceEqual(other.hands) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_hands.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(hands.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

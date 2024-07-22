@@ -7,12 +7,12 @@ namespace HKX2
 {
     // hkpRemoveTerminalsMoppModifier Signatire: 0x91367f03 size: 48 flags: FLAGS_NONE
 
-    // m_removeInfo m_class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // m_tempShapesToRemove m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // removeInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // tempShapesToRemove class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpRemoveTerminalsMoppModifier : hkReferencedObject, IEquatable<hkpRemoveTerminalsMoppModifier?>
     {
-        public IList<uint> m_removeInfo { set; get; } = Array.Empty<uint>();
-        private object? m_tempShapesToRemove { set; get; }
+        public IList<uint> removeInfo { set; get; } = Array.Empty<uint>();
+        private object? tempShapesToRemove { set; get; }
 
         public override uint Signature { set; get; } = 0x91367f03;
 
@@ -20,7 +20,7 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            m_removeInfo = des.ReadUInt32Array(br);
+            removeInfo = des.ReadUInt32Array(br);
             des.ReadEmptyPointer(br);
         }
 
@@ -28,21 +28,21 @@ namespace HKX2
         {
             base.Write(s, bw);
             bw.Position += 8;
-            s.WriteUInt32Array(bw, m_removeInfo);
+            s.WriteUInt32Array(bw, removeInfo);
             s.WriteVoidPointer(bw);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_removeInfo = xd.ReadUInt32Array(xe, nameof(m_removeInfo));
+            removeInfo = xd.ReadUInt32Array(xe, nameof(removeInfo));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumberArray(xe, nameof(m_removeInfo), m_removeInfo);
-            xs.WriteSerializeIgnored(xe, nameof(m_tempShapesToRemove));
+            xs.WriteNumberArray(xe, nameof(removeInfo), removeInfo);
+            xs.WriteSerializeIgnored(xe, nameof(tempShapesToRemove));
         }
 
         public override bool Equals(object? obj)
@@ -54,7 +54,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_removeInfo.SequenceEqual(other.m_removeInfo) &&
+                   removeInfo.SequenceEqual(other.removeInfo) &&
                    Signature == other.Signature; ;
         }
 
@@ -62,7 +62,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_removeInfo.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(removeInfo.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

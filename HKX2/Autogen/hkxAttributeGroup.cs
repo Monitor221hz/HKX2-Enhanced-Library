@@ -7,37 +7,37 @@ namespace HKX2
 {
     // hkxAttributeGroup Signatire: 0x345ca95d size: 24 flags: FLAGS_NONE
 
-    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_attributes m_class: hkxAttribute Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // attributes class: hkxAttribute Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkxAttributeGroup : IHavokObject, IEquatable<hkxAttributeGroup?>
     {
-        public string m_name { set; get; } = "";
-        public IList<hkxAttribute> m_attributes { set; get; } = Array.Empty<hkxAttribute>();
+        public string name { set; get; } = "";
+        public IList<hkxAttribute> attributes { set; get; } = Array.Empty<hkxAttribute>();
 
         public virtual uint Signature { set; get; } = 0x345ca95d;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_name = des.ReadStringPointer(br);
-            m_attributes = des.ReadClassArray<hkxAttribute>(br);
+            name = des.ReadStringPointer(br);
+            attributes = des.ReadClassArray<hkxAttribute>(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteStringPointer(bw, m_name);
-            s.WriteClassArray(bw, m_attributes);
+            s.WriteStringPointer(bw, name);
+            s.WriteClassArray(bw, attributes);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_attributes = xd.ReadClassArray<hkxAttribute>(xe, nameof(m_attributes));
+            name = xd.ReadString(xe, nameof(name));
+            attributes = xd.ReadClassArray<hkxAttribute>(xe, nameof(attributes));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteClassArray(xe, nameof(m_attributes), m_attributes);
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteClassArray(xe, nameof(attributes), attributes);
         }
 
         public override bool Equals(object? obj)
@@ -48,16 +48,16 @@ namespace HKX2
         public bool Equals(hkxAttributeGroup? other)
         {
             return other is not null &&
-                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   m_attributes.SequenceEqual(other.m_attributes) &&
+                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   attributes.SequenceEqual(other.attributes) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_name);
-            hashcode.Add(m_attributes.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(name);
+            hashcode.Add(attributes.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

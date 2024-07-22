@@ -5,43 +5,43 @@ namespace HKX2
 {
     // BSIStateManagerModifierBSiStateData Signatire: 0x6b8a15fc size: 16 flags: FLAGS_NONE
 
-    // m_pStateMachine m_class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_StateID m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // m_iStateToSetAs m_class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
+    // pStateMachine class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // StateID class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // iStateToSetAs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
     public partial class BSIStateManagerModifierBSiStateData : IHavokObject, IEquatable<BSIStateManagerModifierBSiStateData?>
     {
-        public hkbGenerator? m_pStateMachine { set; get; }
-        public int m_StateID { set; get; }
-        public int m_iStateToSetAs { set; get; }
+        public hkbGenerator? pStateMachine { set; get; }
+        public int StateID { set; get; }
+        public int iStateToSetAs { set; get; }
 
         public virtual uint Signature { set; get; } = 0x6b8a15fc;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_pStateMachine = des.ReadClassPointer<hkbGenerator>(br);
-            m_StateID = br.ReadInt32();
-            m_iStateToSetAs = br.ReadInt32();
+            pStateMachine = des.ReadClassPointer<hkbGenerator>(br);
+            StateID = br.ReadInt32();
+            iStateToSetAs = br.ReadInt32();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteClassPointer(bw, m_pStateMachine);
-            bw.WriteInt32(m_StateID);
-            bw.WriteInt32(m_iStateToSetAs);
+            s.WriteClassPointer(bw, pStateMachine);
+            bw.WriteInt32(StateID);
+            bw.WriteInt32(iStateToSetAs);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_pStateMachine = xd.ReadClassPointer<hkbGenerator>(xe, nameof(m_pStateMachine));
-            m_StateID = xd.ReadInt32(xe, nameof(m_StateID));
-            m_iStateToSetAs = xd.ReadInt32(xe, nameof(m_iStateToSetAs));
+            pStateMachine = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pStateMachine));
+            StateID = xd.ReadInt32(xe, nameof(StateID));
+            iStateToSetAs = xd.ReadInt32(xe, nameof(iStateToSetAs));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteClassPointer(xe, nameof(m_pStateMachine), m_pStateMachine);
-            xs.WriteNumber(xe, nameof(m_StateID), m_StateID);
-            xs.WriteNumber(xe, nameof(m_iStateToSetAs), m_iStateToSetAs);
+            xs.WriteClassPointer(xe, nameof(pStateMachine), pStateMachine);
+            xs.WriteNumber(xe, nameof(StateID), StateID);
+            xs.WriteNumber(xe, nameof(iStateToSetAs), iStateToSetAs);
         }
 
         public override bool Equals(object? obj)
@@ -52,18 +52,18 @@ namespace HKX2
         public bool Equals(BSIStateManagerModifierBSiStateData? other)
         {
             return other is not null &&
-                   ((m_pStateMachine is null && other.m_pStateMachine is null) || (m_pStateMachine is not null && other.m_pStateMachine is not null && m_pStateMachine.Equals((IHavokObject)other.m_pStateMachine))) &&
-                   m_StateID.Equals(other.m_StateID) &&
-                   m_iStateToSetAs.Equals(other.m_iStateToSetAs) &&
+                   ((pStateMachine is null && other.pStateMachine is null) || (pStateMachine is not null && other.pStateMachine is not null && pStateMachine.Equals((IHavokObject)other.pStateMachine))) &&
+                   StateID.Equals(other.StateID) &&
+                   iStateToSetAs.Equals(other.iStateToSetAs) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_pStateMachine);
-            hashcode.Add(m_StateID);
-            hashcode.Add(m_iStateToSetAs);
+            hashcode.Add(pStateMachine);
+            hashcode.Add(StateID);
+            hashcode.Add(iStateToSetAs);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

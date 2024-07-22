@@ -7,115 +7,115 @@ namespace HKX2
 {
     // hkaFootstepAnalysisInfo Signatire: 0x824faf75 size: 208 flags: FLAGS_NONE
 
-    // m_name m_class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_nameStrike m_class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_nameLift m_class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_nameLock m_class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // m_nameUnlock m_class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_minPos m_class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // m_maxPos m_class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // m_minVel m_class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // m_maxVel m_class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // m_allBonesDown m_class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // m_anyBonesDown m_class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // m_posTol m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // m_velTol m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // m_duration m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // nameStrike class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // nameLift class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // nameLock class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // nameUnlock class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // minPos class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // maxPos class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // minVel class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // maxVel class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // allBonesDown class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
+    // anyBonesDown class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
+    // posTol class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
+    // velTol class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
     public partial class hkaFootstepAnalysisInfo : hkReferencedObject, IEquatable<hkaFootstepAnalysisInfo?>
     {
-        public string m_name { set; get; } = "";
-        public string m_nameStrike { set; get; } = "";
-        public string m_nameLift { set; get; } = "";
-        public string m_nameLock { set; get; } = "";
-        public string m_nameUnlock { set; get; } = "";
-        public IList<float> m_minPos { set; get; } = Array.Empty<float>();
-        public IList<float> m_maxPos { set; get; } = Array.Empty<float>();
-        public IList<float> m_minVel { set; get; } = Array.Empty<float>();
-        public IList<float> m_maxVel { set; get; } = Array.Empty<float>();
-        public IList<float> m_allBonesDown { set; get; } = Array.Empty<float>();
-        public IList<float> m_anyBonesDown { set; get; } = Array.Empty<float>();
-        public float m_posTol { set; get; }
-        public float m_velTol { set; get; }
-        public float m_duration { set; get; }
+        public string name { set; get; } = "";
+        public string nameStrike { set; get; } = "";
+        public string nameLift { set; get; } = "";
+        public string nameLock { set; get; } = "";
+        public string nameUnlock { set; get; } = "";
+        public IList<float> minPos { set; get; } = Array.Empty<float>();
+        public IList<float> maxPos { set; get; } = Array.Empty<float>();
+        public IList<float> minVel { set; get; } = Array.Empty<float>();
+        public IList<float> maxVel { set; get; } = Array.Empty<float>();
+        public IList<float> allBonesDown { set; get; } = Array.Empty<float>();
+        public IList<float> anyBonesDown { set; get; } = Array.Empty<float>();
+        public float posTol { set; get; }
+        public float velTol { set; get; }
+        public float duration { set; get; }
 
         public override uint Signature { set; get; } = 0x824faf75;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_name = br.ReadASCII();
-            m_nameStrike = br.ReadASCII();
-            m_nameLift = br.ReadASCII();
-            m_nameLock = br.ReadASCII();
-            m_nameUnlock = br.ReadASCII();
-            m_minPos = des.ReadSingleArray(br);
-            m_maxPos = des.ReadSingleArray(br);
-            m_minVel = des.ReadSingleArray(br);
-            m_maxVel = des.ReadSingleArray(br);
-            m_allBonesDown = des.ReadSingleArray(br);
-            m_anyBonesDown = des.ReadSingleArray(br);
-            m_posTol = br.ReadSingle();
-            m_velTol = br.ReadSingle();
-            m_duration = br.ReadSingle();
+            name = br.ReadASCII();
+            nameStrike = br.ReadASCII();
+            nameLift = br.ReadASCII();
+            nameLock = br.ReadASCII();
+            nameUnlock = br.ReadASCII();
+            minPos = des.ReadSingleArray(br);
+            maxPos = des.ReadSingleArray(br);
+            minVel = des.ReadSingleArray(br);
+            maxVel = des.ReadSingleArray(br);
+            allBonesDown = des.ReadSingleArray(br);
+            anyBonesDown = des.ReadSingleArray(br);
+            posTol = br.ReadSingle();
+            velTol = br.ReadSingle();
+            duration = br.ReadSingle();
             br.Position += 4;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteASCII(m_name, true);
-            bw.WriteASCII(m_nameStrike, true);
-            bw.WriteASCII(m_nameLift, true);
-            bw.WriteASCII(m_nameLock, true);
-            bw.WriteASCII(m_nameUnlock, true);
-            s.WriteSingleArray(bw, m_minPos);
-            s.WriteSingleArray(bw, m_maxPos);
-            s.WriteSingleArray(bw, m_minVel);
-            s.WriteSingleArray(bw, m_maxVel);
-            s.WriteSingleArray(bw, m_allBonesDown);
-            s.WriteSingleArray(bw, m_anyBonesDown);
-            bw.WriteSingle(m_posTol);
-            bw.WriteSingle(m_velTol);
-            bw.WriteSingle(m_duration);
+            bw.WriteASCII(name, true);
+            bw.WriteASCII(nameStrike, true);
+            bw.WriteASCII(nameLift, true);
+            bw.WriteASCII(nameLock, true);
+            bw.WriteASCII(nameUnlock, true);
+            s.WriteSingleArray(bw, minPos);
+            s.WriteSingleArray(bw, maxPos);
+            s.WriteSingleArray(bw, minVel);
+            s.WriteSingleArray(bw, maxVel);
+            s.WriteSingleArray(bw, allBonesDown);
+            s.WriteSingleArray(bw, anyBonesDown);
+            bw.WriteSingle(posTol);
+            bw.WriteSingle(velTol);
+            bw.WriteSingle(duration);
             bw.Position += 4;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_nameStrike = xd.ReadString(xe, nameof(m_nameStrike));
-            m_nameLift = xd.ReadString(xe, nameof(m_nameLift));
-            m_nameLock = xd.ReadString(xe, nameof(m_nameLock));
-            m_nameUnlock = xd.ReadString(xe, nameof(m_nameUnlock));
-            m_minPos = xd.ReadSingleArray(xe, nameof(m_minPos));
-            m_maxPos = xd.ReadSingleArray(xe, nameof(m_maxPos));
-            m_minVel = xd.ReadSingleArray(xe, nameof(m_minVel));
-            m_maxVel = xd.ReadSingleArray(xe, nameof(m_maxVel));
-            m_allBonesDown = xd.ReadSingleArray(xe, nameof(m_allBonesDown));
-            m_anyBonesDown = xd.ReadSingleArray(xe, nameof(m_anyBonesDown));
-            m_posTol = xd.ReadSingle(xe, nameof(m_posTol));
-            m_velTol = xd.ReadSingle(xe, nameof(m_velTol));
-            m_duration = xd.ReadSingle(xe, nameof(m_duration));
+            name = xd.ReadString(xe, nameof(name));
+            nameStrike = xd.ReadString(xe, nameof(nameStrike));
+            nameLift = xd.ReadString(xe, nameof(nameLift));
+            nameLock = xd.ReadString(xe, nameof(nameLock));
+            nameUnlock = xd.ReadString(xe, nameof(nameUnlock));
+            minPos = xd.ReadSingleArray(xe, nameof(minPos));
+            maxPos = xd.ReadSingleArray(xe, nameof(maxPos));
+            minVel = xd.ReadSingleArray(xe, nameof(minVel));
+            maxVel = xd.ReadSingleArray(xe, nameof(maxVel));
+            allBonesDown = xd.ReadSingleArray(xe, nameof(allBonesDown));
+            anyBonesDown = xd.ReadSingleArray(xe, nameof(anyBonesDown));
+            posTol = xd.ReadSingle(xe, nameof(posTol));
+            velTol = xd.ReadSingle(xe, nameof(velTol));
+            duration = xd.ReadSingle(xe, nameof(duration));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteString(xe, nameof(m_nameStrike), m_nameStrike);
-            xs.WriteString(xe, nameof(m_nameLift), m_nameLift);
-            xs.WriteString(xe, nameof(m_nameLock), m_nameLock);
-            xs.WriteString(xe, nameof(m_nameUnlock), m_nameUnlock);
-            xs.WriteFloatArray(xe, nameof(m_minPos), m_minPos);
-            xs.WriteFloatArray(xe, nameof(m_maxPos), m_maxPos);
-            xs.WriteFloatArray(xe, nameof(m_minVel), m_minVel);
-            xs.WriteFloatArray(xe, nameof(m_maxVel), m_maxVel);
-            xs.WriteFloatArray(xe, nameof(m_allBonesDown), m_allBonesDown);
-            xs.WriteFloatArray(xe, nameof(m_anyBonesDown), m_anyBonesDown);
-            xs.WriteFloat(xe, nameof(m_posTol), m_posTol);
-            xs.WriteFloat(xe, nameof(m_velTol), m_velTol);
-            xs.WriteFloat(xe, nameof(m_duration), m_duration);
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteString(xe, nameof(nameStrike), nameStrike);
+            xs.WriteString(xe, nameof(nameLift), nameLift);
+            xs.WriteString(xe, nameof(nameLock), nameLock);
+            xs.WriteString(xe, nameof(nameUnlock), nameUnlock);
+            xs.WriteFloatArray(xe, nameof(minPos), minPos);
+            xs.WriteFloatArray(xe, nameof(maxPos), maxPos);
+            xs.WriteFloatArray(xe, nameof(minVel), minVel);
+            xs.WriteFloatArray(xe, nameof(maxVel), maxVel);
+            xs.WriteFloatArray(xe, nameof(allBonesDown), allBonesDown);
+            xs.WriteFloatArray(xe, nameof(anyBonesDown), anyBonesDown);
+            xs.WriteFloat(xe, nameof(posTol), posTol);
+            xs.WriteFloat(xe, nameof(velTol), velTol);
+            xs.WriteFloat(xe, nameof(duration), duration);
         }
 
         public override bool Equals(object? obj)
@@ -127,20 +127,20 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_name.SequenceEqual(other.m_name) &&
-                   m_nameStrike.SequenceEqual(other.m_nameStrike) &&
-                   m_nameLift.SequenceEqual(other.m_nameLift) &&
-                   m_nameLock.SequenceEqual(other.m_nameLock) &&
-                   m_nameUnlock.SequenceEqual(other.m_nameUnlock) &&
-                   m_minPos.SequenceEqual(other.m_minPos) &&
-                   m_maxPos.SequenceEqual(other.m_maxPos) &&
-                   m_minVel.SequenceEqual(other.m_minVel) &&
-                   m_maxVel.SequenceEqual(other.m_maxVel) &&
-                   m_allBonesDown.SequenceEqual(other.m_allBonesDown) &&
-                   m_anyBonesDown.SequenceEqual(other.m_anyBonesDown) &&
-                   m_posTol.Equals(other.m_posTol) &&
-                   m_velTol.Equals(other.m_velTol) &&
-                   m_duration.Equals(other.m_duration) &&
+                   name.SequenceEqual(other.name) &&
+                   nameStrike.SequenceEqual(other.nameStrike) &&
+                   nameLift.SequenceEqual(other.nameLift) &&
+                   nameLock.SequenceEqual(other.nameLock) &&
+                   nameUnlock.SequenceEqual(other.nameUnlock) &&
+                   minPos.SequenceEqual(other.minPos) &&
+                   maxPos.SequenceEqual(other.maxPos) &&
+                   minVel.SequenceEqual(other.minVel) &&
+                   maxVel.SequenceEqual(other.maxVel) &&
+                   allBonesDown.SequenceEqual(other.allBonesDown) &&
+                   anyBonesDown.SequenceEqual(other.anyBonesDown) &&
+                   posTol.Equals(other.posTol) &&
+                   velTol.Equals(other.velTol) &&
+                   duration.Equals(other.duration) &&
                    Signature == other.Signature; ;
         }
 
@@ -148,20 +148,20 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_name.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nameStrike.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nameLift.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nameLock.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nameUnlock.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_minPos.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_maxPos.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_minVel.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_maxVel.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_allBonesDown.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_anyBonesDown.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_posTol);
-            hashcode.Add(m_velTol);
-            hashcode.Add(m_duration);
+            hashcode.Add(name.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nameStrike.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nameLift.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nameLock.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nameUnlock.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(minPos.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(maxPos.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(minVel.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(maxVel.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(allBonesDown.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(anyBonesDown.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(posTol);
+            hashcode.Add(velTol);
+            hashcode.Add(duration);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

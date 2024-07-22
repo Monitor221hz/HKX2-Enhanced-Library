@@ -5,31 +5,31 @@ namespace HKX2
 {
     // hkDocumentationAttribute Signatire: 0x630edd9e size: 8 flags: FLAGS_NONE
 
-    // m_docsSectionTag m_class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // docsSectionTag class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkDocumentationAttribute : IHavokObject, IEquatable<hkDocumentationAttribute?>
     {
-        public string m_docsSectionTag { set; get; } = "";
+        public string docsSectionTag { set; get; } = "";
 
         public virtual uint Signature { set; get; } = 0x630edd9e;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_docsSectionTag = des.ReadCString(br);
+            docsSectionTag = des.ReadCString(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteCString(bw, m_docsSectionTag);
+            s.WriteCString(bw, docsSectionTag);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_docsSectionTag = xd.ReadString(xe, nameof(m_docsSectionTag));
+            docsSectionTag = xd.ReadString(xe, nameof(docsSectionTag));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(m_docsSectionTag), m_docsSectionTag);
+            xs.WriteString(xe, nameof(docsSectionTag), docsSectionTag);
         }
 
         public override bool Equals(object? obj)
@@ -40,14 +40,14 @@ namespace HKX2
         public bool Equals(hkDocumentationAttribute? other)
         {
             return other is not null &&
-                   (m_docsSectionTag is null && other.m_docsSectionTag is null || m_docsSectionTag == other.m_docsSectionTag || m_docsSectionTag is null && other.m_docsSectionTag == "" || m_docsSectionTag == "" && other.m_docsSectionTag is null) &&
+                   (docsSectionTag is null && other.docsSectionTag is null || docsSectionTag == other.docsSectionTag || docsSectionTag is null && other.docsSectionTag == "" || docsSectionTag == "" && other.docsSectionTag is null) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_docsSectionTag);
+            hashcode.Add(docsSectionTag);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

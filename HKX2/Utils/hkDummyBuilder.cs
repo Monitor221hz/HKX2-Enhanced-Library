@@ -19,8 +19,8 @@ namespace HKX2.Utils
             ModuleBuilder mb = ab.DefineDynamicModule(aName.Name);
             TypeBuilder tb = mb.DefineType(aName.Name, TypeAttributes.Public, dummyType);
 
-            FieldBuilder fbIsDummy = tb.DefineField("m_IsDummy", typeof(bool), FieldAttributes.Public);
-            FieldBuilder fbValue = tb.DefineField("m_ConflictValue", typeof(IHavokObject), FieldAttributes.Public);
+            FieldBuilder fbIsDummy = tb.DefineField("IsDummy", typeof(bool), FieldAttributes.Public);
+            FieldBuilder fbValue = tb.DefineField("ConflictValue", typeof(IHavokObject), FieldAttributes.Public);
 
             // proxy methods
             var targetReadHkx = targetType.GetMethod("Read");
@@ -95,8 +95,8 @@ namespace HKX2.Utils
         {
             var type = CreateDummyType(targetObject.GetType(), dummyType);
             var dummy = (dynamic)Activator.CreateInstance(type);
-            dummy.m_ConflictValue = targetObject;
-            dummy.m_IsDummy = true;
+            dummy.ConflictValue = targetObject;
+            dummy.IsDummy = true;
             dummy.Signature = targetObject.Signature;
             return dummy;
         }

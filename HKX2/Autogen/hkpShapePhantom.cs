@@ -5,35 +5,35 @@ namespace HKX2
 {
     // hkpShapePhantom Signatire: 0xcb22fbcd size: 416 flags: FLAGS_NONE
 
-    // m_motionState m_class: hkMotionState Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum: 
+    // motionState class: hkMotionState Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum: 
     public partial class hkpShapePhantom : hkpPhantom, IEquatable<hkpShapePhantom?>
     {
-        public hkMotionState m_motionState { set; get; } = new();
+        public hkMotionState motionState { set; get; } = new();
 
         public override uint Signature { set; get; } = 0xcb22fbcd;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_motionState.Read(des, br);
+            motionState.Read(des, br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            m_motionState.Write(s, bw);
+            motionState.Write(s, bw);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_motionState = xd.ReadClass<hkMotionState>(xe, nameof(m_motionState));
+            motionState = xd.ReadClass<hkMotionState>(xe, nameof(motionState));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkMotionState>(xe, nameof(m_motionState), m_motionState);
+            xs.WriteClass<hkMotionState>(xe, nameof(motionState), motionState);
         }
 
         public override bool Equals(object? obj)
@@ -45,7 +45,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((m_motionState is null && other.m_motionState is null) || (m_motionState is not null && other.m_motionState is not null && m_motionState.Equals((IHavokObject)other.m_motionState))) &&
+                   ((motionState is null && other.motionState is null) || (motionState is not null && other.motionState is not null && motionState.Equals((IHavokObject)other.motionState))) &&
                    Signature == other.Signature; ;
         }
 
@@ -53,7 +53,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_motionState);
+            hashcode.Add(motionState);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

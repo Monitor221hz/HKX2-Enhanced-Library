@@ -5,12 +5,12 @@ namespace HKX2
 {
     // hkpBridgeConstraintAtom Signatire: 0x87a4f31b size: 24 flags: FLAGS_NONE
 
-    // m_buildJacobianFunc m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_constraintData m_class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: NOT_OWNED|FLAGS_NONE enum: 
+    // buildJacobianFunc class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // constraintData class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: NOT_OWNED|FLAGS_NONE enum: 
     public partial class hkpBridgeConstraintAtom : hkpConstraintAtom, IEquatable<hkpBridgeConstraintAtom?>
     {
-        private object? m_buildJacobianFunc { set; get; }
-        public hkpConstraintData? m_constraintData { set; get; }
+        private object? buildJacobianFunc { set; get; }
+        public hkpConstraintData? constraintData { set; get; }
 
         public override uint Signature { set; get; } = 0x87a4f31b;
 
@@ -19,7 +19,7 @@ namespace HKX2
             base.Read(des, br);
             br.Position += 6;
             des.ReadEmptyPointer(br);
-            m_constraintData = des.ReadClassPointer<hkpConstraintData>(br);
+            constraintData = des.ReadClassPointer<hkpConstraintData>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -27,20 +27,20 @@ namespace HKX2
             base.Write(s, bw);
             bw.Position += 6;
             s.WriteVoidPointer(bw);
-            s.WriteClassPointer(bw, m_constraintData);
+            s.WriteClassPointer(bw, constraintData);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_constraintData = xd.ReadClassPointer<hkpConstraintData>(xe, nameof(m_constraintData));
+            constraintData = xd.ReadClassPointer<hkpConstraintData>(xe, nameof(constraintData));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(m_buildJacobianFunc));
-            xs.WriteClassPointer(xe, nameof(m_constraintData), m_constraintData);
+            xs.WriteSerializeIgnored(xe, nameof(buildJacobianFunc));
+            xs.WriteClassPointer(xe, nameof(constraintData), constraintData);
         }
 
         public override bool Equals(object? obj)
@@ -52,7 +52,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((m_constraintData is null && other.m_constraintData is null) || (m_constraintData is not null && other.m_constraintData is not null && m_constraintData.Equals((IHavokObject)other.m_constraintData))) &&
+                   ((constraintData is null && other.constraintData is null) || (constraintData is not null && other.constraintData is not null && constraintData.Equals((IHavokObject)other.constraintData))) &&
                    Signature == other.Signature; ;
         }
 
@@ -60,7 +60,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_constraintData);
+            hashcode.Add(constraintData);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

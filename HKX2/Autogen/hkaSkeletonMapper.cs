@@ -5,35 +5,35 @@ namespace HKX2
 {
     // hkaSkeletonMapper Signatire: 0x12df42a5 size: 144 flags: FLAGS_NONE
 
-    // m_mapping m_class: hkaSkeletonMapperData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // mapping class: hkaSkeletonMapperData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkaSkeletonMapper : hkReferencedObject, IEquatable<hkaSkeletonMapper?>
     {
-        public hkaSkeletonMapperData m_mapping { set; get; } = new();
+        public hkaSkeletonMapperData mapping { set; get; } = new();
 
         public override uint Signature { set; get; } = 0x12df42a5;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_mapping.Read(des, br);
+            mapping.Read(des, br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            m_mapping.Write(s, bw);
+            mapping.Write(s, bw);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_mapping = xd.ReadClass<hkaSkeletonMapperData>(xe, nameof(m_mapping));
+            mapping = xd.ReadClass<hkaSkeletonMapperData>(xe, nameof(mapping));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkaSkeletonMapperData>(xe, nameof(m_mapping), m_mapping);
+            xs.WriteClass<hkaSkeletonMapperData>(xe, nameof(mapping), mapping);
         }
 
         public override bool Equals(object? obj)
@@ -45,7 +45,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((m_mapping is null && other.m_mapping is null) || (m_mapping is not null && other.m_mapping is not null && m_mapping.Equals((IHavokObject)other.m_mapping))) &&
+                   ((mapping is null && other.mapping is null) || (mapping is not null && other.mapping is not null && mapping.Equals((IHavokObject)other.mapping))) &&
                    Signature == other.Signature; ;
         }
 
@@ -53,7 +53,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_mapping);
+            hashcode.Add(mapping);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

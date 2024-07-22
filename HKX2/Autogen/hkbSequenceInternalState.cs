@@ -7,67 +7,67 @@ namespace HKX2
 {
     // hkbSequenceInternalState Signatire: 0x419b9a05 size: 88 flags: FLAGS_NONE
 
-    // m_nextSampleEvents m_class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_nextSampleReals m_class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_nextSampleBools m_class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // m_nextSampleInts m_class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // m_time m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_isEnabled m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
+    // nextSampleEvents class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // nextSampleReals class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // nextSampleBools class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // nextSampleInts class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
     public partial class hkbSequenceInternalState : hkReferencedObject, IEquatable<hkbSequenceInternalState?>
     {
-        public IList<int> m_nextSampleEvents { set; get; } = Array.Empty<int>();
-        public IList<int> m_nextSampleReals { set; get; } = Array.Empty<int>();
-        public IList<int> m_nextSampleBools { set; get; } = Array.Empty<int>();
-        public IList<int> m_nextSampleInts { set; get; } = Array.Empty<int>();
-        public float m_time { set; get; }
-        public bool m_isEnabled { set; get; }
+        public IList<int> nextSampleEvents { set; get; } = Array.Empty<int>();
+        public IList<int> nextSampleReals { set; get; } = Array.Empty<int>();
+        public IList<int> nextSampleBools { set; get; } = Array.Empty<int>();
+        public IList<int> nextSampleInts { set; get; } = Array.Empty<int>();
+        public float time { set; get; }
+        public bool isEnabled { set; get; }
 
         public override uint Signature { set; get; } = 0x419b9a05;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_nextSampleEvents = des.ReadInt32Array(br);
-            m_nextSampleReals = des.ReadInt32Array(br);
-            m_nextSampleBools = des.ReadInt32Array(br);
-            m_nextSampleInts = des.ReadInt32Array(br);
-            m_time = br.ReadSingle();
-            m_isEnabled = br.ReadBoolean();
+            nextSampleEvents = des.ReadInt32Array(br);
+            nextSampleReals = des.ReadInt32Array(br);
+            nextSampleBools = des.ReadInt32Array(br);
+            nextSampleInts = des.ReadInt32Array(br);
+            time = br.ReadSingle();
+            isEnabled = br.ReadBoolean();
             br.Position += 3;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteInt32Array(bw, m_nextSampleEvents);
-            s.WriteInt32Array(bw, m_nextSampleReals);
-            s.WriteInt32Array(bw, m_nextSampleBools);
-            s.WriteInt32Array(bw, m_nextSampleInts);
-            bw.WriteSingle(m_time);
-            bw.WriteBoolean(m_isEnabled);
+            s.WriteInt32Array(bw, nextSampleEvents);
+            s.WriteInt32Array(bw, nextSampleReals);
+            s.WriteInt32Array(bw, nextSampleBools);
+            s.WriteInt32Array(bw, nextSampleInts);
+            bw.WriteSingle(time);
+            bw.WriteBoolean(isEnabled);
             bw.Position += 3;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_nextSampleEvents = xd.ReadInt32Array(xe, nameof(m_nextSampleEvents));
-            m_nextSampleReals = xd.ReadInt32Array(xe, nameof(m_nextSampleReals));
-            m_nextSampleBools = xd.ReadInt32Array(xe, nameof(m_nextSampleBools));
-            m_nextSampleInts = xd.ReadInt32Array(xe, nameof(m_nextSampleInts));
-            m_time = xd.ReadSingle(xe, nameof(m_time));
-            m_isEnabled = xd.ReadBoolean(xe, nameof(m_isEnabled));
+            nextSampleEvents = xd.ReadInt32Array(xe, nameof(nextSampleEvents));
+            nextSampleReals = xd.ReadInt32Array(xe, nameof(nextSampleReals));
+            nextSampleBools = xd.ReadInt32Array(xe, nameof(nextSampleBools));
+            nextSampleInts = xd.ReadInt32Array(xe, nameof(nextSampleInts));
+            time = xd.ReadSingle(xe, nameof(time));
+            isEnabled = xd.ReadBoolean(xe, nameof(isEnabled));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumberArray(xe, nameof(m_nextSampleEvents), m_nextSampleEvents);
-            xs.WriteNumberArray(xe, nameof(m_nextSampleReals), m_nextSampleReals);
-            xs.WriteNumberArray(xe, nameof(m_nextSampleBools), m_nextSampleBools);
-            xs.WriteNumberArray(xe, nameof(m_nextSampleInts), m_nextSampleInts);
-            xs.WriteFloat(xe, nameof(m_time), m_time);
-            xs.WriteBoolean(xe, nameof(m_isEnabled), m_isEnabled);
+            xs.WriteNumberArray(xe, nameof(nextSampleEvents), nextSampleEvents);
+            xs.WriteNumberArray(xe, nameof(nextSampleReals), nextSampleReals);
+            xs.WriteNumberArray(xe, nameof(nextSampleBools), nextSampleBools);
+            xs.WriteNumberArray(xe, nameof(nextSampleInts), nextSampleInts);
+            xs.WriteFloat(xe, nameof(time), time);
+            xs.WriteBoolean(xe, nameof(isEnabled), isEnabled);
         }
 
         public override bool Equals(object? obj)
@@ -79,12 +79,12 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_nextSampleEvents.SequenceEqual(other.m_nextSampleEvents) &&
-                   m_nextSampleReals.SequenceEqual(other.m_nextSampleReals) &&
-                   m_nextSampleBools.SequenceEqual(other.m_nextSampleBools) &&
-                   m_nextSampleInts.SequenceEqual(other.m_nextSampleInts) &&
-                   m_time.Equals(other.m_time) &&
-                   m_isEnabled.Equals(other.m_isEnabled) &&
+                   nextSampleEvents.SequenceEqual(other.nextSampleEvents) &&
+                   nextSampleReals.SequenceEqual(other.nextSampleReals) &&
+                   nextSampleBools.SequenceEqual(other.nextSampleBools) &&
+                   nextSampleInts.SequenceEqual(other.nextSampleInts) &&
+                   time.Equals(other.time) &&
+                   isEnabled.Equals(other.isEnabled) &&
                    Signature == other.Signature; ;
         }
 
@@ -92,12 +92,12 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_nextSampleEvents.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nextSampleReals.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nextSampleBools.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_nextSampleInts.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(m_time);
-            hashcode.Add(m_isEnabled);
+            hashcode.Add(nextSampleEvents.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nextSampleReals.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nextSampleBools.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(nextSampleInts.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(time);
+            hashcode.Add(isEnabled);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

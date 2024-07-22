@@ -7,52 +7,52 @@ namespace HKX2
 {
     // hkMemoryResourceContainer Signatire: 0x4762f92a size: 64 flags: FLAGS_NONE
 
-    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // m_parent m_class: hkMemoryResourceContainer Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_resourceHandles m_class: hkMemoryResourceHandle Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_children m_class: hkMemoryResourceContainer Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // parent class: hkMemoryResourceContainer Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // resourceHandles class: hkMemoryResourceHandle Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // children class: hkMemoryResourceContainer Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkMemoryResourceContainer : hkResourceContainer, IEquatable<hkMemoryResourceContainer?>
     {
-        public string m_name { set; get; } = "";
-        private hkMemoryResourceContainer? m_parent { set; get; }
-        public IList<hkMemoryResourceHandle> m_resourceHandles { set; get; } = Array.Empty<hkMemoryResourceHandle>();
-        public IList<hkMemoryResourceContainer> m_children { set; get; } = Array.Empty<hkMemoryResourceContainer>();
+        public string name { set; get; } = "";
+        private hkMemoryResourceContainer? parent { set; get; }
+        public IList<hkMemoryResourceHandle> resourceHandles { set; get; } = Array.Empty<hkMemoryResourceHandle>();
+        public IList<hkMemoryResourceContainer> children { set; get; } = Array.Empty<hkMemoryResourceContainer>();
 
         public override uint Signature { set; get; } = 0x4762f92a;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_name = des.ReadStringPointer(br);
-            m_parent = des.ReadClassPointer<hkMemoryResourceContainer>(br);
-            m_resourceHandles = des.ReadClassPointerArray<hkMemoryResourceHandle>(br);
-            m_children = des.ReadClassPointerArray<hkMemoryResourceContainer>(br);
+            name = des.ReadStringPointer(br);
+            parent = des.ReadClassPointer<hkMemoryResourceContainer>(br);
+            resourceHandles = des.ReadClassPointerArray<hkMemoryResourceHandle>(br);
+            children = des.ReadClassPointerArray<hkMemoryResourceContainer>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteStringPointer(bw, m_name);
-            s.WriteClassPointer(bw, m_parent);
-            s.WriteClassPointerArray(bw, m_resourceHandles);
-            s.WriteClassPointerArray(bw, m_children);
+            s.WriteStringPointer(bw, name);
+            s.WriteClassPointer(bw, parent);
+            s.WriteClassPointerArray(bw, resourceHandles);
+            s.WriteClassPointerArray(bw, children);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_resourceHandles = xd.ReadClassPointerArray<hkMemoryResourceHandle>(xe, nameof(m_resourceHandles));
-            m_children = xd.ReadClassPointerArray<hkMemoryResourceContainer>(xe, nameof(m_children));
+            name = xd.ReadString(xe, nameof(name));
+            resourceHandles = xd.ReadClassPointerArray<hkMemoryResourceHandle>(xe, nameof(resourceHandles));
+            children = xd.ReadClassPointerArray<hkMemoryResourceContainer>(xe, nameof(children));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteSerializeIgnored(xe, nameof(m_parent));
-            xs.WriteClassPointerArray(xe, nameof(m_resourceHandles), m_resourceHandles);
-            xs.WriteClassPointerArray(xe, nameof(m_children), m_children);
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteSerializeIgnored(xe, nameof(parent));
+            xs.WriteClassPointerArray(xe, nameof(resourceHandles), resourceHandles);
+            xs.WriteClassPointerArray(xe, nameof(children), children);
         }
 
         public override bool Equals(object? obj)
@@ -64,9 +64,9 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   m_resourceHandles.SequenceEqual(other.m_resourceHandles) &&
-                   m_children.SequenceEqual(other.m_children) &&
+                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   resourceHandles.SequenceEqual(other.resourceHandles) &&
+                   children.SequenceEqual(other.children) &&
                    Signature == other.Signature; ;
         }
 
@@ -74,9 +74,9 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_name);
-            hashcode.Add(m_resourceHandles.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_children.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(name);
+            hashcode.Add(resourceHandles.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(children.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkbTimerModifierInternalState Signatire: 0x83ec2d42 size: 24 flags: FLAGS_NONE
 
-    // m_secondsElapsed m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkbTimerModifierInternalState : hkReferencedObject, IEquatable<hkbTimerModifierInternalState?>
     {
-        public float m_secondsElapsed { set; get; }
+        public float secondsElapsed { set; get; }
 
         public override uint Signature { set; get; } = 0x83ec2d42;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_secondsElapsed = br.ReadSingle();
+            secondsElapsed = br.ReadSingle();
             br.Position += 4;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteSingle(m_secondsElapsed);
+            bw.WriteSingle(secondsElapsed);
             bw.Position += 4;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_secondsElapsed = xd.ReadSingle(xe, nameof(m_secondsElapsed));
+            secondsElapsed = xd.ReadSingle(xe, nameof(secondsElapsed));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteFloat(xe, nameof(m_secondsElapsed), m_secondsElapsed);
+            xs.WriteFloat(xe, nameof(secondsElapsed), secondsElapsed);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_secondsElapsed.Equals(other.m_secondsElapsed) &&
+                   secondsElapsed.Equals(other.secondsElapsed) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_secondsElapsed);
+            hashcode.Add(secondsElapsed);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

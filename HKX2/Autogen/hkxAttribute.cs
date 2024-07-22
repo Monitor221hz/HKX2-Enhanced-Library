@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkxAttribute Signatire: 0x7375cae3 size: 16 flags: FLAGS_NONE
 
-    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_value m_class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // value class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkxAttribute : IHavokObject, IEquatable<hkxAttribute?>
     {
-        public string m_name { set; get; } = "";
-        public hkReferencedObject? m_value { set; get; }
+        public string name { set; get; } = "";
+        public hkReferencedObject? value { set; get; }
 
         public virtual uint Signature { set; get; } = 0x7375cae3;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_name = des.ReadStringPointer(br);
-            m_value = des.ReadClassPointer<hkReferencedObject>(br);
+            name = des.ReadStringPointer(br);
+            value = des.ReadClassPointer<hkReferencedObject>(br);
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            s.WriteStringPointer(bw, m_name);
-            s.WriteClassPointer(bw, m_value);
+            s.WriteStringPointer(bw, name);
+            s.WriteClassPointer(bw, value);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_value = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(m_value));
+            name = xd.ReadString(xe, nameof(name));
+            value = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(value));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteClassPointer(xe, nameof(m_value), m_value);
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteClassPointer(xe, nameof(value), value);
         }
 
         public override bool Equals(object? obj)
@@ -46,16 +46,16 @@ namespace HKX2
         public bool Equals(hkxAttribute? other)
         {
             return other is not null &&
-                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   ((m_value is null && other.m_value is null) || (m_value is not null && other.m_value is not null && m_value.Equals((IHavokObject)other.m_value))) &&
+                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   ((value is null && other.value is null) || (value is not null && other.value is not null && value.Equals((IHavokObject)other.value))) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_name);
-            hashcode.Add(m_value);
+            hashcode.Add(name);
+            hashcode.Add(value);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

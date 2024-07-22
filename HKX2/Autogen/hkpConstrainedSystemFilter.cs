@@ -5,10 +5,10 @@ namespace HKX2
 {
     // hkpConstrainedSystemFilter Signatire: 0x20a447fe size: 88 flags: FLAGS_NONE
 
-    // m_otherFilter m_class: hkpCollisionFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // otherFilter class: hkpCollisionFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkpConstrainedSystemFilter : hkpCollisionFilter, IEquatable<hkpConstrainedSystemFilter?>
     {
-        public hkpCollisionFilter? m_otherFilter { set; get; }
+        public hkpCollisionFilter? otherFilter { set; get; }
 
         public override uint Signature { set; get; } = 0x20a447fe;
 
@@ -16,26 +16,26 @@ namespace HKX2
         {
             base.Read(des, br);
             br.Position += 8;
-            m_otherFilter = des.ReadClassPointer<hkpCollisionFilter>(br);
+            otherFilter = des.ReadClassPointer<hkpCollisionFilter>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
             bw.Position += 8;
-            s.WriteClassPointer(bw, m_otherFilter);
+            s.WriteClassPointer(bw, otherFilter);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_otherFilter = xd.ReadClassPointer<hkpCollisionFilter>(xe, nameof(m_otherFilter));
+            otherFilter = xd.ReadClassPointer<hkpCollisionFilter>(xe, nameof(otherFilter));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(m_otherFilter), m_otherFilter);
+            xs.WriteClassPointer(xe, nameof(otherFilter), otherFilter);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((m_otherFilter is null && other.m_otherFilter is null) || (m_otherFilter is not null && other.m_otherFilter is not null && m_otherFilter.Equals((IHavokObject)other.m_otherFilter))) &&
+                   ((otherFilter is null && other.otherFilter is null) || (otherFilter is not null && other.otherFilter is not null && otherFilter.Equals((IHavokObject)other.otherFilter))) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_otherFilter);
+            hashcode.Add(otherFilter);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

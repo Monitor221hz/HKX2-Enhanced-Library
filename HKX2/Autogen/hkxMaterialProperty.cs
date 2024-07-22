@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkxMaterialProperty Signatire: 0xd295234d size: 8 flags: FLAGS_NONE
 
-    // m_key m_class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // m_value m_class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // key class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // value class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
     public partial class hkxMaterialProperty : IHavokObject, IEquatable<hkxMaterialProperty?>
     {
-        public uint m_key { set; get; }
-        public uint m_value { set; get; }
+        public uint key { set; get; }
+        public uint value { set; get; }
 
         public virtual uint Signature { set; get; } = 0xd295234d;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_key = br.ReadUInt32();
-            m_value = br.ReadUInt32();
+            key = br.ReadUInt32();
+            value = br.ReadUInt32();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteUInt32(m_key);
-            bw.WriteUInt32(m_value);
+            bw.WriteUInt32(key);
+            bw.WriteUInt32(value);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_key = xd.ReadUInt32(xe, nameof(m_key));
-            m_value = xd.ReadUInt32(xe, nameof(m_value));
+            key = xd.ReadUInt32(xe, nameof(key));
+            value = xd.ReadUInt32(xe, nameof(value));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteNumber(xe, nameof(m_key), m_key);
-            xs.WriteNumber(xe, nameof(m_value), m_value);
+            xs.WriteNumber(xe, nameof(key), key);
+            xs.WriteNumber(xe, nameof(value), value);
         }
 
         public override bool Equals(object? obj)
@@ -46,16 +46,16 @@ namespace HKX2
         public bool Equals(hkxMaterialProperty? other)
         {
             return other is not null &&
-                   m_key.Equals(other.m_key) &&
-                   m_value.Equals(other.m_value) &&
+                   key.Equals(other.key) &&
+                   value.Equals(other.value) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_key);
-            hashcode.Add(m_value);
+            hashcode.Add(key);
+            hashcode.Add(value);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

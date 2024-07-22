@@ -5,35 +5,35 @@ namespace HKX2
 {
     // hkbModifierWrapper Signatire: 0x3697e044 size: 88 flags: FLAGS_NONE
 
-    // m_modifier m_class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // modifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class hkbModifierWrapper : hkbModifier, IEquatable<hkbModifierWrapper?>
     {
-        public hkbModifier? m_modifier { set; get; }
+        public hkbModifier? modifier { set; get; }
 
         public override uint Signature { set; get; } = 0x3697e044;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_modifier = des.ReadClassPointer<hkbModifier>(br);
+            modifier = des.ReadClassPointer<hkbModifier>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointer(bw, m_modifier);
+            s.WriteClassPointer(bw, modifier);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_modifier = xd.ReadClassPointer<hkbModifier>(xe, nameof(m_modifier));
+            modifier = xd.ReadClassPointer<hkbModifier>(xe, nameof(modifier));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(m_modifier), m_modifier);
+            xs.WriteClassPointer(xe, nameof(modifier), modifier);
         }
 
         public override bool Equals(object? obj)
@@ -45,7 +45,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((m_modifier is null && other.m_modifier is null) || (m_modifier is not null && other.m_modifier is not null && m_modifier.Equals((IHavokObject)other.m_modifier))) &&
+                   ((modifier is null && other.modifier is null) || (modifier is not null && other.modifier is not null && modifier.Equals((IHavokObject)other.modifier))) &&
                    Signature == other.Signature; ;
         }
 
@@ -53,7 +53,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_modifier);
+            hashcode.Add(modifier);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

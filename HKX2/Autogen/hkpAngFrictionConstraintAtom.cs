@@ -5,55 +5,55 @@ namespace HKX2
 {
     // hkpAngFrictionConstraintAtom Signatire: 0xf313aa80 size: 12 flags: FLAGS_NONE
 
-    // m_isEnabled m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // m_firstFrictionAxis m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // m_numFrictionAxes m_class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // m_maxFrictionTorque m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // firstFrictionAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
+    // numFrictionAxes class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // maxFrictionTorque class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     public partial class hkpAngFrictionConstraintAtom : hkpConstraintAtom, IEquatable<hkpAngFrictionConstraintAtom?>
     {
-        public byte m_isEnabled { set; get; }
-        public byte m_firstFrictionAxis { set; get; }
-        public byte m_numFrictionAxes { set; get; }
-        public float m_maxFrictionTorque { set; get; }
+        public byte isEnabled { set; get; }
+        public byte firstFrictionAxis { set; get; }
+        public byte numFrictionAxes { set; get; }
+        public float maxFrictionTorque { set; get; }
 
         public override uint Signature { set; get; } = 0xf313aa80;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_isEnabled = br.ReadByte();
-            m_firstFrictionAxis = br.ReadByte();
-            m_numFrictionAxes = br.ReadByte();
+            isEnabled = br.ReadByte();
+            firstFrictionAxis = br.ReadByte();
+            numFrictionAxes = br.ReadByte();
             br.Position += 3;
-            m_maxFrictionTorque = br.ReadSingle();
+            maxFrictionTorque = br.ReadSingle();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(m_isEnabled);
-            bw.WriteByte(m_firstFrictionAxis);
-            bw.WriteByte(m_numFrictionAxes);
+            bw.WriteByte(isEnabled);
+            bw.WriteByte(firstFrictionAxis);
+            bw.WriteByte(numFrictionAxes);
             bw.Position += 3;
-            bw.WriteSingle(m_maxFrictionTorque);
+            bw.WriteSingle(maxFrictionTorque);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_isEnabled = xd.ReadByte(xe, nameof(m_isEnabled));
-            m_firstFrictionAxis = xd.ReadByte(xe, nameof(m_firstFrictionAxis));
-            m_numFrictionAxes = xd.ReadByte(xe, nameof(m_numFrictionAxes));
-            m_maxFrictionTorque = xd.ReadSingle(xe, nameof(m_maxFrictionTorque));
+            isEnabled = xd.ReadByte(xe, nameof(isEnabled));
+            firstFrictionAxis = xd.ReadByte(xe, nameof(firstFrictionAxis));
+            numFrictionAxes = xd.ReadByte(xe, nameof(numFrictionAxes));
+            maxFrictionTorque = xd.ReadSingle(xe, nameof(maxFrictionTorque));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(m_isEnabled), m_isEnabled);
-            xs.WriteNumber(xe, nameof(m_firstFrictionAxis), m_firstFrictionAxis);
-            xs.WriteNumber(xe, nameof(m_numFrictionAxes), m_numFrictionAxes);
-            xs.WriteFloat(xe, nameof(m_maxFrictionTorque), m_maxFrictionTorque);
+            xs.WriteNumber(xe, nameof(isEnabled), isEnabled);
+            xs.WriteNumber(xe, nameof(firstFrictionAxis), firstFrictionAxis);
+            xs.WriteNumber(xe, nameof(numFrictionAxes), numFrictionAxes);
+            xs.WriteFloat(xe, nameof(maxFrictionTorque), maxFrictionTorque);
         }
 
         public override bool Equals(object? obj)
@@ -65,10 +65,10 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_isEnabled.Equals(other.m_isEnabled) &&
-                   m_firstFrictionAxis.Equals(other.m_firstFrictionAxis) &&
-                   m_numFrictionAxes.Equals(other.m_numFrictionAxes) &&
-                   m_maxFrictionTorque.Equals(other.m_maxFrictionTorque) &&
+                   isEnabled.Equals(other.isEnabled) &&
+                   firstFrictionAxis.Equals(other.firstFrictionAxis) &&
+                   numFrictionAxes.Equals(other.numFrictionAxes) &&
+                   maxFrictionTorque.Equals(other.maxFrictionTorque) &&
                    Signature == other.Signature; ;
         }
 
@@ -76,10 +76,10 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_isEnabled);
-            hashcode.Add(m_firstFrictionAxis);
-            hashcode.Add(m_numFrictionAxes);
-            hashcode.Add(m_maxFrictionTorque);
+            hashcode.Add(isEnabled);
+            hashcode.Add(firstFrictionAxis);
+            hashcode.Add(numFrictionAxes);
+            hashcode.Add(maxFrictionTorque);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

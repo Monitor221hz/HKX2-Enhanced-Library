@@ -6,84 +6,84 @@ namespace HKX2
 {
     // hkbGetUpModifier Signatire: 0x61cb7ac0 size: 128 flags: FLAGS_NONE
 
-    // m_groundNormal m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_duration m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // m_alignWithGroundDuration m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // m_rootBoneIndex m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // m_otherBoneIndex m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 106 flags: FLAGS_NONE enum: 
-    // m_anotherBoneIndex m_class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // m_timeSinceBegin m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_timeStep m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_initNextModify m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // groundNormal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // alignWithGroundDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
+    // rootBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // otherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 106 flags: FLAGS_NONE enum: 
+    // anotherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
+    // timeSinceBegin class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // initNextModify class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbGetUpModifier : hkbModifier, IEquatable<hkbGetUpModifier?>
     {
-        public Vector4 m_groundNormal { set; get; }
-        public float m_duration { set; get; }
-        public float m_alignWithGroundDuration { set; get; }
-        public short m_rootBoneIndex { set; get; }
-        public short m_otherBoneIndex { set; get; }
-        public short m_anotherBoneIndex { set; get; }
-        private float m_timeSinceBegin { set; get; }
-        private float m_timeStep { set; get; }
-        private bool m_initNextModify { set; get; }
+        public Vector4 groundNormal { set; get; }
+        public float duration { set; get; }
+        public float alignWithGroundDuration { set; get; }
+        public short rootBoneIndex { set; get; }
+        public short otherBoneIndex { set; get; }
+        public short anotherBoneIndex { set; get; }
+        private float timeSinceBegin { set; get; }
+        private float timeStep { set; get; }
+        private bool initNextModify { set; get; }
 
         public override uint Signature { set; get; } = 0x61cb7ac0;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_groundNormal = br.ReadVector4();
-            m_duration = br.ReadSingle();
-            m_alignWithGroundDuration = br.ReadSingle();
-            m_rootBoneIndex = br.ReadInt16();
-            m_otherBoneIndex = br.ReadInt16();
-            m_anotherBoneIndex = br.ReadInt16();
+            groundNormal = br.ReadVector4();
+            duration = br.ReadSingle();
+            alignWithGroundDuration = br.ReadSingle();
+            rootBoneIndex = br.ReadInt16();
+            otherBoneIndex = br.ReadInt16();
+            anotherBoneIndex = br.ReadInt16();
             br.Position += 2;
-            m_timeSinceBegin = br.ReadSingle();
-            m_timeStep = br.ReadSingle();
-            m_initNextModify = br.ReadBoolean();
+            timeSinceBegin = br.ReadSingle();
+            timeStep = br.ReadSingle();
+            initNextModify = br.ReadBoolean();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteVector4(m_groundNormal);
-            bw.WriteSingle(m_duration);
-            bw.WriteSingle(m_alignWithGroundDuration);
-            bw.WriteInt16(m_rootBoneIndex);
-            bw.WriteInt16(m_otherBoneIndex);
-            bw.WriteInt16(m_anotherBoneIndex);
+            bw.WriteVector4(groundNormal);
+            bw.WriteSingle(duration);
+            bw.WriteSingle(alignWithGroundDuration);
+            bw.WriteInt16(rootBoneIndex);
+            bw.WriteInt16(otherBoneIndex);
+            bw.WriteInt16(anotherBoneIndex);
             bw.Position += 2;
-            bw.WriteSingle(m_timeSinceBegin);
-            bw.WriteSingle(m_timeStep);
-            bw.WriteBoolean(m_initNextModify);
+            bw.WriteSingle(timeSinceBegin);
+            bw.WriteSingle(timeStep);
+            bw.WriteBoolean(initNextModify);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_groundNormal = xd.ReadVector4(xe, nameof(m_groundNormal));
-            m_duration = xd.ReadSingle(xe, nameof(m_duration));
-            m_alignWithGroundDuration = xd.ReadSingle(xe, nameof(m_alignWithGroundDuration));
-            m_rootBoneIndex = xd.ReadInt16(xe, nameof(m_rootBoneIndex));
-            m_otherBoneIndex = xd.ReadInt16(xe, nameof(m_otherBoneIndex));
-            m_anotherBoneIndex = xd.ReadInt16(xe, nameof(m_anotherBoneIndex));
+            groundNormal = xd.ReadVector4(xe, nameof(groundNormal));
+            duration = xd.ReadSingle(xe, nameof(duration));
+            alignWithGroundDuration = xd.ReadSingle(xe, nameof(alignWithGroundDuration));
+            rootBoneIndex = xd.ReadInt16(xe, nameof(rootBoneIndex));
+            otherBoneIndex = xd.ReadInt16(xe, nameof(otherBoneIndex));
+            anotherBoneIndex = xd.ReadInt16(xe, nameof(anotherBoneIndex));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteVector4(xe, nameof(m_groundNormal), m_groundNormal);
-            xs.WriteFloat(xe, nameof(m_duration), m_duration);
-            xs.WriteFloat(xe, nameof(m_alignWithGroundDuration), m_alignWithGroundDuration);
-            xs.WriteNumber(xe, nameof(m_rootBoneIndex), m_rootBoneIndex);
-            xs.WriteNumber(xe, nameof(m_otherBoneIndex), m_otherBoneIndex);
-            xs.WriteNumber(xe, nameof(m_anotherBoneIndex), m_anotherBoneIndex);
-            xs.WriteSerializeIgnored(xe, nameof(m_timeSinceBegin));
-            xs.WriteSerializeIgnored(xe, nameof(m_timeStep));
-            xs.WriteSerializeIgnored(xe, nameof(m_initNextModify));
+            xs.WriteVector4(xe, nameof(groundNormal), groundNormal);
+            xs.WriteFloat(xe, nameof(duration), duration);
+            xs.WriteFloat(xe, nameof(alignWithGroundDuration), alignWithGroundDuration);
+            xs.WriteNumber(xe, nameof(rootBoneIndex), rootBoneIndex);
+            xs.WriteNumber(xe, nameof(otherBoneIndex), otherBoneIndex);
+            xs.WriteNumber(xe, nameof(anotherBoneIndex), anotherBoneIndex);
+            xs.WriteSerializeIgnored(xe, nameof(timeSinceBegin));
+            xs.WriteSerializeIgnored(xe, nameof(timeStep));
+            xs.WriteSerializeIgnored(xe, nameof(initNextModify));
         }
 
         public override bool Equals(object? obj)
@@ -95,12 +95,12 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_groundNormal.Equals(other.m_groundNormal) &&
-                   m_duration.Equals(other.m_duration) &&
-                   m_alignWithGroundDuration.Equals(other.m_alignWithGroundDuration) &&
-                   m_rootBoneIndex.Equals(other.m_rootBoneIndex) &&
-                   m_otherBoneIndex.Equals(other.m_otherBoneIndex) &&
-                   m_anotherBoneIndex.Equals(other.m_anotherBoneIndex) &&
+                   groundNormal.Equals(other.groundNormal) &&
+                   duration.Equals(other.duration) &&
+                   alignWithGroundDuration.Equals(other.alignWithGroundDuration) &&
+                   rootBoneIndex.Equals(other.rootBoneIndex) &&
+                   otherBoneIndex.Equals(other.otherBoneIndex) &&
+                   anotherBoneIndex.Equals(other.anotherBoneIndex) &&
                    Signature == other.Signature; ;
         }
 
@@ -108,12 +108,12 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_groundNormal);
-            hashcode.Add(m_duration);
-            hashcode.Add(m_alignWithGroundDuration);
-            hashcode.Add(m_rootBoneIndex);
-            hashcode.Add(m_otherBoneIndex);
-            hashcode.Add(m_anotherBoneIndex);
+            hashcode.Add(groundNormal);
+            hashcode.Add(duration);
+            hashcode.Add(alignWithGroundDuration);
+            hashcode.Add(rootBoneIndex);
+            hashcode.Add(otherBoneIndex);
+            hashcode.Add(anotherBoneIndex);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

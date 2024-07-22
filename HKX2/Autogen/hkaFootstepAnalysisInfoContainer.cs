@@ -7,35 +7,35 @@ namespace HKX2
 {
     // hkaFootstepAnalysisInfoContainer Signatire: 0x1d81207c size: 32 flags: FLAGS_NONE
 
-    // m_previewInfo m_class: hkaFootstepAnalysisInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // previewInfo class: hkaFootstepAnalysisInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkaFootstepAnalysisInfoContainer : hkReferencedObject, IEquatable<hkaFootstepAnalysisInfoContainer?>
     {
-        public IList<hkaFootstepAnalysisInfo> m_previewInfo { set; get; } = Array.Empty<hkaFootstepAnalysisInfo>();
+        public IList<hkaFootstepAnalysisInfo> previewInfo { set; get; } = Array.Empty<hkaFootstepAnalysisInfo>();
 
         public override uint Signature { set; get; } = 0x1d81207c;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_previewInfo = des.ReadClassPointerArray<hkaFootstepAnalysisInfo>(br);
+            previewInfo = des.ReadClassPointerArray<hkaFootstepAnalysisInfo>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointerArray(bw, m_previewInfo);
+            s.WriteClassPointerArray(bw, previewInfo);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_previewInfo = xd.ReadClassPointerArray<hkaFootstepAnalysisInfo>(xe, nameof(m_previewInfo));
+            previewInfo = xd.ReadClassPointerArray<hkaFootstepAnalysisInfo>(xe, nameof(previewInfo));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(m_previewInfo), m_previewInfo);
+            xs.WriteClassPointerArray(xe, nameof(previewInfo), previewInfo);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_previewInfo.SequenceEqual(other.m_previewInfo) &&
+                   previewInfo.SequenceEqual(other.previewInfo) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_previewInfo.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(previewInfo.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

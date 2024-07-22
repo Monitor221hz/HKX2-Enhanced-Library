@@ -7,22 +7,22 @@ namespace HKX2
 {
     // hkpWorldObject Signatire: 0x49fb6f2e size: 208 flags: FLAGS_NONE
 
-    // m_world m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_userData m_class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // m_collidable m_class: hkpLinkedCollidable Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // m_multiThreadCheck m_class: hkMultiThreadCheck Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // m_name m_class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // m_properties m_class: hkpProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // m_treeData m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // collidable class: hkpLinkedCollidable Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // multiThreadCheck class: hkMultiThreadCheck Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
+    // properties class: hkpProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
+    // treeData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkpWorldObject : hkReferencedObject, IEquatable<hkpWorldObject?>
     {
-        private object? m_world { set; get; }
-        public ulong m_userData { set; get; }
-        public hkpLinkedCollidable m_collidable { set; get; } = new();
-        public hkMultiThreadCheck m_multiThreadCheck { set; get; } = new();
-        public string m_name { set; get; } = "";
-        public IList<hkpProperty> m_properties { set; get; } = Array.Empty<hkpProperty>();
-        private object? m_treeData { set; get; }
+        private object? world { set; get; }
+        public ulong userData { set; get; }
+        public hkpLinkedCollidable collidable { set; get; } = new();
+        public hkMultiThreadCheck multiThreadCheck { set; get; } = new();
+        public string name { set; get; } = "";
+        public IList<hkpProperty> properties { set; get; } = Array.Empty<hkpProperty>();
+        private object? treeData { set; get; }
 
         public override uint Signature { set; get; } = 0x49fb6f2e;
 
@@ -30,12 +30,12 @@ namespace HKX2
         {
             base.Read(des, br);
             des.ReadEmptyPointer(br);
-            m_userData = br.ReadUInt64();
-            m_collidable.Read(des, br);
-            m_multiThreadCheck.Read(des, br);
+            userData = br.ReadUInt64();
+            collidable.Read(des, br);
+            multiThreadCheck.Read(des, br);
             br.Position += 4;
-            m_name = des.ReadStringPointer(br);
-            m_properties = des.ReadClassArray<hkpProperty>(br);
+            name = des.ReadStringPointer(br);
+            properties = des.ReadClassArray<hkpProperty>(br);
             des.ReadEmptyPointer(br);
         }
 
@@ -43,35 +43,35 @@ namespace HKX2
         {
             base.Write(s, bw);
             s.WriteVoidPointer(bw);
-            bw.WriteUInt64(m_userData);
-            m_collidable.Write(s, bw);
-            m_multiThreadCheck.Write(s, bw);
+            bw.WriteUInt64(userData);
+            collidable.Write(s, bw);
+            multiThreadCheck.Write(s, bw);
             bw.Position += 4;
-            s.WriteStringPointer(bw, m_name);
-            s.WriteClassArray(bw, m_properties);
+            s.WriteStringPointer(bw, name);
+            s.WriteClassArray(bw, properties);
             s.WriteVoidPointer(bw);
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_userData = xd.ReadUInt64(xe, nameof(m_userData));
-            m_collidable = xd.ReadClass<hkpLinkedCollidable>(xe, nameof(m_collidable));
-            m_multiThreadCheck = xd.ReadClass<hkMultiThreadCheck>(xe, nameof(m_multiThreadCheck));
-            m_name = xd.ReadString(xe, nameof(m_name));
-            m_properties = xd.ReadClassArray<hkpProperty>(xe, nameof(m_properties));
+            userData = xd.ReadUInt64(xe, nameof(userData));
+            collidable = xd.ReadClass<hkpLinkedCollidable>(xe, nameof(collidable));
+            multiThreadCheck = xd.ReadClass<hkMultiThreadCheck>(xe, nameof(multiThreadCheck));
+            name = xd.ReadString(xe, nameof(name));
+            properties = xd.ReadClassArray<hkpProperty>(xe, nameof(properties));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteSerializeIgnored(xe, nameof(m_world));
-            xs.WriteNumber(xe, nameof(m_userData), m_userData);
-            xs.WriteClass<hkpLinkedCollidable>(xe, nameof(m_collidable), m_collidable);
-            xs.WriteClass<hkMultiThreadCheck>(xe, nameof(m_multiThreadCheck), m_multiThreadCheck);
-            xs.WriteString(xe, nameof(m_name), m_name);
-            xs.WriteClassArray(xe, nameof(m_properties), m_properties);
-            xs.WriteSerializeIgnored(xe, nameof(m_treeData));
+            xs.WriteSerializeIgnored(xe, nameof(world));
+            xs.WriteNumber(xe, nameof(userData), userData);
+            xs.WriteClass<hkpLinkedCollidable>(xe, nameof(collidable), collidable);
+            xs.WriteClass<hkMultiThreadCheck>(xe, nameof(multiThreadCheck), multiThreadCheck);
+            xs.WriteString(xe, nameof(name), name);
+            xs.WriteClassArray(xe, nameof(properties), properties);
+            xs.WriteSerializeIgnored(xe, nameof(treeData));
         }
 
         public override bool Equals(object? obj)
@@ -83,11 +83,11 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_userData.Equals(other.m_userData) &&
-                   ((m_collidable is null && other.m_collidable is null) || (m_collidable is not null && other.m_collidable is not null && m_collidable.Equals((IHavokObject)other.m_collidable))) &&
-                   ((m_multiThreadCheck is null && other.m_multiThreadCheck is null) || (m_multiThreadCheck is not null && other.m_multiThreadCheck is not null && m_multiThreadCheck.Equals((IHavokObject)other.m_multiThreadCheck))) &&
-                   (m_name is null && other.m_name is null || m_name == other.m_name || m_name is null && other.m_name == "" || m_name == "" && other.m_name is null) &&
-                   m_properties.SequenceEqual(other.m_properties) &&
+                   userData.Equals(other.userData) &&
+                   ((collidable is null && other.collidable is null) || (collidable is not null && other.collidable is not null && collidable.Equals((IHavokObject)other.collidable))) &&
+                   ((multiThreadCheck is null && other.multiThreadCheck is null) || (multiThreadCheck is not null && other.multiThreadCheck is not null && multiThreadCheck.Equals((IHavokObject)other.multiThreadCheck))) &&
+                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
+                   properties.SequenceEqual(other.properties) &&
                    Signature == other.Signature; ;
         }
 
@@ -95,11 +95,11 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_userData);
-            hashcode.Add(m_collidable);
-            hashcode.Add(m_multiThreadCheck);
-            hashcode.Add(m_name);
-            hashcode.Add(m_properties.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(userData);
+            hashcode.Add(collidable);
+            hashcode.Add(multiThreadCheck);
+            hashcode.Add(name);
+            hashcode.Add(properties.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

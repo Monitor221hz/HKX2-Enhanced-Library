@@ -6,31 +6,31 @@ namespace HKX2
 {
     // hkpMoppCodeCodeInfo Signatire: 0xd8fdbb08 size: 16 flags: FLAGS_NONE
 
-    // m_offset m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     public partial class hkpMoppCodeCodeInfo : IHavokObject, IEquatable<hkpMoppCodeCodeInfo?>
     {
-        public Vector4 m_offset { set; get; }
+        public Vector4 offset { set; get; }
 
         public virtual uint Signature { set; get; } = 0xd8fdbb08;
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            m_offset = br.ReadVector4();
+            offset = br.ReadVector4();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
-            bw.WriteVector4(m_offset);
+            bw.WriteVector4(offset);
         }
 
         public virtual void ReadXml(IXmlReader xd, XElement xe)
         {
-            m_offset = xd.ReadVector4(xe, nameof(m_offset));
+            offset = xd.ReadVector4(xe, nameof(offset));
         }
 
         public virtual void WriteXml(IXmlWriter xs, XElement xe)
         {
-            xs.WriteVector4(xe, nameof(m_offset), m_offset);
+            xs.WriteVector4(xe, nameof(offset), offset);
         }
 
         public override bool Equals(object? obj)
@@ -41,14 +41,14 @@ namespace HKX2
         public bool Equals(hkpMoppCodeCodeInfo? other)
         {
             return other is not null &&
-                   m_offset.Equals(other.m_offset) &&
+                   offset.Equals(other.offset) &&
                    Signature == other.Signature; ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
-            hashcode.Add(m_offset);
+            hashcode.Add(offset);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

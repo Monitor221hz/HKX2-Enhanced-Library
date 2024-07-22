@@ -5,37 +5,37 @@ namespace HKX2
 {
     // hkpBvTreeShape Signatire: 0xa823d623 size: 40 flags: FLAGS_NONE
 
-    // m_bvTreeType m_class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: BvTreeType
+    // bvTreeType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: BvTreeType
     public partial class hkpBvTreeShape : hkpShape, IEquatable<hkpBvTreeShape?>
     {
-        public byte m_bvTreeType { set; get; }
+        public byte bvTreeType { set; get; }
 
         public override uint Signature { set; get; } = 0xa823d623;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_bvTreeType = br.ReadByte();
+            bvTreeType = br.ReadByte();
             br.Position += 7;
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteByte(m_bvTreeType);
+            bw.WriteByte(bvTreeType);
             bw.Position += 7;
         }
 
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_bvTreeType = xd.ReadFlag<BvTreeType, byte>(xe, nameof(m_bvTreeType));
+            bvTreeType = xd.ReadFlag<BvTreeType, byte>(xe, nameof(bvTreeType));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteEnum<BvTreeType, byte>(xe, nameof(m_bvTreeType), m_bvTreeType);
+            xs.WriteEnum<BvTreeType, byte>(xe, nameof(bvTreeType), bvTreeType);
         }
 
         public override bool Equals(object? obj)
@@ -47,7 +47,7 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_bvTreeType.Equals(other.m_bvTreeType) &&
+                   bvTreeType.Equals(other.bvTreeType) &&
                    Signature == other.Signature; ;
         }
 
@@ -55,7 +55,7 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_bvTreeType);
+            hashcode.Add(bvTreeType);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -8,75 +8,75 @@ namespace HKX2
 {
     // BSLookAtModifier Signatire: 0xd756fc25 size: 224 flags: FLAGS_NONE
 
-    // m_lookAtTarget m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // m_bones m_class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // m_eyeBones m_class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // m_limitAngleDegrees m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // m_limitAngleThresholdDegrees m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
-    // m_continueLookOutsideOfLimit m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // m_onGain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
-    // m_offGain m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // m_useBoneGains m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum: 
-    // m_targetLocation m_class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // m_targetOutsideLimits m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // m_targetOutOfLimitEvent m_class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // m_lookAtCamera m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // m_lookAtCameraX m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    // m_lookAtCameraY m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // m_lookAtCameraZ m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // m_timeStep m_class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_ballBonesValid m_class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 204 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // m_pSkeletonMemory m_class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // lookAtTarget class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // bones class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // eyeBones class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
+    // limitAngleThresholdDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
+    // continueLookOutsideOfLimit class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
+    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
+    // useBoneGains class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum: 
+    // targetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
+    // targetOutsideLimits class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
+    // targetOutOfLimitEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
+    // lookAtCamera class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
+    // lookAtCameraX class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
+    // lookAtCameraY class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
+    // lookAtCameraZ class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // ballBonesValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 204 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class BSLookAtModifier : hkbModifier, IEquatable<BSLookAtModifier?>
     {
-        public bool m_lookAtTarget { set; get; }
-        public IList<BSLookAtModifierBoneData> m_bones { set; get; } = Array.Empty<BSLookAtModifierBoneData>();
-        public IList<BSLookAtModifierBoneData> m_eyeBones { set; get; } = Array.Empty<BSLookAtModifierBoneData>();
-        public float m_limitAngleDegrees { set; get; }
-        public float m_limitAngleThresholdDegrees { set; get; }
-        public bool m_continueLookOutsideOfLimit { set; get; }
-        public float m_onGain { set; get; }
-        public float m_offGain { set; get; }
-        public bool m_useBoneGains { set; get; }
-        public Vector4 m_targetLocation { set; get; }
-        public bool m_targetOutsideLimits { set; get; }
-        public hkbEventProperty m_targetOutOfLimitEvent { set; get; } = new();
-        public bool m_lookAtCamera { set; get; }
-        public float m_lookAtCameraX { set; get; }
-        public float m_lookAtCameraY { set; get; }
-        public float m_lookAtCameraZ { set; get; }
-        private float m_timeStep { set; get; }
-        private bool m_ballBonesValid { set; get; }
-        private object? m_pSkeletonMemory { set; get; }
+        public bool lookAtTarget { set; get; }
+        public IList<BSLookAtModifierBoneData> bones { set; get; } = Array.Empty<BSLookAtModifierBoneData>();
+        public IList<BSLookAtModifierBoneData> eyeBones { set; get; } = Array.Empty<BSLookAtModifierBoneData>();
+        public float limitAngleDegrees { set; get; }
+        public float limitAngleThresholdDegrees { set; get; }
+        public bool continueLookOutsideOfLimit { set; get; }
+        public float onGain { set; get; }
+        public float offGain { set; get; }
+        public bool useBoneGains { set; get; }
+        public Vector4 targetLocation { set; get; }
+        public bool targetOutsideLimits { set; get; }
+        public hkbEventProperty targetOutOfLimitEvent { set; get; } = new();
+        public bool lookAtCamera { set; get; }
+        public float lookAtCameraX { set; get; }
+        public float lookAtCameraY { set; get; }
+        public float lookAtCameraZ { set; get; }
+        private float timeStep { set; get; }
+        private bool ballBonesValid { set; get; }
+        private object? pSkeletonMemory { set; get; }
 
         public override uint Signature { set; get; } = 0xd756fc25;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            m_lookAtTarget = br.ReadBoolean();
+            lookAtTarget = br.ReadBoolean();
             br.Position += 7;
-            m_bones = des.ReadClassArray<BSLookAtModifierBoneData>(br);
-            m_eyeBones = des.ReadClassArray<BSLookAtModifierBoneData>(br);
-            m_limitAngleDegrees = br.ReadSingle();
-            m_limitAngleThresholdDegrees = br.ReadSingle();
-            m_continueLookOutsideOfLimit = br.ReadBoolean();
+            bones = des.ReadClassArray<BSLookAtModifierBoneData>(br);
+            eyeBones = des.ReadClassArray<BSLookAtModifierBoneData>(br);
+            limitAngleDegrees = br.ReadSingle();
+            limitAngleThresholdDegrees = br.ReadSingle();
+            continueLookOutsideOfLimit = br.ReadBoolean();
             br.Position += 3;
-            m_onGain = br.ReadSingle();
-            m_offGain = br.ReadSingle();
-            m_useBoneGains = br.ReadBoolean();
+            onGain = br.ReadSingle();
+            offGain = br.ReadSingle();
+            useBoneGains = br.ReadBoolean();
             br.Position += 3;
-            m_targetLocation = br.ReadVector4();
-            m_targetOutsideLimits = br.ReadBoolean();
+            targetLocation = br.ReadVector4();
+            targetOutsideLimits = br.ReadBoolean();
             br.Position += 7;
-            m_targetOutOfLimitEvent.Read(des, br);
-            m_lookAtCamera = br.ReadBoolean();
+            targetOutOfLimitEvent.Read(des, br);
+            lookAtCamera = br.ReadBoolean();
             br.Position += 3;
-            m_lookAtCameraX = br.ReadSingle();
-            m_lookAtCameraY = br.ReadSingle();
-            m_lookAtCameraZ = br.ReadSingle();
-            m_timeStep = br.ReadSingle();
-            m_ballBonesValid = br.ReadBoolean();
+            lookAtCameraX = br.ReadSingle();
+            lookAtCameraY = br.ReadSingle();
+            lookAtCameraZ = br.ReadSingle();
+            timeStep = br.ReadSingle();
+            ballBonesValid = br.ReadBoolean();
             br.Position += 3;
             des.ReadEmptyPointer(br);
             br.Position += 8;
@@ -85,29 +85,29 @@ namespace HKX2
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            bw.WriteBoolean(m_lookAtTarget);
+            bw.WriteBoolean(lookAtTarget);
             bw.Position += 7;
-            s.WriteClassArray(bw, m_bones);
-            s.WriteClassArray(bw, m_eyeBones);
-            bw.WriteSingle(m_limitAngleDegrees);
-            bw.WriteSingle(m_limitAngleThresholdDegrees);
-            bw.WriteBoolean(m_continueLookOutsideOfLimit);
+            s.WriteClassArray(bw, bones);
+            s.WriteClassArray(bw, eyeBones);
+            bw.WriteSingle(limitAngleDegrees);
+            bw.WriteSingle(limitAngleThresholdDegrees);
+            bw.WriteBoolean(continueLookOutsideOfLimit);
             bw.Position += 3;
-            bw.WriteSingle(m_onGain);
-            bw.WriteSingle(m_offGain);
-            bw.WriteBoolean(m_useBoneGains);
+            bw.WriteSingle(onGain);
+            bw.WriteSingle(offGain);
+            bw.WriteBoolean(useBoneGains);
             bw.Position += 3;
-            bw.WriteVector4(m_targetLocation);
-            bw.WriteBoolean(m_targetOutsideLimits);
+            bw.WriteVector4(targetLocation);
+            bw.WriteBoolean(targetOutsideLimits);
             bw.Position += 7;
-            m_targetOutOfLimitEvent.Write(s, bw);
-            bw.WriteBoolean(m_lookAtCamera);
+            targetOutOfLimitEvent.Write(s, bw);
+            bw.WriteBoolean(lookAtCamera);
             bw.Position += 3;
-            bw.WriteSingle(m_lookAtCameraX);
-            bw.WriteSingle(m_lookAtCameraY);
-            bw.WriteSingle(m_lookAtCameraZ);
-            bw.WriteSingle(m_timeStep);
-            bw.WriteBoolean(m_ballBonesValid);
+            bw.WriteSingle(lookAtCameraX);
+            bw.WriteSingle(lookAtCameraY);
+            bw.WriteSingle(lookAtCameraZ);
+            bw.WriteSingle(timeStep);
+            bw.WriteBoolean(ballBonesValid);
             bw.Position += 3;
             s.WriteVoidPointer(bw);
             bw.Position += 8;
@@ -116,46 +116,46 @@ namespace HKX2
         public override void ReadXml(IXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            m_lookAtTarget = xd.ReadBoolean(xe, nameof(m_lookAtTarget));
-            m_bones = xd.ReadClassArray<BSLookAtModifierBoneData>(xe, nameof(m_bones));
-            m_eyeBones = xd.ReadClassArray<BSLookAtModifierBoneData>(xe, nameof(m_eyeBones));
-            m_limitAngleDegrees = xd.ReadSingle(xe, nameof(m_limitAngleDegrees));
-            m_limitAngleThresholdDegrees = xd.ReadSingle(xe, nameof(m_limitAngleThresholdDegrees));
-            m_continueLookOutsideOfLimit = xd.ReadBoolean(xe, nameof(m_continueLookOutsideOfLimit));
-            m_onGain = xd.ReadSingle(xe, nameof(m_onGain));
-            m_offGain = xd.ReadSingle(xe, nameof(m_offGain));
-            m_useBoneGains = xd.ReadBoolean(xe, nameof(m_useBoneGains));
-            m_targetLocation = xd.ReadVector4(xe, nameof(m_targetLocation));
-            m_targetOutsideLimits = xd.ReadBoolean(xe, nameof(m_targetOutsideLimits));
-            m_targetOutOfLimitEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(m_targetOutOfLimitEvent));
-            m_lookAtCamera = xd.ReadBoolean(xe, nameof(m_lookAtCamera));
-            m_lookAtCameraX = xd.ReadSingle(xe, nameof(m_lookAtCameraX));
-            m_lookAtCameraY = xd.ReadSingle(xe, nameof(m_lookAtCameraY));
-            m_lookAtCameraZ = xd.ReadSingle(xe, nameof(m_lookAtCameraZ));
+            lookAtTarget = xd.ReadBoolean(xe, nameof(lookAtTarget));
+            bones = xd.ReadClassArray<BSLookAtModifierBoneData>(xe, nameof(bones));
+            eyeBones = xd.ReadClassArray<BSLookAtModifierBoneData>(xe, nameof(eyeBones));
+            limitAngleDegrees = xd.ReadSingle(xe, nameof(limitAngleDegrees));
+            limitAngleThresholdDegrees = xd.ReadSingle(xe, nameof(limitAngleThresholdDegrees));
+            continueLookOutsideOfLimit = xd.ReadBoolean(xe, nameof(continueLookOutsideOfLimit));
+            onGain = xd.ReadSingle(xe, nameof(onGain));
+            offGain = xd.ReadSingle(xe, nameof(offGain));
+            useBoneGains = xd.ReadBoolean(xe, nameof(useBoneGains));
+            targetLocation = xd.ReadVector4(xe, nameof(targetLocation));
+            targetOutsideLimits = xd.ReadBoolean(xe, nameof(targetOutsideLimits));
+            targetOutOfLimitEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(targetOutOfLimitEvent));
+            lookAtCamera = xd.ReadBoolean(xe, nameof(lookAtCamera));
+            lookAtCameraX = xd.ReadSingle(xe, nameof(lookAtCameraX));
+            lookAtCameraY = xd.ReadSingle(xe, nameof(lookAtCameraY));
+            lookAtCameraZ = xd.ReadSingle(xe, nameof(lookAtCameraZ));
         }
 
         public override void WriteXml(IXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteBoolean(xe, nameof(m_lookAtTarget), m_lookAtTarget);
-            xs.WriteClassArray(xe, nameof(m_bones), m_bones);
-            xs.WriteClassArray(xe, nameof(m_eyeBones), m_eyeBones);
-            xs.WriteFloat(xe, nameof(m_limitAngleDegrees), m_limitAngleDegrees);
-            xs.WriteFloat(xe, nameof(m_limitAngleThresholdDegrees), m_limitAngleThresholdDegrees);
-            xs.WriteBoolean(xe, nameof(m_continueLookOutsideOfLimit), m_continueLookOutsideOfLimit);
-            xs.WriteFloat(xe, nameof(m_onGain), m_onGain);
-            xs.WriteFloat(xe, nameof(m_offGain), m_offGain);
-            xs.WriteBoolean(xe, nameof(m_useBoneGains), m_useBoneGains);
-            xs.WriteVector4(xe, nameof(m_targetLocation), m_targetLocation);
-            xs.WriteBoolean(xe, nameof(m_targetOutsideLimits), m_targetOutsideLimits);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(m_targetOutOfLimitEvent), m_targetOutOfLimitEvent);
-            xs.WriteBoolean(xe, nameof(m_lookAtCamera), m_lookAtCamera);
-            xs.WriteFloat(xe, nameof(m_lookAtCameraX), m_lookAtCameraX);
-            xs.WriteFloat(xe, nameof(m_lookAtCameraY), m_lookAtCameraY);
-            xs.WriteFloat(xe, nameof(m_lookAtCameraZ), m_lookAtCameraZ);
-            xs.WriteSerializeIgnored(xe, nameof(m_timeStep));
-            xs.WriteSerializeIgnored(xe, nameof(m_ballBonesValid));
-            xs.WriteSerializeIgnored(xe, nameof(m_pSkeletonMemory));
+            xs.WriteBoolean(xe, nameof(lookAtTarget), lookAtTarget);
+            xs.WriteClassArray(xe, nameof(bones), bones);
+            xs.WriteClassArray(xe, nameof(eyeBones), eyeBones);
+            xs.WriteFloat(xe, nameof(limitAngleDegrees), limitAngleDegrees);
+            xs.WriteFloat(xe, nameof(limitAngleThresholdDegrees), limitAngleThresholdDegrees);
+            xs.WriteBoolean(xe, nameof(continueLookOutsideOfLimit), continueLookOutsideOfLimit);
+            xs.WriteFloat(xe, nameof(onGain), onGain);
+            xs.WriteFloat(xe, nameof(offGain), offGain);
+            xs.WriteBoolean(xe, nameof(useBoneGains), useBoneGains);
+            xs.WriteVector4(xe, nameof(targetLocation), targetLocation);
+            xs.WriteBoolean(xe, nameof(targetOutsideLimits), targetOutsideLimits);
+            xs.WriteClass<hkbEventProperty>(xe, nameof(targetOutOfLimitEvent), targetOutOfLimitEvent);
+            xs.WriteBoolean(xe, nameof(lookAtCamera), lookAtCamera);
+            xs.WriteFloat(xe, nameof(lookAtCameraX), lookAtCameraX);
+            xs.WriteFloat(xe, nameof(lookAtCameraY), lookAtCameraY);
+            xs.WriteFloat(xe, nameof(lookAtCameraZ), lookAtCameraZ);
+            xs.WriteSerializeIgnored(xe, nameof(timeStep));
+            xs.WriteSerializeIgnored(xe, nameof(ballBonesValid));
+            xs.WriteSerializeIgnored(xe, nameof(pSkeletonMemory));
         }
 
         public override bool Equals(object? obj)
@@ -167,22 +167,22 @@ namespace HKX2
         {
             return other is not null &&
                    base.Equals(other) &&
-                   m_lookAtTarget.Equals(other.m_lookAtTarget) &&
-                   m_bones.SequenceEqual(other.m_bones) &&
-                   m_eyeBones.SequenceEqual(other.m_eyeBones) &&
-                   m_limitAngleDegrees.Equals(other.m_limitAngleDegrees) &&
-                   m_limitAngleThresholdDegrees.Equals(other.m_limitAngleThresholdDegrees) &&
-                   m_continueLookOutsideOfLimit.Equals(other.m_continueLookOutsideOfLimit) &&
-                   m_onGain.Equals(other.m_onGain) &&
-                   m_offGain.Equals(other.m_offGain) &&
-                   m_useBoneGains.Equals(other.m_useBoneGains) &&
-                   m_targetLocation.Equals(other.m_targetLocation) &&
-                   m_targetOutsideLimits.Equals(other.m_targetOutsideLimits) &&
-                   ((m_targetOutOfLimitEvent is null && other.m_targetOutOfLimitEvent is null) || (m_targetOutOfLimitEvent is not null && other.m_targetOutOfLimitEvent is not null && m_targetOutOfLimitEvent.Equals((IHavokObject)other.m_targetOutOfLimitEvent))) &&
-                   m_lookAtCamera.Equals(other.m_lookAtCamera) &&
-                   m_lookAtCameraX.Equals(other.m_lookAtCameraX) &&
-                   m_lookAtCameraY.Equals(other.m_lookAtCameraY) &&
-                   m_lookAtCameraZ.Equals(other.m_lookAtCameraZ) &&
+                   lookAtTarget.Equals(other.lookAtTarget) &&
+                   bones.SequenceEqual(other.bones) &&
+                   eyeBones.SequenceEqual(other.eyeBones) &&
+                   limitAngleDegrees.Equals(other.limitAngleDegrees) &&
+                   limitAngleThresholdDegrees.Equals(other.limitAngleThresholdDegrees) &&
+                   continueLookOutsideOfLimit.Equals(other.continueLookOutsideOfLimit) &&
+                   onGain.Equals(other.onGain) &&
+                   offGain.Equals(other.offGain) &&
+                   useBoneGains.Equals(other.useBoneGains) &&
+                   targetLocation.Equals(other.targetLocation) &&
+                   targetOutsideLimits.Equals(other.targetOutsideLimits) &&
+                   ((targetOutOfLimitEvent is null && other.targetOutOfLimitEvent is null) || (targetOutOfLimitEvent is not null && other.targetOutOfLimitEvent is not null && targetOutOfLimitEvent.Equals((IHavokObject)other.targetOutOfLimitEvent))) &&
+                   lookAtCamera.Equals(other.lookAtCamera) &&
+                   lookAtCameraX.Equals(other.lookAtCameraX) &&
+                   lookAtCameraY.Equals(other.lookAtCameraY) &&
+                   lookAtCameraZ.Equals(other.lookAtCameraZ) &&
                    Signature == other.Signature; ;
         }
 
@@ -190,22 +190,22 @@ namespace HKX2
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(m_lookAtTarget);
-            hashcode.Add(m_bones.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_eyeBones.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(m_limitAngleDegrees);
-            hashcode.Add(m_limitAngleThresholdDegrees);
-            hashcode.Add(m_continueLookOutsideOfLimit);
-            hashcode.Add(m_onGain);
-            hashcode.Add(m_offGain);
-            hashcode.Add(m_useBoneGains);
-            hashcode.Add(m_targetLocation);
-            hashcode.Add(m_targetOutsideLimits);
-            hashcode.Add(m_targetOutOfLimitEvent);
-            hashcode.Add(m_lookAtCamera);
-            hashcode.Add(m_lookAtCameraX);
-            hashcode.Add(m_lookAtCameraY);
-            hashcode.Add(m_lookAtCameraZ);
+            hashcode.Add(lookAtTarget);
+            hashcode.Add(bones.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(eyeBones.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(limitAngleDegrees);
+            hashcode.Add(limitAngleThresholdDegrees);
+            hashcode.Add(continueLookOutsideOfLimit);
+            hashcode.Add(onGain);
+            hashcode.Add(offGain);
+            hashcode.Add(useBoneGains);
+            hashcode.Add(targetLocation);
+            hashcode.Add(targetOutsideLimits);
+            hashcode.Add(targetOutOfLimitEvent);
+            hashcode.Add(lookAtCamera);
+            hashcode.Add(lookAtCameraX);
+            hashcode.Add(lookAtCameraY);
+            hashcode.Add(lookAtCameraZ);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }
