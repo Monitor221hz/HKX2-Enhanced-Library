@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCharacterDataCharacterControllerInfo Signatire: 0xa0f415bf size: 24 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             s.WriteClassPointer(bw, characterControllerCinfo);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             capsuleHeight = xd.ReadSingle(xe, nameof(capsuleHeight));
             capsuleRadius = xd.ReadSingle(xe, nameof(capsuleRadius));
@@ -44,7 +44,7 @@ namespace HKX2
             characterControllerCinfo = xd.ReadClassPointer<hkpCharacterControllerCinfo>(xe, nameof(characterControllerCinfo));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(capsuleHeight), capsuleHeight);
             xs.WriteFloat(xe, nameof(capsuleRadius), capsuleRadius);

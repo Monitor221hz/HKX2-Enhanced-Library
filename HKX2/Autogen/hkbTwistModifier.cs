@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbTwistModifier Signatire: 0xb6b76b32 size: 144 flags: FLAGS_NONE
 
@@ -60,7 +60,7 @@ namespace HKX2
             s.WriteVoidArray(bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             axisOfRotation = xd.ReadVector4(xe, nameof(axisOfRotation));
@@ -72,7 +72,7 @@ namespace HKX2
             isAdditive = xd.ReadBoolean(xe, nameof(isAdditive));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(axisOfRotation), axisOfRotation);

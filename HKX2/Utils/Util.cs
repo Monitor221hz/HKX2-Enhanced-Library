@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     public static class Util
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpSerializedSubTrack1nInfo Signatire: 0x10155a size: 40 flags: FLAGS_NONE
 
@@ -28,14 +28,14 @@ namespace HKX2
             bw.WriteInt32(offsetInSector);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             sectorIndex = xd.ReadInt32(xe, nameof(sectorIndex));
             offsetInSector = xd.ReadInt32(xe, nameof(offsetInSector));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(sectorIndex), sectorIndex);

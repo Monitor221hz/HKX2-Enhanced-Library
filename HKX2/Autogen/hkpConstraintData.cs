@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpConstraintData Signatire: 0x80559a4e size: 24 flags: FLAGS_NONE
 
@@ -24,13 +24,13 @@ namespace HKX2
             bw.WriteUInt64(userData);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             userData = xd.ReadUInt64(xe, nameof(userData));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(userData), userData);

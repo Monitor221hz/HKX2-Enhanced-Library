@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaAnimation Signatire: 0xa6fa7e88 size: 56 flags: FLAGS_NONE
 
@@ -46,7 +46,7 @@ namespace HKX2
             s.WriteClassArray(bw, annotationTracks);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             type = xd.ReadFlag<AnimationType, int>(xe, nameof(type));
@@ -57,7 +57,7 @@ namespace HKX2
             annotationTracks = xd.ReadClassArray<hkaAnnotationTrack>(xe, nameof(annotationTracks));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteEnum<AnimationType, int>(xe, nameof(type), type);

@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkContactPoint Signatire: 0x91d7dd8e size: 32 flags: FLAGS_NONE
 
@@ -27,13 +27,13 @@ namespace HKX2
             bw.WriteVector4(separatingNormal);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             position = xd.ReadVector4(xe, nameof(position));
             separatingNormal = xd.ReadVector4(xe, nameof(separatingNormal));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(position), position);
             xs.WriteVector4(xe, nameof(separatingNormal), separatingNormal);

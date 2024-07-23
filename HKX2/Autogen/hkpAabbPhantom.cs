@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpAabbPhantom Signatire: 0x2c5189dd size: 304 flags: FLAGS_NONE
 
@@ -35,13 +35,13 @@ namespace HKX2
             bw.Position += 15;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             aabb = xd.ReadClass<hkAabb>(xe, nameof(aabb));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkAabb>(xe, nameof(aabb), aabb);

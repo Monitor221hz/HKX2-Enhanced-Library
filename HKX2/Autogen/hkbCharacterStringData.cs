@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCharacterStringData Signatire: 0x655b42bc size: 192 flags: FLAGS_NONE
 
@@ -74,7 +74,7 @@ namespace HKX2
             s.WriteStringPointer(bw, behaviorFilename);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             deformableSkinNames = xd.ReadStringArray(xe, nameof(deformableSkinNames));
@@ -92,7 +92,7 @@ namespace HKX2
             behaviorFilename = xd.ReadString(xe, nameof(behaviorFilename));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteStringArray(xe, nameof(deformableSkinNames), deformableSkinNames);

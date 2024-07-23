@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaSplineCompressedAnimationTrackCompressionParams Signatire: 0x42e878d3 size: 28 flags: FLAGS_NONE
 
@@ -66,7 +66,7 @@ namespace HKX2
             bw.WriteByte(floatQuantizationType);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             rotationTolerance = xd.ReadSingle(xe, nameof(rotationTolerance));
             translationTolerance = xd.ReadSingle(xe, nameof(translationTolerance));
@@ -82,7 +82,7 @@ namespace HKX2
             floatQuantizationType = xd.ReadFlag<ScalarQuantization, byte>(xe, nameof(floatQuantizationType));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(rotationTolerance), rotationTolerance);
             xs.WriteFloat(xe, nameof(translationTolerance), translationTolerance);

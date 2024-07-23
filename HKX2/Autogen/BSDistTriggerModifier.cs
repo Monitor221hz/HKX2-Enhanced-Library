@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSDistTriggerModifier Signatire: 0xb34d2bbd size: 128 flags: FLAGS_NONE
 
@@ -39,7 +39,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             targetPosition = xd.ReadVector4(xe, nameof(targetPosition));
@@ -48,7 +48,7 @@ namespace HKX2
             triggerEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(triggerEvent));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(targetPosition), targetPosition);

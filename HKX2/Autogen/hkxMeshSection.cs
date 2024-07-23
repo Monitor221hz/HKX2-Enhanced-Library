@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxMeshSection Signatire: 0xe2286cf8 size: 64 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             s.WriteClassPointerArray(bw, userChannels);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             vertexBuffer = xd.ReadClassPointer<hkxVertexBuffer>(xe, nameof(vertexBuffer));
@@ -47,7 +47,7 @@ namespace HKX2
             userChannels = xd.ReadClassPointerArray<hkReferencedObject>(xe, nameof(userChannels));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(vertexBuffer), vertexBuffer);

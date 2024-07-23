@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpUnaryAction Signatire: 0x895532c0 size: 56 flags: FLAGS_NONE
 
@@ -24,13 +24,13 @@ namespace HKX2
             s.WriteClassPointer(bw, entity);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             entity = xd.ReadClassPointer<hkpEntity>(xe, nameof(entity));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(entity), entity);

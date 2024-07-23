@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpGenericConstraintDataScheme Signatire: 0x11fd6f6c size: 80 flags: FLAGS_NONE
 
@@ -41,14 +41,14 @@ namespace HKX2
             s.WriteClassPointerArray(bw, motors);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             data = xd.ReadVector4Array(xe, nameof(data));
             commands = xd.ReadInt32Array(xe, nameof(commands));
             motors = xd.ReadClassPointerArray<hkpConstraintMotor>(xe, nameof(motors));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(info));
             xs.WriteVector4Array(xe, nameof(data), data);

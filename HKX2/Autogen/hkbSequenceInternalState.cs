@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbSequenceInternalState Signatire: 0x419b9a05 size: 88 flags: FLAGS_NONE
 
@@ -48,7 +48,7 @@ namespace HKX2
             bw.Position += 3;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             nextSampleEvents = xd.ReadInt32Array(xe, nameof(nextSampleEvents));
@@ -59,7 +59,7 @@ namespace HKX2
             isEnabled = xd.ReadBoolean(xe, nameof(isEnabled));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumberArray(xe, nameof(nextSampleEvents), nextSampleEvents);

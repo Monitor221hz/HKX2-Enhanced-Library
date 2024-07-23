@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbClipTrigger Signatire: 0x7eb45cea size: 32 flags: FLAGS_NONE
 
@@ -42,7 +42,7 @@ namespace HKX2
             bw.Position += 5;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             localTime = xd.ReadSingle(xe, nameof(localTime));
             @event= xd.ReadClass<hkbEventProperty>(xe, nameof(@event));
@@ -51,7 +51,7 @@ namespace HKX2
             isAnnotation = xd.ReadBoolean(xe, nameof(isAnnotation));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(localTime), localTime);
             xs.WriteClass<hkbEventProperty>(xe, nameof(@event), @event);

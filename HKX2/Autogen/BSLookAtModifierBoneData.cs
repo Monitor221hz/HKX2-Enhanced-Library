@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSLookAtModifierBoneData Signatire: 0x29efee59 size: 64 flags: FLAGS_NONE
 
@@ -51,7 +51,7 @@ namespace HKX2
             bw.WriteVector4(currentFwdAxisLS);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             index = xd.ReadInt16(xe, nameof(index));
             fwdAxisLS = xd.ReadVector4(xe, nameof(fwdAxisLS));
@@ -61,7 +61,7 @@ namespace HKX2
             enabled = xd.ReadBoolean(xe, nameof(enabled));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(index), index);
             xs.WriteVector4(xe, nameof(fwdAxisLS), fwdAxisLS);

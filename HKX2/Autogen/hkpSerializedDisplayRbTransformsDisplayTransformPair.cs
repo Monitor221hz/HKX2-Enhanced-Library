@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpSerializedDisplayRbTransformsDisplayTransformPair Signatire: 0x94ac5bec size: 80 flags: FLAGS_NONE
 
@@ -29,13 +29,13 @@ namespace HKX2
             s.WriteTransform(bw, localToDisplay);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             rb = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(rb));
             localToDisplay = xd.ReadTransform(xe, nameof(localToDisplay));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassPointer(xe, nameof(rb), rb);
             xs.WriteTransform(xe, nameof(localToDisplay), localToDisplay);

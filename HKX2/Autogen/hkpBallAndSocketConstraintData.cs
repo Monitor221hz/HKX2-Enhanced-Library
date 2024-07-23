@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpBallAndSocketConstraintData Signatire: 0x5a6954d9 size: 112 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             atoms.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             atoms = xd.ReadClass<hkpBallAndSocketConstraintDataAtoms>(xe, nameof(atoms));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpBallAndSocketConstraintDataAtoms>(xe, nameof(atoms), atoms);

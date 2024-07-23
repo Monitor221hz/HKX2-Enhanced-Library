@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpSpringAction Signatire: 0x88fc09fa size: 128 flags: FLAGS_NONE
 
@@ -55,7 +55,7 @@ namespace HKX2
             bw.Position += 2;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             lastForce = xd.ReadVector4(xe, nameof(lastForce));
@@ -68,7 +68,7 @@ namespace HKX2
             onExtension = xd.ReadBoolean(xe, nameof(onExtension));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(lastForce), lastForce);

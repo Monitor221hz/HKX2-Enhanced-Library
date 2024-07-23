@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPhysicsData Signatire: 0xc2a461e4 size: 40 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             s.WriteClassPointerArray(bw, systems);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             worldCinfo = xd.ReadClassPointer<hkpWorldCinfo>(xe, nameof(worldCinfo));
             systems = xd.ReadClassPointerArray<hkpPhysicsSystem>(xe, nameof(systems));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(worldCinfo), worldCinfo);

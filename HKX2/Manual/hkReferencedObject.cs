@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkReferencedObject Signatire: 0x3b1c1113 size: 16 flags: FLAGS_NONE
 
@@ -36,12 +36,12 @@ namespace HKX2
             if (s._header.PointerSize == 8) bw.Pad(8);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
 
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteSerializeIgnored(xe, nameof(memSizeAndFlags));

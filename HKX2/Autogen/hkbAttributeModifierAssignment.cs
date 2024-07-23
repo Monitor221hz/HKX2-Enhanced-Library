@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbAttributeModifierAssignment Signatire: 0x48b8ad52 size: 8 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             bw.WriteSingle(attributeValue);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             attributeIndex = xd.ReadInt32(xe, nameof(attributeIndex));
             attributeValue = xd.ReadSingle(xe, nameof(attributeValue));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(attributeIndex), attributeIndex);
             xs.WriteFloat(xe, nameof(attributeValue), attributeValue);

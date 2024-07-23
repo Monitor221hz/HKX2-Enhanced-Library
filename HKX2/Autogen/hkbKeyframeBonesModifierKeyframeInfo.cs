@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbKeyframeBonesModifierKeyframeInfo Signatire: 0x72deb7a6 size: 48 flags: FLAGS_NONE
 
@@ -37,7 +37,7 @@ namespace HKX2
             bw.Position += 13;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             keyframedPosition = xd.ReadVector4(xe, nameof(keyframedPosition));
             keyframedRotation = xd.ReadQuaternion(xe, nameof(keyframedRotation));
@@ -45,7 +45,7 @@ namespace HKX2
             isValid = xd.ReadBoolean(xe, nameof(isValid));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(keyframedPosition), keyframedPosition);
             xs.WriteQuaternion(xe, nameof(keyframedRotation), keyframedRotation);

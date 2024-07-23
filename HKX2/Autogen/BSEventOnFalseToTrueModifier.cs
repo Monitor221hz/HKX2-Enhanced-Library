@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSEventOnFalseToTrueModifier Signatire: 0x81d0777a size: 160 flags: FLAGS_NONE
 
@@ -76,7 +76,7 @@ namespace HKX2
             bw.Position += 5;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             bEnableEvent1 = xd.ReadBoolean(xe, nameof(bEnableEvent1));
@@ -90,7 +90,7 @@ namespace HKX2
             EventToSend3 = xd.ReadClass<hkbEventProperty>(xe, nameof(EventToSend3));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(bEnableEvent1), bEnableEvent1);

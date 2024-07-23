@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaBoneAttachment Signatire: 0xa8ccd5cf size: 128 flags: FLAGS_NONE
 
@@ -45,7 +45,7 @@ namespace HKX2
             bw.Position += 14;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             originalSkeletonName = xd.ReadString(xe, nameof(originalSkeletonName));
@@ -55,7 +55,7 @@ namespace HKX2
             boneIndex = xd.ReadInt16(xe, nameof(boneIndex));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(originalSkeletonName), originalSkeletonName);

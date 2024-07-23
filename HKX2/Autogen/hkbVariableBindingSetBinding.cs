@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbVariableBindingSetBinding Signatire: 0x4d592f72 size: 40 flags: FLAGS_NONE
 
@@ -64,7 +64,7 @@ namespace HKX2
             bw.Position += 3;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             memberPath = xd.ReadString(xe, nameof(memberPath));
             variableIndex = xd.ReadInt32(xe, nameof(variableIndex));
@@ -72,7 +72,7 @@ namespace HKX2
             bindingType = xd.ReadFlag<BindingType, sbyte>(xe, nameof(bindingType));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(memberPath), memberPath);
             xs.WriteSerializeIgnored(xe, nameof(memberClass));

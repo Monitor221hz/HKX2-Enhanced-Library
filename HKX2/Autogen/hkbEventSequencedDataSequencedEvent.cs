@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbEventSequencedDataSequencedEvent Signatire: 0x9139b821 size: 32 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             @event= xd.ReadClass<hkbEvent>(xe, nameof(@event));
             time = xd.ReadSingle(xe, nameof(time));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkbEvent>(xe, nameof(@event), @event);
             xs.WriteFloat(xe, nameof(time), time);

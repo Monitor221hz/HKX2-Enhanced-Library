@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbProxyModifierProxyInfo Signatire: 0x39de637e size: 80 flags: FLAGS_NONE
 
@@ -79,7 +79,7 @@ namespace HKX2
             bw.Position += 11;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             dynamicFriction = xd.ReadSingle(xe, nameof(dynamicFriction));
             staticFriction = xd.ReadSingle(xe, nameof(staticFriction));
@@ -97,7 +97,7 @@ namespace HKX2
             refreshManifoldInCheckSupport = xd.ReadBoolean(xe, nameof(refreshManifoldInCheckSupport));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(dynamicFriction), dynamicFriction);
             xs.WriteFloat(xe, nameof(staticFriction), staticFriction);

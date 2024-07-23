@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkDriverInfo Signatire: 0xc6a09dbf size: 72 flags: FLAGS_NONE
 
@@ -72,7 +72,7 @@ namespace HKX2
             bw.Position += 5;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             legs = xd.ReadClassArray<hkbFootIkDriverInfoLeg>(xe, nameof(legs));
@@ -89,7 +89,7 @@ namespace HKX2
             isQuadrupedNarrow = xd.ReadBoolean(xe, nameof(isQuadrupedNarrow));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(legs), legs);

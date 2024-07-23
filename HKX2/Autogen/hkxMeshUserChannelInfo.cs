@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxMeshUserChannelInfo Signatire: 0x270724a5 size: 48 flags: FLAGS_NONE
 
@@ -28,14 +28,14 @@ namespace HKX2
             s.WriteStringPointer(bw, className);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             name = xd.ReadString(xe, nameof(name));
             className = xd.ReadString(xe, nameof(className));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(name), name);

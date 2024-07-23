@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpHingeLimitsDataAtoms Signatire: 0x555876ff size: 144 flags: FLAGS_NONE
 
@@ -32,14 +32,14 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             rotations = xd.ReadClass<hkpSetLocalRotationsConstraintAtom>(xe, nameof(rotations));
             angLimit = xd.ReadClass<hkpAngLimitConstraintAtom>(xe, nameof(angLimit));
             _2dAng = xd.ReadClass<hkp_2dAngConstraintAtom>(xe, nameof(_2dAng));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkpSetLocalRotationsConstraintAtom>(xe, nameof(rotations), rotations);
             xs.WriteClass<hkpAngLimitConstraintAtom>(xe, nameof(angLimit), angLimit);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbEvaluateExpressionModifierInternalState Signatire: 0xb414d58e size: 32 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             s.WriteClassArray(bw, internalExpressionsData);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             internalExpressionsData = xd.ReadClassArray<hkbEvaluateExpressionModifierInternalExpressionData>(xe, nameof(internalExpressionsData));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(internalExpressionsData), internalExpressionsData);

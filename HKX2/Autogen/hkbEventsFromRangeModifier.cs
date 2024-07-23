@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbEventsFromRangeModifier Signatire: 0xbc561b6e size: 112 flags: FLAGS_NONE
 
@@ -37,7 +37,7 @@ namespace HKX2
             s.WriteVoidArray(bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             inputValue = xd.ReadSingle(xe, nameof(inputValue));
@@ -45,7 +45,7 @@ namespace HKX2
             eventRanges = xd.ReadClassPointer<hkbEventRangeDataArray>(xe, nameof(eventRanges));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(inputValue), inputValue);

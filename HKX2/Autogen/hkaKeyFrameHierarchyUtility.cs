@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaKeyFrameHierarchyUtility Signatire: 0x7bd5c66f size: 1 flags: FLAGS_NONE
 
@@ -22,12 +22,12 @@ namespace HKX2
             bw.WriteBytes(unk0);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
 
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
 
         }

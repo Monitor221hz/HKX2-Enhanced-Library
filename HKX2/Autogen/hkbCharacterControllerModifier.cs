@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCharacterControllerModifier Signatire: 0xf675d6fb size: 176 flags: FLAGS_NONE
 
@@ -69,7 +69,7 @@ namespace HKX2
             bw.Position += 11;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             controlData = xd.ReadClass<hkbCharacterControllerControlData>(xe, nameof(controlData));
@@ -82,7 +82,7 @@ namespace HKX2
             isTouchingGround = xd.ReadBoolean(xe, nameof(isTouchingGround));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbCharacterControllerControlData>(xe, nameof(controlData), controlData);

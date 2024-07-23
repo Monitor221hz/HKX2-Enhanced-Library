@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpConstraintChainInstance Signatire: 0x7a490753 size: 136 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             s.WriteClassPointer(bw, action);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             chainedEntities = xd.ReadClassPointerArray<hkpEntity>(xe, nameof(chainedEntities));
             action = xd.ReadClassPointer<hkpConstraintChainInstanceAction>(xe, nameof(action));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointerArray(xe, nameof(chainedEntities), chainedEntities);

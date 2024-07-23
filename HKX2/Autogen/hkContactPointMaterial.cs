@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkContactPointMaterial Signatire: 0x4e32287c size: 16 flags: FLAGS_NONE
 
@@ -40,7 +40,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             userData = xd.ReadUInt64(xe, nameof(userData));
             friction = xd.ReadByte(xe, nameof(friction));
@@ -49,7 +49,7 @@ namespace HKX2
             flags = xd.ReadByte(xe, nameof(flags));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(userData), userData);
             xs.WriteNumber(xe, nameof(friction), friction);

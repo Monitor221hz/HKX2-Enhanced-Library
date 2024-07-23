@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpModifierConstraintAtom Signatire: 0xb13fef1f size: 48 flags: FLAGS_NONE
 
@@ -43,7 +43,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             modifierAtomSize = xd.ReadUInt16(xe, nameof(modifierAtomSize));
@@ -52,7 +52,7 @@ namespace HKX2
             pad = xd.ReadUInt32CStyleArray(xe, nameof(pad), 2);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(modifierAtomSize), modifierAtomSize);

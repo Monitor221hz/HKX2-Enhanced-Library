@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbVariableBindingSet Signatire: 0x338ad4ff size: 40 flags: FLAGS_NONE
 
@@ -36,14 +36,14 @@ namespace HKX2
             bw.Position += 3;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             bindings = xd.ReadClassArray<hkbVariableBindingSetBinding>(xe, nameof(bindings));
             indexOfBindingToEnable = xd.ReadInt32(xe, nameof(indexOfBindingToEnable));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(bindings), bindings);

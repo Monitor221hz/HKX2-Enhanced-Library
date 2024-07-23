@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkModifierInternalLegData Signatire: 0xe5ca3677 size: 32 flags: FLAGS_NONE
 
@@ -29,12 +29,12 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             groundPosition = xd.ReadVector4(xe, nameof(groundPosition));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(groundPosition), groundPosition);
             xs.WriteSerializeIgnored(xe, nameof(footIkSolver));

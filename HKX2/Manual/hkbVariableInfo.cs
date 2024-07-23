@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbVariableInfo Signatire: 0x9e746ba2 size: 6 flags: FLAGS_NONE
 
@@ -29,14 +29,14 @@ namespace HKX2
             bw.Position += 1;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             role = xd.ReadClass<hkbRoleAttribute>(xe, nameof(role));
             // XXX: inconsistent type, it just work.
             type = (sbyte)xd.ReadFlag<VariableType, uint>(xe, nameof(type));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass(xe, nameof(role), role);
             xs.WriteEnum<VariableType, sbyte>(xe, nameof(type), type);

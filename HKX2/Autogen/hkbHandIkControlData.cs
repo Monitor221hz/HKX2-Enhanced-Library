@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbHandIkControlData Signatire: 0xd72b8d17 size: 96 flags: FLAGS_NONE
 
@@ -69,7 +69,7 @@ namespace HKX2
             bw.Position += 14;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             targetPosition = xd.ReadVector4(xe, nameof(targetPosition));
             targetRotation = xd.ReadQuaternion(xe, nameof(targetRotation));
@@ -85,7 +85,7 @@ namespace HKX2
             fixUp = xd.ReadBoolean(xe, nameof(fixUp));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(targetPosition), targetPosition);
             xs.WriteQuaternion(xe, nameof(targetRotation), targetRotation);

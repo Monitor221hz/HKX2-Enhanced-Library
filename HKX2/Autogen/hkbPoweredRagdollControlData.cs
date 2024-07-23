@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbPoweredRagdollControlData Signatire: 0xf5ba21b size: 32 flags: FLAGS_NONE
 
@@ -40,7 +40,7 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             maxForce = xd.ReadSingle(xe, nameof(maxForce));
             tau = xd.ReadSingle(xe, nameof(tau));
@@ -49,7 +49,7 @@ namespace HKX2
             constantRecoveryVelocity = xd.ReadSingle(xe, nameof(constantRecoveryVelocity));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(maxForce), maxForce);
             xs.WriteFloat(xe, nameof(tau), tau);

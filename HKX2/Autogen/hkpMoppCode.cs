@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpMoppCode Signatire: 0x924c2661 size: 64 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.Position += 15;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             info = xd.ReadClass<hkpMoppCodeCodeInfo>(xe, nameof(info));
@@ -44,7 +44,7 @@ namespace HKX2
             buildType = xd.ReadFlag<BuildType, sbyte>(xe, nameof(buildType));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpMoppCodeCodeInfo>(xe, nameof(info), info);

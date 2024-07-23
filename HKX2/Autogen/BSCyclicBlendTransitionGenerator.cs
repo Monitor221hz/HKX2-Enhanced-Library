@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSCyclicBlendTransitionGenerator Signatire: 0x5119eb06 size: 176 flags: FLAGS_NONE
 
@@ -64,7 +64,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             pBlenderGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pBlenderGenerator));
@@ -75,7 +75,7 @@ namespace HKX2
             eBlendCurve = xd.ReadFlag<BlendCurve, sbyte>(xe, nameof(eBlendCurve));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(pBlenderGenerator), pBlenderGenerator);

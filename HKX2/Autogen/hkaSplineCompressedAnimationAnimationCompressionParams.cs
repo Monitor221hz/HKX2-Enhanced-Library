@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaSplineCompressedAnimationAnimationCompressionParams Signatire: 0xde830789 size: 4 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             bw.Position += 1;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             maxFramesPerBlock = xd.ReadUInt16(xe, nameof(maxFramesPerBlock));
             enableSampleSingleTracks = xd.ReadBoolean(xe, nameof(enableSampleSingleTracks));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(maxFramesPerBlock), maxFramesPerBlock);
             xs.WriteBoolean(xe, nameof(enableSampleSingleTracks), enableSampleSingleTracks);

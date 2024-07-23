@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkClassEnum Signatire: 0x8a3609cf size: 40 flags: FLAGS_NONE
 
@@ -36,14 +36,14 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
             flags = xd.ReadFlag<FlagValues, uint>(xe, nameof(flags));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(name), name);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");

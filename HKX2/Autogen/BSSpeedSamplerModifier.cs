@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSSpeedSamplerModifier Signatire: 0xd297fda9 size: 96 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.WriteSingle(speedOut);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             state = xd.ReadInt32(xe, nameof(state));
@@ -45,7 +45,7 @@ namespace HKX2
             speedOut = xd.ReadSingle(xe, nameof(speedOut));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(state), state);

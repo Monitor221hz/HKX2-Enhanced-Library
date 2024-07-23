@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkArrayTypeAttribute Signatire: 0xd404a39a size: 1 flags: FLAGS_NONE
 
@@ -22,12 +22,12 @@ namespace HKX2
             bw.WriteSByte(type);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             type = xd.ReadFlag<ArrayType, sbyte>(xe, nameof(type));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteEnum<ArrayType, sbyte>(xe, nameof(type), type);
         }

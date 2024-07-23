@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpTriangleShape Signatire: 0x95ad1a25 size: 112 flags: FLAGS_NONE
 
@@ -51,7 +51,7 @@ namespace HKX2
             bw.WriteVector4(extrusion);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             weldingInfo = xd.ReadUInt16(xe, nameof(weldingInfo));
@@ -63,7 +63,7 @@ namespace HKX2
             extrusion = xd.ReadVector4(xe, nameof(extrusion));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(weldingInfo), weldingInfo);

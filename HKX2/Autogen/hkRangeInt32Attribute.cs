@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkRangeInt32Attribute Signatire: 0x4846be29 size: 16 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             bw.WriteInt32(softmax);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             absmin = xd.ReadInt32(xe, nameof(absmin));
             absmax = xd.ReadInt32(xe, nameof(absmax));
@@ -42,7 +42,7 @@ namespace HKX2
             softmax = xd.ReadInt32(xe, nameof(softmax));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(absmin), absmin);
             xs.WriteNumber(xe, nameof(absmax), absmax);

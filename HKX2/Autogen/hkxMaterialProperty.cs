@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxMaterialProperty Signatire: 0xd295234d size: 8 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             bw.WriteUInt32(value);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             key = xd.ReadUInt32(xe, nameof(key));
             value = xd.ReadUInt32(xe, nameof(value));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(key), key);
             xs.WriteNumber(xe, nameof(value), value);

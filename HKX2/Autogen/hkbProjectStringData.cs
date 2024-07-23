@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbProjectStringData Signatire: 0x76ad60a size: 120 flags: FLAGS_NONE
 
@@ -58,7 +58,7 @@ namespace HKX2
             s.WriteStringPointer(bw, rootPath);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             animationFilenames = xd.ReadStringArray(xe, nameof(animationFilenames));
@@ -71,7 +71,7 @@ namespace HKX2
             fullPathToSource = xd.ReadString(xe, nameof(fullPathToSource));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteStringArray(xe, nameof(animationFilenames), animationFilenames);

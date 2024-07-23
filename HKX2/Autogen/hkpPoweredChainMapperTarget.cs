@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPoweredChainMapperTarget Signatire: 0xf651c74d size: 16 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             chain = xd.ReadClassPointer<hkpPoweredChainData>(xe, nameof(chain));
             infoIndex = xd.ReadInt32(xe, nameof(infoIndex));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassPointer(xe, nameof(chain), chain);
             xs.WriteNumber(xe, nameof(infoIndex), infoIndex);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace HKX2
+namespace HKX2E
 {
     public static class FlagUtils
     {

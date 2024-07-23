@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbTransitionEffect Signatire: 0x945da157 size: 80 flags: FLAGS_NONE
 
@@ -34,14 +34,14 @@ namespace HKX2
             bw.Position += 5;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             selfTransitionMode = xd.ReadFlag<SelfTransitionMode, sbyte>(xe, nameof(selfTransitionMode));
             eventMode = xd.ReadFlag<EventMode, sbyte>(xe, nameof(eventMode));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteEnum<SelfTransitionMode, sbyte>(xe, nameof(selfTransitionMode), selfTransitionMode);

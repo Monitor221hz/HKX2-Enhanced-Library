@@ -3,7 +3,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPoweredChainDataConstraintInfo Signatire: 0xf88aee25 size: 96 flags: FLAGS_NONE
 
@@ -46,7 +46,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             pivotInA = xd.ReadVector4(xe, nameof(pivotInA));
             pivotInB = xd.ReadVector4(xe, nameof(pivotInB));
@@ -56,7 +56,7 @@ namespace HKX2
             switchBodies = xd.ReadBoolean(xe, nameof(switchBodies));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(pivotInA), pivotInA);
             xs.WriteVector4(xe, nameof(pivotInB), pivotInB);

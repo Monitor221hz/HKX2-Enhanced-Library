@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpMeshShapeSubpart Signatire: 0x27336e5d size: 80 flags: FLAGS_NONE
 
@@ -84,7 +84,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             vertexStriding = xd.ReadInt32(xe, nameof(vertexStriding));
             numVertices = xd.ReadInt32(xe, nameof(numVertices));
@@ -99,7 +99,7 @@ namespace HKX2
             triangleOffset = xd.ReadInt32(xe, nameof(triangleOffset));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(vertexBase));
             xs.WriteNumber(xe, nameof(vertexStriding), vertexStriding);

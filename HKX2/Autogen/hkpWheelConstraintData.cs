@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpWheelConstraintData Signatire: 0xb4c46671 size: 368 flags: FLAGS_NONE
 
@@ -35,7 +35,7 @@ namespace HKX2
             bw.WriteVector4(initialSteeringAxisInB);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             atoms = xd.ReadClass<hkpWheelConstraintDataAtoms>(xe, nameof(atoms));
@@ -43,7 +43,7 @@ namespace HKX2
             initialSteeringAxisInB = xd.ReadVector4(xe, nameof(initialSteeringAxisInB));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpWheelConstraintDataAtoms>(xe, nameof(atoms), atoms);

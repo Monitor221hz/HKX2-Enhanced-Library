@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbGeneratorSyncInfo Signatire: 0xa3c341f8 size: 80 flags: FLAGS_NONE
 
@@ -53,7 +53,7 @@ namespace HKX2
             bw.WriteBoolean(isAdditive);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             syncPoints = xd.ReadClassCStyleArray<hkbGeneratorSyncInfoSyncPoint>(xe, nameof(syncPoints), 8);
             baseFrequency = xd.ReadSingle(xe, nameof(baseFrequency));
@@ -65,7 +65,7 @@ namespace HKX2
             isAdditive = xd.ReadBoolean(xe, nameof(isAdditive));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassArray<hkbGeneratorSyncInfoSyncPoint>(xe, nameof(syncPoints), syncPoints);
             xs.WriteFloat(xe, nameof(baseFrequency), baseFrequency);

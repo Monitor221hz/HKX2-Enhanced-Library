@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbAttachmentSetup Signatire: 0x774632b size: 48 flags: FLAGS_NONE
 
@@ -54,7 +54,7 @@ namespace HKX2
             bw.Position += 3;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             blendInTime = xd.ReadSingle(xe, nameof(blendInTime));
@@ -67,7 +67,7 @@ namespace HKX2
             attachmentType = xd.ReadFlag<AttachmentType, sbyte>(xe, nameof(attachmentType));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(blendInTime), blendInTime);

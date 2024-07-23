@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxVertexFloatDataChannel Signatire: 0xbeeb397c size: 40 flags: FLAGS_NONE
 
@@ -32,14 +32,14 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             perVertexFloats = xd.ReadSingleArray(xe, nameof(perVertexFloats));
             dimensions = xd.ReadFlag<VertexFloatDimensions, byte>(xe, nameof(dimensions));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloatArray(xe, nameof(perVertexFloats), perVertexFloats);

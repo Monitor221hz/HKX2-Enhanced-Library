@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpCogWheelConstraintAtom Signatire: 0xf2b1f399 size: 16 flags: FLAGS_NONE
 
@@ -46,7 +46,7 @@ namespace HKX2
             bw.WriteSByte(memOffsetToRevolutionCounter);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             cogWheelRadiusA = xd.ReadSingle(xe, nameof(cogWheelRadiusA));
@@ -57,7 +57,7 @@ namespace HKX2
             memOffsetToRevolutionCounter = xd.ReadSByte(xe, nameof(memOffsetToRevolutionCounter));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(cogWheelRadiusA), cogWheelRadiusA);

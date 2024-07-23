@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSModifyOnceModifier Signatire: 0x1e20a97a size: 112 flags: FLAGS_NONE
 
@@ -32,14 +32,14 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             pOnActivateModifier = xd.ReadClassPointer<hkbModifier>(xe, nameof(pOnActivateModifier));
             pOnDeactivateModifier = xd.ReadClassPointer<hkbModifier>(xe, nameof(pOnDeactivateModifier));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(pOnActivateModifier), pOnActivateModifier);

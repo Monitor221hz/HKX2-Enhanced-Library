@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpListShape Signatire: 0xa1937cbd size: 144 flags: FLAGS_NONE
 
@@ -49,7 +49,7 @@ namespace HKX2
             s.WriteUInt32CStyleArray(bw, enabledChildren);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             childInfo = xd.ReadClassArray<hkpListShapeChildInfo>(xe, nameof(childInfo));
@@ -60,7 +60,7 @@ namespace HKX2
             enabledChildren = xd.ReadUInt32CStyleArray(xe, nameof(enabledChildren), 8);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(childInfo), childInfo);

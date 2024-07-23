@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxVertexBuffer Signatire: 0x4ab10615 size: 136 flags: FLAGS_NONE
 
@@ -28,14 +28,14 @@ namespace HKX2
             desc.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             data = xd.ReadClass<hkxVertexBufferVertexData>(xe, nameof(data));
             desc = xd.ReadClass<hkxVertexDescription>(xe, nameof(desc));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkxVertexBufferVertexData>(xe, nameof(data), data);

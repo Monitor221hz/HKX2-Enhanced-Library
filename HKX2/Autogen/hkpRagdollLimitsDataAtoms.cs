@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpRagdollLimitsDataAtoms Signatire: 0x82b894c3 size: 176 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             rotations = xd.ReadClass<hkpSetLocalRotationsConstraintAtom>(xe, nameof(rotations));
             twistLimit = xd.ReadClass<hkpTwistLimitConstraintAtom>(xe, nameof(twistLimit));
@@ -44,7 +44,7 @@ namespace HKX2
             planesLimit = xd.ReadClass<hkpConeLimitConstraintAtom>(xe, nameof(planesLimit));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkpSetLocalRotationsConstraintAtom>(xe, nameof(rotations), rotations);
             xs.WriteClass<hkpTwistLimitConstraintAtom>(xe, nameof(twistLimit), twistLimit);

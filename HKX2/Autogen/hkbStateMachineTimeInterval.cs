@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbStateMachineTimeInterval Signatire: 0x60a881e5 size: 16 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             bw.WriteSingle(exitTime);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             enterEventId = xd.ReadInt32(xe, nameof(enterEventId));
             exitEventId = xd.ReadInt32(xe, nameof(exitEventId));
@@ -42,7 +42,7 @@ namespace HKX2
             exitTime = xd.ReadSingle(xe, nameof(exitTime));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(enterEventId), enterEventId);
             xs.WriteNumber(xe, nameof(exitEventId), exitEventId);

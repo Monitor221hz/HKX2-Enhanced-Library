@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbManualSelectorGenerator Signatire: 0xd932fab8 size: 96 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.Position += 6;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             generators = xd.ReadClassPointerArray<hkbGenerator>(xe, nameof(generators));
@@ -44,7 +44,7 @@ namespace HKX2
             currentGeneratorIndex = xd.ReadSByte(xe, nameof(currentGeneratorIndex));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointerArray(xe, nameof(generators), generators);

@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbPoweredRagdollControlsModifier Signatire: 0x7cb54065 size: 144 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             controlData = xd.ReadClass<hkbPoweredRagdollControlData>(xe, nameof(controlData));
@@ -47,7 +47,7 @@ namespace HKX2
             boneWeights = xd.ReadClassPointer<hkbBoneWeightArray>(xe, nameof(boneWeights));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbPoweredRagdollControlData>(xe, nameof(controlData), controlData);

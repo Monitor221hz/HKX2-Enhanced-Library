@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpCallbackConstraintMotor Signatire: 0xafcd79ad size: 72 flags: FLAGS_NONE
 
@@ -42,7 +42,7 @@ namespace HKX2
             bw.WriteUInt64(userData2);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             callbackType = xd.ReadFlag<CallbackType, uint>(xe, nameof(callbackType));
@@ -51,7 +51,7 @@ namespace HKX2
             userData2 = xd.ReadUInt64(xe, nameof(userData2));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteSerializeIgnored(xe, nameof(callbackFunc));

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkBitField Signatire: 0xda41bd9b size: 24 flags: FLAGS_NONE
 
@@ -30,13 +30,13 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             words = xd.ReadUInt32Array(xe, nameof(words));
             numBits = xd.ReadInt32(xe, nameof(numBits));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumberArray(xe, nameof(words), words);
             xs.WriteNumber(xe, nameof(numBits), numBits);

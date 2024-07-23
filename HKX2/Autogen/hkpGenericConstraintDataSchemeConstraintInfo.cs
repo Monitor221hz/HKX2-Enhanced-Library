@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpGenericConstraintDataSchemeConstraintInfo Signatire: 0xd6421f19 size: 16 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             bw.WriteInt32(numSolverElemTemps);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             maxSizeOfSchema = xd.ReadInt32(xe, nameof(maxSizeOfSchema));
             sizeOfSchemas = xd.ReadInt32(xe, nameof(sizeOfSchemas));
@@ -42,7 +42,7 @@ namespace HKX2
             numSolverElemTemps = xd.ReadInt32(xe, nameof(numSolverElemTemps));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(maxSizeOfSchema), maxSizeOfSchema);
             xs.WriteNumber(xe, nameof(sizeOfSchemas), sizeOfSchemas);

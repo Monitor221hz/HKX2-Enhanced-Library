@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbTimerModifier Signatire: 0x338b4879 size: 112 flags: FLAGS_NONE
 
@@ -36,14 +36,14 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             alarmTimeSeconds = xd.ReadSingle(xe, nameof(alarmTimeSeconds));
             alarmEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(alarmEvent));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(alarmTimeSeconds), alarmTimeSeconds);

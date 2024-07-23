@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbBlenderGeneratorChildInternalState Signatire: 0xff7327c0 size: 2 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             bw.WriteBoolean(syncNextFrame);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             isActive = xd.ReadBoolean(xe, nameof(isActive));
             syncNextFrame = xd.ReadBoolean(xe, nameof(syncNextFrame));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteBoolean(xe, nameof(isActive), isActive);
             xs.WriteBoolean(xe, nameof(syncNextFrame), syncNextFrame);

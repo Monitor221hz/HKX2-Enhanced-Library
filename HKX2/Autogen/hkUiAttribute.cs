@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkUiAttribute Signatire: 0xeb6e96e3 size: 40 flags: FLAGS_NONE
 
@@ -54,7 +54,7 @@ namespace HKX2
             bw.Position += 5;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             visible = xd.ReadBoolean(xe, nameof(visible));
             hideInModeler = xd.ReadFlag<HideInModeler, sbyte>(xe, nameof(hideInModeler));
@@ -66,7 +66,7 @@ namespace HKX2
             advanced = xd.ReadBoolean(xe, nameof(advanced));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteBoolean(xe, nameof(visible), visible);
             xs.WriteEnum<HideInModeler, sbyte>(xe, nameof(hideInModeler), hideInModeler);

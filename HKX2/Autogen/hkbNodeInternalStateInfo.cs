@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbNodeInternalStateInfo Signatire: 0x7db9971d size: 120 flags: FLAGS_NONE
 
@@ -42,7 +42,7 @@ namespace HKX2
             bw.Position += 5;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             syncInfo = xd.ReadClass<hkbGeneratorSyncInfo>(xe, nameof(syncInfo));
@@ -52,7 +52,7 @@ namespace HKX2
             hasActivateBeenCalled = xd.ReadBoolean(xe, nameof(hasActivateBeenCalled));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbGeneratorSyncInfo>(xe, nameof(syncInfo), syncInfo);

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 
-namespace HKX2
+namespace HKX2E
 {
     public class BinaryReaderEx
     {

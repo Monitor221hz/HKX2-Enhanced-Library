@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaMeshBinding Signatire: 0x81d9950b size: 72 flags: FLAGS_NONE
 
@@ -43,7 +43,7 @@ namespace HKX2
             s.WriteTransformArray(bw, boneFromSkinMeshTransforms);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             mesh = xd.ReadClassPointer<hkxMesh>(xe, nameof(mesh));
@@ -53,7 +53,7 @@ namespace HKX2
             boneFromSkinMeshTransforms = xd.ReadTransformArray(xe, nameof(boneFromSkinMeshTransforms));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(mesh), mesh);

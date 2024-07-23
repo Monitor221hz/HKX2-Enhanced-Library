@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbExpressionData Signatire: 0x6740042a size: 24 flags: FLAGS_NONE
 
@@ -44,7 +44,7 @@ namespace HKX2
             bw.Position += 5;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             expression = xd.ReadString(xe, nameof(expression));
             assignmentVariableIndex = xd.ReadInt32(xe, nameof(assignmentVariableIndex));
@@ -52,7 +52,7 @@ namespace HKX2
             eventMode = xd.ReadFlag<ExpressionEventMode, sbyte>(xe, nameof(eventMode));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(expression), expression);
             xs.WriteNumber(xe, nameof(assignmentVariableIndex), assignmentVariableIndex);

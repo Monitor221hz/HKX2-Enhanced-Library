@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkDriverInfoLeg Signatire: 0x224b18d1 size: 96 flags: FLAGS_NONE
 
@@ -73,7 +73,7 @@ namespace HKX2
             bw.Position += 14;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             kneeAxisLS = xd.ReadVector4(xe, nameof(kneeAxisLS));
             footEndLS = xd.ReadVector4(xe, nameof(footEndLS));
@@ -89,7 +89,7 @@ namespace HKX2
             ankleIndex = xd.ReadInt16(xe, nameof(ankleIndex));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(prevAnkleRotLS));
             xs.WriteVector4(xe, nameof(kneeAxisLS), kneeAxisLS);

@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpGenericConstraintData Signatire: 0xfa824640 size: 128 flags: FLAGS_NONE
 
@@ -28,14 +28,14 @@ namespace HKX2
             scheme.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
             scheme = xd.ReadClass<hkpGenericConstraintDataScheme>(xe, nameof(scheme));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpBridgeAtoms>(xe, nameof(atoms), atoms);

@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkSphere Signatire: 0x143dff99 size: 16 flags: FLAGS_NONE
 
@@ -23,12 +23,12 @@ namespace HKX2
             bw.WriteVector4(pos);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             pos = xd.ReadVector4(xe, nameof(pos));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(pos), pos);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaRagdollInstance Signatire: 0x154948e8 size: 72 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             s.WriteClassPointer(bw, skeleton);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(rigidBodies));
@@ -47,7 +47,7 @@ namespace HKX2
             skeleton = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeleton));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointerArray(xe, nameof(rigidBodies), rigidBodies);

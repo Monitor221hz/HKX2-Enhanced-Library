@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpCylinderShape Signatire: 0x3e463c3a size: 112 flags: FLAGS_NONE
 
@@ -45,7 +45,7 @@ namespace HKX2
             bw.WriteVector4(perpendicular2);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             cylRadius = xd.ReadSingle(xe, nameof(cylRadius));
@@ -56,7 +56,7 @@ namespace HKX2
             perpendicular2 = xd.ReadVector4(xe, nameof(perpendicular2));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(cylRadius), cylRadius);

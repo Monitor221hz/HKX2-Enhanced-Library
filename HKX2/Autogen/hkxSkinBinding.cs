@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxSkinBinding Signatire: 0x5a93f338 size: 128 flags: FLAGS_NONE
 
@@ -41,7 +41,7 @@ namespace HKX2
             s.WriteMatrix4(bw, initSkinTransform);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             mesh = xd.ReadClassPointer<hkxMesh>(xe, nameof(mesh));
@@ -50,7 +50,7 @@ namespace HKX2
             initSkinTransform = xd.ReadMatrix4(xe, nameof(initSkinTransform));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(mesh), mesh);

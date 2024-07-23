@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpCompressedMeshShapeBigTriangle Signatire: 0xcbfc95a4 size: 16 flags: FLAGS_NONE
 
@@ -44,7 +44,7 @@ namespace HKX2
             bw.WriteUInt16(transformIndex);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             a = xd.ReadUInt16(xe, nameof(a));
             b = xd.ReadUInt16(xe, nameof(b));
@@ -54,7 +54,7 @@ namespace HKX2
             transformIndex = xd.ReadUInt16(xe, nameof(transformIndex));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(a), a);
             xs.WriteNumber(xe, nameof(b), b);

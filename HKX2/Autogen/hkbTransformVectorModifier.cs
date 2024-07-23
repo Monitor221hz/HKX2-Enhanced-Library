@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbTransformVectorModifier Signatire: 0xf93e0e24 size: 160 flags: FLAGS_NONE
 
@@ -55,7 +55,7 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             rotation = xd.ReadQuaternion(xe, nameof(rotation));
@@ -68,7 +68,7 @@ namespace HKX2
             computeOnModify = xd.ReadBoolean(xe, nameof(computeOnModify));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteQuaternion(xe, nameof(rotation), rotation);

@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPairCollisionFilterMapPairFilterKeyOverrideType Signatire: 0x36195969 size: 16 flags: FLAGS_NONE
 
@@ -30,13 +30,13 @@ namespace HKX2
             bw.WriteInt32(hashMod);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             numElems = xd.ReadInt32(xe, nameof(numElems));
             hashMod = xd.ReadInt32(xe, nameof(hashMod));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(elem));
             xs.WriteNumber(xe, nameof(numElems), numElems);

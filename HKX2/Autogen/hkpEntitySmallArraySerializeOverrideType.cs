@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpEntitySmallArraySerializeOverrideType Signatire: 0xee3c2aec size: 16 flags: FLAGS_NONE
 
@@ -32,13 +32,13 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             size = xd.ReadUInt16(xe, nameof(size));
             capacityAndFlags = xd.ReadUInt16(xe, nameof(capacityAndFlags));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(data));
             xs.WriteNumber(xe, nameof(size), size);

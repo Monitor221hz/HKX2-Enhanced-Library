@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpEntity Signatire: 0xa03c774b size: 720 flags: FLAGS_NONE
 
@@ -117,7 +117,7 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             material = xd.ReadClass<hkpMaterial>(xe, nameof(material));
@@ -134,7 +134,7 @@ namespace HKX2
             npData = xd.ReadUInt32(xe, nameof(npData));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpMaterial>(xe, nameof(material), material);

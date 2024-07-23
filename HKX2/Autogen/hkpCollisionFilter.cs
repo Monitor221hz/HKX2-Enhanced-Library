@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpCollisionFilter Signatire: 0x60960336 size: 72 flags: FLAGS_NONE
 
@@ -35,7 +35,7 @@ namespace HKX2
             s.WriteUInt32CStyleArray(bw, postpad);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             prepad = xd.ReadUInt32CStyleArray(xe, nameof(prepad), 2);
@@ -43,7 +43,7 @@ namespace HKX2
             postpad = xd.ReadUInt32CStyleArray(xe, nameof(postpad), 3);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumberArray(xe, nameof(prepad), prepad);

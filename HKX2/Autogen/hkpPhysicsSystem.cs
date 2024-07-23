@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPhysicsSystem Signatire: 0xff724c17 size: 104 flags: FLAGS_NONE
 
@@ -52,7 +52,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(rigidBodies));
@@ -64,7 +64,7 @@ namespace HKX2
             active = xd.ReadBoolean(xe, nameof(active));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointerArray(xe, nameof(rigidBodies), rigidBodies);

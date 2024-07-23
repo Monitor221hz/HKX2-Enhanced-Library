@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpTypedBroadPhaseHandle Signatire: 0xf4b0f799 size: 12 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             bw.WriteUInt32(collisionFilterInfo);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             type = xd.ReadSByte(xe, nameof(type));
@@ -46,7 +46,7 @@ namespace HKX2
             collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(type), type);

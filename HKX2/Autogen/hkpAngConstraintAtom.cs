@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpAngConstraintAtom Signatire: 0x35bb3cd0 size: 4 flags: FLAGS_NONE
 
@@ -28,14 +28,14 @@ namespace HKX2
             bw.WriteByte(numConstrainedAxes);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             firstConstrainedAxis = xd.ReadByte(xe, nameof(firstConstrainedAxis));
             numConstrainedAxes = xd.ReadByte(xe, nameof(numConstrainedAxes));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(firstConstrainedAxis), firstConstrainedAxis);

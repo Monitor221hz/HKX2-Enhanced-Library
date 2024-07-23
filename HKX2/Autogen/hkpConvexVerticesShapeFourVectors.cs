@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpConvexVerticesShapeFourVectors Signatire: 0x3d80c5bf size: 48 flags: FLAGS_NONE
 
@@ -31,14 +31,14 @@ namespace HKX2
             bw.WriteVector4(z);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             x = xd.ReadVector4(xe, nameof(x));
             y = xd.ReadVector4(xe, nameof(y));
             z = xd.ReadVector4(xe, nameof(z));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(x), x);
             xs.WriteVector4(xe, nameof(y), y);

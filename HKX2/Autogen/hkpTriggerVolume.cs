@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpTriggerVolume Signatire: 0xa29a8d1a size: 88 flags: FLAGS_NONE
 
@@ -42,7 +42,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             overlappingBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(overlappingBodies));
@@ -51,7 +51,7 @@ namespace HKX2
             sequenceNumber = xd.ReadUInt32(xe, nameof(sequenceNumber));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointerArray(xe, nameof(overlappingBodies), overlappingBodies);

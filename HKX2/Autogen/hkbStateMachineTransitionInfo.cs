@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbStateMachineTransitionInfo Signatire: 0xcdec8025 size: 72 flags: FLAGS_NONE
 
@@ -60,7 +60,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             triggerInterval = xd.ReadClass<hkbStateMachineTimeInterval>(xe, nameof(triggerInterval));
             initiateInterval = xd.ReadClass<hkbStateMachineTimeInterval>(xe, nameof(initiateInterval));
@@ -74,7 +74,7 @@ namespace HKX2
             flags = xd.ReadFlag<TransitionFlags, short>(xe, nameof(flags));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkbStateMachineTimeInterval>(xe, nameof(triggerInterval), triggerInterval);
             xs.WriteClass<hkbStateMachineTimeInterval>(xe, nameof(initiateInterval), initiateInterval);

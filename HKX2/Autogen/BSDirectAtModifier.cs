@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSDirectAtModifier Signatire: 0x19a005c0 size: 224 flags: FLAGS_NONE
 
@@ -128,7 +128,7 @@ namespace HKX2
             s.WriteVoidArray(bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             directAtTarget = xd.ReadBoolean(xe, nameof(directAtTarget));
@@ -152,7 +152,7 @@ namespace HKX2
             currentPitchOffset = xd.ReadSingle(xe, nameof(currentPitchOffset));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(directAtTarget), directAtTarget);

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkHalf8 Signatire: 0x7684dc80 size: 16 flags: FLAGS_NONE
 
@@ -23,12 +23,12 @@ namespace HKX2
             s.WriteHalfCStyleArray(bw, quad);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             quad = xd.ReadHalfCStyleArray(xe, nameof(quad), 8);
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloatArray(xe, nameof(quad), quad);
         }

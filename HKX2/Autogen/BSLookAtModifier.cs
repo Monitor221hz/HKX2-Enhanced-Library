@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSLookAtModifier Signatire: 0xd756fc25 size: 224 flags: FLAGS_NONE
 
@@ -113,7 +113,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             lookAtTarget = xd.ReadBoolean(xe, nameof(lookAtTarget));
@@ -134,7 +134,7 @@ namespace HKX2
             lookAtCameraZ = xd.ReadSingle(xe, nameof(lookAtCameraZ));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(lookAtTarget), lookAtTarget);

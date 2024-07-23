@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbStateMachine Signatire: 0x816c1dcb size: 264 flags: FLAGS_NONE
 
@@ -138,7 +138,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             eventToSendWhenStateOrTransitionChanges = xd.ReadClass<hkbEvent>(xe, nameof(eventToSendWhenStateOrTransitionChanges));
@@ -157,7 +157,7 @@ namespace HKX2
             wildcardTransitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(xe, nameof(wildcardTransitions));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbEvent>(xe, nameof(eventToSendWhenStateOrTransitionChanges), eventToSendWhenStateOrTransitionChanges);

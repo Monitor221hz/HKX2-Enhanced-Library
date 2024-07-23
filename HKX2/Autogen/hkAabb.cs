@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkAabb Signatire: 0x4a948b16 size: 32 flags: FLAGS_NONE
 
@@ -27,13 +27,13 @@ namespace HKX2
             bw.WriteVector4(max);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             min = xd.ReadVector4(xe, nameof(min));
             max = xd.ReadVector4(xe, nameof(max));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(min), min);
             xs.WriteVector4(xe, nameof(max), max);

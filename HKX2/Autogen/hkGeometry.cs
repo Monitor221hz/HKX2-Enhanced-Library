@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkGeometry Signatire: 0x98dd8bdc size: 32 flags: FLAGS_NONE
 
@@ -29,13 +29,13 @@ namespace HKX2
             s.WriteClassArray(bw, triangles);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             vertices = xd.ReadVector4Array(xe, nameof(vertices));
             triangles = xd.ReadClassArray<hkGeometryTriangle>(xe, nameof(triangles));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4Array(xe, nameof(vertices), vertices);
             xs.WriteClassArray(xe, nameof(triangles), triangles);

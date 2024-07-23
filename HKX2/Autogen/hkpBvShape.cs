@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpBvShape Signatire: 0x286eb64c size: 56 flags: FLAGS_NONE
 
@@ -28,14 +28,14 @@ namespace HKX2
             childShape.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             boundingVolumeShape = xd.ReadClassPointer<hkpShape>(xe, nameof(boundingVolumeShape));
             childShape = xd.ReadClass<hkpSingleShapeContainer>(xe, nameof(childShape));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(boundingVolumeShape), boundingVolumeShape);

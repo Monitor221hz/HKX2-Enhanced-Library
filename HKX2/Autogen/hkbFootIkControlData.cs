@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkControlData Signatire: 0xa111b704 size: 48 flags: FLAGS_NONE
 
@@ -22,12 +22,12 @@ namespace HKX2
             gains.Write(s, bw);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             gains = xd.ReadClass<hkbFootIkGains>(xe, nameof(gains));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkbFootIkGains>(xe, nameof(gains), gains);
         }

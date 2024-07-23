@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSSynchronizedClipGenerator Signatire: 0xd83bea64 size: 304 flags: FLAGS_NONE
 
@@ -109,7 +109,7 @@ namespace HKX2
             bw.Position += 3;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             pClipGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pClipGenerator));
@@ -123,7 +123,7 @@ namespace HKX2
             sAnimationBindingIndex = xd.ReadInt16(xe, nameof(sAnimationBindingIndex));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(pClipGenerator), pClipGenerator);

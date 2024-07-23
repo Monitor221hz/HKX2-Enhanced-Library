@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpCompressedMeshShapeChunk Signatire: 0x5d0d67bd size: 96 flags: FLAGS_NONE
 
@@ -55,7 +55,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             offset = xd.ReadVector4(xe, nameof(offset));
             vertices = xd.ReadUInt16Array(xe, nameof(vertices));
@@ -67,7 +67,7 @@ namespace HKX2
             transformIndex = xd.ReadUInt16(xe, nameof(transformIndex));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(offset), offset);
             xs.WriteNumberArray(xe, nameof(vertices), vertices);

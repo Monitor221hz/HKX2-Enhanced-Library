@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxAttributeHolder Signatire: 0x7468cc44 size: 32 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             s.WriteClassArray(bw, attributeGroups);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             attributeGroups = xd.ReadClassArray<hkxAttributeGroup>(xe, nameof(attributeGroups));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(attributeGroups), attributeGroups);

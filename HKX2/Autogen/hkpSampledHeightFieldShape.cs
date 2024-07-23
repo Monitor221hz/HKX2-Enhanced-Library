@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpSampledHeightFieldShape Signatire: 0x11213421 size: 112 flags: FLAGS_NONE
 
@@ -59,7 +59,7 @@ namespace HKX2
             bw.WriteVector4(extents);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             xRes = xd.ReadInt32(xe, nameof(xRes));
@@ -73,7 +73,7 @@ namespace HKX2
             extents = xd.ReadVector4(xe, nameof(extents));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(xRes), xRes);

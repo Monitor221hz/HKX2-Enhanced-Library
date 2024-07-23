@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCharacterAddedInfo Signatire: 0x3544e182 size: 128 flags: FLAGS_NONE
 
@@ -53,7 +53,7 @@ namespace HKX2
             s.WriteQSTransformArray(bw, poseModelSpace);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
@@ -65,7 +65,7 @@ namespace HKX2
             poseModelSpace = xd.ReadQSTransformArray(xe, nameof(poseModelSpace));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);

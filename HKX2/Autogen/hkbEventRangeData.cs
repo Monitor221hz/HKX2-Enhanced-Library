@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbEventRangeData Signatire: 0x6cb92c76 size: 32 flags: FLAGS_NONE
 
@@ -34,14 +34,14 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             upperBound = xd.ReadSingle(xe, nameof(upperBound));
             @event= xd.ReadClass<hkbEventProperty>(xe, nameof(@event));
             eventMode = xd.ReadFlag<EventRangeMode, sbyte>(xe, nameof(eventMode));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(upperBound), upperBound);
             xs.WriteClass<hkbEventProperty>(xe, nameof(@event), @event);

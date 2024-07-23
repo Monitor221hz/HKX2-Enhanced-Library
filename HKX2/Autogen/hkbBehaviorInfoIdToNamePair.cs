@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbBehaviorInfoIdToNamePair Signatire: 0x35a0439a size: 24 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             behaviorName = xd.ReadString(xe, nameof(behaviorName));
             nodeName = xd.ReadString(xe, nameof(nodeName));
@@ -46,7 +46,7 @@ namespace HKX2
             id = xd.ReadInt16(xe, nameof(id));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(behaviorName), behaviorName);
             xs.WriteString(xe, nameof(nodeName), nodeName);

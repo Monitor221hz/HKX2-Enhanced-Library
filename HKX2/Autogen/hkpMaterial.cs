@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpMaterial Signatire: 0x33be6570 size: 12 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.WriteSingle(restitution);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             responseType = xd.ReadFlag<ResponseType, sbyte>(xe, nameof(responseType));
             rollingFrictionMultiplier = xd.ReadHalf(xe, nameof(rollingFrictionMultiplier));
@@ -44,7 +44,7 @@ namespace HKX2
             restitution = xd.ReadSingle(xe, nameof(restitution));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteEnum<ResponseType, sbyte>(xe, nameof(responseType), responseType);
             xs.WriteFloat(xe, nameof(rollingFrictionMultiplier), rollingFrictionMultiplier);

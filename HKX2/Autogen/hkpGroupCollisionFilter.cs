@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpGroupCollisionFilter Signatire: 0x5cc01561 size: 208 flags: FLAGS_NONE
 
@@ -33,14 +33,14 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             noGroupCollisionEnabled = xd.ReadBoolean(xe, nameof(noGroupCollisionEnabled));
             collisionGroups = xd.ReadUInt32CStyleArray(xe, nameof(collisionGroups), 32);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(noGroupCollisionEnabled), noGroupCollisionEnabled);

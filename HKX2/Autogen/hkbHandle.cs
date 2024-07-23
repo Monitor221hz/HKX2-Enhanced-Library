@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbHandle Signatire: 0xd8b6401c size: 48 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             bw.Position += 6;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             frame = xd.ReadClassPointer<hkLocalFrame>(xe, nameof(frame));
@@ -47,7 +47,7 @@ namespace HKX2
             animationBoneIndex = xd.ReadInt16(xe, nameof(animationBoneIndex));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(frame), frame);

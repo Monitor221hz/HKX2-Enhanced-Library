@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpShapeInfo Signatire: 0xea7f1d08 size: 128 flags: FLAGS_NONE
 
@@ -49,7 +49,7 @@ namespace HKX2
             s.WriteTransform(bw, transform);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             shape = xd.ReadClassPointer<hkpShape>(xe, nameof(shape));
@@ -60,7 +60,7 @@ namespace HKX2
             transform = xd.ReadTransform(xe, nameof(transform));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(shape), shape);

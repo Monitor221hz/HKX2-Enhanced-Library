@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkRootLevelContainerNamedVariant Signatire: 0xb103a2cd size: 24 flags: FLAGS_NONE
 
@@ -32,14 +32,14 @@ namespace HKX2
             s.WriteClassPointer(bw, variant);
         }
 
-        public void ReadXml(IXmlReader xd, XElement xe)
+        public void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
             className = xd.ReadString(xe, nameof(className));
             variant = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(variant));
         }
 
-        public void WriteXml(IXmlWriter xs, XElement xe)
+        public void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(name), name);
             xs.WriteString(xe, nameof(className), className);

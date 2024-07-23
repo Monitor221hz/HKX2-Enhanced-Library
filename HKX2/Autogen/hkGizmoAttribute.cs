@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkGizmoAttribute Signatire: 0x23aadfb6 size: 24 flags: FLAGS_NONE
 
@@ -34,14 +34,14 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             visible = xd.ReadBoolean(xe, nameof(visible));
             label = xd.ReadString(xe, nameof(label));
             type = xd.ReadFlag<GizmoType, sbyte>(xe, nameof(type));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteBoolean(xe, nameof(visible), visible);
             xs.WriteString(xe, nameof(label), label);

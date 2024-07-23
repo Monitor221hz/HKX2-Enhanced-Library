@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkMotionState Signatire: 0x5797386e size: 176 flags: FLAGS_NONE
 
@@ -61,7 +61,7 @@ namespace HKX2
             bw.Position += 3;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             transform = xd.ReadTransform(xe, nameof(transform));
             sweptTransform = xd.ReadClass<hkSweptTransform>(xe, nameof(sweptTransform));
@@ -75,7 +75,7 @@ namespace HKX2
             deactivationClass = xd.ReadByte(xe, nameof(deactivationClass));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteTransform(xe, nameof(transform), transform);
             xs.WriteClass<hkSweptTransform>(xe, nameof(sweptTransform), sweptTransform);

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbBehaviorGraph Signatire: 0xb1218f86 size: 304 flags: FLAGS_NONE
 
@@ -145,7 +145,7 @@ namespace HKX2
             bw.WriteBoolean(stateOrTransitionChanged);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             variableMode = xd.ReadFlag<VariableMode, sbyte>(xe, nameof(variableMode));
@@ -153,7 +153,7 @@ namespace HKX2
             data = xd.ReadClassPointer<hkbBehaviorGraphData>(xe, nameof(data));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteEnum<VariableMode, sbyte>(xe, nameof(variableMode), variableMode);

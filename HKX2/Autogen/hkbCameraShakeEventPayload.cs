@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCameraShakeEventPayload Signatire: 0x64136982 size: 24 flags: FLAGS_NONE
 
@@ -28,14 +28,14 @@ namespace HKX2
             bw.WriteSingle(halfLife);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             amplitude = xd.ReadSingle(xe, nameof(amplitude));
             halfLife = xd.ReadSingle(xe, nameof(halfLife));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(amplitude), amplitude);

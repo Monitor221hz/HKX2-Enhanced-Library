@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbRegisteredGenerator Signatire: 0x58b1d082 size: 96 flags: FLAGS_NONE
 
@@ -35,7 +35,7 @@ namespace HKX2
             bw.WriteVector4(relativeDirection);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
@@ -43,7 +43,7 @@ namespace HKX2
             relativeDirection = xd.ReadVector4(xe, nameof(relativeDirection));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(generator), generator);

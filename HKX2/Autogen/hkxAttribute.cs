@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxAttribute Signatire: 0x7375cae3 size: 16 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             s.WriteClassPointer(bw, value);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
             value = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(value));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(name), name);
             xs.WriteClassPointer(xe, nameof(value), value);

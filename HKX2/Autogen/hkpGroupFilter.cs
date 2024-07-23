@@ -3,7 +3,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpGroupFilter Signatire: 0x65ee88e4 size: 272 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             s.WriteVector4CStyleArray(bw, pad256);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             nextFreeSystemGroup = xd.ReadInt32(xe, nameof(nextFreeSystemGroup));
@@ -44,7 +44,7 @@ namespace HKX2
             pad256 = xd.ReadVector4CStyleArray(xe, nameof(pad256), 4);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(nextFreeSystemGroup), nextFreeSystemGroup);

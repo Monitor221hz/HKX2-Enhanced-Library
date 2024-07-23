@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxNodeAnnotationData Signatire: 0x433dee92 size: 16 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             s.WriteStringPointer(bw, description);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             time = xd.ReadSingle(xe, nameof(time));
             description = xd.ReadString(xe, nameof(description));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(time), time);
             xs.WriteString(xe, nameof(description), description);

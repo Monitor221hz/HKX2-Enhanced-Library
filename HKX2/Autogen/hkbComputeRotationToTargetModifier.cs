@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbComputeRotationToTargetModifier Signatire: 0x47665f1c size: 192 flags: FLAGS_NONE
 
@@ -51,7 +51,7 @@ namespace HKX2
             bw.Position += 15;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             rotationOut = xd.ReadQuaternion(xe, nameof(rotationOut));
@@ -63,7 +63,7 @@ namespace HKX2
             resultIsDelta = xd.ReadBoolean(xe, nameof(resultIsDelta));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteQuaternion(xe, nameof(rotationOut), rotationOut);

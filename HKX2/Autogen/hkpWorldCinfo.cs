@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpWorldCinfo Signatire: 0xa5255445 size: 256 flags: FLAGS_NONE
 
@@ -267,7 +267,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             gravity = xd.ReadVector4(xe, nameof(gravity));
@@ -329,7 +329,7 @@ namespace HKX2
             fireCollisionCallbacks = xd.ReadBoolean(xe, nameof(fireCollisionCallbacks));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(gravity), gravity);

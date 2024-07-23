@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbSenseHandleModifier Signatire: 0x2a064d99 size: 224 flags: FLAGS_NONE
 
@@ -99,7 +99,7 @@ namespace HKX2
             bw.WriteInt32(rangeIndexForEventToSendNextUpdate);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             sensorLocalOffset = xd.ReadVector4(xe, nameof(sensorLocalOffset));
@@ -120,7 +120,7 @@ namespace HKX2
             foundHandleOut = xd.ReadBoolean(xe, nameof(foundHandleOut));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteSerializeIgnored(xe, nameof(handle));

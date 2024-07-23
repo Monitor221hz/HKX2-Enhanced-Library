@@ -3,7 +3,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPointToPathConstraintData Signatire: 0x8e7cb5da size: 192 flags: FLAGS_NONE
 
@@ -44,7 +44,7 @@ namespace HKX2
             s.WriteTransformCStyleArray(bw, transforOS_KS);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
@@ -54,7 +54,7 @@ namespace HKX2
             transforOS_KS = xd.ReadTransformCStyleArray(xe, nameof(transforOS_KS), 2);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpBridgeAtoms>(xe, nameof(atoms), atoms);

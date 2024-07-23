@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbEvaluateExpressionModifierInternalExpressionData Signatire: 0xb8686f6b size: 2 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             bw.WriteBoolean(wasTrueInPreviousFrame);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             raisedEvent = xd.ReadBoolean(xe, nameof(raisedEvent));
             wasTrueInPreviousFrame = xd.ReadBoolean(xe, nameof(wasTrueInPreviousFrame));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteBoolean(xe, nameof(raisedEvent), raisedEvent);
             xs.WriteBoolean(xe, nameof(wasTrueInPreviousFrame), wasTrueInPreviousFrame);

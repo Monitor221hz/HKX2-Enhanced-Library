@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbVariableValue Signatire: 0xb99bd6a size: 4 flags: FLAGS_NONE
 
@@ -22,12 +22,12 @@ namespace HKX2
             bw.WriteInt32(value);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             value = xd.ReadInt32(xe, nameof(value));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(value), value);
         }

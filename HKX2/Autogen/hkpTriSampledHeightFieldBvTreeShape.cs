@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpTriSampledHeightFieldBvTreeShape Signatire: 0x58e1e585 size: 80 flags: FLAGS_NONE
 
@@ -39,7 +39,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             childContainer = xd.ReadClass<hkpSingleShapeContainer>(xe, nameof(childContainer));
@@ -47,7 +47,7 @@ namespace HKX2
             padding = xd.ReadByteCStyleArray(xe, nameof(padding), 12);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpSingleShapeContainer>(xe, nameof(childContainer), childContainer);

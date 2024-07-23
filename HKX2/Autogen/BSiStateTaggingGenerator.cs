@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSiStateTaggingGenerator Signatire: 0xf0826fc1 size: 96 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             bw.WriteInt32(iPriority);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pDefaultGenerator));
@@ -42,7 +42,7 @@ namespace HKX2
             iPriority = xd.ReadInt32(xe, nameof(iPriority));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(pDefaultGenerator), pDefaultGenerator);

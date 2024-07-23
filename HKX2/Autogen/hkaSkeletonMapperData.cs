@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaSkeletonMapperData Signatire: 0x95687ea0 size: 128 flags: FLAGS_NONE
 
@@ -57,7 +57,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             skeletonA = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeletonA));
             skeletonB = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeletonB));
@@ -69,7 +69,7 @@ namespace HKX2
             mappingType = xd.ReadFlag<MappingType, int>(xe, nameof(mappingType));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassPointer(xe, nameof(skeletonA), skeletonA);
             xs.WriteClassPointer(xe, nameof(skeletonB), skeletonB);

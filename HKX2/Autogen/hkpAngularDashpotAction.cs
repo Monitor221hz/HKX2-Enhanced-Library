@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpAngularDashpotAction Signatire: 0x35f4c487 size: 96 flags: FLAGS_NONE
 
@@ -35,7 +35,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             rotation = xd.ReadQuaternion(xe, nameof(rotation));
@@ -43,7 +43,7 @@ namespace HKX2
             damping = xd.ReadSingle(xe, nameof(damping));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteQuaternion(xe, nameof(rotation), rotation);

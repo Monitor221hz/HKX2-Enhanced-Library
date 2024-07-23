@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpStiffSpringConstraintDataAtoms Signatire: 0x207eb376 size: 64 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             pivots = xd.ReadClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(pivots));
             spring = xd.ReadClass<hkpStiffSpringConstraintAtom>(xe, nameof(spring));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(pivots), pivots);
             xs.WriteClass<hkpStiffSpringConstraintAtom>(xe, nameof(spring), spring);

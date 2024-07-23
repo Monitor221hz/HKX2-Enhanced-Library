@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkMultiThreadCheck Signatire: 0x11e4408b size: 12 flags: FLAGS_NONE
 
@@ -34,12 +34,12 @@ namespace HKX2
             bw.WriteUInt16(markBitStack);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
 
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(threadId));
             xs.WriteSerializeIgnored(xe, nameof(stackTraceId));

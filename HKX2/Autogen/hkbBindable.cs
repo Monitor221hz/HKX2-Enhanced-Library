@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbBindable Signatire: 0x2c1432d7 size: 48 flags: FLAGS_NONE
 
@@ -35,13 +35,13 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             variableBindingSet = xd.ReadClassPointer<hkbVariableBindingSet>(xe, nameof(variableBindingSet));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(variableBindingSet), variableBindingSet);

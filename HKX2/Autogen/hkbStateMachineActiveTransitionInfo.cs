@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbStateMachineActiveTransitionInfo Signatire: 0xbb90d54f size: 40 flags: FLAGS_NONE
 
@@ -48,7 +48,7 @@ namespace HKX2
             bw.Position += 3;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             transitionEffectInternalStateInfo = xd.ReadClassPointer<hkbNodeInternalStateInfo>(xe, nameof(transitionEffectInternalStateInfo));
             transitionInfoReference = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReference));
@@ -58,7 +58,7 @@ namespace HKX2
             isReturnToPreviousState = xd.ReadBoolean(xe, nameof(isReturnToPreviousState));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(transitionEffect));
             xs.WriteClassPointer(xe, nameof(transitionEffectInternalStateInfo), transitionEffectInternalStateInfo);

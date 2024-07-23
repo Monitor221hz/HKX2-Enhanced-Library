@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxTextureInplace Signatire: 0xd45841d6 size: 56 flags: FLAGS_NONE
 
@@ -40,7 +40,7 @@ namespace HKX2
             s.WriteStringPointer(bw, originalFilename);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             fileType = xd.ReadString(xe, nameof(fileType));
@@ -49,7 +49,7 @@ namespace HKX2
             originalFilename = xd.ReadString(xe, nameof(originalFilename));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(fileType), fileType);

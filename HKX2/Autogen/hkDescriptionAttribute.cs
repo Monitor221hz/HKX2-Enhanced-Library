@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkDescriptionAttribute Signatire: 0xe9f9578a size: 8 flags: FLAGS_NONE
 
@@ -22,12 +22,12 @@ namespace HKX2
             s.WriteCString(bw, @string);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             @string = xd.ReadString(xe, nameof(@string));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(@string), @string);
         }

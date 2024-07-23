@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCombineTransformsModifier Signatire: 0xfd1f0b79 size: 192 flags: FLAGS_NONE
 
@@ -59,7 +59,7 @@ namespace HKX2
             bw.Position += 13;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             translationOut = xd.ReadVector4(xe, nameof(translationOut));
@@ -73,7 +73,7 @@ namespace HKX2
             invertResult = xd.ReadBoolean(xe, nameof(invertResult));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(translationOut), translationOut);

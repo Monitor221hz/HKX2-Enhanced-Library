@@ -3,7 +3,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpMultiSphereShape Signatire: 0x61a590fc size: 176 flags: FLAGS_NONE
 
@@ -32,14 +32,14 @@ namespace HKX2
             s.WriteVector4CStyleArray(bw, spheres);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             numSpheres = xd.ReadInt32(xe, nameof(numSpheres));
             spheres = xd.ReadVector4CStyleArray(xe, nameof(spheres), 8);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(numSpheres), numSpheres);

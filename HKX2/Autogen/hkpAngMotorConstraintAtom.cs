@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpAngMotorConstraintAtom Signatire: 0x81f087ff size: 24 flags: FLAGS_NONE
 
@@ -50,7 +50,7 @@ namespace HKX2
             s.WriteClassPointer(bw, motor);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             isEnabled = xd.ReadBoolean(xe, nameof(isEnabled));
@@ -62,7 +62,7 @@ namespace HKX2
             motor = xd.ReadClassPointer<hkpConstraintMotor>(xe, nameof(motor));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(isEnabled), isEnabled);

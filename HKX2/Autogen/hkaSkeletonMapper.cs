@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaSkeletonMapper Signatire: 0x12df42a5 size: 144 flags: FLAGS_NONE
 
@@ -24,13 +24,13 @@ namespace HKX2
             mapping.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             mapping = xd.ReadClass<hkaSkeletonMapperData>(xe, nameof(mapping));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkaSkeletonMapperData>(xe, nameof(mapping), mapping);

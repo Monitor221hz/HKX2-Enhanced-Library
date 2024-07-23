@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbRoleAttribute Signatire: 0x3eb2e082 size: 4 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             bw.WriteInt16(flags);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             role = xd.ReadFlag<Role, short>(xe, nameof(role));
             flags = xd.ReadFlag<RoleFlags, short>(xe, nameof(flags));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteEnum<Role, short>(xe, nameof(role), role);
             xs.WriteFlag<RoleFlags, short>(xe, nameof(flags), flags);

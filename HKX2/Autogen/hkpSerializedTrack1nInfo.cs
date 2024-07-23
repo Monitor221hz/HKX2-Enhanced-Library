@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpSerializedTrack1nInfo Signatire: 0xf12d48d9 size: 32 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             s.WriteClassPointerArray(bw, subTracks);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             sectors = xd.ReadClassPointerArray<hkpAgent1nSector>(xe, nameof(sectors));
             subTracks = xd.ReadClassPointerArray<hkpSerializedSubTrack1nInfo>(xe, nameof(subTracks));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassPointerArray(xe, nameof(sectors), sectors);
             xs.WriteClassPointerArray(xe, nameof(subTracks), subTracks);

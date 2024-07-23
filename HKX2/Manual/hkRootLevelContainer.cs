@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkRootLevelContainer Signatire: 0x2772c11e size: 16 flags: FLAGS_NONE
 
@@ -26,12 +26,12 @@ namespace HKX2
             s.WriteClassArray(bw, namedVariants);
         }
 
-        public void ReadXml(IXmlReader xd, XElement xe)
+        public void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             namedVariants = xd.ReadClassArray<hkRootLevelContainerNamedVariant>(xe, nameof(namedVariants));
         }
 
-        public void WriteXml(IXmlWriter xs, XElement xe)
+        public void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassArray(xe, nameof(namedVariants), namedVariants);
         }

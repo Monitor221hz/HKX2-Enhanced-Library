@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSIStateManagerModifierBSiStateData Signatire: 0x6b8a15fc size: 16 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             bw.WriteInt32(iStateToSetAs);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             pStateMachine = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pStateMachine));
             StateID = xd.ReadInt32(xe, nameof(StateID));
             iStateToSetAs = xd.ReadInt32(xe, nameof(iStateToSetAs));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassPointer(xe, nameof(pStateMachine), pStateMachine);
             xs.WriteNumber(xe, nameof(StateID), StateID);

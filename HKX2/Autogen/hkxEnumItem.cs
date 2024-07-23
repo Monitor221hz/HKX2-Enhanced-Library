@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxEnumItem Signatire: 0xdf4cf1e9 size: 16 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             s.WriteStringPointer(bw, name);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             value = xd.ReadInt32(xe, nameof(value));
             name = xd.ReadString(xe, nameof(name));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(value), value);
             xs.WriteString(xe, nameof(name), name);

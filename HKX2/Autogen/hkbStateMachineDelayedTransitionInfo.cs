@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbStateMachineDelayedTransitionInfo Signatire: 0x26d5499 size: 24 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.Position += 2;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             delayedTransition = xd.ReadClass<hkbStateMachineProspectiveTransitionInfo>(xe, nameof(delayedTransition));
             timeDelayed = xd.ReadSingle(xe, nameof(timeDelayed));
@@ -44,7 +44,7 @@ namespace HKX2
             wasInAbutRangeLastFrame = xd.ReadBoolean(xe, nameof(wasInAbutRangeLastFrame));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkbStateMachineProspectiveTransitionInfo>(xe, nameof(delayedTransition), delayedTransition);
             xs.WriteFloat(xe, nameof(timeDelayed), timeDelayed);

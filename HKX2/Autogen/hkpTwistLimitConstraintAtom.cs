@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpTwistLimitConstraintAtom Signatire: 0x7c9b1052 size: 20 flags: FLAGS_NONE
 
@@ -46,7 +46,7 @@ namespace HKX2
             bw.WriteSingle(angularLimitsTauFactor);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             isEnabled = xd.ReadByte(xe, nameof(isEnabled));
@@ -57,7 +57,7 @@ namespace HKX2
             angularLimitsTauFactor = xd.ReadSingle(xe, nameof(angularLimitsTauFactor));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(isEnabled), isEnabled);

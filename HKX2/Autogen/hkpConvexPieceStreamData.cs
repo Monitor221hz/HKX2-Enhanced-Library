@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpConvexPieceStreamData Signatire: 0xa5bd1d6e size: 64 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             s.WriteUInt32Array(bw, convexPieceSingleTriangles);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             convexPieceStream = xd.ReadUInt32Array(xe, nameof(convexPieceStream));
@@ -42,7 +42,7 @@ namespace HKX2
             convexPieceSingleTriangles = xd.ReadUInt32Array(xe, nameof(convexPieceSingleTriangles));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumberArray(xe, nameof(convexPieceStream), convexPieceStream);

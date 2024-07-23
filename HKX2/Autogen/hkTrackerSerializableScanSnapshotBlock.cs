@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkTrackerSerializableScanSnapshotBlock Signatire: 0xe7f23e6d size: 40 flags: FLAGS_NONE
 
@@ -46,7 +46,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             typeIndex = xd.ReadInt32(xe, nameof(typeIndex));
             start = xd.ReadUInt64(xe, nameof(start));
@@ -56,7 +56,7 @@ namespace HKX2
             numReferences = xd.ReadInt32(xe, nameof(numReferences));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(typeIndex), typeIndex);
             xs.WriteNumber(xe, nameof(start), start);

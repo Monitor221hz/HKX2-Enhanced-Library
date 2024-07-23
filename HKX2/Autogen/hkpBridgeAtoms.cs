@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpBridgeAtoms Signatire: 0xde152a4d size: 24 flags: FLAGS_NONE
 
@@ -22,12 +22,12 @@ namespace HKX2
             bridgeAtom.Write(s, bw);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             bridgeAtom = xd.ReadClass<hkpBridgeConstraintAtom>(xe, nameof(bridgeAtom));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkpBridgeConstraintAtom>(xe, nameof(bridgeAtom), bridgeAtom);
         }

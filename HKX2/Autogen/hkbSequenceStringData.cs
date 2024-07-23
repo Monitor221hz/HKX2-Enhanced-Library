@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbSequenceStringData Signatire: 0x6a5094e3 size: 48 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             s.WriteStringPointerArray(bw, variableNames);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             eventNames = xd.ReadStringArray(xe, nameof(eventNames));
             variableNames = xd.ReadStringArray(xe, nameof(variableNames));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteStringArray(xe, nameof(eventNames), eventNames);

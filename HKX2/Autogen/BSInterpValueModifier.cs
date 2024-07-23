@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSInterpValueModifier Signatire: 0x29adc802 size: 104 flags: FLAGS_NONE
 
@@ -42,7 +42,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             source = xd.ReadSingle(xe, nameof(source));
@@ -51,7 +51,7 @@ namespace HKX2
             gain = xd.ReadSingle(xe, nameof(gain));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(source), source);

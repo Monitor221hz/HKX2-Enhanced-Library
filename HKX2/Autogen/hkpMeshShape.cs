@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpMeshShape Signatire: 0x3bf12c0f size: 128 flags: FLAGS_NONE
 
@@ -57,7 +57,7 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             scaling = xd.ReadVector4(xe, nameof(scaling));
@@ -69,7 +69,7 @@ namespace HKX2
             pad = xd.ReadInt32CStyleArray(xe, nameof(pad), 3);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(scaling), scaling);

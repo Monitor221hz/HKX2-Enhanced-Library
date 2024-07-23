@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpBoxShape Signatire: 0x3444d2d5 size: 64 flags: FLAGS_NONE
 
@@ -27,13 +27,13 @@ namespace HKX2
             bw.WriteVector4(halfExtents);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             halfExtents = xd.ReadVector4(xe, nameof(halfExtents));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(halfExtents), halfExtents);

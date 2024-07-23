@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbAttachmentModifier Signatire: 0xcc0aab32 size: 200 flags: FLAGS_NONE
 
@@ -72,7 +72,7 @@ namespace HKX2
             s.WriteVoidPointer(bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             sendToAttacherOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach));
@@ -85,7 +85,7 @@ namespace HKX2
             attacheeLayer = xd.ReadInt32(xe, nameof(attacheeLayer));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach), sendToAttacherOnAttach);

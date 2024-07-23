@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbSenseHandleModifierRange Signatire: 0xfb56b692 size: 32 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             @event= xd.ReadClass<hkbEventProperty>(xe, nameof(@event));
             minDistance = xd.ReadSingle(xe, nameof(minDistance));
@@ -44,7 +44,7 @@ namespace HKX2
             ignoreHandle = xd.ReadBoolean(xe, nameof(ignoreHandle));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkbEventProperty>(xe, nameof(@event), @event);
             xs.WriteFloat(xe, nameof(minDistance), minDistance);

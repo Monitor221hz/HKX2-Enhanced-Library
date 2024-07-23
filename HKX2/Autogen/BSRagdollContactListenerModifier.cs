@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSRagdollContactListenerModifier Signatire: 0x8003d8ce size: 136 flags: FLAGS_NONE
 
@@ -41,14 +41,14 @@ namespace HKX2
             s.WriteVoidArray(bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             contactEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(contactEvent));
             bones = xd.ReadClassPointer<hkbBoneIndexArray>(xe, nameof(bones));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbEventProperty>(xe, nameof(contactEvent), contactEvent);

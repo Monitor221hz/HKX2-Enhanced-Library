@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSIsActiveModifier Signatire: 0xb0fde45a size: 96 flags: FLAGS_NONE
 
@@ -62,7 +62,7 @@ namespace HKX2
             bw.Position += 6;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             bIsActive0 = xd.ReadBoolean(xe, nameof(bIsActive0));
@@ -77,7 +77,7 @@ namespace HKX2
             bInvertActive4 = xd.ReadBoolean(xe, nameof(bInvertActive4));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(bIsActive0), bIsActive0);

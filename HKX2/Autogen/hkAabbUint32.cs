@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkAabbUint32 Signatire: 0x11e7c11 size: 32 flags: FLAGS_NONE
 
@@ -43,7 +43,7 @@ namespace HKX2
             bw.WriteByte(shapeKeyByte);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             min = xd.ReadUInt32CStyleArray(xe, nameof(min), 3);
             expansionMin = xd.ReadByteCStyleArray(xe, nameof(expansionMin), 3);
@@ -53,7 +53,7 @@ namespace HKX2
             shapeKeyByte = xd.ReadByte(xe, nameof(shapeKeyByte));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumberArray(xe, nameof(min), min);
             xs.WriteNumberArray(xe, nameof(expansionMin), expansionMin);

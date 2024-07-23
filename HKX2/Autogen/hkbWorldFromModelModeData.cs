@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbWorldFromModelModeData Signatire: 0xa3af8783 size: 8 flags: FLAGS_NONE
 
@@ -36,7 +36,7 @@ namespace HKX2
             bw.Position += 1;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             poseMatchingBone0 = xd.ReadInt16(xe, nameof(poseMatchingBone0));
             poseMatchingBone1 = xd.ReadInt16(xe, nameof(poseMatchingBone1));
@@ -44,7 +44,7 @@ namespace HKX2
             mode = xd.ReadFlag<WorldFromModelMode, sbyte>(xe, nameof(mode));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(poseMatchingBone0), poseMatchingBone0);
             xs.WriteNumber(xe, nameof(poseMatchingBone1), poseMatchingBone1);

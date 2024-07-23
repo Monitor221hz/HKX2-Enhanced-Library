@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbContext Signatire: 0xe0c4d4a7 size: 80 flags: FLAGS_NONE
 
@@ -60,12 +60,12 @@ namespace HKX2
             s.WriteVoidPointer(bw);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             generatorOutputListener = xd.ReadClassPointer<hkbGeneratorOutputListener>(xe, nameof(generatorOutputListener));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(character));
             xs.WriteSerializeIgnored(xe, nameof(behavior));

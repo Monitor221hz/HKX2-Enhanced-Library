@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkPackfileHeader Signatire: 0x79f9ffda size: 64 flags: FLAGS_NONE
 
@@ -67,7 +67,7 @@ namespace HKX2
             s.WriteInt32CStyleArray(bw, pad);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             magic = xd.ReadInt32CStyleArray(xe, nameof(magic), 2);
             userTag = xd.ReadInt32(xe, nameof(userTag));
@@ -83,7 +83,7 @@ namespace HKX2
             pad = xd.ReadInt32CStyleArray(xe, nameof(pad), 1);
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumberArray(xe, nameof(magic), magic);
             xs.WriteNumber(xe, nameof(userTag), userTag);

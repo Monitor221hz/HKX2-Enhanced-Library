@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpProperty Signatire: 0x9ce308e9 size: 16 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             value.Write(s, bw);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             key = xd.ReadUInt32(xe, nameof(key));
             alignmentPadding = xd.ReadUInt32(xe, nameof(alignmentPadding));
             value = xd.ReadClass<hkpPropertyValue>(xe, nameof(value));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(key), key);
             xs.WriteNumber(xe, nameof(alignmentPadding), alignmentPadding);

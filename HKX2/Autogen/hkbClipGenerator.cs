@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbClipGenerator Signatire: 0x333b85b9 size: 272 flags: FLAGS_NONE
 
@@ -134,7 +134,7 @@ namespace HKX2
             bw.Position += 9;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             animationName = xd.ReadString(xe, nameof(animationName));
@@ -150,7 +150,7 @@ namespace HKX2
             flags = xd.ReadSByte(xe, nameof(flags));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(animationName), animationName);

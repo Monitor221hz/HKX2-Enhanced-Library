@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPoweredChainMapperLinkInfo Signatire: 0xcf071a1b size: 16 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             s.WriteClassPointer(bw, limitConstraint);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             firstTargetIdx = xd.ReadInt32(xe, nameof(firstTargetIdx));
             numTargets = xd.ReadInt32(xe, nameof(numTargets));
             limitConstraint = xd.ReadClassPointer<hkpConstraintInstance>(xe, nameof(limitConstraint));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(firstTargetIdx), firstTargetIdx);
             xs.WriteNumber(xe, nameof(numTargets), numTargets);

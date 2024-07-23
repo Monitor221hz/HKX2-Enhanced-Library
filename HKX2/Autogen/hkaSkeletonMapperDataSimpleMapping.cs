@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaSkeletonMapperDataSimpleMapping Signatire: 0x3405deca size: 64 flags: FLAGS_NONE
 
@@ -33,14 +33,14 @@ namespace HKX2
             s.WriteQSTransform(bw, aFromBTransform);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             boneA = xd.ReadInt16(xe, nameof(boneA));
             boneB = xd.ReadInt16(xe, nameof(boneB));
             aFromBTransform = xd.ReadQSTransform(xe, nameof(aFromBTransform));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(boneA), boneA);
             xs.WriteNumber(xe, nameof(boneB), boneB);

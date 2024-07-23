@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpEntityExtendedListeners Signatire: 0xf557023c size: 32 flags: FLAGS_NONE
 
@@ -26,12 +26,12 @@ namespace HKX2
             entityListeners.Write(s, bw);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
 
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteSerializeIgnored(xe, nameof(activationListeners));
             xs.WriteSerializeIgnored(xe, nameof(entityListeners));

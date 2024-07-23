@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpLinearParametricCurve Signatire: 0xd7b3be03 size: 80 flags: FLAGS_NONE
 
@@ -45,7 +45,7 @@ namespace HKX2
             s.WriteSingleArray(bw, distance);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             smoothingFactor = xd.ReadSingle(xe, nameof(smoothingFactor));
@@ -55,7 +55,7 @@ namespace HKX2
             distance = xd.ReadSingleArray(xe, nameof(distance));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(smoothingFactor), smoothingFactor);

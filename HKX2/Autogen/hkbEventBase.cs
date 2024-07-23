@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbEventBase Signatire: 0x76bddb31 size: 16 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             s.WriteClassPointer(bw, payload);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             id = xd.ReadInt32(xe, nameof(id));
             payload = xd.ReadClassPointer<hkbEventPayload>(xe, nameof(payload));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(id), id);
             xs.WriteClassPointer(xe, nameof(payload), payload);

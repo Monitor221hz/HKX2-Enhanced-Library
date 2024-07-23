@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpSimpleContactConstraintAtom Signatire: 0x920df11a size: 48 flags: FLAGS_NONE
 
@@ -56,7 +56,7 @@ namespace HKX2
             info.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             sizeOfAllAtoms = xd.ReadUInt16(xe, nameof(sizeOfAllAtoms));
@@ -69,7 +69,7 @@ namespace HKX2
             info = xd.ReadClass<hkpSimpleContactConstraintDataInfo>(xe, nameof(info));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(sizeOfAllAtoms), sizeOfAllAtoms);

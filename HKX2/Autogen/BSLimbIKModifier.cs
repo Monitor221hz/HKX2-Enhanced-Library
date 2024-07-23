@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSLimbIKModifier Signatire: 0x8ea971e5 size: 120 flags: FLAGS_NONE
 
@@ -58,7 +58,7 @@ namespace HKX2
             s.WriteVoidPointer(bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             limitAngleDegrees = xd.ReadSingle(xe, nameof(limitAngleDegrees));
@@ -69,7 +69,7 @@ namespace HKX2
             castOffset = xd.ReadSingle(xe, nameof(castOffset));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(limitAngleDegrees), limitAngleDegrees);

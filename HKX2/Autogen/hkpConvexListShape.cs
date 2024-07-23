@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpConvexListShape Signatire: 0x450b26e8 size: 128 flags: FLAGS_NONE
 
@@ -51,7 +51,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             minDistanceToUseConvexHullForGetClosestPoints = xd.ReadSingle(xe, nameof(minDistanceToUseConvexHullForGetClosestPoints));
@@ -61,7 +61,7 @@ namespace HKX2
             childShapes = xd.ReadClassPointerArray<hkpConvexShape>(xe, nameof(childShapes));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(minDistanceToUseConvexHullForGetClosestPoints), minDistanceToUseConvexHullForGetClosestPoints);

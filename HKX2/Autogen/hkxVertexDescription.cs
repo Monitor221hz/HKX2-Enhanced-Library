@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxVertexDescription Signatire: 0x2df6313d size: 16 flags: FLAGS_NONE
 
@@ -24,12 +24,12 @@ namespace HKX2
             s.WriteClassArray(bw, decls);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             decls = xd.ReadClassArray<hkxVertexDescriptionElementDecl>(xe, nameof(decls));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassArray(xe, nameof(decls), decls);
         }

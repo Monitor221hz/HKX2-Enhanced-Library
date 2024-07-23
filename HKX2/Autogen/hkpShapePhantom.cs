@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpShapePhantom Signatire: 0xcb22fbcd size: 416 flags: FLAGS_NONE
 
@@ -24,13 +24,13 @@ namespace HKX2
             motionState.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             motionState = xd.ReadClass<hkMotionState>(xe, nameof(motionState));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkMotionState>(xe, nameof(motionState), motionState);

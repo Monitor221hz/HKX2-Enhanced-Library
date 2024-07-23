@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpListShapeChildInfo Signatire: 0x80df0f90 size: 32 flags: FLAGS_NONE
 
@@ -36,13 +36,13 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             shape = xd.ReadClassPointer<hkpShape>(xe, nameof(shape));
             collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassPointer(xe, nameof(shape), shape);
             xs.WriteNumber(xe, nameof(collisionFilterInfo), collisionFilterInfo);

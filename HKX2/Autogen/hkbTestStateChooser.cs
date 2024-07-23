@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbTestStateChooser Signatire: 0xc0fcc436 size: 32 flags: FLAGS_NONE
 
@@ -32,7 +32,7 @@ namespace HKX2
             s.WriteStringPointer(bw, @string);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             @int = xd.ReadInt32(xe, nameof(@int));
@@ -40,7 +40,7 @@ namespace HKX2
             @string = xd.ReadString(xe, nameof(@string));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(@int), @int);

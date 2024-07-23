@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbHandIkDriverInfoHand Signatire: 0x14dfe1dd size: 96 flags: FLAGS_NONE
 
@@ -77,7 +77,7 @@ namespace HKX2
             s.WriteStringPointer(bw, localFrameName);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             elbowAxisLS = xd.ReadVector4(xe, nameof(elbowAxisLS));
             backHandNormalLS = xd.ReadVector4(xe, nameof(backHandNormalLS));
@@ -95,7 +95,7 @@ namespace HKX2
             localFrameName = xd.ReadString(xe, nameof(localFrameName));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(elbowAxisLS), elbowAxisLS);
             xs.WriteVector4(xe, nameof(backHandNormalLS), backHandNormalLS);

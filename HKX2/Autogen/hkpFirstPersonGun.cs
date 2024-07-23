@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpFirstPersonGun Signatire: 0x852ab70b size: 56 flags: FLAGS_NONE
 
@@ -41,14 +41,14 @@ namespace HKX2
             s.WriteVoidArray(bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             name = xd.ReadString(xe, nameof(name));
             keyboardKey = xd.ReadFlag<KeyboardKey, byte>(xe, nameof(keyboardKey));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteSerializeIgnored(xe, nameof(type));

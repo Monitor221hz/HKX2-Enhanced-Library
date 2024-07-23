@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPulleyConstraintDataAtoms Signatire: 0xb149e5a size: 112 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             pulley.Write(s, bw);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             translations = xd.ReadClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(translations));
             pulley = xd.ReadClass<hkpPulleyConstraintAtom>(xe, nameof(pulley));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkpSetLocalTranslationsConstraintAtom>(xe, nameof(translations), translations);
             xs.WriteClass<hkpPulleyConstraintAtom>(xe, nameof(pulley), pulley);

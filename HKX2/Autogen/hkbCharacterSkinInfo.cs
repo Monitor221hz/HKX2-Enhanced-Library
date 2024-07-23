@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCharacterSkinInfo Signatire: 0x180d900d size: 56 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             s.WriteUInt64Array(bw, rigidSkins);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
@@ -42,7 +42,7 @@ namespace HKX2
             rigidSkins = xd.ReadUInt64Array(xe, nameof(rigidSkins));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);

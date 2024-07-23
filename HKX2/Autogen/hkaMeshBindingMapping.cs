@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaMeshBindingMapping Signatire: 0x48aceb75 size: 16 flags: FLAGS_NONE
 
@@ -24,12 +24,12 @@ namespace HKX2
             s.WriteInt16Array(bw, mapping);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             mapping = xd.ReadInt16Array(xe, nameof(mapping));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumberArray(xe, nameof(mapping), mapping);
         }

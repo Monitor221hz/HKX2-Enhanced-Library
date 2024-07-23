@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpSetupStabilizationAtom Signatire: 0xf05d137e size: 16 flags: FLAGS_NONE
 
@@ -35,7 +35,7 @@ namespace HKX2
             s.WriteByteCStyleArray(bw, padding);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             enabled = xd.ReadBoolean(xe, nameof(enabled));
@@ -43,7 +43,7 @@ namespace HKX2
             padding = xd.ReadByteCStyleArray(xe, nameof(padding), 8);
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(enabled), enabled);

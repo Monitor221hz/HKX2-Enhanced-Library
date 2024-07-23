@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCharacterData Signatire: 0x300d6808 size: 176 flags: FLAGS_NONE
 
@@ -81,7 +81,7 @@ namespace HKX2
             bw.WriteInt16(numFloatSlots);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             characterControllerInfo = xd.ReadClass<hkbCharacterDataCharacterControllerInfo>(xe, nameof(characterControllerInfo));
@@ -98,7 +98,7 @@ namespace HKX2
             scale = xd.ReadSingle(xe, nameof(scale));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbCharacterDataCharacterControllerInfo>(xe, nameof(characterControllerInfo), characterControllerInfo);

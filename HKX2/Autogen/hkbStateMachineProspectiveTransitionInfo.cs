@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbStateMachineProspectiveTransitionInfo Signatire: 0x3ab09a2e size: 16 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             bw.WriteInt32(toStateId);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             transitionInfoReference = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReference));
             transitionInfoReferenceForTE = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReferenceForTE));
             toStateId = xd.ReadInt32(xe, nameof(toStateId));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReference), transitionInfoReference);
             xs.WriteClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReferenceForTE), transitionInfoReferenceForTE);

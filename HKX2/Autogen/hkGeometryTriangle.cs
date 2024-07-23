@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkGeometryTriangle Signatire: 0x9687513b size: 16 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             bw.WriteInt32(material);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             a = xd.ReadInt32(xe, nameof(a));
             b = xd.ReadInt32(xe, nameof(b));
@@ -42,7 +42,7 @@ namespace HKX2
             material = xd.ReadInt32(xe, nameof(material));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(a), a);
             xs.WriteNumber(xe, nameof(b), b);

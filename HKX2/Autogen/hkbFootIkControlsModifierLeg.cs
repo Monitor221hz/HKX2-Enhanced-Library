@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkControlsModifierLeg Signatire: 0x9e17091a size: 48 flags: FLAGS_NONE
 
@@ -41,7 +41,7 @@ namespace HKX2
             bw.Position += 10;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             groundPosition = xd.ReadVector4(xe, nameof(groundPosition));
             ungroundedEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(ungroundedEvent));
@@ -50,7 +50,7 @@ namespace HKX2
             isPlantedMS = xd.ReadBoolean(xe, nameof(isPlantedMS));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteVector4(xe, nameof(groundPosition), groundPosition);
             xs.WriteClass<hkbEventProperty>(xe, nameof(ungroundedEvent), ungroundedEvent);

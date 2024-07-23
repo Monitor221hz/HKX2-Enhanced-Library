@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbBlenderGeneratorChild Signatire: 0xe2b384b0 size: 80 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
@@ -47,7 +47,7 @@ namespace HKX2
             worldFromModelWeight = xd.ReadSingle(xe, nameof(worldFromModelWeight));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(generator), generator);

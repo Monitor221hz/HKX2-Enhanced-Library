@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkCustomAttributes Signatire: 0xbff19005 size: 16 flags: FLAGS_NONE
 
@@ -22,12 +22,12 @@ namespace HKX2
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
         }

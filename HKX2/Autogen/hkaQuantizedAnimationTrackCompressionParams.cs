@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaQuantizedAnimationTrackCompressionParams Signatire: 0xf7d64649 size: 16 flags: FLAGS_NONE
 
@@ -34,7 +34,7 @@ namespace HKX2
             bw.WriteSingle(floatingTolerance);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             rotationTolerance = xd.ReadSingle(xe, nameof(rotationTolerance));
             translationTolerance = xd.ReadSingle(xe, nameof(translationTolerance));
@@ -42,7 +42,7 @@ namespace HKX2
             floatingTolerance = xd.ReadSingle(xe, nameof(floatingTolerance));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(rotationTolerance), rotationTolerance);
             xs.WriteFloat(xe, nameof(translationTolerance), translationTolerance);

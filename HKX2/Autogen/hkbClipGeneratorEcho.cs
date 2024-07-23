@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbClipGeneratorEcho Signatire: 0x750edf40 size: 16 flags: FLAGS_NONE
 
@@ -32,14 +32,14 @@ namespace HKX2
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             offsetLocalTime = xd.ReadSingle(xe, nameof(offsetLocalTime));
             weight = xd.ReadSingle(xe, nameof(weight));
             dwdt = xd.ReadSingle(xe, nameof(dwdt));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(offsetLocalTime), offsetLocalTime);
             xs.WriteFloat(xe, nameof(weight), weight);

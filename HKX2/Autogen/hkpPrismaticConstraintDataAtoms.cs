@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPrismaticConstraintDataAtoms Signatire: 0x7f516137 size: 208 flags: FLAGS_NONE
 
@@ -48,7 +48,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             transforms = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(transforms));
             motor = xd.ReadClass<hkpLinMotorConstraintAtom>(xe, nameof(motor));
@@ -59,7 +59,7 @@ namespace HKX2
             linLimit = xd.ReadClass<hkpLinLimitConstraintAtom>(xe, nameof(linLimit));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(transforms), transforms);
             xs.WriteClass<hkpLinMotorConstraintAtom>(xe, nameof(motor), motor);

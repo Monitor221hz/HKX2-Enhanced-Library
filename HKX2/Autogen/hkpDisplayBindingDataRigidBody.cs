@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpDisplayBindingDataRigidBody Signatire: 0xfe16e2a3 size: 96 flags: FLAGS_NONE
 
@@ -33,7 +33,7 @@ namespace HKX2
             s.WriteMatrix4(bw, rigidBodyFromDisplayObjectTransform);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             rigidBody = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(rigidBody));
@@ -41,7 +41,7 @@ namespace HKX2
             rigidBodyFromDisplayObjectTransform = xd.ReadMatrix4(xe, nameof(rigidBodyFromDisplayObjectTransform));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(rigidBody), rigidBody);

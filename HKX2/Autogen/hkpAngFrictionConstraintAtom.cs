@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpAngFrictionConstraintAtom Signatire: 0xf313aa80 size: 12 flags: FLAGS_NONE
 
@@ -38,7 +38,7 @@ namespace HKX2
             bw.WriteSingle(maxFrictionTorque);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             isEnabled = xd.ReadByte(xe, nameof(isEnabled));
@@ -47,7 +47,7 @@ namespace HKX2
             maxFrictionTorque = xd.ReadSingle(xe, nameof(maxFrictionTorque));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(isEnabled), isEnabled);

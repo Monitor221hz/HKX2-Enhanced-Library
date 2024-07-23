@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbComputeRotationFromAxisAngleModifierInternalState Signatire: 0x71cd1eb0 size: 32 flags: FLAGS_NONE
 
@@ -25,13 +25,13 @@ namespace HKX2
             s.WriteQuaternion(bw, rotationOut);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             rotationOut = xd.ReadQuaternion(xe, nameof(rotationOut));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteQuaternion(xe, nameof(rotationOut), rotationOut);

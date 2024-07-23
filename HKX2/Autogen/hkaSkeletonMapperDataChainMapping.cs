@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaSkeletonMapperDataChainMapping Signatire: 0xa528f7cf size: 112 flags: FLAGS_NONE
 
@@ -45,7 +45,7 @@ namespace HKX2
             s.WriteQSTransform(bw, endAFromBTransform);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             startBoneA = xd.ReadInt16(xe, nameof(startBoneA));
             endBoneA = xd.ReadInt16(xe, nameof(endBoneA));
@@ -55,7 +55,7 @@ namespace HKX2
             endAFromBTransform = xd.ReadQSTransform(xe, nameof(endAFromBTransform));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(startBoneA), startBoneA);
             xs.WriteNumber(xe, nameof(endBoneA), endBoneA);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbCharacterSteppedInfo Signatire: 0x2eda84f8 size: 112 flags: FLAGS_NONE
 
@@ -45,7 +45,7 @@ namespace HKX2
             s.WriteQSTransformArray(bw, rigidAttachmentTransforms);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
@@ -55,7 +55,7 @@ namespace HKX2
             rigidAttachmentTransforms = xd.ReadQSTransformArray(xe, nameof(rigidAttachmentTransforms));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);

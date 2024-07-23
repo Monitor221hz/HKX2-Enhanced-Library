@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpPlaneShape Signatire: 0xc36bbd30 size: 80 flags: FLAGS_NONE
 
@@ -33,7 +33,7 @@ namespace HKX2
             bw.WriteVector4(aabbHalfExtents);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             plane = xd.ReadVector4(xe, nameof(plane));
@@ -41,7 +41,7 @@ namespace HKX2
             aabbHalfExtents = xd.ReadVector4(xe, nameof(aabbHalfExtents));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(plane), plane);

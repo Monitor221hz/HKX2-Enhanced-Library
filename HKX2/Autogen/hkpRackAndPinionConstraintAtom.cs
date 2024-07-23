@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpRackAndPinionConstraintAtom Signatire: 0x30cae006 size: 12 flags: FLAGS_NONE
 
@@ -42,7 +42,7 @@ namespace HKX2
             bw.WriteSByte(memOffsetToRevolutionCounter);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             pinionRadiusOrScrewPitch = xd.ReadSingle(xe, nameof(pinionRadiusOrScrewPitch));
@@ -52,7 +52,7 @@ namespace HKX2
             memOffsetToRevolutionCounter = xd.ReadSByte(xe, nameof(memOffsetToRevolutionCounter));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(pinionRadiusOrScrewPitch), pinionRadiusOrScrewPitch);

@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkModifierLeg Signatire: 0x9f3e3a04 size: 160 flags: FLAGS_NONE
 
@@ -97,7 +97,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             originalAnkleTransformMS = xd.ReadQSTransform(xe, nameof(originalAnkleTransformMS));
             kneeAxisLS = xd.ReadVector4(xe, nameof(kneeAxisLS));
@@ -119,7 +119,7 @@ namespace HKX2
             isOriginalAnkleTransformMSSet = xd.ReadBoolean(xe, nameof(isOriginalAnkleTransformMSSet));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteQSTransform(xe, nameof(originalAnkleTransformMS), originalAnkleTransformMS);
             xs.WriteSerializeIgnored(xe, nameof(prevAnkleRotLS));

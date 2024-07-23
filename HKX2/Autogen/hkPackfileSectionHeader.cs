@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkPackfileSectionHeader Signatire: 0xf2a92154 size: 48 flags: FLAGS_NONE
 
@@ -55,7 +55,7 @@ namespace HKX2
             bw.WriteInt32(endOffset);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             sectionTag = xd.ReadString(xe, nameof(sectionTag));
             nullByte = xd.ReadString(xe, nameof(nullByte));
@@ -68,7 +68,7 @@ namespace HKX2
             endOffset = xd.ReadInt32(xe, nameof(endOffset));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(sectionTag), sectionTag);
             xs.WriteString(xe, nameof(nullByte), nullByte);

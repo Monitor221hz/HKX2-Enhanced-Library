@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkQTransform Signatire: 0x471a21ee size: 32 flags: FLAGS_NONE
 
@@ -27,13 +27,13 @@ namespace HKX2
             bw.WriteVector4(translation);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             rotation = xd.ReadQuaternion(xe, nameof(rotation));
             translation = xd.ReadVector4(xe, nameof(translation));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteQuaternion(xe, nameof(rotation), rotation);
             xs.WriteVector4(xe, nameof(translation), translation);

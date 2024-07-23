@@ -1,4 +1,4 @@
-namespace HKX2
+namespace HKX2E
 {
     public enum DataUsage : ushort
     {

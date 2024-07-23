@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkGains Signatire: 0xa681b7f0 size: 48 flags: FLAGS_NONE
 
@@ -66,7 +66,7 @@ namespace HKX2
             bw.WriteSingle(ankleOrientationGain);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             onOffGain = xd.ReadSingle(xe, nameof(onOffGain));
             groundAscendingGain = xd.ReadSingle(xe, nameof(groundAscendingGain));
@@ -82,7 +82,7 @@ namespace HKX2
             ankleOrientationGain = xd.ReadSingle(xe, nameof(ankleOrientationGain));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(onOffGain), onOffGain);
             xs.WriteFloat(xe, nameof(groundAscendingGain), groundAscendingGain);

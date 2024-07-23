@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbAuxiliaryNodeInfo Signatire: 0xca0888ca size: 48 flags: FLAGS_NONE
 
@@ -40,7 +40,7 @@ namespace HKX2
             s.WriteStringPointerArray(bw, selfTransitionNames);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             type = xd.ReadFlag<NodeType, byte>(xe, nameof(type));
@@ -49,7 +49,7 @@ namespace HKX2
             selfTransitionNames = xd.ReadStringArray(xe, nameof(selfTransitionNames));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteEnum<NodeType, byte>(xe, nameof(type), type);

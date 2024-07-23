@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpMotorAction Signatire: 0x8ff131d9 size: 96 flags: FLAGS_NONE
 
@@ -41,7 +41,7 @@ namespace HKX2
             bw.Position += 7;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             axis = xd.ReadVector4(xe, nameof(axis));
@@ -50,7 +50,7 @@ namespace HKX2
             active = xd.ReadBoolean(xe, nameof(active));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(axis), axis);

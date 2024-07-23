@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbFootIkModifier Signatire: 0xed8966c0 size: 256 flags: FLAGS_NONE
 
@@ -115,7 +115,7 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             gains = xd.ReadClass<hkbFootIkGains>(xe, nameof(gains));
@@ -137,7 +137,7 @@ namespace HKX2
             alignMode = xd.ReadFlag<AlignMode, sbyte>(xe, nameof(alignMode));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbFootIkGains>(xe, nameof(gains), gains);

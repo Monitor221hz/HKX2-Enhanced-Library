@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbHandIkControlsModifierHand Signatire: 0x9c72e9e3 size: 112 flags: FLAGS_NONE
 
@@ -32,14 +32,14 @@ namespace HKX2
             bw.Position += 11;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             controlData = xd.ReadClass<hkbHandIkControlData>(xe, nameof(controlData));
             handIndex = xd.ReadInt32(xe, nameof(handIndex));
             enable = xd.ReadBoolean(xe, nameof(enable));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkbHandIkControlData>(xe, nameof(controlData), controlData);
             xs.WriteNumber(xe, nameof(handIndex), handIndex);

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpAgent1nSector Signatire: 0x626e55a size: 512 flags: FLAGS_NONE
 
@@ -39,7 +39,7 @@ namespace HKX2
             s.WriteByteCStyleArray(bw, data);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             bytesAllocated = xd.ReadUInt32(xe, nameof(bytesAllocated));
             pad0 = xd.ReadUInt32(xe, nameof(pad0));
@@ -48,7 +48,7 @@ namespace HKX2
             data = xd.ReadByteCStyleArray(xe, nameof(data), 496);
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(bytesAllocated), bytesAllocated);
             xs.WriteNumber(xe, nameof(pad0), pad0);

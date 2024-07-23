@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpMoppCodeReindexedTerminal Signatire: 0x6ed8ac06 size: 8 flags: FLAGS_NONE
 
@@ -26,13 +26,13 @@ namespace HKX2
             bw.WriteUInt32(reindexedShapeKey);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             origShapeKey = xd.ReadUInt32(xe, nameof(origShapeKey));
             reindexedShapeKey = xd.ReadUInt32(xe, nameof(reindexedShapeKey));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumber(xe, nameof(origShapeKey), origShapeKey);
             xs.WriteNumber(xe, nameof(reindexedShapeKey), reindexedShapeKey);

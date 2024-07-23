@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxScene Signatire: 0x5f673ddd size: 224 flags: FLAGS_NONE
 
@@ -77,7 +77,7 @@ namespace HKX2
             s.WriteMatrix3(bw, appliedTransform);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             modeller = xd.ReadString(xe, nameof(modeller));
@@ -95,7 +95,7 @@ namespace HKX2
             appliedTransform = xd.ReadMatrix3(xe, nameof(appliedTransform));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(modeller), modeller);

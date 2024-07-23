@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkaAnnotationTrack Signatire: 0xd4114fdd size: 24 flags: FLAGS_NONE
 
@@ -28,13 +28,13 @@ namespace HKX2
             s.WriteClassArray(bw, annotations);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             trackName = xd.ReadString(xe, nameof(trackName));
             annotations = xd.ReadClassArray<hkaAnnotationTrackAnnotation>(xe, nameof(annotations));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(trackName), trackName);
             xs.WriteClassArray(xe, nameof(annotations), annotations);

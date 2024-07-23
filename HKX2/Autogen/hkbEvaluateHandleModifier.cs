@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbEvaluateHandleModifier Signatire: 0x79757102 size: 240 flags: FLAGS_NONE
 
@@ -77,7 +77,7 @@ namespace HKX2
             bw.Position += 11;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             handle = xd.ReadClassPointer<hkbHandle>(xe, nameof(handle));
@@ -89,7 +89,7 @@ namespace HKX2
             handleChangeMode = xd.ReadFlag<HandleChangeMode, sbyte>(xe, nameof(handleChangeMode));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(handle), handle);

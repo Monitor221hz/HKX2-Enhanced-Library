@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxMaterialTextureStage Signatire: 0xfa6facb2 size: 16 flags: FLAGS_NONE
 
@@ -30,14 +30,14 @@ namespace HKX2
             bw.WriteInt32(tcoordChannel);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             texture = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(texture));
             usageHint = xd.ReadFlag<TextureType, int>(xe, nameof(usageHint));
             tcoordChannel = xd.ReadInt32(xe, nameof(tcoordChannel));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClassPointer(xe, nameof(texture), texture);
             xs.WriteEnum<TextureType, int>(xe, nameof(usageHint), usageHint);

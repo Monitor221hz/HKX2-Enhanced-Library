@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpBallGun Signatire: 0x57b06d35 size: 112 flags: FLAGS_NONE
 
@@ -53,7 +53,7 @@ namespace HKX2
             bw.Position += 8;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             bulletRadius = xd.ReadSingle(xe, nameof(bulletRadius));
@@ -64,7 +64,7 @@ namespace HKX2
             bulletOffsetFromCenter = xd.ReadVector4(xe, nameof(bulletOffsetFromCenter));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(bulletRadius), bulletRadius);

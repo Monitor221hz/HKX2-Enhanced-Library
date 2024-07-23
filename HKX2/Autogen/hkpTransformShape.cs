@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpTransformShape Signatire: 0x787ef513 size: 144 flags: FLAGS_NONE
 
@@ -39,7 +39,7 @@ namespace HKX2
             s.WriteTransform(bw, transform);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             childShape = xd.ReadClass<hkpSingleShapeContainer>(xe, nameof(childShape));
@@ -47,7 +47,7 @@ namespace HKX2
             transform = xd.ReadTransform(xe, nameof(transform));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClass<hkpSingleShapeContainer>(xe, nameof(childShape), childShape);

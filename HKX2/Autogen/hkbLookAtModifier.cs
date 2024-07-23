@@ -2,7 +2,7 @@ using System;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbLookAtModifier Signatire: 0x3d28e066 size: 240 flags: FLAGS_NONE
 
@@ -105,7 +105,7 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             targetWS = xd.ReadVector4(xe, nameof(targetWS));
@@ -128,7 +128,7 @@ namespace HKX2
             isTargetInsideLimitCone = xd.ReadBoolean(xe, nameof(isTargetInsideLimitCone));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteVector4(xe, nameof(targetWS), targetWS);

@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkAlignSceneToNodeOptions Signatire: 0x207cb01 size: 40 flags: FLAGS_NONE
 
@@ -60,7 +60,7 @@ namespace HKX2
             s.WriteStringPointer(bw, nodeName);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             invert = xd.ReadBoolean(xe, nameof(invert));
@@ -74,7 +74,7 @@ namespace HKX2
             nodeName = xd.ReadString(xe, nameof(nodeName));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteBoolean(xe, nameof(invert), invert);

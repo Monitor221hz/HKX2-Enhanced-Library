@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkPackedVector3 Signatire: 0x9c16df5b size: 8 flags: FLAGS_NONE
 
@@ -23,12 +23,12 @@ namespace HKX2
             s.WriteInt16CStyleArray(bw, values);
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             values = xd.ReadInt16CStyleArray(xe, nameof(values), 4);
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteNumberArray(xe, nameof(values), values);
         }

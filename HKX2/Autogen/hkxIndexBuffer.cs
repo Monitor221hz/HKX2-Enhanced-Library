@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkxIndexBuffer Signatire: 0xc12c8197 size: 64 flags: FLAGS_NONE
 
@@ -44,7 +44,7 @@ namespace HKX2
             bw.WriteUInt32(length);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             indexType = xd.ReadFlag<IndexType, sbyte>(xe, nameof(indexType));
@@ -54,7 +54,7 @@ namespace HKX2
             length = xd.ReadUInt32(xe, nameof(length));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteEnum<IndexType, sbyte>(xe, nameof(indexType), indexType);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkbVariableValueSet Signatire: 0x27812d8d size: 64 flags: FLAGS_NONE
 
@@ -35,7 +35,7 @@ namespace HKX2
             s.WriteClassPointerArray(bw, variantVariableValues);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             wordVariableValues = xd.ReadClassArray<hkbVariableValue>(xe, nameof(wordVariableValues));
@@ -43,7 +43,7 @@ namespace HKX2
             variantVariableValues = xd.ReadClassPointerArray<hkReferencedObject>(xe, nameof(variantVariableValues));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(wordVariableValues), wordVariableValues);

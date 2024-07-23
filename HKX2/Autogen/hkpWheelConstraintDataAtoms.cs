@@ -1,7 +1,7 @@
 using System;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // hkpWheelConstraintDataAtoms Signatire: 0x1188cbe1 size: 304 flags: FLAGS_NONE
 
@@ -48,7 +48,7 @@ namespace HKX2
             bw.Position += 12;
         }
 
-        public virtual void ReadXml(IXmlReader xd, XElement xe)
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             suspensionBase = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(suspensionBase));
             lin0Limit = xd.ReadClass<hkpLinLimitConstraintAtom>(xe, nameof(lin0Limit));
@@ -59,7 +59,7 @@ namespace HKX2
             _2dAng = xd.ReadClass<hkp_2dAngConstraintAtom>(xe, nameof(_2dAng));
         }
 
-        public virtual void WriteXml(IXmlWriter xs, XElement xe)
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(suspensionBase), suspensionBase);
             xs.WriteClass<hkpLinLimitConstraintAtom>(xe, nameof(lin0Limit), lin0Limit);

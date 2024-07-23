@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     // BSIStateManagerModifier Signatire: 0x6cb24f2e size: 128 flags: FLAGS_NONE
 
@@ -36,14 +36,14 @@ namespace HKX2
             myStateListener.Write(s, bw);
         }
 
-        public override void ReadXml(IXmlReader xd, XElement xe)
+        public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
             iStateVar = xd.ReadInt32(xe, nameof(iStateVar));
             stateData = xd.ReadClassArray<BSIStateManagerModifierBSiStateData>(xe, nameof(stateData));
         }
 
-        public override void WriteXml(IXmlWriter xs, XElement xe)
+        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(iStateVar), iStateVar);
