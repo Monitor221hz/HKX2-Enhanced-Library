@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 
-namespace HKX2
+namespace HKX2E
 {
     public class PackFileSerializer
     {

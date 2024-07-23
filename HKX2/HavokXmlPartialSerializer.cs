@@ -5,9 +5,9 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
-	public class HavokXmlPartialSerializer : IXmlWriter
+	public class HavokXmlPartialSerializer : IHavokXmlWriter
 	{
 		private int index = 0050;
 
@@ -46,8 +46,8 @@ namespace HKX2
 		}
 		public XElement SerializeNode<T>(T hkNode) where T : hkbNode
 		{
-			string name = hkNode.m_name;
-			XElement ele = new("hkobject");
+			string name = hkNode.name;
+			XElement ele = new("hkobject");	
 			lock (nameSerializedObjectsMap)
 			{
 				if (!nameSerializedObjectsMap.TryGetValue(hkNode, out string? existingName))
@@ -84,7 +84,7 @@ namespace HKX2
 			hkObject.WriteXml(this, ele);
 			return ele;
 		}
-		public XElement WriteRegisteredNamedObject<T>(T hkObject, string name) where T : IHavokObject
+		public XElement SerializeNamedObject<T>(T hkObject, string name) where T : IHavokObject
 		{
 			XElement ele = new("hkobject");
 			lock (nameSerializedObjectsMap)

@@ -1,4 +1,4 @@
-﻿using HKX2.Utils;
+﻿using HKX2E.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,9 +7,9 @@ using System.Numerics;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
-	public class HavokXmlDeserializer : IXmlReader
+	public class HavokXmlDeserializer : IHavokXmlReader
 	{
 		public XDocument document;
 		private HKXHeader header;
@@ -54,15 +54,15 @@ namespace HKX2
 
 		private IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
 		{
-			var name = xElement.Attribute("name").Value;
+			var name = xElement.Attribute("name")!.Value;
 
 			if (objectNameMap.TryGetValue(name, out IHavokObject value))
 			{
 				return value;
 			}
 
-			var hkClassName = xElement.Attribute("class").Value;
-			var hkClass = System.Type.GetType($@"HKX2.{hkClassName}");
+			var hkClassName = xElement.Attribute("class")!.Value;
+			var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
 			if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
 			var ret = (IHavokObject)Activator.CreateInstance(hkClass);

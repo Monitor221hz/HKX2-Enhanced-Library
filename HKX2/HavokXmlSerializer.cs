@@ -5,9 +5,9 @@ using System.Linq;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
-	public class HavokXmlSerializer : IXmlWriter
+	public class HavokXmlSerializer : IHavokXmlWriter
 	{
 		private int index = 0050;
 		private HKXHeader header;

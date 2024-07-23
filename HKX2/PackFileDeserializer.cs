@@ -1,9 +1,9 @@
-﻿using HKX2.Utils;
+﻿using HKX2E.Utils;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 
-namespace HKX2
+namespace HKX2E
 {
     public class PackFileDeserializer
     {
@@ -24,10 +24,10 @@ namespace HKX2
             var fixup = _dataSection._virtualMap[offset];
             var hkClassName = _classnames.OffsetClassNamesMap[fixup.Dst].ClassName;
 
-            var hkClass = System.Type.GetType($@"HKX2.{hkClassName}");
+            var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
             if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
-            var ret = (IHavokObject)Activator.CreateInstance(hkClass);
+            var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
             if (ret is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
             br.StepIn(offset);

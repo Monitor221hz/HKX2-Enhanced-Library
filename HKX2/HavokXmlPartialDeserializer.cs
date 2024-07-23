@@ -1,22 +1,24 @@
-﻿using HKX2.Utils;
+﻿using HKX2E.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
 	[Flags]
 	public enum HavokXmlDeserializerOptions
 	{
 		None, 
-		IgnoreNonFatalError
+		IgnoreNonFatalErrors, 
+		IgnoreMissingPointers,
 	}
 
-	public class HavokXmlPartialDeserializer : IXmlReader
+	public class HavokXmlPartialDeserializer : IHavokXmlReader
 	{
 		// store deserialized
 		private Dictionary<string, IHavokObject> objectNameMap;
@@ -34,11 +36,48 @@ namespace HKX2
         {
 			this.options = options; 
         }
-		public T DeserializeObject<T>(XElement element) where T : IHavokObject, new()
+		public T DeserializeDetachedObject<T>(XElement element) where T : IHavokObject, new()
 		{
 			T ret = new T();
 			ret.ReadXml(this, element);
 			return ret;
+		}
+		public T DeserializeObject<T>(XElement element) where T : IHavokObject, new()
+		{
+			string name = element.Attribute("name")!.Value;
+			IHavokObject? obj; 
+			lock (objectNameMap)
+			{
+				if (objectNameMap.TryGetValue(name, out obj))
+				{
+					return (T)obj;
+				}
+			}
+			obj = new T();
+			obj.ReadXml(this, element);
+			lock(objectNameMap)
+			{
+				objectNameMap.Add(name, obj);
+			}
+			return (T)obj; 
+		}
+		public T DeserializeNamedObject<T>(XElement element, string name) where T : IHavokObject, new()
+		{
+			IHavokObject? obj;
+			lock (objectNameMap)
+			{
+				if (objectNameMap.TryGetValue(name, out obj))
+				{
+					return (T)obj;
+				}
+			}
+			obj = new T();
+			obj.ReadXml(this, element);
+			lock (objectNameMap)
+			{
+				objectNameMap.Add(name, obj);
+			}
+			return (T)obj;
 		}
         private IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
 		{
@@ -50,7 +89,7 @@ namespace HKX2
 			}
 
 			var hkClassName = xElement.Attribute("class")!.Value;
-			var hkClass = System.Type.GetType($@"HKX2.{hkClassName}");
+			var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
 			if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
 			var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
@@ -59,10 +98,46 @@ namespace HKX2
 			if (ret.GetType().IsAssignableTo(typeof(T)))
 				return ret;
 
-			if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalError))
+			if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
 				throw new Exception($@"Could not convert '{typeof(T)}' to '{ret.GetType()}'. Is source malformed?");
 
 			return hkDummyBuilder.CreateDummy(ret, typeof(T));
+		}
+		/// <summary>
+		/// Only use this for havok compliant xml, and when the type is unknown.
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns></returns>
+		/// <exception cref="Exception"></exception>
+		public dynamic DeserializeRuntimeObject(XElement element)
+		{
+			var name = element.Attribute("name")!.Value;
+
+			if (objectNameMap.TryGetValue(name, out IHavokObject? value))
+			{
+				return value!;
+			}
+
+			var hkClassName = element.Attribute("class")!.Value;
+			var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
+			if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+
+			var obj = (IHavokObject)Activator.CreateInstance(hkClass)!;
+			if (obj is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+
+			if (obj.GetType().IsAssignableTo(hkClass))
+			{
+				obj.ReadXml(this, element);
+				lock (objectNameMap)
+				{
+					objectNameMap.Add(name, obj);
+				}
+				return obj;
+			}
+			if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
+				throw new Exception($@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?");
+
+			return hkDummyBuilder.CreateDummy(obj, hkClass);
 		}
 		private static XElement? GetPropertyElement(XContainer element, string name)
 		{
@@ -146,7 +221,13 @@ namespace HKX2
 				return (T)value;
 
 			if (!elementNameMap.TryGetValue(refName, out XElement refEle))
-				throw new Exception($"Reference symbol '{refName}' not found. Make sure it defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+			{
+				if (options.HasFlag(HavokXmlDeserializerOptions.IgnoreMissingPointers))
+				{
+					return default;
+				}
+				throw new Exception($"Reference symbol '{refName}' not found. Make sure it is defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+			}
 
 			T ret = (T)ConstructVirtualClass<T>(refEle);
 			ret.ReadXml(this, refEle);

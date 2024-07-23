@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HKX2
+namespace HKX2E
 {
     public class HKXHeader
     {
