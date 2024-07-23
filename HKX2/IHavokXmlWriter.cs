@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Xml.Linq;
 
-namespace HKX2;
-public interface IXmlWriter
+namespace HKX2E;
+public interface IHavokXmlWriter
 {
 	XElement WriteBoolean(XElement xe, string paramName, bool value);
 	XElement WriteBooleanArray(XElement xe, string paramName, IList<bool> value);

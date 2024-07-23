@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace HKX2
+namespace HKX2E
 {
     public interface IHavokObject
     {
@@ -9,7 +9,7 @@ namespace HKX2
         public void Read(PackFileDeserializer des, BinaryReaderEx br);
 
         public void Write(PackFileSerializer s, BinaryWriterEx bw);
-        public void WriteXml(IXmlWriter xs, XElement xe);
-        public void ReadXml(IXmlReader xd, XElement xe);
+        public void WriteXml(IHavokXmlWriter xs, XElement xe);
+        public void ReadXml(IHavokXmlReader xd, XElement xe);
     }
 }

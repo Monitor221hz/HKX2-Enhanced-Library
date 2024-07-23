@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HKX2.Tests
+namespace HKX2E.Tests
 {
     [TestClass]
     public class FlagUtilsTests
