@@ -10,21 +10,14 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
-	[Flags]
-	public enum HavokXmlDeserializerOptions
-	{
-		None, 
-		IgnoreNonFatalErrors, 
-		IgnoreMissingPointers,
-	}
 
 	public class HavokXmlPartialDeserializer : IHavokXmlReader
 	{
 		// store deserialized
 		private Dictionary<string, IHavokObject> objectNameMap;
 		private Dictionary<string, XElement> elementNameMap;
-
 		private HavokXmlDeserializerOptions options;
+		public HavokXmlDeserializerContext Context => new (objectNameMap, elementNameMap, options);
 
         public HavokXmlPartialDeserializer()
         {
@@ -32,10 +25,34 @@ namespace HKX2E
 			elementNameMap = new();
 			options = HavokXmlDeserializerOptions.None; 
         }
-		public HavokXmlPartialDeserializer(HavokXmlDeserializerOptions options) : this()
+		public HavokXmlPartialDeserializer(HavokXmlDeserializerOptions options)
         {
+			objectNameMap = new();
+			elementNameMap = new();
 			this.options = options; 
         }
+		public HavokXmlPartialDeserializer(HavokXmlDeserializerContext context)
+		{
+			objectNameMap = context.ObjectNameMap;
+			elementNameMap = context.ElementNameMap;
+			options = context.Options;
+		}
+		public bool TryGetObjectAs<T>(string name, out T? obj) where T : class, IHavokObject
+		{
+			obj = null; 
+			if (objectNameMap.TryGetValue(name, out var value))
+			{
+				obj = value as T; 
+			}
+			return (obj != null); 
+		}
+		/// <summary>
+		/// Use only on objects that are known to exist beforehand.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="name"></param>
+		/// <returns></returns>
+		public T GetObjectAs<T>(string name) where T : class, IHavokObject => (T)objectNameMap[name];
 		public T DeserializeDetachedObject<T>(XElement element) where T : IHavokObject, new()
 		{
 			T ret = new T();
@@ -112,11 +129,14 @@ namespace HKX2E
 		public dynamic DeserializeRuntimeObject(XElement element)
 		{
 			var name = element.Attribute("name")!.Value;
-
-			if (objectNameMap.TryGetValue(name, out IHavokObject? value))
+			lock (objectNameMap)
 			{
-				return value!;
+				if (objectNameMap.TryGetValue(name, out IHavokObject? value))
+				{
+					return value!;
+				}
 			}
+
 
 			var hkClassName = element.Attribute("class")!.Value;
 			var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");

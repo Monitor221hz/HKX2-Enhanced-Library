@@ -10,6 +10,7 @@ namespace HKX2E
 	public class HavokXmlPartialSerializer : IHavokXmlWriter
 	{
 		private int index = 0050;
+		private readonly HashSet<uint> staticIndexes = new HashSet<uint>();
 
 		private Dictionary<IHavokObject, string> nameSerializedObjectsMap; 
 
@@ -17,6 +18,31 @@ namespace HKX2E
         {
 			nameSerializedObjectsMap = new(); 
         }
+        public HavokXmlPartialSerializer(HavokXmlDeserializerContext sharedContext)
+        {
+			IEnumerable<string> indexedNames = sharedContext.ElementNameMap.Keys;
+			uint num;
+			foreach (string name in indexedNames)
+			{
+				if (uint.TryParse(name.AsSpan(1), out num))
+				{
+					staticIndexes.Add(num);
+				}
+			}
+		}
+        public void ShareContext(HavokXmlDeserializerContext sharedContext)
+		{
+			staticIndexes.Clear();
+			IEnumerable<string> indexedNames = sharedContext.ElementNameMap.Keys;
+			uint num;
+			foreach (string name in indexedNames)
+			{
+				if (uint.TryParse(name.AsSpan(1), out num))
+				{
+					staticIndexes.Add(num);
+				}
+			}
+		}
 		public XElement SerializeDetachedObject<T>(T hkObject) where T : IHavokObject
 		{
 			XElement element = new XElement("hkobject");

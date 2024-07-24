@@ -1,20 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <Compile Remove="Autogen\Xml\**" />
-      <EmbeddedResource Remove="Autogen\Xml\**" />
-      <None Remove="Autogen\Xml\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="FastMember.Signed" Version="1.5.0" />
-      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
-		<ProjectReference Include="..\HKX2E.SourceGen\HKX2E.SourceGen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"></ProjectReference>
-    </ItemGroup>
-
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Autogen\Xml\**" />
+    <EmbeddedResource Remove="Autogen\Xml\**" />
+    <None Remove="Autogen\Xml\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FastMember.Signed" Version="1.5.0" />
+  </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
+
 	public class HavokXmlDeserializer : IHavokXmlReader
 	{
 		public XDocument document;
@@ -16,18 +17,45 @@ namespace HKX2E
 		// store deserialized
 		private Dictionary<string, IHavokObject> objectNameMap;
 		private Dictionary<string, XElement> elementNameMap;
-
-		private bool ignoreNonFatalError;
-
-		public IHavokObject Deserialize(Stream stream, HKXHeader header, bool ignoreNonFatalError = false)
+		private HavokXmlDeserializerOptions options;
+		public HavokXmlDeserializerContext Context => new(objectNameMap, elementNameMap, options);
+		public HavokXmlDeserializer()
+        {
+			options = HavokXmlDeserializerOptions.None;
+        }
+		
+		public IHavokObject Deserialize(Stream stream, HKXHeader header, HavokXmlDeserializerContext context, HavokXmlDeserializerOptions options)
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
 			this.header = header;
-			objectNameMap = new Dictionary<string, IHavokObject>();
+			objectNameMap = context.ObjectNameMap;
+			elementNameMap = context.ElementNameMap;
+			this.options = options;
 
-			elementNameMap = new Dictionary<string, XElement>();
+			var hksection = document.Element("hkpackfile")?.Element("hksection");
+			if (hksection is null)
+				throw new Exception("Xml missing hkpackfile and hksection tag");
 
-			this.ignoreNonFatalError = ignoreNonFatalError;
+			//skip node collection
+
+			var testnode = elementNameMap.First(item => item.Value.Attribute("class").Value == "hkRootLevelContainer").Value;
+			var rootrefName = testnode.Attribute("name").Value;
+			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
+			objectNameMap.Add(rootrefName, testobj);
+
+			testobj.ReadXml(this, testnode);
+
+			var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
+
+			return hkRootLevelContainer;
+		}
+		public IHavokObject Deserialize(Stream stream, HKXHeader header)
+		{
+			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
+			this.header = header;
+			objectNameMap = new();
+			elementNameMap = new();
+			options = HavokXmlDeserializerOptions.None;
 
 			var hksection = document.Element("hkpackfile")?.Element("hksection");
 			if (hksection is null)
@@ -37,7 +65,11 @@ namespace HKX2E
 			foreach (var item in hksection.Elements())
 			{
 				var name = item.Attribute("name").Value;
+#if DEBUG
 				elementNameMap.Add(name, item);
+#else
+				elementNameMap.TryAdd(name, item);
+#endif
 			}
 
 			var testnode = elementNameMap.First(item => item.Value.Attribute("class").Value == "hkRootLevelContainer").Value;
@@ -51,7 +83,6 @@ namespace HKX2E
 
 			return hkRootLevelContainer;
 		}
-
 		private IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
 		{
 			var name = xElement.Attribute("name")!.Value;
@@ -71,7 +102,7 @@ namespace HKX2E
 			if (ret.GetType().IsAssignableTo(typeof(T)))
 				return ret;
 
-			if (!ignoreNonFatalError)
+			if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
 				throw new Exception($@"Could not convert '{typeof(T)}' to '{ret.GetType()}'. Is source malformed?");
 
 			return hkDummyBuilder.CreateDummy(ret, typeof(T));

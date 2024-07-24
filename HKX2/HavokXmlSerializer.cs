@@ -9,17 +9,50 @@ namespace HKX2E
 {
 	public class HavokXmlSerializer : IHavokXmlWriter
 	{
-		private int index = 0050;
+		private uint index = 0050;
 		private HKXHeader header;
 		private Dictionary<IHavokObject, string> nameSerializedObjectsMap;
 		private XDocument document;
 		private XContainer dataSection;
+		private readonly HashSet<uint> staticIndexes = new HashSet<uint>();
 
+        public HavokXmlSerializer()
+        {
+            
+        }
+        public HavokXmlSerializer(HavokXmlDeserializerContext context)
+        {
+			IEnumerable<string> indexedNames = context.ElementNameMap.Keys;
+			uint num;
+			foreach (string name in indexedNames)
+			{
+				if (uint.TryParse(name.AsSpan(1), out num))
+				{
+					staticIndexes.Add(num);
+				}
+			}
+		}
+        public void ShareContext(HavokXmlDeserializerContext context)
+		{
+			staticIndexes.Clear();
+			IEnumerable<string> indexedNames = context.ElementNameMap.Keys;
+			uint num;  
+			foreach(string name in indexedNames)
+			{
+				if (uint.TryParse(name.AsSpan(1), out num))
+				{
+					staticIndexes.Add(num);
+				}
+			}
+		}
 		private string GetIndex()
 		{
+			while(staticIndexes.Contains(index))
+			{
+				index++;
+			}
 			return "#" + index++.ToString("D4");
 		}
-
 		private static string FormatSignature(uint signature)
 		{
 			return "0x" + signature.ToString("x8");
