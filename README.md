@@ -1,16 +1,15 @@
 # HKX2Library
 
-A standalone customized version of Katalash's HKX2 library for Havok packfile deserialization and serialization used in DSMapStudio.
+A standalone customized version of ret2end's [HKX2 library](https://github.com/ret2end/HKX2Library) for Skyrim SE Havok packfile deserialization and serialization.
 
-This fork modified classes for Skyrim SE hkx file.
+This fork modified the library to serve the purposes of packfile editing in addition to the usual (de)serialization functions. It also refactors some of the code to be more error tolerant and optimized.
 
 ### Differences
 
 - **Serialize** and **Deserialize** .hkx file. (include **behaviors**, **skeleton** and **aniamtions**)
 - Export to **XML**.
 - ~XML to HKX~ use [figment/hkxcmd](https://github.com/figment/hkxcmd), [nexus](https://www.nexusmods.com/skyrim/mods/1797)
-- ~Supports Breath of the Wild packfiles used on Wii U and Switch (might support other games that use the same classes).~ (Skyrim SE only)
-- ~Supports conversion of packfiles between those two platforms.~ (SE only)
+- Partial serialization and deserialization for packfile/xml fragments.
 
 ### Known issues
 
@@ -19,12 +18,12 @@ This fork modified classes for Skyrim SE hkx file.
 
 ### Usage
 
-`git submodule add https://github.com/ret2end/HKX2Library <your-repo-dir>/some/path/HKX2Library`
+`git submodule add https://github.com/Monitor221hz/HKX2-Enhanced-Library <your-repo-dir>/some/path/HKX2EnhancedLibrary`
 
 Then reference it in your solution and project.
 
 ```C#
-using HKX2;
+using HKX2E;
 
 namespace PlatformConverter
 {
@@ -67,18 +66,12 @@ namespace PlatformConverter
 
 - `./HKX2/Autogen/` contains Havok classes generated from dumped skyrim classes by SKSE plugin.
 - `./HKX2/Manual/` also contains generated classes with small adjustment.
-- ~Differences in class structure between games and platforms is dependent on Havok version used and platform's header information (pointer size, endian, padding option).~ no
-
-### TODO
-
-- Unit test
-- xml to 64bit hkx?
-- export animation?
 
 ### Credits
 
-- [katalash](https://github.com/katalash) - The original HKX2 library included in [DSMapStudio](https://github.com/katalash/DSMapStudio)
-- [JKAnderson](https://github.com/JKAnderson) - BinaryReaderEx and BinaryWriterEx included in [SoulsFormats](https://github.com/JKAnderson/SoulsFormats)
-- [krenyy](https://gitlab.com/HKX2/HKX2Library) - HKX2 library by krenyy
-- [Dexesttp](https://github.com/Dexesttp/hkxpack/tree/main/doc/hkx%20findings) with hkx research documentary
-- SkyrimSE RE and SkyrimGuild community with valuable skse plugin, hkx, animation, behavior information
+- [katalash](https://github.com/katalash) - The original HKX2 library included in [DSMapStudio](https://github.com/katalash/DSMapStudio).
+- [JKAnderson](https://github.com/JKAnderson) - BinaryReaderEx and BinaryWriterEx included in [SoulsFormats](https://github.com/JKAnderson/SoulsFormats).
+- [krenyy](https://gitlab.com/HKX2/HKX2Library) - HKX2 library by krenyy.
+- [Dexesttp](https://github.com/Dexesttp/hkxpack/tree/main/doc/hkx%20findings) with hkx research documentary.
+- [ret2end](https://github.com/ret2end) for original HKX2 library supporting Skyrim SE.
+- SkyrimSE RE and SkyrimGuild community with valuable skse plugin, hkx, animation, behavior information.
