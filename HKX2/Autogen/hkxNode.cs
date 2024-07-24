@@ -71,7 +71,7 @@ namespace HKX2E
             xs.WriteString(xe, nameof(name), name);
             xs.WriteClassPointer(xe, nameof(@object), @object);
             xs.WriteMatrix4Array(xe, nameof(keyFrames), keyFrames);
-            xs.WriteClassPointerArray(xe, nameof(children), children);
+            xs.WriteClassPointerArray(xe, nameof(children), children!);
             xs.WriteClassArray(xe, nameof(annotations), annotations);
             xs.WriteString(xe, nameof(userProperties), userProperties);
             xs.WriteBoolean(xe, nameof(selected), selected);

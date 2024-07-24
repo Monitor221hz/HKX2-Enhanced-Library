@@ -38,10 +38,10 @@ namespace HKX2E
             numImplementedInterfaces = br.ReadInt32();
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            des.ReadEmptyPointer(br);
-            attributes = des.ReadClassPointer<hkCustomAttributes>(br);
-            flags = br.ReadUInt32();
-            describedVersion = br.ReadInt32();
+            //des.ReadEmptyPointer(br);
+            //attributes = des.ReadClassPointer<hkCustomAttributes>(br);
+            //flags = br.ReadUInt32();
+            //describedVersion = br.ReadInt32();
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -52,10 +52,10 @@ namespace HKX2E
             bw.WriteInt32(numImplementedInterfaces);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            s.WriteVoidPointer(bw);
-            s.WriteClassPointer(bw, attributes);
-            bw.WriteUInt32(flags);
-            bw.WriteInt32(describedVersion);
+            //s.WriteVoidPointer(bw);
+            //s.WriteClassPointer(bw, attributes);
+            //bw.WriteUInt32(flags);
+            //bw.WriteInt32(describedVersion);
         }
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
@@ -66,8 +66,8 @@ namespace HKX2E
             numImplementedInterfaces = xd.ReadInt32(xe, nameof(numImplementedInterfaces));
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            flags = xd.ReadFlag<FlagValues, uint>(xe, nameof(flags));
-            describedVersion = xd.ReadInt32(xe, nameof(describedVersion));
+            //flags = xd.ReadFlag<FlagValues, uint>(xe, nameof(flags));
+            //describedVersion = xd.ReadInt32(xe, nameof(describedVersion));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -78,10 +78,10 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(numImplementedInterfaces), numImplementedInterfaces);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            xs.WriteSerializeIgnored(xe, nameof(defaults));
-            xs.WriteSerializeIgnored(xe, nameof(attributes));
-            xs.WriteFlag<FlagValues, uint>(xe, nameof(flags), flags);
-            xs.WriteNumber(xe, nameof(describedVersion), describedVersion);
+            //xs.WriteSerializeIgnored(xe, nameof(defaults));
+            //xs.WriteSerializeIgnored(xe, nameof(attributes));
+            //xs.WriteFlag<FlagValues, uint>(xe, nameof(flags), flags);
+            //xs.WriteNumber(xe, nameof(describedVersion), describedVersion);
         }
 
         public override bool Equals(object? obj)
@@ -96,8 +96,8 @@ namespace HKX2E
                    ((parent is null && other.parent is null) || (parent is not null && other.parent is not null && parent.Equals((IHavokObject)other.parent))) &&
                    objectSize.Equals(other.objectSize) &&
                    numImplementedInterfaces.Equals(other.numImplementedInterfaces) &&
-                   declaredEnums.Equals(other.declaredEnums) &&
-                   declaredMembers.Equals(other.declaredMembers) &&
+                   declaredEnums!.Equals(other.declaredEnums!) &&
+                   declaredMembers!.Equals(other.declaredMembers) &&
                    flags.Equals(other.flags) &&
                    describedVersion.Equals(other.describedVersion) &&
                    Signature == other.Signature; ;

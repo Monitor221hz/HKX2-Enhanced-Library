@@ -237,10 +237,10 @@ namespace HKX2E
 			if (refName == "null")
 				return default;
 
-			if (objectNameMap.TryGetValue(refName, out IHavokObject value))
+			if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
 				return (T)value;
 
-			if (!elementNameMap.TryGetValue(refName, out XElement refEle))
+			if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
 			{
 				if (options.HasFlag(HavokXmlDeserializerOptions.IgnoreMissingPointers))
 				{

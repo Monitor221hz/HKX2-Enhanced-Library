@@ -68,7 +68,7 @@ namespace HKX2E
             xs.WriteVector4(xe, nameof(aabbHalfExtents), aabbHalfExtents);
             xs.WriteVector4(xe, nameof(aabbCenter), aabbCenter);
             xs.WriteBoolean(xe, nameof(useCachedAabb), useCachedAabb);
-            xs.WriteClassPointerArray(xe, nameof(childShapes), childShapes);
+            xs.WriteClassPointerArray(xe, nameof(childShapes), childShapes!);
         }
 
         public override bool Equals(object? obj)

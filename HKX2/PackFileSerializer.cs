@@ -110,7 +110,7 @@ namespace HKX2E
                     sq = _serializationQueues.Last();
                 }
 
-                if (sq.Count == 0) continue;
+                if (sq == null || sq.Count == 0) continue;
 
                 var obj = sq.Dequeue();
                 _currentSerializationQueue = _serializationQueues.Count - 1;
@@ -184,7 +184,7 @@ namespace HKX2E
                         databw.Pad(16);
                     }
 
-                    if (q.Count == 0)
+                    if (q == null || q.Count == 0)
                     {
                         _currentLocalWriteQueue = _localWriteQueues.Count - 1;
                         continue;

@@ -36,8 +36,8 @@ namespace HKX2E
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
-            xs.WriteClassPointerArray(xe, nameof(sectors), sectors);
-            xs.WriteClassPointerArray(xe, nameof(subTracks), subTracks);
+            xs.WriteClassPointerArray(xe, nameof(sectors), sectors!);
+            xs.WriteClassPointerArray(xe, nameof(subTracks), subTracks!);
         }
 
         public override bool Equals(object? obj)

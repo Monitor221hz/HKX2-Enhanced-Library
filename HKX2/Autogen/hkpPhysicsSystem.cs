@@ -67,10 +67,10 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(rigidBodies), rigidBodies);
-            xs.WriteClassPointerArray(xe, nameof(constraints), constraints);
-            xs.WriteClassPointerArray(xe, nameof(actions), actions);
-            xs.WriteClassPointerArray(xe, nameof(phantoms), phantoms);
+            xs.WriteClassPointerArray(xe, nameof(rigidBodies), rigidBodies!);
+            xs.WriteClassPointerArray(xe, nameof(constraints), constraints!);
+            xs.WriteClassPointerArray(xe, nameof(actions), actions!);
+            xs.WriteClassPointerArray(xe, nameof(phantoms), phantoms!);
             xs.WriteString(xe, nameof(name), name);
             xs.WriteNumber(xe, nameof(userData), userData);
             xs.WriteBoolean(xe, nameof(active), active);

@@ -132,7 +132,7 @@ namespace HKX2E
             xs.WriteNumberArray(xe, nameof(deformableSkinIds), deformableSkinIds);
             xs.WriteNumberArray(xe, nameof(rigidSkinIds), rigidSkinIds);
             xs.WriteNumberArray(xe, nameof(externalEventIds), externalEventIds);
-            xs.WriteClassPointerArray(xe, nameof(auxiliaryInfo), auxiliaryInfo);
+            xs.WriteClassPointerArray(xe, nameof(auxiliaryInfo), auxiliaryInfo!);
             xs.WriteNumberArray(xe, nameof(activeEventIds), activeEventIds);
             xs.WriteNumberArray(xe, nameof(activeVariableIds), activeVariableIds);
             xs.WriteNumber(xe, nameof(characterId), characterId);

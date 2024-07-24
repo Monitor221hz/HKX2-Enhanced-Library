@@ -47,7 +47,7 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(links), links);
             xs.WriteClassArray(xe, nameof(targets), targets);
-            xs.WriteClassPointerArray(xe, nameof(chains), chains);
+            xs.WriteClassPointerArray(xe, nameof(chains), chains!);
         }
 
         public override bool Equals(object? obj)

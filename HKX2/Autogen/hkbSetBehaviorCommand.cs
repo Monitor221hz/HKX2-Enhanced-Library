@@ -72,7 +72,7 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(characterId), characterId);
             xs.WriteClassPointer(xe, nameof(behavior), behavior);
             xs.WriteClassPointer(xe, nameof(rootGenerator), rootGenerator);
-            xs.WriteClassPointerArray(xe, nameof(referencedBehaviors), referencedBehaviors);
+            xs.WriteClassPointerArray(xe, nameof(referencedBehaviors), referencedBehaviors!);
             xs.WriteNumber(xe, nameof(startStateIndex), startStateIndex);
             xs.WriteBoolean(xe, nameof(randomizeSimulation), randomizeSimulation);
             xs.WriteNumber(xe, nameof(padding), padding);

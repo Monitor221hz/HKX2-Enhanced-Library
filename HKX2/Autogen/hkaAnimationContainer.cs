@@ -55,11 +55,11 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(skeletons), skeletons);
-            xs.WriteClassPointerArray(xe, nameof(animations), animations);
-            xs.WriteClassPointerArray(xe, nameof(bindings), bindings);
-            xs.WriteClassPointerArray(xe, nameof(attachments), attachments);
-            xs.WriteClassPointerArray(xe, nameof(skins), skins);
+            xs.WriteClassPointerArray(xe, nameof(skeletons), skeletons!);
+            xs.WriteClassPointerArray(xe, nameof(animations), animations!);
+            xs.WriteClassPointerArray(xe, nameof(bindings), bindings!);
+            xs.WriteClassPointerArray(xe, nameof(attachments), attachments!);
+            xs.WriteClassPointerArray(xe, nameof(skins), skins!);
         }
 
         public override bool Equals(object? obj)

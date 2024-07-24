@@ -54,7 +54,7 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(overlappingBodies), overlappingBodies);
+            xs.WriteClassPointerArray(xe, nameof(overlappingBodies), overlappingBodies!);
             xs.WriteClassArray(xe, nameof(eventQueue), eventQueue);
             xs.WriteClassPointer(xe, nameof(triggerBody), triggerBody);
             xs.WriteNumber(xe, nameof(sequenceNumber), sequenceNumber);

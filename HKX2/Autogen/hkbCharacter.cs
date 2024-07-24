@@ -71,8 +71,8 @@ namespace HKX2E
             des.ReadEmptyPointer(br);
             des.ReadEmptyPointer(br);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            deleteWorldFromModel = br.ReadBoolean();
-            deletePoseLocal = br.ReadBoolean();
+            //deleteWorldFromModel = br.ReadBoolean();
+            //deletePoseLocal = br.ReadBoolean();
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -96,8 +96,8 @@ namespace HKX2E
             s.WriteVoidPointer(bw);
             s.WriteVoidPointer(bw);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            bw.WriteBoolean(deleteWorldFromModel);
-            bw.WriteBoolean(deletePoseLocal);
+            //bw.WriteBoolean(deleteWorldFromModel);
+            //bw.WriteBoolean(deletePoseLocal);
         }
 
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
@@ -114,7 +114,7 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(nearbyCharacters), nearbyCharacters);
+            xs.WriteClassPointerArray(xe, nameof(nearbyCharacters), nearbyCharacters!);
             xs.WriteNumber(xe, nameof(currentLod), currentLod);
             xs.WriteSerializeIgnored(xe, nameof(numTracksInLod));
             xs.WriteString(xe, nameof(name), name);

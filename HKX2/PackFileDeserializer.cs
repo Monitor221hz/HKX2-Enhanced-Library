@@ -118,7 +118,7 @@ namespace HKX2E
                 var oType = typeof(T);
                 if (oType.IsGenericType && oType.GetGenericTypeDefinition() == typeof(List<>)) return func(br, new F());
 
-                return default;
+                return default!;
             }
 
             var f = map[key];
@@ -165,7 +165,7 @@ namespace HKX2E
             br.AssertUSize(0);
 
             // Do a global fixup lookup
-            if (!_dataSection._globalMap.ContainsKey(key)) return default;
+            if (!_dataSection._globalMap.ContainsKey(key)) return default!;
 
             var f = _dataSection._globalMap[key];
             var klass = ConstructVirtualClass(br, f.Dst);

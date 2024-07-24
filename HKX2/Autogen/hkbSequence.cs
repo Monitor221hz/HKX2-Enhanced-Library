@@ -99,10 +99,10 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(eventSequencedData), eventSequencedData);
-            xs.WriteClassPointerArray(xe, nameof(realVariableSequencedData), realVariableSequencedData);
-            xs.WriteClassPointerArray(xe, nameof(boolVariableSequencedData), boolVariableSequencedData);
-            xs.WriteClassPointerArray(xe, nameof(intVariableSequencedData), intVariableSequencedData);
+            xs.WriteClassPointerArray(xe, nameof(eventSequencedData), eventSequencedData!);
+            xs.WriteClassPointerArray(xe, nameof(realVariableSequencedData), realVariableSequencedData!);
+            xs.WriteClassPointerArray(xe, nameof(boolVariableSequencedData), boolVariableSequencedData!);
+            xs.WriteClassPointerArray(xe, nameof(intVariableSequencedData), intVariableSequencedData!);
             xs.WriteNumber(xe, nameof(enableEventId), enableEventId);
             xs.WriteNumber(xe, nameof(disableEventId), disableEventId);
             xs.WriteClassPointer(xe, nameof(stringData), stringData);

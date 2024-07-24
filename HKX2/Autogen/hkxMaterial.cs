@@ -86,7 +86,7 @@ namespace HKX2E
             xs.WriteVector4(xe, nameof(ambientColor), ambientColor);
             xs.WriteVector4(xe, nameof(specularColor), specularColor);
             xs.WriteVector4(xe, nameof(emissiveColor), emissiveColor);
-            xs.WriteClassPointerArray(xe, nameof(subMaterials), subMaterials);
+            xs.WriteClassPointerArray(xe, nameof(subMaterials), subMaterials!);
             xs.WriteClassPointer(xe, nameof(extraData), extraData);
             xs.WriteClassArray(xe, nameof(properties), properties);
         }

@@ -18,14 +18,14 @@ namespace HKX2E
         {
             name = des.ReadCString(br);
             throw new NotImplementedException("TPYE_VARIANT");
-            br.Position += 8;
+            //br.Position += 8;
         }
 
         public virtual void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             s.WriteCString(bw, name);
             throw new NotImplementedException("TPYE_VARIANT");
-            bw.Position += 8;
+            //bw.Position += 8;
         }
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
@@ -49,7 +49,7 @@ namespace HKX2E
         {
             return other is not null &&
                    (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   value.Equals(other.value) &&
+                   value!.Equals(other.value) &&
                    Signature == other.Signature; ;
         }
 

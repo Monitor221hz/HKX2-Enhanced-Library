@@ -31,24 +31,24 @@ namespace HKX2E
         {
             s.WriteCString(bw, name);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            s.WriteClassPointer(bw, attributes);
-            bw.WriteUInt32(flags);
-            bw.Position += 4;
+            //s.WriteClassPointer(bw, attributes);
+            //bw.WriteUInt32(flags);
+            //bw.Position += 4;
         }
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            flags = xd.ReadFlag<FlagValues, uint>(xe, nameof(flags));
+            //flags = xd.ReadFlag<FlagValues, uint>(xe, nameof(flags));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteString(xe, nameof(name), name);
             throw new NotImplementedException("TPYE_SIMPLEARRAY");
-            xs.WriteSerializeIgnored(xe, nameof(attributes));
-            xs.WriteFlag<FlagValues, uint>(xe, nameof(flags), flags);
+            //xs.WriteSerializeIgnored(xe, nameof(attributes));
+            //xs.WriteFlag<FlagValues, uint>(xe, nameof(flags), flags);
         }
 
         public override bool Equals(object? obj)
@@ -60,7 +60,7 @@ namespace HKX2E
         {
             return other is not null &&
                    (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   items.Equals(other.items) &&
+                   items!.Equals(other.items) &&
                    flags.Equals(other.flags) &&
                    Signature == other.Signature; ;
         }

@@ -48,7 +48,7 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteClassArray(xe, nameof(wordVariableValues), wordVariableValues);
             xs.WriteVector4Array(xe, nameof(quadVariableValues), quadVariableValues);
-            xs.WriteClassPointerArray(xe, nameof(variantVariableValues), variantVariableValues);
+            xs.WriteClassPointerArray(xe, nameof(variantVariableValues), variantVariableValues!);
         }
 
         public override bool Equals(object? obj)

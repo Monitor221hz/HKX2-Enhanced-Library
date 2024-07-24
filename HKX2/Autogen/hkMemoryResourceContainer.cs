@@ -51,8 +51,8 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(name), name);
             xs.WriteSerializeIgnored(xe, nameof(parent));
-            xs.WriteClassPointerArray(xe, nameof(resourceHandles), resourceHandles);
-            xs.WriteClassPointerArray(xe, nameof(children), children);
+            xs.WriteClassPointerArray(xe, nameof(resourceHandles), resourceHandles!);
+            xs.WriteClassPointerArray(xe, nameof(children), children!);
         }
 
         public override bool Equals(object? obj)

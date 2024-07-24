@@ -113,7 +113,7 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(indexOfSyncMasterChild), indexOfSyncMasterChild);
             xs.WriteNumber(xe, nameof(flags), flags);
             xs.WriteBoolean(xe, nameof(subtractLastChild), subtractLastChild);
-            xs.WriteClassPointerArray(xe, nameof(children), children);
+            xs.WriteClassPointerArray(xe, nameof(children), children!);
             xs.WriteSerializeIgnored(xe, nameof(childrenInternalStates));
             xs.WriteSerializeIgnored(xe, nameof(sortedChildren));
             xs.WriteSerializeIgnored(xe, nameof(endIntervalWeight));

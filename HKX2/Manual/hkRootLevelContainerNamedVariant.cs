@@ -56,7 +56,7 @@ namespace HKX2E
             return other is not null &&
                    name == other.name &&
                    className == other.className &&
-                   ((variant is null && other.variant is null) || (variant is not null && variant.Equals((IHavokObject)other.variant))) &&
+                   ((variant is null && other.variant is null) || (variant is not null && variant.Equals((IHavokObject)other.variant!))) &&
                    Signature == other.Signature;
         }
 

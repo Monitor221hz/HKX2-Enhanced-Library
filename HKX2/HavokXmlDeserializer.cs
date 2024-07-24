@@ -38,8 +38,8 @@ namespace HKX2E
 
 			//skip node collection
 
-			var testnode = elementNameMap.First(item => item.Value.Attribute("class").Value == "hkRootLevelContainer").Value;
-			var rootrefName = testnode.Attribute("name").Value;
+			var testnode = elementNameMap.First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer").Value;
+			var rootrefName = testnode.Attribute("name")!.Value;
 			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
 			objectNameMap.Add(rootrefName, testobj);
 
@@ -64,7 +64,7 @@ namespace HKX2E
 			// collect nodes
 			foreach (var item in hksection.Elements())
 			{
-				var name = item.Attribute("name").Value;
+				var name = item.Attribute("name")!.Value;
 #if DEBUG
 				elementNameMap.Add(name, item);
 #else
@@ -72,8 +72,8 @@ namespace HKX2E
 #endif
 			}
 
-			var testnode = elementNameMap.First(item => item.Value.Attribute("class").Value == "hkRootLevelContainer").Value;
-			var rootrefName = testnode.Attribute("name").Value;
+			var testnode = elementNameMap.First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer").Value;
+			var rootrefName = testnode.Attribute("name")!.Value;
 			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
 			objectNameMap.Add(rootrefName, testobj);
 
@@ -87,16 +87,16 @@ namespace HKX2E
 		{
 			var name = xElement.Attribute("name")!.Value;
 
-			if (objectNameMap.TryGetValue(name, out IHavokObject value))
+			if (objectNameMap.TryGetValue(name, out IHavokObject? value))
 			{
-				return value;
+				return value!;
 			}
 
 			var hkClassName = xElement.Attribute("class")!.Value;
 			var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
 			if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
-			var ret = (IHavokObject)Activator.CreateInstance(hkClass);
+			var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
 			if (ret is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
 			if (ret.GetType().IsAssignableTo(typeof(T)))
@@ -113,7 +113,7 @@ namespace HKX2E
 			{
 				name = name[2..];
 			}
-			var eles = element.Elements("hkparam").Where(e => e.Attribute("name").Value == name);
+			var eles = element.Elements("hkparam").Where(e => e.Attribute("name")!.Value == name);
 			if (!eles.Any())
 			{
 				return null;
@@ -185,10 +185,10 @@ namespace HKX2E
 			if (refName == "null")
 				return default;
 
-			if (objectNameMap.TryGetValue(refName, out IHavokObject value))
+			if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
 				return (T)value;
 
-			if (!elementNameMap.TryGetValue(refName, out XElement refEle))
+			if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
 				throw new Exception($"Reference symbol '{refName}' not found. Make sure it defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			T ret = (T)ConstructVirtualClass<T>(refEle);

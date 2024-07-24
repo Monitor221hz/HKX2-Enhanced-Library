@@ -59,7 +59,7 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteTransform(xe, nameof(transform), transform);
-            xs.WriteClassPointerArray(xe, nameof(children), children);
+            xs.WriteClassPointerArray(xe, nameof(children), children!);
             xs.WriteClassPointer(xe, nameof(parentFrame), parentFrame);
             xs.WriteClassPointer(xe, nameof(group), group);
             xs.WriteString(xe, nameof(name), name);

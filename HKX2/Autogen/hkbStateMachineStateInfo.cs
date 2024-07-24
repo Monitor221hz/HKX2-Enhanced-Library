@@ -77,7 +77,7 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(listeners), listeners);
+            xs.WriteClassPointerArray(xe, nameof(listeners), listeners!);
             xs.WriteClassPointer(xe, nameof(enterNotifyEvents), enterNotifyEvents);
             xs.WriteClassPointer(xe, nameof(exitNotifyEvents), exitNotifyEvents);
             xs.WriteClassPointer(xe, nameof(transitions), transitions);

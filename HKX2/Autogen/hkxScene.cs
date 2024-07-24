@@ -102,14 +102,14 @@ namespace HKX2E
             xs.WriteString(xe, nameof(asset), asset);
             xs.WriteFloat(xe, nameof(sceneLength), sceneLength);
             xs.WriteClassPointer(xe, nameof(rootNode), rootNode);
-            xs.WriteClassPointerArray(xe, nameof(selectionSets), selectionSets);
-            xs.WriteClassPointerArray(xe, nameof(cameras), cameras);
-            xs.WriteClassPointerArray(xe, nameof(lights), lights);
-            xs.WriteClassPointerArray(xe, nameof(meshes), meshes);
-            xs.WriteClassPointerArray(xe, nameof(materials), materials);
-            xs.WriteClassPointerArray(xe, nameof(inplaceTextures), inplaceTextures);
-            xs.WriteClassPointerArray(xe, nameof(externalTextures), externalTextures);
-            xs.WriteClassPointerArray(xe, nameof(skinBindings), skinBindings);
+            xs.WriteClassPointerArray(xe, nameof(selectionSets), selectionSets!);
+            xs.WriteClassPointerArray(xe, nameof(cameras), cameras!);
+            xs.WriteClassPointerArray(xe, nameof(lights), lights!);
+            xs.WriteClassPointerArray(xe, nameof(meshes), meshes!);
+            xs.WriteClassPointerArray(xe, nameof(materials), materials!);
+            xs.WriteClassPointerArray(xe, nameof(inplaceTextures), inplaceTextures!);
+            xs.WriteClassPointerArray(xe, nameof(externalTextures), externalTextures!);
+            xs.WriteClassPointerArray(xe, nameof(skinBindings), skinBindings!);
             xs.WriteMatrix3(xe, nameof(appliedTransform), appliedTransform);
         }
 

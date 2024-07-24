@@ -174,7 +174,7 @@ namespace HKX2E
             xs.WriteEnum<StartStateMode, sbyte>(xe, nameof(startStateMode), startStateMode);
             xs.WriteEnum<StateMachineSelfTransitionMode, sbyte>(xe, nameof(selfTransitionMode), selfTransitionMode);
             xs.WriteSerializeIgnored(xe, nameof(isActive));
-            xs.WriteClassPointerArray(xe, nameof(states), states);
+            xs.WriteClassPointerArray(xe, nameof(states), states!);
             xs.WriteClassPointer(xe, nameof(wildcardTransitions), wildcardTransitions);
             xs.WriteSerializeIgnored(xe, nameof(stateIdToIndexMap));
             xs.WriteSerializeIgnored(xe, nameof(activeTransitions));

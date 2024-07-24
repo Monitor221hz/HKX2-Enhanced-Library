@@ -40,7 +40,7 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(nodeInternalStateInfos), nodeInternalStateInfos);
+            xs.WriteClassPointerArray(xe, nameof(nodeInternalStateInfos), nodeInternalStateInfos!);
             xs.WriteClassPointer(xe, nameof(variableValueSet), variableValueSet);
         }
 

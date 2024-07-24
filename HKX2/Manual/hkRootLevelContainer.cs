@@ -18,7 +18,7 @@ namespace HKX2E
 
         public void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
-            namedVariants = des.ReadClassArray<hkRootLevelContainerNamedVariant>(br);
+            namedVariants = des.ReadClassArray<hkRootLevelContainerNamedVariant>(br)!;
         }
 
         public void Write(PackFileSerializer s, BinaryWriterEx bw)

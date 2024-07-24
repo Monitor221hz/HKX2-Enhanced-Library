@@ -209,7 +209,7 @@ namespace HKX2E
             return Src == other.Src && Dst == other.Dst;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
@@ -251,7 +251,7 @@ namespace HKX2E
             return Src == other.Src && Dst == other.Dst;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
@@ -293,7 +293,7 @@ namespace HKX2E
             return Src == other.Src && Dst == other.Dst;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;

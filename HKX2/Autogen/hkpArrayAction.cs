@@ -35,7 +35,7 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(entities), entities);
+            xs.WriteClassPointerArray(xe, nameof(entities), entities!);
         }
 
         public override bool Equals(object? obj)

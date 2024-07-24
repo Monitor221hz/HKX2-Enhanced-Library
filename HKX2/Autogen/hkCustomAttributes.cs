@@ -40,7 +40,7 @@ namespace HKX2E
         public bool Equals(hkCustomAttributes? other)
         {
             return other is not null &&
-                   attributes.Equals(other.attributes) &&
+                   attributes!.Equals(other.attributes) &&
                    Signature == other.Signature; ;
         }
 

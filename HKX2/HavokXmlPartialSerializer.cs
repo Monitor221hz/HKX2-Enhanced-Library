@@ -12,13 +12,13 @@ namespace HKX2E
 		private int index = 0050;
 		private readonly HashSet<uint> staticIndexes = new HashSet<uint>();
 
-		private Dictionary<IHavokObject, string> nameSerializedObjectsMap; 
+		private Dictionary<IHavokObject, string> nameObjectMap; 
 
         public HavokXmlPartialSerializer()
         {
-			nameSerializedObjectsMap = new(); 
+			nameObjectMap = new(); 
         }
-        public HavokXmlPartialSerializer(HavokXmlDeserializerContext sharedContext)
+        public HavokXmlPartialSerializer(HavokXmlDeserializerContext sharedContext) : this()
         {
 			IEnumerable<string> indexedNames = sharedContext.ElementNameMap.Keys;
 			uint num;
@@ -53,13 +53,13 @@ namespace HKX2E
 		{
 			XElement ele = new("hkobject");
 			string name;
-			lock (nameSerializedObjectsMap)
+			lock (nameObjectMap)
 			{
-				if (!nameSerializedObjectsMap.TryGetValue(hkObject, out string? existingName))
+				if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
 				{
 
 					name = GetIndex();
-					nameSerializedObjectsMap.Add(hkObject, name);
+					nameObjectMap.Add(hkObject, name);
 				}
 				else
 				{
@@ -74,11 +74,11 @@ namespace HKX2E
 		{
 			string name = hkNode.name;
 			XElement ele = new("hkobject");	
-			lock (nameSerializedObjectsMap)
+			lock (nameObjectMap)
 			{
-				if (!nameSerializedObjectsMap.TryGetValue(hkNode, out string? existingName))
+				if (!nameObjectMap.TryGetValue(hkNode, out string? existingName))
 				{
-					nameSerializedObjectsMap.Add(hkNode, name);
+					nameObjectMap.Add(hkNode, name);
 				}
 				else
 				{
@@ -93,11 +93,11 @@ namespace HKX2E
 		public XElement SerializeNamedObject<T>(T hkObject, string name, out bool existingReference) where T : IHavokObject
 		{
 			XElement ele = new("hkobject");
-			lock (nameSerializedObjectsMap)
+			lock (nameObjectMap)
 			{
-				if (!nameSerializedObjectsMap.TryGetValue(hkObject, out string? existingName))
+				if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
 				{
-					nameSerializedObjectsMap.Add(hkObject, name);
+					nameObjectMap.Add(hkObject, name);
 					existingReference = false;
 				}
 				else
@@ -113,11 +113,11 @@ namespace HKX2E
 		public XElement SerializeNamedObject<T>(T hkObject, string name) where T : IHavokObject
 		{
 			XElement ele = new("hkobject");
-			lock (nameSerializedObjectsMap)
+			lock (nameObjectMap)
 			{
-				if (!nameSerializedObjectsMap.TryGetValue(hkObject, out string? existingName))
+				if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
 				{
-					nameSerializedObjectsMap.Add(hkObject, name);
+					nameObjectMap.Add(hkObject, name);
 				}
 				else
 				{
@@ -154,15 +154,15 @@ namespace HKX2E
 				WriteString(xe, paramName, "null");
 				return;
 			}
-			if (nameSerializedObjectsMap.ContainsKey(value))
+			if (nameObjectMap.ContainsKey(value))
 			{
-				var index = nameSerializedObjectsMap[value];
+				var index = nameObjectMap[value];
 				var hkparam = WriteString(xe, paramName, index);
 			}
 			else
 			{
 				var index = GetIndex();
-				nameSerializedObjectsMap.Add(value, index);
+				nameObjectMap.Add(value, index);
 				WriteString(xe, paramName, index);
 				var node = WriteNode(value, index);
 				value.WriteXml(this, node);
@@ -181,13 +181,13 @@ namespace HKX2E
 					indexs.Add("null");
 					continue;
 				}
-				if (nameSerializedObjectsMap.ContainsKey(item))
+				if (nameObjectMap.ContainsKey(item))
 				{
-					indexs.Add(nameSerializedObjectsMap[item]);
+					indexs.Add(nameObjectMap[item]);
 					continue;
 				}
 				var index = GetIndex();
-				nameSerializedObjectsMap.Add(item, index);
+				nameObjectMap.Add(item, index);
 				indexs.Add(index);
 				var node = WriteNode(item, index);
 				item.WriteXml(this, node);

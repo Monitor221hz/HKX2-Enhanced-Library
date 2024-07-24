@@ -54,7 +54,7 @@ namespace HKX2E
             xs.WriteVector4Array(xe, nameof(data), data);
             xs.WriteNumberArray(xe, nameof(commands), commands);
             xs.WriteSerializeIgnored(xe, nameof(modifiers));
-            xs.WriteClassPointerArray(xe, nameof(motors), motors);
+            xs.WriteClassPointerArray(xe, nameof(motors), motors!);
         }
 
         public override bool Equals(object? obj)

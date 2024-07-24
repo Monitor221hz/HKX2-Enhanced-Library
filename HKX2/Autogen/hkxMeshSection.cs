@@ -51,9 +51,9 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(vertexBuffer), vertexBuffer);
-            xs.WriteClassPointerArray(xe, nameof(indexBuffers), indexBuffers);
+            xs.WriteClassPointerArray(xe, nameof(indexBuffers), indexBuffers!);
             xs.WriteClassPointer(xe, nameof(material), material);
-            xs.WriteClassPointerArray(xe, nameof(userChannels), userChannels);
+            xs.WriteClassPointerArray(xe, nameof(userChannels), userChannels!);
         }
 
         public override bool Equals(object? obj)

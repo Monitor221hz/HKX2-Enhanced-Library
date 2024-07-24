@@ -504,7 +504,7 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(lastEntityUid), lastEntityUid);
             xs.WriteNumber(xe, nameof(lastIslandUid), lastIslandUid);
             xs.WriteNumber(xe, nameof(lastConstraintUid), lastConstraintUid);
-            xs.WriteClassPointerArray(xe, nameof(phantoms), phantoms);
+            xs.WriteClassPointerArray(xe, nameof(phantoms), phantoms!);
             xs.WriteSerializeIgnored(xe, nameof(actionListeners));
             xs.WriteSerializeIgnored(xe, nameof(entityListeners));
             xs.WriteSerializeIgnored(xe, nameof(phantomListeners));

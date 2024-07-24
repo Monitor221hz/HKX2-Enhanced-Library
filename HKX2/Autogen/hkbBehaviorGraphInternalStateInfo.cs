@@ -57,7 +57,7 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);
             xs.WriteClassPointer(xe, nameof(internalState), internalState);
-            xs.WriteClassPointerArray(xe, nameof(auxiliaryNodeInfo), auxiliaryNodeInfo);
+            xs.WriteClassPointerArray(xe, nameof(auxiliaryNodeInfo), auxiliaryNodeInfo!);
             xs.WriteNumberArray(xe, nameof(activeEventIds), activeEventIds);
             xs.WriteNumberArray(xe, nameof(activeVariableIds), activeVariableIds);
         }
