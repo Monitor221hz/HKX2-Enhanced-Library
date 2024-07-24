@@ -47,7 +47,7 @@ namespace HKX2E
 			return (obj != null); 
 		}
 		/// <summary>
-		/// Use only on objects that are known to exist beforehand.
+		/// Use only on objects with known type and name.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="name"></param>
