@@ -36,7 +36,7 @@ namespace HKX2E
         {
             name = xd.ReadString(xe, nameof(name));
             className = xd.ReadString(xe, nameof(className));
-            variant = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(variant));
+            variant = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(variant));
         }
 
         public void WriteXml(IHavokXmlWriter xs, XElement xe)

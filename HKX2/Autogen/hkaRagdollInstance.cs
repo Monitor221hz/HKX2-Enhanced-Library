@@ -41,10 +41,10 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(rigidBodies));
-            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(xe, nameof(constraints));
+            rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(this, xe, nameof(rigidBodies));
+            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(this, xe, nameof(constraints));
             boneToRigidBodyMap = xd.ReadInt32Array(xe, nameof(boneToRigidBodyMap));
-            skeleton = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeleton));
+            skeleton = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(skeleton));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

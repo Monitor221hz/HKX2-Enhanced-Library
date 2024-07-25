@@ -32,7 +32,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            pStateMachine = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pStateMachine));
+            pStateMachine = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pStateMachine));
             StateID = xd.ReadInt32(xe, nameof(StateID));
             iStateToSetAs = xd.ReadInt32(xe, nameof(iStateToSetAs));
         }

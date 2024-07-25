@@ -41,9 +41,9 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            frame = xd.ReadClassPointer<hkLocalFrame>(xe, nameof(frame));
-            rigidBody = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(rigidBody));
-            character = xd.ReadClassPointer<hkbCharacter>(xe, nameof(character));
+            frame = xd.ReadClassPointer<hkLocalFrame>(this, xe, nameof(frame));
+            rigidBody = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(rigidBody));
+            character = xd.ReadClassPointer<hkbCharacter>(this, xe, nameof(character));
             animationBoneIndex = xd.ReadInt16(xe, nameof(animationBoneIndex));
         }
 

@@ -64,8 +64,8 @@ namespace HKX2E
         {
             triggerInterval = xd.ReadClass<hkbStateMachineTimeInterval>(xe, nameof(triggerInterval));
             initiateInterval = xd.ReadClass<hkbStateMachineTimeInterval>(xe, nameof(initiateInterval));
-            transition = xd.ReadClassPointer<hkbTransitionEffect>(xe, nameof(transition));
-            condition = xd.ReadClassPointer<hkbCondition>(xe, nameof(condition));
+            transition = xd.ReadClassPointer<hkbTransitionEffect>(this, xe, nameof(transition));
+            condition = xd.ReadClassPointer<hkbCondition>(this, xe, nameof(condition));
             eventId = xd.ReadInt32(xe, nameof(eventId));
             toStateId = xd.ReadInt32(xe, nameof(toStateId));
             fromNestedStateId = xd.ReadInt32(xe, nameof(fromNestedStateId));

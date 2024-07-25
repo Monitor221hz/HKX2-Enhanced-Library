@@ -112,7 +112,7 @@ namespace HKX2E
             up = xd.ReadVector4(xe, nameof(up));
             extraUpStaticFriction = xd.ReadSingle(xe, nameof(extraUpStaticFriction));
             extraDownStaticFriction = xd.ReadSingle(xe, nameof(extraDownStaticFriction));
-            shapePhantom = xd.ReadClassPointer<hkpShapePhantom>(xe, nameof(shapePhantom));
+            shapePhantom = xd.ReadClassPointer<hkpShapePhantom>(this, xe, nameof(shapePhantom));
             keepDistance = xd.ReadSingle(xe, nameof(keepDistance));
             contactAngleSensitivity = xd.ReadSingle(xe, nameof(contactAngleSensitivity));
             userPlanes = xd.ReadUInt32(xe, nameof(userPlanes));

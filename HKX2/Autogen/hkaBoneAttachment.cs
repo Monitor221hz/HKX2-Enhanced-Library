@@ -50,7 +50,7 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             originalSkeletonName = xd.ReadString(xe, nameof(originalSkeletonName));
             boneFromAttachment = xd.ReadMatrix4(xe, nameof(boneFromAttachment));
-            attachment = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(attachment));
+            attachment = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(attachment));
             name = xd.ReadString(xe, nameof(name));
             boneIndex = xd.ReadInt16(xe, nameof(boneIndex));
         }

@@ -396,9 +396,9 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            simulation = xd.ReadClassPointer<hkpSimulation>(xe, nameof(simulation));
+            simulation = xd.ReadClassPointer<hkpSimulation>(this, xe, nameof(simulation));
             gravity = xd.ReadVector4(xe, nameof(gravity));
-            fixedRigidBody = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(fixedRigidBody));
+            fixedRigidBody = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(fixedRigidBody));
             autoUpdateTree = xd.ReadBoolean(xe, nameof(autoUpdateTree));
             pendingOperationsCount = xd.ReadInt32(xe, nameof(pendingOperationsCount));
             criticalOperationsLockCount = xd.ReadInt32(xe, nameof(criticalOperationsLockCount));
@@ -431,7 +431,7 @@ namespace HKX2E
             lastEntityUid = xd.ReadUInt32(xe, nameof(lastEntityUid));
             lastIslandUid = xd.ReadUInt32(xe, nameof(lastIslandUid));
             lastConstraintUid = xd.ReadUInt32(xe, nameof(lastConstraintUid));
-            phantoms = xd.ReadClassPointerArray<hkpPhantom>(xe, nameof(phantoms));
+            phantoms = xd.ReadClassPointerArray<hkpPhantom>(this, xe, nameof(phantoms));
             broadPhaseExtents = xd.ReadVector4CStyleArray(xe, nameof(broadPhaseExtents), 2);
             broadPhaseNumMarkers = xd.ReadInt32(xe, nameof(broadPhaseNumMarkers));
             sizeOfToiEventQueue = xd.ReadInt32(xe, nameof(sizeOfToiEventQueue));

@@ -72,8 +72,8 @@ namespace HKX2E
             ambientColor = xd.ReadVector4(xe, nameof(ambientColor));
             specularColor = xd.ReadVector4(xe, nameof(specularColor));
             emissiveColor = xd.ReadVector4(xe, nameof(emissiveColor));
-            subMaterials = xd.ReadClassPointerArray<hkxMaterial>(xe, nameof(subMaterials));
-            extraData = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(extraData));
+            subMaterials = xd.ReadClassPointerArray<hkxMaterial>(this, xe, nameof(subMaterials));
+            extraData = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(extraData));
             properties = xd.ReadClassArray<hkxMaterialProperty>(xe, nameof(properties));
         }
 

@@ -79,9 +79,9 @@ namespace HKX2E
             sendToAttacheeOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnAttach));
             sendToAttacherOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnDetach));
             sendToAttacheeOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnDetach));
-            attachmentSetup = xd.ReadClassPointer<hkbAttachmentSetup>(xe, nameof(attachmentSetup));
-            attacherHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(attacherHandle));
-            attacheeHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(attacheeHandle));
+            attachmentSetup = xd.ReadClassPointer<hkbAttachmentSetup>(this, xe, nameof(attachmentSetup));
+            attacherHandle = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(attacherHandle));
+            attacheeHandle = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(attacheeHandle));
             attacheeLayer = xd.ReadInt32(xe, nameof(attacheeLayer));
         }
 

@@ -33,8 +33,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rigidBodyBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(xe, nameof(rigidBodyBindings));
-            physicsSystemBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataPhysicsSystem>(xe, nameof(physicsSystemBindings));
+            rigidBodyBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(this, xe, nameof(rigidBodyBindings));
+            physicsSystemBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataPhysicsSystem>(this, xe, nameof(physicsSystemBindings));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

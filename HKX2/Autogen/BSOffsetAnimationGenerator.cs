@@ -76,8 +76,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pDefaultGenerator));
-            pOffsetClipGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pOffsetClipGenerator));
+            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pDefaultGenerator));
+            pOffsetClipGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pOffsetClipGenerator));
             fOffsetVariable = xd.ReadSingle(xe, nameof(fOffsetVariable));
             fOffsetRangeStart = xd.ReadSingle(xe, nameof(fOffsetRangeStart));
             fOffsetRangeEnd = xd.ReadSingle(xe, nameof(fOffsetRangeEnd));

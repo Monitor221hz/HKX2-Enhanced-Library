@@ -31,7 +31,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            disabledEntities = xd.ReadClassPointerArray<hkpEntity>(xe, nameof(disabledEntities));
+            disabledEntities = xd.ReadClassPointerArray<hkpEntity>(this, xe, nameof(disabledEntities));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

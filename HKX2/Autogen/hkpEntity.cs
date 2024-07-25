@@ -130,7 +130,7 @@ namespace HKX2E
             uid = xd.ReadUInt32(xe, nameof(uid));
             spuCollisionCallback = xd.ReadClass<hkpEntitySpuCollisionCallback>(xe, nameof(spuCollisionCallback));
             motion = xd.ReadClass<hkpMaxSizeMotion>(xe, nameof(motion));
-            localFrame = xd.ReadClassPointer<hkLocalFrame>(xe, nameof(localFrame));
+            localFrame = xd.ReadClassPointer<hkLocalFrame>(this, xe, nameof(localFrame));
             npData = xd.ReadUInt32(xe, nameof(npData));
         }
 

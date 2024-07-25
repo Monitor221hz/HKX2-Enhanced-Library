@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            storage = xd.ReadClassPointerArray<hkpStorageMeshShapeSubpartStorage>(xe, nameof(storage));
+            storage = xd.ReadClassPointerArray<hkpStorageMeshShapeSubpartStorage>(this, xe, nameof(storage));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

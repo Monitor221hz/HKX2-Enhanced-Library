@@ -59,7 +59,7 @@ namespace HKX2E
             previousTargetAngleOffset = xd.ReadInt16(xe, nameof(previousTargetAngleOffset));
             correspondingAngLimitSolverResultOffset = xd.ReadInt16(xe, nameof(correspondingAngLimitSolverResultOffset));
             targetAngle = xd.ReadSingle(xe, nameof(targetAngle));
-            motor = xd.ReadClassPointer<hkpConstraintMotor>(xe, nameof(motor));
+            motor = xd.ReadClassPointer<hkpConstraintMotor>(this, xe, nameof(motor));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

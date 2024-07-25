@@ -33,7 +33,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            constraintData = xd.ReadClassPointer<hkpConstraintData>(xe, nameof(constraintData));
+            constraintData = xd.ReadClassPointer<hkpConstraintData>(this, xe, nameof(constraintData));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

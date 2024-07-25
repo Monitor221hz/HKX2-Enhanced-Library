@@ -41,7 +41,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            handleOut = xd.ReadClassPointer<hkbHandle>(xe, nameof(handleOut));
+            handleOut = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(handleOut));
             localFrameName = xd.ReadString(xe, nameof(localFrameName));
             ragdollBoneIndex = xd.ReadInt16(xe, nameof(ragdollBoneIndex));
             animationBoneIndex = xd.ReadInt16(xe, nameof(animationBoneIndex));

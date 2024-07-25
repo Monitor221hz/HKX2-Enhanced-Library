@@ -50,7 +50,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            transitionEffectInternalStateInfo = xd.ReadClassPointer<hkbNodeInternalStateInfo>(xe, nameof(transitionEffectInternalStateInfo));
+            transitionEffectInternalStateInfo = xd.ReadClassPointer<hkbNodeInternalStateInfo>(this, xe, nameof(transitionEffectInternalStateInfo));
             transitionInfoReference = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReference));
             transitionInfoReferenceForTE = xd.ReadClass<hkbStateMachineTransitionInfoReference>(xe, nameof(transitionInfoReferenceForTE));
             fromStateId = xd.ReadInt32(xe, nameof(fromStateId));

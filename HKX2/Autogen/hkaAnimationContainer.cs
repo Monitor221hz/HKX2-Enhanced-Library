@@ -45,11 +45,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            skeletons = xd.ReadClassPointerArray<hkaSkeleton>(xe, nameof(skeletons));
-            animations = xd.ReadClassPointerArray<hkaAnimation>(xe, nameof(animations));
-            bindings = xd.ReadClassPointerArray<hkaAnimationBinding>(xe, nameof(bindings));
-            attachments = xd.ReadClassPointerArray<hkaBoneAttachment>(xe, nameof(attachments));
-            skins = xd.ReadClassPointerArray<hkaMeshBinding>(xe, nameof(skins));
+            skeletons = xd.ReadClassPointerArray<hkaSkeleton>(this, xe, nameof(skeletons));
+            animations = xd.ReadClassPointerArray<hkaAnimation>(this, xe, nameof(animations));
+            bindings = xd.ReadClassPointerArray<hkaAnimationBinding>(this, xe, nameof(bindings));
+            attachments = xd.ReadClassPointerArray<hkaBoneAttachment>(this, xe, nameof(attachments));
+            skins = xd.ReadClassPointerArray<hkaMeshBinding>(this, xe, nameof(skins));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

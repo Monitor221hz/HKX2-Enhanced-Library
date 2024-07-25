@@ -36,8 +36,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rigidBody = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(rigidBody));
-            displayObjectPtr = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(displayObjectPtr));
+            rigidBody = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(rigidBody));
+            displayObjectPtr = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(displayObjectPtr));
             rigidBodyFromDisplayObjectTransform = xd.ReadMatrix4(xe, nameof(rigidBodyFromDisplayObjectTransform));
         }
 

@@ -53,7 +53,7 @@ namespace HKX2E
             duration = xd.ReadSingle(xe, nameof(duration));
             numberOfTransformTracks = xd.ReadInt32(xe, nameof(numberOfTransformTracks));
             numberOfFloatTracks = xd.ReadInt32(xe, nameof(numberOfFloatTracks));
-            extractedMotion = xd.ReadClassPointer<hkaAnimatedReferenceFrame>(xe, nameof(extractedMotion));
+            extractedMotion = xd.ReadClassPointer<hkaAnimatedReferenceFrame>(this, xe, nameof(extractedMotion));
             annotationTracks = xd.ReadClassArray<hkaAnnotationTrack>(xe, nameof(annotationTracks));
         }
 

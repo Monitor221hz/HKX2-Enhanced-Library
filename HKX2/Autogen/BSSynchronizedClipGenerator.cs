@@ -112,7 +112,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pClipGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pClipGenerator));
+            pClipGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pClipGenerator));
             SyncAnimPrefix = xd.ReadString(xe, nameof(SyncAnimPrefix));
             bSyncClipIgnoreMarkPlacement = xd.ReadBoolean(xe, nameof(bSyncClipIgnoreMarkPlacement));
             fGetToMarkTime = xd.ReadSingle(xe, nameof(fGetToMarkTime));

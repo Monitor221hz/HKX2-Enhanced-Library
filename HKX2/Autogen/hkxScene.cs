@@ -83,15 +83,15 @@ namespace HKX2E
             modeller = xd.ReadString(xe, nameof(modeller));
             asset = xd.ReadString(xe, nameof(asset));
             sceneLength = xd.ReadSingle(xe, nameof(sceneLength));
-            rootNode = xd.ReadClassPointer<hkxNode>(xe, nameof(rootNode));
-            selectionSets = xd.ReadClassPointerArray<hkxNodeSelectionSet>(xe, nameof(selectionSets));
-            cameras = xd.ReadClassPointerArray<hkxCamera>(xe, nameof(cameras));
-            lights = xd.ReadClassPointerArray<hkxLight>(xe, nameof(lights));
-            meshes = xd.ReadClassPointerArray<hkxMesh>(xe, nameof(meshes));
-            materials = xd.ReadClassPointerArray<hkxMaterial>(xe, nameof(materials));
-            inplaceTextures = xd.ReadClassPointerArray<hkxTextureInplace>(xe, nameof(inplaceTextures));
-            externalTextures = xd.ReadClassPointerArray<hkxTextureFile>(xe, nameof(externalTextures));
-            skinBindings = xd.ReadClassPointerArray<hkxSkinBinding>(xe, nameof(skinBindings));
+            rootNode = xd.ReadClassPointer<hkxNode>(this, xe, nameof(rootNode));
+            selectionSets = xd.ReadClassPointerArray<hkxNodeSelectionSet>(this, xe, nameof(selectionSets));
+            cameras = xd.ReadClassPointerArray<hkxCamera>(this, xe, nameof(cameras));
+            lights = xd.ReadClassPointerArray<hkxLight>(this, xe, nameof(lights));
+            meshes = xd.ReadClassPointerArray<hkxMesh>(this, xe, nameof(meshes));
+            materials = xd.ReadClassPointerArray<hkxMaterial>(this, xe, nameof(materials));
+            inplaceTextures = xd.ReadClassPointerArray<hkxTextureInplace>(this, xe, nameof(inplaceTextures));
+            externalTextures = xd.ReadClassPointerArray<hkxTextureFile>(this, xe, nameof(externalTextures));
+            skinBindings = xd.ReadClassPointerArray<hkxSkinBinding>(this, xe, nameof(skinBindings));
             appliedTransform = xd.ReadMatrix3(xe, nameof(appliedTransform));
         }
 

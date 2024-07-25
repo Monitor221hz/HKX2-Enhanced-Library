@@ -80,7 +80,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            handle = xd.ReadClassPointer<hkbHandle>(xe, nameof(handle));
+            handle = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(handle));
             handlePositionOut = xd.ReadVector4(xe, nameof(handlePositionOut));
             handleRotationOut = xd.ReadQuaternion(xe, nameof(handleRotationOut));
             isValidOut = xd.ReadBoolean(xe, nameof(isValidOut));

@@ -47,7 +47,7 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             syncInfo = xd.ReadClass<hkbGeneratorSyncInfo>(xe, nameof(syncInfo));
             name = xd.ReadString(xe, nameof(name));
-            internalState = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(internalState));
+            internalState = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(internalState));
             nodeId = xd.ReadInt16(xe, nameof(nodeId));
             hasActivateBeenCalled = xd.ReadBoolean(xe, nameof(hasActivateBeenCalled));
         }

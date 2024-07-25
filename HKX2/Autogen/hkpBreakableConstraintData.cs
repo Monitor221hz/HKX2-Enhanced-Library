@@ -54,7 +54,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
-            constraintData = xd.ReadClassPointer<hkpConstraintData>(xe, nameof(constraintData));
+            constraintData = xd.ReadClassPointer<hkpConstraintData>(this, xe, nameof(constraintData));
             childRuntimeSize = xd.ReadUInt16(xe, nameof(childRuntimeSize));
             childNumSolverResults = xd.ReadUInt16(xe, nameof(childNumSolverResults));
             solverResultLimit = xd.ReadSingle(xe, nameof(solverResultLimit));

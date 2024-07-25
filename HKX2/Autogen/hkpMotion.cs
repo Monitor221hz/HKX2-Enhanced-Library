@@ -86,7 +86,7 @@ namespace HKX2E
             angularVelocity = xd.ReadVector4(xe, nameof(angularVelocity));
             deactivationRefPosition = xd.ReadVector4CStyleArray(xe, nameof(deactivationRefPosition), 2);
             deactivationRefOrientation = xd.ReadUInt32CStyleArray(xe, nameof(deactivationRefOrientation), 2);
-            savedMotion = xd.ReadClassPointer<hkpMaxSizeMotion>(xe, nameof(savedMotion));
+            savedMotion = xd.ReadClassPointer<hkpMaxSizeMotion>(this, xe, nameof(savedMotion));
             savedQualityTypeIndex = xd.ReadUInt16(xe, nameof(savedQualityTypeIndex));
             gravityFactor = xd.ReadHalf(xe, nameof(gravityFactor));
         }

@@ -30,7 +30,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            chain = xd.ReadClassPointer<hkpPoweredChainData>(xe, nameof(chain));
+            chain = xd.ReadClassPointer<hkpPoweredChainData>(this, xe, nameof(chain));
             infoIndex = xd.ReadInt32(xe, nameof(infoIndex));
         }
 

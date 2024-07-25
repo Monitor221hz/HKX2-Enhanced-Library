@@ -9,21 +9,71 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
-
-	public class HavokXmlDeserializer : IHavokXmlReader
+	public class HavokReferenceXmlDeserializer : IHavokXmlReader
 	{
+
+
+
+
 		public XDocument document;
 		private HKXHeader header;
 		// store deserialized
+		private Dictionary<IHavokObject, List<IHavokReference>> referenceObjectMap;
 		private Dictionary<string, IHavokObject> objectNameMap;
 		private Dictionary<string, XElement> elementNameMap;
 		private HavokXmlDeserializerOptions options;
 		public HavokXmlDeserializerContext Context => new(objectNameMap, elementNameMap, options);
-		public HavokXmlDeserializer()
-        {
+		public HavokReferenceXmlDeserializer()
+		{
 			options = HavokXmlDeserializerOptions.None;
-        }
-		
+		}
+		public void UpdateReferences<T>(T newObject) where T : IHavokObject
+		{
+			if (referenceObjectMap.TryGetValue(newObject, out var havokReferences))
+			{
+				foreach (HavokSingleReference reference in havokReferences)
+				{
+					reference.Update(newObject);
+				}
+			}
+		}
+		public void AddReference<T>(T value, IHavokObject owner, string propertyName, int listIndex) where T : IHavokObject
+		{
+			HavokIndexedReference reference = new HavokIndexedReference(owner, propertyName, listIndex);
+			List<IHavokReference> referenceList;
+			lock (referenceObjectMap)
+			{
+				if (referenceObjectMap.TryGetValue(value, out referenceList!))
+				{
+					referenceList.Add(reference);
+				}
+			}
+			referenceList = new();
+			referenceList.Add(reference);
+			lock (referenceObjectMap)
+			{
+				referenceObjectMap.Add(value, referenceList);
+			}
+		}
+		public void AddReference<T>(T value, IHavokObject owner, string propertyName) where T : IHavokObject
+		{
+			HavokSingleReference reference = new HavokSingleReference(owner, propertyName);
+			List<IHavokReference> referenceList;
+			lock (referenceObjectMap)
+			{
+				if (referenceObjectMap.TryGetValue(value, out referenceList!))
+				{
+					referenceList.Add(reference);
+				}
+			}
+			referenceList = new();
+			referenceList.Add(reference);
+			lock (referenceObjectMap)
+			{
+				referenceObjectMap.Add(value, referenceList);
+			}
+		}
+
 		public IHavokObject Deserialize(Stream stream, HKXHeader header, HavokXmlDeserializerContext context, HavokXmlDeserializerOptions options)
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
@@ -185,14 +235,19 @@ namespace HKX2E
 			if (refName == "null")
 				return default;
 
-			if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
-				return (T)value;
+			if (objectNameMap.TryGetValue(refName, out IHavokObject? value) && value is T obj)
+			{
+				AddReference(obj, owner, name);
+				return obj;
+			}
+				
 
 			if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
 				throw new Exception($"Reference symbol '{refName}' not found. Make sure it defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			T ret = (T)ConstructVirtualClass<T>(refEle);
 			ret.ReadXml(this, refEle);
+			AddReference(ret, owner, name);
 			objectNameMap.Add(refName, ret);
 
 			return ret;
@@ -213,11 +268,13 @@ namespace HKX2E
 				return result;
 
 			var refNames = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			foreach (var refName in refNames)
+			for (int i = 0; i < refNames.Length; i++)
 			{
-				if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
+				string? refName = refNames[i];
+				if (objectNameMap.TryGetValue(refName, out IHavokObject? value) && value is T obj)
 				{
-					result.Add((T)value);
+					AddReference(obj, owner, refName, i); 
+					result.Add(obj);
 					continue;
 				}
 
@@ -227,7 +284,7 @@ namespace HKX2E
 				var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
 				objectNameMap.Add(refName, ret);
-
+				AddReference(ret, owner, refName, i);
 				result.Add(ret);
 			}
 			return result;
@@ -244,7 +301,6 @@ namespace HKX2E
 			var refNames = ele.Value.Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 			if (refNames.Length != length)
 				throw new Exception($"Content's elements mismatch property requierd. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Length}");
-
 			foreach (var (refName, i) in refNames.Select((v, i) => (v, i)))
 			{
 				if (refName == "null")
@@ -253,9 +309,10 @@ namespace HKX2E
 					continue;
 				}
 
-				if (objectNameMap.TryGetValue(refName, out var value))
+				if (objectNameMap.TryGetValue(refName, out var value) && value is T obj)
 				{
-					arr[i] = (T)value;
+					arr[i] = obj;
+					AddReference(obj, owner, name, i);
 					continue;
 				}
 
@@ -265,7 +322,7 @@ namespace HKX2E
 				var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
 				objectNameMap.Add(refName, ret);
-
+				AddReference(ret, owner, name, i);
 				arr[i] = ret;
 			}
 			return arr;

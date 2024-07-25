@@ -38,7 +38,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            shape = xd.ReadClassPointer<hkpShape>(xe, nameof(shape));
+            shape = xd.ReadClassPointer<hkpShape>(this, xe, nameof(shape));
             collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
         }
 

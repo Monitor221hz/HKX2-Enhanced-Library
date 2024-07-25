@@ -33,8 +33,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            worldCinfo = xd.ReadClassPointer<hkpWorldCinfo>(xe, nameof(worldCinfo));
-            systems = xd.ReadClassPointerArray<hkpPhysicsSystem>(xe, nameof(systems));
+            worldCinfo = xd.ReadClassPointer<hkpWorldCinfo>(this, xe, nameof(worldCinfo));
+            systems = xd.ReadClassPointerArray<hkpPhysicsSystem>(this, xe, nameof(systems));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

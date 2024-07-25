@@ -31,8 +31,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            entityA = xd.ReadClassPointer<hkpEntity>(xe, nameof(entityA));
-            entityB = xd.ReadClassPointer<hkpEntity>(xe, nameof(entityB));
+            entityA = xd.ReadClassPointer<hkpEntity>(this, xe, nameof(entityA));
+            entityB = xd.ReadClassPointer<hkpEntity>(this, xe, nameof(entityB));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

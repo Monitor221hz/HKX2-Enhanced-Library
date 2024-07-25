@@ -52,7 +52,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            shape = xd.ReadClassPointer<hkpShape>(xe, nameof(shape));
+            shape = xd.ReadClassPointer<hkpShape>(this, xe, nameof(shape));
             isHierarchicalCompound = xd.ReadBoolean(xe, nameof(isHierarchicalCompound));
             hkdShapesCollected = xd.ReadBoolean(xe, nameof(hkdShapesCollected));
             childShapeNames = xd.ReadStringArray(xe, nameof(childShapeNames));

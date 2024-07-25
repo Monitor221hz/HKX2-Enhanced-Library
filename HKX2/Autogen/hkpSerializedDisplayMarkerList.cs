@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            markers = xd.ReadClassPointerArray<hkpSerializedDisplayMarker>(xe, nameof(markers));
+            markers = xd.ReadClassPointerArray<hkpSerializedDisplayMarker>(this, xe, nameof(markers));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

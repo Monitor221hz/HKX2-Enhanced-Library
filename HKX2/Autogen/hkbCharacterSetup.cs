@@ -57,11 +57,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            retargetingSkeletonMappers = xd.ReadClassPointerArray<hkaSkeletonMapper>(xe, nameof(retargetingSkeletonMappers));
-            animationSkeleton = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(animationSkeleton));
-            ragdollToAnimationSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(xe, nameof(ragdollToAnimationSkeletonMapper));
-            animationToRagdollSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(xe, nameof(animationToRagdollSkeletonMapper));
-            data = xd.ReadClassPointer<hkbCharacterData>(xe, nameof(data));
+            retargetingSkeletonMappers = xd.ReadClassPointerArray<hkaSkeletonMapper>(this, xe, nameof(retargetingSkeletonMappers));
+            animationSkeleton = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(animationSkeleton));
+            ragdollToAnimationSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(this, xe, nameof(ragdollToAnimationSkeletonMapper));
+            animationToRagdollSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(this, xe, nameof(animationToRagdollSkeletonMapper));
+            data = xd.ReadClassPointer<hkbCharacterData>(this, xe, nameof(data));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

@@ -48,7 +48,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             originalSkeletonName = xd.ReadString(xe, nameof(originalSkeletonName));
-            animation = xd.ReadClassPointer<hkaAnimation>(xe, nameof(animation));
+            animation = xd.ReadClassPointer<hkaAnimation>(this, xe, nameof(animation));
             transformTrackToBoneIndices = xd.ReadInt16Array(xe, nameof(transformTrackToBoneIndices));
             floatTrackToFloatSlotIndices = xd.ReadInt16Array(xe, nameof(floatTrackToFloatSlotIndices));
             blendHint = xd.ReadFlag<BlendHint, sbyte>(xe, nameof(blendHint));

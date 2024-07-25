@@ -93,7 +93,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
-            shape = xd.ReadClassPointer<hkpShape>(xe, nameof(shape));
+            shape = xd.ReadClassPointer<hkpShape>(this, xe, nameof(shape));
             position = xd.ReadVector4(xe, nameof(position));
             rotation = xd.ReadQuaternion(xe, nameof(rotation));
             mass = xd.ReadSingle(xe, nameof(mass));

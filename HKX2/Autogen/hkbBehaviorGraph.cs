@@ -149,8 +149,8 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             variableMode = xd.ReadFlag<VariableMode, sbyte>(xe, nameof(variableMode));
-            rootGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(rootGenerator));
-            data = xd.ReadClassPointer<hkbBehaviorGraphData>(xe, nameof(data));
+            rootGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(rootGenerator));
+            data = xd.ReadClassPointer<hkbBehaviorGraphData>(this, xe, nameof(data));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

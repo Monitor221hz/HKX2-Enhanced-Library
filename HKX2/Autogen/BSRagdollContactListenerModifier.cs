@@ -45,7 +45,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             contactEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(contactEvent));
-            bones = xd.ReadClassPointer<hkbBoneIndexArray>(xe, nameof(bones));
+            bones = xd.ReadClassPointer<hkbBoneIndexArray>(this, xe, nameof(bones));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

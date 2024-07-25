@@ -45,9 +45,9 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            overlappingBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(overlappingBodies));
+            overlappingBodies = xd.ReadClassPointerArray<hkpRigidBody>(this, xe, nameof(overlappingBodies));
             eventQueue = xd.ReadClassArray<hkpTriggerVolumeEventInfo>(xe, nameof(eventQueue));
-            triggerBody = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(triggerBody));
+            triggerBody = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(triggerBody));
             sequenceNumber = xd.ReadUInt32(xe, nameof(sequenceNumber));
         }
 

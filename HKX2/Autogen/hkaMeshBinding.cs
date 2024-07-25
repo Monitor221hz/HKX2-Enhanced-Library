@@ -46,9 +46,9 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            mesh = xd.ReadClassPointer<hkxMesh>(xe, nameof(mesh));
+            mesh = xd.ReadClassPointer<hkxMesh>(this, xe, nameof(mesh));
             originalSkeletonName = xd.ReadString(xe, nameof(originalSkeletonName));
-            skeleton = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeleton));
+            skeleton = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(skeleton));
             mappings = xd.ReadClassArray<hkaMeshBindingMapping>(xe, nameof(mappings));
             boneFromSkinMeshTransforms = xd.ReadTransformArray(xe, nameof(boneFromSkinMeshTransforms));
         }

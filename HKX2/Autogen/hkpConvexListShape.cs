@@ -58,7 +58,7 @@ namespace HKX2E
             aabbHalfExtents = xd.ReadVector4(xe, nameof(aabbHalfExtents));
             aabbCenter = xd.ReadVector4(xe, nameof(aabbCenter));
             useCachedAabb = xd.ReadBoolean(xe, nameof(useCachedAabb));
-            childShapes = xd.ReadClassPointerArray<hkpConvexShape>(xe, nameof(childShapes));
+            childShapes = xd.ReadClassPointerArray<hkpConvexShape>(this, xe, nameof(childShapes));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

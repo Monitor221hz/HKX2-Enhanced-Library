@@ -31,7 +31,7 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             id = xd.ReadInt32(xe, nameof(id));
-            payload = xd.ReadClassPointer<hkbEventPayload>(xe, nameof(payload));
+            payload = xd.ReadClassPointer<hkbEventPayload>(this, xe, nameof(payload));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

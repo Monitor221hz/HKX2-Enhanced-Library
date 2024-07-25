@@ -104,8 +104,8 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             sensorLocalOffset = xd.ReadVector4(xe, nameof(sensorLocalOffset));
             ranges = xd.ReadClassArray<hkbSenseHandleModifierRange>(xe, nameof(ranges));
-            handleOut = xd.ReadClassPointer<hkbHandle>(xe, nameof(handleOut));
-            handleIn = xd.ReadClassPointer<hkbHandle>(xe, nameof(handleIn));
+            handleOut = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(handleOut));
+            handleIn = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(handleIn));
             localFrameName = xd.ReadString(xe, nameof(localFrameName));
             sensorLocalFrameName = xd.ReadString(xe, nameof(sensorLocalFrameName));
             minDistance = xd.ReadSingle(xe, nameof(minDistance));

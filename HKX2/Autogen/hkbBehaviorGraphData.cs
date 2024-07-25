@@ -63,8 +63,8 @@ namespace HKX2E
             eventInfos = xd.ReadClassArray<hkbEventInfo>(xe, nameof(eventInfos));
             wordMinVariableValues = xd.ReadClassArray<hkbVariableValue>(xe, nameof(wordMinVariableValues));
             wordMaxVariableValues = xd.ReadClassArray<hkbVariableValue>(xe, nameof(wordMaxVariableValues));
-            variableInitialValues = xd.ReadClassPointer<hkbVariableValueSet>(xe, nameof(variableInitialValues));
-            stringData = xd.ReadClassPointer<hkbBehaviorGraphStringData>(xe, nameof(stringData));
+            variableInitialValues = xd.ReadClassPointer<hkbVariableValueSet>(this, xe, nameof(variableInitialValues));
+            stringData = xd.ReadClassPointer<hkbBehaviorGraphStringData>(this, xe, nameof(stringData));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

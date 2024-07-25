@@ -46,8 +46,8 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            internalState = xd.ReadClassPointer<hkbBehaviorGraphInternalState>(xe, nameof(internalState));
-            auxiliaryNodeInfo = xd.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(xe, nameof(auxiliaryNodeInfo));
+            internalState = xd.ReadClassPointer<hkbBehaviorGraphInternalState>(this, xe, nameof(internalState));
+            auxiliaryNodeInfo = xd.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(this, xe, nameof(auxiliaryNodeInfo));
             activeEventIds = xd.ReadInt16Array(xe, nameof(activeEventIds));
             activeVariableIds = xd.ReadInt16Array(xe, nameof(activeVariableIds));
         }

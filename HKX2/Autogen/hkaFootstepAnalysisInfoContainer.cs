@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            previewInfo = xd.ReadClassPointerArray<hkaFootstepAnalysisInfo>(xe, nameof(previewInfo));
+            previewInfo = xd.ReadClassPointerArray<hkaFootstepAnalysisInfo>(this, xe, nameof(previewInfo));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

@@ -185,5 +185,11 @@ namespace HKX2E.Tests
             XElement outelement = serializer.SerializeObject(obj);
             Debug.WriteLine(outelement.ToString());
         }
+        [TestMethod]
+        public void TypeTest()
+        {
+            IHavokObject obj = new hkbClipGenerator(); 
+            Debug.WriteLine(obj.GetType());
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            rb = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(rb));
+            rb = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(rb));
             localToDisplay = xd.ReadTransform(xe, nameof(localToDisplay));
         }
 

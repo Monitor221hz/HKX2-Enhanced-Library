@@ -62,7 +62,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            generatorOutputListener = xd.ReadClassPointer<hkbGeneratorOutputListener>(xe, nameof(generatorOutputListener));
+            generatorOutputListener = xd.ReadClassPointer<hkbGeneratorOutputListener>(this, xe, nameof(generatorOutputListener));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

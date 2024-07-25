@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            contacts = xd.ReadClassPointerArray<hkpSerializedAgentNnEntry>(xe, nameof(contacts));
+            contacts = xd.ReadClassPointerArray<hkpSerializedAgentNnEntry>(this, xe, nameof(contacts));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

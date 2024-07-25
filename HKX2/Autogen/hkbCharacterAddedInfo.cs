@@ -60,7 +60,7 @@ namespace HKX2E
             instanceName = xd.ReadString(xe, nameof(instanceName));
             templateName = xd.ReadString(xe, nameof(templateName));
             fullPathToProject = xd.ReadString(xe, nameof(fullPathToProject));
-            skeleton = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeleton));
+            skeleton = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(skeleton));
             worldFromModel = xd.ReadQSTransform(xe, nameof(worldFromModel));
             poseModelSpace = xd.ReadQSTransformArray(xe, nameof(poseModelSpace));
         }

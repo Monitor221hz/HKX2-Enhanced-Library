@@ -55,10 +55,10 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(xe, nameof(rigidBodies));
-            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(xe, nameof(constraints));
-            actions = xd.ReadClassPointerArray<hkpAction>(xe, nameof(actions));
-            phantoms = xd.ReadClassPointerArray<hkpPhantom>(xe, nameof(phantoms));
+            rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(this, xe, nameof(rigidBodies));
+            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(this, xe, nameof(constraints));
+            actions = xd.ReadClassPointerArray<hkpAction>(this, xe, nameof(actions));
+            phantoms = xd.ReadClassPointerArray<hkpPhantom>(this, xe, nameof(phantoms));
             name = xd.ReadString(xe, nameof(name));
             userData = xd.ReadUInt64(xe, nameof(userData));
             active = xd.ReadBoolean(xe, nameof(active));

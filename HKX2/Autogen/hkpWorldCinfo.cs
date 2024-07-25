@@ -281,12 +281,12 @@ namespace HKX2E
             treeUpdateType = xd.ReadFlag<TreeUpdateType, sbyte>(xe, nameof(treeUpdateType));
             autoUpdateKdTree = xd.ReadBoolean(xe, nameof(autoUpdateKdTree));
             collisionTolerance = xd.ReadSingle(xe, nameof(collisionTolerance));
-            collisionFilter = xd.ReadClassPointer<hkpCollisionFilter>(xe, nameof(collisionFilter));
-            convexListFilter = xd.ReadClassPointer<hkpConvexListFilter>(xe, nameof(convexListFilter));
+            collisionFilter = xd.ReadClassPointer<hkpCollisionFilter>(this, xe, nameof(collisionFilter));
+            convexListFilter = xd.ReadClassPointer<hkpConvexListFilter>(this, xe, nameof(convexListFilter));
             expectedMaxLinearVelocity = xd.ReadSingle(xe, nameof(expectedMaxLinearVelocity));
             sizeOfToiEventQueue = xd.ReadInt32(xe, nameof(sizeOfToiEventQueue));
             expectedMinPsiDeltaTime = xd.ReadSingle(xe, nameof(expectedMinPsiDeltaTime));
-            memoryWatchDog = xd.ReadClassPointer<hkWorldMemoryAvailableWatchDog>(xe, nameof(memoryWatchDog));
+            memoryWatchDog = xd.ReadClassPointer<hkWorldMemoryAvailableWatchDog>(this, xe, nameof(memoryWatchDog));
             broadPhaseNumMarkers = xd.ReadInt32(xe, nameof(broadPhaseNumMarkers));
             contactPointGeneration = xd.ReadFlag<ContactPointGeneration, sbyte>(xe, nameof(contactPointGeneration));
             allowToSkipConfirmedCallbacks = xd.ReadBoolean(xe, nameof(allowToSkipConfirmedCallbacks));

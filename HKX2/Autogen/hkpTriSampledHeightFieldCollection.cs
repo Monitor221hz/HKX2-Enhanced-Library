@@ -46,7 +46,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            heightfield = xd.ReadClassPointer<hkpSampledHeightFieldShape>(xe, nameof(heightfield));
+            heightfield = xd.ReadClassPointer<hkpSampledHeightFieldShape>(this, xe, nameof(heightfield));
             radius = xd.ReadSingle(xe, nameof(radius));
             weldingInfo = xd.ReadUInt16Array(xe, nameof(weldingInfo));
             triangleExtrusion = xd.ReadVector4(xe, nameof(triangleExtrusion));

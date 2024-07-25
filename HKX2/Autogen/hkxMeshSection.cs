@@ -41,10 +41,10 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            vertexBuffer = xd.ReadClassPointer<hkxVertexBuffer>(xe, nameof(vertexBuffer));
-            indexBuffers = xd.ReadClassPointerArray<hkxIndexBuffer>(xe, nameof(indexBuffers));
-            material = xd.ReadClassPointer<hkxMaterial>(xe, nameof(material));
-            userChannels = xd.ReadClassPointerArray<hkReferencedObject>(xe, nameof(userChannels));
+            vertexBuffer = xd.ReadClassPointer<hkxVertexBuffer>(this, xe, nameof(vertexBuffer));
+            indexBuffers = xd.ReadClassPointerArray<hkxIndexBuffer>(this, xe, nameof(indexBuffers));
+            material = xd.ReadClassPointer<hkxMaterial>(this, xe, nameof(material));
+            userChannels = xd.ReadClassPointerArray<hkReferencedObject>(this, xe, nameof(userChannels));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

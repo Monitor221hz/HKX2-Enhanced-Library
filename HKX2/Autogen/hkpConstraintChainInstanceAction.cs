@@ -27,7 +27,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            constraintInstance = xd.ReadClassPointer<hkpConstraintChainInstance>(xe, nameof(constraintInstance));
+            constraintInstance = xd.ReadClassPointer<hkpConstraintChainInstance>(this, xe, nameof(constraintInstance));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

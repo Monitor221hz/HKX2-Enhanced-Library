@@ -33,8 +33,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            chainedEntities = xd.ReadClassPointerArray<hkpEntity>(xe, nameof(chainedEntities));
-            action = xd.ReadClassPointer<hkpConstraintChainInstanceAction>(xe, nameof(action));
+            chainedEntities = xd.ReadClassPointerArray<hkpEntity>(this, xe, nameof(chainedEntities));
+            action = xd.ReadClassPointer<hkpConstraintChainInstanceAction>(this, xe, nameof(action));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

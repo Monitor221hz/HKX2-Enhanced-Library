@@ -41,8 +41,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
-            boneWeights = xd.ReadClassPointer<hkbBoneWeightArray>(xe, nameof(boneWeights));
+            generator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(generator));
+            boneWeights = xd.ReadClassPointer<hkbBoneWeightArray>(this, xe, nameof(boneWeights));
             weight = xd.ReadSingle(xe, nameof(weight));
             worldFromModelWeight = xd.ReadSingle(xe, nameof(worldFromModelWeight));
         }

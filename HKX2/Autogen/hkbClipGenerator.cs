@@ -138,7 +138,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             animationName = xd.ReadString(xe, nameof(animationName));
-            triggers = xd.ReadClassPointer<hkbClipTriggerArray>(xe, nameof(triggers));
+            triggers = xd.ReadClassPointer<hkbClipTriggerArray>(this, xe, nameof(triggers));
             cropStartAmountLocalTime = xd.ReadSingle(xe, nameof(cropStartAmountLocalTime));
             cropEndAmountLocalTime = xd.ReadSingle(xe, nameof(cropEndAmountLocalTime));
             startTime = xd.ReadSingle(xe, nameof(startTime));

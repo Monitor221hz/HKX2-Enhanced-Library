@@ -30,7 +30,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            localFrame = xd.ReadClassPointer<hkLocalFrame>(xe, nameof(localFrame));
+            localFrame = xd.ReadClassPointer<hkLocalFrame>(this, xe, nameof(localFrame));
             boneIndex = xd.ReadInt32(xe, nameof(boneIndex));
         }
 

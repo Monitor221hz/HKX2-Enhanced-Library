@@ -40,7 +40,7 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             wordVariableValues = xd.ReadClassArray<hkbVariableValue>(xe, nameof(wordVariableValues));
             quadVariableValues = xd.ReadVector4Array(xe, nameof(quadVariableValues));
-            variantVariableValues = xd.ReadClassPointerArray<hkReferencedObject>(xe, nameof(variantVariableValues));
+            variantVariableValues = xd.ReadClassPointerArray<hkReferencedObject>(this, xe, nameof(variantVariableValues));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

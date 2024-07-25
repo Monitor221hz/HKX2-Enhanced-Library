@@ -30,8 +30,8 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            sectors = xd.ReadClassPointerArray<hkpAgent1nSector>(xe, nameof(sectors));
-            subTracks = xd.ReadClassPointerArray<hkpSerializedSubTrack1nInfo>(xe, nameof(subTracks));
+            sectors = xd.ReadClassPointerArray<hkpAgent1nSector>(this, xe, nameof(sectors));
+            subTracks = xd.ReadClassPointerArray<hkpSerializedSubTrack1nInfo>(this, xe, nameof(subTracks));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

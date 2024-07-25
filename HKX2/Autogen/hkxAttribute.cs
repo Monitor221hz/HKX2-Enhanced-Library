@@ -29,7 +29,7 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
-            value = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(value));
+            value = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(value));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

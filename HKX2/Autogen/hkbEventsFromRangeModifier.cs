@@ -42,7 +42,7 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             inputValue = xd.ReadSingle(xe, nameof(inputValue));
             lowerBound = xd.ReadSingle(xe, nameof(lowerBound));
-            eventRanges = xd.ReadClassPointer<hkbEventRangeDataArray>(xe, nameof(eventRanges));
+            eventRanges = xd.ReadClassPointer<hkbEventRangeDataArray>(this, xe, nameof(eventRanges));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

@@ -100,7 +100,7 @@ namespace HKX2E
             indexOfSyncMasterChild = xd.ReadInt16(xe, nameof(indexOfSyncMasterChild));
             flags = xd.ReadInt16(xe, nameof(flags));
             subtractLastChild = xd.ReadBoolean(xe, nameof(subtractLastChild));
-            children = xd.ReadClassPointerArray<hkbBlenderGeneratorChild>(xe, nameof(children));
+            children = xd.ReadClassPointerArray<hkbBlenderGeneratorChild>(this, xe, nameof(children));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

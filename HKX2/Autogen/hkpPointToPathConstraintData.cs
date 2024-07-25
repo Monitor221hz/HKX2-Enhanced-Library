@@ -48,7 +48,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
-            path = xd.ReadClassPointer<hkpParametricCurve>(xe, nameof(path));
+            path = xd.ReadClassPointer<hkpParametricCurve>(this, xe, nameof(path));
             maxFrictionForce = xd.ReadSingle(xe, nameof(maxFrictionForce));
             angularConstrainedDOF = xd.ReadFlag<OrientationConstraintType, sbyte>(xe, nameof(angularConstrainedDOF));
             transforOS_KS = xd.ReadTransformCStyleArray(xe, nameof(transforOS_KS), 2);
