@@ -42,9 +42,9 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             controlData = xd.ReadClass<hkbPoweredRagdollControlData>(xe, nameof(controlData));
-            bones = xd.ReadClassPointer<hkbBoneIndexArray>(xe, nameof(bones));
+            bones = xd.ReadClassPointer<hkbBoneIndexArray>(this, xe, nameof(bones));
             worldFromModelModeData = xd.ReadClass<hkbWorldFromModelModeData>(xe, nameof(worldFromModelModeData));
-            boneWeights = xd.ReadClassPointer<hkbBoneWeightArray>(xe, nameof(boneWeights));
+            boneWeights = xd.ReadClassPointer<hkbBoneWeightArray>(this, xe, nameof(boneWeights));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

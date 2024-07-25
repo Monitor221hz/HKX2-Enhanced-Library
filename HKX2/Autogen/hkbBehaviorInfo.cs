@@ -38,7 +38,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            data = xd.ReadClassPointer<hkbBehaviorGraphData>(xe, nameof(data));
+            data = xd.ReadClassPointer<hkbBehaviorGraphData>(this, xe, nameof(data));
             idToNamePairs = xd.ReadClassArray<hkbBehaviorInfoIdToNamePair>(xe, nameof(idToNamePairs));
         }
 

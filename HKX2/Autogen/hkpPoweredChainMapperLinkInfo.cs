@@ -34,7 +34,7 @@ namespace HKX2E
         {
             firstTargetIdx = xd.ReadInt32(xe, nameof(firstTargetIdx));
             numTargets = xd.ReadInt32(xe, nameof(numTargets));
-            limitConstraint = xd.ReadClassPointer<hkpConstraintInstance>(xe, nameof(limitConstraint));
+            limitConstraint = xd.ReadClassPointer<hkpConstraintInstance>(this, xe, nameof(limitConstraint));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

@@ -44,7 +44,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            mesh = xd.ReadClassPointer<hkxMesh>(xe, nameof(mesh));
+            mesh = xd.ReadClassPointer<hkxMesh>(this, xe, nameof(mesh));
             nodeNames = xd.ReadStringArray(xe, nameof(nodeNames));
             bindPose = xd.ReadMatrix4Array(xe, nameof(bindPose));
             initSkinTransform = xd.ReadMatrix4(xe, nameof(initSkinTransform));

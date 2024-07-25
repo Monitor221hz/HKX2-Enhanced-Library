@@ -45,7 +45,7 @@ namespace HKX2E
         {
             data = xd.ReadVector4Array(xe, nameof(data));
             commands = xd.ReadInt32Array(xe, nameof(commands));
-            motors = xd.ReadClassPointerArray<hkpConstraintMotor>(xe, nameof(motors));
+            motors = xd.ReadClassPointerArray<hkpConstraintMotor>(this, xe, nameof(motors));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

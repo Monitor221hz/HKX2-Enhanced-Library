@@ -42,7 +42,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            code = xd.ReadClassPointer<hkpMoppCode>(xe, nameof(code));
+            code = xd.ReadClassPointer<hkpMoppCode>(this, xe, nameof(code));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

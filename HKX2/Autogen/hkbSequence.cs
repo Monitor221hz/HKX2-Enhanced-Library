@@ -87,13 +87,13 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            eventSequencedData = xd.ReadClassPointerArray<hkbEventSequencedData>(xe, nameof(eventSequencedData));
-            realVariableSequencedData = xd.ReadClassPointerArray<hkbRealVariableSequencedData>(xe, nameof(realVariableSequencedData));
-            boolVariableSequencedData = xd.ReadClassPointerArray<hkbBoolVariableSequencedData>(xe, nameof(boolVariableSequencedData));
-            intVariableSequencedData = xd.ReadClassPointerArray<hkbIntVariableSequencedData>(xe, nameof(intVariableSequencedData));
+            eventSequencedData = xd.ReadClassPointerArray<hkbEventSequencedData>(this, xe, nameof(eventSequencedData));
+            realVariableSequencedData = xd.ReadClassPointerArray<hkbRealVariableSequencedData>(this, xe, nameof(realVariableSequencedData));
+            boolVariableSequencedData = xd.ReadClassPointerArray<hkbBoolVariableSequencedData>(this, xe, nameof(boolVariableSequencedData));
+            intVariableSequencedData = xd.ReadClassPointerArray<hkbIntVariableSequencedData>(this, xe, nameof(intVariableSequencedData));
             enableEventId = xd.ReadInt32(xe, nameof(enableEventId));
             disableEventId = xd.ReadInt32(xe, nameof(disableEventId));
-            stringData = xd.ReadClassPointer<hkbSequenceStringData>(xe, nameof(stringData));
+            stringData = xd.ReadClassPointer<hkbSequenceStringData>(this, xe, nameof(stringData));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

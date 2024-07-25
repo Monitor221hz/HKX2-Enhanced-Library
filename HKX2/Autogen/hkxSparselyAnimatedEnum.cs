@@ -27,7 +27,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            @enum = xd.ReadClassPointer<hkxEnum>(xe, nameof(@enum));
+            @enum = xd.ReadClassPointer<hkxEnum>(this, xe, nameof(@enum));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

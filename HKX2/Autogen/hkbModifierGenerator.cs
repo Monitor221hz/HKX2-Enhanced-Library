@@ -31,8 +31,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            modifier = xd.ReadClassPointer<hkbModifier>(xe, nameof(modifier));
-            generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
+            modifier = xd.ReadClassPointer<hkbModifier>(this, xe, nameof(modifier));
+            generator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(generator));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

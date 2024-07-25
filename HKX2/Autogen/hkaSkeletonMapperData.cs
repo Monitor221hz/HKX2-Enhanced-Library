@@ -59,8 +59,8 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            skeletonA = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeletonA));
-            skeletonB = xd.ReadClassPointer<hkaSkeleton>(xe, nameof(skeletonB));
+            skeletonA = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(skeletonA));
+            skeletonB = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(skeletonB));
             simpleMappings = xd.ReadClassArray<hkaSkeletonMapperDataSimpleMapping>(xe, nameof(simpleMappings));
             chainMappings = xd.ReadClassArray<hkaSkeletonMapperDataChainMapping>(xe, nameof(chainMappings));
             unmappedBones = xd.ReadInt16Array(xe, nameof(unmappedBones));

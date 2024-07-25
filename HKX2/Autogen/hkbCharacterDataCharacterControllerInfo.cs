@@ -41,7 +41,7 @@ namespace HKX2E
             capsuleHeight = xd.ReadSingle(xe, nameof(capsuleHeight));
             capsuleRadius = xd.ReadSingle(xe, nameof(capsuleRadius));
             collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
-            characterControllerCinfo = xd.ReadClassPointer<hkpCharacterControllerCinfo>(xe, nameof(characterControllerCinfo));
+            characterControllerCinfo = xd.ReadClassPointer<hkpCharacterControllerCinfo>(this, xe, nameof(characterControllerCinfo));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

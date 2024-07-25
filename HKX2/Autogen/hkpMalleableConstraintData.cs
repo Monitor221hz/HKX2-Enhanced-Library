@@ -37,7 +37,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            constraintData = xd.ReadClassPointer<hkpConstraintData>(xe, nameof(constraintData));
+            constraintData = xd.ReadClassPointer<hkpConstraintData>(this, xe, nameof(constraintData));
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
             strength = xd.ReadSingle(xe, nameof(strength));
         }

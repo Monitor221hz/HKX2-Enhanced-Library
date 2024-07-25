@@ -61,7 +61,7 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
-            parent = xd.ReadClassPointer<hkClass>(xe, nameof(parent));
+            parent = xd.ReadClassPointer<hkClass>(this, xe, nameof(parent));
             objectSize = xd.ReadInt32(xe, nameof(objectSize));
             numImplementedInterfaces = xd.ReadInt32(xe, nameof(numImplementedInterfaces));
             throw new NotImplementedException("TPYE_SIMPLEARRAY");

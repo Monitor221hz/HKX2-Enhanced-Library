@@ -52,7 +52,7 @@ namespace HKX2E
             pivotInB = xd.ReadVector4(xe, nameof(pivotInB));
             aTc = xd.ReadQuaternion(xe, nameof(aTc));
             bTc = xd.ReadQuaternion(xe, nameof(bTc));
-            motors = xd.ReadClassPointerCStyleArray<hkpConstraintMotor>(xe, nameof(motors), 3);
+            motors = xd.ReadClassPointerCStyleArray<hkpConstraintMotor>(this, xe, nameof(motors), 3);
             switchBodies = xd.ReadBoolean(xe, nameof(switchBodies));
         }
 

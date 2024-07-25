@@ -37,8 +37,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pDefaultGenerator));
-            ChildrenA = xd.ReadClassPointerArray<BSBoneSwitchGeneratorBoneData>(xe, nameof(ChildrenA));
+            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pDefaultGenerator));
+            ChildrenA = xd.ReadClassPointerArray<BSBoneSwitchGeneratorBoneData>(this, xe, nameof(ChildrenA));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

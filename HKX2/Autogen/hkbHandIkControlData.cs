@@ -74,7 +74,7 @@ namespace HKX2E
             targetPosition = xd.ReadVector4(xe, nameof(targetPosition));
             targetRotation = xd.ReadQuaternion(xe, nameof(targetRotation));
             targetNormal = xd.ReadVector4(xe, nameof(targetNormal));
-            targetHandle = xd.ReadClassPointer<hkbHandle>(xe, nameof(targetHandle));
+            targetHandle = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(targetHandle));
             transformOnFraction = xd.ReadSingle(xe, nameof(transformOnFraction));
             normalOnFraction = xd.ReadSingle(xe, nameof(normalOnFraction));
             fadeInDuration = xd.ReadSingle(xe, nameof(fadeInDuration));

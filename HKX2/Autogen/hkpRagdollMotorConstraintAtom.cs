@@ -55,7 +55,7 @@ namespace HKX2E
             initializedOffset = xd.ReadInt16(xe, nameof(initializedOffset));
             previousTargetAnglesOffset = xd.ReadInt16(xe, nameof(previousTargetAnglesOffset));
             target_bRca = xd.ReadMatrix3(xe, nameof(target_bRca));
-            motors = xd.ReadClassPointerCStyleArray<hkpConstraintMotor>(xe, nameof(motors), 3);
+            motors = xd.ReadClassPointerCStyleArray<hkpConstraintMotor>(this, xe, nameof(motors), 3);
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

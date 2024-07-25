@@ -39,7 +39,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             worldUpWS = xd.ReadVector4(xe, nameof(worldUpWS));
-            stringData = xd.ReadClassPointer<hkbProjectStringData>(xe, nameof(stringData));
+            stringData = xd.ReadClassPointer<hkbProjectStringData>(this, xe, nameof(stringData));
             defaultEventMode = xd.ReadFlag<EventMode, sbyte>(xe, nameof(defaultEventMode));
         }
 

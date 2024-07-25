@@ -34,7 +34,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             keyframeInfo = xd.ReadClassArray<hkbKeyframeBonesModifierKeyframeInfo>(xe, nameof(keyframeInfo));
-            keyframedBonesList = xd.ReadClassPointer<hkbBoneIndexArray>(xe, nameof(keyframedBonesList));
+            keyframedBonesList = xd.ReadClassPointer<hkbBoneIndexArray>(this, xe, nameof(keyframedBonesList));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

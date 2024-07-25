@@ -38,7 +38,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            variableBindingSet = xd.ReadClassPointer<hkbVariableBindingSet>(xe, nameof(variableBindingSet));
+            variableBindingSet = xd.ReadClassPointer<hkbVariableBindingSet>(this, xe, nameof(variableBindingSet));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

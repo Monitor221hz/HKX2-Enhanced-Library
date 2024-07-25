@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            shaders = xd.ReadClassPointerArray<hkxMaterialShader>(xe, nameof(shaders));
+            shaders = xd.ReadClassPointerArray<hkxMaterialShader>(this, xe, nameof(shaders));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

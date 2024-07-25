@@ -58,9 +58,9 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            behavior = xd.ReadClassPointer<hkbBehaviorGraph>(xe, nameof(behavior));
-            rootGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(rootGenerator));
-            referencedBehaviors = xd.ReadClassPointerArray<hkbBehaviorGraph>(xe, nameof(referencedBehaviors));
+            behavior = xd.ReadClassPointer<hkbBehaviorGraph>(this, xe, nameof(behavior));
+            rootGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(rootGenerator));
+            referencedBehaviors = xd.ReadClassPointerArray<hkbBehaviorGraph>(this, xe, nameof(referencedBehaviors));
             startStateIndex = xd.ReadInt32(xe, nameof(startStateIndex));
             randomizeSimulation = xd.ReadBoolean(xe, nameof(randomizeSimulation));
             padding = xd.ReadInt32(xe, nameof(padding));

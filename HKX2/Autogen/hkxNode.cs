@@ -57,9 +57,9 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             name = xd.ReadString(xe, nameof(name));
-            @object = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(@object));
+            @object = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(@object));
             keyFrames = xd.ReadMatrix4Array(xe, nameof(keyFrames));
-            children = xd.ReadClassPointerArray<hkxNode>(xe, nameof(children));
+            children = xd.ReadClassPointerArray<hkxNode>(this, xe, nameof(children));
             annotations = xd.ReadClassArray<hkxNodeAnnotationData>(xe, nameof(annotations));
             userProperties = xd.ReadString(xe, nameof(userProperties));
             selected = xd.ReadBoolean(xe, nameof(selected));

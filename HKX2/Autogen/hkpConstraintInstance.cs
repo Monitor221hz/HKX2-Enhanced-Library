@@ -76,9 +76,9 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            data = xd.ReadClassPointer<hkpConstraintData>(xe, nameof(data));
-            constraintModifiers = xd.ReadClassPointer<hkpModifierConstraintAtom>(xe, nameof(constraintModifiers));
-            entities = xd.ReadClassPointerCStyleArray<hkpEntity>(xe, nameof(entities), 2);
+            data = xd.ReadClassPointer<hkpConstraintData>(this, xe, nameof(data));
+            constraintModifiers = xd.ReadClassPointer<hkpModifierConstraintAtom>(this, xe, nameof(constraintModifiers));
+            entities = xd.ReadClassPointerCStyleArray<hkpEntity>(this, xe, nameof(entities), 2);
             priority = xd.ReadFlag<ConstraintPriority, byte>(xe, nameof(priority));
             wantRuntime = xd.ReadBoolean(xe, nameof(wantRuntime));
             destructionRemapInfo = xd.ReadFlag<OnDestructionRemapInfo, byte>(xe, nameof(destructionRemapInfo));

@@ -142,7 +142,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             eventToSendWhenStateOrTransitionChanges = xd.ReadClass<hkbEvent>(xe, nameof(eventToSendWhenStateOrTransitionChanges));
-            startStateChooser = xd.ReadClassPointer<hkbStateChooser>(xe, nameof(startStateChooser));
+            startStateChooser = xd.ReadClassPointer<hkbStateChooser>(this, xe, nameof(startStateChooser));
             startStateId = xd.ReadInt32(xe, nameof(startStateId));
             returnToPreviousStateEventId = xd.ReadInt32(xe, nameof(returnToPreviousStateEventId));
             randomTransitionEventId = xd.ReadInt32(xe, nameof(randomTransitionEventId));
@@ -153,8 +153,8 @@ namespace HKX2E
             maxSimultaneousTransitions = xd.ReadSByte(xe, nameof(maxSimultaneousTransitions));
             startStateMode = xd.ReadFlag<StartStateMode, sbyte>(xe, nameof(startStateMode));
             selfTransitionMode = xd.ReadFlag<StateMachineSelfTransitionMode, sbyte>(xe, nameof(selfTransitionMode));
-            states = xd.ReadClassPointerArray<hkbStateMachineStateInfo>(xe, nameof(states));
-            wildcardTransitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(xe, nameof(wildcardTransitions));
+            states = xd.ReadClassPointerArray<hkbStateMachineStateInfo>(this, xe, nameof(states));
+            wildcardTransitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(this, xe, nameof(wildcardTransitions));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

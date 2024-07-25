@@ -31,7 +31,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            boundingVolumeShape = xd.ReadClassPointer<hkpShape>(xe, nameof(boundingVolumeShape));
+            boundingVolumeShape = xd.ReadClassPointer<hkpShape>(this, xe, nameof(boundingVolumeShape));
             childShape = xd.ReadClass<hkpSingleShapeContainer>(xe, nameof(childShape));
         }
 

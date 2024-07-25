@@ -33,8 +33,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            nodeInternalStateInfos = xd.ReadClassPointerArray<hkbNodeInternalStateInfo>(xe, nameof(nodeInternalStateInfos));
-            variableValueSet = xd.ReadClassPointer<hkbVariableValueSet>(xe, nameof(variableValueSet));
+            nodeInternalStateInfos = xd.ReadClassPointerArray<hkbNodeInternalStateInfo>(this, xe, nameof(nodeInternalStateInfos));
+            variableValueSet = xd.ReadClassPointer<hkbVariableValueSet>(this, xe, nameof(variableValueSet));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

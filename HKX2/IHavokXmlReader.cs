@@ -15,9 +15,9 @@ public interface IHavokXmlReader
 	T ReadClass<T>(XElement element, string name) where T : IHavokObject, new();
 	IList<T> ReadClassArray<T>(XElement element, string name) where T : IHavokObject, new();
 	T[] ReadClassCStyleArray<T>(XElement element, string name, short length) where T : IHavokObject, new();
-	T? ReadClassPointer<T>(XElement element, string name) where T : IHavokObject, new();
-	IList<T> ReadClassPointerArray<T>(XElement element, string name) where T : IHavokObject, new();
-	T?[] ReadClassPointerCStyleArray<T>(XElement element, string name, short length) where T : IHavokObject, new();
+	T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new();
+	IList<T> ReadClassPointerArray<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new();
+	T?[] ReadClassPointerCStyleArray<T>(IHavokObject owner, XElement element, string name, short length) where T : IHavokObject, new();
 	TValue ReadEnum<TEnum, TValue>(XElement element, string name)
 		where TEnum : Enum
 		where TValue : IBinaryInteger<TValue>;

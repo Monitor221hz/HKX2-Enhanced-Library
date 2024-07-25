@@ -42,8 +42,8 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             name = xd.ReadString(xe, nameof(name));
-            resourceHandles = xd.ReadClassPointerArray<hkMemoryResourceHandle>(xe, nameof(resourceHandles));
-            children = xd.ReadClassPointerArray<hkMemoryResourceContainer>(xe, nameof(children));
+            resourceHandles = xd.ReadClassPointerArray<hkMemoryResourceHandle>(this, xe, nameof(resourceHandles));
+            children = xd.ReadClassPointerArray<hkMemoryResourceContainer>(this, xe, nameof(children));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

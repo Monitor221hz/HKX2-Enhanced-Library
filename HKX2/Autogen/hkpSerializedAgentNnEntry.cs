@@ -85,8 +85,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            bodyA = xd.ReadClassPointer<hkpEntity>(xe, nameof(bodyA));
-            bodyB = xd.ReadClassPointer<hkpEntity>(xe, nameof(bodyB));
+            bodyA = xd.ReadClassPointer<hkpEntity>(this, xe, nameof(bodyA));
+            bodyB = xd.ReadClassPointer<hkpEntity>(this, xe, nameof(bodyB));
             bodyAId = xd.ReadUInt64(xe, nameof(bodyAId));
             bodyBId = xd.ReadUInt64(xe, nameof(bodyBId));
             useEntityIds = xd.ReadBoolean(xe, nameof(useEntityIds));

@@ -33,7 +33,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            selectedNodes = xd.ReadClassPointerArray<hkxNode>(xe, nameof(selectedNodes));
+            selectedNodes = xd.ReadClassPointerArray<hkxNode>(this, xe, nameof(selectedNodes));
             name = xd.ReadString(xe, nameof(name));
         }
 

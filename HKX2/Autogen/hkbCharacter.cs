@@ -103,12 +103,12 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            nearbyCharacters = xd.ReadClassPointerArray<hkbCharacter>(xe, nameof(nearbyCharacters));
+            nearbyCharacters = xd.ReadClassPointerArray<hkbCharacter>(this, xe, nameof(nearbyCharacters));
             currentLod = xd.ReadInt16(xe, nameof(currentLod));
             name = xd.ReadString(xe, nameof(name));
-            setup = xd.ReadClassPointer<hkbCharacterSetup>(xe, nameof(setup));
-            behaviorGraph = xd.ReadClassPointer<hkbBehaviorGraph>(xe, nameof(behaviorGraph));
-            projectData = xd.ReadClassPointer<hkbProjectData>(xe, nameof(projectData));
+            setup = xd.ReadClassPointer<hkbCharacterSetup>(this, xe, nameof(setup));
+            behaviorGraph = xd.ReadClassPointer<hkbBehaviorGraph>(this, xe, nameof(behaviorGraph));
+            projectData = xd.ReadClassPointer<hkbProjectData>(this, xe, nameof(projectData));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

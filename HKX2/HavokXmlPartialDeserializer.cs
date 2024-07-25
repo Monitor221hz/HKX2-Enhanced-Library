@@ -227,7 +227,7 @@ namespace HKX2E
 			return arr;
 		}
 
-		public T? ReadClassPointer<T>(XElement element, string name) where T : IHavokObject, new()
+		public T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -256,7 +256,7 @@ namespace HKX2E
 			return ret;
 		}
 
-		public IList<T> ReadClassPointerArray<T>(XElement element, string name) where T : IHavokObject, new()
+		public IList<T> ReadClassPointerArray<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -291,7 +291,7 @@ namespace HKX2E
 			return result;
 		}
 
-		public T?[] ReadClassPointerCStyleArray<T>(XElement element, string name, short length) where T : IHavokObject, new()
+		public T?[] ReadClassPointerCStyleArray<T>(IHavokObject owner, XElement element, string name, short length) where T : IHavokObject, new()
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)

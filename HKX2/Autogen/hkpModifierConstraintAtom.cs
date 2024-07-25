@@ -48,7 +48,7 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             modifierAtomSize = xd.ReadUInt16(xe, nameof(modifierAtomSize));
             childSize = xd.ReadUInt16(xe, nameof(childSize));
-            child = xd.ReadClassPointer<hkpConstraintAtom>(xe, nameof(child));
+            child = xd.ReadClassPointer<hkpConstraintAtom>(this, xe, nameof(child));
             pad = xd.ReadUInt32CStyleArray(xe, nameof(pad), 2);
         }
 

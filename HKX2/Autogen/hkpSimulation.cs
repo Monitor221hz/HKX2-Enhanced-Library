@@ -66,7 +66,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             determinismCheckFrameCounter = xd.ReadUInt32(xe, nameof(determinismCheckFrameCounter));
-            world = xd.ReadClassPointer<hkpWorld>(xe, nameof(world));
+            world = xd.ReadClassPointer<hkpWorld>(this, xe, nameof(world));
             lastProcessingStep = xd.ReadFlag<LastProcessingStep, byte>(xe, nameof(lastProcessingStep));
             currentTime = xd.ReadSingle(xe, nameof(currentTime));
             currentPsiTime = xd.ReadSingle(xe, nameof(currentPsiTime));

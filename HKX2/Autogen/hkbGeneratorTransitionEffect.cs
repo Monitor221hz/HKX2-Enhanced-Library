@@ -91,7 +91,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            transitionGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(transitionGenerator));
+            transitionGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(transitionGenerator));
             blendInDuration = xd.ReadSingle(xe, nameof(blendInDuration));
             blendOutDuration = xd.ReadSingle(xe, nameof(blendOutDuration));
             syncToGeneratorStartTime = xd.ReadBoolean(xe, nameof(syncToGeneratorStartTime));

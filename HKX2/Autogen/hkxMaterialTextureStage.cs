@@ -32,7 +32,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            texture = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(texture));
+            texture = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(texture));
             usageHint = xd.ReadFlag<TextureType, int>(xe, nameof(usageHint));
             tcoordChannel = xd.ReadInt32(xe, nameof(tcoordChannel));
         }

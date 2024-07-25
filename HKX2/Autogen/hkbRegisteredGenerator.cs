@@ -38,7 +38,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
+            generator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(generator));
             relativePosition = xd.ReadVector4(xe, nameof(relativePosition));
             relativeDirection = xd.ReadVector4(xe, nameof(relativeDirection));
         }

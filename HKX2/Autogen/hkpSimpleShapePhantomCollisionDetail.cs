@@ -24,7 +24,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            collidable = xd.ReadClassPointer<hkpCollidable>(xe, nameof(collidable));
+            collidable = xd.ReadClassPointer<hkpCollidable>(this, xe, nameof(collidable));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)

@@ -90,11 +90,11 @@ namespace HKX2E
             modelRightMS = xd.ReadVector4(xe, nameof(modelRightMS));
             characterPropertyInfos = xd.ReadClassArray<hkbVariableInfo>(xe, nameof(characterPropertyInfos));
             numBonesPerLod = xd.ReadInt32Array(xe, nameof(numBonesPerLod));
-            characterPropertyValues = xd.ReadClassPointer<hkbVariableValueSet>(xe, nameof(characterPropertyValues));
-            footIkDriverInfo = xd.ReadClassPointer<hkbFootIkDriverInfo>(xe, nameof(footIkDriverInfo));
-            handIkDriverInfo = xd.ReadClassPointer<hkbHandIkDriverInfo>(xe, nameof(handIkDriverInfo));
-            stringData = xd.ReadClassPointer<hkbCharacterStringData>(xe, nameof(stringData));
-            mirroredSkeletonInfo = xd.ReadClassPointer<hkbMirroredSkeletonInfo>(xe, nameof(mirroredSkeletonInfo));
+            characterPropertyValues = xd.ReadClassPointer<hkbVariableValueSet>(this, xe, nameof(characterPropertyValues));
+            footIkDriverInfo = xd.ReadClassPointer<hkbFootIkDriverInfo>(this, xe, nameof(footIkDriverInfo));
+            handIkDriverInfo = xd.ReadClassPointer<hkbHandIkDriverInfo>(this, xe, nameof(handIkDriverInfo));
+            stringData = xd.ReadClassPointer<hkbCharacterStringData>(this, xe, nameof(stringData));
+            mirroredSkeletonInfo = xd.ReadClassPointer<hkbMirroredSkeletonInfo>(this, xe, nameof(mirroredSkeletonInfo));
             scale = xd.ReadSingle(xe, nameof(scale));
         }
 

@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            otherFilter = xd.ReadClassPointer<hkpCollisionFilter>(xe, nameof(otherFilter));
+            otherFilter = xd.ReadClassPointer<hkpCollisionFilter>(this, xe, nameof(otherFilter));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

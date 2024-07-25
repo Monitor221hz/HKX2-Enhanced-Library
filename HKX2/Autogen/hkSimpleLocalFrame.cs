@@ -49,9 +49,9 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             transform = xd.ReadTransform(xe, nameof(transform));
-            children = xd.ReadClassPointerArray<hkLocalFrame>(xe, nameof(children));
-            parentFrame = xd.ReadClassPointer<hkLocalFrame>(xe, nameof(parentFrame));
-            group = xd.ReadClassPointer<hkLocalFrameGroup>(xe, nameof(group));
+            children = xd.ReadClassPointerArray<hkLocalFrame>(this, xe, nameof(children));
+            parentFrame = xd.ReadClassPointer<hkLocalFrame>(this, xe, nameof(parentFrame));
+            group = xd.ReadClassPointer<hkLocalFrameGroup>(this, xe, nameof(group));
             name = xd.ReadString(xe, nameof(name));
         }
 

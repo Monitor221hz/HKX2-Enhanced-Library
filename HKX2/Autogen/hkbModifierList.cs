@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            modifiers = xd.ReadClassPointerArray<hkbModifier>(xe, nameof(modifiers));
+            modifiers = xd.ReadClassPointerArray<hkbModifier>(this, xe, nameof(modifiers));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

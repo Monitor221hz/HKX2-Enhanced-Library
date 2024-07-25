@@ -63,11 +63,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            listeners = xd.ReadClassPointerArray<hkbStateListener>(xe, nameof(listeners));
-            enterNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(xe, nameof(enterNotifyEvents));
-            exitNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(xe, nameof(exitNotifyEvents));
-            transitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(xe, nameof(transitions));
-            generator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(generator));
+            listeners = xd.ReadClassPointerArray<hkbStateListener>(this, xe, nameof(listeners));
+            enterNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(this, xe, nameof(enterNotifyEvents));
+            exitNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(this, xe, nameof(exitNotifyEvents));
+            transitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(this, xe, nameof(transitions));
+            generator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(generator));
             name = xd.ReadString(xe, nameof(name));
             stateId = xd.ReadInt32(xe, nameof(stateId));
             probability = xd.ReadSingle(xe, nameof(probability));

@@ -27,7 +27,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            childShape = xd.ReadClassPointer<hkpShape>(xe, nameof(childShape));
+            childShape = xd.ReadClassPointer<hkpShape>(this, xe, nameof(childShape));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

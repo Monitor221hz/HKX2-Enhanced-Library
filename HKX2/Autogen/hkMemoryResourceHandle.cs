@@ -37,7 +37,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            variant = xd.ReadClassPointer<hkReferencedObject>(xe, nameof(variant));
+            variant = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(variant));
             name = xd.ReadString(xe, nameof(name));
             references = xd.ReadClassArray<hkMemoryResourceHandleExternalLink>(xe, nameof(references));
         }

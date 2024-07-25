@@ -37,7 +37,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pDefaultGenerator));
+            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pDefaultGenerator));
             iStateToSetAs = xd.ReadInt32(xe, nameof(iStateToSetAs));
             iPriority = xd.ReadInt32(xe, nameof(iPriority));
         }

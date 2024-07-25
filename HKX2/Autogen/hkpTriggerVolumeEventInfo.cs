@@ -35,7 +35,7 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             sortValue = xd.ReadUInt64(xe, nameof(sortValue));
-            body = xd.ReadClassPointer<hkpRigidBody>(xe, nameof(body));
+            body = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(body));
             operation = xd.ReadFlag<Operation, int>(xe, nameof(operation));
         }
 

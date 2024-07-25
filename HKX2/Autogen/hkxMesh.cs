@@ -33,8 +33,8 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            sections = xd.ReadClassPointerArray<hkxMeshSection>(xe, nameof(sections));
-            userChannelInfos = xd.ReadClassPointerArray<hkxMeshUserChannelInfo>(xe, nameof(userChannelInfos));
+            sections = xd.ReadClassPointerArray<hkxMeshSection>(this, xe, nameof(sections));
+            userChannelInfos = xd.ReadClassPointerArray<hkxMeshUserChannelInfo>(this, xe, nameof(userChannelInfos));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

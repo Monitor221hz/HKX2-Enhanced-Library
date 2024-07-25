@@ -57,8 +57,8 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
-          @class = xd.ReadClassPointer<hkClass>(xe, nameof(@class));
-            @enum = xd.ReadClassPointer<hkClassEnum>(xe, nameof(@enum));
+          @class = xd.ReadClassPointer<hkClass>(this, xe, nameof(@class));
+            @enum = xd.ReadClassPointer<hkClassEnum>(this, xe, nameof(@enum));
             type = xd.ReadFlag<Type, byte>(xe, nameof(type));
             subtype = xd.ReadFlag<Type, byte>(xe, nameof(subtype));
             cArraySize = xd.ReadInt16(xe, nameof(cArraySize));

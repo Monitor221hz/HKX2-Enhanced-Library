@@ -39,7 +39,7 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             links = xd.ReadClassArray<hkpPoweredChainMapperLinkInfo>(xe, nameof(links));
             targets = xd.ReadClassArray<hkpPoweredChainMapperTarget>(xe, nameof(targets));
-            chains = xd.ReadClassPointerArray<hkpConstraintChainInstance>(xe, nameof(chains));
+            chains = xd.ReadClassPointerArray<hkpConstraintChainInstance>(this, xe, nameof(chains));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

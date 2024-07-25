@@ -67,7 +67,7 @@ namespace HKX2E
             rotatedVertices = xd.ReadClassArray<hkpConvexVerticesShapeFourVectors>(xe, nameof(rotatedVertices));
             numVertices = xd.ReadInt32(xe, nameof(numVertices));
             planeEquations = xd.ReadVector4Array(xe, nameof(planeEquations));
-            connectivity = xd.ReadClassPointer<hkpConvexVerticesConnectivity>(xe, nameof(connectivity));
+            connectivity = xd.ReadClassPointer<hkpConvexVerticesConnectivity>(this, xe, nameof(connectivity));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)

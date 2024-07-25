@@ -67,7 +67,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pBlenderGenerator = xd.ReadClassPointer<hkbGenerator>(xe, nameof(pBlenderGenerator));
+            pBlenderGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pBlenderGenerator));
             EventToFreezeBlendValue = xd.ReadClass<hkbEventProperty>(xe, nameof(EventToFreezeBlendValue));
             EventToCrossBlend = xd.ReadClass<hkbEventProperty>(xe, nameof(EventToCrossBlend));
             fBlendParameter = xd.ReadSingle(xe, nameof(fBlendParameter));

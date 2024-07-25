@@ -29,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            payloads = xd.ReadClassPointerArray<hkbEventPayload>(xe, nameof(payloads));
+            payloads = xd.ReadClassPointerArray<hkbEventPayload>(this, xe, nameof(payloads));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
