@@ -11,6 +11,14 @@ namespace HKX2E
         public uint flags { set; get; }
 
         public virtual uint Signature { set; get; } = 0x5874eed4;
+        public hkbEventInfo()
+        {
+            
+        }
+        public hkbEventInfo(hkbEventInfo other)
+        {
+            flags = other.flags;   
+        }
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {

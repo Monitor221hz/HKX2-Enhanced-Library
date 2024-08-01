@@ -11,7 +11,14 @@ namespace HKX2E
         public int value { set; get; }
 
         public virtual uint Signature { set; get; } = 0xb99bd6a;
-
+        public hkbVariableValue()
+        {
+            
+        }
+        public hkbVariableValue(hkbVariableValue other)
+        {
+            value = other.value;
+        }
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             value = br.ReadInt32();

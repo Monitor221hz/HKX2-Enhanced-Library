@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
-	public class HavokXmlPartialSerializer : IHavokXmlWriter
+	public class HavokXmlPartialSerializer : IHavokXmlWriter, IHavokObjectNameMap
 	{
 		private int index = 0050;
 		private readonly HashSet<uint> staticIndexes = new HashSet<uint>();
@@ -16,8 +16,8 @@ namespace HKX2E
 
         public HavokXmlPartialSerializer()
         {
-			nameObjectMap = new(); 
-        }
+			nameObjectMap = new(ReferenceEqualityComparer.Instance);
+		}
         public HavokXmlPartialSerializer(HavokXmlDeserializerContext sharedContext) : this()
         {
 			IEnumerable<string> indexedNames = sharedContext.ElementNameMap.Keys;
@@ -33,6 +33,7 @@ namespace HKX2E
         public void ShareContext(HavokXmlDeserializerContext sharedContext)
 		{
 			staticIndexes.Clear();
+			nameObjectMap.Clear();
 			IEnumerable<string> indexedNames = sharedContext.ElementNameMap.Keys;
 			uint num;
 			foreach (string name in indexedNames)
@@ -42,6 +43,14 @@ namespace HKX2E
 					staticIndexes.Add(num);
 				}
 			}
+			foreach(var kvp in sharedContext.ObjectNameMap)
+			{
+				nameObjectMap.Add(kvp.Value, kvp.Key);
+			}
+		}
+		public bool TryGetName(IHavokObject obj, out string? name)
+		{
+			return nameObjectMap.TryGetValue(obj, out name); 
 		}
 		public XElement SerializeDetachedObject<T>(T hkObject) where T : IHavokObject
 		{
