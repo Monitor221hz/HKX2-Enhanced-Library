@@ -53,7 +53,10 @@ namespace HKX2E
 		}
 		public bool TryGetName(IHavokObject obj, [NotNullWhen(true)] out string? name)
 		{
-			return nameObjectMap.TryGetValue(obj, out name);
+			lock (nameObjectMap)
+			{
+				return nameObjectMap.TryGetValue(obj, out name);
+			}
 		}
 		private string GetIndex()
 		{
