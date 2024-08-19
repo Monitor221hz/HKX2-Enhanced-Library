@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -7,21 +8,21 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
-	public class HavokXmlSerializer : IHavokXmlWriter
+	public class HavokXmlSerializer : IHavokXmlWriter, IHavokObjectNameMap
 	{
 		private uint index = 0050;
 		private HKXHeader header;
-		private Dictionary<IHavokObject, string> nameSerializedObjectsMap;
+		private Dictionary<IHavokObject, string> nameObjectMap;
 		private XDocument document;
 		private XContainer dataSection;
 		private readonly HashSet<uint> staticIndexes = new HashSet<uint>();
 
-        public HavokXmlSerializer()
-        {
-            
-        }
-        public HavokXmlSerializer(HavokXmlDeserializerContext context)
-        {
+		public HavokXmlSerializer()
+		{
+			nameObjectMap = new(ReferenceEqualityComparer.Instance);
+		}
+		public HavokXmlSerializer(HavokXmlDeserializerContext context)
+		{
 			IEnumerable<string> indexedNames = context.ElementNameMap.Keys;
 			uint num;
 			foreach (string name in indexedNames)
@@ -32,22 +33,34 @@ namespace HKX2E
 				}
 			}
 		}
-        public void ShareContext(HavokXmlDeserializerContext context)
+		public void ShareContext(HavokXmlDeserializerContext sharedContext)
 		{
 			staticIndexes.Clear();
-			IEnumerable<string> indexedNames = context.ElementNameMap.Keys;
-			uint num;  
-			foreach(string name in indexedNames)
+			nameObjectMap.Clear();
+			IEnumerable<string> indexedNames = sharedContext.ElementNameMap.Keys;
+			uint num;
+			foreach (string name in indexedNames)
 			{
 				if (uint.TryParse(name.AsSpan(1), out num))
 				{
 					staticIndexes.Add(num);
 				}
 			}
+			foreach (var kvp in sharedContext.ObjectNameMap)
+			{
+				nameObjectMap.Add(kvp.Value, kvp.Key);
+			}
+		}
+		public bool TryGetName(IHavokObject obj, [NotNullWhen(true)] out string? name)
+		{
+			lock (nameObjectMap)
+			{
+				return nameObjectMap.TryGetValue(obj, out name);
+			}
 		}
 		private string GetIndex()
 		{
-			while(staticIndexes.Contains(index))
+			while (staticIndexes.Contains(index))
 			{
 				index++;
 			}
@@ -62,7 +75,7 @@ namespace HKX2E
 		{
 
 			this.header = header;
-			nameSerializedObjectsMap = new Dictionary<IHavokObject, string>(ReferenceEqualityComparer.Instance);
+			nameObjectMap.Clear();
 
 			var index = GetIndex();
 
@@ -100,15 +113,15 @@ namespace HKX2E
 				WriteString(xe, paramName, "null");
 				return;
 			}
-			if (nameSerializedObjectsMap.ContainsKey(value))
+			if (nameObjectMap.ContainsKey(value))
 			{
-				var index = nameSerializedObjectsMap[value];
+				var index = nameObjectMap[value];
 				var hkparam = WriteString(xe, paramName, index);
 			}
 			else
 			{
 				var index = GetIndex();
-				nameSerializedObjectsMap.Add(value, index);
+				nameObjectMap.Add(value, index);
 				WriteString(xe, paramName, index);
 				var node = WriteNode(value, index);
 				value.WriteXml(this, node);
@@ -127,13 +140,13 @@ namespace HKX2E
 					indexs.Add("null");
 					continue;
 				}
-				if (nameSerializedObjectsMap.ContainsKey(item))
+				if (nameObjectMap.ContainsKey(item))
 				{
-					indexs.Add(nameSerializedObjectsMap[item]);
+					indexs.Add(nameObjectMap[item]);
 					continue;
 				}
 				var index = GetIndex();
-				nameSerializedObjectsMap.Add(item, index);
+				nameObjectMap.Add(item, index);
 				indexs.Add(index);
 				var node = WriteNode(item, index);
 				item.WriteXml(this, node);

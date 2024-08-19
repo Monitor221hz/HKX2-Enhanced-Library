@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -11,7 +12,7 @@ using System.Xml.Linq;
 namespace HKX2E
 {
 
-	public class HavokXmlPartialDeserializer : IHavokXmlReader
+	public class HavokXmlPartialDeserializer : IHavokXmlReader, INameHavokObjectMap
 	{
 		// store deserialized
 		private Dictionary<string, IHavokObject> objectNameMap;
@@ -37,14 +38,34 @@ namespace HKX2E
 			elementNameMap = context.ElementNameMap;
 			options = context.Options;
 		}
-		public bool TryGetObjectAs<T>(string name, out T? obj) where T : class, IHavokObject
+		public void Collect(string name, XElement element)
 		{
-			obj = null; 
-			if (objectNameMap.TryGetValue(name, out var value))
+			elementNameMap.TryAdd(name, element);
+		}
+		public void ShareContext(HavokXmlDeserializerContext context)
+		{
+			objectNameMap = context.ObjectNameMap; 
+			elementNameMap = context.ElementNameMap;
+			options = context.Options;
+		}
+		public bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
+		{
+			lock (objectNameMap)
 			{
-				obj = value as T; 
+				return objectNameMap.TryGetValue(name, out obj);
 			}
-			return (obj != null); 
+		}
+		public bool TryGetObjectAs<T>(string name, [NotNullWhen(true)] out T? obj) where T : class, IHavokObject
+		{
+			obj = null;
+			lock (objectNameMap)
+			{
+				if (objectNameMap.TryGetValue(name, out var value))
+				{
+					obj = value as T;
+				}
+			}
+			return (obj != null);
 		}
 		/// <summary>
 		/// Use only on objects with known type and name.
@@ -58,6 +79,24 @@ namespace HKX2E
 			T ret = new T();
 			ret.ReadXml(this, element);
 			return ret;
+		}
+		public T DeserializeObjectOverwrite<T>(XElement element) where T : IHavokObject, new()
+		{
+			string name = element.Attribute("name")!.Value;
+			IHavokObject obj = new T();
+			obj.ReadXml(this, element);
+			lock (objectNameMap)
+			{
+				if (objectNameMap.ContainsKey(name))
+				{
+					objectNameMap[name] = obj; 
+				}
+				else
+				{
+					objectNameMap.Add(name, obj);
+				}
+			}
+			return (T)obj;
 		}
 		public T DeserializeObject<T>(XElement element) where T : IHavokObject, new()
 		{
@@ -126,7 +165,45 @@ namespace HKX2E
 		/// <param name="element"></param>
 		/// <returns></returns>
 		/// <exception cref="Exception"></exception>
-		public dynamic DeserializeRuntimeObject(XElement element)
+		public IHavokObject DeserializeRuntimeObjectOverwrite(XElement element)
+		{
+			var name = element.Attribute("name")!.Value;
+
+			var hkClassName = element.Attribute("class")!.Value;
+			var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
+			if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+
+			var obj = (IHavokObject)Activator.CreateInstance(hkClass)!;
+			if (obj is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+
+			if (obj.GetType().IsAssignableTo(hkClass))
+			{
+				obj.ReadXml(this, element);
+				lock (objectNameMap)
+				{
+					if (objectNameMap.ContainsKey(name))
+					{
+						objectNameMap[name] = obj;
+					}
+					else
+					{
+						objectNameMap.Add(name, obj);
+					}
+				}
+				return obj;
+			}
+			if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
+				throw new Exception($@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?");
+
+			return hkDummyBuilder.CreateDummy(obj, hkClass);
+		}
+		/// <summary>
+		/// Only use this for havok compliant xml, and when the type is unknown.
+		/// </summary>
+		/// <param name="element"></param>
+		/// <returns></returns>
+		/// <exception cref="Exception"></exception>
+		public IHavokObject DeserializeRuntimeObject(XElement element)
 		{
 			var name = element.Attribute("name")!.Value;
 			lock (objectNameMap)
@@ -189,7 +266,7 @@ namespace HKX2E
 		{
 			var eles = GetPropertyElement(element, name);
 			if (eles is null)
-				return Array.Empty<T>();
+				return new List<T>();
 
 			var result = new List<T>();
 
@@ -260,7 +337,7 @@ namespace HKX2E
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
-				return Array.Empty<T>();
+				return new List<T>();
 
 			var result = new List<T>();
 
@@ -519,7 +596,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<string>();
+				return new List<string>();
 
 			return ele.Elements("hkcstring")
 					  .Select(ele => ele.Value.Trim())
@@ -530,7 +607,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<bool>();
+				return new List<bool>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(bool.Parse)
@@ -543,7 +620,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<byte>();
+				return new List<byte>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(byte.Parse)
@@ -554,7 +631,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<sbyte>();
+				return new List<sbyte>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(sbyte.Parse)
@@ -565,7 +642,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<ushort>();
+				return new List<ushort>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(ushort.Parse)
@@ -576,7 +653,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<short>();
+				return new List<short>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(short.Parse)
@@ -587,7 +664,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<uint>();
+				return new List<uint>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(uint.Parse)
@@ -598,7 +675,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<int>();
+				return new List<int>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(int.Parse)
@@ -609,7 +686,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<ulong>();
+				return new List<ulong>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(ulong.Parse)
@@ -620,7 +697,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<long>();
+				return new List<long>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(long.Parse)
@@ -630,7 +707,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<Half>();
+				return new List<Half>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(Half.Parse)
@@ -641,7 +718,7 @@ namespace HKX2E
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
-				return Array.Empty<float>();
+				return new List<float>();
 
 			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
 							.Select(float.Parse)
@@ -652,13 +729,13 @@ namespace HKX2E
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
-				return Array.Empty<Vector4>();
+				return new List<Vector4>();
 
 			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
 				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			if (count == 0)
-				return Array.Empty<Vector4>();
+				return new List<Vector4>();
 
 			var vec4Arr = Normalize(ele.Value).Select(float.Parse).Chunk(4);
 			if (vec4Arr.Count() != count)
@@ -672,13 +749,13 @@ namespace HKX2E
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
 				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			if (count == 0)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			var mat3Arr = Normalize(ele.Value).Select(float.Parse).Chunk(9);
 			if (mat3Arr.Count() != count)
@@ -694,13 +771,13 @@ namespace HKX2E
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
 				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			if (count == 0)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			var mat4Arr = Normalize(ele.Value).Select(float.Parse).Chunk(16);
 			if (mat4Arr.Count() != count)
@@ -716,13 +793,13 @@ namespace HKX2E
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
 				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			if (count == 0)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			var transArr = Normalize(ele.Value).Select(float.Parse).Chunk(12);
 			if (transArr.Count() != count)
@@ -743,13 +820,13 @@ namespace HKX2E
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele == null)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
 				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			if (count == 0)
-				return Array.Empty<Matrix4x4>();
+				return new List<Matrix4x4>();
 
 			var qsArr = Normalize(ele.Value).Select(float.Parse).Chunk(10);
 			if (qsArr.Count() != count)
@@ -765,13 +842,13 @@ namespace HKX2E
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele == null)
-				return Array.Empty<Quaternion>();
+				return new List<Quaternion>();
 
 			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
 				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 
 			if (count == 0)
-				return Array.Empty<Quaternion>();
+				return new List<Quaternion>();
 
 			var quantArr = Normalize(ele.Value).Select(float.Parse).Chunk(4);
 			if (quantArr.Count() != count)

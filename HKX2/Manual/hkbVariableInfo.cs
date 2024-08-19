@@ -13,7 +13,15 @@ namespace HKX2E
         public sbyte type { set; get; } = default;
 
         public virtual uint Signature { set; get; } = 0x9e746ba2;
-
+        public hkbVariableInfo()
+        {
+            
+        }
+        public hkbVariableInfo(hkbVariableInfo other)
+        {
+            role = other.role;
+            type = other.type;
+        }
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             role = new hkbRoleAttribute();
