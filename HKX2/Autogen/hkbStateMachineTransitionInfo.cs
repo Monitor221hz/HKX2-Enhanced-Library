@@ -17,6 +17,24 @@ namespace HKX2E
     // flags class:  Type.TYPE_FLAGS Type.TYPE_INT16 arrSize: 0 offset: 66 flags: FLAGS_NONE enum: TransitionFlags
     public partial class hkbStateMachineTransitionInfo : IHavokObject, IEquatable<hkbStateMachineTransitionInfo?>
     {
+        public static hkbStateMachineTransitionInfo GetDefault() => new()
+        {
+            triggerInterval = hkbStateMachineTimeInterval.GetDefault(),
+            initiateInterval = hkbStateMachineTimeInterval.GetDefault(),
+            fromNestedStateId = 0, 
+            toNestedStateId = 0, 
+            priority = 0,
+            flags = 256, // TransitionFlags.FLAG_DISABLE_CONDITION
+		};
+        public void SetDefault()
+        {
+            triggerInterval = hkbStateMachineTimeInterval.GetDefault();
+            initiateInterval = hkbStateMachineTimeInterval.GetDefault();
+            fromNestedStateId = 0; 
+            toNestedStateId = 0; 
+            priority = 0;
+            flags = condition == null ? (short)256 : (short)0;
+        }
         public hkbStateMachineTimeInterval triggerInterval { set; get; } = new();
         public hkbStateMachineTimeInterval initiateInterval { set; get; } = new();
         public hkbTransitionEffect? transition { set; get; }

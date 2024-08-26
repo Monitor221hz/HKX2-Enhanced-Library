@@ -20,6 +20,22 @@ namespace HKX2E
     // initializeCharacterPose class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 137 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbBlendingTransitionEffect : hkbTransitionEffect, IEquatable<hkbBlendingTransitionEffect?>
     {
+        public static hkbBlendingTransitionEffect GetDefault() => new()
+        {
+            selfTransitionMode = 0,
+            eventMode = 0, 
+            flags = 1,
+            endMode = 0,
+            blendCurve = 0
+        };
+        public void SetDefault()
+        {
+            selfTransitionMode = 0;
+            eventMode = 0;
+            flags = 2;
+            endMode = 0;
+            blendCurve = 0;
+		}
         public float duration { set; get; }
         public float toGeneratorStartTimeFraction { set; get; }
         public ushort flags { set; get; }

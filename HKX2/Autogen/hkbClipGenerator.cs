@@ -36,6 +36,30 @@ namespace HKX2E
     // pingPongBackward class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 262 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbClipGenerator : hkbGenerator, IEquatable<hkbClipGenerator?>
     {
+        public static hkbClipGenerator GetDefault() => new()
+        {
+			cropStartAmountLocalTime = 0.0f,
+			cropEndAmountLocalTime = 0.0f,
+			startTime = 0.0f,
+			playbackSpeed = 1.0f,
+			enforcedDuration = 0.0f,
+			userControlledTimeFraction = 0.0f,
+			animationBindingIndex = -1,
+			flags = 0,
+			userData = 0
+		};
+        public void SetDefault()
+        {
+			cropStartAmountLocalTime = 0.0f;
+			cropEndAmountLocalTime = 0.0f;
+			startTime = 0.0f;
+            playbackSpeed = 1.0f;
+			enforcedDuration = 0.0f;
+			userControlledTimeFraction = 0.0f;
+			animationBindingIndex = -1;
+			flags = 0;
+			userData = 0;
+		}
         public string animationName { set; get; } = "";
         public hkbClipTriggerArray? triggers { set; get; }
         public float cropStartAmountLocalTime { set; get; }

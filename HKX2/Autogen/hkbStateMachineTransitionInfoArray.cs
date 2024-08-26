@@ -10,7 +10,15 @@ namespace HKX2E
     // transitions class: hkbStateMachineTransitionInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     public partial class hkbStateMachineTransitionInfoArray : hkReferencedObject, IEquatable<hkbStateMachineTransitionInfoArray?>
     {
-        public IList<hkbStateMachineTransitionInfo> transitions { set; get; } = Array.Empty<hkbStateMachineTransitionInfo>();
+        public static hkbStateMachineTransitionInfoArray GetDefault() => new()
+        {
+            transitions = new List<hkbStateMachineTransitionInfo>(), 
+        };
+		public void SetDefault()
+		{
+            transitions = new List<hkbStateMachineTransitionInfo>();
+		}
+		public IList<hkbStateMachineTransitionInfo> transitions { set; get; } = Array.Empty<hkbStateMachineTransitionInfo>();
 
         public override uint Signature { set; get; } = 0xe397b11e;
 

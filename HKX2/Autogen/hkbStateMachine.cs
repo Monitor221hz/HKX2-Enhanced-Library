@@ -37,6 +37,47 @@ namespace HKX2E
     // sCurrentStateIndexAndEntered class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 258 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbStateMachine : hkbGenerator, IEquatable<hkbStateMachine?>
     {
+        public static hkbStateMachine GetDefault() => new()
+        {
+            startStateId = 0,
+            eventToSendWhenStateOrTransitionChanges = hkbEvent.GetDefault(),
+            maxSimultaneousTransitions = 32,
+            returnToPreviousStateEventId = -1, 
+            randomTransitionEventId = -1, 
+            transitionToNextLowerStateEventId = -1,
+            transitionToNextHigherStateEventId = -1,
+            syncVariableIndex = -1,
+            wrapAroundStateId = false, 
+            startStateMode = 0, 
+            selfTransitionMode = 0,
+            states = new List<hkbStateMachineStateInfo>()  
+        };
+        public void SetDefault()
+        {
+            startStateId = 0;
+            eventToSendWhenStateOrTransitionChanges = hkbEvent.GetDefault();
+            maxSimultaneousTransitions = 32;
+            returnToPreviousStateEventId = -1;
+            randomTransitionEventId = -1;
+            transitionToNextLowerStateEventId = -1;
+            transitionToNextHigherStateEventId = -1;
+            syncVariableIndex = -1;
+            wrapAroundStateId = false;
+            startStateMode = 0;
+            selfTransitionMode = 0;
+            states = new List<hkbStateMachineStateInfo>();
+		}
+        public int AddDefaultStateInfo(hkbStateMachineStateInfo state)
+        {
+            int stateId;
+			lock (states)
+            {
+                stateId = states.Count;
+				states.Add(state);
+			}
+			state.stateId = stateId;
+			return stateId;
+		}
         public hkbEvent eventToSendWhenStateOrTransitionChanges { set; get; } = new();
         public hkbStateChooser? startStateChooser { set; get; }
         public int startStateId { set; get; }

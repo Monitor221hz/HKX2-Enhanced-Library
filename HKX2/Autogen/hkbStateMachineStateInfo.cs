@@ -18,6 +18,16 @@ namespace HKX2E
     // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
     public partial class hkbStateMachineStateInfo : hkbBindable, IEquatable<hkbStateMachineStateInfo?>
     {
+        public static hkbStateMachineStateInfo GetDefault() => new()
+        {
+            probability = 1.0f, 
+            enable = true
+        };
+        public void SetDefault()
+        {
+            probability = 1.0f;
+            enable = true; 
+        }
         public IList<hkbStateListener> listeners { set; get; } = Array.Empty<hkbStateListener>();
         public hkbStateMachineEventPropertyArray? enterNotifyEvents { set; get; }
         public hkbStateMachineEventPropertyArray? exitNotifyEvents { set; get; }

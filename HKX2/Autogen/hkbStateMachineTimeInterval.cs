@@ -11,6 +11,20 @@ namespace HKX2E
     // exitTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
     public partial class hkbStateMachineTimeInterval : IHavokObject, IEquatable<hkbStateMachineTimeInterval?>
     {
+        public static hkbStateMachineTimeInterval GetDefault() => new()
+        {
+            enterEventId = -1, 
+            exitEventId = -1,
+            enterTime = 0.0f,
+            exitTime = 0.0f,
+        };
+        public void SetDefault()
+        {
+            enterEventId = -1;
+            exitEventId = -1;
+            enterTime = 0.0f;
+            exitTime = 0.0f;
+        }
         public int enterEventId { set; get; }
         public int exitEventId { set; get; }
         public float enterTime { set; get; }

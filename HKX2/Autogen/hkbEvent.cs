@@ -8,6 +8,11 @@ namespace HKX2E
     // sender class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
     public partial class hkbEvent : hkbEventBase, IEquatable<hkbEvent?>
     {
+        public static hkbEvent GetDefault() => new()
+        {
+            id = -1, 
+            payload = null,
+        };
         private object? sender { set; get; }
 
         public override uint Signature { set; get; } = 0x3e0fd810;
