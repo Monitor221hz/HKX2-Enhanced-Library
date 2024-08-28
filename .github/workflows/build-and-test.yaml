@@ -1,0 +1,69 @@
+name: Build and Test
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch: # For manual execution.
+
+env:
+  build-mode: Debug # Release | Debug
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages # Prevent extra cache by specifying.
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        dotnet-version: ["8.0.x"]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.NUGET_PACKAGES }}
+            */bin
+            */obj
+          key: nuget-${{ matrix.os }}-${{ matrix.dotnet-version }}
+          restore-keys: nuget-${{ matrix.os }}-
+
+      - name: Build
+        run: dotnet build "./HKX2ELibrary.sln" --configuration ${{ env.build-mode }}
+
+  test:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        dotnet-version: ["8.0.x"]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.NUGET_PACKAGES }}
+            */bin
+            */obj
+          key: nuget-${{ matrix.os }}-${{ matrix.dotnet-version }}
+          restore-keys: nuget-${{ matrix.os }}-
+
+      - name: Test
+        run: dotnet test "./HKX2ELibrary.sln" --configuration ${{ env.build-mode }}
