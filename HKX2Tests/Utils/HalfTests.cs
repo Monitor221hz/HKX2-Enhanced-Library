@@ -37,9 +37,9 @@ namespace HKX2E.Tests
             // "Skyrim Special Edition\meshes\actors\wisp\character assets\skeleton.hkx"
             // 00006090: 8e 49 24 41 00 00 4c 3d 80 3f 7f 7f 02 00 00 00  .I$A..L=.?......
             //                                   |----| <- m_timeFactor: 1.000000
-            //                             |----| <- angularDamping: 0x3c4c
+            //                             |----| <- angularDamping: 0.498046875
             //
-            //angularDamping: 0x3c4c
+            //angularDamping: 0x3d4c0000
             // -> float: 0.498046875 -> 0.049804688(The precision will be lost)
             // -> ToXML: 0.049805(The sixth decimal point is rounded off, resulting in a loss of precision)
 
