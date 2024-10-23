@@ -51,6 +51,13 @@ namespace HKX2E
 				nameObjectMap.Add(kvp.Value, kvp.Key);
 			}
 		}
+		public string GetName(IHavokObject obj)
+		{
+			lock (nameObjectMap)
+			{
+				return nameObjectMap[obj];	
+			}
+		}
 		public bool TryGetName(IHavokObject obj, [NotNullWhen(true)] out string? name)
 		{
 			lock (nameObjectMap)

@@ -18,6 +18,10 @@ namespace HKX2E
 
 
 		public XDocument document;
+
+		private int nodeCount = 0;
+		private Dictionary<string, int> nameOrderLookup;
+		
 		private HKXHeader header;
 		// store deserialized
 		private Dictionary<IHavokObject, HavokObjectReference> objectReferenceMap; 
@@ -30,6 +34,13 @@ namespace HKX2E
 		{
 			options = HavokXmlDeserializerOptions.None;
 		}
+
+		private void AddTraversedNode(string name)
+		{
+			nameOrderLookup.Add(name, nodeCount++);
+		}
+
+		public int GetOrder(string name) => nameOrderLookup.TryGetValue(name, out var index) ? index : 0;
 		public bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
 		{
 			lock (objectNameMap)
@@ -179,6 +190,7 @@ namespace HKX2E
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
 			this.header = header;
+			nameOrderLookup = new(StringComparer.OrdinalIgnoreCase); 
 			objectReferenceMap = new(ReferenceEqualityComparer.Instance);
 			referenceNameMap = new();
 			objectNameMap = context.ObjectNameMap;
@@ -195,6 +207,7 @@ namespace HKX2E
 			var rootrefName = testnode.Attribute("name")!.Value;
 			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
 			objectNameMap.Add(rootrefName, testobj);
+			AddTraversedNode(rootrefName); 
 			testobj.ReadXml(this, testnode);
 
 			var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
@@ -205,6 +218,7 @@ namespace HKX2E
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
 			this.header = header;
+			nameOrderLookup = new(StringComparer.OrdinalIgnoreCase); 
 			objectReferenceMap = new(ReferenceEqualityComparer.Instance);
 			referenceNameMap = new();
 			objectNameMap = new();
@@ -230,6 +244,7 @@ namespace HKX2E
 			var rootrefName = testnode.Attribute("name")!.Value;
 			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
 			objectNameMap.Add(rootrefName, testobj);
+			AddTraversedNode(rootrefName);
 			testobj.ReadXml(this, testnode);
 			var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
 
@@ -350,6 +365,7 @@ namespace HKX2E
 			T ret = (T)ConstructVirtualClass<T>(refEle);
 			ret.ReadXml(this, refEle);
 			objectNameMap.Add(refName, ret);
+			AddTraversedNode(refName); 
 			AddPropertyReference(refName, owner, name);
 			return ret;
 		}
@@ -385,6 +401,7 @@ namespace HKX2E
 				var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
 				objectNameMap.Add(refName, ret);
+				AddTraversedNode(refName); 
 				AddPropertyReference(refName, owner, name, i);
 				result.Add(ret);
 			}
@@ -423,6 +440,7 @@ namespace HKX2E
 				var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
 				objectNameMap.Add(refName, ret);
+				AddTraversedNode(refName);
 				AddPropertyReference(refName, owner, name, i);
 				arr[i] = ret;
 			}
