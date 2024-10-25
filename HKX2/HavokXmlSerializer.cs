@@ -183,11 +183,11 @@ namespace HKX2E
 
 		public void WriteSerializeIgnored(XElement xe, string prop)
 		{
-			if (prop.StartsWith("m_"))
-			{
-				prop = prop[2..];
-			}
-			WriteComment(xe, prop + " SERIALIZE_IGNORED");
+			//if (prop.StartsWith("m_"))
+			//{
+			//	prop = prop[2..];
+			//}
+			//WriteComment(xe, prop + " SERIALIZE_IGNORED");
 		}
 
 		private static void WriteComment(XElement xe, string value)
