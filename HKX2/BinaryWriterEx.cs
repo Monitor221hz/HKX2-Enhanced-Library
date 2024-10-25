@@ -331,10 +331,16 @@ namespace HKX2E
 
         public void WriteHalf(Half value)
         {
+            /// NOTE: C++'s `hkHalf` is the upper 16 bits of `float` and does not follow IEEE754.
+            /// However, this library has already been designed using `System.Half`, so it is necessary not to break compatibility.
+            /// Therefore, we should do `half` -> `float` -> `bytes` here to keep compatibility.
+            uint bits = BitConverter.SingleToUInt32Bits((float)value);
+            ushort halfBits = (ushort)(bits >> 16); // Only the most significant 16 bits are taken out.
+
             if (BigEndian)
-                WriteReversedBytes(BitConverter.GetBytes(value));
+                WriteReversedBytes(BitConverter.GetBytes(halfBits));
             else
-                bw.Write(value);
+                bw.Write(halfBits);
         }
 
         public void ReserveHalf(string name)
