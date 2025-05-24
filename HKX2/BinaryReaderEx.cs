@@ -270,9 +270,21 @@ namespace HKX2E
 
         public Half ReadHalf()
         {
+            /// NOTE: C++'s `hkHalf` is the upper 16 bits of `float` and does not follow IEEE 754.
+            /// However, this library has already been designed using `System.Half`, so it is necessary not to break compatibility.
+            /// Therefore, we should do `bytes` -> `float` -> `half` here to keep compatibility.
+            ///
+            /// - Evidence that `System.Half` is IEEE 754: https://learn.microsoft.com/en-us/dotnet/api/system.half?view=net-8.0#remarks
+            byte[] byteArray;
+
             if (BigEndian)
-                return BitConverter.ToHalf(ReadReversedBytes(2), 0);
-            return br.ReadHalf();
+                byteArray = ReadReversedBytes(2);
+            else
+                byteArray = ReadBytes(2);
+
+            ushort halfBits = BitConverter.ToUInt16(byteArray, 0);
+            float floatValue = BitConverter.UInt32BitsToSingle((uint)halfBits << 16);
+            return (Half)floatValue;
         }
 
         public Half AssertHalf(params Half[] options)
