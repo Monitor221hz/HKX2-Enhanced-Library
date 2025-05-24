@@ -1,7 +1,6 @@
 ﻿using FastMember;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace HKX2E
 {
@@ -21,7 +20,7 @@ namespace HKX2E
 		{
 			IHavokObject target = Owner.Object;
 			TypeAccessor accessor = TypeAccessor.Create(target.GetType());
-#if DEBUG
+#if DEBUG_VERBOSE
 			Debug.WriteLine($"{target.GetType()} -> {PropertyName} : {accessor[target, PropertyName].GetType()}");
 #endif
 			var objects = (accessor[target, PropertyName] as IList<T>);

@@ -1,7 +1,6 @@
 ﻿using HKX2E.Utils;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -21,10 +20,10 @@ namespace HKX2E
 
 		private int nodeCount = 0;
 		private Dictionary<string, int> nameOrderLookup;
-		
+
 		private HKXHeader header;
 		// store deserialized
-		private Dictionary<IHavokObject, HavokObjectReference> objectReferenceMap; 
+		private Dictionary<IHavokObject, HavokObjectReference> objectReferenceMap;
 		private Dictionary<string, List<IHavokReference>> referenceNameMap;
 		private Dictionary<string, IHavokObject> objectNameMap;
 		private Dictionary<string, XElement> elementNameMap;
@@ -73,17 +72,17 @@ namespace HKX2E
 				return (T)objectNameMap[name];
 			}
 		}
-			public void UpdateObjectByName(string name, IHavokObject newObject)
+		public void UpdateObjectByName(string name, IHavokObject newObject)
 		{
 			lock (objectNameMap)
 			{
 				if (objectNameMap.TryGetValue(name, out var existingObject))
 				{
 					UpdateDirectReference(existingObject, newObject);
-					UpdatePropertyReferences(name, newObject); 
+					UpdatePropertyReferences(name, newObject);
 					//objectNameMap[name] = newObject;
 				}
-#if DEBUG
+#if DEBUG_VERBOSE
 				else
 				{
 
@@ -96,13 +95,13 @@ namespace HKX2E
 		{
 			if (objectReferenceMap.TryGetValue(existingObject, out var existingReference))
 			{
-				existingReference.Update(newObject); 
+				existingReference.Update(newObject);
 			}
-#if DEBUG
-			else
-			{
-				Debug.WriteLine($"Could not update direct reference for object of type {existingObject.GetType()}");
-			}
+#if DEBUG_VERBOSE
+						else
+						{
+							Debug.WriteLine($"Could not update direct reference for object of type {existingObject.GetType()}");
+						}
 #endif
 
 		}
@@ -122,11 +121,11 @@ namespace HKX2E
 			{
 				objectNameMap[name] = newObject;
 			}
-#if DEBUG
-			else
-			{
-				Debug.WriteLine($"Could not update mapping for object {name}");
-			}
+#if DEBUG_VERBOSE
+						else
+						{
+							Debug.WriteLine($"Could not update mapping for object {name}");
+						}
 #endif
 
 		}
@@ -170,19 +169,19 @@ namespace HKX2E
 		}
 		public HavokObjectReference GetObjectReference(IHavokObject havokObject)
 		{
-			lock(objectReferenceMap)
+			lock (objectReferenceMap)
 			{
 				if (objectReferenceMap.TryGetValue(havokObject, out var existingReference))
 				{
 					return existingReference;
 				}
 			}
-			HavokObjectReference objectReference = new(havokObject); 
+			HavokObjectReference objectReference = new(havokObject);
 			lock (objectReferenceMap)
 			{
 				objectReferenceMap.Add(havokObject, objectReference);
 			}
-			return objectReference; 
+			return objectReference;
 		}
 
 
@@ -190,7 +189,7 @@ namespace HKX2E
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
 			this.header = header;
-			nameOrderLookup = new(StringComparer.OrdinalIgnoreCase); 
+			nameOrderLookup = new(StringComparer.OrdinalIgnoreCase);
 			objectReferenceMap = new(ReferenceEqualityComparer.Instance);
 			referenceNameMap = new();
 			objectNameMap = context.ObjectNameMap;
@@ -207,7 +206,7 @@ namespace HKX2E
 			var rootrefName = testnode.Attribute("name")!.Value;
 			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
 			objectNameMap.Add(rootrefName, testobj);
-			AddTraversedNode(rootrefName); 
+			AddTraversedNode(rootrefName);
 			testobj.ReadXml(this, testnode);
 
 			var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
@@ -218,7 +217,7 @@ namespace HKX2E
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
 			this.header = header;
-			nameOrderLookup = new(StringComparer.OrdinalIgnoreCase); 
+			nameOrderLookup = new(StringComparer.OrdinalIgnoreCase);
 			objectReferenceMap = new(ReferenceEqualityComparer.Instance);
 			referenceNameMap = new();
 			objectNameMap = new();
@@ -365,7 +364,7 @@ namespace HKX2E
 			T ret = (T)ConstructVirtualClass<T>(refEle);
 			ret.ReadXml(this, refEle);
 			objectNameMap.Add(refName, ret);
-			AddTraversedNode(refName); 
+			AddTraversedNode(refName);
 			AddPropertyReference(refName, owner, name);
 			return ret;
 		}
@@ -401,7 +400,7 @@ namespace HKX2E
 				var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
 				objectNameMap.Add(refName, ret);
-				AddTraversedNode(refName); 
+				AddTraversedNode(refName);
 				AddPropertyReference(refName, owner, name, i);
 				result.Add(ret);
 			}
