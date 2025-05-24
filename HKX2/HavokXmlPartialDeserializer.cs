@@ -1,9 +1,7 @@
 ﻿using HKX2E.Utils;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Xml;
@@ -18,20 +16,20 @@ namespace HKX2E
 		private Dictionary<string, IHavokObject> objectNameMap;
 		private Dictionary<string, XElement> elementNameMap;
 		private HavokXmlDeserializerOptions options;
-		public HavokXmlDeserializerContext Context => new (objectNameMap, elementNameMap, options);
+		public HavokXmlDeserializerContext Context => new(objectNameMap, elementNameMap, options);
 
-        public HavokXmlPartialDeserializer()
-        {
+		public HavokXmlPartialDeserializer()
+		{
 			objectNameMap = new();
 			elementNameMap = new();
-			options = HavokXmlDeserializerOptions.None; 
-        }
+			options = HavokXmlDeserializerOptions.None;
+		}
 		public HavokXmlPartialDeserializer(HavokXmlDeserializerOptions options)
-        {
+		{
 			objectNameMap = new();
 			elementNameMap = new();
-			this.options = options; 
-        }
+			this.options = options;
+		}
 		public HavokXmlPartialDeserializer(HavokXmlDeserializerContext context)
 		{
 			objectNameMap = context.ObjectNameMap;
@@ -44,7 +42,7 @@ namespace HKX2E
 		}
 		public void ShareContext(HavokXmlDeserializerContext context)
 		{
-			objectNameMap = context.ObjectNameMap; 
+			objectNameMap = context.ObjectNameMap;
 			elementNameMap = context.ElementNameMap;
 			options = context.Options;
 		}
@@ -89,7 +87,7 @@ namespace HKX2E
 			{
 				if (objectNameMap.ContainsKey(name))
 				{
-					objectNameMap[name] = obj; 
+					objectNameMap[name] = obj;
 				}
 				else
 				{
@@ -101,7 +99,7 @@ namespace HKX2E
 		public T DeserializeObject<T>(XElement element) where T : IHavokObject, new()
 		{
 			string name = element.Attribute("name")!.Value;
-			IHavokObject? obj; 
+			IHavokObject? obj;
 			lock (objectNameMap)
 			{
 				if (objectNameMap.TryGetValue(name, out obj))
@@ -111,11 +109,11 @@ namespace HKX2E
 			}
 			obj = new T();
 			obj.ReadXml(this, element);
-			lock(objectNameMap)
+			lock (objectNameMap)
 			{
 				objectNameMap.Add(name, obj);
 			}
-			return (T)obj; 
+			return (T)obj;
 		}
 		public T DeserializeNamedObject<T>(XElement element, string name) where T : IHavokObject, new()
 		{
@@ -135,7 +133,7 @@ namespace HKX2E
 			}
 			return (T)obj;
 		}
-        private IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
+		private IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
 		{
 			var name = xElement.Attribute("name")!.Value;
 
@@ -319,11 +317,8 @@ namespace HKX2E
 
 			if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
 			{
-				if (options.HasFlag(HavokXmlDeserializerOptions.IgnoreMissingPointers))
-				{
-					return default;
-				}
-				throw new Exception($"Reference symbol '{refName}' not found. Make sure it is defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+				return default;
+				//throw new Exception($"Reference symbol '{refName}' not found. Make sure it is defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
 			}
 
 			T ret = (T)ConstructVirtualClass<T>(refEle);
