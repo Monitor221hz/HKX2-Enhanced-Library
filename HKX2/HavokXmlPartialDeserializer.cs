@@ -352,7 +352,7 @@ namespace HKX2E
 				}
 
 				if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
-					throw new Exception($"Reference symbol '{refName}' not found. Make sure it defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+					continue;
 
 				var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
