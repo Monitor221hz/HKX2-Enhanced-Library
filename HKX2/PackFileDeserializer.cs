@@ -10,12 +10,14 @@ namespace HKX2E
         private HKXClassNames _classnames;
         private HKXSection _classSection;
         private HKXSection _dataSection;
-
+    
         private Dictionary<uint, IHavokObject> _deserializedObjects;
         public HKXHeader _header;
         private HKXSection _typeSection;
 
         private bool _ignoreNonFatalError;
+
+        public PackFileDeserializerContext Context => new PackFileDeserializerContext(_deserializedObjects);
 
         private IHavokObject ConstructVirtualClass(BinaryReaderEx br, uint offset)
         {
