@@ -89,7 +89,7 @@ public class BinaryReaderEx
         {
             Span<byte> buf = stackalloc byte[2];
             Stream.ReadExactly(buf);
-            return BigEndian ? BinaryPrimitives.ReadInt16BigEndian(buf) : BinaryPrimitives.ReadInt16LittleEndian(buf);
+            return BinaryPrimitives.ReadInt16BigEndian(buf);
         }
     }
     public ushort ReadUInt16()
@@ -102,7 +102,7 @@ public class BinaryReaderEx
         {
             Span<byte> buf = stackalloc byte[2];
             Stream.ReadExactly(buf);
-            return BigEndian ? BinaryPrimitives.ReadUInt16BigEndian(buf) : BinaryPrimitives.ReadUInt16LittleEndian(buf);
+            return BinaryPrimitives.ReadUInt16BigEndian(buf);
         }
     }
 
@@ -129,7 +129,7 @@ public class BinaryReaderEx
         {
             Span<byte> buf = stackalloc byte[4];
             Stream.ReadExactly(buf);
-            return BigEndian ? BinaryPrimitives.ReadUInt32BigEndian(buf) : BinaryPrimitives.ReadUInt32LittleEndian(buf);
+            return BinaryPrimitives.ReadUInt32BigEndian(buf);
         }
     }
     public long ReadInt64()
@@ -142,7 +142,7 @@ public class BinaryReaderEx
         {
             Span<byte> buf = stackalloc byte[8];
             Stream.ReadExactly(buf);
-            return BigEndian ? BinaryPrimitives.ReadInt64BigEndian(buf) : BinaryPrimitives.ReadInt64LittleEndian(buf);
+            return BinaryPrimitives.ReadInt64BigEndian(buf);
         }
     }
     public ulong ReadUInt64()
@@ -155,7 +155,7 @@ public class BinaryReaderEx
         {
             Span<byte> buf = stackalloc byte[8];
             Stream.ReadExactly(buf);
-            return BigEndian ? BinaryPrimitives.ReadUInt64BigEndian(buf) : BinaryPrimitives.ReadUInt64LittleEndian(buf);
+            return BinaryPrimitives.ReadUInt64BigEndian(buf);
         }
     }
 
@@ -166,25 +166,36 @@ public class BinaryReaderEx
         /// NOTE: C++'s `hkHalf` is the upper 16 bits of `float` and does not follow IEEE 754.
         /// However, this library has already been designed using `System.Half`, so it is necessary not to break compatibility.
         /// Therefore, we should do `bytes` -> `float` -> `half` here to keep compatibility.
-        ///
-        /// - Evidence that `System.Half` is IEEE 754: https://learn.microsoft.com/en-us/dotnet/api/system.half?view=net-8.0#remarks
-        Span<byte> buf = stackalloc byte[2];
-        Stream.ReadExactly(buf);
+        ushort halfBits;
 
-        ushort halfBits = BigEndian ? BinaryPrimitives.ReadUInt16BigEndian(buf)
-                                    : BinaryPrimitives.ReadUInt16LittleEndian(buf);
+        if (!BigEndian)
+        {
+            halfBits = br.ReadUInt16();
+        }
+        else
+        {
+            Span<byte> buf = stackalloc byte[2];
+            Stream.ReadExactly(buf);
+            halfBits = BinaryPrimitives.ReadUInt16BigEndian(buf);
+        }
 
         float floatValue = BitConverter.UInt32BitsToSingle((uint)halfBits << 16);
         return (Half)floatValue;
     }
-
     public float ReadSingle()
     {
-        Span<byte> buf = stackalloc byte[4];
-        Stream.ReadExactly(buf);
+        float val;
 
-        float val = BigEndian ? BinaryPrimitives.ReadSingleBigEndian(buf)
-                              : BinaryPrimitives.ReadSingleLittleEndian(buf);
+        if (!BigEndian)
+        {
+            val = br.ReadSingle();
+        }
+        else
+        {
+            Span<byte> buf = stackalloc byte[4];
+            Stream.ReadExactly(buf);
+            val = BinaryPrimitives.ReadSingleBigEndian(buf);
+        }
 
         // XXX: NaN(0xFFC0000) to 0.
         if (float.IsNaN(val))
@@ -204,7 +215,7 @@ public class BinaryReaderEx
         {
             Span<byte> buf = stackalloc byte[8];
             Stream.ReadExactly(buf);
-            return BigEndian ? BinaryPrimitives.ReadDoubleBigEndian(buf) : BinaryPrimitives.ReadDoubleLittleEndian(buf);
+            return BinaryPrimitives.ReadDoubleBigEndian(buf);
         }
     }
 
