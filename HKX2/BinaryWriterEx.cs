@@ -49,7 +49,7 @@ public class BinaryWriterEx
         reservations[name] = Stream.Position;
 
         for (var i = 0; i < length; i++)
-            bw.Write((byte)0xFE);
+            WriteByte(0xFE);
     }
 
     private long Fill(string name, string typeName)
