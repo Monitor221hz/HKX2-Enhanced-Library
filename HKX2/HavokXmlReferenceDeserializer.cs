@@ -84,20 +84,6 @@ namespace HKX2E
 				}
 			}
 		}
-		public virtual void UpdateMapping(string name, IHavokObject newObject)
-		{
-			if (objectNameMap.ContainsKey(name))
-			{
-				objectNameMap[name] = newObject;
-			}
-#if DEBUG_VERBOSE
-						else
-						{
-							Debug.WriteLine($"Could not update mapping for object {name}");
-						}
-#endif
-
-		}
 		public virtual void AddPropertyReference(string name, IHavokObject owner, string propertyName, int listIndex)
 		{
 			HavokIndexPropertyReference reference = new HavokIndexPropertyReference(GetObjectReference(owner), propertyName, listIndex);

@@ -45,6 +45,22 @@ namespace HKX2E
                 elementNameMap.TryAdd(name, element);
             }
         }
+        public virtual void UpdateMapping(string name, IHavokObject newObject)
+        {
+			lock (objectNameMap)
+			{
+                if (objectNameMap.ContainsKey(name))
+                {
+                    objectNameMap[name] = newObject;
+                }
+#if DEBUG_VERBOSE
+						else
+						{
+							Debug.WriteLine($"Could not update mapping for object {name}");
+						}
+#endif
+            }
+        }
         public virtual void ShareContext(HavokXmlDeserializerContext context)
         {
             objectNameMap = context.ObjectNameMap;
