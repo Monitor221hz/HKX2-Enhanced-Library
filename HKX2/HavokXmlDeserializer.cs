@@ -1,4 +1,5 @@
-﻿using HKX2E.Utils;
+﻿using HKX2E.Extensions;
+using HKX2E.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -294,22 +295,14 @@ namespace HKX2E
 
 			return hkDummyBuilder.CreateDummy(ret, typeof(T));
 		}
-		protected static XElement? GetPropertyElement(XContainer element, string name)
+
+
+
+        #region Class Types
+
+        public virtual T ReadClass<T>(XElement element, string name) where T : IHavokObject, new()
 		{
-			if (name.StartsWith("m_"))
-			{
-				name = name[2..];
-			}
-			var eles = element.Elements("hkparam").Where(e => e.Attribute("name")!.Value == name);
-			if (!eles.Any())
-			{
-				return null;
-			}
-			return eles.First();
-		}
-		public virtual T ReadClass<T>(XElement element, string name) where T : IHavokObject, new()
-		{
-			var ele = GetPropertyElement(element, name)?.Element("hkobject");
+			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name)?.Element("hkobject");
 
 			var ret = new T();
 			if (ele != null)
@@ -321,7 +314,7 @@ namespace HKX2E
 		}
 		public virtual IList<T> ReadClassArray<T>(XElement element, string name) where T : IHavokObject, new()
 		{
-			var eles = GetPropertyElement(element, name);
+			var eles = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (eles is null)
 				return new List<T>();
 
@@ -343,7 +336,7 @@ namespace HKX2E
 
 		public virtual T[] ReadClassCStyleArray<T>(XElement element, string name, short length) where T : IHavokObject, new()
 		{
-			var eles = GetPropertyElement(element, name);
+			var eles = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (eles is null)
 				return Array.Empty<T>();
 
@@ -361,9 +354,15 @@ namespace HKX2E
 			return arr;
 		}
 
-		public virtual T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
+        #endregion
+
+
+
+        #region ClassPointer Types
+
+        public virtual T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
 		{
-			var ele = GetPropertyElement(element, name);
+			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (ele is null)
 				return default;
 
@@ -389,7 +388,7 @@ namespace HKX2E
 
 		public virtual IList<T> ReadClassPointerArray<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
 		{
-			var ele = GetPropertyElement(element, name);
+			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (ele is null)
 				return new List<T>();
 
@@ -401,7 +400,7 @@ namespace HKX2E
 			if (count == 0)
 				return result;
 
-			var refNames = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+			var refNames = ele.Value.Split(HavokXmlDeserializerExtensions.SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 			foreach (var refName in refNames)
 			{
 				if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
@@ -424,7 +423,7 @@ namespace HKX2E
 
 		public virtual T?[] ReadClassPointerCStyleArray<T>(IHavokObject owner, XElement element, string name, short length) where T : IHavokObject, new()
 		{
-			var ele = GetPropertyElement(element, name);
+			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (ele is null)
 				return Array.Empty<T>();
 
@@ -460,723 +459,289 @@ namespace HKX2E
 			return arr;
 		}
 
-		public virtual string ReadString(XElement element, string name)
-		{
-			// if ele exist it is and empty return empty string (stringptr)
-			// if ele exist it is and '\u2400' return null (cstring)
-			// if not exist it is SERIALIZE_IGNORED flag (null)
-			var ele = GetPropertyElement(element, name);
-			if (ele is null || ele.Value == "\u2400") return null;
-			return ele.Value.Trim();
-		}
+        #endregion
 
-		public virtual bool ReadBoolean(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return false;
-			return bool.Parse(ele.Value);
-		}
 
-		public virtual byte ReadByte(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return byte.Parse(ele.Value);
-		}
 
-		public virtual sbyte ReadSByte(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return sbyte.Parse(ele.Value);
-		}
-
-		public virtual short ReadInt16(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return short.Parse(ele.Value);
-		}
-
-		public virtual ushort ReadUInt16(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return ushort.Parse(ele.Value);
-		}
-
-		public virtual uint ReadUInt32(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return uint.Parse(ele.Value);
-		}
-
-		public virtual int ReadInt32(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return int.Parse(ele.Value);
-		}
-
-        public virtual ulong ReadUInt64(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return ulong.Parse(ele.Value);
-		}
-
-        public virtual long ReadInt64(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null) return 0;
-			return long.Parse(ele.Value);
-		}
-
-        public virtual Half ReadHalf(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new Half();
-			return Half.Parse(ele.Value);
-		}
-
-        public virtual float ReadSingle(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new float();
-			return float.Parse(ele.Value);
-		}
-
-		protected static readonly char[] SplitCharList = { '(', ')', ',', ' ', '\n', '\r', '\t' };
-		protected static IEnumerable<string> Normalize(string str)
-		{
-			return str.Split(SplitCharList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(x => x == "-1.#IND00" ? "0.0" : x).ToArray();
-		}
-
-        public virtual Vector4 ReadVector4(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new Vector4();
-
-			var vec = Normalize(ele.Value).Select(float.Parse).ToArray();
-			return new Vector4(vec[0], vec[1], vec[2], vec[3]);
-		}
-
-        public virtual Matrix4x4 ReadMatrix3(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new Matrix4x4();
-
-			var mat3 = Normalize(ele.Value).Select(float.Parse).ToArray();
-			return new Matrix4x4(mat3[0], mat3[1], mat3[2], 0,
-								 mat3[3], mat3[4], mat3[5], 0,
-								 mat3[6], mat3[7], mat3[8], 0,
-								 0, 0, 0, 0);
-		}
-
-        public virtual Matrix4x4 ReadMatrix4(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new Matrix4x4();
-
-			var mat4 = Normalize(ele.Value).Select(float.Parse).ToArray();
-			return new Matrix4x4(mat4[0], mat4[1], mat4[2], mat4[3],
-								 mat4[4], mat4[5], mat4[6], mat4[7],
-								 mat4[8], mat4[9], mat4[10], mat4[11],
-								 mat4[12], mat4[13], mat4[14], mat4[15]);
-		}
-
-        public virtual Matrix4x4 ReadTransform(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new Matrix4x4();
-
-			var trans = Normalize(ele.Value).Select(float.Parse).ToArray();
-			return new Matrix4x4(trans[0], trans[1], trans[2], 0,
-								 trans[3], trans[4], trans[5], 0,
-								 trans[6], trans[7], trans[8], 0,
-								 trans[9], trans[10], trans[11], 1);
-		}
-
-        public virtual Matrix4x4 ReadRotation(XElement element, string name)
-		{
-			return ReadMatrix3(element, name);
-		}
-
-        public virtual Matrix4x4 ReadQSTransform(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele == null)
-				return new Matrix4x4();
-
-			var qs = Normalize(ele.Value).Select(float.Parse).ToArray();
-			return new Matrix4x4(qs[0], qs[1], qs[2], 0,
-								 qs[3], qs[4], qs[5], qs[6],
-								 qs[7], qs[8], qs[9], 0,
-								 0, 0, 0, 0);
-		}
-
-        public virtual Quaternion ReadQuaternion(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele == null) return new Quaternion();
-			var quant = Normalize(ele.Value).Select(float.Parse).ToArray();
-			return new Quaternion(quant[0], quant[1], quant[2], quant[3]);
-		}
-
-		protected virtual XElement? ReadBaseArray(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return null;
-
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			if (count == 0)
-				return null;
-
-			return ele;
-		}
-
-        public virtual IList<string> ReadStringArray(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<string>();
-
-			return ele.Elements("hkcstring")
-					  .Select(ele => ele.Value.Trim())
-					  .ToList();
-		}
-		protected static readonly char[] SplitSpaceList = { ' ', '\n', '\r', '\t' };
-		public virtual IList<bool> ReadBooleanArray(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<bool>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(bool.Parse)
-							.ToList();
-		}
-
-
-
-		public virtual IList<byte> ReadByteArray(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<byte>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(byte.Parse)
-							.ToList();
-		}
-
-		public virtual IList<sbyte> ReadSByteArray(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<sbyte>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(sbyte.Parse)
-							.ToList();
-		}
-
-		public virtual IList<ushort> ReadUInt16Array(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<ushort>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(ushort.Parse)
-							.ToList();
-		}
-
-		public virtual IList<short> ReadInt16Array(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<short>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(short.Parse)
-							.ToList();
-		}
-
-		public virtual IList<uint> ReadUInt32Array(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<uint>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(uint.Parse)
-							.ToList();
-		}
-
-		public virtual IList<int> ReadInt32Array(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<int>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(int.Parse)
-							.ToList();
-		}
-
-		public virtual IList<ulong> ReadUInt64Array(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<ulong>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(ulong.Parse)
-							.ToList();
-		}
-
-		public virtual IList<long> ReadInt64Array(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<long>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(long.Parse)
-							.ToList();
-		}
-        public virtual IList<Half> ReadHalfArray(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<Half>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(Half.Parse)
-							.ToList();
-		}
-
-        public virtual IList<float> ReadSingleArray(XElement element, string name)
-		{
-			var ele = ReadBaseArray(element, name);
-			if (ele is null)
-				return new List<float>();
-
-			return ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-							.Select(float.Parse)
-							.ToList();
-		}
-
-        public virtual IList<Vector4> ReadVector4Array(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new List<Vector4>();
-
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			if (count == 0)
-				return new List<Vector4>();
-
-			var vec4Arr = Normalize(ele.Value).Select(float.Parse).Chunk(4);
-			if (vec4Arr.Count() != count)
-				throw new Exception($"Vector4 element mismatch. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			return vec4Arr.Select(vec => new Vector4(vec[0], vec[1], vec[2], vec[3]))
-						  .ToList();
-		}
-
-        public virtual IList<Matrix4x4> ReadMatrix3Array(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new List<Matrix4x4>();
-
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			if (count == 0)
-				return new List<Matrix4x4>();
-
-			var mat3Arr = Normalize(ele.Value).Select(float.Parse).Chunk(9);
-			if (mat3Arr.Count() != count)
-				throw new Exception($"Matrix3 element mismatch. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			return mat3Arr.Select(vec => new Matrix4x4(vec[0], vec[1], vec[2], 0,
-													   vec[3], vec[4], vec[5], 0,
-													   vec[6], vec[7], vec[8], 0,
-													   0, 0, 0, 0)).ToList();
-		}
-
-        public virtual IList<Matrix4x4> ReadMatrix4Array(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new List<Matrix4x4>();
-
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			if (count == 0)
-				return new List<Matrix4x4>();
-
-			var mat4Arr = Normalize(ele.Value).Select(float.Parse).Chunk(16);
-			if (mat4Arr.Count() != count)
-				throw new Exception($"Matrix4 element mismatch. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			return mat4Arr.Select(vec => new Matrix4x4(vec[0], vec[1], vec[2], vec[3],
-													   vec[4], vec[5], vec[6], vec[7],
-													   vec[8], vec[9], vec[10], vec[11],
-													   vec[12], vec[13], vec[14], vec[15])).ToList();
-		}
-
-        public virtual IList<Matrix4x4> ReadTransformArray(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return new List<Matrix4x4>();
-
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			if (count == 0)
-				return new List<Matrix4x4>();
-
-			var transArr = Normalize(ele.Value).Select(float.Parse).Chunk(12);
-			if (transArr.Count() != count)
-				throw new Exception($"Transform element mismatch. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			return transArr.Select(trans => new Matrix4x4(trans[0], trans[1], trans[2], 0,
-														  trans[3], trans[4], trans[5], 0,
-														  trans[6], trans[7], trans[8], 0,
-														  trans[9], trans[10], trans[11], 1)).ToList();
-		}
-
-        public virtual IList<Matrix4x4> ReadRotationArray(XElement element, string name)
-		{
-			return ReadMatrix3Array(element, name);
-		}
-
-        public virtual IList<Matrix4x4> ReadQSTransformArray(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele == null)
-				return new List<Matrix4x4>();
-
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			if (count == 0)
-				return new List<Matrix4x4>();
-
-			var qsArr = Normalize(ele.Value).Select(float.Parse).Chunk(10);
-			if (qsArr.Count() != count)
-				throw new Exception($"QSTransform element mismatch. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			return qsArr.Select(qs => new Matrix4x4(qs[0], qs[1], qs[2], 0,
-													qs[3], qs[4], qs[5], qs[6],
-													qs[7], qs[8], qs[9], 0,
-													0, 0, 0, 0)).ToList();
-		}
-
-        public virtual IList<Quaternion> ReadQuaternionArray(XElement element, string name)
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele == null)
-				return new List<Quaternion>();
-
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out var count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			if (count == 0)
-				return new List<Quaternion>();
-
-			var quantArr = Normalize(ele.Value).Select(float.Parse).Chunk(4);
-			if (quantArr.Count() != count)
-				throw new Exception($"Quaternion element missmatch. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			return quantArr.Select(quant => new Quaternion(quant[0], quant[1], quant[2], quant[3])).ToList();
-		}
 
         public virtual TValue ReadFlag<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return TValue.Zero;
-			return ele.Value.Split("|", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToFlagValue<TEnum, TValue>();
-		}
+        {
+            var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (ele is null)
+                return TValue.Zero;
+            return ele.Value.Split("|", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToFlagValue<TEnum, TValue>();
+        }
 
         public virtual TValue ReadEnum<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
-		{
-			var ele = GetPropertyElement(element, name);
-			if (ele is null)
-				return (TValue)(IConvertible)0;
-			return ele.Value.ToEnumValue<TEnum, TValue>();
-		}
-
-		#region C Style Array
-
-		protected virtual XElement? ReadBaseCStyleArray(XElement element, string name, short length)
-		{
-			var ele = GetPropertyElement(element, name);
-			return ele;
-		}
-
-        public virtual bool[] ReadBooleanCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new bool[length];
-
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
-
-			return eles.Select(e => e == "true").ToArray();
-		}
-
-        public virtual byte[] ReadByteCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new byte[length];
-
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
+        {
+            var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (ele is null)
+                return (TValue)(IConvertible)0;
+            return ele.Value.ToEnumValue<TEnum, TValue>();
+        }
 
 
-			return eles.Select(byte.Parse).ToArray();
-		}
-
-        public virtual sbyte[] ReadSByteCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new sbyte[length];
-
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
-
-			return eles.Select(sbyte.Parse).ToArray();
-		}
-
-        public virtual ushort[] ReadUInt16CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new ushort[length];
-
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
-
-			return eles.Select(ushort.Parse).ToArray();
-		}
-
-        public virtual short[] ReadInt16CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new short[length];
-
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
-
-			return eles.Select(short.Parse).ToArray();
-		}
-
-        public virtual uint[] ReadUInt32CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new uint[length];
-
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
 
 
-			return eles.Select(uint.Parse).ToArray();
-		}
+        #region Read Primitive
 
-        public virtual int[] ReadInt32CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new int[length];
+        // ========== Primitive Types =========
 
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
+        public virtual byte ReadByte(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<byte>(element, name);
+        public virtual sbyte ReadSByte(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<sbyte>(element, name);
+        public virtual bool ReadBoolean(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<bool>(element, name);
 
-			return eles.Select(int.Parse).ToArray();
-		}
+        public virtual short ReadInt16(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<short>(element, name);
+        public virtual int ReadInt32(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<int>(element, name);
+        public virtual long ReadInt64(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<long>(element, name);
 
-        public virtual ulong[] ReadUInt64CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new ulong[length];
+        public virtual ushort ReadUInt16(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<ushort>(element, name);
+        public virtual uint ReadUInt32(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<uint>(element, name);
+        public virtual ulong ReadUInt64(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<ulong>(element, name);
 
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
+        public virtual Half ReadHalf(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<Half>(element, name);
+        public virtual float ReadSingle(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<float>(element, name);
+
+        public virtual string ReadString(XElement element, string name)
+        {
+            // if ele exist it is and empty return empty string (stringptr)
+            // if ele exist it is and '\u2400' return null (cstring)
+            // if not exist it is SERIALIZE_IGNORED flag (null)
+            var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (ele is null || ele.Value == "\u2400") return null;
+            return ele.Value.Trim();
+        }
 
 
-			return eles.Select(ulong.Parse).ToArray();
-		}
+        // ========== Primitive Arrays =========
 
-        public virtual long[] ReadInt64CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new long[length];
+        public virtual IList<byte> ReadByteArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, byte.Parse);
+        public virtual IList<sbyte> ReadSByteArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, sbyte.Parse);
+        public virtual IList<bool> ReadBooleanArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, bool.Parse);
 
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
+        public virtual IList<short> ReadInt16Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, short.Parse);
+        public virtual IList<int> ReadInt32Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, int.Parse);
+        public virtual IList<long> ReadInt64Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, long.Parse);
 
-			return eles.Select(long.Parse).ToArray();
-		}
+        public virtual IList<ushort> ReadUInt16Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, ushort.Parse);
+        public virtual IList<uint> ReadUInt32Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, uint.Parse);
+        public virtual IList<ulong> ReadUInt64Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, ulong.Parse);
 
-        public virtual Half[] ReadHalfCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new Half[length];
+        public virtual IList<Half> ReadHalfArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, Half.Parse);
+        public virtual IList<float> ReadSingleArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, float.Parse);
 
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
+        public virtual IList<string> ReadStringArray(XElement element, string name)
+        {
+            var ele = HavokXmlDeserializerExtensions.ReadBaseArray(element, name);
+            if (ele is null)
+                return new List<string>();
 
-			return eles.Select(Half.Parse).ToArray();
-		}
+            return ele.Elements("hkcstring")
+                      .Select(ele => ele.Value.Trim())
+                      .ToList();
+        }
 
-        public virtual float[] ReadSingleCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new float[length];
 
-			var eles = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (eles.Length != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {eles.Length}");
+        // ========== Primitive CStyle Arrays =========
 
-			return eles.Select(float.Parse).ToArray();
-		}
+        public virtual sbyte[] ReadSByteCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, sbyte.Parse);
+        public virtual byte[] ReadByteCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, byte.Parse);
+        public virtual bool[] ReadBooleanCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, s => s == "true");
 
+        public virtual short[] ReadInt16CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, short.Parse);
+        public virtual int[] ReadInt32CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, int.Parse);
+        public virtual long[] ReadInt64CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, long.Parse);
+
+        public virtual ushort[] ReadUInt16CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, ushort.Parse);
+        public virtual uint[] ReadUInt32CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, uint.Parse);
+        public virtual ulong[] ReadUInt64CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, ulong.Parse);
+
+        public virtual Half[] ReadHalfCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, Half.Parse);
+        public virtual float[] ReadSingleCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, float.Parse);
+
+        #endregion
+
+
+
+
+
+        #region Read Complex
+
+        // ========== Complex Types =========
+
+        public virtual Vector4 ReadVector4(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, vec =>
+                new Vector4(vec[0], vec[1], vec[2], vec[3])
+            );
+        }
+
+        public virtual Matrix4x4 ReadMatrix3(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, mat3 =>
+                new Matrix4x4(mat3[0], mat3[1], mat3[2], 0,
+                              mat3[3], mat3[4], mat3[5], 0,
+                              mat3[6], mat3[7], mat3[8], 0,
+                              0, 0, 0, 0)
+            );
+        }
+
+        public virtual Matrix4x4 ReadMatrix4(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, mat4 =>
+                new Matrix4x4(mat4[0], mat4[1], mat4[2], mat4[3],
+                              mat4[4], mat4[5], mat4[6], mat4[7],
+                              mat4[8], mat4[9], mat4[10], mat4[11],
+                              mat4[12], mat4[13], mat4[14], mat4[15])
+            );
+        }
+
+        public virtual Matrix4x4 ReadTransform(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, trans =>
+                new Matrix4x4(trans[0], trans[1], trans[2], 0,
+                              trans[3], trans[4], trans[5], 0,
+                              trans[6], trans[7], trans[8], 0,
+                              trans[9], trans[10], trans[11], 1)
+            );
+        }
+
+        public virtual Matrix4x4 ReadRotation(XElement element, string name) => ReadMatrix3(element, name);
+
+        public virtual Matrix4x4 ReadQSTransform(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, qs =>
+                new Matrix4x4(qs[0], qs[1], qs[2], 0,
+                              qs[3], qs[4], qs[5], qs[6],
+                              qs[7], qs[8], qs[9], 0,
+                              0, 0, 0, 0)
+            );
+        }
+
+        public virtual Quaternion ReadQuaternion(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, quant =>
+                new Quaternion(quant[0], quant[1], quant[2], quant[3])
+            );
+        }
+
+
+        // ========== Complex Arrays =========
+
+        public virtual IList<Vector4> ReadVector4Array(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 4, vec =>
+                new Vector4(vec[0], vec[1], vec[2], vec[3])
+            );
+        }
+
+        public virtual IList<Matrix4x4> ReadMatrix3Array(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 9, vec =>
+                new Matrix4x4(vec[0], vec[1], vec[2], 0,
+                              vec[3], vec[4], vec[5], 0,
+                              vec[6], vec[7], vec[8], 0,
+                              0, 0, 0, 0)
+            );
+        }
+
+        public virtual IList<Matrix4x4> ReadMatrix4Array(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 16, vec =>
+                new Matrix4x4(vec[0], vec[1], vec[2], vec[3],
+                              vec[4], vec[5], vec[6], vec[7],
+                              vec[8], vec[9], vec[10], vec[11],
+                              vec[12], vec[13], vec[14], vec[15])
+            );
+        }
+
+        public virtual IList<Matrix4x4> ReadTransformArray(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 12, trans =>
+                new Matrix4x4(trans[0], trans[1], trans[2], 0,
+                              trans[3], trans[4], trans[5], 0,
+                              trans[6], trans[7], trans[8], 0,
+                              trans[9], trans[10], trans[11], 1)
+            );
+        }
+
+        public virtual IList<Matrix4x4> ReadRotationArray(XElement element, string name) => ReadMatrix3Array(element, name);
+
+        public virtual IList<Matrix4x4> ReadQSTransformArray(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 10, qs =>
+                new Matrix4x4(qs[0], qs[1], qs[2], 0,
+                              qs[3], qs[4], qs[5], qs[6],
+                              qs[7], qs[8], qs[9], 0,
+                              0, 0, 0, 0)
+            );
+        }
+
+        public virtual IList<Quaternion> ReadQuaternionArray(XElement element, string name)
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 4, quant =>
+                new Quaternion(quant[0], quant[1], quant[2], quant[3])
+            );
+        }
+
+
+
+        // ========== Complex CStyle Arrays =========
         public virtual Vector4[] ReadVector4CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new Vector4[length];
-
-			var vec4arr = Normalize(ele.Value).Select(float.Parse).Chunk(4);
-			if (vec4arr.Count() != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-
-			return vec4arr.Select(vec => new Vector4(vec[0], vec[1], vec[2], vec[3]))
-						  .ToArray();
-		}
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 4, vec =>
+                new Vector4(vec[0], vec[1], vec[2], vec[3])
+            );
+        }
 
         public virtual Matrix4x4[] ReadMatrix3CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new Matrix4x4[length];
-
-			var arr = Normalize(ele.Value).Select(float.Parse).Chunk(9);
-			if (arr.Count() != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Count()}");
-
-			return arr.Select(vec => new Matrix4x4(vec[0], vec[1], vec[2], 0,
-													   vec[3], vec[4], vec[5], 0,
-													   vec[6], vec[7], vec[8], 0,
-													   0, 0, 0, 0)).ToArray();
-		}
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 9, vec =>
+                new Matrix4x4(vec[0], vec[1], vec[2], 0,
+                              vec[3], vec[4], vec[5], 0,
+                              vec[6], vec[7], vec[8], 0,
+                              0, 0, 0, 0)
+            );
+        }
 
         public virtual Matrix4x4[] ReadMatrix4CStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new Matrix4x4[length];
-
-			var arr = Normalize(ele.Value).Select(float.Parse).Chunk(16);
-			if (arr.Count() != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Count()}");
-
-			return arr.Select(vec => new Matrix4x4(vec[0], vec[1], vec[2], vec[3],
-												   vec[4], vec[5], vec[6], vec[7],
-												   vec[8], vec[9], vec[10], vec[11],
-												   vec[12], vec[13], vec[14], vec[15])).ToArray();
-		}
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 16, vec =>
+                new Matrix4x4(vec[0], vec[1], vec[2], vec[3],
+                              vec[4], vec[5], vec[6], vec[7],
+                              vec[8], vec[9], vec[10], vec[11],
+                              vec[12], vec[13], vec[14], vec[15])
+            );
+        }
 
         public virtual Matrix4x4[] ReadTransformCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new Matrix4x4[length];
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 12, trans =>
+                new Matrix4x4(trans[0], trans[1], trans[2], 0,
+                              trans[3], trans[4], trans[5], 0,
+                              trans[6], trans[7], trans[8], 0,
+                              trans[9], trans[10], trans[11], 1)
+            );
+        }
 
-			var arr = Normalize(ele.Value).Select(float.Parse).Chunk(12);
-			if (arr.Count() != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Count()}");
-
-			return arr.Select(trans => new Matrix4x4(trans[0], trans[1], trans[2], 0,
-														  trans[3], trans[4], trans[5], 0,
-														  trans[6], trans[7], trans[8], 0,
-														  trans[9], trans[10], trans[11], 1)).ToArray();
-		}
-
-        public virtual Matrix4x4[] ReadRotationCStyleArray(XElement element, string name, short length)
-		{
-			return ReadMatrix3CStyleArray(element, name, length);
-		}
+        public virtual Matrix4x4[] ReadRotationCStyleArray(XElement element, string name, short length) => ReadMatrix3CStyleArray(element, name, length);
 
         public virtual Matrix4x4[] ReadQSTransformCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new Matrix4x4[length];
-
-			var arr = Normalize(ele.Value).Select(float.Parse).Chunk(10);
-			if (arr.Count() != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Count()}");
-
-			return arr.Select(qs => new Matrix4x4(qs[0], qs[1], qs[2], 0,
-													qs[3], qs[4], qs[5], qs[6],
-													qs[7], qs[8], qs[9], 0,
-													0, 0, 0, 0)).ToArray();
-		}
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 10, qs =>
+                new Matrix4x4(qs[0], qs[1], qs[2], 0,
+                              qs[3], qs[4], qs[5], qs[6],
+                              qs[7], qs[8], qs[9], 0,
+                              0, 0, 0, 0)
+            );
+        }
 
         public virtual Quaternion[] ReadQuaternionCStyleArray(XElement element, string name, short length)
-		{
-			var ele = ReadBaseCStyleArray(element, name, length);
-			if (ele is null)
-				return new Quaternion[length];
-
-			var arr = Normalize(ele.Value).Select(float.Parse).Chunk(4);
-			if (arr.Count() != length)
-				throw new Exception($"Content's elements mismatch property require {length} at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Count()}");
-
-			return arr.Select(quant => new Quaternion(quant[0], quant[1], quant[2], quant[3])).ToArray();
-		}
-
+        {
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 4, quant =>
+                new Quaternion(quant[0], quant[1], quant[2], quant[3])
+            );
+        }
 
         #endregion
     }
