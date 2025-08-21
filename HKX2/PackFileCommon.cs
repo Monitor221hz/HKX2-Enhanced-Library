@@ -335,7 +335,32 @@ namespace HKX2E
     {
         private List<HKXClassName> ClassNames;
         public Dictionary<uint, HKXClassName> OffsetClassNamesMap;
+        public void ReadWithMetaData(BinaryReaderEx br)
+        {
+            ClassNames = new List<HKXClassName>();
+            OffsetClassNamesMap = new Dictionary<uint, HKXClassName>();
+            while (true)
+            {
+                if (br.Position >= br.Length || br.Position + 5 >= br.Length)
+                {
+                    break;
+                }
 
+                br.ReadUInt32(); // signature
+                var separator = br.ReadByte();
+                if (separator != 0x09)
+                {
+                    break;
+                }
+                br.Position -= 5;
+
+                var stringStart = (uint)br.Position + 5;
+                var className = new HKXClassName(br);
+                ClassNames.Add(className);
+                OffsetClassNamesMap.Add(stringStart, className);
+                if (br.Position == br.Length) break;
+            }
+        }
         public void Read(BinaryReaderEx br)
         {
             ClassNames = new List<HKXClassName>();
@@ -506,6 +531,14 @@ namespace HKX2E
             var br = new BinaryReaderEx(_br.BigEndian, _br.USizeLong, SectionData);
             var classnames = new HKXClassNames();
             classnames.Read(br);
+            return classnames;
+        }
+
+        internal HKXClassNames ReadClassnamesWithMetaData(BinaryReaderEx _br)
+        {
+            var br = new BinaryReaderEx(_br.BigEndian, _br.USizeLong, SectionData);
+            var classnames = new HKXClassNames();
+            classnames.ReadWithMetaData(br);
             return classnames;
         }
     }

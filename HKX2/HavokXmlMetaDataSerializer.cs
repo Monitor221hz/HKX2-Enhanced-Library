@@ -1,63 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace HKX2E
 {
-    public class HavokXmlMetaDataPartialDeserializer : HavokXmlPartialRefDeserializer
-    {
-        protected const ulong nodeNameMask = 0xFUL;
-
-        private static string ExtractNodeName(ulong userData)
-        {
-            return $"#{(userData >> 4):0000}";
-        }
-
-        public override T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : default
-        {
-            var ele = GetPropertyElement(element, name);
-            if (ele is null)
-                return default;
-
-            var refName = ele.Value;
-            if (refName == "null")
-                return default;
-
-            if (objectNameMap.TryGetValue(refName, out IHavokObject? value) && value is T obj)
-            {
-                AddPropertyReference(refName, owner, name);
-                return obj;
-            }
-
-            if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
-                return default;
-
-            T ret = (T)ConstructVirtualClass<T>(refEle);
-            ret.ReadXml(this, refEle);
-            objectNameMap.Add(refName, ret);
-            AddTraversedNode(refName);
-            AddPropertyReference(refName, owner, name);
-            return ret;
-        }
-        public override bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
-        {
-            lock (objectNameMap)
-            {
-                return objectNameMap.TryGetValue(name, out obj);
-            }
-        }
-    }
-
     public class HavokXmlMetaDataSerializer : HavokXmlSerializer
     {
-        protected const ulong nodeNameMask = 0xFUL; 
-        private static ulong EmbedNodeName(ulong userData, uint name)
+        protected Dictionary<IHavokObject, ulong> idNodeMap = new(ReferenceEqualityComparer.Instance);
+
+        protected ulong GetIndex(IHavokObject obj)
         {
-            return (userData & nodeNameMask) | (ulong)name << 4; 
+            lock (idNodeMap)
+            {
+                if (idNodeMap.TryGetValue(obj, out ulong index))
+                {
+                    return index; 
+                }
+            }
+            return GetIndex(); 
+        }
+        protected string GetIndexedName(IHavokObject obj) => FormatIndexName(GetIndex(obj));
+
+        public void ShareContext(MetaPackFileDeserializerContext context)
+        {
+            foreach (var kvp in context.ReferenceIDMap)
+            {
+                idNodeMap.TryAdd(kvp.Value, kvp.Key);
+            }
+        }
+        public override void Serialize(IHavokObject rootObject, HKXHeader header, Stream stream)
+        {
+            nameObjectMap.Clear();
+
+            var index = GetIndexedName(rootObject);
+
+            document = new XDocument(
+                new XDeclaration("1.0", "ascii", null),
+                new XElement("hkpackfile",
+                    new XAttribute("classversion", header.FileVersion),
+                    new XAttribute("contentsversion", header.ContentsVersionString),
+                    new XAttribute("toplevelobject", index),
+                    new XElement("hksection",
+                        new XAttribute("name", "__data__"))));
+
+            dataSection = document.Element("hkpackfile").Element("hksection");
+
+            var hkrootcontainer = WriteNode(rootObject, index);
+            rootObject.WriteXml(this, hkrootcontainer);
+
+            document.Save(stream);
+        }
+        public override XElement SerializeObject<T>(T hkObject) where T : default
+        {
+            XElement ele = new("hkobject");
+            string name;
+            lock (nameObjectMap)
+            {
+                if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
+                {
+
+                    name = GetIndexedName(hkObject);
+                    nameObjectMap.Add(hkObject, name);
+                }
+                else
+                {
+                    name = existingName;
+                }
+            }
+            ele.Add(new XAttribute("name", name), new XAttribute("class", hkObject.GetType().Name), new XAttribute("signature", FormatSignature(hkObject.Signature)));
+            hkObject.WriteXml(this, ele);
+            return ele;
         }
         public override void WriteClassPointer<T>(XElement xe, string paramName, T? value) where T : default
         {
@@ -73,15 +91,10 @@ namespace HKX2E
             }
             else
             {
-                var index = GetIndex(); 
-                var indexedName = FormatIndexName(index);
-                nameObjectMap.Add(value, indexedName);
-                WriteString(xe, paramName, indexedName);
-                if (value is hkbNode namedNode)
-                {
-                    namedNode.userData = EmbedNodeName(namedNode.userData, index);
-                }
-                var node = WriteNode(value, indexedName);
+                var index = GetIndexedName(value);
+                nameObjectMap.Add(value, index);
+                WriteString(xe, paramName, index);
+                var node = WriteNode(value, index);
                 value.WriteXml(this, node);
             }
         }
@@ -102,15 +115,10 @@ namespace HKX2E
                     indexs.Add(nameObjectMap[item]);
                     continue;
                 }
-                var index = GetIndex();
-                var indexedName = FormatIndexName(index);
-                nameObjectMap.Add(item, indexedName);
-                indexs.Add(indexedName);
-                if (item is hkbNode namedNode)
-                {
-                    namedNode.userData = EmbedNodeName(namedNode.userData, index);
-                }
-                var node = WriteNode(item, indexedName);
+                var index = GetIndexedName(item);
+                nameObjectMap.Add(item, index);
+                indexs.Add(index);
+                var node = WriteNode(item, index);
                 item.WriteXml(this, node);
             }
             hkparam.Add(new XText(string.Join(" ", indexs)));

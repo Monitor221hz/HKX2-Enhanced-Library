@@ -35,5 +35,41 @@ namespace HKX2E
             _deserializedObjects.Add(offset, ret);
             return ret;
         }
+        public override void DeserializePartially(BinaryReaderEx br)
+        {
+            br.StepIn(0x11);
+            br.BigEndian = br.ReadByte() == 0x0;
+            br.StepOut();
+
+            _header = new HKXHeader(br);
+
+            // Read the 3 sections in the file
+            if (_header.SectionOffset == -1)
+            {
+                br.Position = 0x40;
+            }
+            else
+            {
+                br.Position = _header.SectionOffset + 0x40;
+            }
+
+            _classSection = new HKXSection(br, _header.ContentsVersionString) { SectionID = 0 };
+            _typeSection = new HKXSection(br, _header.ContentsVersionString) { SectionID = 1 };
+            _dataSection = new HKXSection(br, _header.ContentsVersionString) { SectionID = 2 };
+
+            // Process the class names
+            _classnames = _classSection.ReadClassnamesWithMetaData(br);
+        }
+        public override IHavokObject Deserialize(BinaryReaderEx br, bool ignoreNonFatalError = false)
+        {
+            _ignoreNonFatalError = ignoreNonFatalError;
+
+            DeserializePartially(br);
+
+            // Deserialize the objects
+            _deserializedObjects = new Dictionary<uint, IHavokObject>();
+            var br2 = new BinaryReaderEx(_header.Endian == 0, _header.PointerSize == 8, _dataSection.SectionData);
+            return ConstructVirtualClass(br2, 0);
+        }
     }
 }
