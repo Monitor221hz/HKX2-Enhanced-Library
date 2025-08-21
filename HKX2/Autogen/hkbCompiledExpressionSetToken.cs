@@ -7,12 +7,12 @@ namespace HKX2E
 
     // data class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 4 flags: FLAGS_NONE enum: TokenType
-    // @operator class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 5 flags: FLAGS_NONE enum: Operator
+    // _operator class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 5 flags: FLAGS_NONE enum: Operator
     public partial class hkbCompiledExpressionSetToken : IHavokObject, IEquatable<hkbCompiledExpressionSetToken?>
     {
         public float data { set; get; }
         public sbyte type { set; get; }
-        public sbyte @operator { set; get; }
+        public sbyte _operator { set; get; }
 
         public virtual uint Signature { set; get; } = 0xc6aaccc8;
 
@@ -20,7 +20,7 @@ namespace HKX2E
         {
             data = br.ReadSingle();
             type = br.ReadSByte();
-            @operator = br.ReadSByte();
+            _operator = br.ReadSByte();
             br.Position += 2;
         }
 
@@ -28,7 +28,7 @@ namespace HKX2E
         {
             bw.WriteSingle(data);
             bw.WriteSByte(type);
-            bw.WriteSByte(@operator);
+            bw.WriteSByte(_operator);
             bw.Position += 2;
         }
 
@@ -36,14 +36,14 @@ namespace HKX2E
         {
             data = xd.ReadSingle(xe, nameof(data));
             type = xd.ReadFlag<TokenType, sbyte>(xe, nameof(type));
-            @operator = xd.ReadFlag<Operator, sbyte>(xe, nameof(@operator));
+            _operator = xd.ReadFlag<Operator, sbyte>(xe, nameof(_operator));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(data), data);
             xs.WriteEnum<TokenType, sbyte>(xe, nameof(type), type);
-            xs.WriteEnum<Operator, sbyte>(xe, nameof(@operator), @operator);
+            xs.WriteEnum<Operator, sbyte>(xe, nameof(_operator), _operator);
         }
 
         public override bool Equals(object? obj)
@@ -56,7 +56,7 @@ namespace HKX2E
             return other is not null &&
                    data.Equals(other.data) &&
                    type.Equals(other.type) &&
-                   @operator.Equals(other.@operator) &&
+                   _operator.Equals(other._operator) &&
                    Signature == other.Signature; ;
         }
 
@@ -65,7 +65,7 @@ namespace HKX2E
             var hashcode = new HashCode();
             hashcode.Add(data);
             hashcode.Add(type);
-            hashcode.Add(@operator);
+            hashcode.Add(_operator);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

@@ -5,35 +5,35 @@ namespace HKX2E
 {
     // hkxSparselyAnimatedEnum Signatire: 0x68a47b64 size: 56 flags: FLAGS_NONE
 
-    // @enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // _enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkxSparselyAnimatedEnum : hkxSparselyAnimatedInt, IEquatable<hkxSparselyAnimatedEnum?>
     {
-        public hkxEnum? @enum { set; get; }
+        public hkxEnum? _enum { set; get; }
 
         public override uint Signature { set; get; } = 0x68a47b64;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            @enum = des.ReadClassPointer<hkxEnum>(br);
+            _enum = des.ReadClassPointer<hkxEnum>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
         {
             base.Write(s, bw);
-            s.WriteClassPointer(bw, @enum);
+            s.WriteClassPointer(bw, _enum);
         }
 
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            @enum = xd.ReadClassPointer<hkxEnum>(this, xe, nameof(@enum));
+            _enum = xd.ReadClassPointer<hkxEnum>(this, xe, nameof(_enum));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(@enum), @enum);
+            xs.WriteClassPointer(xe, nameof(_enum), _enum);
         }
 
         public override bool Equals(object? obj)
@@ -45,7 +45,7 @@ namespace HKX2E
         {
             return other is not null &&
                    base.Equals(other) &&
-                   ((@enum is null && other.@enum is null) || (@enum is not null && other.@enum is not null && @enum.Equals((IHavokObject)other.@enum))) &&
+                   ((_enum is null && other._enum is null) || (_enum is not null && other._enum is not null && _enum.Equals((IHavokObject)other._enum))) &&
                    Signature == other.Signature; ;
         }
 
@@ -53,7 +53,7 @@ namespace HKX2E
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(@enum);
+            hashcode.Add(_enum);
             hashcode.Add(Signature);
             return hashcode.ToHashCode();
         }

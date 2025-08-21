@@ -18,7 +18,7 @@ namespace HKX2E
     public partial class hkxNode : hkxAttributeHolder, IEquatable<hkxNode?>
     {
         public string name { set; get; } = "";
-        public hkReferencedObject? @object { set; get; }
+        public hkReferencedObject? _object { set; get; }
         public IList<Matrix4x4> keyFrames { set; get; } = Array.Empty<Matrix4x4>();
         public IList<hkxNode> children { set; get; } = Array.Empty<hkxNode>();
         public IList<hkxNodeAnnotationData> annotations { set; get; } = Array.Empty<hkxNodeAnnotationData>();
@@ -31,7 +31,7 @@ namespace HKX2E
         {
             base.Read(des, br);
             name = des.ReadStringPointer(br);
-            @object = des.ReadClassPointer<hkReferencedObject>(br);
+            _object = des.ReadClassPointer<hkReferencedObject>(br);
             keyFrames = des.ReadMatrix4Array(br);
             children = des.ReadClassPointerArray<hkxNode>(br);
             annotations = des.ReadClassArray<hkxNodeAnnotationData>(br);
@@ -44,7 +44,7 @@ namespace HKX2E
         {
             base.Write(s, bw);
             s.WriteStringPointer(bw, name);
-            s.WriteClassPointer(bw, @object);
+            s.WriteClassPointer(bw, _object);
             s.WriteMatrix4Array(bw, keyFrames);
             s.WriteClassPointerArray(bw, children);
             s.WriteClassArray(bw, annotations);
@@ -57,7 +57,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             name = xd.ReadString(xe, nameof(name));
-            @object = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(@object));
+            _object = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(_object));
             keyFrames = xd.ReadMatrix4Array(xe, nameof(keyFrames));
             children = xd.ReadClassPointerArray<hkxNode>(this, xe, nameof(children));
             annotations = xd.ReadClassArray<hkxNodeAnnotationData>(xe, nameof(annotations));
@@ -69,7 +69,7 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(name), name);
-            xs.WriteClassPointer(xe, nameof(@object), @object);
+            xs.WriteClassPointer(xe, nameof(_object), _object);
             xs.WriteMatrix4Array(xe, nameof(keyFrames), keyFrames);
             xs.WriteClassPointerArray(xe, nameof(children), children!);
             xs.WriteClassArray(xe, nameof(annotations), annotations);
@@ -87,7 +87,7 @@ namespace HKX2E
             return other is not null &&
                    base.Equals(other) &&
                    (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   ((@object is null && other.@object is null) || (@object is not null && other.@object is not null && @object.Equals((IHavokObject)other.@object))) &&
+                   ((_object is null && other._object is null) || (_object is not null && other._object is not null && _object.Equals((IHavokObject)other._object))) &&
                    keyFrames.SequenceEqual(other.keyFrames) &&
                    children.SequenceEqual(other.children) &&
                    annotations.SequenceEqual(other.annotations) &&
@@ -101,7 +101,7 @@ namespace HKX2E
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
             hashcode.Add(name);
-            hashcode.Add(@object);
+            hashcode.Add(_object);
             hashcode.Add(keyFrames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(children.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
             hashcode.Add(annotations.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
