@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
-	public class HavokXmlPartialRefDeserializer : HavokXmlPartialDeserializer
+	public class HavokXmlReferenceDeserializer : HavokXmlDeserializer
 	{
 		private int nodeCount = 0;
 		private Dictionary<string, int> nameOrderLookup;
@@ -18,7 +18,7 @@ namespace HKX2E
 		private Dictionary<IHavokObject, HavokObjectReference> objectReferenceMap;
 		private Dictionary<string, List<IHavokReference>> referenceNameMap;
 
-        public HavokXmlPartialRefDeserializer()
+        public HavokXmlReferenceDeserializer()
         {
             objectNameMap = new();
             elementNameMap = new();
@@ -26,7 +26,7 @@ namespace HKX2E
             objectReferenceMap = new(ReferenceEqualityComparer.Instance);
             referenceNameMap = new();
         }
-        public HavokXmlPartialRefDeserializer(HavokXmlDeserializerOptions options)
+        public HavokXmlReferenceDeserializer(HavokXmlDeserializerOptions options)
         {
             objectNameMap = new();
             elementNameMap = new();
@@ -34,7 +34,7 @@ namespace HKX2E
             objectReferenceMap = new(ReferenceEqualityComparer.Instance);
             referenceNameMap = new();
         }
-        public HavokXmlPartialRefDeserializer(HavokXmlDeserializerContext context)
+        public HavokXmlReferenceDeserializer(HavokXmlDeserializerContext context)
         {
             objectNameMap = context.ObjectNameMap;
             elementNameMap = context.ElementNameMap;

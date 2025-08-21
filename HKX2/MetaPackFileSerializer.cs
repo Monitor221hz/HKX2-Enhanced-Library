@@ -25,7 +25,7 @@ namespace HKX2E
 
             _header.Write(bw);
             // Initialize bookkeeping structures
-            idNodeMap.Clear();
+
             _localFixups = new List<LocalFixup>();
             _globalFixups = new List<GlobalFixup>();
             _virtualFixups = new List<VirtualFixup>();

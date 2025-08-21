@@ -16,10 +16,6 @@ namespace HKX2E
 
         public override uint Signature { set; get; } = 0x3b1c1113;
 
-        /// <summary>
-        /// This is not part of the class, just for accommodating binary serialization/deserialization without breaking xml name targeting.
-        /// </summary>
-        public ulong ExtraID {  set; get; } = default;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {

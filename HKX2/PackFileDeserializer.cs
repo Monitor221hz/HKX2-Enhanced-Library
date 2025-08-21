@@ -38,7 +38,7 @@ namespace HKX2E
             return ret;
         }
 
-        public void DeserializePartially(BinaryReaderEx br)
+        public virtual void DeserializePartially(BinaryReaderEx br)
         {
             br.StepIn(0x11);
             br.BigEndian = br.ReadByte() == 0x0;
@@ -64,7 +64,7 @@ namespace HKX2E
             _classnames = _classSection.ReadClassnames(br);
         }
 
-        public IHavokObject Deserialize(BinaryReaderEx br, bool ignoreNonFatalError = false)
+        public virtual IHavokObject Deserialize(BinaryReaderEx br, bool ignoreNonFatalError = false)
         {
             _ignoreNonFatalError = ignoreNonFatalError;
 

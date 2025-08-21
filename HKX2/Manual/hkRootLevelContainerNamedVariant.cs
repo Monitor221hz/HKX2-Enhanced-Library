@@ -31,7 +31,14 @@ namespace HKX2E
             s.WriteStringPointer(bw, className);
             s.WriteClassPointer(bw, variant);
         }
-
+        public void WriteMetaData(PackFileSerializer s, BinaryWriterEx bw, ulong metaData)
+        {
+            bw.WriteUInt64(metaData);
+        }
+        public ulong ReadMetaData(PackFileDeserializer s, BinaryReaderEx br)
+        {
+            return br.ReadUInt64();
+        }
         public void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));

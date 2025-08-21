@@ -10,13 +10,11 @@ namespace HKX2E
 {
 	public class HavokXmlSerializer : IHavokXmlWriter, IHavokObjectNameMap
 	{
-		private HKXHeader header;
-
-		private XDocument document;
-		private XContainer dataSection;
+		protected XDocument? document;
+		protected XContainer? dataSection;
 
         protected uint index = 0050;
-        protected Dictionary<IHavokObject, string> nameObjectMap;
+        protected Dictionary<IHavokObject, string> nameObjectMap = new(ReferenceEqualityComparer.Instance);
         protected readonly HashSet<uint> staticIndexes = [];
 
 		public HavokXmlSerializer()
@@ -67,7 +65,7 @@ namespace HKX2E
 				return nameObjectMap.TryGetValue(obj, out name);
 			}
 		}
-		protected uint GetIndex()
+		protected ulong GetIndex()
 		{
             while (staticIndexes.Contains(index))
             {
@@ -75,7 +73,7 @@ namespace HKX2E
             }
 			return index++; 
         }
-		protected string FormatIndexName(uint index) => $"#{index:0000}";
+		protected string FormatIndexName(ulong index) => $"#{index:0000}";
 
         protected string GetIndexedName() => FormatIndexName(GetIndex());
 
@@ -86,8 +84,6 @@ namespace HKX2E
 
 		public virtual void Serialize(IHavokObject rootObject, HKXHeader header, Stream stream)
 		{
-
-			this.header = header;
 			nameObjectMap.Clear();
 
 			var index = GetIndexedName();
@@ -108,31 +104,91 @@ namespace HKX2E
 
 			document.Save(stream);
         }
-        public virtual void SerializeContextual(IHavokObject rootObject, HKXHeader header, Stream stream)
+        public virtual XElement SerializeDetachedObject<T>(T hkObject) where T : IHavokObject
         {
-
-            this.header = header;
-            //nameObjectMap.Clear();
-
-            var index = GetIndexedName();
-
-            document = new XDocument(
-                new XDeclaration("1.0", "ascii", null),
-                new XElement("hkpackfile",
-                    new XAttribute("classversion", header.FileVersion),
-                    new XAttribute("contentsversion", header.ContentsVersionString),
-                    new XAttribute("toplevelobject", index),
-                    new XElement("hksection",
-                        new XAttribute("name", "__data__"))));
-
-            dataSection = document.Element("hkpackfile").Element("hksection");
-
-            var hkrootcontainer = WriteNode(rootObject, index);
-            rootObject.WriteXml(this, hkrootcontainer);
-
-            document.Save(stream);
+            XElement element = new XElement("hkobject");
+            hkObject.WriteXml(this, element);
+            return element;
         }
+        public virtual XElement SerializeObject<T>(T hkObject) where T : IHavokObject
+        {
+            XElement ele = new("hkobject");
+            string name;
+            lock (nameObjectMap)
+            {
+                if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
+                {
 
+                    name = GetIndexedName();
+                    nameObjectMap.Add(hkObject, name);
+                }
+                else
+                {
+                    name = existingName;
+                }
+            }
+            ele.Add(new XAttribute("name", name), new XAttribute("class", hkObject.GetType().Name), new XAttribute("signature", FormatSignature(hkObject.Signature)));
+            hkObject.WriteXml(this, ele);
+            return ele;
+        }
+        public XElement SerializeNode<T>(T hkNode) where T : hkbNode
+        {
+            string name = hkNode.name;
+            XElement ele = new("hkobject");
+            lock (nameObjectMap)
+            {
+                if (!nameObjectMap.TryGetValue(hkNode, out string? existingName))
+                {
+                    nameObjectMap.Add(hkNode, name);
+                }
+                else
+                {
+                    name = existingName;
+                }
+            }
+
+            ele.Add(new XAttribute("name", name), new XAttribute("class", hkNode.GetType().Name), new XAttribute("signature", FormatSignature(hkNode.Signature)));
+            hkNode.WriteXml(this, ele);
+            return ele;
+        }
+        public XElement SerializeNamedObject<T>(T hkObject, string name, out bool existingReference) where T : IHavokObject
+        {
+            XElement ele = new("hkobject");
+            lock (nameObjectMap)
+            {
+                if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
+                {
+                    nameObjectMap.Add(hkObject, name);
+                    existingReference = false;
+                }
+                else
+                {
+                    existingReference = true;
+                    name = existingName;
+                }
+            }
+            ele.Add(new XAttribute("name", name), new XAttribute("class", hkObject.GetType().Name), new XAttribute("signature", FormatSignature(hkObject.Signature)));
+            hkObject.WriteXml(this, ele);
+            return ele;
+        }
+        public XElement SerializeNamedObject<T>(T hkObject, string name) where T : IHavokObject
+        {
+            XElement ele = new("hkobject");
+            lock (nameObjectMap)
+            {
+                if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
+                {
+                    nameObjectMap.Add(hkObject, name);
+                }
+                else
+                {
+                    name = existingName;
+                }
+            }
+            ele.Add(new XAttribute("name", name), new XAttribute("class", hkObject.GetType().Name), new XAttribute("signature", FormatSignature(hkObject.Signature)));
+            hkObject.WriteXml(this, ele);
+            return ele;
+        }
         protected XElement WriteNode<T>(T hkobject, string nodeName) where T : IHavokObject
 		{
 			XElement ele = new("hkobject",

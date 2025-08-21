@@ -13,8 +13,8 @@ namespace HKX2E
 
 	public class HavokXmlDeserializer : IHavokXmlReader, INameHavokObjectMap
 	{
-		private XDocument document;
-		private HKXHeader header;
+		private XDocument? document;
+		private HKXHeader header = HKXHeader.SkyrimSE(); 
 		// store deserialized
 		protected Dictionary<string, IHavokObject> objectNameMap;
 		protected Dictionary<string, XElement> elementNameMap;
@@ -22,7 +22,21 @@ namespace HKX2E
 		public virtual HavokXmlDeserializerContext Context => new(objectNameMap, elementNameMap, options);
 		public HavokXmlDeserializer()
         {
-			options = HavokXmlDeserializerOptions.None;
+            objectNameMap = new();
+            elementNameMap = new();
+            options = HavokXmlDeserializerOptions.None;
+        }
+        public HavokXmlDeserializer(HavokXmlDeserializerOptions options)
+        {
+            objectNameMap = new();
+            elementNameMap = new();
+            this.options = options;
+        }
+        public HavokXmlDeserializer(HavokXmlDeserializerContext context)
+        {
+            objectNameMap = context.ObjectNameMap;
+            elementNameMap = context.ElementNameMap;
+            options = context.Options;
         }
         public virtual void Collect(string name, XElement element)
         {
@@ -37,7 +51,7 @@ namespace HKX2E
             elementNameMap = context.ElementNameMap;
             options = context.Options;
         }
-        public IHavokObject Deserialize(Stream stream, HKXHeader header, HavokXmlDeserializerContext context, HavokXmlDeserializerOptions options)
+        public IHavokObject DeserializeContextual(Stream stream, HKXHeader header, HavokXmlDeserializerContext context, HavokXmlDeserializerOptions options)
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
 			this.header = header;
@@ -62,7 +76,180 @@ namespace HKX2E
 
 			return hkRootLevelContainer;
 		}
-		public virtual bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
+        public IHavokObject Deserialize(Stream stream, HKXHeader header)
+        {
+            document = XDocument.Load(stream, LoadOptions.SetLineInfo);
+            this.header = header;
+			objectNameMap.Clear();
+			elementNameMap.Clear(); 
+            options = HavokXmlDeserializerOptions.None;
+
+            var hksection = document.Element("hkpackfile")?.Element("hksection");
+            if (hksection is null)
+                throw new Exception("Xml missing hkpackfile and hksection tag");
+
+            // collect nodes
+            foreach (var item in hksection.Elements())
+            {
+                var name = item.Attribute("name")!.Value;
+#if DEBUG
+                elementNameMap.Add(name, item);
+#else
+				elementNameMap.TryAdd(name, item);
+#endif
+            }
+
+            var testnode = elementNameMap.First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer").Value;
+            var rootrefName = testnode.Attribute("name")!.Value;
+            var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
+            objectNameMap.Add(rootrefName, testobj);
+
+            testobj.ReadXml(this, testnode);
+
+            var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
+
+            return hkRootLevelContainer;
+        }
+        public virtual T DeserializeDetachedObject<T>(XElement element) where T : IHavokObject, new()
+        {
+            T ret = new T();
+            ret.ReadXml(this, element);
+            return ret;
+        }
+
+        public virtual T DeserializeObjectOverwrite<T>(XElement element) where T : IHavokObject, new()
+        {
+            string name = element.Attribute("name")!.Value;
+            IHavokObject obj = new T();
+            obj.ReadXml(this, element);
+            lock (objectNameMap)
+            {
+                if (objectNameMap.ContainsKey(name))
+                {
+                    objectNameMap[name] = obj;
+                }
+                else
+                {
+                    objectNameMap.Add(name, obj);
+                }
+            }
+            return (T)obj;
+        }
+        public virtual T DeserializeObject<T>(XElement element) where T : IHavokObject, new()
+        {
+            string name = element.Attribute("name")!.Value;
+            IHavokObject? obj;
+            lock (objectNameMap)
+            {
+                if (objectNameMap.TryGetValue(name, out obj))
+                {
+                    return (T)obj;
+                }
+            }
+            obj = new T();
+            obj.ReadXml(this, element);
+            lock (objectNameMap)
+            {
+                objectNameMap.Add(name, obj);
+            }
+            return (T)obj;
+        }
+        public virtual T DeserializeNamedObject<T>(XElement element, string name) where T : IHavokObject, new()
+        {
+            IHavokObject? obj;
+            lock (objectNameMap)
+            {
+                if (objectNameMap.TryGetValue(name, out obj))
+                {
+                    return (T)obj;
+                }
+            }
+            obj = new T();
+            obj.ReadXml(this, element);
+            lock (objectNameMap)
+            {
+                objectNameMap.Add(name, obj);
+            }
+            return (T)obj;
+        }
+        /// <summary>
+        /// Only use this for havok compliant xml, and when the type is unknown.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public virtual IHavokObject DeserializeRuntimeObjectOverwrite(XElement element)
+        {
+            var name = element.Attribute("name")!.Value;
+
+            var hkClassName = element.Attribute("class")!.Value;
+            var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
+            if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+
+            var obj = (IHavokObject)Activator.CreateInstance(hkClass)!;
+            if (obj is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+
+            if (obj.GetType().IsAssignableTo(hkClass))
+            {
+                obj.ReadXml(this, element);
+                lock (objectNameMap)
+                {
+                    if (objectNameMap.ContainsKey(name))
+                    {
+                        objectNameMap[name] = obj;
+                    }
+                    else
+                    {
+                        objectNameMap.Add(name, obj);
+                    }
+                }
+                return obj;
+            }
+            if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
+                throw new Exception($@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?");
+
+            return hkDummyBuilder.CreateDummy(obj, hkClass);
+        }
+        /// <summary>
+        /// Only use this for havok compliant xml, and when the type is unknown.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public virtual IHavokObject DeserializeRuntimeObject(XElement element)
+        {
+            var name = element.Attribute("name")!.Value;
+            lock (objectNameMap)
+            {
+                if (objectNameMap.TryGetValue(name, out IHavokObject? value))
+                {
+                    return value!;
+                }
+            }
+
+
+            var hkClassName = element.Attribute("class")!.Value;
+            var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
+            if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+
+            var obj = (IHavokObject)Activator.CreateInstance(hkClass)!;
+            if (obj is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+
+            if (obj.GetType().IsAssignableTo(hkClass))
+            {
+                obj.ReadXml(this, element);
+                lock (objectNameMap)
+                {
+                    objectNameMap.Add(name, obj);
+                }
+                return obj;
+            }
+            if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
+                throw new Exception($@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?");
+
+            return hkDummyBuilder.CreateDummy(obj, hkClass);
+        }
+        public virtual bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
 		{
             lock (objectNameMap)
 			{
@@ -82,40 +269,7 @@ namespace HKX2E
 			return (obj != null);
 		}
 		public virtual T GetObjectAs<T>(string name) where T : class, IHavokObject => (T)objectNameMap[name];
-		public IHavokObject Deserialize(Stream stream, HKXHeader header)
-		{
-			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
-			this.header = header;
-			objectNameMap = new();
-			elementNameMap = new();
-			options = HavokXmlDeserializerOptions.None;
 
-			var hksection = document.Element("hkpackfile")?.Element("hksection");
-			if (hksection is null)
-				throw new Exception("Xml missing hkpackfile and hksection tag");
-
-			// collect nodes
-			foreach (var item in hksection.Elements())
-			{
-				var name = item.Attribute("name")!.Value;
-#if DEBUG
-				elementNameMap.Add(name, item);
-#else
-				elementNameMap.TryAdd(name, item);
-#endif
-			}
-
-			var testnode = elementNameMap.First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer").Value;
-			var rootrefName = testnode.Attribute("name")!.Value;
-			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
-			objectNameMap.Add(rootrefName, testobj);
-
-			testobj.ReadXml(this, testnode);
-
-			var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
-
-			return hkRootLevelContainer;
-		}
 		protected virtual IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
 		{
 			var name = xElement.Attribute("name")!.Value;
