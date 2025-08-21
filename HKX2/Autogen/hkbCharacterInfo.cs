@@ -6,7 +6,7 @@ namespace HKX2E
     // hkbCharacterInfo Signatire: 0xd9709ff2 size: 32 flags: FLAGS_NONE
 
     // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // _eventclass:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: Event
+    // eventclass:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: Event
     // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
     public partial class hkbCharacterInfo : hkReferencedObject, IEquatable<hkbCharacterInfo?>
     {
@@ -38,7 +38,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            _event= xd.ReadFlag<Event, byte>(xe, nameof(_event));
+            _event= xd.ReadFlag<Event, byte>(xe, LITERAL.EVENT);
             padding = xd.ReadInt32(xe, nameof(padding));
         }
 
@@ -46,7 +46,7 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(characterId), characterId);
-            xs.WriteEnum<Event, byte>(xe, nameof(_event), _event);
+            xs.WriteEnum<Event, byte>(xe, LITERAL.EVENT, _event);
             xs.WriteNumber(xe, nameof(padding), padding);
         }
 

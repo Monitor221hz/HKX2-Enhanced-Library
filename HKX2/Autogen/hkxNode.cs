@@ -57,7 +57,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             name = xd.ReadString(xe, nameof(name));
-            _object = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(_object));
+            _object = xd.ReadClassPointer<hkReferencedObject>(this, xe, LITERAL.OBJECT);
             keyFrames = xd.ReadMatrix4Array(xe, nameof(keyFrames));
             children = xd.ReadClassPointerArray<hkxNode>(this, xe, nameof(children));
             annotations = xd.ReadClassArray<hkxNodeAnnotationData>(xe, nameof(annotations));
@@ -69,7 +69,7 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(name), name);
-            xs.WriteClassPointer(xe, nameof(_object), _object);
+            xs.WriteClassPointer(xe, LITERAL.OBJECT, _object);
             xs.WriteMatrix4Array(xe, nameof(keyFrames), keyFrames);
             xs.WriteClassPointerArray(xe, nameof(children), children!);
             xs.WriteClassArray(xe, nameof(annotations), annotations);

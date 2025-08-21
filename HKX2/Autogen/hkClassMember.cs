@@ -7,7 +7,7 @@ namespace HKX2E
 
     // name class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     //_class class: hkClass Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // _enum class: hkClassEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    //  enum class: hkClassEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: Type
     // subtype class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 25 flags: FLAGS_NONE enum: Type
     // cArraySize class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 26 flags: FLAGS_NONE enum: 
@@ -58,7 +58,7 @@ namespace HKX2E
         {
             name = xd.ReadString(xe, nameof(name));
           _class = xd.ReadClassPointer<hkClass>(this, xe, nameof(_class));
-            _enum = xd.ReadClassPointer<hkClassEnum>(this, xe, nameof(_enum));
+            _enum = xd.ReadClassPointer<hkClassEnum>(this, xe, LITERAL.ENUM);
             type = xd.ReadFlag<Type, byte>(xe, nameof(type));
             subtype = xd.ReadFlag<Type, byte>(xe, nameof(subtype));
             cArraySize = xd.ReadInt16(xe, nameof(cArraySize));
@@ -70,7 +70,7 @@ namespace HKX2E
         {
             xs.WriteString(xe, nameof(name), name);
             xs.WriteClassPointer(xe, nameof(_class), _class);
-            xs.WriteClassPointer(xe, nameof(_enum), _enum);
+            xs.WriteClassPointer(xe, LITERAL.ENUM, _enum);
             xs.WriteEnum<Type, byte>(xe, nameof(type), type);
             xs.WriteEnum<Type, byte>(xe, nameof(subtype), subtype);
             xs.WriteNumber(xe, nameof(cArraySize), cArraySize);

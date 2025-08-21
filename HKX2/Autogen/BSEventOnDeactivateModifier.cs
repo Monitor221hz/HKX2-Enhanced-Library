@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // BSEventOnDeactivateModifier Signatire: 0x1062d993 size: 96 flags: FLAGS_NONE
 
-    // _eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
     public partial class BSEventOnDeactivateModifier : hkbModifier, IEquatable<BSEventOnDeactivateModifier?>
     {
         public hkbEventProperty _event{ set; get; } = new();
@@ -27,13 +27,13 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            _event= xd.ReadClass<hkbEventProperty>(xe, nameof(_event));
+            _event= xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(_event), _event);
+            xs.WriteClass<hkbEventProperty>(xe, LITERAL.EVENT, _event);
         }
 
         public override bool Equals(object? obj)

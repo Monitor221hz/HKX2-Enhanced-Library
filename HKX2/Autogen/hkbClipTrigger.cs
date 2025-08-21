@@ -6,7 +6,7 @@ namespace HKX2E
     // hkbClipTrigger Signatire: 0x7eb45cea size: 32 flags: FLAGS_NONE
 
     // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // _eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     // relativeToEndOfClip class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     // acyclic class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 25 flags: FLAGS_NONE enum: 
     // isAnnotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 26 flags: FLAGS_NONE enum: 
@@ -45,7 +45,7 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             localTime = xd.ReadSingle(xe, nameof(localTime));
-            _event= xd.ReadClass<hkbEventProperty>(xe, nameof(_event));
+            _event= xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
             relativeToEndOfClip = xd.ReadBoolean(xe, nameof(relativeToEndOfClip));
             acyclic = xd.ReadBoolean(xe, nameof(acyclic));
             isAnnotation = xd.ReadBoolean(xe, nameof(isAnnotation));
@@ -54,7 +54,7 @@ namespace HKX2E
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(localTime), localTime);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(_event), _event);
+            xs.WriteClass<hkbEventProperty>(xe, LITERAL.EVENT, _event);
             xs.WriteBoolean(xe, nameof(relativeToEndOfClip), relativeToEndOfClip);
             xs.WriteBoolean(xe, nameof(acyclic), acyclic);
             xs.WriteBoolean(xe, nameof(isAnnotation), isAnnotation);

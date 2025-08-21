@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkbEventSequencedDataSequencedEvent Signatire: 0x9139b821 size: 32 flags: FLAGS_NONE
 
-    // _eventclass: hkbEvent Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // eventclass: hkbEvent Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     public partial class hkbEventSequencedDataSequencedEvent : IHavokObject, IEquatable<hkbEventSequencedDataSequencedEvent?>
     {
@@ -30,13 +30,13 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            _event= xd.ReadClass<hkbEvent>(xe, nameof(_event));
+            _event= xd.ReadClass<hkbEvent>(xe, LITERAL.EVENT);
             time = xd.ReadSingle(xe, nameof(time));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkbEvent>(xe, nameof(_event), _event);
+            xs.WriteClass<hkbEvent>(xe, LITERAL.EVENT, _event);
             xs.WriteFloat(xe, nameof(time), time);
         }
 

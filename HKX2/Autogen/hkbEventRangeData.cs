@@ -6,7 +6,7 @@ namespace HKX2E
     // hkbEventRangeData Signatire: 0x6cb92c76 size: 32 flags: FLAGS_NONE
 
     // upperBound class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // _eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
     // eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: EventRangeMode
     public partial class hkbEventRangeData : IHavokObject, IEquatable<hkbEventRangeData?>
     {
@@ -37,14 +37,14 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             upperBound = xd.ReadSingle(xe, nameof(upperBound));
-            _event= xd.ReadClass<hkbEventProperty>(xe, nameof(_event));
+            _event= xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
             eventMode = xd.ReadFlag<EventRangeMode, sbyte>(xe, nameof(eventMode));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(upperBound), upperBound);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(_event), _event);
+            xs.WriteClass<hkbEventProperty>(xe, LITERAL.EVENT, _event);
             xs.WriteEnum<EventRangeMode, sbyte>(xe, nameof(eventMode), eventMode);
         }
 

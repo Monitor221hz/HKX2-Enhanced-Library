@@ -5,9 +5,9 @@ namespace HKX2E
 {
     // hkbTestStateChooser Signatire: 0xc0fcc436 size: 32 flags: FLAGS_NONE
 
-    // _int class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    //  int class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // real class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // _string class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    //  string class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
     public partial class hkbTestStateChooser : hkbStateChooser, IEquatable<hkbTestStateChooser?>
     {
         public int _int { set; get; }
@@ -35,17 +35,17 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            _int = xd.ReadInt32(xe, nameof(_int));
+            _int = xd.ReadInt32(xe, LITERAL.INT);
             real = xd.ReadSingle(xe, nameof(real));
-            _string = xd.ReadString(xe, nameof(_string));
+            _string = xd.ReadString(xe, LITERAL.STRING);
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteNumber(xe, nameof(_int), _int);
+            xs.WriteNumber(xe, LITERAL.INT, _int);
             xs.WriteFloat(xe, nameof(real), real);
-            xs.WriteString(xe, nameof(_string), _string);
+            xs.WriteString(xe, LITERAL.STRING, _string);
         }
 
         public override bool Equals(object? obj)

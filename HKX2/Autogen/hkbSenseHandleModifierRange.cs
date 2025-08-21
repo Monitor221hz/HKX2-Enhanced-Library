@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkbSenseHandleModifierRange Signatire: 0xfb56b692 size: 32 flags: FLAGS_NONE
 
-    // _eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     // minDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
     // maxDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
     // ignoreHandle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
@@ -38,7 +38,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            _event= xd.ReadClass<hkbEventProperty>(xe, nameof(_event));
+            _event= xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
             minDistance = xd.ReadSingle(xe, nameof(minDistance));
             maxDistance = xd.ReadSingle(xe, nameof(maxDistance));
             ignoreHandle = xd.ReadBoolean(xe, nameof(ignoreHandle));
@@ -46,7 +46,7 @@ namespace HKX2E
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkbEventProperty>(xe, nameof(_event), _event);
+            xs.WriteClass<hkbEventProperty>(xe, LITERAL.EVENT, _event);
             xs.WriteFloat(xe, nameof(minDistance), minDistance);
             xs.WriteFloat(xe, nameof(maxDistance), maxDistance);
             xs.WriteBoolean(xe, nameof(ignoreHandle), ignoreHandle);

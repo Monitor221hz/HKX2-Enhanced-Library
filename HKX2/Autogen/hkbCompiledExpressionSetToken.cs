@@ -7,7 +7,7 @@ namespace HKX2E
 
     // data class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 4 flags: FLAGS_NONE enum: TokenType
-    // _operator class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 5 flags: FLAGS_NONE enum: Operator
+    // operator class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 5 flags: FLAGS_NONE enum: Operator
     public partial class hkbCompiledExpressionSetToken : IHavokObject, IEquatable<hkbCompiledExpressionSetToken?>
     {
         public float data { set; get; }
@@ -36,14 +36,14 @@ namespace HKX2E
         {
             data = xd.ReadSingle(xe, nameof(data));
             type = xd.ReadFlag<TokenType, sbyte>(xe, nameof(type));
-            _operator = xd.ReadFlag<Operator, sbyte>(xe, nameof(_operator));
+            _operator = xd.ReadFlag<Operator, sbyte>(xe, LITERAL.OPERATOR);
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             xs.WriteFloat(xe, nameof(data), data);
             xs.WriteEnum<TokenType, sbyte>(xe, nameof(type), type);
-            xs.WriteEnum<Operator, sbyte>(xe, nameof(_operator), _operator);
+            xs.WriteEnum<Operator, sbyte>(xe, LITERAL.OPERATOR, _operator);
         }
 
         public override bool Equals(object? obj)

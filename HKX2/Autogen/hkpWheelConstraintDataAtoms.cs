@@ -11,7 +11,7 @@ namespace HKX2E
     // lin1 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
     // lin2 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum: 
     // steeringBase class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // _2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum: 
+    //  2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum: 
     public partial class hkpWheelConstraintDataAtoms : IHavokObject, IEquatable<hkpWheelConstraintDataAtoms?>
     {
         public hkpSetLocalTransformsConstraintAtom suspensionBase { set; get; } = new();

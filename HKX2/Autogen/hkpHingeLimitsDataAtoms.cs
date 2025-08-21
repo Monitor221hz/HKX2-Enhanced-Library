@@ -7,7 +7,7 @@ namespace HKX2E
 
     // rotations class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
     // angLimit class: hkpAngLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // _2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    //  2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
     public partial class hkpHingeLimitsDataAtoms : IHavokObject, IEquatable<hkpHingeLimitsDataAtoms?>
     {
         public hkpSetLocalRotationsConstraintAtom rotations { set; get; } = new();

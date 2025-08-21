@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkxSparselyAnimatedEnum Signatire: 0x68a47b64 size: 56 flags: FLAGS_NONE
 
-    // _enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    //  enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
     public partial class hkxSparselyAnimatedEnum : hkxSparselyAnimatedInt, IEquatable<hkxSparselyAnimatedEnum?>
     {
         public hkxEnum? _enum { set; get; }
@@ -27,13 +27,13 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            _enum = xd.ReadClassPointer<hkxEnum>(this, xe, nameof(_enum));
+            _enum = xd.ReadClassPointer<hkxEnum>(this, xe, LITERAL.ENUM);
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, nameof(_enum), _enum);
+            xs.WriteClassPointer(xe, LITERAL.ENUM, _enum);
         }
 
         public override bool Equals(object? obj)
