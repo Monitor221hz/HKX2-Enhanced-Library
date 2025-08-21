@@ -13,19 +13,31 @@ namespace HKX2E
 
 	public class HavokXmlDeserializer : IHavokXmlReader, INameHavokObjectMap
 	{
-		public XDocument document;
+		private XDocument document;
 		private HKXHeader header;
 		// store deserialized
-		private Dictionary<string, IHavokObject> objectNameMap;
-		private Dictionary<string, XElement> elementNameMap;
-		private HavokXmlDeserializerOptions options;
-		public HavokXmlDeserializerContext Context => new(objectNameMap, elementNameMap, options);
+		protected Dictionary<string, IHavokObject> objectNameMap;
+		protected Dictionary<string, XElement> elementNameMap;
+		protected HavokXmlDeserializerOptions options;
+		public virtual HavokXmlDeserializerContext Context => new(objectNameMap, elementNameMap, options);
 		public HavokXmlDeserializer()
         {
 			options = HavokXmlDeserializerOptions.None;
         }
-		
-		public IHavokObject Deserialize(Stream stream, HKXHeader header, HavokXmlDeserializerContext context, HavokXmlDeserializerOptions options)
+        public virtual void Collect(string name, XElement element)
+        {
+			lock (elementNameMap)
+			{
+                elementNameMap.TryAdd(name, element);
+            }
+        }
+        public virtual void ShareContext(HavokXmlDeserializerContext context)
+        {
+            objectNameMap = context.ObjectNameMap;
+            elementNameMap = context.ElementNameMap;
+            options = context.Options;
+        }
+        public IHavokObject Deserialize(Stream stream, HKXHeader header, HavokXmlDeserializerContext context, HavokXmlDeserializerOptions options)
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
 			this.header = header;
@@ -50,20 +62,26 @@ namespace HKX2E
 
 			return hkRootLevelContainer;
 		}
-		public bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
+		public virtual bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
 		{
-			return objectNameMap.TryGetValue(name, out obj);
+            lock (objectNameMap)
+			{
+                return objectNameMap.TryGetValue(name, out obj);
+            }
 		}
-		public bool TryGetObjectAs<T>(string name, [NotNullWhen(true)] out T? obj) where T : class, IHavokObject
+		public virtual bool TryGetObjectAs<T>(string name, [NotNullWhen(true)] out T? obj) where T : class, IHavokObject
 		{
 			obj = null;
-			if (objectNameMap.TryGetValue(name, out var value))
+            lock (objectNameMap)
 			{
-				obj = value as T;
-			}
+                if (objectNameMap.TryGetValue(name, out var value))
+                {
+                    obj = value as T;
+                }
+            }
 			return (obj != null);
 		}
-		public T GetObjectAs<T>(string name) where T : class, IHavokObject => (T)objectNameMap[name];
+		public virtual T GetObjectAs<T>(string name) where T : class, IHavokObject => (T)objectNameMap[name];
 		public IHavokObject Deserialize(Stream stream, HKXHeader header)
 		{
 			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
@@ -98,7 +116,7 @@ namespace HKX2E
 
 			return hkRootLevelContainer;
 		}
-		private IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
+		protected virtual IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
 		{
 			var name = xElement.Attribute("name")!.Value;
 
@@ -122,7 +140,7 @@ namespace HKX2E
 
 			return hkDummyBuilder.CreateDummy(ret, typeof(T));
 		}
-		private static XElement? GetPropertyElement(XContainer element, string name)
+		protected static XElement? GetPropertyElement(XContainer element, string name)
 		{
 			if (name.StartsWith("m_"))
 			{
@@ -135,7 +153,7 @@ namespace HKX2E
 			}
 			return eles.First();
 		}
-		public T ReadClass<T>(XElement element, string name) where T : IHavokObject, new()
+		public virtual T ReadClass<T>(XElement element, string name) where T : IHavokObject, new()
 		{
 			var ele = GetPropertyElement(element, name)?.Element("hkobject");
 
@@ -147,8 +165,7 @@ namespace HKX2E
 
 			return ret;
 		}
-
-		public IList<T> ReadClassArray<T>(XElement element, string name) where T : IHavokObject, new()
+		public virtual IList<T> ReadClassArray<T>(XElement element, string name) where T : IHavokObject, new()
 		{
 			var eles = GetPropertyElement(element, name);
 			if (eles is null)
@@ -170,7 +187,7 @@ namespace HKX2E
 			return result;
 		}
 
-		public T[] ReadClassCStyleArray<T>(XElement element, string name, short length) where T : IHavokObject, new()
+		public virtual T[] ReadClassCStyleArray<T>(XElement element, string name, short length) where T : IHavokObject, new()
 		{
 			var eles = GetPropertyElement(element, name);
 			if (eles is null)
@@ -190,7 +207,7 @@ namespace HKX2E
 			return arr;
 		}
 
-		public T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
+		public virtual T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -203,17 +220,20 @@ namespace HKX2E
 			if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
 				return (T)value;
 
-			if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
-				throw new Exception($"Reference symbol '{refName}' not found. Make sure it defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+            if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
+            {
+                return default;
+                //throw new Exception($"Reference symbol '{refName}' not found. Make sure it is defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+            }
 
-			T ret = (T)ConstructVirtualClass<T>(refEle);
+            T ret = (T)ConstructVirtualClass<T>(refEle);
 			ret.ReadXml(this, refEle);
 			objectNameMap.Add(refName, ret);
 
 			return ret;
 		}
 
-		public IList<T> ReadClassPointerArray<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
+		public virtual IList<T> ReadClassPointerArray<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -236,10 +256,10 @@ namespace HKX2E
 					continue;
 				}
 
-				if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
-					throw new Exception($"Reference symbol '{refName}' not found. Make sure it defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+                if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
+                    continue;
 
-				var ret = (T)ConstructVirtualClass<T>(refEle);
+                var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
 				objectNameMap.Add(refName, ret);
 
@@ -248,7 +268,7 @@ namespace HKX2E
 			return result;
 		}
 
-		public T?[] ReadClassPointerCStyleArray<T>(IHavokObject owner, XElement element, string name, short length) where T : IHavokObject, new()
+		public virtual T?[] ReadClassPointerCStyleArray<T>(IHavokObject owner, XElement element, string name, short length) where T : IHavokObject, new()
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -275,7 +295,7 @@ namespace HKX2E
 				}
 
 				if (!elementNameMap.TryGetValue(refName, out var refEle))
-					throw new Exception($"Reference symbol '{refName}' not found. Make sure it defined somewhere. at Line {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+					continue;
 
 				var ret = (T)ConstructVirtualClass<T>(refEle);
 				ret.ReadXml(this, refEle);
@@ -286,7 +306,7 @@ namespace HKX2E
 			return arr;
 		}
 
-		public string ReadString(XElement element, string name)
+		public virtual string ReadString(XElement element, string name)
 		{
 			// if ele exist it is and empty return empty string (stringptr)
 			// if ele exist it is and '\u2400' return null (cstring)
@@ -296,7 +316,7 @@ namespace HKX2E
 			return ele.Value.Trim();
 		}
 
-		public bool ReadBoolean(XElement element, string name)
+		public virtual bool ReadBoolean(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -304,63 +324,63 @@ namespace HKX2E
 			return bool.Parse(ele.Value);
 		}
 
-		public byte ReadByte(XElement element, string name)
+		public virtual byte ReadByte(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return byte.Parse(ele.Value);
 		}
 
-		public sbyte ReadSByte(XElement element, string name)
+		public virtual sbyte ReadSByte(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return sbyte.Parse(ele.Value);
 		}
 
-		public short ReadInt16(XElement element, string name)
+		public virtual short ReadInt16(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return short.Parse(ele.Value);
 		}
 
-		public ushort ReadUInt16(XElement element, string name)
+		public virtual ushort ReadUInt16(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return ushort.Parse(ele.Value);
 		}
 
-		public uint ReadUInt32(XElement element, string name)
+		public virtual uint ReadUInt32(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return uint.Parse(ele.Value);
 		}
 
-		public int ReadInt32(XElement element, string name)
+		public virtual int ReadInt32(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return int.Parse(ele.Value);
 		}
 
-		public ulong ReadUInt64(XElement element, string name)
+        public virtual ulong ReadUInt64(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return ulong.Parse(ele.Value);
 		}
 
-		public long ReadInt64(XElement element, string name)
+        public virtual long ReadInt64(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null) return 0;
 			return long.Parse(ele.Value);
 		}
 
-		public Half ReadHalf(XElement element, string name)
+        public virtual Half ReadHalf(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -368,7 +388,7 @@ namespace HKX2E
 			return Half.Parse(ele.Value);
 		}
 
-		public float ReadSingle(XElement element, string name)
+        public virtual float ReadSingle(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -376,13 +396,13 @@ namespace HKX2E
 			return float.Parse(ele.Value);
 		}
 
-		private static readonly char[] SplitCharList = { '(', ')', ',', ' ', '\n', '\r', '\t' };
-		private static IEnumerable<string> Normalize(string str)
+		protected static readonly char[] SplitCharList = { '(', ')', ',', ' ', '\n', '\r', '\t' };
+		protected static IEnumerable<string> Normalize(string str)
 		{
 			return str.Split(SplitCharList, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Select(x => x == "-1.#IND00" ? "0.0" : x).ToArray();
 		}
 
-		public Vector4 ReadVector4(XElement element, string name)
+        public virtual Vector4 ReadVector4(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -392,7 +412,7 @@ namespace HKX2E
 			return new Vector4(vec[0], vec[1], vec[2], vec[3]);
 		}
 
-		public Matrix4x4 ReadMatrix3(XElement element, string name)
+        public virtual Matrix4x4 ReadMatrix3(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -405,7 +425,7 @@ namespace HKX2E
 								 0, 0, 0, 0);
 		}
 
-		public Matrix4x4 ReadMatrix4(XElement element, string name)
+        public virtual Matrix4x4 ReadMatrix4(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -418,7 +438,7 @@ namespace HKX2E
 								 mat4[12], mat4[13], mat4[14], mat4[15]);
 		}
 
-		public Matrix4x4 ReadTransform(XElement element, string name)
+        public virtual Matrix4x4 ReadTransform(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -431,12 +451,12 @@ namespace HKX2E
 								 trans[9], trans[10], trans[11], 1);
 		}
 
-		public Matrix4x4 ReadRotation(XElement element, string name)
+        public virtual Matrix4x4 ReadRotation(XElement element, string name)
 		{
 			return ReadMatrix3(element, name);
 		}
 
-		public Matrix4x4 ReadQSTransform(XElement element, string name)
+        public virtual Matrix4x4 ReadQSTransform(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele == null)
@@ -449,7 +469,7 @@ namespace HKX2E
 								 0, 0, 0, 0);
 		}
 
-		public Quaternion ReadQuaternion(XElement element, string name)
+        public virtual Quaternion ReadQuaternion(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele == null) return new Quaternion();
@@ -457,7 +477,7 @@ namespace HKX2E
 			return new Quaternion(quant[0], quant[1], quant[2], quant[3]);
 		}
 
-		private XElement? ReadBaseArray(XElement element, string name)
+		protected virtual XElement? ReadBaseArray(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -472,7 +492,7 @@ namespace HKX2E
 			return ele;
 		}
 
-		public IList<string> ReadStringArray(XElement element, string name)
+        public virtual IList<string> ReadStringArray(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -482,8 +502,8 @@ namespace HKX2E
 					  .Select(ele => ele.Value.Trim())
 					  .ToList();
 		}
-		private static readonly char[] SplitSpaceList = { ' ', '\n', '\r', '\t' };
-		public IList<bool> ReadBooleanArray(XElement element, string name)
+		protected static readonly char[] SplitSpaceList = { ' ', '\n', '\r', '\t' };
+		public virtual IList<bool> ReadBooleanArray(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -496,7 +516,7 @@ namespace HKX2E
 
 
 
-		public IList<byte> ReadByteArray(XElement element, string name)
+		public virtual IList<byte> ReadByteArray(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -507,7 +527,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<sbyte> ReadSByteArray(XElement element, string name)
+		public virtual IList<sbyte> ReadSByteArray(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -518,7 +538,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<ushort> ReadUInt16Array(XElement element, string name)
+		public virtual IList<ushort> ReadUInt16Array(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -529,7 +549,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<short> ReadInt16Array(XElement element, string name)
+		public virtual IList<short> ReadInt16Array(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -540,7 +560,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<uint> ReadUInt32Array(XElement element, string name)
+		public virtual IList<uint> ReadUInt32Array(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -551,7 +571,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<int> ReadInt32Array(XElement element, string name)
+		public virtual IList<int> ReadInt32Array(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -562,7 +582,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<ulong> ReadUInt64Array(XElement element, string name)
+		public virtual IList<ulong> ReadUInt64Array(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -573,7 +593,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<long> ReadInt64Array(XElement element, string name)
+		public virtual IList<long> ReadInt64Array(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -583,7 +603,7 @@ namespace HKX2E
 							.Select(long.Parse)
 							.ToList();
 		}
-		public IList<Half> ReadHalfArray(XElement element, string name)
+        public virtual IList<Half> ReadHalfArray(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -594,7 +614,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<float> ReadSingleArray(XElement element, string name)
+        public virtual IList<float> ReadSingleArray(XElement element, string name)
 		{
 			var ele = ReadBaseArray(element, name);
 			if (ele is null)
@@ -605,7 +625,7 @@ namespace HKX2E
 							.ToList();
 		}
 
-		public IList<Vector4> ReadVector4Array(XElement element, string name)
+        public virtual IList<Vector4> ReadVector4Array(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -625,7 +645,7 @@ namespace HKX2E
 						  .ToList();
 		}
 
-		public IList<Matrix4x4> ReadMatrix3Array(XElement element, string name)
+        public virtual IList<Matrix4x4> ReadMatrix3Array(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -647,7 +667,7 @@ namespace HKX2E
 													   0, 0, 0, 0)).ToList();
 		}
 
-		public IList<Matrix4x4> ReadMatrix4Array(XElement element, string name)
+        public virtual IList<Matrix4x4> ReadMatrix4Array(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -669,7 +689,7 @@ namespace HKX2E
 													   vec[12], vec[13], vec[14], vec[15])).ToList();
 		}
 
-		public IList<Matrix4x4> ReadTransformArray(XElement element, string name)
+        public virtual IList<Matrix4x4> ReadTransformArray(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -691,12 +711,12 @@ namespace HKX2E
 														  trans[9], trans[10], trans[11], 1)).ToList();
 		}
 
-		public IList<Matrix4x4> ReadRotationArray(XElement element, string name)
+        public virtual IList<Matrix4x4> ReadRotationArray(XElement element, string name)
 		{
 			return ReadMatrix3Array(element, name);
 		}
 
-		public IList<Matrix4x4> ReadQSTransformArray(XElement element, string name)
+        public virtual IList<Matrix4x4> ReadQSTransformArray(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele == null)
@@ -718,7 +738,7 @@ namespace HKX2E
 													0, 0, 0, 0)).ToList();
 		}
 
-		public IList<Quaternion> ReadQuaternionArray(XElement element, string name)
+        public virtual IList<Quaternion> ReadQuaternionArray(XElement element, string name)
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele == null)
@@ -737,7 +757,7 @@ namespace HKX2E
 			return quantArr.Select(quant => new Quaternion(quant[0], quant[1], quant[2], quant[3])).ToList();
 		}
 
-		public TValue ReadFlag<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
+        public virtual TValue ReadFlag<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -745,7 +765,7 @@ namespace HKX2E
 			return ele.Value.Split("|", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToFlagValue<TEnum, TValue>();
 		}
 
-		public TValue ReadEnum<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
+        public virtual TValue ReadEnum<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
 		{
 			var ele = GetPropertyElement(element, name);
 			if (ele is null)
@@ -755,13 +775,13 @@ namespace HKX2E
 
 		#region C Style Array
 
-		private XElement? ReadBaseCStyleArray(XElement element, string name, short length)
+		protected virtual XElement? ReadBaseCStyleArray(XElement element, string name, short length)
 		{
 			var ele = GetPropertyElement(element, name);
 			return ele;
 		}
 
-		public bool[] ReadBooleanCStyleArray(XElement element, string name, short length)
+        public virtual bool[] ReadBooleanCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -774,7 +794,7 @@ namespace HKX2E
 			return eles.Select(e => e == "true").ToArray();
 		}
 
-		public byte[] ReadByteCStyleArray(XElement element, string name, short length)
+        public virtual byte[] ReadByteCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -788,7 +808,7 @@ namespace HKX2E
 			return eles.Select(byte.Parse).ToArray();
 		}
 
-		public sbyte[] ReadSByteCStyleArray(XElement element, string name, short length)
+        public virtual sbyte[] ReadSByteCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -801,7 +821,7 @@ namespace HKX2E
 			return eles.Select(sbyte.Parse).ToArray();
 		}
 
-		public ushort[] ReadUInt16CStyleArray(XElement element, string name, short length)
+        public virtual ushort[] ReadUInt16CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -814,7 +834,7 @@ namespace HKX2E
 			return eles.Select(ushort.Parse).ToArray();
 		}
 
-		public short[] ReadInt16CStyleArray(XElement element, string name, short length)
+        public virtual short[] ReadInt16CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -827,7 +847,7 @@ namespace HKX2E
 			return eles.Select(short.Parse).ToArray();
 		}
 
-		public uint[] ReadUInt32CStyleArray(XElement element, string name, short length)
+        public virtual uint[] ReadUInt32CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -841,7 +861,7 @@ namespace HKX2E
 			return eles.Select(uint.Parse).ToArray();
 		}
 
-		public int[] ReadInt32CStyleArray(XElement element, string name, short length)
+        public virtual int[] ReadInt32CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -854,7 +874,7 @@ namespace HKX2E
 			return eles.Select(int.Parse).ToArray();
 		}
 
-		public ulong[] ReadUInt64CStyleArray(XElement element, string name, short length)
+        public virtual ulong[] ReadUInt64CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -868,7 +888,7 @@ namespace HKX2E
 			return eles.Select(ulong.Parse).ToArray();
 		}
 
-		public long[] ReadInt64CStyleArray(XElement element, string name, short length)
+        public virtual long[] ReadInt64CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -881,7 +901,7 @@ namespace HKX2E
 			return eles.Select(long.Parse).ToArray();
 		}
 
-		public Half[] ReadHalfCStyleArray(XElement element, string name, short length)
+        public virtual Half[] ReadHalfCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -894,7 +914,7 @@ namespace HKX2E
 			return eles.Select(Half.Parse).ToArray();
 		}
 
-		public float[] ReadSingleCStyleArray(XElement element, string name, short length)
+        public virtual float[] ReadSingleCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -907,7 +927,7 @@ namespace HKX2E
 			return eles.Select(float.Parse).ToArray();
 		}
 
-		public Vector4[] ReadVector4CStyleArray(XElement element, string name, short length)
+        public virtual Vector4[] ReadVector4CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -921,7 +941,7 @@ namespace HKX2E
 						  .ToArray();
 		}
 
-		public Matrix4x4[] ReadMatrix3CStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadMatrix3CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -937,7 +957,7 @@ namespace HKX2E
 													   0, 0, 0, 0)).ToArray();
 		}
 
-		public Matrix4x4[] ReadMatrix4CStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadMatrix4CStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -953,7 +973,7 @@ namespace HKX2E
 												   vec[12], vec[13], vec[14], vec[15])).ToArray();
 		}
 
-		public Matrix4x4[] ReadTransformCStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadTransformCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -969,12 +989,12 @@ namespace HKX2E
 														  trans[9], trans[10], trans[11], 1)).ToArray();
 		}
 
-		public Matrix4x4[] ReadRotationCStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadRotationCStyleArray(XElement element, string name, short length)
 		{
 			return ReadMatrix3CStyleArray(element, name, length);
 		}
 
-		public Matrix4x4[] ReadQSTransformCStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadQSTransformCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -990,7 +1010,7 @@ namespace HKX2E
 													0, 0, 0, 0)).ToArray();
 		}
 
-		public Quaternion[] ReadQuaternionCStyleArray(XElement element, string name, short length)
+        public virtual Quaternion[] ReadQuaternionCStyleArray(XElement element, string name, short length)
 		{
 			var ele = ReadBaseCStyleArray(element, name, length);
 			if (ele is null)
@@ -1004,6 +1024,6 @@ namespace HKX2E
 		}
 
 
-		#endregion
-	}
+        #endregion
+    }
 }
