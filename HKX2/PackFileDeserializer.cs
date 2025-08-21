@@ -7,19 +7,17 @@ namespace HKX2E
 {
     public class PackFileDeserializer
     {
-        private HKXClassNames _classnames;
-        private HKXSection _classSection;
-        private HKXSection _dataSection;
-    
-        private Dictionary<uint, IHavokObject> _deserializedObjects;
+        protected HKXClassNames _classnames;
+        protected HKXSection _classSection;
+        protected HKXSection _dataSection;
+
+        protected Dictionary<uint, IHavokObject> _deserializedObjects;
         public HKXHeader _header;
-        private HKXSection _typeSection;
+        protected HKXSection _typeSection;
 
-        private bool _ignoreNonFatalError;
+        protected bool _ignoreNonFatalError;
 
-        public PackFileDeserializerContext Context => new PackFileDeserializerContext(_deserializedObjects);
-
-        private IHavokObject ConstructVirtualClass(BinaryReaderEx br, uint offset)
+        protected virtual IHavokObject ConstructVirtualClass(BinaryReaderEx br, uint offset)
         {
             if (_deserializedObjects.ContainsKey(offset)) return _deserializedObjects[offset];
 
@@ -80,7 +78,7 @@ namespace HKX2E
 
         #region Read methods
 
-        private void PadToPointerSizeIfPaddingOption(BinaryReaderEx br)
+        protected void PadToPointerSizeIfPaddingOption(BinaryReaderEx br)
         {
             if (_header.PaddingOption == 1) br.Pad(_header.PointerSize);
         }
@@ -98,7 +96,7 @@ namespace HKX2E
             br.AssertUInt32(size | ((uint)0x80 << 24));
         }
 
-        private T ReadPointerBase<T, F>(Func<BinaryReaderEx, F, T> func, BinaryReaderEx br) where F : Fixup, new()
+        protected T ReadPointerBase<T, F>(Func<BinaryReaderEx, F, T> func, BinaryReaderEx br) where F : Fixup, new()
         {
             Dictionary<uint, F> map;
             if (typeof(F) == typeof(LocalFixup))
@@ -127,7 +125,7 @@ namespace HKX2E
             return func(br, f);
         }
 
-        private List<T> ReadArrayBase<T>(Func<BinaryReaderEx, T> func, BinaryReaderEx br)
+        public List<T> ReadArrayBase<T>(Func<BinaryReaderEx, T> func, BinaryReaderEx br)
         {
             return ReadPointerBase((BinaryReaderEx _br, LocalFixup f) =>
             {
@@ -157,7 +155,7 @@ namespace HKX2E
             }, br);
         }
 
-        public T ReadClassPointer<T>(BinaryReaderEx br) where T : IHavokObject
+        public virtual T ReadClassPointer<T>(BinaryReaderEx br) where T : IHavokObject
         {
             PadToPointerSizeIfPaddingOption(br);
 
@@ -182,7 +180,7 @@ namespace HKX2E
             return hkDummyBuilder.CreateDummy(klass, typeof(T));
         }
 
-        public List<T> ReadClassPointerArray<T>(BinaryReaderEx br) where T : IHavokObject
+        public virtual List<T> ReadClassPointerArray<T>(BinaryReaderEx br) where T : IHavokObject
         {
             return ReadArrayBase(ReadClassPointer<T>, br);
         }

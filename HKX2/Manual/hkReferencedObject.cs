@@ -8,13 +8,18 @@ namespace HKX2E
     // memSizeAndFlags class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED enum: 
     // referenceCount class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 10 flags: SERIALIZE_IGNORED enum: 
 
-    public partial class hkReferencedObject : hkBaseObject, IEquatable<hkReferencedObject?>
-    {
+    public partial class hkReferencedObject : hkBaseObject, IEquatable<hkReferencedObject?>, IHavokObject 
+    { // IHavokObject is not a redundant implementation, it's needed to override the default methods Read/Write MetaData.
 
         public ushort memSizeAndFlags { set; get; } = default;
         public short referenceCount { set; get; } = default;
 
         public override uint Signature { set; get; } = 0x3b1c1113;
+
+        /// <summary>
+        /// This is not part of the class, just for accommodating binary serialization/deserialization without breaking xml name targeting.
+        /// </summary>
+        public ulong ExtraID {  set; get; } = default;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
@@ -35,7 +40,14 @@ namespace HKX2E
 
             if (s._header.PointerSize == 8) bw.Pad(8);
         }
-
+        public void WriteMetaData(PackFileSerializer s, BinaryWriterEx bw, ulong metaData)
+        {
+            bw.WriteUInt64(metaData);
+        }
+        public ulong ReadMetaData(PackFileDeserializer s, BinaryReaderEx br)
+        {
+            return br.ReadUInt64();
+        }
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
 
@@ -47,7 +59,6 @@ namespace HKX2E
             xs.WriteSerializeIgnored(xe, nameof(memSizeAndFlags));
             xs.WriteSerializeIgnored(xe, nameof(referenceCount));
         }
-
         public override bool Equals(object? obj)
         {
             return Equals(obj as hkReferencedObject);

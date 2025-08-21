@@ -8,23 +8,23 @@ namespace HKX2E
 {
     public class PackFileSerializer
     {
-        private int _currentLocalWriteQueue;
-        private int _currentSerializationQueue;
-        private List<GlobalFixup> _globalFixups = new();
+        protected int _currentLocalWriteQueue;
+        protected int _currentSerializationQueue;
+        protected List<GlobalFixup> _globalFixups = new();
 
-        private Dictionary<IHavokObject, uint> _globalLookup = new(ReferenceEqualityComparer.Instance);
+        protected Dictionary<IHavokObject, uint> _globalLookup = new(ReferenceEqualityComparer.Instance);
         public HKXHeader _header;
 
-        private List<LocalFixup> _localFixups = new();
-        private List<Queue<Action>> _localWriteQueues = new();
-        private Dictionary<IHavokObject, List<uint>> _pendingGlobals = new(ReferenceEqualityComparer.Instance);
+        protected List<LocalFixup> _localFixups = new();
+        protected List<Queue<Action>> _localWriteQueues = new();
+        protected Dictionary<IHavokObject, List<uint>> _pendingGlobals = new(ReferenceEqualityComparer.Instance);
 
-        private HashSet<IHavokObject> _pendingVirtuals = new(ReferenceEqualityComparer.Instance);
-        private List<Queue<IHavokObject>> _serializationQueues = new();
+        protected HashSet<IHavokObject> _pendingVirtuals = new(ReferenceEqualityComparer.Instance);
+        protected List<Queue<IHavokObject>> _serializationQueues = new();
 
-        private HashSet<IHavokObject> _serializedObjects = new(ReferenceEqualityComparer.Instance);
-        private List<VirtualFixup> _virtualFixups = new();
-        private Dictionary<string, uint> _virtualLookup = new();
+        protected HashSet<IHavokObject> _serializedObjects = new(ReferenceEqualityComparer.Instance);
+        protected List<VirtualFixup> _virtualFixups = new();
+        protected Dictionary<string, uint> _virtualLookup = new();
 
 
         private void PushLocalWriteQueue()
@@ -51,7 +51,7 @@ namespace HKX2E
         }
 
 
-        public void Serialize(IHavokObject rootObject, BinaryWriterEx bw, HKXHeader header)
+        public virtual void Serialize(IHavokObject rootObject, BinaryWriterEx bw, HKXHeader header)
         {
             _header = header;
             bw.BigEndian = _header.Endian == 0;

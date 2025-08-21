@@ -107,9 +107,33 @@ namespace HKX2E
 			rootObject.WriteXml(this, hkrootcontainer);
 
 			document.Save(stream);
-		}
+        }
+        public virtual void SerializeContextual(IHavokObject rootObject, HKXHeader header, Stream stream)
+        {
 
-		protected XElement WriteNode<T>(T hkobject, string nodeName) where T : IHavokObject
+            this.header = header;
+            //nameObjectMap.Clear();
+
+            var index = GetIndexedName();
+
+            document = new XDocument(
+                new XDeclaration("1.0", "ascii", null),
+                new XElement("hkpackfile",
+                    new XAttribute("classversion", header.FileVersion),
+                    new XAttribute("contentsversion", header.ContentsVersionString),
+                    new XAttribute("toplevelobject", index),
+                    new XElement("hksection",
+                        new XAttribute("name", "__data__"))));
+
+            dataSection = document.Element("hkpackfile").Element("hksection");
+
+            var hkrootcontainer = WriteNode(rootObject, index);
+            rootObject.WriteXml(this, hkrootcontainer);
+
+            document.Save(stream);
+        }
+
+        protected XElement WriteNode<T>(T hkobject, string nodeName) where T : IHavokObject
 		{
 			XElement ele = new("hkobject",
 				new XAttribute("name", nodeName),

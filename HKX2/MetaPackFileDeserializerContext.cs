@@ -3,18 +3,18 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
-    public class PackFileDeserializerContext
+    public class MetaPackFileDeserializerContext
     {
-        public PackFileDeserializerContext(Dictionary<uint, IHavokObject> deserializedObjects)
+        public MetaPackFileDeserializerContext(Dictionary<ulong, IHavokObject> refIDMap)
         {
-            DeserializedObjects = deserializedObjects;
+            ReferenceIDMap = refIDMap;
         }
 
-        public static explicit operator HavokXmlDeserializerContext(PackFileDeserializerContext context)
+        public static explicit operator HavokXmlDeserializerContext(MetaPackFileDeserializerContext context)
         {
             Dictionary<string, IHavokObject> objectNameMap = new();
 
-            foreach (var kvp in context.DeserializedObjects)
+            foreach (var kvp in context.ReferenceIDMap)
             {
                 objectNameMap.Add($"#{kvp.Key:0000}", kvp.Value);
             }
@@ -23,6 +23,6 @@ namespace HKX2E
 
             return new HavokXmlDeserializerContext(objectNameMap, elementNameMap, options);
         }
-        public Dictionary<uint, IHavokObject> DeserializedObjects { get; set; }
+        public Dictionary<ulong, IHavokObject> ReferenceIDMap { get; set; }
     }
 }

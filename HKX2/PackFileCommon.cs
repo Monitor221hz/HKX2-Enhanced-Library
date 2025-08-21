@@ -331,7 +331,7 @@ namespace HKX2E
     }
 
     // Class names data found in the __classnames__ section of the hkx
-    internal class HKXClassNames
+    public class HKXClassNames
     {
         private List<HKXClassName> ClassNames;
         public Dictionary<uint, HKXClassName> OffsetClassNamesMap;
