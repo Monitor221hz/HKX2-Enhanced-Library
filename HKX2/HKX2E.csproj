@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
+	  <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   <ItemGroup>
@@ -11,5 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FastMember.Signed" Version="1.5.0" />
+    <PackageReference Include="Riok.Mapperly" Version="4.2.1" />
   </ItemGroup>
 </Project>

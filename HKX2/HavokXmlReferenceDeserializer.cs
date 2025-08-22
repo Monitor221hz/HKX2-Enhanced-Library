@@ -18,27 +18,21 @@ namespace HKX2E
 		private Dictionary<IHavokObject, HavokObjectReference> objectReferenceMap;
 		private Dictionary<string, List<IHavokReference>> referenceNameMap;
 
-        public HavokXmlReferenceDeserializer()
+        public HavokXmlReferenceDeserializer() : base()
         {
-            objectNameMap = new();
-            elementNameMap = new();
-            options = HavokXmlDeserializerOptions.None;
+			nameOrderLookup = new(); 
             objectReferenceMap = new(ReferenceEqualityComparer.Instance);
             referenceNameMap = new();
         }
-        public HavokXmlReferenceDeserializer(HavokXmlDeserializerOptions options)
+        public HavokXmlReferenceDeserializer(HavokXmlDeserializerOptions options) : base(options)
         {
-            objectNameMap = new();
-            elementNameMap = new();
-            this.options = options;
+            nameOrderLookup = new();
             objectReferenceMap = new(ReferenceEqualityComparer.Instance);
             referenceNameMap = new();
         }
-        public HavokXmlReferenceDeserializer(HavokXmlDeserializerContext context)
+        public HavokXmlReferenceDeserializer(HavokXmlDeserializerContext context) : base(context)
         {
-            objectNameMap = context.ObjectNameMap;
-            elementNameMap = context.ElementNameMap;
-            options = context.Options;
+            nameOrderLookup = new();
             objectReferenceMap = new(ReferenceEqualityComparer.Instance);
             referenceNameMap = new();
         }
@@ -89,20 +83,6 @@ namespace HKX2E
 					reference.Update(newObject);
 				}
 			}
-		}
-		public virtual void UpdateMapping(string name, IHavokObject newObject)
-		{
-			if (objectNameMap.ContainsKey(name))
-			{
-				objectNameMap[name] = newObject;
-			}
-#if DEBUG_VERBOSE
-						else
-						{
-							Debug.WriteLine($"Could not update mapping for object {name}");
-						}
-#endif
-
 		}
 		public virtual void AddPropertyReference(string name, IHavokObject owner, string propertyName, int listIndex)
 		{

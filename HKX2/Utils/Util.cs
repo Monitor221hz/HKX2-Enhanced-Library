@@ -4,6 +4,16 @@ using System.Linq;
 
 namespace HKX2E
 {
+    public static class LITERAL
+    {
+        public const string OBJECT = "object";
+        public const string ENUM = "enum";
+        public const string OPERATOR = "operator";
+        public const string EVENT = "event"; 
+        public const string INT = "int";
+        public const string STRING = "string";
+    }
+
     public static class Util
     {
         public static IHavokObject ReadHKX(Stream stream)

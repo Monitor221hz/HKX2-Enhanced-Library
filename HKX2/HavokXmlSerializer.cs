@@ -14,14 +14,14 @@ namespace HKX2E
 		protected XContainer? dataSection;
 
         protected uint index = 0050;
-        protected Dictionary<IHavokObject, string> nameObjectMap = new(ReferenceEqualityComparer.Instance);
+		protected Dictionary<IHavokObject, string> nameObjectMap;
         protected readonly HashSet<uint> staticIndexes = [];
 
 		public HavokXmlSerializer()
 		{
 			nameObjectMap = new(ReferenceEqualityComparer.Instance);
 		}
-		public HavokXmlSerializer(HavokXmlDeserializerContext context)
+		public HavokXmlSerializer(HavokXmlDeserializerContext context) : this()
 		{
 			IEnumerable<string> indexedNames = context.ElementNameMap.Keys;
 			uint num;
@@ -195,7 +195,7 @@ namespace HKX2E
 				new XAttribute("name", nodeName),
 				new XAttribute("class", hkobject.GetType().Name),
 				new XAttribute("signature", FormatSignature(hkobject.Signature)));
-			dataSection.Add(ele);
+			dataSection?.Add(ele);
 			return ele;
 		}
 

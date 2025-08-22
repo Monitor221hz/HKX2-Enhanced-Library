@@ -8,8 +8,12 @@ namespace HKX2E
 {
     public class MetaPackFileDeserializer : PackFileDeserializer
     {
+        ulong nodeCount = 0; 
         protected Dictionary<ulong, IHavokObject> nodeIDMap = new();
+        protected Dictionary<IHavokObject, ulong> objOrderLookup = new(ReferenceEqualityComparer.Instance);
         public MetaPackFileDeserializerContext Context => new(nodeIDMap);
+        
+        public ulong GetOrder(IHavokObject havokObject) => objOrderLookup.TryGetValue(havokObject, out ulong order) ? order : 0; 
         protected override IHavokObject ConstructVirtualClass(BinaryReaderEx br, uint offset)
         {
             if (_deserializedObjects.ContainsKey(offset)) return _deserializedObjects[offset];
@@ -29,6 +33,7 @@ namespace HKX2E
             {
                 nodeIDMap.TryAdd(explicitID, ret);
             }
+            objOrderLookup.TryAdd(ret, nodeCount++); 
             ret.Read(this, br);
             br.StepOut();
 

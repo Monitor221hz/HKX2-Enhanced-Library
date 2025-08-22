@@ -30,7 +30,7 @@ namespace HKX2E
         public hkpConstraintInstanceSmallArraySerializeOverrideType listeners { set; get; } = new();
         public string name { set; get; } = "";
         public ulong userData { set; get; }
-        private object? @internal { set; get; }
+        private object? _internal { set; get; }
         private uint uid { set; get; }
 
         public override uint Signature { set; get; } = 0x34eba5f;
@@ -99,7 +99,7 @@ namespace HKX2E
             xs.WriteSerializeIgnored(xe, nameof(listeners));
             xs.WriteString(xe, nameof(name), name);
             xs.WriteNumber(xe, nameof(userData), userData);
-            xs.WriteSerializeIgnored(xe, nameof(@internal));
+            xs.WriteSerializeIgnored(xe, nameof(_internal));
             xs.WriteSerializeIgnored(xe, nameof(uid));
         }
 
