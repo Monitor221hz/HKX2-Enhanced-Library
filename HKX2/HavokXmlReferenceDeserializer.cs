@@ -1,10 +1,8 @@
-﻿using HKX2E.Utils;
+﻿using HKX2E.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -204,7 +202,7 @@ namespace HKX2E
 		}
 		public override T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : default
 		{
-			var ele = GetPropertyElement(element, name);
+			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (ele is null)
 				return default;
 
@@ -232,7 +230,7 @@ namespace HKX2E
 
 		public override IList<T> ReadClassPointerArray<T>(IHavokObject owner, XElement element, string name) where T : default
 		{
-			var ele = GetPropertyElement(element, name);
+			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (ele is null)
 				return new List<T>();
 
@@ -244,7 +242,7 @@ namespace HKX2E
 			if (count == 0)
 				return result;
 
-			var refNames = ele.Value.Split(SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+			var refNames = ele.Value.Split(HavokXmlDeserializerExtensions.SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 			for (int i = 0; i < refNames.Length; i++)
 			{
 				string? refName = refNames[i];
@@ -270,7 +268,7 @@ namespace HKX2E
 
 		public override T?[] ReadClassPointerCStyleArray<T>(IHavokObject owner, XElement element, string name, short length) where T :default
 		{
-			var ele = GetPropertyElement(element, name);
+			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
 			if (ele is null)
 				return Array.Empty<T>();
 
