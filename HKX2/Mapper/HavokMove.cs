@@ -5,7 +5,7 @@ namespace HKX2E.Mapper
     /// <summary>
     /// C++ users: see aboutmapping.txt
     /// </summary>
-    [Mapper(UseReferenceHandling = true)]
+    [Mapper(UseReferenceHandling = false)]
     public partial class HavokMove
     {
         #region MoveSelf
