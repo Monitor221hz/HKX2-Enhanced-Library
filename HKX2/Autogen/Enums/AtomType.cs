@@ -37,4 +37,3 @@ namespace HKX2E
         TYPE_MAX = 32,
     }
 }
-

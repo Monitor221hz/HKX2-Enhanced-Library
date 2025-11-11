@@ -7,10 +7,13 @@ namespace HKX2E
 {
     // hkpPhysicsSystemWithContacts Signatire: 0xd0fd4bbe size: 120 flags: FLAGS_NONE
 
-    // contacts class: hkpSerializedAgentNnEntry Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    public partial class hkpPhysicsSystemWithContacts : hkpPhysicsSystem, IEquatable<hkpPhysicsSystemWithContacts?>
+    // contacts class: hkpSerializedAgentNnEntry Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    public partial class hkpPhysicsSystemWithContacts
+        : hkpPhysicsSystem,
+            IEquatable<hkpPhysicsSystemWithContacts?>
     {
-        public IList<hkpSerializedAgentNnEntry> contacts { set; get; } = Array.Empty<hkpSerializedAgentNnEntry>();
+        public IList<hkpSerializedAgentNnEntry> contacts { set; get; } =
+            Array.Empty<hkpSerializedAgentNnEntry>();
 
         public override uint Signature { set; get; } = 0xd0fd4bbe;
 
@@ -29,7 +32,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            contacts = xd.ReadClassPointerArray<hkpSerializedAgentNnEntry>(this, xe, nameof(contacts));
+            contacts = xd.ReadClassPointerArray<hkpSerializedAgentNnEntry>(
+                this,
+                xe,
+                nameof(contacts)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +52,11 @@ namespace HKX2E
 
         public bool Equals(hkpPhysicsSystemWithContacts? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   contacts.SequenceEqual(other.contacts) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && contacts.SequenceEqual(other.contacts)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

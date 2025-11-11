@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpUnaryAction Signatire: 0x895532c0 size: 56 flags: FLAGS_NONE
 
-    // entity class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // entity class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkpUnaryAction : hkpAction, IEquatable<hkpUnaryAction?>
     {
         public hkpEntity? entity { set; get; }
@@ -43,10 +43,18 @@ namespace HKX2E
 
         public bool Equals(hkpUnaryAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((entity is null && other.entity is null) || (entity is not null && other.entity is not null && entity.Equals((IHavokObject)other.entity))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (entity is null && other.entity is null)
+                    || (
+                        entity is not null
+                        && other.entity is not null
+                        && entity.Equals((IHavokObject)other.entity)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

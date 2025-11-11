@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkbRaiseEventCommand Signatire: 0xa0a7bf9c size: 32 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // global class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // externalId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    public partial class hkbRaiseEventCommand : hkReferencedObject, IEquatable<hkbRaiseEventCommand?>
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // global class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // externalId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    public partial class hkbRaiseEventCommand
+        : hkReferencedObject,
+            IEquatable<hkbRaiseEventCommand?>
     {
         public ulong characterId { set; get; }
         public bool global { set; get; }
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkbRaiseEventCommand? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   global.Equals(other.global) &&
-                   externalId.Equals(other.externalId) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && global.Equals(other.global)
+                && externalId.Equals(other.externalId)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

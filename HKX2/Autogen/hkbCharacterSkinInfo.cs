@@ -7,10 +7,12 @@ namespace HKX2E
 {
     // hkbCharacterSkinInfo Signatire: 0x180d900d size: 56 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // deformableSkins class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // rigidSkins class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    public partial class hkbCharacterSkinInfo : hkReferencedObject, IEquatable<hkbCharacterSkinInfo?>
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // deformableSkins class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // rigidSkins class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    public partial class hkbCharacterSkinInfo
+        : hkReferencedObject,
+            IEquatable<hkbCharacterSkinInfo?>
     {
         public ulong characterId { set; get; }
         public IList<ulong> deformableSkins { set; get; } = Array.Empty<ulong>();
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterSkinInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   deformableSkins.SequenceEqual(other.deformableSkins) &&
-                   rigidSkins.SequenceEqual(other.rigidSkins) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && deformableSkins.SequenceEqual(other.deformableSkins)
+                && rigidSkins.SequenceEqual(other.rigidSkins)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

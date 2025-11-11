@@ -5,11 +5,10 @@ namespace HKX2E
 {
     // hkpCharacterControllerCinfo Signatire: 0xda8c7d7d size: 16 flags: FLAGS_NONE
 
-
-    public partial class hkpCharacterControllerCinfo : hkReferencedObject, IEquatable<hkpCharacterControllerCinfo?>
+    public partial class hkpCharacterControllerCinfo
+        : hkReferencedObject,
+            IEquatable<hkpCharacterControllerCinfo?>
     {
-
-
         public override uint Signature { set; get; } = 0xda8c7d7d;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +38,8 @@ namespace HKX2E
 
         public bool Equals(hkpCharacterControllerCinfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +51,3 @@ namespace HKX2E
         }
     }
 }
-

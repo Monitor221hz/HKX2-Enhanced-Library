@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkTraceStreamTitle Signatire: 0x6a4ca82c size: 32 flags: FLAGS_NOT_SERIALIZABLE
 
-    // value class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 32 offset: 0 flags: FLAGS_NONE enum: 
+    // value class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 32 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkTraceStreamTitle : IHavokObject, IEquatable<hkTraceStreamTitle?>
     {
         public string value { set; get; } = "";
@@ -40,9 +40,10 @@ namespace HKX2E
 
         public bool Equals(hkTraceStreamTitle? other)
         {
-            return other is not null &&
-                   value.SequenceEqual(other.value) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && value.SequenceEqual(other.value)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -54,4 +55,3 @@ namespace HKX2E
         }
     }
 }
-

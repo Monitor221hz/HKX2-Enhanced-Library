@@ -6,17 +6,19 @@ namespace HKX2E
 {
     // hkpCollidableBoundingVolumeData Signatire: 0xb5f0e6b1 size: 56 flags: FLAGS_NONE
 
-    // min class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 0 flags: FLAGS_NONE enum: 
-    // expansionMin class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 12 flags: FLAGS_NONE enum: 
-    // expansionShift class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 15 flags: FLAGS_NONE enum: 
-    // max class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 16 flags: FLAGS_NONE enum: 
-    // expansionMax class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 28 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 31 flags: FLAGS_NONE enum: 
-    // numChildShapeAabbs class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // capacityChildShapeAabbs class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // childShapeAabbs class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // childShapeKeys class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkpCollidableBoundingVolumeData : IHavokObject, IEquatable<hkpCollidableBoundingVolumeData?>
+    // min class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 0 flags: FLAGS_NONE enum:
+    // expansionMin class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 12 flags: FLAGS_NONE enum:
+    // expansionShift class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 15 flags: FLAGS_NONE enum:
+    // max class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 16 flags: FLAGS_NONE enum:
+    // expansionMax class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 28 flags: FLAGS_NONE enum:
+    // padding class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 31 flags: FLAGS_NONE enum:
+    // numChildShapeAabbs class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // capacityChildShapeAabbs class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // childShapeAabbs class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // childShapeKeys class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkpCollidableBoundingVolumeData
+        : IHavokObject,
+            IEquatable<hkpCollidableBoundingVolumeData?>
     {
         public uint[] min = new uint[3];
         public byte[] expansionMin = new byte[3];
@@ -92,14 +94,15 @@ namespace HKX2E
 
         public bool Equals(hkpCollidableBoundingVolumeData? other)
         {
-            return other is not null &&
-                   min.SequenceEqual(other.min) &&
-                   expansionMin.SequenceEqual(other.expansionMin) &&
-                   expansionShift.Equals(other.expansionShift) &&
-                   max.SequenceEqual(other.max) &&
-                   expansionMax.SequenceEqual(other.expansionMax) &&
-                   padding.Equals(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && min.SequenceEqual(other.min)
+                && expansionMin.SequenceEqual(other.expansionMin)
+                && expansionShift.Equals(other.expansionShift)
+                && max.SequenceEqual(other.max)
+                && expansionMax.SequenceEqual(other.expansionMax)
+                && padding.Equals(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -116,4 +119,3 @@ namespace HKX2E
         }
     }
 }
-

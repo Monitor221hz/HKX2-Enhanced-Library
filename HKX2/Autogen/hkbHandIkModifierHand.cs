@@ -6,20 +6,20 @@ namespace HKX2E
 {
     // hkbHandIkModifierHand Signatire: 0x14dfe1dd size: 96 flags: FLAGS_NONE
 
-    // elbowAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // backHandNormalLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // handOffsetLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // handOrienationOffsetLS class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // maxElbowAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // minElbowAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // shoulderIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // shoulderSiblingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 74 flags: FLAGS_NONE enum: 
-    // elbowIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // elbowSiblingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 78 flags: FLAGS_NONE enum: 
-    // wristIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // enforceEndPosition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum: 
-    // enforceEndRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 83 flags: FLAGS_NONE enum: 
-    // localFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // elbowAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // backHandNormalLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // handOffsetLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // handOrienationOffsetLS class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // maxElbowAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // minElbowAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // shoulderIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // shoulderSiblingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 74 flags: FLAGS_NONE enum:
+    // elbowIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    // elbowSiblingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 78 flags: FLAGS_NONE enum:
+    // wristIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // enforceEndPosition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum:
+    // enforceEndRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 83 flags: FLAGS_NONE enum:
+    // localFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
     public partial class hkbHandIkModifierHand : IHavokObject, IEquatable<hkbHandIkModifierHand?>
     {
         public Vector4 elbowAxisLS { set; get; }
@@ -120,22 +120,28 @@ namespace HKX2E
 
         public bool Equals(hkbHandIkModifierHand? other)
         {
-            return other is not null &&
-                   elbowAxisLS.Equals(other.elbowAxisLS) &&
-                   backHandNormalLS.Equals(other.backHandNormalLS) &&
-                   handOffsetLS.Equals(other.handOffsetLS) &&
-                   handOrienationOffsetLS.Equals(other.handOrienationOffsetLS) &&
-                   maxElbowAngleDegrees.Equals(other.maxElbowAngleDegrees) &&
-                   minElbowAngleDegrees.Equals(other.minElbowAngleDegrees) &&
-                   shoulderIndex.Equals(other.shoulderIndex) &&
-                   shoulderSiblingIndex.Equals(other.shoulderSiblingIndex) &&
-                   elbowIndex.Equals(other.elbowIndex) &&
-                   elbowSiblingIndex.Equals(other.elbowSiblingIndex) &&
-                   wristIndex.Equals(other.wristIndex) &&
-                   enforceEndPosition.Equals(other.enforceEndPosition) &&
-                   enforceEndRotation.Equals(other.enforceEndRotation) &&
-                   (localFrameName is null && other.localFrameName is null || localFrameName == other.localFrameName || localFrameName is null && other.localFrameName == "" || localFrameName == "" && other.localFrameName is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && elbowAxisLS.Equals(other.elbowAxisLS)
+                && backHandNormalLS.Equals(other.backHandNormalLS)
+                && handOffsetLS.Equals(other.handOffsetLS)
+                && handOrienationOffsetLS.Equals(other.handOrienationOffsetLS)
+                && maxElbowAngleDegrees.Equals(other.maxElbowAngleDegrees)
+                && minElbowAngleDegrees.Equals(other.minElbowAngleDegrees)
+                && shoulderIndex.Equals(other.shoulderIndex)
+                && shoulderSiblingIndex.Equals(other.shoulderSiblingIndex)
+                && elbowIndex.Equals(other.elbowIndex)
+                && elbowSiblingIndex.Equals(other.elbowSiblingIndex)
+                && wristIndex.Equals(other.wristIndex)
+                && enforceEndPosition.Equals(other.enforceEndPosition)
+                && enforceEndRotation.Equals(other.enforceEndRotation)
+                && (
+                    localFrameName is null && other.localFrameName is null
+                    || localFrameName == other.localFrameName
+                    || localFrameName is null && other.localFrameName == ""
+                    || localFrameName == "" && other.localFrameName is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -160,4 +166,3 @@ namespace HKX2E
         }
     }
 }
-

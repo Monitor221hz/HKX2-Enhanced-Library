@@ -16,4 +16,3 @@ namespace HKX2E
         KEY_F12 = 123,
     }
 }
-

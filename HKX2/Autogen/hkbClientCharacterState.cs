@@ -8,31 +8,34 @@ namespace HKX2E
 {
     // hkbClientCharacterState Signatire: 0xa2624c97 size: 272 flags: FLAGS_NONE
 
-    // deformableSkinIds class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // rigidSkinIds class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // externalEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // auxiliaryInfo class: hkbAuxiliaryNodeInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // activeEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // activeVariableIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // instanceName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // templateName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // fullPathToProject class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // behaviorData class: hkbBehaviorGraphData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // behaviorInternalState class: hkbBehaviorGraphInternalState Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // nodeIdToInternalStateMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // visible class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // elapsedSimulationTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum: 
-    // skeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // worldFromModel class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // poseModelSpace class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 240 flags: FLAGS_NONE enum: 
-    // rigidAttachmentTransforms class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 256 flags: FLAGS_NONE enum: 
-    public partial class hkbClientCharacterState : hkReferencedObject, IEquatable<hkbClientCharacterState?>
+    // deformableSkinIds class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // rigidSkinIds class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // externalEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // auxiliaryInfo class: hkbAuxiliaryNodeInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // activeEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // activeVariableIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // instanceName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // templateName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // fullPathToProject class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // behaviorData class: hkbBehaviorGraphData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // behaviorInternalState class: hkbBehaviorGraphInternalState Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // nodeIdToInternalStateMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // visible class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // elapsedSimulationTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum:
+    // skeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // worldFromModel class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // poseModelSpace class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 240 flags: FLAGS_NONE enum:
+    // rigidAttachmentTransforms class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 256 flags: FLAGS_NONE enum:
+    public partial class hkbClientCharacterState
+        : hkReferencedObject,
+            IEquatable<hkbClientCharacterState?>
     {
         public IList<ulong> deformableSkinIds { set; get; } = Array.Empty<ulong>();
         public IList<ulong> rigidSkinIds { set; get; } = Array.Empty<ulong>();
         public IList<short> externalEventIds { set; get; } = Array.Empty<short>();
-        public IList<hkbAuxiliaryNodeInfo> auxiliaryInfo { set; get; } = Array.Empty<hkbAuxiliaryNodeInfo>();
+        public IList<hkbAuxiliaryNodeInfo> auxiliaryInfo { set; get; } =
+            Array.Empty<hkbAuxiliaryNodeInfo>();
         public IList<short> activeEventIds { set; get; } = Array.Empty<short>();
         public IList<short> activeVariableIds { set; get; } = Array.Empty<short>();
         public ulong characterId { set; get; }
@@ -109,21 +112,36 @@ namespace HKX2E
             deformableSkinIds = xd.ReadUInt64Array(xe, nameof(deformableSkinIds));
             rigidSkinIds = xd.ReadUInt64Array(xe, nameof(rigidSkinIds));
             externalEventIds = xd.ReadInt16Array(xe, nameof(externalEventIds));
-            auxiliaryInfo = xd.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(this, xe, nameof(auxiliaryInfo));
+            auxiliaryInfo = xd.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(
+                this,
+                xe,
+                nameof(auxiliaryInfo)
+            );
             activeEventIds = xd.ReadInt16Array(xe, nameof(activeEventIds));
             activeVariableIds = xd.ReadInt16Array(xe, nameof(activeVariableIds));
             characterId = xd.ReadUInt64(xe, nameof(characterId));
             instanceName = xd.ReadString(xe, nameof(instanceName));
             templateName = xd.ReadString(xe, nameof(templateName));
             fullPathToProject = xd.ReadString(xe, nameof(fullPathToProject));
-            behaviorData = xd.ReadClassPointer<hkbBehaviorGraphData>(this, xe, nameof(behaviorData));
-            behaviorInternalState = xd.ReadClassPointer<hkbBehaviorGraphInternalState>(this, xe, nameof(behaviorInternalState));
+            behaviorData = xd.ReadClassPointer<hkbBehaviorGraphData>(
+                this,
+                xe,
+                nameof(behaviorData)
+            );
+            behaviorInternalState = xd.ReadClassPointer<hkbBehaviorGraphInternalState>(
+                this,
+                xe,
+                nameof(behaviorInternalState)
+            );
             visible = xd.ReadBoolean(xe, nameof(visible));
             elapsedSimulationTime = xd.ReadSingle(xe, nameof(elapsedSimulationTime));
             skeleton = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(skeleton));
             worldFromModel = xd.ReadQSTransform(xe, nameof(worldFromModel));
             poseModelSpace = xd.ReadQSTransformArray(xe, nameof(poseModelSpace));
-            rigidAttachmentTransforms = xd.ReadQSTransformArray(xe, nameof(rigidAttachmentTransforms));
+            rigidAttachmentTransforms = xd.ReadQSTransformArray(
+                xe,
+                nameof(rigidAttachmentTransforms)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -147,7 +165,11 @@ namespace HKX2E
             xs.WriteClassPointer(xe, nameof(skeleton), skeleton);
             xs.WriteQSTransform(xe, nameof(worldFromModel), worldFromModel);
             xs.WriteQSTransformArray(xe, nameof(poseModelSpace), poseModelSpace);
-            xs.WriteQSTransformArray(xe, nameof(rigidAttachmentTransforms), rigidAttachmentTransforms);
+            xs.WriteQSTransformArray(
+                xe,
+                nameof(rigidAttachmentTransforms),
+                rigidAttachmentTransforms
+            );
         }
 
         public override bool Equals(object? obj)
@@ -157,27 +179,64 @@ namespace HKX2E
 
         public bool Equals(hkbClientCharacterState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   deformableSkinIds.SequenceEqual(other.deformableSkinIds) &&
-                   rigidSkinIds.SequenceEqual(other.rigidSkinIds) &&
-                   externalEventIds.SequenceEqual(other.externalEventIds) &&
-                   auxiliaryInfo.SequenceEqual(other.auxiliaryInfo) &&
-                   activeEventIds.SequenceEqual(other.activeEventIds) &&
-                   activeVariableIds.SequenceEqual(other.activeVariableIds) &&
-                   characterId.Equals(other.characterId) &&
-                   (instanceName is null && other.instanceName is null || instanceName == other.instanceName || instanceName is null && other.instanceName == "" || instanceName == "" && other.instanceName is null) &&
-                   (templateName is null && other.templateName is null || templateName == other.templateName || templateName is null && other.templateName == "" || templateName == "" && other.templateName is null) &&
-                   (fullPathToProject is null && other.fullPathToProject is null || fullPathToProject == other.fullPathToProject || fullPathToProject is null && other.fullPathToProject == "" || fullPathToProject == "" && other.fullPathToProject is null) &&
-                   ((behaviorData is null && other.behaviorData is null) || (behaviorData is not null && other.behaviorData is not null && behaviorData.Equals((IHavokObject)other.behaviorData))) &&
-                   ((behaviorInternalState is null && other.behaviorInternalState is null) || (behaviorInternalState is not null && other.behaviorInternalState is not null && behaviorInternalState.Equals((IHavokObject)other.behaviorInternalState))) &&
-                   visible.Equals(other.visible) &&
-                   elapsedSimulationTime.Equals(other.elapsedSimulationTime) &&
-                   ((skeleton is null && other.skeleton is null) || (skeleton is not null && other.skeleton is not null && skeleton.Equals((IHavokObject)other.skeleton))) &&
-                   worldFromModel.Equals(other.worldFromModel) &&
-                   poseModelSpace.SequenceEqual(other.poseModelSpace) &&
-                   rigidAttachmentTransforms.SequenceEqual(other.rigidAttachmentTransforms) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && deformableSkinIds.SequenceEqual(other.deformableSkinIds)
+                && rigidSkinIds.SequenceEqual(other.rigidSkinIds)
+                && externalEventIds.SequenceEqual(other.externalEventIds)
+                && auxiliaryInfo.SequenceEqual(other.auxiliaryInfo)
+                && activeEventIds.SequenceEqual(other.activeEventIds)
+                && activeVariableIds.SequenceEqual(other.activeVariableIds)
+                && characterId.Equals(other.characterId)
+                && (
+                    instanceName is null && other.instanceName is null
+                    || instanceName == other.instanceName
+                    || instanceName is null && other.instanceName == ""
+                    || instanceName == "" && other.instanceName is null
+                )
+                && (
+                    templateName is null && other.templateName is null
+                    || templateName == other.templateName
+                    || templateName is null && other.templateName == ""
+                    || templateName == "" && other.templateName is null
+                )
+                && (
+                    fullPathToProject is null && other.fullPathToProject is null
+                    || fullPathToProject == other.fullPathToProject
+                    || fullPathToProject is null && other.fullPathToProject == ""
+                    || fullPathToProject == "" && other.fullPathToProject is null
+                )
+                && (
+                    (behaviorData is null && other.behaviorData is null)
+                    || (
+                        behaviorData is not null
+                        && other.behaviorData is not null
+                        && behaviorData.Equals((IHavokObject)other.behaviorData)
+                    )
+                )
+                && (
+                    (behaviorInternalState is null && other.behaviorInternalState is null)
+                    || (
+                        behaviorInternalState is not null
+                        && other.behaviorInternalState is not null
+                        && behaviorInternalState.Equals((IHavokObject)other.behaviorInternalState)
+                    )
+                )
+                && visible.Equals(other.visible)
+                && elapsedSimulationTime.Equals(other.elapsedSimulationTime)
+                && (
+                    (skeleton is null && other.skeleton is null)
+                    || (
+                        skeleton is not null
+                        && other.skeleton is not null
+                        && skeleton.Equals((IHavokObject)other.skeleton)
+                    )
+                )
+                && worldFromModel.Equals(other.worldFromModel)
+                && poseModelSpace.SequenceEqual(other.poseModelSpace)
+                && rigidAttachmentTransforms.SequenceEqual(other.rigidAttachmentTransforms)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -207,4 +266,3 @@ namespace HKX2E
         }
     }
 }
-

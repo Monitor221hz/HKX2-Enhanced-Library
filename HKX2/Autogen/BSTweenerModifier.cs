@@ -6,15 +6,15 @@ namespace HKX2E
 {
     // BSTweenerModifier Signatire: 0xd2d9a04 size: 208 flags: FLAGS_NONE
 
-    // tweenPosition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // tweenRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum: 
-    // useTweenDuration class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum: 
-    // tweenDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // targetRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // startTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // tweenPosition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // tweenRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum:
+    // useTweenDuration class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum:
+    // tweenDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // targetRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // startTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class BSTweenerModifier : hkbModifier, IEquatable<BSTweenerModifier?>
     {
         public bool tweenPosition { set; get; }
@@ -97,15 +97,16 @@ namespace HKX2E
 
         public bool Equals(BSTweenerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   tweenPosition.Equals(other.tweenPosition) &&
-                   tweenRotation.Equals(other.tweenRotation) &&
-                   useTweenDuration.Equals(other.useTweenDuration) &&
-                   tweenDuration.Equals(other.tweenDuration) &&
-                   targetPosition.Equals(other.targetPosition) &&
-                   targetRotation.Equals(other.targetRotation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && tweenPosition.Equals(other.tweenPosition)
+                && tweenRotation.Equals(other.tweenRotation)
+                && useTweenDuration.Equals(other.useTweenDuration)
+                && tweenDuration.Equals(other.tweenDuration)
+                && targetPosition.Equals(other.targetPosition)
+                && targetRotation.Equals(other.targetRotation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -123,4 +124,3 @@ namespace HKX2E
         }
     }
 }
-

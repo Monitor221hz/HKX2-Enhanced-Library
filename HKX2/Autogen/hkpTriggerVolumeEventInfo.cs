@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpTriggerVolumeEventInfo Signatire: 0xeb60f431 size: 24 flags: FLAGS_NONE
 
-    // sortValue class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // body class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // sortValue class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // body class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     // operation class:  Type.TYPE_ENUM Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: Operation
-    public partial class hkpTriggerVolumeEventInfo : IHavokObject, IEquatable<hkpTriggerVolumeEventInfo?>
+    public partial class hkpTriggerVolumeEventInfo
+        : IHavokObject,
+            IEquatable<hkpTriggerVolumeEventInfo?>
     {
         public ulong sortValue { set; get; }
         public hkpRigidBody? body { set; get; }
@@ -53,11 +55,19 @@ namespace HKX2E
 
         public bool Equals(hkpTriggerVolumeEventInfo? other)
         {
-            return other is not null &&
-                   sortValue.Equals(other.sortValue) &&
-                   ((body is null && other.body is null) || (body is not null && other.body is not null && body.Equals((IHavokObject)other.body))) &&
-                   operation.Equals(other.operation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && sortValue.Equals(other.sortValue)
+                && (
+                    (body is null && other.body is null)
+                    || (
+                        body is not null
+                        && other.body is not null
+                        && body.Equals((IHavokObject)other.body)
+                    )
+                )
+                && operation.Equals(other.operation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

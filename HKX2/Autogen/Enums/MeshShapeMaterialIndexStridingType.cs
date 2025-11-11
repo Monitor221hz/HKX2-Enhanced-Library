@@ -8,4 +8,3 @@ namespace HKX2E
         MATERIAL_INDICES_MAX_ID = 3,
     }
 }
-

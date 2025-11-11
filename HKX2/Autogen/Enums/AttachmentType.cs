@@ -9,4 +9,3 @@ namespace HKX2E
         ATTACHMENT_TYPE_NONE = 4,
     }
 }
-

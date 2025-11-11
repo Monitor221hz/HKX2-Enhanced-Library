@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkResourceBase Signatire: 0x660d7cac size: 16 flags: FLAGS_NONE
 
-
     public partial class hkResourceBase : hkReferencedObject, IEquatable<hkResourceBase?>
     {
-
-
         public override uint Signature { set; get; } = 0x660d7cac;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkResourceBase? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

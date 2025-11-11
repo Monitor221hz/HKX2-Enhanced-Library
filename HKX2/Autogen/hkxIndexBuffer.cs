@@ -8,10 +8,10 @@ namespace HKX2E
     // hkxIndexBuffer Signatire: 0xc12c8197 size: 64 flags: FLAGS_NONE
 
     // indexType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: IndexType
-    // indices16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // indices32 class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // vertexBaseOffset class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // length class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
+    // indices16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // indices32 class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // vertexBaseOffset class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // length class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
     public partial class hkxIndexBuffer : hkReferencedObject, IEquatable<hkxIndexBuffer?>
     {
         public sbyte indexType { set; get; }
@@ -71,14 +71,15 @@ namespace HKX2E
 
         public bool Equals(hkxIndexBuffer? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   indexType.Equals(other.indexType) &&
-                   indices16.SequenceEqual(other.indices16) &&
-                   indices32.SequenceEqual(other.indices32) &&
-                   vertexBaseOffset.Equals(other.vertexBaseOffset) &&
-                   length.Equals(other.length) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && indexType.Equals(other.indexType)
+                && indices16.SequenceEqual(other.indices16)
+                && indices32.SequenceEqual(other.indices32)
+                && vertexBaseOffset.Equals(other.vertexBaseOffset)
+                && length.Equals(other.length)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -95,4 +96,3 @@ namespace HKX2E
         }
     }
 }
-

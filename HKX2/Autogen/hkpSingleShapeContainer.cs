@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkpSingleShapeContainer Signatire: 0x73aa1d38 size: 16 flags: FLAGS_NONE
 
-    // childShape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpSingleShapeContainer : hkpShapeContainer, IEquatable<hkpSingleShapeContainer?>
+    // childShape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpSingleShapeContainer
+        : hkpShapeContainer,
+            IEquatable<hkpSingleShapeContainer?>
     {
         public hkpShape? childShape { set; get; }
 
@@ -43,10 +45,18 @@ namespace HKX2E
 
         public bool Equals(hkpSingleShapeContainer? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((childShape is null && other.childShape is null) || (childShape is not null && other.childShape is not null && childShape.Equals((IHavokObject)other.childShape))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (childShape is null && other.childShape is null)
+                    || (
+                        childShape is not null
+                        && other.childShape is not null
+                        && childShape.Equals((IHavokObject)other.childShape)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

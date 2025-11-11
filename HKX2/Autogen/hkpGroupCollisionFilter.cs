@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpGroupCollisionFilter Signatire: 0x5cc01561 size: 208 flags: FLAGS_NONE
 
-    // noGroupCollisionEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // collisionGroups class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 32 offset: 76 flags: FLAGS_NONE enum: 
-    public partial class hkpGroupCollisionFilter : hkpCollisionFilter, IEquatable<hkpGroupCollisionFilter?>
+    // noGroupCollisionEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // collisionGroups class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 32 offset: 76 flags: FLAGS_NONE enum:
+    public partial class hkpGroupCollisionFilter
+        : hkpCollisionFilter,
+            IEquatable<hkpGroupCollisionFilter?>
     {
         public bool noGroupCollisionEnabled { set; get; }
         public uint[] collisionGroups = new uint[32];
@@ -54,11 +56,12 @@ namespace HKX2E
 
         public bool Equals(hkpGroupCollisionFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   noGroupCollisionEnabled.Equals(other.noGroupCollisionEnabled) &&
-                   collisionGroups.SequenceEqual(other.collisionGroups) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && noGroupCollisionEnabled.Equals(other.noGroupCollisionEnabled)
+                && collisionGroups.SequenceEqual(other.collisionGroups)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -72,4 +75,3 @@ namespace HKX2E
         }
     }
 }
-

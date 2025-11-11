@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpRackAndPinionConstraintDataAtoms Signatire: 0xa58a9659 size: 160 flags: FLAGS_NONE
 
-    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // rackAndPinion class: hkpRackAndPinionConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    public partial class hkpRackAndPinionConstraintDataAtoms : IHavokObject, IEquatable<hkpRackAndPinionConstraintDataAtoms?>
+    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // rackAndPinion class: hkpRackAndPinionConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    public partial class hkpRackAndPinionConstraintDataAtoms
+        : IHavokObject,
+            IEquatable<hkpRackAndPinionConstraintDataAtoms?>
     {
         public hkpSetLocalTransformsConstraintAtom transforms { set; get; } = new();
         public hkpRackAndPinionConstraintAtom rackAndPinion { set; get; } = new();
@@ -47,10 +49,25 @@ namespace HKX2E
 
         public bool Equals(hkpRackAndPinionConstraintDataAtoms? other)
         {
-            return other is not null &&
-                   ((transforms is null && other.transforms is null) || (transforms is not null && other.transforms is not null && transforms.Equals((IHavokObject)other.transforms))) &&
-                   ((rackAndPinion is null && other.rackAndPinion is null) || (rackAndPinion is not null && other.rackAndPinion is not null && rackAndPinion.Equals((IHavokObject)other.rackAndPinion))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (transforms is null && other.transforms is null)
+                    || (
+                        transforms is not null
+                        && other.transforms is not null
+                        && transforms.Equals((IHavokObject)other.transforms)
+                    )
+                )
+                && (
+                    (rackAndPinion is null && other.rackAndPinion is null)
+                    || (
+                        rackAndPinion is not null
+                        && other.rackAndPinion is not null
+                        && rackAndPinion.Equals((IHavokObject)other.rackAndPinion)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

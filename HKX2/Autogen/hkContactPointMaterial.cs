@@ -5,11 +5,11 @@ namespace HKX2E
 {
     // hkContactPointMaterial Signatire: 0x4e32287c size: 16 flags: FLAGS_NONE
 
-    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // friction class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // restitution class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 9 flags: FLAGS_NONE enum: 
-    // maxImpulse class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum: 
-    // flags class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 11 flags: FLAGS_NONE enum: 
+    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // friction class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // restitution class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 9 flags: FLAGS_NONE enum:
+    // maxImpulse class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum:
+    // flags class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 11 flags: FLAGS_NONE enum:
     public partial class hkContactPointMaterial : IHavokObject, IEquatable<hkContactPointMaterial?>
     {
         public ulong userData { set; get; }
@@ -65,13 +65,14 @@ namespace HKX2E
 
         public bool Equals(hkContactPointMaterial? other)
         {
-            return other is not null &&
-                   userData.Equals(other.userData) &&
-                   friction.Equals(other.friction) &&
-                   restitution.Equals(other.restitution) &&
-                   maxImpulse.Equals(other.maxImpulse) &&
-                   flags.Equals(other.flags) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && userData.Equals(other.userData)
+                && friction.Equals(other.friction)
+                && restitution.Equals(other.restitution)
+                && maxImpulse.Equals(other.maxImpulse)
+                && flags.Equals(other.flags)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -87,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

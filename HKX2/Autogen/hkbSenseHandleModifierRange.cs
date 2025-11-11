@@ -5,13 +5,15 @@ namespace HKX2E
 {
     // hkbSenseHandleModifierRange Signatire: 0xfb56b692 size: 32 flags: FLAGS_NONE
 
-    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // minDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // maxDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // ignoreHandle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    public partial class hkbSenseHandleModifierRange : IHavokObject, IEquatable<hkbSenseHandleModifierRange?>
+    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // minDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // maxDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // ignoreHandle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    public partial class hkbSenseHandleModifierRange
+        : IHavokObject,
+            IEquatable<hkbSenseHandleModifierRange?>
     {
-        public hkbEventProperty _event{ set; get; } = new();
+        public hkbEventProperty _event { set; get; } = new();
         public float minDistance { set; get; }
         public float maxDistance { set; get; }
         public bool ignoreHandle { set; get; }
@@ -38,7 +40,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            _event= xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
+            _event = xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
             minDistance = xd.ReadSingle(xe, nameof(minDistance));
             maxDistance = xd.ReadSingle(xe, nameof(maxDistance));
             ignoreHandle = xd.ReadBoolean(xe, nameof(ignoreHandle));
@@ -59,12 +61,20 @@ namespace HKX2E
 
         public bool Equals(hkbSenseHandleModifierRange? other)
         {
-            return other is not null &&
-                   ((_event is null && other._event is null) || (_event is not null && other._event is not null && _event.Equals((IHavokObject)other._event))) &&
-                   minDistance.Equals(other.minDistance) &&
-                   maxDistance.Equals(other.maxDistance) &&
-                   ignoreHandle.Equals(other.ignoreHandle) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (_event is null && other._event is null)
+                    || (
+                        _event is not null
+                        && other._event is not null
+                        && _event.Equals((IHavokObject)other._event)
+                    )
+                )
+                && minDistance.Equals(other.minDistance)
+                && maxDistance.Equals(other.maxDistance)
+                && ignoreHandle.Equals(other.ignoreHandle)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

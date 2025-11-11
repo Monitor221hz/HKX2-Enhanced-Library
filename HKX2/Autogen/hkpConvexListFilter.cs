@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkpConvexListFilter Signatire: 0x81d074a4 size: 16 flags: FLAGS_NONE
 
-
     public partial class hkpConvexListFilter : hkReferencedObject, IEquatable<hkpConvexListFilter?>
     {
-
-
         public override uint Signature { set; get; } = 0x81d074a4;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkpConvexListFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,14 +6,16 @@ namespace HKX2E
 {
     // BSLookAtModifierBoneData Signatire: 0x29efee59 size: 64 flags: FLAGS_NONE
 
-    // index class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // fwdAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // enabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    // currentFwdAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSLookAtModifierBoneData : IHavokObject, IEquatable<BSLookAtModifierBoneData?>
+    // index class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // fwdAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // enabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
+    // currentFwdAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSLookAtModifierBoneData
+        : IHavokObject,
+            IEquatable<BSLookAtModifierBoneData?>
     {
         public short index { set; get; }
         public Vector4 fwdAxisLS { set; get; }
@@ -79,14 +81,15 @@ namespace HKX2E
 
         public bool Equals(BSLookAtModifierBoneData? other)
         {
-            return other is not null &&
-                   index.Equals(other.index) &&
-                   fwdAxisLS.Equals(other.fwdAxisLS) &&
-                   limitAngleDegrees.Equals(other.limitAngleDegrees) &&
-                   onGain.Equals(other.onGain) &&
-                   offGain.Equals(other.offGain) &&
-                   enabled.Equals(other.enabled) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && index.Equals(other.index)
+                && fwdAxisLS.Equals(other.fwdAxisLS)
+                && limitAngleDegrees.Equals(other.limitAngleDegrees)
+                && onGain.Equals(other.onGain)
+                && offGain.Equals(other.offGain)
+                && enabled.Equals(other.enabled)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -103,4 +106,3 @@ namespace HKX2E
         }
     }
 }
-

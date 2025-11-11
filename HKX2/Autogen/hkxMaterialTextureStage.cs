@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkxMaterialTextureStage Signatire: 0xfa6facb2 size: 16 flags: FLAGS_NONE
 
-    // texture class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // texture class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     // usageHint class:  Type.TYPE_ENUM Type.TYPE_INT32 arrSize: 0 offset: 8 flags: FLAGS_NONE enum: TextureType
-    // tcoordChannel class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkxMaterialTextureStage : IHavokObject, IEquatable<hkxMaterialTextureStage?>
+    // tcoordChannel class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkxMaterialTextureStage
+        : IHavokObject,
+            IEquatable<hkxMaterialTextureStage?>
     {
         public hkReferencedObject? texture { set; get; }
         public int usageHint { set; get; }
@@ -51,11 +53,19 @@ namespace HKX2E
 
         public bool Equals(hkxMaterialTextureStage? other)
         {
-            return other is not null &&
-                   ((texture is null && other.texture is null) || (texture is not null && other.texture is not null && texture.Equals((IHavokObject)other.texture))) &&
-                   usageHint.Equals(other.usageHint) &&
-                   tcoordChannel.Equals(other.tcoordChannel) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (texture is null && other.texture is null)
+                    || (
+                        texture is not null
+                        && other.texture is not null
+                        && texture.Equals((IHavokObject)other.texture)
+                    )
+                )
+                && usageHint.Equals(other.usageHint)
+                && tcoordChannel.Equals(other.tcoordChannel)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +79,3 @@ namespace HKX2E
         }
     }
 }
-

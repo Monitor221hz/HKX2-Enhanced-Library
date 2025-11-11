@@ -8,11 +8,11 @@ namespace HKX2E
     // hkaAnimation Signatire: 0xa6fa7e88 size: 56 flags: FLAGS_NONE
 
     // type class:  Type.TYPE_ENUM Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: AnimationType
-    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // numberOfTransformTracks class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // numberOfFloatTracks class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // extractedMotion class: hkaAnimatedReferenceFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // annotationTracks class: hkaAnnotationTrack Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // numberOfTransformTracks class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // numberOfFloatTracks class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // extractedMotion class: hkaAnimatedReferenceFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // annotationTracks class: hkaAnnotationTrack Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
     public partial class hkaAnimation : hkReferencedObject, IEquatable<hkaAnimation?>
     {
         public int type { set; get; }
@@ -20,7 +20,8 @@ namespace HKX2E
         public int numberOfTransformTracks { set; get; }
         public int numberOfFloatTracks { set; get; }
         public hkaAnimatedReferenceFrame? extractedMotion { set; get; }
-        public IList<hkaAnnotationTrack> annotationTracks { set; get; } = Array.Empty<hkaAnnotationTrack>();
+        public IList<hkaAnnotationTrack> annotationTracks { set; get; } =
+            Array.Empty<hkaAnnotationTrack>();
 
         public override uint Signature { set; get; } = 0xa6fa7e88;
 
@@ -53,7 +54,11 @@ namespace HKX2E
             duration = xd.ReadSingle(xe, nameof(duration));
             numberOfTransformTracks = xd.ReadInt32(xe, nameof(numberOfTransformTracks));
             numberOfFloatTracks = xd.ReadInt32(xe, nameof(numberOfFloatTracks));
-            extractedMotion = xd.ReadClassPointer<hkaAnimatedReferenceFrame>(this, xe, nameof(extractedMotion));
+            extractedMotion = xd.ReadClassPointer<hkaAnimatedReferenceFrame>(
+                this,
+                xe,
+                nameof(extractedMotion)
+            );
             annotationTracks = xd.ReadClassArray<hkaAnnotationTrack>(xe, nameof(annotationTracks));
         }
 
@@ -75,15 +80,23 @@ namespace HKX2E
 
         public bool Equals(hkaAnimation? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   type.Equals(other.type) &&
-                   duration.Equals(other.duration) &&
-                   numberOfTransformTracks.Equals(other.numberOfTransformTracks) &&
-                   numberOfFloatTracks.Equals(other.numberOfFloatTracks) &&
-                   ((extractedMotion is null && other.extractedMotion is null) || (extractedMotion is not null && other.extractedMotion is not null && extractedMotion.Equals((IHavokObject)other.extractedMotion))) &&
-                   annotationTracks.SequenceEqual(other.annotationTracks) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && type.Equals(other.type)
+                && duration.Equals(other.duration)
+                && numberOfTransformTracks.Equals(other.numberOfTransformTracks)
+                && numberOfFloatTracks.Equals(other.numberOfFloatTracks)
+                && (
+                    (extractedMotion is null && other.extractedMotion is null)
+                    || (
+                        extractedMotion is not null
+                        && other.extractedMotion is not null
+                        && extractedMotion.Equals((IHavokObject)other.extractedMotion)
+                    )
+                )
+                && annotationTracks.SequenceEqual(other.annotationTracks)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -101,4 +114,3 @@ namespace HKX2E
         }
     }
 }
-

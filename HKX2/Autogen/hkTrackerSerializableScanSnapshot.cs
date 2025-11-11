@@ -7,17 +7,21 @@ namespace HKX2E
 {
     // hkTrackerSerializableScanSnapshot Signatire: 0x875af1d9 size: 128 flags: FLAGS_NONE
 
-    // allocations class: hkTrackerSerializableScanSnapshotAllocation Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // blocks class: hkTrackerSerializableScanSnapshotBlock Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // refs class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // typeNames class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // traceText class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // traceAddrs class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // traceParents class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    public partial class hkTrackerSerializableScanSnapshot : hkReferencedObject, IEquatable<hkTrackerSerializableScanSnapshot?>
+    // allocations class: hkTrackerSerializableScanSnapshotAllocation Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // blocks class: hkTrackerSerializableScanSnapshotBlock Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // refs class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // typeNames class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // traceText class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // traceAddrs class:  Type.TYPE_ARRAY Type.TYPE_UINT64 arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // traceParents class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    public partial class hkTrackerSerializableScanSnapshot
+        : hkReferencedObject,
+            IEquatable<hkTrackerSerializableScanSnapshot?>
     {
-        public IList<hkTrackerSerializableScanSnapshotAllocation> allocations { set; get; } = Array.Empty<hkTrackerSerializableScanSnapshotAllocation>();
-        public IList<hkTrackerSerializableScanSnapshotBlock> blocks { set; get; } = Array.Empty<hkTrackerSerializableScanSnapshotBlock>();
+        public IList<hkTrackerSerializableScanSnapshotAllocation> allocations { set; get; } =
+            Array.Empty<hkTrackerSerializableScanSnapshotAllocation>();
+        public IList<hkTrackerSerializableScanSnapshotBlock> blocks { set; get; } =
+            Array.Empty<hkTrackerSerializableScanSnapshotBlock>();
         public IList<int> refs { set; get; } = Array.Empty<int>();
         public IList<byte> typeNames { set; get; } = Array.Empty<byte>();
         public IList<byte> traceText { set; get; } = Array.Empty<byte>();
@@ -53,7 +57,10 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            allocations = xd.ReadClassArray<hkTrackerSerializableScanSnapshotAllocation>(xe, nameof(allocations));
+            allocations = xd.ReadClassArray<hkTrackerSerializableScanSnapshotAllocation>(
+                xe,
+                nameof(allocations)
+            );
             blocks = xd.ReadClassArray<hkTrackerSerializableScanSnapshotBlock>(xe, nameof(blocks));
             refs = xd.ReadInt32Array(xe, nameof(refs));
             typeNames = xd.ReadByteArray(xe, nameof(typeNames));
@@ -81,16 +88,17 @@ namespace HKX2E
 
         public bool Equals(hkTrackerSerializableScanSnapshot? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   allocations.SequenceEqual(other.allocations) &&
-                   blocks.SequenceEqual(other.blocks) &&
-                   refs.SequenceEqual(other.refs) &&
-                   typeNames.SequenceEqual(other.typeNames) &&
-                   traceText.SequenceEqual(other.traceText) &&
-                   traceAddrs.SequenceEqual(other.traceAddrs) &&
-                   traceParents.SequenceEqual(other.traceParents) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && allocations.SequenceEqual(other.allocations)
+                && blocks.SequenceEqual(other.blocks)
+                && refs.SequenceEqual(other.refs)
+                && typeNames.SequenceEqual(other.typeNames)
+                && traceText.SequenceEqual(other.traceText)
+                && traceAddrs.SequenceEqual(other.traceAddrs)
+                && traceParents.SequenceEqual(other.traceParents)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -109,4 +117,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,12 +5,14 @@ namespace HKX2E
 {
     // hkpCallbackConstraintMotor Signatire: 0xafcd79ad size: 72 flags: FLAGS_NONE
 
-    // callbackFunc class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // callbackFunc class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     // callbackType class:  Type.TYPE_ENUM Type.TYPE_UINT32 arrSize: 0 offset: 40 flags: FLAGS_NONE enum: CallbackType
-    // userData0 class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // userData1 class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // userData2 class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpCallbackConstraintMotor : hkpLimitedForceConstraintMotor, IEquatable<hkpCallbackConstraintMotor?>
+    // userData0 class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // userData1 class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // userData2 class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpCallbackConstraintMotor
+        : hkpLimitedForceConstraintMotor,
+            IEquatable<hkpCallbackConstraintMotor?>
     {
         private object? callbackFunc { set; get; }
         public uint callbackType { set; get; }
@@ -68,13 +70,14 @@ namespace HKX2E
 
         public bool Equals(hkpCallbackConstraintMotor? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   callbackType.Equals(other.callbackType) &&
-                   userData0.Equals(other.userData0) &&
-                   userData1.Equals(other.userData1) &&
-                   userData2.Equals(other.userData2) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && callbackType.Equals(other.callbackType)
+                && userData0.Equals(other.userData0)
+                && userData1.Equals(other.userData1)
+                && userData2.Equals(other.userData2)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -90,4 +93,3 @@ namespace HKX2E
         }
     }
 }
-

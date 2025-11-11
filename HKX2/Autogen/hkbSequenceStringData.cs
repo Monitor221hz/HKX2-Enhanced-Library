@@ -7,9 +7,11 @@ namespace HKX2E
 {
     // hkbSequenceStringData Signatire: 0x6a5094e3 size: 48 flags: FLAGS_NONE
 
-    // eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // variableNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkbSequenceStringData : hkReferencedObject, IEquatable<hkbSequenceStringData?>
+    // eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // variableNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkbSequenceStringData
+        : hkReferencedObject,
+            IEquatable<hkbSequenceStringData?>
     {
         public IList<string> eventNames { set; get; } = Array.Empty<string>();
         public IList<string> variableNames { set; get; } = Array.Empty<string>();
@@ -51,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkbSequenceStringData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   eventNames.SequenceEqual(other.eventNames) &&
-                   variableNames.SequenceEqual(other.variableNames) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && eventNames.SequenceEqual(other.eventNames)
+                && variableNames.SequenceEqual(other.variableNames)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

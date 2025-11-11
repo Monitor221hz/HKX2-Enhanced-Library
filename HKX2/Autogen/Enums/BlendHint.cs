@@ -6,4 +6,3 @@ namespace HKX2E
         ADDITIVE = 1,
     }
 }
-

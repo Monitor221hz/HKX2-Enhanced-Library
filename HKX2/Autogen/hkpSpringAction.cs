@@ -6,14 +6,14 @@ namespace HKX2E
 {
     // hkpSpringAction Signatire: 0x88fc09fa size: 128 flags: FLAGS_NONE
 
-    // lastForce class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // positionAinA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // positionBinB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // restLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // onCompression class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
-    // onExtension class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 125 flags: FLAGS_NONE enum: 
+    // lastForce class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // positionAinA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // positionBinB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // restLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // onCompression class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum:
+    // onExtension class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 125 flags: FLAGS_NONE enum:
     public partial class hkpSpringAction : hkpBinaryAction, IEquatable<hkpSpringAction?>
     {
         public Vector4 lastForce { set; get; }
@@ -88,17 +88,18 @@ namespace HKX2E
 
         public bool Equals(hkpSpringAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   lastForce.Equals(other.lastForce) &&
-                   positionAinA.Equals(other.positionAinA) &&
-                   positionBinB.Equals(other.positionBinB) &&
-                   restLength.Equals(other.restLength) &&
-                   strength.Equals(other.strength) &&
-                   damping.Equals(other.damping) &&
-                   onCompression.Equals(other.onCompression) &&
-                   onExtension.Equals(other.onExtension) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && lastForce.Equals(other.lastForce)
+                && positionAinA.Equals(other.positionAinA)
+                && positionBinB.Equals(other.positionBinB)
+                && restLength.Equals(other.restLength)
+                && strength.Equals(other.strength)
+                && damping.Equals(other.damping)
+                && onCompression.Equals(other.onCompression)
+                && onExtension.Equals(other.onExtension)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -118,4 +119,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkpWheelConstraintData Signatire: 0xb4c46671 size: 368 flags: FLAGS_NONE
 
-    // atoms class: hkpWheelConstraintDataAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: ALIGN_16|FLAGS_NONE enum: 
-    // initialAxleInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 336 flags: FLAGS_NONE enum: 
-    // initialSteeringAxisInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 352 flags: FLAGS_NONE enum: 
-    public partial class hkpWheelConstraintData : hkpConstraintData, IEquatable<hkpWheelConstraintData?>
+    // atoms class: hkpWheelConstraintDataAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: ALIGN_16|FLAGS_NONE enum:
+    // initialAxleInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 336 flags: FLAGS_NONE enum:
+    // initialSteeringAxisInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 352 flags: FLAGS_NONE enum:
+    public partial class hkpWheelConstraintData
+        : hkpConstraintData,
+            IEquatable<hkpWheelConstraintData?>
     {
         public hkpWheelConstraintDataAtoms atoms { set; get; } = new();
         public Vector4 initialAxleInB { set; get; }
@@ -58,12 +60,20 @@ namespace HKX2E
 
         public bool Equals(hkpWheelConstraintData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   initialAxleInB.Equals(other.initialAxleInB) &&
-                   initialSteeringAxisInB.Equals(other.initialSteeringAxisInB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && initialAxleInB.Equals(other.initialAxleInB)
+                && initialSteeringAxisInB.Equals(other.initialSteeringAxisInB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

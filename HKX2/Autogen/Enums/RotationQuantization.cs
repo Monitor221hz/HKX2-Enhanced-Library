@@ -10,4 +10,3 @@ namespace HKX2E
         UNCOMPRESSED = 5,
     }
 }
-

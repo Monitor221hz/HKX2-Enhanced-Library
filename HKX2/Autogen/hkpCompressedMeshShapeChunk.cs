@@ -8,15 +8,17 @@ namespace HKX2E
 {
     // hkpCompressedMeshShapeChunk Signatire: 0x5d0d67bd size: 96 flags: FLAGS_NONE
 
-    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // vertices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // indices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // stripLengths class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // weldingInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // materialInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // reference class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // transformIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum: 
-    public partial class hkpCompressedMeshShapeChunk : IHavokObject, IEquatable<hkpCompressedMeshShapeChunk?>
+    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // vertices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // indices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // stripLengths class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // weldingInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // materialInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // reference class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // transformIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum:
+    public partial class hkpCompressedMeshShapeChunk
+        : IHavokObject,
+            IEquatable<hkpCompressedMeshShapeChunk?>
     {
         public Vector4 offset { set; get; }
         public IList<ushort> vertices { set; get; } = Array.Empty<ushort>();
@@ -86,16 +88,17 @@ namespace HKX2E
 
         public bool Equals(hkpCompressedMeshShapeChunk? other)
         {
-            return other is not null &&
-                   offset.Equals(other.offset) &&
-                   vertices.SequenceEqual(other.vertices) &&
-                   indices.SequenceEqual(other.indices) &&
-                   stripLengths.SequenceEqual(other.stripLengths) &&
-                   weldingInfo.SequenceEqual(other.weldingInfo) &&
-                   materialInfo.Equals(other.materialInfo) &&
-                   reference.Equals(other.reference) &&
-                   transformIndex.Equals(other.transformIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && offset.Equals(other.offset)
+                && vertices.SequenceEqual(other.vertices)
+                && indices.SequenceEqual(other.indices)
+                && stripLengths.SequenceEqual(other.stripLengths)
+                && weldingInfo.SequenceEqual(other.weldingInfo)
+                && materialInfo.Equals(other.materialInfo)
+                && reference.Equals(other.reference)
+                && transformIndex.Equals(other.transformIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -114,4 +117,3 @@ namespace HKX2E
         }
     }
 }
-

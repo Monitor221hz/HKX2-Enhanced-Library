@@ -7,11 +7,12 @@ namespace HKX2E
 {
     // hkbHandIkDriverInfo Signatire: 0xc299090a size: 40 flags: FLAGS_NONE
 
-    // hands class: hkbHandIkDriverInfoHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // hands class: hkbHandIkDriverInfoHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // fadeInOutCurve class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: BlendCurve
     public partial class hkbHandIkDriverInfo : hkReferencedObject, IEquatable<hkbHandIkDriverInfo?>
     {
-        public IList<hkbHandIkDriverInfoHand> hands { set; get; } = Array.Empty<hkbHandIkDriverInfoHand>();
+        public IList<hkbHandIkDriverInfoHand> hands { set; get; } =
+            Array.Empty<hkbHandIkDriverInfoHand>();
         public sbyte fadeInOutCurve { set; get; }
 
         public override uint Signature { set; get; } = 0xc299090a;
@@ -53,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkbHandIkDriverInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   hands.SequenceEqual(other.hands) &&
-                   fadeInOutCurve.Equals(other.fadeInOutCurve) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && hands.SequenceEqual(other.hands)
+                && fadeInOutCurve.Equals(other.fadeInOutCurve)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

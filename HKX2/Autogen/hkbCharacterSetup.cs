@@ -7,17 +7,18 @@ namespace HKX2E
 {
     // hkbCharacterSetup Signatire: 0xe5a2a413 size: 88 flags: FLAGS_NONE
 
-    // retargetingSkeletonMappers class: hkaSkeletonMapper Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // animationSkeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // ragdollToAnimationSkeletonMapper class: hkaSkeletonMapper Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // animationToRagdollSkeletonMapper class: hkaSkeletonMapper Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // animationBindingSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // data class: hkbCharacterData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // mirroredSkeleton class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // characterPropertyIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // retargetingSkeletonMappers class: hkaSkeletonMapper Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // animationSkeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // ragdollToAnimationSkeletonMapper class: hkaSkeletonMapper Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // animationToRagdollSkeletonMapper class: hkaSkeletonMapper Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // animationBindingSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // data class: hkbCharacterData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // mirroredSkeleton class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // characterPropertyIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbCharacterSetup : hkReferencedObject, IEquatable<hkbCharacterSetup?>
     {
-        public IList<hkaSkeletonMapper> retargetingSkeletonMappers { set; get; } = Array.Empty<hkaSkeletonMapper>();
+        public IList<hkaSkeletonMapper> retargetingSkeletonMappers { set; get; } =
+            Array.Empty<hkaSkeletonMapper>();
         public hkaSkeleton? animationSkeleton { set; get; }
         public hkaSkeletonMapper? ragdollToAnimationSkeletonMapper { set; get; }
         public hkaSkeletonMapper? animationToRagdollSkeletonMapper { set; get; }
@@ -57,20 +58,48 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            retargetingSkeletonMappers = xd.ReadClassPointerArray<hkaSkeletonMapper>(this, xe, nameof(retargetingSkeletonMappers));
-            animationSkeleton = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(animationSkeleton));
-            ragdollToAnimationSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(this, xe, nameof(ragdollToAnimationSkeletonMapper));
-            animationToRagdollSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(this, xe, nameof(animationToRagdollSkeletonMapper));
+            retargetingSkeletonMappers = xd.ReadClassPointerArray<hkaSkeletonMapper>(
+                this,
+                xe,
+                nameof(retargetingSkeletonMappers)
+            );
+            animationSkeleton = xd.ReadClassPointer<hkaSkeleton>(
+                this,
+                xe,
+                nameof(animationSkeleton)
+            );
+            ragdollToAnimationSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(
+                this,
+                xe,
+                nameof(ragdollToAnimationSkeletonMapper)
+            );
+            animationToRagdollSkeletonMapper = xd.ReadClassPointer<hkaSkeletonMapper>(
+                this,
+                xe,
+                nameof(animationToRagdollSkeletonMapper)
+            );
             data = xd.ReadClassPointer<hkbCharacterData>(this, xe, nameof(data));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClassPointerArray(xe, nameof(retargetingSkeletonMappers), retargetingSkeletonMappers!);
+            xs.WriteClassPointerArray(
+                xe,
+                nameof(retargetingSkeletonMappers),
+                retargetingSkeletonMappers!
+            );
             xs.WriteClassPointer(xe, nameof(animationSkeleton), animationSkeleton);
-            xs.WriteClassPointer(xe, nameof(ragdollToAnimationSkeletonMapper), ragdollToAnimationSkeletonMapper);
-            xs.WriteClassPointer(xe, nameof(animationToRagdollSkeletonMapper), animationToRagdollSkeletonMapper);
+            xs.WriteClassPointer(
+                xe,
+                nameof(ragdollToAnimationSkeletonMapper),
+                ragdollToAnimationSkeletonMapper
+            );
+            xs.WriteClassPointer(
+                xe,
+                nameof(animationToRagdollSkeletonMapper),
+                animationToRagdollSkeletonMapper
+            );
             xs.WriteSerializeIgnored(xe, nameof(animationBindingSet));
             xs.WriteClassPointer(xe, nameof(data), data);
             xs.WriteSerializeIgnored(xe, nameof(mirroredSkeleton));
@@ -84,21 +113,62 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterSetup? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   retargetingSkeletonMappers.SequenceEqual(other.retargetingSkeletonMappers) &&
-                   ((animationSkeleton is null && other.animationSkeleton is null) || (animationSkeleton is not null && other.animationSkeleton is not null && animationSkeleton.Equals((IHavokObject)other.animationSkeleton))) &&
-                   ((ragdollToAnimationSkeletonMapper is null && other.ragdollToAnimationSkeletonMapper is null) || (ragdollToAnimationSkeletonMapper is not null && other.ragdollToAnimationSkeletonMapper is not null && ragdollToAnimationSkeletonMapper.Equals((IHavokObject)other.ragdollToAnimationSkeletonMapper))) &&
-                   ((animationToRagdollSkeletonMapper is null && other.animationToRagdollSkeletonMapper is null) || (animationToRagdollSkeletonMapper is not null && other.animationToRagdollSkeletonMapper is not null && animationToRagdollSkeletonMapper.Equals((IHavokObject)other.animationToRagdollSkeletonMapper))) &&
-                   ((data is null && other.data is null) || (data is not null && other.data is not null && data.Equals((IHavokObject)other.data))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && retargetingSkeletonMappers.SequenceEqual(other.retargetingSkeletonMappers)
+                && (
+                    (animationSkeleton is null && other.animationSkeleton is null)
+                    || (
+                        animationSkeleton is not null
+                        && other.animationSkeleton is not null
+                        && animationSkeleton.Equals((IHavokObject)other.animationSkeleton)
+                    )
+                )
+                && (
+                    (
+                        ragdollToAnimationSkeletonMapper is null
+                        && other.ragdollToAnimationSkeletonMapper is null
+                    )
+                    || (
+                        ragdollToAnimationSkeletonMapper is not null
+                        && other.ragdollToAnimationSkeletonMapper is not null
+                        && ragdollToAnimationSkeletonMapper.Equals(
+                            (IHavokObject)other.ragdollToAnimationSkeletonMapper
+                        )
+                    )
+                )
+                && (
+                    (
+                        animationToRagdollSkeletonMapper is null
+                        && other.animationToRagdollSkeletonMapper is null
+                    )
+                    || (
+                        animationToRagdollSkeletonMapper is not null
+                        && other.animationToRagdollSkeletonMapper is not null
+                        && animationToRagdollSkeletonMapper.Equals(
+                            (IHavokObject)other.animationToRagdollSkeletonMapper
+                        )
+                    )
+                )
+                && (
+                    (data is null && other.data is null)
+                    || (
+                        data is not null
+                        && other.data is not null
+                        && data.Equals((IHavokObject)other.data)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
         {
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
-            hashcode.Add(retargetingSkeletonMappers.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(
+                retargetingSkeletonMappers.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0)
+            );
             hashcode.Add(animationSkeleton);
             hashcode.Add(ragdollToAnimationSkeletonMapper);
             hashcode.Add(animationToRagdollSkeletonMapper);
@@ -108,4 +178,3 @@ namespace HKX2E
         }
     }
 }
-

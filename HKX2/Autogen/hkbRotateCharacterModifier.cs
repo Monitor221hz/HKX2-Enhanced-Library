@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkbRotateCharacterModifier Signatire: 0x877ebc0b size: 128 flags: FLAGS_NONE
 
-    // degreesPerSecond class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // speedMultiplier class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // axisOfRotation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbRotateCharacterModifier : hkbModifier, IEquatable<hkbRotateCharacterModifier?>
+    // degreesPerSecond class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // speedMultiplier class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // axisOfRotation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbRotateCharacterModifier
+        : hkbModifier,
+            IEquatable<hkbRotateCharacterModifier?>
     {
         public float degreesPerSecond { set; get; }
         public float speedMultiplier { set; get; }
@@ -65,12 +67,13 @@ namespace HKX2E
 
         public bool Equals(hkbRotateCharacterModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   degreesPerSecond.Equals(other.degreesPerSecond) &&
-                   speedMultiplier.Equals(other.speedMultiplier) &&
-                   axisOfRotation.Equals(other.axisOfRotation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && degreesPerSecond.Equals(other.degreesPerSecond)
+                && speedMultiplier.Equals(other.speedMultiplier)
+                && axisOfRotation.Equals(other.axisOfRotation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -85,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

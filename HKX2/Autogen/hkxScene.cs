@@ -8,31 +8,33 @@ namespace HKX2E
 {
     // hkxScene Signatire: 0x5f673ddd size: 224 flags: FLAGS_NONE
 
-    // modeller class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // asset class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // sceneLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // rootNode class: hkxNode Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // selectionSets class: hkxNodeSelectionSet Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // cameras class: hkxCamera Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // lights class: hkxLight Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // meshes class: hkxMesh Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // materials class: hkxMaterial Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // inplaceTextures class: hkxTextureInplace Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // externalTextures class: hkxTextureFile Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // skinBindings class: hkxSkinBinding Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // appliedTransform class:  Type.TYPE_MATRIX3 Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
+    // modeller class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // asset class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // sceneLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // rootNode class: hkxNode Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // selectionSets class: hkxNodeSelectionSet Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // cameras class: hkxCamera Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // lights class: hkxLight Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // meshes class: hkxMesh Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // materials class: hkxMaterial Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // inplaceTextures class: hkxTextureInplace Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // externalTextures class: hkxTextureFile Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // skinBindings class: hkxSkinBinding Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // appliedTransform class:  Type.TYPE_MATRIX3 Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
     public partial class hkxScene : hkReferencedObject, IEquatable<hkxScene?>
     {
         public string modeller { set; get; } = "";
         public string asset { set; get; } = "";
         public float sceneLength { set; get; }
         public hkxNode? rootNode { set; get; }
-        public IList<hkxNodeSelectionSet> selectionSets { set; get; } = Array.Empty<hkxNodeSelectionSet>();
+        public IList<hkxNodeSelectionSet> selectionSets { set; get; } =
+            Array.Empty<hkxNodeSelectionSet>();
         public IList<hkxCamera> cameras { set; get; } = Array.Empty<hkxCamera>();
         public IList<hkxLight> lights { set; get; } = Array.Empty<hkxLight>();
         public IList<hkxMesh> meshes { set; get; } = Array.Empty<hkxMesh>();
         public IList<hkxMaterial> materials { set; get; } = Array.Empty<hkxMaterial>();
-        public IList<hkxTextureInplace> inplaceTextures { set; get; } = Array.Empty<hkxTextureInplace>();
+        public IList<hkxTextureInplace> inplaceTextures { set; get; } =
+            Array.Empty<hkxTextureInplace>();
         public IList<hkxTextureFile> externalTextures { set; get; } = Array.Empty<hkxTextureFile>();
         public IList<hkxSkinBinding> skinBindings { set; get; } = Array.Empty<hkxSkinBinding>();
         public Matrix4x4 appliedTransform { set; get; }
@@ -84,13 +86,25 @@ namespace HKX2E
             asset = xd.ReadString(xe, nameof(asset));
             sceneLength = xd.ReadSingle(xe, nameof(sceneLength));
             rootNode = xd.ReadClassPointer<hkxNode>(this, xe, nameof(rootNode));
-            selectionSets = xd.ReadClassPointerArray<hkxNodeSelectionSet>(this, xe, nameof(selectionSets));
+            selectionSets = xd.ReadClassPointerArray<hkxNodeSelectionSet>(
+                this,
+                xe,
+                nameof(selectionSets)
+            );
             cameras = xd.ReadClassPointerArray<hkxCamera>(this, xe, nameof(cameras));
             lights = xd.ReadClassPointerArray<hkxLight>(this, xe, nameof(lights));
             meshes = xd.ReadClassPointerArray<hkxMesh>(this, xe, nameof(meshes));
             materials = xd.ReadClassPointerArray<hkxMaterial>(this, xe, nameof(materials));
-            inplaceTextures = xd.ReadClassPointerArray<hkxTextureInplace>(this, xe, nameof(inplaceTextures));
-            externalTextures = xd.ReadClassPointerArray<hkxTextureFile>(this, xe, nameof(externalTextures));
+            inplaceTextures = xd.ReadClassPointerArray<hkxTextureInplace>(
+                this,
+                xe,
+                nameof(inplaceTextures)
+            );
+            externalTextures = xd.ReadClassPointerArray<hkxTextureFile>(
+                this,
+                xe,
+                nameof(externalTextures)
+            );
             skinBindings = xd.ReadClassPointerArray<hkxSkinBinding>(this, xe, nameof(skinBindings));
             appliedTransform = xd.ReadMatrix3(xe, nameof(appliedTransform));
         }
@@ -120,22 +134,40 @@ namespace HKX2E
 
         public bool Equals(hkxScene? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (modeller is null && other.modeller is null || modeller == other.modeller || modeller is null && other.modeller == "" || modeller == "" && other.modeller is null) &&
-                   (asset is null && other.asset is null || asset == other.asset || asset is null && other.asset == "" || asset == "" && other.asset is null) &&
-                   sceneLength.Equals(other.sceneLength) &&
-                   ((rootNode is null && other.rootNode is null) || (rootNode is not null && other.rootNode is not null && rootNode.Equals((IHavokObject)other.rootNode))) &&
-                   selectionSets.SequenceEqual(other.selectionSets) &&
-                   cameras.SequenceEqual(other.cameras) &&
-                   lights.SequenceEqual(other.lights) &&
-                   meshes.SequenceEqual(other.meshes) &&
-                   materials.SequenceEqual(other.materials) &&
-                   inplaceTextures.SequenceEqual(other.inplaceTextures) &&
-                   externalTextures.SequenceEqual(other.externalTextures) &&
-                   skinBindings.SequenceEqual(other.skinBindings) &&
-                   appliedTransform.Equals(other.appliedTransform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    modeller is null && other.modeller is null
+                    || modeller == other.modeller
+                    || modeller is null && other.modeller == ""
+                    || modeller == "" && other.modeller is null
+                )
+                && (
+                    asset is null && other.asset is null
+                    || asset == other.asset
+                    || asset is null && other.asset == ""
+                    || asset == "" && other.asset is null
+                )
+                && sceneLength.Equals(other.sceneLength)
+                && (
+                    (rootNode is null && other.rootNode is null)
+                    || (
+                        rootNode is not null
+                        && other.rootNode is not null
+                        && rootNode.Equals((IHavokObject)other.rootNode)
+                    )
+                )
+                && selectionSets.SequenceEqual(other.selectionSets)
+                && cameras.SequenceEqual(other.cameras)
+                && lights.SequenceEqual(other.lights)
+                && meshes.SequenceEqual(other.meshes)
+                && materials.SequenceEqual(other.materials)
+                && inplaceTextures.SequenceEqual(other.inplaceTextures)
+                && externalTextures.SequenceEqual(other.externalTextures)
+                && skinBindings.SequenceEqual(other.skinBindings)
+                && appliedTransform.Equals(other.appliedTransform)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -160,4 +192,3 @@ namespace HKX2E
         }
     }
 }
-

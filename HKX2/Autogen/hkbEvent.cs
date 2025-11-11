@@ -5,14 +5,11 @@ namespace HKX2E
 {
     // hkbEvent Signatire: 0x3e0fd810 size: 24 flags: FLAGS_NONE
 
-    // sender class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // sender class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbEvent : hkbEventBase, IEquatable<hkbEvent?>
     {
-        public static hkbEvent GetDefault() => new()
-        {
-            id = -1, 
-            payload = null,
-        };
+        public static hkbEvent GetDefault() => new() { id = -1, payload = null };
+
         private object? sender { set; get; }
 
         public override uint Signature { set; get; } = 0x3e0fd810;
@@ -47,9 +44,8 @@ namespace HKX2E
 
         public bool Equals(hkbEvent? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +57,3 @@ namespace HKX2E
         }
     }
 }
-

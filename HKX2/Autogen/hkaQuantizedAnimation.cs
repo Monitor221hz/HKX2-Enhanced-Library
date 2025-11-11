@@ -7,9 +7,9 @@ namespace HKX2E
 {
     // hkaQuantizedAnimation Signatire: 0x3920f053 size: 88 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // endian class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // skeleton class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // endian class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // skeleton class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkaQuantizedAnimation : hkaAnimation, IEquatable<hkaQuantizedAnimation?>
     {
         public IList<byte> data { set; get; } = Array.Empty<byte>();
@@ -58,11 +58,12 @@ namespace HKX2E
 
         public bool Equals(hkaQuantizedAnimation? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   data.SequenceEqual(other.data) &&
-                   endian.Equals(other.endian) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && data.SequenceEqual(other.data)
+                && endian.Equals(other.endian)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -76,4 +77,3 @@ namespace HKX2E
         }
     }
 }
-

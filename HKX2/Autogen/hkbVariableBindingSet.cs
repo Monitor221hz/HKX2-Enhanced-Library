@@ -7,12 +7,15 @@ namespace HKX2E
 {
     // hkbVariableBindingSet Signatire: 0x338ad4ff size: 40 flags: FLAGS_NONE
 
-    // bindings class: hkbVariableBindingSetBinding Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // indexOfBindingToEnable class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // hasOutputBinding class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbVariableBindingSet : hkReferencedObject, IEquatable<hkbVariableBindingSet?>
+    // bindings class: hkbVariableBindingSetBinding Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // indexOfBindingToEnable class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // hasOutputBinding class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbVariableBindingSet
+        : hkReferencedObject,
+            IEquatable<hkbVariableBindingSet?>
     {
-        public IList<hkbVariableBindingSetBinding> bindings { set; get; } = Array.Empty<hkbVariableBindingSetBinding>();
+        public IList<hkbVariableBindingSetBinding> bindings { set; get; } =
+            Array.Empty<hkbVariableBindingSetBinding>();
         public int indexOfBindingToEnable { set; get; }
         private bool hasOutputBinding { set; get; }
 
@@ -58,11 +61,12 @@ namespace HKX2E
 
         public bool Equals(hkbVariableBindingSet? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   bindings.SequenceEqual(other.bindings) &&
-                   indexOfBindingToEnable.Equals(other.indexOfBindingToEnable) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && bindings.SequenceEqual(other.bindings)
+                && indexOfBindingToEnable.Equals(other.indexOfBindingToEnable)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -76,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

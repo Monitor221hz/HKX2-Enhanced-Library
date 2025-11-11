@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbRotateCharacterModifierInternalState Signatire: 0xdc40bf4a size: 24 flags: FLAGS_NONE
 
-    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbRotateCharacterModifierInternalState : hkReferencedObject, IEquatable<hkbRotateCharacterModifierInternalState?>
+    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbRotateCharacterModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbRotateCharacterModifierInternalState?>
     {
         public float angle { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbRotateCharacterModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   angle.Equals(other.angle) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && angle.Equals(other.angle)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

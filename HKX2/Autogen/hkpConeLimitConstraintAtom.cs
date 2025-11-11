@@ -5,15 +5,17 @@ namespace HKX2E
 {
     // hkpConeLimitConstraintAtom Signatire: 0xf19443c8 size: 20 flags: FLAGS_NONE
 
-    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // twistAxisInA class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // refAxisInB class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // twistAxisInA class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
+    // refAxisInB class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
     // angleMeasurementMode class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 5 flags: FLAGS_NONE enum: MeasurementMode
-    // memOffsetToAngleOffset class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
-    // minAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // angularLimitsTauFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpConeLimitConstraintAtom : hkpConstraintAtom, IEquatable<hkpConeLimitConstraintAtom?>
+    // memOffsetToAngleOffset class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum:
+    // minAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // angularLimitsTauFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpConeLimitConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpConeLimitConstraintAtom?>
     {
         public byte isEnabled { set; get; }
         public byte twistAxisInA { set; get; }
@@ -60,7 +62,10 @@ namespace HKX2E
             isEnabled = xd.ReadByte(xe, nameof(isEnabled));
             twistAxisInA = xd.ReadByte(xe, nameof(twistAxisInA));
             refAxisInB = xd.ReadByte(xe, nameof(refAxisInB));
-            angleMeasurementMode = xd.ReadFlag<MeasurementMode, byte>(xe, nameof(angleMeasurementMode));
+            angleMeasurementMode = xd.ReadFlag<MeasurementMode, byte>(
+                xe,
+                nameof(angleMeasurementMode)
+            );
             memOffsetToAngleOffset = xd.ReadByte(xe, nameof(memOffsetToAngleOffset));
             minAngle = xd.ReadSingle(xe, nameof(minAngle));
             maxAngle = xd.ReadSingle(xe, nameof(maxAngle));
@@ -73,7 +78,11 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(isEnabled), isEnabled);
             xs.WriteNumber(xe, nameof(twistAxisInA), twistAxisInA);
             xs.WriteNumber(xe, nameof(refAxisInB), refAxisInB);
-            xs.WriteEnum<MeasurementMode, byte>(xe, nameof(angleMeasurementMode), angleMeasurementMode);
+            xs.WriteEnum<MeasurementMode, byte>(
+                xe,
+                nameof(angleMeasurementMode),
+                angleMeasurementMode
+            );
             xs.WriteNumber(xe, nameof(memOffsetToAngleOffset), memOffsetToAngleOffset);
             xs.WriteFloat(xe, nameof(minAngle), minAngle);
             xs.WriteFloat(xe, nameof(maxAngle), maxAngle);
@@ -87,17 +96,18 @@ namespace HKX2E
 
         public bool Equals(hkpConeLimitConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isEnabled.Equals(other.isEnabled) &&
-                   twistAxisInA.Equals(other.twistAxisInA) &&
-                   refAxisInB.Equals(other.refAxisInB) &&
-                   angleMeasurementMode.Equals(other.angleMeasurementMode) &&
-                   memOffsetToAngleOffset.Equals(other.memOffsetToAngleOffset) &&
-                   minAngle.Equals(other.minAngle) &&
-                   maxAngle.Equals(other.maxAngle) &&
-                   angularLimitsTauFactor.Equals(other.angularLimitsTauFactor) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isEnabled.Equals(other.isEnabled)
+                && twistAxisInA.Equals(other.twistAxisInA)
+                && refAxisInB.Equals(other.refAxisInB)
+                && angleMeasurementMode.Equals(other.angleMeasurementMode)
+                && memOffsetToAngleOffset.Equals(other.memOffsetToAngleOffset)
+                && minAngle.Equals(other.minAngle)
+                && maxAngle.Equals(other.maxAngle)
+                && angularLimitsTauFactor.Equals(other.angularLimitsTauFactor)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -117,4 +127,3 @@ namespace HKX2E
         }
     }
 }
-

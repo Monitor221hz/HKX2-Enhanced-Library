@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkpDefaultWorldMemoryWatchDog Signatire: 0x77d6b19f size: 24 flags: FLAGS_NONE
 
-    // freeHeapMemoryRequested class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpDefaultWorldMemoryWatchDog : hkWorldMemoryAvailableWatchDog, IEquatable<hkpDefaultWorldMemoryWatchDog?>
+    // freeHeapMemoryRequested class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpDefaultWorldMemoryWatchDog
+        : hkWorldMemoryAvailableWatchDog,
+            IEquatable<hkpDefaultWorldMemoryWatchDog?>
     {
         public int freeHeapMemoryRequested { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkpDefaultWorldMemoryWatchDog? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   freeHeapMemoryRequested.Equals(other.freeHeapMemoryRequested) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && freeHeapMemoryRequested.Equals(other.freeHeapMemoryRequested)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkpBvTreeShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   bvTreeType.Equals(other.bvTreeType) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && bvTreeType.Equals(other.bvTreeType)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkxEnumItem Signatire: 0xdf4cf1e9 size: 16 flags: FLAGS_NONE
 
-    // value class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // value class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkxEnumItem : IHavokObject, IEquatable<hkxEnumItem?>
     {
         public int value { set; get; }
@@ -47,10 +47,16 @@ namespace HKX2E
 
         public bool Equals(hkxEnumItem? other)
         {
-            return other is not null &&
-                   value.Equals(other.value) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && value.Equals(other.value)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -13,4 +13,3 @@ namespace HKX2E
         MOTION_MAX_ID = 8,
     }
 }
-

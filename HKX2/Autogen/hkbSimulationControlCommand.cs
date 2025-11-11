@@ -6,7 +6,9 @@ namespace HKX2E
     // hkbSimulationControlCommand Signatire: 0x2a241367 size: 24 flags: FLAGS_NONE
 
     // command class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: SimulationControlCommand
-    public partial class hkbSimulationControlCommand : hkReferencedObject, IEquatable<hkbSimulationControlCommand?>
+    public partial class hkbSimulationControlCommand
+        : hkReferencedObject,
+            IEquatable<hkbSimulationControlCommand?>
     {
         public byte command { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbSimulationControlCommand? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   command.Equals(other.command) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && command.Equals(other.command)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

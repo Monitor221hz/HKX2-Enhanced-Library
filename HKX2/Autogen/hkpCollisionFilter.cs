@@ -6,9 +6,9 @@ namespace HKX2E
 {
     // hkpCollisionFilter Signatire: 0x60960336 size: 72 flags: FLAGS_NONE
 
-    // prepad class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 2 offset: 48 flags: FLAGS_NONE enum: 
+    // prepad class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 2 offset: 48 flags: FLAGS_NONE enum:
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT32 arrSize: 0 offset: 56 flags: FLAGS_NONE enum: hkpFilterType
-    // postpad class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 60 flags: FLAGS_NONE enum: 
+    // postpad class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 60 flags: FLAGS_NONE enum:
     public partial class hkpCollisionFilter : hkReferencedObject, IEquatable<hkpCollisionFilter?>
     {
         public uint[] prepad = new uint[2];
@@ -58,12 +58,13 @@ namespace HKX2E
 
         public bool Equals(hkpCollisionFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   prepad.SequenceEqual(other.prepad) &&
-                   type.Equals(other.type) &&
-                   postpad.SequenceEqual(other.postpad) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && prepad.SequenceEqual(other.prepad)
+                && type.Equals(other.type)
+                && postpad.SequenceEqual(other.postpad)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +79,3 @@ namespace HKX2E
         }
     }
 }
-

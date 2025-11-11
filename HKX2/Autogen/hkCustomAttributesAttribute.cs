@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkCustomAttributesAttribute Signatire: 0x1388d601 size: 24 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // value class:  Type.TYPE_VARIANT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkCustomAttributesAttribute : IHavokObject, IEquatable<hkCustomAttributesAttribute?>
+    // name class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // value class:  Type.TYPE_VARIANT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkCustomAttributesAttribute
+        : IHavokObject,
+            IEquatable<hkCustomAttributesAttribute?>
     {
         public string name { set; get; } = "";
         public object? value { set; get; }
@@ -47,10 +49,16 @@ namespace HKX2E
 
         public bool Equals(hkCustomAttributesAttribute? other)
         {
-            return other is not null &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   value!.Equals(other.value) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && value!.Equals(other.value)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

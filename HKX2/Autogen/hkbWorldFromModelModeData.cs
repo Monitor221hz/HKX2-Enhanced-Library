@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbWorldFromModelModeData Signatire: 0xa3af8783 size: 8 flags: FLAGS_NONE
 
-    // poseMatchingBone0 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // poseMatchingBone1 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // poseMatchingBone2 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // poseMatchingBone0 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // poseMatchingBone1 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // poseMatchingBone2 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
     // mode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 6 flags: FLAGS_NONE enum: WorldFromModelMode
-    public partial class hkbWorldFromModelModeData : IHavokObject, IEquatable<hkbWorldFromModelModeData?>
+    public partial class hkbWorldFromModelModeData
+        : IHavokObject,
+            IEquatable<hkbWorldFromModelModeData?>
     {
         public short poseMatchingBone0 { set; get; }
         public short poseMatchingBone1 { set; get; }
@@ -59,12 +61,13 @@ namespace HKX2E
 
         public bool Equals(hkbWorldFromModelModeData? other)
         {
-            return other is not null &&
-                   poseMatchingBone0.Equals(other.poseMatchingBone0) &&
-                   poseMatchingBone1.Equals(other.poseMatchingBone1) &&
-                   poseMatchingBone2.Equals(other.poseMatchingBone2) &&
-                   mode.Equals(other.mode) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && poseMatchingBone0.Equals(other.poseMatchingBone0)
+                && poseMatchingBone1.Equals(other.poseMatchingBone1)
+                && poseMatchingBone2.Equals(other.poseMatchingBone2)
+                && mode.Equals(other.mode)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +82,3 @@ namespace HKX2E
         }
     }
 }
-

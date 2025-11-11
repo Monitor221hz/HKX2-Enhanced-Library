@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpVelocityConstraintMotor Signatire: 0xfca2fcc3 size: 48 flags: FLAGS_NONE
 
-    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // velocityTarget class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // useVelocityTargetFromConstraintTargets class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    public partial class hkpVelocityConstraintMotor : hkpLimitedForceConstraintMotor, IEquatable<hkpVelocityConstraintMotor?>
+    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // velocityTarget class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // useVelocityTargetFromConstraintTargets class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    public partial class hkpVelocityConstraintMotor
+        : hkpLimitedForceConstraintMotor,
+            IEquatable<hkpVelocityConstraintMotor?>
     {
         public float tau { set; get; }
         public float velocityTarget { set; get; }
@@ -39,7 +41,10 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             tau = xd.ReadSingle(xe, nameof(tau));
             velocityTarget = xd.ReadSingle(xe, nameof(velocityTarget));
-            useVelocityTargetFromConstraintTargets = xd.ReadBoolean(xe, nameof(useVelocityTargetFromConstraintTargets));
+            useVelocityTargetFromConstraintTargets = xd.ReadBoolean(
+                xe,
+                nameof(useVelocityTargetFromConstraintTargets)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -47,7 +52,11 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(tau), tau);
             xs.WriteFloat(xe, nameof(velocityTarget), velocityTarget);
-            xs.WriteBoolean(xe, nameof(useVelocityTargetFromConstraintTargets), useVelocityTargetFromConstraintTargets);
+            xs.WriteBoolean(
+                xe,
+                nameof(useVelocityTargetFromConstraintTargets),
+                useVelocityTargetFromConstraintTargets
+            );
         }
 
         public override bool Equals(object? obj)
@@ -57,12 +66,15 @@ namespace HKX2E
 
         public bool Equals(hkpVelocityConstraintMotor? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   tau.Equals(other.tau) &&
-                   velocityTarget.Equals(other.velocityTarget) &&
-                   useVelocityTargetFromConstraintTargets.Equals(other.useVelocityTargetFromConstraintTargets) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && tau.Equals(other.tau)
+                && velocityTarget.Equals(other.velocityTarget)
+                && useVelocityTargetFromConstraintTargets.Equals(
+                    other.useVelocityTargetFromConstraintTargets
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,28 +6,28 @@ namespace HKX2E
 {
     // hkpEntity Signatire: 0xa03c774b size: 720 flags: FLAGS_NONE
 
-    // material class: hkpMaterial Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
-    // limitContactImpulseUtilAndFlag class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // damageMultiplier class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 232 flags: FLAGS_NONE enum: 
-    // breakableBody class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // solverData class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // storageIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 252 flags: FLAGS_NONE enum: 
-    // contactPointCallbackDelay class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 254 flags: FLAGS_NONE enum: 
-    // constraintsMaster class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // constraintsSlave class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|NOT_OWNED|FLAGS_NONE enum: 
-    // constraintRuntime class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // simulationIsland class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 304 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // autoRemoveLevel class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 312 flags: FLAGS_NONE enum: 
-    // numShapeKeysInContactPointProperties class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 313 flags: FLAGS_NONE enum: 
-    // responseModifierFlags class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 314 flags: FLAGS_NONE enum: 
-    // uid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 316 flags: FLAGS_NONE enum: 
-    // spuCollisionCallback class: hkpEntitySpuCollisionCallback Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 320 flags: FLAGS_NONE enum: 
-    // motion class: hkpMaxSizeMotion Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 336 flags: FLAGS_NONE enum: 
-    // contactListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 656 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // actions class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 672 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // localFrame class: hkLocalFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 688 flags: FLAGS_NONE enum: 
-    // extendedListeners class: hkpEntityExtendedListeners Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 696 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // npData class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 704 flags: FLAGS_NONE enum: 
+    // material class: hkpMaterial Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum:
+    // limitContactImpulseUtilAndFlag class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // damageMultiplier class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 232 flags: FLAGS_NONE enum:
+    // breakableBody class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // solverData class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // storageIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 252 flags: FLAGS_NONE enum:
+    // contactPointCallbackDelay class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 254 flags: FLAGS_NONE enum:
+    // constraintsMaster class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // constraintsSlave class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|NOT_OWNED|FLAGS_NONE enum:
+    // constraintRuntime class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // simulationIsland class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 304 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // autoRemoveLevel class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 312 flags: FLAGS_NONE enum:
+    // numShapeKeysInContactPointProperties class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 313 flags: FLAGS_NONE enum:
+    // responseModifierFlags class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 314 flags: FLAGS_NONE enum:
+    // uid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 316 flags: FLAGS_NONE enum:
+    // spuCollisionCallback class: hkpEntitySpuCollisionCallback Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 320 flags: FLAGS_NONE enum:
+    // motion class: hkpMaxSizeMotion Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 336 flags: FLAGS_NONE enum:
+    // contactListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 656 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // actions class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 672 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // localFrame class: hkLocalFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 688 flags: FLAGS_NONE enum:
+    // extendedListeners class: hkpEntityExtendedListeners Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 696 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // npData class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 704 flags: FLAGS_NONE enum:
     public partial class hkpEntity : hkpWorldObject, IEquatable<hkpEntity?>
     {
         public hkpMaterial material { set; get; } = new();
@@ -38,7 +38,8 @@ namespace HKX2E
         public ushort storageIndex { set; get; }
         public ushort contactPointCallbackDelay { set; get; }
         public hkpEntitySmallArraySerializeOverrideType constraintsMaster { set; get; } = new();
-        public IList<hkpConstraintInstance> constraintsSlave { set; get; } = new List<hkpConstraintInstance>();
+        public IList<hkpConstraintInstance> constraintsSlave { set; get; } =
+            new List<hkpConstraintInstance>();
         public IList<byte> constraintRuntime { set; get; } = Array.Empty<byte>();
         private object? simulationIsland { set; get; }
         public sbyte autoRemoveLevel { set; get; }
@@ -125,10 +126,16 @@ namespace HKX2E
             storageIndex = xd.ReadUInt16(xe, nameof(storageIndex));
             contactPointCallbackDelay = xd.ReadUInt16(xe, nameof(contactPointCallbackDelay));
             autoRemoveLevel = xd.ReadSByte(xe, nameof(autoRemoveLevel));
-            numShapeKeysInContactPointProperties = xd.ReadByte(xe, nameof(numShapeKeysInContactPointProperties));
+            numShapeKeysInContactPointProperties = xd.ReadByte(
+                xe,
+                nameof(numShapeKeysInContactPointProperties)
+            );
             responseModifierFlags = xd.ReadByte(xe, nameof(responseModifierFlags));
             uid = xd.ReadUInt32(xe, nameof(uid));
-            spuCollisionCallback = xd.ReadClass<hkpEntitySpuCollisionCallback>(xe, nameof(spuCollisionCallback));
+            spuCollisionCallback = xd.ReadClass<hkpEntitySpuCollisionCallback>(
+                xe,
+                nameof(spuCollisionCallback)
+            );
             motion = xd.ReadClass<hkpMaxSizeMotion>(xe, nameof(motion));
             localFrame = xd.ReadClassPointer<hkLocalFrame>(this, xe, nameof(localFrame));
             npData = xd.ReadUInt32(xe, nameof(npData));
@@ -149,10 +156,18 @@ namespace HKX2E
             xs.WriteSerializeIgnored(xe, nameof(constraintRuntime));
             xs.WriteSerializeIgnored(xe, nameof(simulationIsland));
             xs.WriteNumber(xe, nameof(autoRemoveLevel), autoRemoveLevel);
-            xs.WriteNumber(xe, nameof(numShapeKeysInContactPointProperties), numShapeKeysInContactPointProperties);
+            xs.WriteNumber(
+                xe,
+                nameof(numShapeKeysInContactPointProperties),
+                numShapeKeysInContactPointProperties
+            );
             xs.WriteNumber(xe, nameof(responseModifierFlags), responseModifierFlags);
             xs.WriteNumber(xe, nameof(uid), uid);
-            xs.WriteClass<hkpEntitySpuCollisionCallback>(xe, nameof(spuCollisionCallback), spuCollisionCallback);
+            xs.WriteClass<hkpEntitySpuCollisionCallback>(
+                xe,
+                nameof(spuCollisionCallback),
+                spuCollisionCallback
+            );
             xs.WriteClass<hkpMaxSizeMotion>(xe, nameof(motion), motion);
             xs.WriteSerializeIgnored(xe, nameof(contactListeners));
             xs.WriteSerializeIgnored(xe, nameof(actions));
@@ -168,21 +183,52 @@ namespace HKX2E
 
         public bool Equals(hkpEntity? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((material is null && other.material is null) || (material is not null && other.material is not null && material.Equals((IHavokObject)other.material))) &&
-                   damageMultiplier.Equals(other.damageMultiplier) &&
-                   storageIndex.Equals(other.storageIndex) &&
-                   contactPointCallbackDelay.Equals(other.contactPointCallbackDelay) &&
-                   autoRemoveLevel.Equals(other.autoRemoveLevel) &&
-                   numShapeKeysInContactPointProperties.Equals(other.numShapeKeysInContactPointProperties) &&
-                   responseModifierFlags.Equals(other.responseModifierFlags) &&
-                   uid.Equals(other.uid) &&
-                   ((spuCollisionCallback is null && other.spuCollisionCallback is null) || (spuCollisionCallback is not null && other.spuCollisionCallback is not null && spuCollisionCallback.Equals((IHavokObject)other.spuCollisionCallback))) &&
-                   ((motion is null && other.motion is null) || (motion is not null && other.motion is not null && motion.Equals((IHavokObject)other.motion))) &&
-                   ((localFrame is null && other.localFrame is null) || (localFrame is not null && other.localFrame is not null && localFrame.Equals((IHavokObject)other.localFrame))) &&
-                   npData.Equals(other.npData) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (material is null && other.material is null)
+                    || (
+                        material is not null
+                        && other.material is not null
+                        && material.Equals((IHavokObject)other.material)
+                    )
+                )
+                && damageMultiplier.Equals(other.damageMultiplier)
+                && storageIndex.Equals(other.storageIndex)
+                && contactPointCallbackDelay.Equals(other.contactPointCallbackDelay)
+                && autoRemoveLevel.Equals(other.autoRemoveLevel)
+                && numShapeKeysInContactPointProperties.Equals(
+                    other.numShapeKeysInContactPointProperties
+                )
+                && responseModifierFlags.Equals(other.responseModifierFlags)
+                && uid.Equals(other.uid)
+                && (
+                    (spuCollisionCallback is null && other.spuCollisionCallback is null)
+                    || (
+                        spuCollisionCallback is not null
+                        && other.spuCollisionCallback is not null
+                        && spuCollisionCallback.Equals((IHavokObject)other.spuCollisionCallback)
+                    )
+                )
+                && (
+                    (motion is null && other.motion is null)
+                    || (
+                        motion is not null
+                        && other.motion is not null
+                        && motion.Equals((IHavokObject)other.motion)
+                    )
+                )
+                && (
+                    (localFrame is null && other.localFrame is null)
+                    || (
+                        localFrame is not null
+                        && other.localFrame is not null
+                        && localFrame.Equals((IHavokObject)other.localFrame)
+                    )
+                )
+                && npData.Equals(other.npData)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -206,4 +252,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,18 +6,20 @@ namespace HKX2E
 {
     // hkbCharacterControllerModifier Signatire: 0xf675d6fb size: 176 flags: FLAGS_NONE
 
-    // controlData class: hkbCharacterControllerControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // initialVelocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // controlData class: hkbCharacterControllerControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // initialVelocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
     // initialVelocityCoordinates class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 128 flags: FLAGS_NONE enum: InitialVelocityCoordinates
     // motionMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 129 flags: FLAGS_NONE enum: MotionMode
-    // forceDownwardMomentum class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 130 flags: FLAGS_NONE enum: 
-    // applyGravity class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 131 flags: FLAGS_NONE enum: 
-    // setInitialVelocity class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
-    // isTouchingGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 133 flags: FLAGS_NONE enum: 
-    // gravity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // timestep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isInitialVelocityAdded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 164 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbCharacterControllerModifier : hkbModifier, IEquatable<hkbCharacterControllerModifier?>
+    // forceDownwardMomentum class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 130 flags: FLAGS_NONE enum:
+    // applyGravity class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 131 flags: FLAGS_NONE enum:
+    // setInitialVelocity class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum:
+    // isTouchingGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 133 flags: FLAGS_NONE enum:
+    // gravity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // timestep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isInitialVelocityAdded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 164 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbCharacterControllerModifier
+        : hkbModifier,
+            IEquatable<hkbCharacterControllerModifier?>
     {
         public hkbCharacterControllerControlData controlData { set; get; } = new();
         public Vector4 initialVelocity { set; get; }
@@ -74,7 +76,10 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             controlData = xd.ReadClass<hkbCharacterControllerControlData>(xe, nameof(controlData));
             initialVelocity = xd.ReadVector4(xe, nameof(initialVelocity));
-            initialVelocityCoordinates = xd.ReadFlag<InitialVelocityCoordinates, sbyte>(xe, nameof(initialVelocityCoordinates));
+            initialVelocityCoordinates = xd.ReadFlag<InitialVelocityCoordinates, sbyte>(
+                xe,
+                nameof(initialVelocityCoordinates)
+            );
             motionMode = xd.ReadFlag<MotionMode, sbyte>(xe, nameof(motionMode));
             forceDownwardMomentum = xd.ReadBoolean(xe, nameof(forceDownwardMomentum));
             applyGravity = xd.ReadBoolean(xe, nameof(applyGravity));
@@ -87,7 +92,11 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteClass<hkbCharacterControllerControlData>(xe, nameof(controlData), controlData);
             xs.WriteVector4(xe, nameof(initialVelocity), initialVelocity);
-            xs.WriteEnum<InitialVelocityCoordinates, sbyte>(xe, nameof(initialVelocityCoordinates), initialVelocityCoordinates);
+            xs.WriteEnum<InitialVelocityCoordinates, sbyte>(
+                xe,
+                nameof(initialVelocityCoordinates),
+                initialVelocityCoordinates
+            );
             xs.WriteEnum<MotionMode, sbyte>(xe, nameof(motionMode), motionMode);
             xs.WriteBoolean(xe, nameof(forceDownwardMomentum), forceDownwardMomentum);
             xs.WriteBoolean(xe, nameof(applyGravity), applyGravity);
@@ -105,17 +114,25 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterControllerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((controlData is null && other.controlData is null) || (controlData is not null && other.controlData is not null && controlData.Equals((IHavokObject)other.controlData))) &&
-                   initialVelocity.Equals(other.initialVelocity) &&
-                   initialVelocityCoordinates.Equals(other.initialVelocityCoordinates) &&
-                   motionMode.Equals(other.motionMode) &&
-                   forceDownwardMomentum.Equals(other.forceDownwardMomentum) &&
-                   applyGravity.Equals(other.applyGravity) &&
-                   setInitialVelocity.Equals(other.setInitialVelocity) &&
-                   isTouchingGround.Equals(other.isTouchingGround) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (controlData is null && other.controlData is null)
+                    || (
+                        controlData is not null
+                        && other.controlData is not null
+                        && controlData.Equals((IHavokObject)other.controlData)
+                    )
+                )
+                && initialVelocity.Equals(other.initialVelocity)
+                && initialVelocityCoordinates.Equals(other.initialVelocityCoordinates)
+                && motionMode.Equals(other.motionMode)
+                && forceDownwardMomentum.Equals(other.forceDownwardMomentum)
+                && applyGravity.Equals(other.applyGravity)
+                && setInitialVelocity.Equals(other.setInitialVelocity)
+                && isTouchingGround.Equals(other.isTouchingGround)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -135,4 +152,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkpLinkedCollidable Signatire: 0xe1a81497 size: 128 flags: FLAGS_NONE
 
-    // collisionEntries class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // collisionEntries class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpLinkedCollidable : hkpCollidable, IEquatable<hkpLinkedCollidable?>
     {
         public IList<object> collisionEntries { set; get; } = Array.Empty<object>();
@@ -43,9 +43,8 @@ namespace HKX2E
 
         public bool Equals(hkpLinkedCollidable? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -57,4 +56,3 @@ namespace HKX2E
         }
     }
 }
-

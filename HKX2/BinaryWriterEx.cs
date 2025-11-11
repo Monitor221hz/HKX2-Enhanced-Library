@@ -13,9 +13,14 @@ public class BinaryWriterEx
     private readonly Dictionary<string, long> reservations;
     private readonly Stack<long> steps;
 
-    public BinaryWriterEx() : this(false, false) { }
-    public BinaryWriterEx(Stream stream) : this(false, false, stream) { }
-    public BinaryWriterEx(bool bigEndian, bool uSizeLong) : this(bigEndian, uSizeLong, new MemoryStream()) { }
+    public BinaryWriterEx()
+        : this(false, false) { }
+
+    public BinaryWriterEx(Stream stream)
+        : this(false, false, stream) { }
+
+    public BinaryWriterEx(bool bigEndian, bool uSizeLong)
+        : this(bigEndian, uSizeLong, new MemoryStream()) { }
 
     public BinaryWriterEx(bool bigEndian, bool uSizeLong, Stream stream)
     {
@@ -38,7 +43,6 @@ public class BinaryWriterEx
     }
 
     public long Length => Stream.Length;
-
 
     private void Reserve(string name, string typeName, int length)
     {
@@ -67,6 +71,7 @@ public class BinaryWriterEx
         steps.Push(Stream.Position);
         Stream.Position = offset;
     }
+
     public void StepOut()
     {
         if (steps.Count == 0)
@@ -81,12 +86,14 @@ public class BinaryWriterEx
             WriteByte(0);
     }
 
-
     #region Write
 
     public void WriteBytes(byte[] value) => bw.Write(value);
+
     public void WriteByte(byte value) => bw.Write(value);
+
     public void WriteSByte(sbyte value) => bw.Write(value);
+
     public void WriteBoolean(bool value) => bw.Write(value);
 
     public void WriteInt16(short value)
@@ -100,6 +107,7 @@ public class BinaryWriterEx
         BinaryPrimitives.WriteInt16BigEndian(buffer, value);
         bw.Write(buffer);
     }
+
     public void WriteInt32(int value)
     {
         if (!BigEndian)
@@ -111,6 +119,7 @@ public class BinaryWriterEx
         BinaryPrimitives.WriteInt32BigEndian(buffer, value);
         bw.Write(buffer);
     }
+
     public void WriteInt64(long value)
     {
         if (!BigEndian)
@@ -123,7 +132,6 @@ public class BinaryWriterEx
         bw.Write(buffer);
     }
 
-
     public void WriteUInt16(ushort value)
     {
         if (!BigEndian)
@@ -135,6 +143,7 @@ public class BinaryWriterEx
         BinaryPrimitives.WriteUInt16BigEndian(buffer, value);
         bw.Write(buffer);
     }
+
     public void WriteUInt32(uint value)
     {
         if (!BigEndian)
@@ -146,6 +155,7 @@ public class BinaryWriterEx
         BinaryPrimitives.WriteUInt32BigEndian(buffer, value);
         bw.Write(buffer);
     }
+
     public void WriteUInt64(ulong value)
     {
         if (!BigEndian)
@@ -175,6 +185,7 @@ public class BinaryWriterEx
         ushort halfBits = (ushort)(bits >> 16); // Only the most significant 16 bits are taken out.
         WriteUInt16(halfBits);
     }
+
     public void WriteSingle(float value)
     {
         if (!BigEndian)
@@ -186,6 +197,7 @@ public class BinaryWriterEx
         BinaryPrimitives.WriteSingleBigEndian(buffer, value);
         bw.Write(buffer);
     }
+
     public void WriteDouble(double value)
     {
         if (!BigEndian)
@@ -214,7 +226,8 @@ public class BinaryWriterEx
         bw.Write(value);
     }
 
-    public void WriteASCII(string text, bool terminate = false) => WriteChars(text, Encoding.ASCII, terminate);
+    public void WriteASCII(string text, bool terminate = false) =>
+        WriteChars(text, Encoding.ASCII, terminate);
 
     public void WriteFixStr(string text, int size, byte padding = 0)
     {
@@ -231,40 +244,116 @@ public class BinaryWriterEx
 
     #region Reserve
     public void ReserveByte(string name) => Reserve(name, "Byte", 1);
+
     public void ReserveSByte(string name) => Reserve(name, "SByte", 1);
+
     public void ReserveBoolean(string name) => Reserve(name, "Boolean", 1);
 
     public void ReserveInt16(string name) => Reserve(name, "Int16", 2);
+
     public void ReserveInt32(string name) => Reserve(name, "Int32", 4);
+
     public void ReserveInt64(string name) => Reserve(name, "Int64", 8);
 
     public void ReserveUInt16(string name) => Reserve(name, "UInt16", 2);
+
     public void ReserveUInt32(string name) => Reserve(name, "UInt32", 4);
+
     public void ReserveUInt64(string name) => Reserve(name, "UInt64", 8);
 
     public void ReserveHalf(string name) => Reserve(name, "Half", 2);
+
     public void ReserveSingle(string name) => Reserve(name, "Single", 4);
+
     public void ReserveDouble(string name) => Reserve(name, "Double", 8);
 
     #endregion
 
-    #region Fill 
+    #region Fill
 
-    public void FillByte(string name, byte value) { StepIn(Fill(name, "Byte")); WriteByte(value); StepOut(); }
-    public void FillSByte(string name, sbyte value) { StepIn(Fill(name, "SByte")); WriteSByte(value); StepOut(); }
-    public void FillBoolean(string name, bool value) { StepIn(Fill(name, "Boolean")); WriteBoolean(value); StepOut(); }
+    public void FillByte(string name, byte value)
+    {
+        StepIn(Fill(name, "Byte"));
+        WriteByte(value);
+        StepOut();
+    }
 
-    public void FillInt16(string name, short value) { StepIn(Fill(name, "Int16")); WriteInt16(value); StepOut(); }
-    public void FillInt32(string name, int value) { StepIn(Fill(name, "Int32")); WriteInt32(value); StepOut(); }
-    public void FillInt64(string name, long value) { StepIn(Fill(name, "Int64")); WriteInt64(value); StepOut(); }
+    public void FillSByte(string name, sbyte value)
+    {
+        StepIn(Fill(name, "SByte"));
+        WriteSByte(value);
+        StepOut();
+    }
 
-    public void FillUInt16(string name, ushort value) { StepIn(Fill(name, "UInt16")); WriteUInt16(value); StepOut(); }
-    public void FillUInt32(string name, uint value) { StepIn(Fill(name, "UInt32")); WriteUInt32(value); StepOut(); }
-    public void FillUInt64(string name, ulong value) { StepIn(Fill(name, "UInt64")); WriteUInt64(value); StepOut(); }
+    public void FillBoolean(string name, bool value)
+    {
+        StepIn(Fill(name, "Boolean"));
+        WriteBoolean(value);
+        StepOut();
+    }
 
-    public void FillHalf(string name, Half value) { StepIn(Fill(name, "Half")); WriteHalf(value); StepOut(); }
-    public void FillSingle(string name, float value) { StepIn(Fill(name, "Single")); WriteSingle(value); StepOut(); }
-    public void FillDouble(string name, double value) { StepIn(Fill(name, "Double")); WriteDouble(value); StepOut(); }
+    public void FillInt16(string name, short value)
+    {
+        StepIn(Fill(name, "Int16"));
+        WriteInt16(value);
+        StepOut();
+    }
+
+    public void FillInt32(string name, int value)
+    {
+        StepIn(Fill(name, "Int32"));
+        WriteInt32(value);
+        StepOut();
+    }
+
+    public void FillInt64(string name, long value)
+    {
+        StepIn(Fill(name, "Int64"));
+        WriteInt64(value);
+        StepOut();
+    }
+
+    public void FillUInt16(string name, ushort value)
+    {
+        StepIn(Fill(name, "UInt16"));
+        WriteUInt16(value);
+        StepOut();
+    }
+
+    public void FillUInt32(string name, uint value)
+    {
+        StepIn(Fill(name, "UInt32"));
+        WriteUInt32(value);
+        StepOut();
+    }
+
+    public void FillUInt64(string name, ulong value)
+    {
+        StepIn(Fill(name, "UInt64"));
+        WriteUInt64(value);
+        StepOut();
+    }
+
+    public void FillHalf(string name, Half value)
+    {
+        StepIn(Fill(name, "Half"));
+        WriteHalf(value);
+        StepOut();
+    }
+
+    public void FillSingle(string name, float value)
+    {
+        StepIn(Fill(name, "Single"));
+        WriteSingle(value);
+        StepOut();
+    }
+
+    public void FillDouble(string name, double value)
+    {
+        StepIn(Fill(name, "Double"));
+        WriteDouble(value);
+        StepOut();
+    }
 
     #endregion
 }

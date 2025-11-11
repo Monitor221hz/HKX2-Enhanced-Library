@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkpAngFrictionConstraintAtom Signatire: 0xf313aa80 size: 12 flags: FLAGS_NONE
 
-    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // firstFrictionAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // numFrictionAxes class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // maxFrictionTorque class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpAngFrictionConstraintAtom : hkpConstraintAtom, IEquatable<hkpAngFrictionConstraintAtom?>
+    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // firstFrictionAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
+    // numFrictionAxes class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // maxFrictionTorque class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpAngFrictionConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpAngFrictionConstraintAtom?>
     {
         public byte isEnabled { set; get; }
         public byte firstFrictionAxis { set; get; }
@@ -63,13 +65,14 @@ namespace HKX2E
 
         public bool Equals(hkpAngFrictionConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isEnabled.Equals(other.isEnabled) &&
-                   firstFrictionAxis.Equals(other.firstFrictionAxis) &&
-                   numFrictionAxes.Equals(other.numFrictionAxes) &&
-                   maxFrictionTorque.Equals(other.maxFrictionTorque) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isEnabled.Equals(other.isEnabled)
+                && firstFrictionAxis.Equals(other.firstFrictionAxis)
+                && numFrictionAxes.Equals(other.numFrictionAxes)
+                && maxFrictionTorque.Equals(other.maxFrictionTorque)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -85,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

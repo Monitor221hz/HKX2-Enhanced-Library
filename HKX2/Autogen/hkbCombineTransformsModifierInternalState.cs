@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkbCombineTransformsModifierInternalState Signatire: 0xa92ed39f size: 48 flags: FLAGS_NONE
 
-    // translationOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkbCombineTransformsModifierInternalState : hkReferencedObject, IEquatable<hkbCombineTransformsModifierInternalState?>
+    // translationOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkbCombineTransformsModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbCombineTransformsModifierInternalState?>
     {
         public Vector4 translationOut { set; get; }
         public Quaternion rotationOut { set; get; }
@@ -50,11 +52,12 @@ namespace HKX2E
 
         public bool Equals(hkbCombineTransformsModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   translationOut.Equals(other.translationOut) &&
-                   rotationOut.Equals(other.rotationOut) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && translationOut.Equals(other.translationOut)
+                && rotationOut.Equals(other.rotationOut)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -68,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

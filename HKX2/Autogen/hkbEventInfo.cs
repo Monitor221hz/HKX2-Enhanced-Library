@@ -11,13 +11,12 @@ namespace HKX2E
         public uint flags { set; get; }
 
         public virtual uint Signature { set; get; } = 0x5874eed4;
-        public hkbEventInfo()
-        {
-            
-        }
+
+        public hkbEventInfo() { }
+
         public hkbEventInfo(hkbEventInfo other)
         {
-            flags = other.flags;   
+            flags = other.flags;
         }
 
         public virtual void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -47,9 +46,8 @@ namespace HKX2E
 
         public bool Equals(hkbEventInfo? other)
         {
-            return other is not null &&
-                   flags.Equals(other.flags) &&
-                   Signature == other.Signature; ;
+            return other is not null && flags.Equals(other.flags) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +59,3 @@ namespace HKX2E
         }
     }
 }
-

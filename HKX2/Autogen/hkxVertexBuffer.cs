@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkxVertexBuffer Signatire: 0x4ab10615 size: 136 flags: FLAGS_NONE
 
-    // data class: hkxVertexBufferVertexData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // desc class: hkxVertexDescription Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
+    // data class: hkxVertexBufferVertexData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // desc class: hkxVertexDescription Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
     public partial class hkxVertexBuffer : hkReferencedObject, IEquatable<hkxVertexBuffer?>
     {
         public hkxVertexBufferVertexData data { set; get; } = new();
@@ -49,11 +49,26 @@ namespace HKX2E
 
         public bool Equals(hkxVertexBuffer? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((data is null && other.data is null) || (data is not null && other.data is not null && data.Equals((IHavokObject)other.data))) &&
-                   ((desc is null && other.desc is null) || (desc is not null && other.desc is not null && desc.Equals((IHavokObject)other.desc))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (data is null && other.data is null)
+                    || (
+                        data is not null
+                        && other.data is not null
+                        && data.Equals((IHavokObject)other.data)
+                    )
+                )
+                && (
+                    (desc is null && other.desc is null)
+                    || (
+                        desc is not null
+                        && other.desc is not null
+                        && desc.Equals((IHavokObject)other.desc)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +82,3 @@ namespace HKX2E
         }
     }
 }
-

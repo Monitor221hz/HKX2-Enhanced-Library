@@ -8,12 +8,12 @@ namespace HKX2E
 {
     // hkpShapeInfo Signatire: 0xea7f1d08 size: 128 flags: FLAGS_NONE
 
-    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // isHierarchicalCompound class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // hkdShapesCollected class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 25 flags: FLAGS_NONE enum: 
-    // childShapeNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // childTransforms class:  Type.TYPE_ARRAY Type.TYPE_TRANSFORM arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // isHierarchicalCompound class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // hkdShapesCollected class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 25 flags: FLAGS_NONE enum:
+    // childShapeNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // childTransforms class:  Type.TYPE_ARRAY Type.TYPE_TRANSFORM arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
     public partial class hkpShapeInfo : hkReferencedObject, IEquatable<hkpShapeInfo?>
     {
         public hkpShape? shape { set; get; }
@@ -78,15 +78,23 @@ namespace HKX2E
 
         public bool Equals(hkpShapeInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((shape is null && other.shape is null) || (shape is not null && other.shape is not null && shape.Equals((IHavokObject)other.shape))) &&
-                   isHierarchicalCompound.Equals(other.isHierarchicalCompound) &&
-                   hkdShapesCollected.Equals(other.hkdShapesCollected) &&
-                   childShapeNames.SequenceEqual(other.childShapeNames) &&
-                   childTransforms.SequenceEqual(other.childTransforms) &&
-                   transform.Equals(other.transform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (shape is null && other.shape is null)
+                    || (
+                        shape is not null
+                        && other.shape is not null
+                        && shape.Equals((IHavokObject)other.shape)
+                    )
+                )
+                && isHierarchicalCompound.Equals(other.isHierarchicalCompound)
+                && hkdShapesCollected.Equals(other.hkdShapesCollected)
+                && childShapeNames.SequenceEqual(other.childShapeNames)
+                && childTransforms.SequenceEqual(other.childTransforms)
+                && transform.Equals(other.transform)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -104,4 +112,3 @@ namespace HKX2E
         }
     }
 }
-

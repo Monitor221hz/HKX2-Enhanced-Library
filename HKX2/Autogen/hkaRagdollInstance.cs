@@ -7,14 +7,15 @@ namespace HKX2E
 {
     // hkaRagdollInstance Signatire: 0x154948e8 size: 72 flags: FLAGS_NONE
 
-    // rigidBodies class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // constraints class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // boneToRigidBodyMap class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // skeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // rigidBodies class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // constraints class: hkpConstraintInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // boneToRigidBodyMap class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // skeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
     public partial class hkaRagdollInstance : hkReferencedObject, IEquatable<hkaRagdollInstance?>
     {
         public IList<hkpRigidBody> rigidBodies { set; get; } = Array.Empty<hkpRigidBody>();
-        public IList<hkpConstraintInstance> constraints { set; get; } = Array.Empty<hkpConstraintInstance>();
+        public IList<hkpConstraintInstance> constraints { set; get; } =
+            Array.Empty<hkpConstraintInstance>();
         public IList<int> boneToRigidBodyMap { set; get; } = Array.Empty<int>();
         public hkaSkeleton? skeleton { set; get; }
 
@@ -42,7 +43,11 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             rigidBodies = xd.ReadClassPointerArray<hkpRigidBody>(this, xe, nameof(rigidBodies));
-            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(this, xe, nameof(constraints));
+            constraints = xd.ReadClassPointerArray<hkpConstraintInstance>(
+                this,
+                xe,
+                nameof(constraints)
+            );
             boneToRigidBodyMap = xd.ReadInt32Array(xe, nameof(boneToRigidBodyMap));
             skeleton = xd.ReadClassPointer<hkaSkeleton>(this, xe, nameof(skeleton));
         }
@@ -63,13 +68,21 @@ namespace HKX2E
 
         public bool Equals(hkaRagdollInstance? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rigidBodies.SequenceEqual(other.rigidBodies) &&
-                   constraints.SequenceEqual(other.constraints) &&
-                   boneToRigidBodyMap.SequenceEqual(other.boneToRigidBodyMap) &&
-                   ((skeleton is null && other.skeleton is null) || (skeleton is not null && other.skeleton is not null && skeleton.Equals((IHavokObject)other.skeleton))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rigidBodies.SequenceEqual(other.rigidBodies)
+                && constraints.SequenceEqual(other.constraints)
+                && boneToRigidBodyMap.SequenceEqual(other.boneToRigidBodyMap)
+                && (
+                    (skeleton is null && other.skeleton is null)
+                    || (
+                        skeleton is not null
+                        && other.skeleton is not null
+                        && skeleton.Equals((IHavokObject)other.skeleton)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -85,4 +98,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,8 +6,10 @@ namespace HKX2E
 {
     // hkpConvexTranslateShape Signatire: 0x5ba0a5f7 size: 80 flags: FLAGS_NONE
 
-    // translation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpConvexTranslateShape : hkpConvexTransformShapeBase, IEquatable<hkpConvexTranslateShape?>
+    // translation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpConvexTranslateShape
+        : hkpConvexTransformShapeBase,
+            IEquatable<hkpConvexTranslateShape?>
     {
         public Vector4 translation { set; get; }
 
@@ -44,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkpConvexTranslateShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   translation.Equals(other.translation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && translation.Equals(other.translation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -60,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

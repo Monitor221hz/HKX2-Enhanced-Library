@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkDataObjectTypeAttribute Signatire: 0x1e3857bb size: 8 flags: FLAGS_NONE
 
-    // typeName class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    public partial class hkDataObjectTypeAttribute : IHavokObject, IEquatable<hkDataObjectTypeAttribute?>
+    // typeName class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    public partial class hkDataObjectTypeAttribute
+        : IHavokObject,
+            IEquatable<hkDataObjectTypeAttribute?>
     {
         public string typeName { set; get; } = "";
 
@@ -39,9 +41,15 @@ namespace HKX2E
 
         public bool Equals(hkDataObjectTypeAttribute? other)
         {
-            return other is not null &&
-                   (typeName is null && other.typeName is null || typeName == other.typeName || typeName is null && other.typeName == "" || typeName == "" && other.typeName is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    typeName is null && other.typeName is null
+                    || typeName == other.typeName
+                    || typeName is null && other.typeName == ""
+                    || typeName == "" && other.typeName is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +61,3 @@ namespace HKX2E
         }
     }
 }
-

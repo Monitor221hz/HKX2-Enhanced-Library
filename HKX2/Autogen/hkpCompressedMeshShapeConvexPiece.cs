@@ -8,13 +8,15 @@ namespace HKX2E
 {
     // hkpCompressedMeshShapeConvexPiece Signatire: 0x385bb842 size: 80 flags: FLAGS_NONE
 
-    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // vertices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // faceVertices class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // faceOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // reference class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // transformIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum: 
-    public partial class hkpCompressedMeshShapeConvexPiece : IHavokObject, IEquatable<hkpCompressedMeshShapeConvexPiece?>
+    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // vertices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // faceVertices class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // faceOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // reference class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // transformIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum:
+    public partial class hkpCompressedMeshShapeConvexPiece
+        : IHavokObject,
+            IEquatable<hkpCompressedMeshShapeConvexPiece?>
     {
         public Vector4 offset { set; get; }
         public IList<ushort> vertices { set; get; } = Array.Empty<ushort>();
@@ -74,14 +76,15 @@ namespace HKX2E
 
         public bool Equals(hkpCompressedMeshShapeConvexPiece? other)
         {
-            return other is not null &&
-                   offset.Equals(other.offset) &&
-                   vertices.SequenceEqual(other.vertices) &&
-                   faceVertices.SequenceEqual(other.faceVertices) &&
-                   faceOffsets.SequenceEqual(other.faceOffsets) &&
-                   reference.Equals(other.reference) &&
-                   transformIndex.Equals(other.transformIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && offset.Equals(other.offset)
+                && vertices.SequenceEqual(other.vertices)
+                && faceVertices.SequenceEqual(other.faceVertices)
+                && faceOffsets.SequenceEqual(other.faceOffsets)
+                && reference.Equals(other.reference)
+                && transformIndex.Equals(other.transformIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -98,4 +101,3 @@ namespace HKX2E
         }
     }
 }
-

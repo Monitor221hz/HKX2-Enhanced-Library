@@ -5,12 +5,14 @@ namespace HKX2E
 {
     // hkpRackAndPinionConstraintAtom Signatire: 0x30cae006 size: 12 flags: FLAGS_NONE
 
-    // pinionRadiusOrScrewPitch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // isScrew class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // memOffsetToInitialAngleOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 9 flags: FLAGS_NONE enum: 
-    // memOffsetToPrevAngle class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum: 
-    // memOffsetToRevolutionCounter class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 11 flags: FLAGS_NONE enum: 
-    public partial class hkpRackAndPinionConstraintAtom : hkpConstraintAtom, IEquatable<hkpRackAndPinionConstraintAtom?>
+    // pinionRadiusOrScrewPitch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // isScrew class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // memOffsetToInitialAngleOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 9 flags: FLAGS_NONE enum:
+    // memOffsetToPrevAngle class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum:
+    // memOffsetToRevolutionCounter class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 11 flags: FLAGS_NONE enum:
+    public partial class hkpRackAndPinionConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpRackAndPinionConstraintAtom?>
     {
         public float pinionRadiusOrScrewPitch { set; get; }
         public bool isScrew { set; get; }
@@ -57,7 +59,11 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(pinionRadiusOrScrewPitch), pinionRadiusOrScrewPitch);
             xs.WriteBoolean(xe, nameof(isScrew), isScrew);
-            xs.WriteNumber(xe, nameof(memOffsetToInitialAngleOffset), memOffsetToInitialAngleOffset);
+            xs.WriteNumber(
+                xe,
+                nameof(memOffsetToInitialAngleOffset),
+                memOffsetToInitialAngleOffset
+            );
             xs.WriteNumber(xe, nameof(memOffsetToPrevAngle), memOffsetToPrevAngle);
             xs.WriteNumber(xe, nameof(memOffsetToRevolutionCounter), memOffsetToRevolutionCounter);
         }
@@ -69,14 +75,15 @@ namespace HKX2E
 
         public bool Equals(hkpRackAndPinionConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   pinionRadiusOrScrewPitch.Equals(other.pinionRadiusOrScrewPitch) &&
-                   isScrew.Equals(other.isScrew) &&
-                   memOffsetToInitialAngleOffset.Equals(other.memOffsetToInitialAngleOffset) &&
-                   memOffsetToPrevAngle.Equals(other.memOffsetToPrevAngle) &&
-                   memOffsetToRevolutionCounter.Equals(other.memOffsetToRevolutionCounter) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && pinionRadiusOrScrewPitch.Equals(other.pinionRadiusOrScrewPitch)
+                && isScrew.Equals(other.isScrew)
+                && memOffsetToInitialAngleOffset.Equals(other.memOffsetToInitialAngleOffset)
+                && memOffsetToPrevAngle.Equals(other.memOffsetToPrevAngle)
+                && memOffsetToRevolutionCounter.Equals(other.memOffsetToRevolutionCounter)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -93,4 +100,3 @@ namespace HKX2E
         }
     }
 }
-

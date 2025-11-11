@@ -7,17 +7,20 @@ namespace HKX2E
 {
     // hkbBlenderGeneratorInternalState Signatire: 0x84717488 size: 64 flags: FLAGS_NONE
 
-    // childrenInternalStates class: hkbBlenderGeneratorChildInternalState Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // sortedChildren class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // endIntervalWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // numActiveChildren class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    // beginIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // endIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 58 flags: FLAGS_NONE enum: 
-    // initSync class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // doSubtractiveBlend class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 61 flags: FLAGS_NONE enum: 
-    public partial class hkbBlenderGeneratorInternalState : hkReferencedObject, IEquatable<hkbBlenderGeneratorInternalState?>
+    // childrenInternalStates class: hkbBlenderGeneratorChildInternalState Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // sortedChildren class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // endIntervalWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // numActiveChildren class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum:
+    // beginIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // endIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 58 flags: FLAGS_NONE enum:
+    // initSync class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // doSubtractiveBlend class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 61 flags: FLAGS_NONE enum:
+    public partial class hkbBlenderGeneratorInternalState
+        : hkReferencedObject,
+            IEquatable<hkbBlenderGeneratorInternalState?>
     {
-        public IList<hkbBlenderGeneratorChildInternalState> childrenInternalStates { set; get; } = Array.Empty<hkbBlenderGeneratorChildInternalState>();
+        public IList<hkbBlenderGeneratorChildInternalState> childrenInternalStates { set; get; } =
+            Array.Empty<hkbBlenderGeneratorChildInternalState>();
         public IList<short> sortedChildren { set; get; } = Array.Empty<short>();
         public float endIntervalWeight { set; get; }
         public int numActiveChildren { set; get; }
@@ -59,7 +62,10 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            childrenInternalStates = xd.ReadClassArray<hkbBlenderGeneratorChildInternalState>(xe, nameof(childrenInternalStates));
+            childrenInternalStates = xd.ReadClassArray<hkbBlenderGeneratorChildInternalState>(
+                xe,
+                nameof(childrenInternalStates)
+            );
             sortedChildren = xd.ReadInt16Array(xe, nameof(sortedChildren));
             endIntervalWeight = xd.ReadSingle(xe, nameof(endIntervalWeight));
             numActiveChildren = xd.ReadInt32(xe, nameof(numActiveChildren));
@@ -89,17 +95,18 @@ namespace HKX2E
 
         public bool Equals(hkbBlenderGeneratorInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   childrenInternalStates.SequenceEqual(other.childrenInternalStates) &&
-                   sortedChildren.SequenceEqual(other.sortedChildren) &&
-                   endIntervalWeight.Equals(other.endIntervalWeight) &&
-                   numActiveChildren.Equals(other.numActiveChildren) &&
-                   beginIntervalIndex.Equals(other.beginIntervalIndex) &&
-                   endIntervalIndex.Equals(other.endIntervalIndex) &&
-                   initSync.Equals(other.initSync) &&
-                   doSubtractiveBlend.Equals(other.doSubtractiveBlend) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && childrenInternalStates.SequenceEqual(other.childrenInternalStates)
+                && sortedChildren.SequenceEqual(other.sortedChildren)
+                && endIntervalWeight.Equals(other.endIntervalWeight)
+                && numActiveChildren.Equals(other.numActiveChildren)
+                && beginIntervalIndex.Equals(other.beginIntervalIndex)
+                && endIntervalIndex.Equals(other.endIntervalIndex)
+                && initSync.Equals(other.initSync)
+                && doSubtractiveBlend.Equals(other.doSubtractiveBlend)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -119,4 +126,3 @@ namespace HKX2E
         }
     }
 }
-

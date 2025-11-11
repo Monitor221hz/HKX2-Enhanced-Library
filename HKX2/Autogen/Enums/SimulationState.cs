@@ -8,4 +8,3 @@ namespace HKX2E
         SIMULATION_STATE_STOP = 3,
     }
 }
-

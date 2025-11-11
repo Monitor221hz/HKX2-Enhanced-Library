@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpSpringDamperConstraintMotor Signatire: 0x7ead26f6 size: 40 flags: FLAGS_NONE
 
-    // springConstant class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // springDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    public partial class hkpSpringDamperConstraintMotor : hkpLimitedForceConstraintMotor, IEquatable<hkpSpringDamperConstraintMotor?>
+    // springConstant class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // springDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    public partial class hkpSpringDamperConstraintMotor
+        : hkpLimitedForceConstraintMotor,
+            IEquatable<hkpSpringDamperConstraintMotor?>
     {
         public float springConstant { set; get; }
         public float springDamping { set; get; }
@@ -49,11 +51,12 @@ namespace HKX2E
 
         public bool Equals(hkpSpringDamperConstraintMotor? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   springConstant.Equals(other.springConstant) &&
-                   springDamping.Equals(other.springDamping) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && springConstant.Equals(other.springConstant)
+                && springDamping.Equals(other.springDamping)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

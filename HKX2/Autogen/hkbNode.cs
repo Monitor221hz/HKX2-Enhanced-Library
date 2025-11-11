@@ -5,11 +5,11 @@ namespace HKX2E
 {
     // hkbNode Signatire: 0x6d26f61d size: 72 flags: FLAGS_NONE
 
-    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // id class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // cloneState class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 66 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // padNode class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 1 offset: 67 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // id class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // cloneState class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 66 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // padNode class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 1 offset: 67 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbNode : hkbBindable, IEquatable<hkbNode?>
     {
         public ulong userData { set; get; }
@@ -66,11 +66,17 @@ namespace HKX2E
 
         public bool Equals(hkbNode? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   userData.Equals(other.userData) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && userData.Equals(other.userData)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -84,4 +90,3 @@ namespace HKX2E
         }
     }
 }
-

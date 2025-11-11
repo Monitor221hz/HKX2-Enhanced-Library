@@ -7,15 +7,18 @@ namespace HKX2E
 {
     // hkpStiffSpringChainData Signatire: 0xf170356b size: 80 flags: FLAGS_NONE
 
-    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // infos class: hkpStiffSpringChainDataConstraintInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // cfm class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    public partial class hkpStiffSpringChainData : hkpConstraintChainData, IEquatable<hkpStiffSpringChainData?>
+    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // infos class: hkpStiffSpringChainDataConstraintInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // cfm class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    public partial class hkpStiffSpringChainData
+        : hkpConstraintChainData,
+            IEquatable<hkpStiffSpringChainData?>
     {
         public hkpBridgeAtoms atoms { set; get; } = new();
-        public IList<hkpStiffSpringChainDataConstraintInfo> infos { set; get; } = Array.Empty<hkpStiffSpringChainDataConstraintInfo>();
+        public IList<hkpStiffSpringChainDataConstraintInfo> infos { set; get; } =
+            Array.Empty<hkpStiffSpringChainDataConstraintInfo>();
         public float tau { set; get; }
         public float damping { set; get; }
         public float cfm { set; get; }
@@ -71,14 +74,22 @@ namespace HKX2E
 
         public bool Equals(hkpStiffSpringChainData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   infos.SequenceEqual(other.infos) &&
-                   tau.Equals(other.tau) &&
-                   damping.Equals(other.damping) &&
-                   cfm.Equals(other.cfm) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && infos.SequenceEqual(other.infos)
+                && tau.Equals(other.tau)
+                && damping.Equals(other.damping)
+                && cfm.Equals(other.cfm)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -95,4 +106,3 @@ namespace HKX2E
         }
     }
 }
-

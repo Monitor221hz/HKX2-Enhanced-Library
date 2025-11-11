@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // hkpCdBody Signatire: 0x54a4b841 size: 32 flags: FLAGS_NONE
 
-    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // shapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // motion class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // parent class: hkpCdBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // shapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // motion class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // parent class: hkpCdBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpCdBody : IHavokObject, IEquatable<hkpCdBody?>
     {
         public hkpShape? shape { set; get; }
@@ -57,10 +57,18 @@ namespace HKX2E
 
         public bool Equals(hkpCdBody? other)
         {
-            return other is not null &&
-                   ((shape is null && other.shape is null) || (shape is not null && other.shape is not null && shape.Equals((IHavokObject)other.shape))) &&
-                   shapeKey.Equals(other.shapeKey) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (shape is null && other.shape is null)
+                    || (
+                        shape is not null
+                        && other.shape is not null
+                        && shape.Equals((IHavokObject)other.shape)
+                    )
+                )
+                && shapeKey.Equals(other.shapeKey)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -73,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

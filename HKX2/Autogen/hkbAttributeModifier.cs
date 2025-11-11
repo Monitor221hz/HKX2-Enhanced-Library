@@ -7,10 +7,11 @@ namespace HKX2E
 {
     // hkbAttributeModifier Signatire: 0x1245d97d size: 96 flags: FLAGS_NONE
 
-    // assignments class: hkbAttributeModifierAssignment Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // assignments class: hkbAttributeModifierAssignment Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     public partial class hkbAttributeModifier : hkbModifier, IEquatable<hkbAttributeModifier?>
     {
-        public IList<hkbAttributeModifierAssignment> assignments { set; get; } = Array.Empty<hkbAttributeModifierAssignment>();
+        public IList<hkbAttributeModifierAssignment> assignments { set; get; } =
+            Array.Empty<hkbAttributeModifierAssignment>();
 
         public override uint Signature { set; get; } = 0x1245d97d;
 
@@ -29,7 +30,10 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            assignments = xd.ReadClassArray<hkbAttributeModifierAssignment>(xe, nameof(assignments));
+            assignments = xd.ReadClassArray<hkbAttributeModifierAssignment>(
+                xe,
+                nameof(assignments)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +49,11 @@ namespace HKX2E
 
         public bool Equals(hkbAttributeModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   assignments.SequenceEqual(other.assignments) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && assignments.SequenceEqual(other.assignments)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +66,3 @@ namespace HKX2E
         }
     }
 }
-

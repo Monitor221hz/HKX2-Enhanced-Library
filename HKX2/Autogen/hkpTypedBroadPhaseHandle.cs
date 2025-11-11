@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkpTypedBroadPhaseHandle Signatire: 0xf4b0f799 size: 12 flags: FLAGS_NONE
 
-    // type class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // ownerOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 5 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // objectQualityType class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpTypedBroadPhaseHandle : hkpBroadPhaseHandle, IEquatable<hkpTypedBroadPhaseHandle?>
+    // type class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // ownerOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 5 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // objectQualityType class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpTypedBroadPhaseHandle
+        : hkpBroadPhaseHandle,
+            IEquatable<hkpTypedBroadPhaseHandle?>
     {
         public sbyte type { set; get; }
         private sbyte ownerOffset { set; get; }
@@ -62,12 +64,13 @@ namespace HKX2E
 
         public bool Equals(hkpTypedBroadPhaseHandle? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   type.Equals(other.type) &&
-                   objectQualityType.Equals(other.objectQualityType) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && type.Equals(other.type)
+                && objectQualityType.Equals(other.objectQualityType)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -82,4 +85,3 @@ namespace HKX2E
         }
     }
 }
-

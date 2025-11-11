@@ -7,10 +7,13 @@ namespace HKX2E
 {
     // hkpCollisionFilterList Signatire: 0x2603bf04 size: 88 flags: FLAGS_NONE
 
-    // collisionFilters class: hkpCollisionFilter Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    public partial class hkpCollisionFilterList : hkpCollisionFilter, IEquatable<hkpCollisionFilterList?>
+    // collisionFilters class: hkpCollisionFilter Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    public partial class hkpCollisionFilterList
+        : hkpCollisionFilter,
+            IEquatable<hkpCollisionFilterList?>
     {
-        public IList<hkpCollisionFilter> collisionFilters { set; get; } = Array.Empty<hkpCollisionFilter>();
+        public IList<hkpCollisionFilter> collisionFilters { set; get; } =
+            Array.Empty<hkpCollisionFilter>();
 
         public override uint Signature { set; get; } = 0x2603bf04;
 
@@ -29,7 +32,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            collisionFilters = xd.ReadClassPointerArray<hkpCollisionFilter>(this, xe, nameof(collisionFilters));
+            collisionFilters = xd.ReadClassPointerArray<hkpCollisionFilter>(
+                this,
+                xe,
+                nameof(collisionFilters)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +52,11 @@ namespace HKX2E
 
         public bool Equals(hkpCollisionFilterList? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   collisionFilters.SequenceEqual(other.collisionFilters) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && collisionFilters.SequenceEqual(other.collisionFilters)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

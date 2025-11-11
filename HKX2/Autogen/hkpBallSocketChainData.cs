@@ -7,16 +7,19 @@ namespace HKX2E
 {
     // hkpBallSocketChainData Signatire: 0x102aae9c size: 80 flags: FLAGS_NONE
 
-    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // infos class: hkpBallSocketChainDataConstraintInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // cfm class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // maxErrorDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    public partial class hkpBallSocketChainData : hkpConstraintChainData, IEquatable<hkpBallSocketChainData?>
+    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // infos class: hkpBallSocketChainDataConstraintInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // cfm class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // maxErrorDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    public partial class hkpBallSocketChainData
+        : hkpConstraintChainData,
+            IEquatable<hkpBallSocketChainData?>
     {
         public hkpBridgeAtoms atoms { set; get; } = new();
-        public IList<hkpBallSocketChainDataConstraintInfo> infos { set; get; } = Array.Empty<hkpBallSocketChainDataConstraintInfo>();
+        public IList<hkpBallSocketChainDataConstraintInfo> infos { set; get; } =
+            Array.Empty<hkpBallSocketChainDataConstraintInfo>();
         public float tau { set; get; }
         public float damping { set; get; }
         public float cfm { set; get; }
@@ -75,15 +78,23 @@ namespace HKX2E
 
         public bool Equals(hkpBallSocketChainData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   infos.SequenceEqual(other.infos) &&
-                   tau.Equals(other.tau) &&
-                   damping.Equals(other.damping) &&
-                   cfm.Equals(other.cfm) &&
-                   maxErrorDistance.Equals(other.maxErrorDistance) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && infos.SequenceEqual(other.infos)
+                && tau.Equals(other.tau)
+                && damping.Equals(other.damping)
+                && cfm.Equals(other.cfm)
+                && maxErrorDistance.Equals(other.maxErrorDistance)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -101,4 +112,3 @@ namespace HKX2E
         }
     }
 }
-

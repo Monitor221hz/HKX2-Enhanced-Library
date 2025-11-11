@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkaQuantizedAnimationTrackCompressionParams Signatire: 0xf7d64649 size: 16 flags: FLAGS_NONE
 
-    // rotationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // translationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // scaleTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // floatingTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkaQuantizedAnimationTrackCompressionParams : IHavokObject, IEquatable<hkaQuantizedAnimationTrackCompressionParams?>
+    // rotationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // translationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // scaleTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // floatingTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkaQuantizedAnimationTrackCompressionParams
+        : IHavokObject,
+            IEquatable<hkaQuantizedAnimationTrackCompressionParams?>
     {
         public float rotationTolerance { set; get; }
         public float translationTolerance { set; get; }
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkaQuantizedAnimationTrackCompressionParams? other)
         {
-            return other is not null &&
-                   rotationTolerance.Equals(other.rotationTolerance) &&
-                   translationTolerance.Equals(other.translationTolerance) &&
-                   scaleTolerance.Equals(other.scaleTolerance) &&
-                   floatingTolerance.Equals(other.floatingTolerance) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && rotationTolerance.Equals(other.rotationTolerance)
+                && translationTolerance.Equals(other.translationTolerance)
+                && scaleTolerance.Equals(other.scaleTolerance)
+                && floatingTolerance.Equals(other.floatingTolerance)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

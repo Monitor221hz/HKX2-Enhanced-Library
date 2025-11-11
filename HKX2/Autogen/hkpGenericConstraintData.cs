@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpGenericConstraintData Signatire: 0xfa824640 size: 128 flags: FLAGS_NONE
 
-    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // scheme class: hkpGenericConstraintDataScheme Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkpGenericConstraintData : hkpConstraintData, IEquatable<hkpGenericConstraintData?>
+    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // scheme class: hkpGenericConstraintDataScheme Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkpGenericConstraintData
+        : hkpConstraintData,
+            IEquatable<hkpGenericConstraintData?>
     {
         public hkpBridgeAtoms atoms { set; get; } = new();
         public hkpGenericConstraintDataScheme scheme { set; get; } = new();
@@ -49,11 +51,26 @@ namespace HKX2E
 
         public bool Equals(hkpGenericConstraintData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   ((scheme is null && other.scheme is null) || (scheme is not null && other.scheme is not null && scheme.Equals((IHavokObject)other.scheme))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && (
+                    (scheme is null && other.scheme is null)
+                    || (
+                        scheme is not null
+                        && other.scheme is not null
+                        && scheme.Equals((IHavokObject)other.scheme)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +84,3 @@ namespace HKX2E
         }
     }
 }
-

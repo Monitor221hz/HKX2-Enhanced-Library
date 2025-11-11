@@ -6,13 +6,13 @@ namespace HKX2E
 {
     // hkpBallGun Signatire: 0x57b06d35 size: 112 flags: FLAGS_NONE
 
-    // bulletRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // bulletVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // bulletMass class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // damageMultiplier class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // maxBulletsInWorld class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // bulletOffsetFromCenter class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // addedBodies class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // bulletRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // bulletVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // bulletMass class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // damageMultiplier class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // maxBulletsInWorld class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // bulletOffsetFromCenter class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // addedBodies class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpBallGun : hkpFirstPersonGun, IEquatable<hkpBallGun?>
     {
         public float bulletRadius { set; get; }
@@ -83,15 +83,16 @@ namespace HKX2E
 
         public bool Equals(hkpBallGun? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   bulletRadius.Equals(other.bulletRadius) &&
-                   bulletVelocity.Equals(other.bulletVelocity) &&
-                   bulletMass.Equals(other.bulletMass) &&
-                   damageMultiplier.Equals(other.damageMultiplier) &&
-                   maxBulletsInWorld.Equals(other.maxBulletsInWorld) &&
-                   bulletOffsetFromCenter.Equals(other.bulletOffsetFromCenter) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && bulletRadius.Equals(other.bulletRadius)
+                && bulletVelocity.Equals(other.bulletVelocity)
+                && bulletMass.Equals(other.bulletMass)
+                && damageMultiplier.Equals(other.damageMultiplier)
+                && maxBulletsInWorld.Equals(other.maxBulletsInWorld)
+                && bulletOffsetFromCenter.Equals(other.bulletOffsetFromCenter)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -109,4 +110,3 @@ namespace HKX2E
         }
     }
 }
-

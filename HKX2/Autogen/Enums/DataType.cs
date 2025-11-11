@@ -9,4 +9,3 @@ namespace HKX2E
         HKX_DT_FLOAT = 4,
     }
 }
-

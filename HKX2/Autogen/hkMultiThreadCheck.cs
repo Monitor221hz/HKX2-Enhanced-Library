@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // hkMultiThreadCheck Signatire: 0x11e4408b size: 12 flags: FLAGS_NONE
 
-    // threadId class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // stackTraceId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // markCount class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // markBitStack class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 10 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // threadId class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // stackTraceId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // markCount class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // markBitStack class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 10 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkMultiThreadCheck : IHavokObject, IEquatable<hkMultiThreadCheck?>
     {
         private uint threadId { set; get; }
@@ -34,10 +34,7 @@ namespace HKX2E
             bw.WriteUInt16(markBitStack);
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
-
-        }
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
@@ -54,8 +51,8 @@ namespace HKX2E
 
         public bool Equals(hkMultiThreadCheck? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

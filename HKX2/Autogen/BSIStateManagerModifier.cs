@@ -7,14 +7,16 @@ namespace HKX2E
 {
     // BSIStateManagerModifier Signatire: 0x6cb24f2e size: 128 flags: FLAGS_NONE
 
-    // iStateVar class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // stateData class: BSIStateManagerModifierBSiStateData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // myStateListener class: BSIStateManagerModifierBSIStateManagerStateListener Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // iStateVar class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // stateData class: BSIStateManagerModifierBSiStateData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // myStateListener class: BSIStateManagerModifierBSIStateManagerStateListener Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class BSIStateManagerModifier : hkbModifier, IEquatable<BSIStateManagerModifier?>
     {
         public int iStateVar { set; get; }
-        public IList<BSIStateManagerModifierBSiStateData> stateData { set; get; } = Array.Empty<BSIStateManagerModifierBSiStateData>();
-        public BSIStateManagerModifierBSIStateManagerStateListener myStateListener { set; get; } = new();
+        public IList<BSIStateManagerModifierBSiStateData> stateData { set; get; } =
+            Array.Empty<BSIStateManagerModifierBSiStateData>();
+        public BSIStateManagerModifierBSIStateManagerStateListener myStateListener { set; get; } =
+            new();
 
         public override uint Signature { set; get; } = 0x6cb24f2e;
 
@@ -40,7 +42,10 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             iStateVar = xd.ReadInt32(xe, nameof(iStateVar));
-            stateData = xd.ReadClassArray<BSIStateManagerModifierBSiStateData>(xe, nameof(stateData));
+            stateData = xd.ReadClassArray<BSIStateManagerModifierBSiStateData>(
+                xe,
+                nameof(stateData)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -58,11 +63,12 @@ namespace HKX2E
 
         public bool Equals(BSIStateManagerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   iStateVar.Equals(other.iStateVar) &&
-                   stateData.SequenceEqual(other.stateData) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && iStateVar.Equals(other.iStateVar)
+                && stateData.SequenceEqual(other.stateData)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -76,4 +82,3 @@ namespace HKX2E
         }
     }
 }
-

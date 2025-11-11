@@ -6,4 +6,3 @@ namespace HKX2E
         PHANTOM_TYPE_CACHING = 1,
     }
 }
-

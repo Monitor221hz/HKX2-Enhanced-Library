@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkTrackerSerializableScanSnapshotAllocation Signatire: 0x9ab3a6ac size: 24 flags: FLAGS_NONE
 
-    // start class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // size class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // traceId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkTrackerSerializableScanSnapshotAllocation : IHavokObject, IEquatable<hkTrackerSerializableScanSnapshotAllocation?>
+    // start class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // size class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // traceId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkTrackerSerializableScanSnapshotAllocation
+        : IHavokObject,
+            IEquatable<hkTrackerSerializableScanSnapshotAllocation?>
     {
         public ulong start { set; get; }
         public ulong size { set; get; }
@@ -53,11 +55,12 @@ namespace HKX2E
 
         public bool Equals(hkTrackerSerializableScanSnapshotAllocation? other)
         {
-            return other is not null &&
-                   start.Equals(other.start) &&
-                   size.Equals(other.size) &&
-                   traceId.Equals(other.traceId) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && start.Equals(other.start)
+                && size.Equals(other.size)
+                && traceId.Equals(other.traceId)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +74,3 @@ namespace HKX2E
         }
     }
 }
-

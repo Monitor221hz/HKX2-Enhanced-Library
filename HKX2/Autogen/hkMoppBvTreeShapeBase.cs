@@ -6,10 +6,10 @@ namespace HKX2E
 {
     // hkMoppBvTreeShapeBase Signatire: 0x7c338c66 size: 80 flags: FLAGS_NONE
 
-    // code class: hkpMoppCode Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // moppData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // moppDataSize class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // codeInfoCopy class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // code class: hkpMoppCode Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // moppData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // moppDataSize class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // codeInfoCopy class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkMoppBvTreeShapeBase : hkpBvTreeShape, IEquatable<hkMoppBvTreeShapeBase?>
     {
         public hkpMoppCode? code { set; get; }
@@ -61,10 +61,18 @@ namespace HKX2E
 
         public bool Equals(hkMoppBvTreeShapeBase? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((code is null && other.code is null) || (code is not null && other.code is not null && code.Equals((IHavokObject)other.code))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (code is null && other.code is null)
+                    || (
+                        code is not null
+                        && other.code is not null
+                        && code.Equals((IHavokObject)other.code)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +85,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpLimitedForceConstraintMotor Signatire: 0x3377b0b0 size: 32 flags: FLAGS_NONE
 
-    // minForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // maxForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    public partial class hkpLimitedForceConstraintMotor : hkpConstraintMotor, IEquatable<hkpLimitedForceConstraintMotor?>
+    // minForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // maxForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    public partial class hkpLimitedForceConstraintMotor
+        : hkpConstraintMotor,
+            IEquatable<hkpLimitedForceConstraintMotor?>
     {
         public float minForce { set; get; }
         public float maxForce { set; get; }
@@ -49,11 +51,12 @@ namespace HKX2E
 
         public bool Equals(hkpLimitedForceConstraintMotor? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   minForce.Equals(other.minForce) &&
-                   maxForce.Equals(other.maxForce) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && minForce.Equals(other.minForce)
+                && maxForce.Equals(other.maxForce)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

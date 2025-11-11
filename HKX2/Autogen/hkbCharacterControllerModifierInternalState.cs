@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkbCharacterControllerModifierInternalState Signatire: 0xf8dfec0d size: 48 flags: FLAGS_NONE
 
-    // gravity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // timestep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // isInitialVelocityAdded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // isTouchingGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 37 flags: FLAGS_NONE enum: 
-    public partial class hkbCharacterControllerModifierInternalState : hkReferencedObject, IEquatable<hkbCharacterControllerModifierInternalState?>
+    // gravity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // timestep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // isInitialVelocityAdded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // isTouchingGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 37 flags: FLAGS_NONE enum:
+    public partial class hkbCharacterControllerModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbCharacterControllerModifierInternalState?>
     {
         public Vector4 gravity { set; get; }
         public float timestep { set; get; }
@@ -64,13 +66,14 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterControllerModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   gravity.Equals(other.gravity) &&
-                   timestep.Equals(other.timestep) &&
-                   isInitialVelocityAdded.Equals(other.isInitialVelocityAdded) &&
-                   isTouchingGround.Equals(other.isTouchingGround) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && gravity.Equals(other.gravity)
+                && timestep.Equals(other.timestep)
+                && isInitialVelocityAdded.Equals(other.isInitialVelocityAdded)
+                && isTouchingGround.Equals(other.isTouchingGround)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

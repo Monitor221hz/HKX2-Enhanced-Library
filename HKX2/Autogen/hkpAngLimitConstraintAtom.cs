@@ -5,12 +5,14 @@ namespace HKX2E
 {
     // hkpAngLimitConstraintAtom Signatire: 0x9be0d9d size: 16 flags: FLAGS_NONE
 
-    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // limitAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // minAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // angularLimitsTauFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkpAngLimitConstraintAtom : hkpConstraintAtom, IEquatable<hkpAngLimitConstraintAtom?>
+    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // limitAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
+    // minAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // angularLimitsTauFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkpAngLimitConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpAngLimitConstraintAtom?>
     {
         public byte isEnabled { set; get; }
         public byte limitAxis { set; get; }
@@ -67,14 +69,15 @@ namespace HKX2E
 
         public bool Equals(hkpAngLimitConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isEnabled.Equals(other.isEnabled) &&
-                   limitAxis.Equals(other.limitAxis) &&
-                   minAngle.Equals(other.minAngle) &&
-                   maxAngle.Equals(other.maxAngle) &&
-                   angularLimitsTauFactor.Equals(other.angularLimitsTauFactor) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isEnabled.Equals(other.isEnabled)
+                && limitAxis.Equals(other.limitAxis)
+                && minAngle.Equals(other.minAngle)
+                && maxAngle.Equals(other.maxAngle)
+                && angularLimitsTauFactor.Equals(other.angularLimitsTauFactor)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -91,4 +94,3 @@ namespace HKX2E
         }
     }
 }
-

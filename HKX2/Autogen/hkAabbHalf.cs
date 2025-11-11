@@ -6,8 +6,8 @@ namespace HKX2E
 {
     // hkAabbHalf Signatire: 0x1d716a17 size: 16 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 6 offset: 0 flags: FLAGS_NONE enum: 
-    // extras class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 2 offset: 12 flags: FLAGS_NONE enum: 
+    // data class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 6 offset: 0 flags: FLAGS_NONE enum:
+    // extras class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 2 offset: 12 flags: FLAGS_NONE enum:
     public partial class hkAabbHalf : IHavokObject, IEquatable<hkAabbHalf?>
     {
         public ushort[] data = new ushort[6];
@@ -46,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkAabbHalf? other)
         {
-            return other is not null &&
-                   data.SequenceEqual(other.data) &&
-                   extras.SequenceEqual(other.extras) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && data.SequenceEqual(other.data)
+                && extras.SequenceEqual(other.extras)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

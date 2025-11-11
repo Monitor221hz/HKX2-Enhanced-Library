@@ -6,4 +6,3 @@ namespace HKX2E
         LINEAR_VELOCITY_MODE_MODEL = 1,
     }
 }
-

@@ -7,10 +7,10 @@ namespace HKX2E
 {
     // hkpDashpotAction Signatire: 0x50746c6e size: 128 flags: FLAGS_NONE
 
-    // point class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 2 offset: 64 flags: FLAGS_NONE enum: 
-    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // impulse class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // point class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 2 offset: 64 flags: FLAGS_NONE enum:
+    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // impulse class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
     public partial class hkpDashpotAction : hkpBinaryAction, IEquatable<hkpDashpotAction?>
     {
         public Vector4[] point = new Vector4[2];
@@ -65,13 +65,14 @@ namespace HKX2E
 
         public bool Equals(hkpDashpotAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   point.SequenceEqual(other.point) &&
-                   strength.Equals(other.strength) &&
-                   damping.Equals(other.damping) &&
-                   impulse.Equals(other.impulse) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && point.SequenceEqual(other.point)
+                && strength.Equals(other.strength)
+                && damping.Equals(other.damping)
+                && impulse.Equals(other.impulse)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -87,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

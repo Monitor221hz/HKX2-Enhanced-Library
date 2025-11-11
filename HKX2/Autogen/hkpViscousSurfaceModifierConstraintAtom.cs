@@ -5,11 +5,10 @@ namespace HKX2E
 {
     // hkpViscousSurfaceModifierConstraintAtom Signatire: 0x5c6aa14d size: 48 flags: FLAGS_NONE
 
-
-    public partial class hkpViscousSurfaceModifierConstraintAtom : hkpModifierConstraintAtom, IEquatable<hkpViscousSurfaceModifierConstraintAtom?>
+    public partial class hkpViscousSurfaceModifierConstraintAtom
+        : hkpModifierConstraintAtom,
+            IEquatable<hkpViscousSurfaceModifierConstraintAtom?>
     {
-
-
         public override uint Signature { set; get; } = 0x5c6aa14d;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +38,8 @@ namespace HKX2E
 
         public bool Equals(hkpViscousSurfaceModifierConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +51,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,23 +5,25 @@ namespace HKX2E
 {
     // hkbGeneratorTransitionEffect Signatire: 0x5f771b12 size: 144 flags: FLAGS_NONE
 
-    // transitionGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // blendInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // blendOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // syncToGeneratorStartTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // fromGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // toGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // timeInTransition class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // effectiveBlendInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // effectiveBlendOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // toGeneratorState class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // echoTransitionGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 137 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // echoToGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 138 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // justActivated class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 139 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // updateActiveNodes class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 140 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // stage class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 141 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbGeneratorTransitionEffect : hkbTransitionEffect, IEquatable<hkbGeneratorTransitionEffect?>
+    // transitionGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // blendInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // blendOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // syncToGeneratorStartTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // fromGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // toGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // timeInTransition class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // effectiveBlendInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // effectiveBlendOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // toGeneratorState class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // echoTransitionGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 137 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // echoToGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 138 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // justActivated class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 139 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // updateActiveNodes class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 140 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // stage class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 141 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbGeneratorTransitionEffect
+        : hkbTransitionEffect,
+            IEquatable<hkbGeneratorTransitionEffect?>
     {
         public hkbGenerator? transitionGenerator { set; get; }
         public float blendInDuration { set; get; }
@@ -91,7 +93,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            transitionGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(transitionGenerator));
+            transitionGenerator = xd.ReadClassPointer<hkbGenerator>(
+                this,
+                xe,
+                nameof(transitionGenerator)
+            );
             blendInDuration = xd.ReadSingle(xe, nameof(blendInDuration));
             blendOutDuration = xd.ReadSingle(xe, nameof(blendOutDuration));
             syncToGeneratorStartTime = xd.ReadBoolean(xe, nameof(syncToGeneratorStartTime));
@@ -125,13 +131,21 @@ namespace HKX2E
 
         public bool Equals(hkbGeneratorTransitionEffect? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((transitionGenerator is null && other.transitionGenerator is null) || (transitionGenerator is not null && other.transitionGenerator is not null && transitionGenerator.Equals((IHavokObject)other.transitionGenerator))) &&
-                   blendInDuration.Equals(other.blendInDuration) &&
-                   blendOutDuration.Equals(other.blendOutDuration) &&
-                   syncToGeneratorStartTime.Equals(other.syncToGeneratorStartTime) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (transitionGenerator is null && other.transitionGenerator is null)
+                    || (
+                        transitionGenerator is not null
+                        && other.transitionGenerator is not null
+                        && transitionGenerator.Equals((IHavokObject)other.transitionGenerator)
+                    )
+                )
+                && blendInDuration.Equals(other.blendInDuration)
+                && blendOutDuration.Equals(other.blendOutDuration)
+                && syncToGeneratorStartTime.Equals(other.syncToGeneratorStartTime)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -147,4 +161,3 @@ namespace HKX2E
         }
     }
 }
-

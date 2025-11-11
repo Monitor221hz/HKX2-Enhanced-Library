@@ -8,28 +8,28 @@ namespace HKX2E
 {
     // hkbFootIkModifier Signatire: 0xed8966c0 size: 256 flags: FLAGS_NONE
 
-    // gains class: hkbFootIkGains Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // legs class: hkbFootIkModifierLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // raycastDistanceUp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // raycastDistanceDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum: 
-    // originalGroundHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // errorOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum: 
-    // errorOutTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // alignWithGroundRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // verticalOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // forwardAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    // sidewaysAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
-    // sidewaysSampleWidth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
-    // useTrackData class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum: 
-    // lockFeetWhenPlanted class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 213 flags: FLAGS_NONE enum: 
-    // useCharacterUpVector class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 214 flags: FLAGS_NONE enum: 
+    // gains class: hkbFootIkGains Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // legs class: hkbFootIkModifierLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // raycastDistanceUp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // raycastDistanceDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum:
+    // originalGroundHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // errorOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum:
+    // errorOutTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // alignWithGroundRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // verticalOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum:
+    // forwardAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum:
+    // sidewaysAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum:
+    // sidewaysSampleWidth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum:
+    // useTrackData class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum:
+    // lockFeetWhenPlanted class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 213 flags: FLAGS_NONE enum:
+    // useCharacterUpVector class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 214 flags: FLAGS_NONE enum:
     // alignMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 215 flags: FLAGS_NONE enum: AlignMode
-    // internalLegData class: hkbFootIkModifierInternalLegData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // prevIsFootIkEnabled class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isSetUp class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 236 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isGroundPositionValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 237 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // internalLegData class: hkbFootIkModifierInternalLegData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // prevIsFootIkEnabled class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isSetUp class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 236 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isGroundPositionValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 237 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbFootIkModifier : hkbModifier, IEquatable<hkbFootIkModifier?>
     {
         public hkbFootIkGains gains { set; get; } = new();
@@ -49,7 +49,8 @@ namespace HKX2E
         public bool lockFeetWhenPlanted { set; get; }
         public bool useCharacterUpVector { set; get; }
         public sbyte alignMode { set; get; }
-        public IList<hkbFootIkModifierInternalLegData> internalLegData { set; get; } = Array.Empty<hkbFootIkModifierInternalLegData>();
+        public IList<hkbFootIkModifierInternalLegData> internalLegData { set; get; } =
+            Array.Empty<hkbFootIkModifierInternalLegData>();
         private float prevIsFootIkEnabled { set; get; }
         private bool isSetUp { set; get; }
         private bool isGroundPositionValid { set; get; }
@@ -171,26 +172,34 @@ namespace HKX2E
 
         public bool Equals(hkbFootIkModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((gains is null && other.gains is null) || (gains is not null && other.gains is not null && gains.Equals((IHavokObject)other.gains))) &&
-                   legs.SequenceEqual(other.legs) &&
-                   raycastDistanceUp.Equals(other.raycastDistanceUp) &&
-                   raycastDistanceDown.Equals(other.raycastDistanceDown) &&
-                   originalGroundHeightMS.Equals(other.originalGroundHeightMS) &&
-                   errorOut.Equals(other.errorOut) &&
-                   errorOutTranslation.Equals(other.errorOutTranslation) &&
-                   alignWithGroundRotation.Equals(other.alignWithGroundRotation) &&
-                   verticalOffset.Equals(other.verticalOffset) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   forwardAlignFraction.Equals(other.forwardAlignFraction) &&
-                   sidewaysAlignFraction.Equals(other.sidewaysAlignFraction) &&
-                   sidewaysSampleWidth.Equals(other.sidewaysSampleWidth) &&
-                   useTrackData.Equals(other.useTrackData) &&
-                   lockFeetWhenPlanted.Equals(other.lockFeetWhenPlanted) &&
-                   useCharacterUpVector.Equals(other.useCharacterUpVector) &&
-                   alignMode.Equals(other.alignMode) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (gains is null && other.gains is null)
+                    || (
+                        gains is not null
+                        && other.gains is not null
+                        && gains.Equals((IHavokObject)other.gains)
+                    )
+                )
+                && legs.SequenceEqual(other.legs)
+                && raycastDistanceUp.Equals(other.raycastDistanceUp)
+                && raycastDistanceDown.Equals(other.raycastDistanceDown)
+                && originalGroundHeightMS.Equals(other.originalGroundHeightMS)
+                && errorOut.Equals(other.errorOut)
+                && errorOutTranslation.Equals(other.errorOutTranslation)
+                && alignWithGroundRotation.Equals(other.alignWithGroundRotation)
+                && verticalOffset.Equals(other.verticalOffset)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && forwardAlignFraction.Equals(other.forwardAlignFraction)
+                && sidewaysAlignFraction.Equals(other.sidewaysAlignFraction)
+                && sidewaysSampleWidth.Equals(other.sidewaysSampleWidth)
+                && useTrackData.Equals(other.useTrackData)
+                && lockFeetWhenPlanted.Equals(other.lockFeetWhenPlanted)
+                && useCharacterUpVector.Equals(other.useCharacterUpVector)
+                && alignMode.Equals(other.alignMode)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -219,4 +228,3 @@ namespace HKX2E
         }
     }
 }
-

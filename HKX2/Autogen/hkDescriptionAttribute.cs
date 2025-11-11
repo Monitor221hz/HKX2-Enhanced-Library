@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkDescriptionAttribute Signatire: 0xe9f9578a size: 8 flags: FLAGS_NONE
 
-    //  string class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    //  string class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkDescriptionAttribute : IHavokObject, IEquatable<hkDescriptionAttribute?>
     {
         public string _string { set; get; } = "";
@@ -39,9 +39,15 @@ namespace HKX2E
 
         public bool Equals(hkDescriptionAttribute? other)
         {
-            return other is not null &&
-                   (_string is null && other._string is null || _string == other._string || _string is null && other._string == "" || _string == "" && other._string is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    _string is null && other._string is null
+                    || _string == other._string
+                    || _string is null && other._string == ""
+                    || _string == "" && other._string is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +59,3 @@ namespace HKX2E
         }
     }
 }
-

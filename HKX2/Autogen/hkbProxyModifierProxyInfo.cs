@@ -6,21 +6,23 @@ namespace HKX2E
 {
     // hkbProxyModifierProxyInfo Signatire: 0x39de637e size: 80 flags: FLAGS_NONE
 
-    // dynamicFriction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // staticFriction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // keepContactTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // keepDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // contactAngleSensitivity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // userPlanes class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // maxCharacterSpeedForSolver class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    // characterStrength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // characterMass class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    // maxSlope class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // penetrationRecoverySpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // maxCastIterations class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // refreshManifoldInCheckSupport class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    public partial class hkbProxyModifierProxyInfo : IHavokObject, IEquatable<hkbProxyModifierProxyInfo?>
+    // dynamicFriction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // staticFriction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // keepContactTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // keepDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // contactAngleSensitivity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // userPlanes class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // maxCharacterSpeedForSolver class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
+    // characterStrength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // characterMass class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum:
+    // maxSlope class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // penetrationRecoverySpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // maxCastIterations class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // refreshManifoldInCheckSupport class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    public partial class hkbProxyModifierProxyInfo
+        : IHavokObject,
+            IEquatable<hkbProxyModifierProxyInfo?>
     {
         public float dynamicFriction { set; get; }
         public float staticFriction { set; get; }
@@ -94,7 +96,10 @@ namespace HKX2E
             maxSlope = xd.ReadSingle(xe, nameof(maxSlope));
             penetrationRecoverySpeed = xd.ReadSingle(xe, nameof(penetrationRecoverySpeed));
             maxCastIterations = xd.ReadInt32(xe, nameof(maxCastIterations));
-            refreshManifoldInCheckSupport = xd.ReadBoolean(xe, nameof(refreshManifoldInCheckSupport));
+            refreshManifoldInCheckSupport = xd.ReadBoolean(
+                xe,
+                nameof(refreshManifoldInCheckSupport)
+            );
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -112,7 +117,11 @@ namespace HKX2E
             xs.WriteFloat(xe, nameof(maxSlope), maxSlope);
             xs.WriteFloat(xe, nameof(penetrationRecoverySpeed), penetrationRecoverySpeed);
             xs.WriteNumber(xe, nameof(maxCastIterations), maxCastIterations);
-            xs.WriteBoolean(xe, nameof(refreshManifoldInCheckSupport), refreshManifoldInCheckSupport);
+            xs.WriteBoolean(
+                xe,
+                nameof(refreshManifoldInCheckSupport),
+                refreshManifoldInCheckSupport
+            );
         }
 
         public override bool Equals(object? obj)
@@ -122,22 +131,23 @@ namespace HKX2E
 
         public bool Equals(hkbProxyModifierProxyInfo? other)
         {
-            return other is not null &&
-                   dynamicFriction.Equals(other.dynamicFriction) &&
-                   staticFriction.Equals(other.staticFriction) &&
-                   keepContactTolerance.Equals(other.keepContactTolerance) &&
-                   up.Equals(other.up) &&
-                   keepDistance.Equals(other.keepDistance) &&
-                   contactAngleSensitivity.Equals(other.contactAngleSensitivity) &&
-                   userPlanes.Equals(other.userPlanes) &&
-                   maxCharacterSpeedForSolver.Equals(other.maxCharacterSpeedForSolver) &&
-                   characterStrength.Equals(other.characterStrength) &&
-                   characterMass.Equals(other.characterMass) &&
-                   maxSlope.Equals(other.maxSlope) &&
-                   penetrationRecoverySpeed.Equals(other.penetrationRecoverySpeed) &&
-                   maxCastIterations.Equals(other.maxCastIterations) &&
-                   refreshManifoldInCheckSupport.Equals(other.refreshManifoldInCheckSupport) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && dynamicFriction.Equals(other.dynamicFriction)
+                && staticFriction.Equals(other.staticFriction)
+                && keepContactTolerance.Equals(other.keepContactTolerance)
+                && up.Equals(other.up)
+                && keepDistance.Equals(other.keepDistance)
+                && contactAngleSensitivity.Equals(other.contactAngleSensitivity)
+                && userPlanes.Equals(other.userPlanes)
+                && maxCharacterSpeedForSolver.Equals(other.maxCharacterSpeedForSolver)
+                && characterStrength.Equals(other.characterStrength)
+                && characterMass.Equals(other.characterMass)
+                && maxSlope.Equals(other.maxSlope)
+                && penetrationRecoverySpeed.Equals(other.penetrationRecoverySpeed)
+                && maxCastIterations.Equals(other.maxCastIterations)
+                && refreshManifoldInCheckSupport.Equals(other.refreshManifoldInCheckSupport)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -162,4 +172,3 @@ namespace HKX2E
         }
     }
 }
-

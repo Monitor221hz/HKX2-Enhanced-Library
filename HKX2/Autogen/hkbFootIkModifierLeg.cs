@@ -6,25 +6,25 @@ namespace HKX2E
 {
     // hkbFootIkModifierLeg Signatire: 0x9f3e3a04 size: 160 flags: FLAGS_NONE
 
-    // originalAnkleTransformMS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // prevAnkleRotLS class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // kneeAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // footEndLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // ungroundedEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // footPlantedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // footRaisedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum: 
-    // maxAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // minAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
-    // maxKneeAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // minKneeAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
-    // verticalError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // maxAnkleAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum: 
-    // hipIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // kneeIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 146 flags: FLAGS_NONE enum: 
-    // ankleIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum: 
-    // hitSomething class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 150 flags: FLAGS_NONE enum: 
-    // isPlantedMS class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 151 flags: FLAGS_NONE enum: 
-    // isOriginalAnkleTransformMSSet class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
+    // originalAnkleTransformMS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // prevAnkleRotLS class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // kneeAxisLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // footEndLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // ungroundedEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // footPlantedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // footRaisedAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum:
+    // maxAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // minAnkleHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum:
+    // maxKneeAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // minKneeAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum:
+    // verticalError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // maxAnkleAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum:
+    // hipIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // kneeIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 146 flags: FLAGS_NONE enum:
+    // ankleIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum:
+    // hitSomething class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 150 flags: FLAGS_NONE enum:
+    // isPlantedMS class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 151 flags: FLAGS_NONE enum:
+    // isOriginalAnkleTransformMSSet class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
     public partial class hkbFootIkModifierLeg : IHavokObject, IEquatable<hkbFootIkModifierLeg?>
     {
         public Matrix4x4 originalAnkleTransformMS { set; get; }
@@ -116,7 +116,10 @@ namespace HKX2E
             ankleIndex = xd.ReadInt16(xe, nameof(ankleIndex));
             hitSomething = xd.ReadBoolean(xe, nameof(hitSomething));
             isPlantedMS = xd.ReadBoolean(xe, nameof(isPlantedMS));
-            isOriginalAnkleTransformMSSet = xd.ReadBoolean(xe, nameof(isOriginalAnkleTransformMSSet));
+            isOriginalAnkleTransformMSSet = xd.ReadBoolean(
+                xe,
+                nameof(isOriginalAnkleTransformMSSet)
+            );
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -139,7 +142,11 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(ankleIndex), ankleIndex);
             xs.WriteBoolean(xe, nameof(hitSomething), hitSomething);
             xs.WriteBoolean(xe, nameof(isPlantedMS), isPlantedMS);
-            xs.WriteBoolean(xe, nameof(isOriginalAnkleTransformMSSet), isOriginalAnkleTransformMSSet);
+            xs.WriteBoolean(
+                xe,
+                nameof(isOriginalAnkleTransformMSSet),
+                isOriginalAnkleTransformMSSet
+            );
         }
 
         public override bool Equals(object? obj)
@@ -149,26 +156,34 @@ namespace HKX2E
 
         public bool Equals(hkbFootIkModifierLeg? other)
         {
-            return other is not null &&
-                   originalAnkleTransformMS.Equals(other.originalAnkleTransformMS) &&
-                   kneeAxisLS.Equals(other.kneeAxisLS) &&
-                   footEndLS.Equals(other.footEndLS) &&
-                   ((ungroundedEvent is null && other.ungroundedEvent is null) || (ungroundedEvent is not null && other.ungroundedEvent is not null && ungroundedEvent.Equals((IHavokObject)other.ungroundedEvent))) &&
-                   footPlantedAnkleHeightMS.Equals(other.footPlantedAnkleHeightMS) &&
-                   footRaisedAnkleHeightMS.Equals(other.footRaisedAnkleHeightMS) &&
-                   maxAnkleHeightMS.Equals(other.maxAnkleHeightMS) &&
-                   minAnkleHeightMS.Equals(other.minAnkleHeightMS) &&
-                   maxKneeAngleDegrees.Equals(other.maxKneeAngleDegrees) &&
-                   minKneeAngleDegrees.Equals(other.minKneeAngleDegrees) &&
-                   verticalError.Equals(other.verticalError) &&
-                   maxAnkleAngleDegrees.Equals(other.maxAnkleAngleDegrees) &&
-                   hipIndex.Equals(other.hipIndex) &&
-                   kneeIndex.Equals(other.kneeIndex) &&
-                   ankleIndex.Equals(other.ankleIndex) &&
-                   hitSomething.Equals(other.hitSomething) &&
-                   isPlantedMS.Equals(other.isPlantedMS) &&
-                   isOriginalAnkleTransformMSSet.Equals(other.isOriginalAnkleTransformMSSet) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && originalAnkleTransformMS.Equals(other.originalAnkleTransformMS)
+                && kneeAxisLS.Equals(other.kneeAxisLS)
+                && footEndLS.Equals(other.footEndLS)
+                && (
+                    (ungroundedEvent is null && other.ungroundedEvent is null)
+                    || (
+                        ungroundedEvent is not null
+                        && other.ungroundedEvent is not null
+                        && ungroundedEvent.Equals((IHavokObject)other.ungroundedEvent)
+                    )
+                )
+                && footPlantedAnkleHeightMS.Equals(other.footPlantedAnkleHeightMS)
+                && footRaisedAnkleHeightMS.Equals(other.footRaisedAnkleHeightMS)
+                && maxAnkleHeightMS.Equals(other.maxAnkleHeightMS)
+                && minAnkleHeightMS.Equals(other.minAnkleHeightMS)
+                && maxKneeAngleDegrees.Equals(other.maxKneeAngleDegrees)
+                && minKneeAngleDegrees.Equals(other.minKneeAngleDegrees)
+                && verticalError.Equals(other.verticalError)
+                && maxAnkleAngleDegrees.Equals(other.maxAnkleAngleDegrees)
+                && hipIndex.Equals(other.hipIndex)
+                && kneeIndex.Equals(other.kneeIndex)
+                && ankleIndex.Equals(other.ankleIndex)
+                && hitSomething.Equals(other.hitSomething)
+                && isPlantedMS.Equals(other.isPlantedMS)
+                && isOriginalAnkleTransformMSSet.Equals(other.isOriginalAnkleTransformMSSet)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -197,4 +212,3 @@ namespace HKX2E
         }
     }
 }
-

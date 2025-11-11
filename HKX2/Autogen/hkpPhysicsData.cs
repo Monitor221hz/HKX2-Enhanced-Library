@@ -7,8 +7,8 @@ namespace HKX2E
 {
     // hkpPhysicsData Signatire: 0xc2a461e4 size: 40 flags: FLAGS_NONE
 
-    // worldCinfo class: hkpWorldCinfo Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // systems class: hkpPhysicsSystem Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // worldCinfo class: hkpWorldCinfo Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // systems class: hkpPhysicsSystem Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
     public partial class hkpPhysicsData : hkReferencedObject, IEquatable<hkpPhysicsData?>
     {
         public hkpWorldCinfo? worldCinfo { set; get; }
@@ -51,11 +51,19 @@ namespace HKX2E
 
         public bool Equals(hkpPhysicsData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((worldCinfo is null && other.worldCinfo is null) || (worldCinfo is not null && other.worldCinfo is not null && worldCinfo.Equals((IHavokObject)other.worldCinfo))) &&
-                   systems.SequenceEqual(other.systems) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (worldCinfo is null && other.worldCinfo is null)
+                    || (
+                        worldCinfo is not null
+                        && other.worldCinfo is not null
+                        && worldCinfo.Equals((IHavokObject)other.worldCinfo)
+                    )
+                )
+                && systems.SequenceEqual(other.systems)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +77,3 @@ namespace HKX2E
         }
     }
 }
-

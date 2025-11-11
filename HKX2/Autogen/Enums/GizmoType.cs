@@ -8,4 +8,3 @@ namespace HKX2E
         ARROW = 3,
     }
 }
-

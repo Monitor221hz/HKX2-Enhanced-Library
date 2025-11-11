@@ -8,10 +8,12 @@ namespace HKX2E
     // hkbAuxiliaryNodeInfo Signatire: 0xca0888ca size: 48 flags: FLAGS_NONE
 
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: NodeType
-    // depth class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 17 flags: FLAGS_NONE enum: 
-    // referenceBehaviorName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // selfTransitionNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkbAuxiliaryNodeInfo : hkReferencedObject, IEquatable<hkbAuxiliaryNodeInfo?>
+    // depth class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 17 flags: FLAGS_NONE enum:
+    // referenceBehaviorName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // selfTransitionNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkbAuxiliaryNodeInfo
+        : hkReferencedObject,
+            IEquatable<hkbAuxiliaryNodeInfo?>
     {
         public byte type { set; get; }
         public byte depth { set; get; }
@@ -65,13 +67,19 @@ namespace HKX2E
 
         public bool Equals(hkbAuxiliaryNodeInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   type.Equals(other.type) &&
-                   depth.Equals(other.depth) &&
-                   (referenceBehaviorName is null && other.referenceBehaviorName is null || referenceBehaviorName == other.referenceBehaviorName || referenceBehaviorName is null && other.referenceBehaviorName == "" || referenceBehaviorName == "" && other.referenceBehaviorName is null) &&
-                   selfTransitionNames.SequenceEqual(other.selfTransitionNames) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && type.Equals(other.type)
+                && depth.Equals(other.depth)
+                && (
+                    referenceBehaviorName is null && other.referenceBehaviorName is null
+                    || referenceBehaviorName == other.referenceBehaviorName
+                    || referenceBehaviorName is null && other.referenceBehaviorName == ""
+                    || referenceBehaviorName == "" && other.referenceBehaviorName is null
+                )
+                && selfTransitionNames.SequenceEqual(other.selfTransitionNames)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -87,4 +95,3 @@ namespace HKX2E
         }
     }
 }
-

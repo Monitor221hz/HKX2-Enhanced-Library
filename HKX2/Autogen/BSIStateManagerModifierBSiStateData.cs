@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // BSIStateManagerModifierBSiStateData Signatire: 0x6b8a15fc size: 16 flags: FLAGS_NONE
 
-    // pStateMachine class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // StateID class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // iStateToSetAs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class BSIStateManagerModifierBSiStateData : IHavokObject, IEquatable<BSIStateManagerModifierBSiStateData?>
+    // pStateMachine class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // StateID class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // iStateToSetAs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class BSIStateManagerModifierBSiStateData
+        : IHavokObject,
+            IEquatable<BSIStateManagerModifierBSiStateData?>
     {
         public hkbGenerator? pStateMachine { set; get; }
         public int StateID { set; get; }
@@ -51,11 +53,19 @@ namespace HKX2E
 
         public bool Equals(BSIStateManagerModifierBSiStateData? other)
         {
-            return other is not null &&
-                   ((pStateMachine is null && other.pStateMachine is null) || (pStateMachine is not null && other.pStateMachine is not null && pStateMachine.Equals((IHavokObject)other.pStateMachine))) &&
-                   StateID.Equals(other.StateID) &&
-                   iStateToSetAs.Equals(other.iStateToSetAs) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (pStateMachine is null && other.pStateMachine is null)
+                    || (
+                        pStateMachine is not null
+                        && other.pStateMachine is not null
+                        && pStateMachine.Equals((IHavokObject)other.pStateMachine)
+                    )
+                )
+                && StateID.Equals(other.StateID)
+                && iStateToSetAs.Equals(other.iStateToSetAs)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +79,3 @@ namespace HKX2E
         }
     }
 }
-

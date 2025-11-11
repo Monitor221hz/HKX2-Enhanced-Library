@@ -7,17 +7,22 @@ namespace HKX2E
 {
     // hkpSerializedDisplayRbTransforms Signatire: 0xc18650ac size: 32 flags: FLAGS_NONE
 
-    // transforms class: hkpSerializedDisplayRbTransformsDisplayTransformPair Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpSerializedDisplayRbTransforms : hkReferencedObject, IEquatable<hkpSerializedDisplayRbTransforms?>
+    // transforms class: hkpSerializedDisplayRbTransformsDisplayTransformPair Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpSerializedDisplayRbTransforms
+        : hkReferencedObject,
+            IEquatable<hkpSerializedDisplayRbTransforms?>
     {
-        public IList<hkpSerializedDisplayRbTransformsDisplayTransformPair> transforms { set; get; } = Array.Empty<hkpSerializedDisplayRbTransformsDisplayTransformPair>();
+        public IList<hkpSerializedDisplayRbTransformsDisplayTransformPair> transforms { set; get; } =
+            Array.Empty<hkpSerializedDisplayRbTransformsDisplayTransformPair>();
 
         public override uint Signature { set; get; } = 0xc18650ac;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            transforms = des.ReadClassArray<hkpSerializedDisplayRbTransformsDisplayTransformPair>(br);
+            transforms = des.ReadClassArray<hkpSerializedDisplayRbTransformsDisplayTransformPair>(
+                br
+            );
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -29,7 +34,10 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            transforms = xd.ReadClassArray<hkpSerializedDisplayRbTransformsDisplayTransformPair>(xe, nameof(transforms));
+            transforms = xd.ReadClassArray<hkpSerializedDisplayRbTransformsDisplayTransformPair>(
+                xe,
+                nameof(transforms)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +53,11 @@ namespace HKX2E
 
         public bool Equals(hkpSerializedDisplayRbTransforms? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   transforms.SequenceEqual(other.transforms) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && transforms.SequenceEqual(other.transforms)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

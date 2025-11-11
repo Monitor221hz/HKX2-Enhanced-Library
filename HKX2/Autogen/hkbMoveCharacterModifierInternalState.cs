@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbMoveCharacterModifierInternalState Signatire: 0x28f67ba0 size: 24 flags: FLAGS_NONE
 
-    // timeSinceLastModify class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbMoveCharacterModifierInternalState : hkReferencedObject, IEquatable<hkbMoveCharacterModifierInternalState?>
+    // timeSinceLastModify class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbMoveCharacterModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbMoveCharacterModifierInternalState?>
     {
         public float timeSinceLastModify { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbMoveCharacterModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   timeSinceLastModify.Equals(other.timeSinceLastModify) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && timeSinceLastModify.Equals(other.timeSinceLastModify)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

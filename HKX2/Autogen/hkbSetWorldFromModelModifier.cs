@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkbSetWorldFromModelModifier Signatire: 0xafcfa211 size: 128 flags: FLAGS_NONE
 
-    // translation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // setTranslation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // setRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 113 flags: FLAGS_NONE enum: 
-    public partial class hkbSetWorldFromModelModifier : hkbModifier, IEquatable<hkbSetWorldFromModelModifier?>
+    // translation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // setTranslation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // setRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 113 flags: FLAGS_NONE enum:
+    public partial class hkbSetWorldFromModelModifier
+        : hkbModifier,
+            IEquatable<hkbSetWorldFromModelModifier?>
     {
         public Vector4 translation { set; get; }
         public Quaternion rotation { set; get; }
@@ -64,13 +66,14 @@ namespace HKX2E
 
         public bool Equals(hkbSetWorldFromModelModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   translation.Equals(other.translation) &&
-                   rotation.Equals(other.rotation) &&
-                   setTranslation.Equals(other.setTranslation) &&
-                   setRotation.Equals(other.setRotation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && translation.Equals(other.translation)
+                && rotation.Equals(other.rotation)
+                && setTranslation.Equals(other.setTranslation)
+                && setRotation.Equals(other.setRotation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

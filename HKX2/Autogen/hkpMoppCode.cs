@@ -7,8 +7,8 @@ namespace HKX2E
 {
     // hkpMoppCode Signatire: 0x924c2661 size: 64 flags: FLAGS_NONE
 
-    // info class: hkpMoppCodeCodeInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // info class: hkpMoppCodeCodeInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
     // buildType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: BuildType
     public partial class hkpMoppCode : hkReferencedObject, IEquatable<hkpMoppCode?>
     {
@@ -59,12 +59,20 @@ namespace HKX2E
 
         public bool Equals(hkpMoppCode? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((info is null && other.info is null) || (info is not null && other.info is not null && info.Equals((IHavokObject)other.info))) &&
-                   data.SequenceEqual(other.data) &&
-                   buildType.Equals(other.buildType) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (info is null && other.info is null)
+                    || (
+                        info is not null
+                        && other.info is not null
+                        && info.Equals((IHavokObject)other.info)
+                    )
+                )
+                && data.SequenceEqual(other.data)
+                && buildType.Equals(other.buildType)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +87,3 @@ namespace HKX2E
         }
     }
 }
-

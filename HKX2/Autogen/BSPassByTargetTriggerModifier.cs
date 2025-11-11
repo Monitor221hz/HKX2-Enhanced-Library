@@ -6,12 +6,14 @@ namespace HKX2E
 {
     // BSPassByTargetTriggerModifier Signatire: 0x703d7b66 size: 160 flags: FLAGS_NONE
 
-    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // movementDirection class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // triggerEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // targetPassed class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSPassByTargetTriggerModifier : hkbModifier, IEquatable<BSPassByTargetTriggerModifier?>
+    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // movementDirection class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // triggerEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // targetPassed class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSPassByTargetTriggerModifier
+        : hkbModifier,
+            IEquatable<BSPassByTargetTriggerModifier?>
     {
         public Vector4 targetPosition { set; get; }
         public float radius { set; get; }
@@ -71,13 +73,21 @@ namespace HKX2E
 
         public bool Equals(BSPassByTargetTriggerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   targetPosition.Equals(other.targetPosition) &&
-                   radius.Equals(other.radius) &&
-                   movementDirection.Equals(other.movementDirection) &&
-                   ((triggerEvent is null && other.triggerEvent is null) || (triggerEvent is not null && other.triggerEvent is not null && triggerEvent.Equals((IHavokObject)other.triggerEvent))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && targetPosition.Equals(other.targetPosition)
+                && radius.Equals(other.radius)
+                && movementDirection.Equals(other.movementDirection)
+                && (
+                    (triggerEvent is null && other.triggerEvent is null)
+                    || (
+                        triggerEvent is not null
+                        && other.triggerEvent is not null
+                        && triggerEvent.Equals((IHavokObject)other.triggerEvent)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -93,4 +103,3 @@ namespace HKX2E
         }
     }
 }
-

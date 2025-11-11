@@ -5,9 +5,9 @@ namespace HKX2E
 {
     // hkbTestStateChooser Signatire: 0xc0fcc436 size: 32 flags: FLAGS_NONE
 
-    //  int class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // real class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    //  string class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    //  int class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // real class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    //  string class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
     public partial class hkbTestStateChooser : hkbStateChooser, IEquatable<hkbTestStateChooser?>
     {
         public int _int { set; get; }
@@ -55,12 +55,18 @@ namespace HKX2E
 
         public bool Equals(hkbTestStateChooser? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   _int.Equals(other._int) &&
-                   real.Equals(other.real) &&
-                   (_string is null && other._string is null || _string == other._string || _string is null && other._string == "" || _string == "" && other._string is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && _int.Equals(other._int)
+                && real.Equals(other.real)
+                && (
+                    _string is null && other._string is null
+                    || _string == other._string
+                    || _string is null && other._string == ""
+                    || _string == "" && other._string is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -75,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,13 +6,15 @@ namespace HKX2E
 {
     // hkbDampingModifierInternalState Signatire: 0x508d3b36 size: 80 flags: FLAGS_NONE
 
-    // dampedVector class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // vecErrorSum class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // vecPreviousError class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // dampedValue class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // errorSum class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // previousError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    public partial class hkbDampingModifierInternalState : hkReferencedObject, IEquatable<hkbDampingModifierInternalState?>
+    // dampedVector class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // vecErrorSum class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // vecPreviousError class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // dampedValue class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // errorSum class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // previousError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    public partial class hkbDampingModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbDampingModifierInternalState?>
     {
         public Vector4 dampedVector { set; get; }
         public Vector4 vecErrorSum { set; get; }
@@ -76,15 +78,16 @@ namespace HKX2E
 
         public bool Equals(hkbDampingModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   dampedVector.Equals(other.dampedVector) &&
-                   vecErrorSum.Equals(other.vecErrorSum) &&
-                   vecPreviousError.Equals(other.vecPreviousError) &&
-                   dampedValue.Equals(other.dampedValue) &&
-                   errorSum.Equals(other.errorSum) &&
-                   previousError.Equals(other.previousError) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && dampedVector.Equals(other.dampedVector)
+                && vecErrorSum.Equals(other.vecErrorSum)
+                && vecPreviousError.Equals(other.vecPreviousError)
+                && dampedValue.Equals(other.dampedValue)
+                && errorSum.Equals(other.errorSum)
+                && previousError.Equals(other.previousError)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -102,4 +105,3 @@ namespace HKX2E
         }
     }
 }
-

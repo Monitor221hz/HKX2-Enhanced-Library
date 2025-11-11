@@ -5,13 +5,15 @@ namespace HKX2E
 {
     // hkTrackerSerializableScanSnapshotBlock Signatire: 0xe7f23e6d size: 40 flags: FLAGS_NONE
 
-    // typeIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // start class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // size class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // arraySize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // startReferenceIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // numReferences class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkTrackerSerializableScanSnapshotBlock : IHavokObject, IEquatable<hkTrackerSerializableScanSnapshotBlock?>
+    // typeIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // start class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // size class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // arraySize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // startReferenceIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // numReferences class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkTrackerSerializableScanSnapshotBlock
+        : IHavokObject,
+            IEquatable<hkTrackerSerializableScanSnapshotBlock?>
     {
         public int typeIndex { set; get; }
         public ulong start { set; get; }
@@ -73,14 +75,15 @@ namespace HKX2E
 
         public bool Equals(hkTrackerSerializableScanSnapshotBlock? other)
         {
-            return other is not null &&
-                   typeIndex.Equals(other.typeIndex) &&
-                   start.Equals(other.start) &&
-                   size.Equals(other.size) &&
-                   arraySize.Equals(other.arraySize) &&
-                   startReferenceIndex.Equals(other.startReferenceIndex) &&
-                   numReferences.Equals(other.numReferences) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && typeIndex.Equals(other.typeIndex)
+                && start.Equals(other.start)
+                && size.Equals(other.size)
+                && arraySize.Equals(other.arraySize)
+                && startReferenceIndex.Equals(other.startReferenceIndex)
+                && numReferences.Equals(other.numReferences)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -97,4 +100,3 @@ namespace HKX2E
         }
     }
 }
-

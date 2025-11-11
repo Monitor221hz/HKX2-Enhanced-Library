@@ -5,13 +5,15 @@ namespace HKX2E
 {
     // hkpCompressedMeshShapeBigTriangle Signatire: 0xcbfc95a4 size: 16 flags: FLAGS_NONE
 
-    // a class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // b class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // c class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // material class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // weldingInfo class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // transformIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 14 flags: FLAGS_NONE enum: 
-    public partial class hkpCompressedMeshShapeBigTriangle : IHavokObject, IEquatable<hkpCompressedMeshShapeBigTriangle?>
+    // a class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // b class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // c class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // material class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // weldingInfo class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // transformIndex class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 14 flags: FLAGS_NONE enum:
+    public partial class hkpCompressedMeshShapeBigTriangle
+        : IHavokObject,
+            IEquatable<hkpCompressedMeshShapeBigTriangle?>
     {
         public ushort a { set; get; }
         public ushort b { set; get; }
@@ -71,14 +73,15 @@ namespace HKX2E
 
         public bool Equals(hkpCompressedMeshShapeBigTriangle? other)
         {
-            return other is not null &&
-                   a.Equals(other.a) &&
-                   b.Equals(other.b) &&
-                   c.Equals(other.c) &&
-                   material.Equals(other.material) &&
-                   weldingInfo.Equals(other.weldingInfo) &&
-                   transformIndex.Equals(other.transformIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && a.Equals(other.a)
+                && b.Equals(other.b)
+                && c.Equals(other.c)
+                && material.Equals(other.material)
+                && weldingInfo.Equals(other.weldingInfo)
+                && transformIndex.Equals(other.transformIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -95,4 +98,3 @@ namespace HKX2E
         }
     }
 }
-

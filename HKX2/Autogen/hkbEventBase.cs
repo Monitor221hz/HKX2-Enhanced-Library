@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkbEventBase Signatire: 0x76bddb31 size: 16 flags: FLAGS_NONE
 
-    // id class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // payload class: hkbEventPayload Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // id class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // payload class: hkbEventPayload Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkbEventBase : IHavokObject, IEquatable<hkbEventBase?>
     {
         public int id { set; get; }
@@ -47,10 +47,18 @@ namespace HKX2E
 
         public bool Equals(hkbEventBase? other)
         {
-            return other is not null &&
-                   id.Equals(other.id) &&
-                   ((payload is null && other.payload is null) || (payload is not null && other.payload is not null && payload.Equals((IHavokObject)other.payload))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && id.Equals(other.id)
+                && (
+                    (payload is null && other.payload is null)
+                    || (
+                        payload is not null
+                        && other.payload is not null
+                        && payload.Equals((IHavokObject)other.payload)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

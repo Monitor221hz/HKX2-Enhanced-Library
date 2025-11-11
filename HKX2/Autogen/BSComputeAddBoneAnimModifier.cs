@@ -6,12 +6,14 @@ namespace HKX2E
 {
     // BSComputeAddBoneAnimModifier Signatire: 0xa67f8c46 size: 160 flags: FLAGS_NONE
 
-    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // translationLSOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // rotationLSOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // scaleLSOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSComputeAddBoneAnimModifier : hkbModifier, IEquatable<BSComputeAddBoneAnimModifier?>
+    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // translationLSOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // rotationLSOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // scaleLSOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSComputeAddBoneAnimModifier
+        : hkbModifier,
+            IEquatable<BSComputeAddBoneAnimModifier?>
     {
         public short boneIndex { set; get; }
         public Vector4 translationLSOut { set; get; }
@@ -71,13 +73,14 @@ namespace HKX2E
 
         public bool Equals(BSComputeAddBoneAnimModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   boneIndex.Equals(other.boneIndex) &&
-                   translationLSOut.Equals(other.translationLSOut) &&
-                   rotationLSOut.Equals(other.rotationLSOut) &&
-                   scaleLSOut.Equals(other.scaleLSOut) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && boneIndex.Equals(other.boneIndex)
+                && translationLSOut.Equals(other.translationLSOut)
+                && rotationLSOut.Equals(other.rotationLSOut)
+                && scaleLSOut.Equals(other.scaleLSOut)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -93,4 +96,3 @@ namespace HKX2E
         }
     }
 }
-

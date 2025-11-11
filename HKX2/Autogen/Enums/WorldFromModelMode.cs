@@ -9,4 +9,3 @@ namespace HKX2E
         WORLD_FROM_MODEL_MODE_RAGDOLL = 4,
     }
 }
-

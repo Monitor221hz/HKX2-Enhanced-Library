@@ -5,15 +5,15 @@ namespace HKX2E
 {
     // BSLimbIKModifier Signatire: 0x8ea971e5 size: 120 flags: FLAGS_NONE
 
-    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // currentAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // startBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // endBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 90 flags: FLAGS_NONE enum: 
-    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // boneRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // castOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // currentAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // startBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // endBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 90 flags: FLAGS_NONE enum:
+    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // boneRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // castOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class BSLimbIKModifier : hkbModifier, IEquatable<BSLimbIKModifier?>
     {
         public float limitAngleDegrees { set; get; }
@@ -90,15 +90,16 @@ namespace HKX2E
 
         public bool Equals(BSLimbIKModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   limitAngleDegrees.Equals(other.limitAngleDegrees) &&
-                   startBoneIndex.Equals(other.startBoneIndex) &&
-                   endBoneIndex.Equals(other.endBoneIndex) &&
-                   gain.Equals(other.gain) &&
-                   boneRadius.Equals(other.boneRadius) &&
-                   castOffset.Equals(other.castOffset) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && limitAngleDegrees.Equals(other.limitAngleDegrees)
+                && startBoneIndex.Equals(other.startBoneIndex)
+                && endBoneIndex.Equals(other.endBoneIndex)
+                && gain.Equals(other.gain)
+                && boneRadius.Equals(other.boneRadius)
+                && castOffset.Equals(other.castOffset)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -116,4 +117,3 @@ namespace HKX2E
         }
     }
 }
-

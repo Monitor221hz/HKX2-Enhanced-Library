@@ -6,8 +6,10 @@ namespace HKX2E
 {
     // hkbComputeRotationFromAxisAngleModifierInternalState Signatire: 0x71cd1eb0 size: 32 flags: FLAGS_NONE
 
-    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbComputeRotationFromAxisAngleModifierInternalState : hkReferencedObject, IEquatable<hkbComputeRotationFromAxisAngleModifierInternalState?>
+    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbComputeRotationFromAxisAngleModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbComputeRotationFromAxisAngleModifierInternalState?>
     {
         public Quaternion rotationOut { set; get; }
 
@@ -44,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkbComputeRotationFromAxisAngleModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rotationOut.Equals(other.rotationOut) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rotationOut.Equals(other.rotationOut)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -60,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

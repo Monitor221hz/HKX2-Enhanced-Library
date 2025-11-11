@@ -7,10 +7,13 @@ namespace HKX2E
 {
     // hkbHandIkControlsModifier Signatire: 0x9f0488bb size: 96 flags: FLAGS_NONE
 
-    // hands class: hkbHandIkControlsModifierHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    public partial class hkbHandIkControlsModifier : hkbModifier, IEquatable<hkbHandIkControlsModifier?>
+    // hands class: hkbHandIkControlsModifierHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    public partial class hkbHandIkControlsModifier
+        : hkbModifier,
+            IEquatable<hkbHandIkControlsModifier?>
     {
-        public IList<hkbHandIkControlsModifierHand> hands { set; get; } = Array.Empty<hkbHandIkControlsModifierHand>();
+        public IList<hkbHandIkControlsModifierHand> hands { set; get; } =
+            Array.Empty<hkbHandIkControlsModifierHand>();
 
         public override uint Signature { set; get; } = 0x9f0488bb;
 
@@ -45,10 +48,11 @@ namespace HKX2E
 
         public bool Equals(hkbHandIkControlsModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   hands.SequenceEqual(other.hands) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && hands.SequenceEqual(other.hands)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +65,3 @@ namespace HKX2E
         }
     }
 }
-

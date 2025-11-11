@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbEventDrivenModifier Signatire: 0x7ed3f44e size: 104 flags: FLAGS_NONE
 
-    // activateEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // deactivateEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // activeByDefault class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 97 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbEventDrivenModifier : hkbModifierWrapper, IEquatable<hkbEventDrivenModifier?>
+    // activateEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // deactivateEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // activeByDefault class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 97 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbEventDrivenModifier
+        : hkbModifierWrapper,
+            IEquatable<hkbEventDrivenModifier?>
     {
         public int activateEventId { set; get; }
         public int deactivateEventId { set; get; }
@@ -62,12 +64,13 @@ namespace HKX2E
 
         public bool Equals(hkbEventDrivenModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   activateEventId.Equals(other.activateEventId) &&
-                   deactivateEventId.Equals(other.deactivateEventId) &&
-                   activeByDefault.Equals(other.activeByDefault) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && activateEventId.Equals(other.activateEventId)
+                && deactivateEventId.Equals(other.deactivateEventId)
+                && activeByDefault.Equals(other.activeByDefault)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -82,4 +85,3 @@ namespace HKX2E
         }
     }
 }
-

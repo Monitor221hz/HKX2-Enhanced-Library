@@ -5,14 +5,16 @@ namespace HKX2E
 {
     // hkpAngMotorConstraintAtom Signatire: 0x81f087ff size: 24 flags: FLAGS_NONE
 
-    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // motorAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // initializedOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // previousTargetAngleOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
-    // correspondingAngLimitSolverResultOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // targetAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // motor class: hkpConstraintMotor Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpAngMotorConstraintAtom : hkpConstraintAtom, IEquatable<hkpAngMotorConstraintAtom?>
+    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // motorAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
+    // initializedOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // previousTargetAngleOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum:
+    // correspondingAngLimitSolverResultOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // targetAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // motor class: hkpConstraintMotor Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpAngMotorConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpAngMotorConstraintAtom?>
     {
         public bool isEnabled { set; get; }
         public byte motorAxis { set; get; }
@@ -57,7 +59,10 @@ namespace HKX2E
             motorAxis = xd.ReadByte(xe, nameof(motorAxis));
             initializedOffset = xd.ReadInt16(xe, nameof(initializedOffset));
             previousTargetAngleOffset = xd.ReadInt16(xe, nameof(previousTargetAngleOffset));
-            correspondingAngLimitSolverResultOffset = xd.ReadInt16(xe, nameof(correspondingAngLimitSolverResultOffset));
+            correspondingAngLimitSolverResultOffset = xd.ReadInt16(
+                xe,
+                nameof(correspondingAngLimitSolverResultOffset)
+            );
             targetAngle = xd.ReadSingle(xe, nameof(targetAngle));
             motor = xd.ReadClassPointer<hkpConstraintMotor>(this, xe, nameof(motor));
         }
@@ -69,7 +74,11 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(motorAxis), motorAxis);
             xs.WriteNumber(xe, nameof(initializedOffset), initializedOffset);
             xs.WriteNumber(xe, nameof(previousTargetAngleOffset), previousTargetAngleOffset);
-            xs.WriteNumber(xe, nameof(correspondingAngLimitSolverResultOffset), correspondingAngLimitSolverResultOffset);
+            xs.WriteNumber(
+                xe,
+                nameof(correspondingAngLimitSolverResultOffset),
+                correspondingAngLimitSolverResultOffset
+            );
             xs.WriteFloat(xe, nameof(targetAngle), targetAngle);
             xs.WriteClassPointer(xe, nameof(motor), motor);
         }
@@ -81,16 +90,26 @@ namespace HKX2E
 
         public bool Equals(hkpAngMotorConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isEnabled.Equals(other.isEnabled) &&
-                   motorAxis.Equals(other.motorAxis) &&
-                   initializedOffset.Equals(other.initializedOffset) &&
-                   previousTargetAngleOffset.Equals(other.previousTargetAngleOffset) &&
-                   correspondingAngLimitSolverResultOffset.Equals(other.correspondingAngLimitSolverResultOffset) &&
-                   targetAngle.Equals(other.targetAngle) &&
-                   ((motor is null && other.motor is null) || (motor is not null && other.motor is not null && motor.Equals((IHavokObject)other.motor))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isEnabled.Equals(other.isEnabled)
+                && motorAxis.Equals(other.motorAxis)
+                && initializedOffset.Equals(other.initializedOffset)
+                && previousTargetAngleOffset.Equals(other.previousTargetAngleOffset)
+                && correspondingAngLimitSolverResultOffset.Equals(
+                    other.correspondingAngLimitSolverResultOffset
+                )
+                && targetAngle.Equals(other.targetAngle)
+                && (
+                    (motor is null && other.motor is null)
+                    || (
+                        motor is not null
+                        && other.motor is not null
+                        && motor.Equals((IHavokObject)other.motor)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -109,4 +128,3 @@ namespace HKX2E
         }
     }
 }
-

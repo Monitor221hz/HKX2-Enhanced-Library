@@ -5,18 +5,18 @@ namespace HKX2E
 {
     // hkbAttachmentModifier Signatire: 0xcc0aab32 size: 200 flags: FLAGS_NONE
 
-    // sendToAttacherOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // sendToAttacheeOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // sendToAttacherOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // sendToAttacheeOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // attachmentSetup class: hkbAttachmentSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // attacherHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // attacheeHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // attacheeLayer class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // attacheeRB class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // oldMotionType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // oldFilterInfo class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 188 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // attachment class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // sendToAttacherOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // sendToAttacheeOnAttach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // sendToAttacherOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // sendToAttacheeOnDetach class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // attachmentSetup class: hkbAttachmentSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // attacherHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // attacheeHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // attacheeLayer class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // attacheeRB class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // oldMotionType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // oldFilterInfo class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 188 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // attachment class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbAttachmentModifier : hkbModifier, IEquatable<hkbAttachmentModifier?>
     {
         public hkbEventProperty sendToAttacherOnAttach { set; get; } = new();
@@ -75,11 +75,27 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            sendToAttacherOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach));
-            sendToAttacheeOnAttach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnAttach));
-            sendToAttacherOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacherOnDetach));
-            sendToAttacheeOnDetach = xd.ReadClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnDetach));
-            attachmentSetup = xd.ReadClassPointer<hkbAttachmentSetup>(this, xe, nameof(attachmentSetup));
+            sendToAttacherOnAttach = xd.ReadClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacherOnAttach)
+            );
+            sendToAttacheeOnAttach = xd.ReadClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacheeOnAttach)
+            );
+            sendToAttacherOnDetach = xd.ReadClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacherOnDetach)
+            );
+            sendToAttacheeOnDetach = xd.ReadClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacheeOnDetach)
+            );
+            attachmentSetup = xd.ReadClassPointer<hkbAttachmentSetup>(
+                this,
+                xe,
+                nameof(attachmentSetup)
+            );
             attacherHandle = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(attacherHandle));
             attacheeHandle = xd.ReadClassPointer<hkbHandle>(this, xe, nameof(attacheeHandle));
             attacheeLayer = xd.ReadInt32(xe, nameof(attacheeLayer));
@@ -88,10 +104,26 @@ namespace HKX2E
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacherOnAttach), sendToAttacherOnAttach);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnAttach), sendToAttacheeOnAttach);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacherOnDetach), sendToAttacherOnDetach);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(sendToAttacheeOnDetach), sendToAttacheeOnDetach);
+            xs.WriteClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacherOnAttach),
+                sendToAttacherOnAttach
+            );
+            xs.WriteClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacheeOnAttach),
+                sendToAttacheeOnAttach
+            );
+            xs.WriteClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacherOnDetach),
+                sendToAttacherOnDetach
+            );
+            xs.WriteClass<hkbEventProperty>(
+                xe,
+                nameof(sendToAttacheeOnDetach),
+                sendToAttacheeOnDetach
+            );
             xs.WriteClassPointer(xe, nameof(attachmentSetup), attachmentSetup);
             xs.WriteClassPointer(xe, nameof(attacherHandle), attacherHandle);
             xs.WriteClassPointer(xe, nameof(attacheeHandle), attacheeHandle);
@@ -109,17 +141,67 @@ namespace HKX2E
 
         public bool Equals(hkbAttachmentModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((sendToAttacherOnAttach is null && other.sendToAttacherOnAttach is null) || (sendToAttacherOnAttach is not null && other.sendToAttacherOnAttach is not null && sendToAttacherOnAttach.Equals((IHavokObject)other.sendToAttacherOnAttach))) &&
-                   ((sendToAttacheeOnAttach is null && other.sendToAttacheeOnAttach is null) || (sendToAttacheeOnAttach is not null && other.sendToAttacheeOnAttach is not null && sendToAttacheeOnAttach.Equals((IHavokObject)other.sendToAttacheeOnAttach))) &&
-                   ((sendToAttacherOnDetach is null && other.sendToAttacherOnDetach is null) || (sendToAttacherOnDetach is not null && other.sendToAttacherOnDetach is not null && sendToAttacherOnDetach.Equals((IHavokObject)other.sendToAttacherOnDetach))) &&
-                   ((sendToAttacheeOnDetach is null && other.sendToAttacheeOnDetach is null) || (sendToAttacheeOnDetach is not null && other.sendToAttacheeOnDetach is not null && sendToAttacheeOnDetach.Equals((IHavokObject)other.sendToAttacheeOnDetach))) &&
-                   ((attachmentSetup is null && other.attachmentSetup is null) || (attachmentSetup is not null && other.attachmentSetup is not null && attachmentSetup.Equals((IHavokObject)other.attachmentSetup))) &&
-                   ((attacherHandle is null && other.attacherHandle is null) || (attacherHandle is not null && other.attacherHandle is not null && attacherHandle.Equals((IHavokObject)other.attacherHandle))) &&
-                   ((attacheeHandle is null && other.attacheeHandle is null) || (attacheeHandle is not null && other.attacheeHandle is not null && attacheeHandle.Equals((IHavokObject)other.attacheeHandle))) &&
-                   attacheeLayer.Equals(other.attacheeLayer) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (sendToAttacherOnAttach is null && other.sendToAttacherOnAttach is null)
+                    || (
+                        sendToAttacherOnAttach is not null
+                        && other.sendToAttacherOnAttach is not null
+                        && sendToAttacherOnAttach.Equals((IHavokObject)other.sendToAttacherOnAttach)
+                    )
+                )
+                && (
+                    (sendToAttacheeOnAttach is null && other.sendToAttacheeOnAttach is null)
+                    || (
+                        sendToAttacheeOnAttach is not null
+                        && other.sendToAttacheeOnAttach is not null
+                        && sendToAttacheeOnAttach.Equals((IHavokObject)other.sendToAttacheeOnAttach)
+                    )
+                )
+                && (
+                    (sendToAttacherOnDetach is null && other.sendToAttacherOnDetach is null)
+                    || (
+                        sendToAttacherOnDetach is not null
+                        && other.sendToAttacherOnDetach is not null
+                        && sendToAttacherOnDetach.Equals((IHavokObject)other.sendToAttacherOnDetach)
+                    )
+                )
+                && (
+                    (sendToAttacheeOnDetach is null && other.sendToAttacheeOnDetach is null)
+                    || (
+                        sendToAttacheeOnDetach is not null
+                        && other.sendToAttacheeOnDetach is not null
+                        && sendToAttacheeOnDetach.Equals((IHavokObject)other.sendToAttacheeOnDetach)
+                    )
+                )
+                && (
+                    (attachmentSetup is null && other.attachmentSetup is null)
+                    || (
+                        attachmentSetup is not null
+                        && other.attachmentSetup is not null
+                        && attachmentSetup.Equals((IHavokObject)other.attachmentSetup)
+                    )
+                )
+                && (
+                    (attacherHandle is null && other.attacherHandle is null)
+                    || (
+                        attacherHandle is not null
+                        && other.attacherHandle is not null
+                        && attacherHandle.Equals((IHavokObject)other.attacherHandle)
+                    )
+                )
+                && (
+                    (attacheeHandle is null && other.attacheeHandle is null)
+                    || (
+                        attacheeHandle is not null
+                        && other.attacheeHandle is not null
+                        && attacheeHandle.Equals((IHavokObject)other.attacheeHandle)
+                    )
+                )
+                && attacheeLayer.Equals(other.attacheeLayer)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -139,4 +221,3 @@ namespace HKX2E
         }
     }
 }
-

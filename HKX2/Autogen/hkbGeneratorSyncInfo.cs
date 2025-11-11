@@ -6,14 +6,14 @@ namespace HKX2E
 {
     // hkbGeneratorSyncInfo Signatire: 0xa3c341f8 size: 80 flags: FLAGS_NONE
 
-    // syncPoints class: hkbGeneratorSyncInfoSyncPoint Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 8 offset: 0 flags: FLAGS_NONE enum: 
-    // baseFrequency class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // playbackSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // numSyncPoints class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // isCyclic class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 77 flags: FLAGS_NONE enum: 
-    // isMirrored class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 78 flags: FLAGS_NONE enum: 
-    // isAdditive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 79 flags: FLAGS_NONE enum: 
+    // syncPoints class: hkbGeneratorSyncInfoSyncPoint Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 8 offset: 0 flags: FLAGS_NONE enum:
+    // baseFrequency class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // playbackSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // numSyncPoints class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    // isCyclic class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 77 flags: FLAGS_NONE enum:
+    // isMirrored class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 78 flags: FLAGS_NONE enum:
+    // isAdditive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 79 flags: FLAGS_NONE enum:
     public partial class hkbGeneratorSyncInfo : IHavokObject, IEquatable<hkbGeneratorSyncInfo?>
     {
         public hkbGeneratorSyncInfoSyncPoint[] syncPoints = new hkbGeneratorSyncInfoSyncPoint[8];
@@ -55,7 +55,11 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            syncPoints = xd.ReadClassCStyleArray<hkbGeneratorSyncInfoSyncPoint>(xe, nameof(syncPoints), 8);
+            syncPoints = xd.ReadClassCStyleArray<hkbGeneratorSyncInfoSyncPoint>(
+                xe,
+                nameof(syncPoints),
+                8
+            );
             baseFrequency = xd.ReadSingle(xe, nameof(baseFrequency));
             localTime = xd.ReadSingle(xe, nameof(localTime));
             playbackSpeed = xd.ReadSingle(xe, nameof(playbackSpeed));
@@ -84,16 +88,17 @@ namespace HKX2E
 
         public bool Equals(hkbGeneratorSyncInfo? other)
         {
-            return other is not null &&
-                   syncPoints.SequenceEqual(other.syncPoints) &&
-                   baseFrequency.Equals(other.baseFrequency) &&
-                   localTime.Equals(other.localTime) &&
-                   playbackSpeed.Equals(other.playbackSpeed) &&
-                   numSyncPoints.Equals(other.numSyncPoints) &&
-                   isCyclic.Equals(other.isCyclic) &&
-                   isMirrored.Equals(other.isMirrored) &&
-                   isAdditive.Equals(other.isAdditive) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && syncPoints.SequenceEqual(other.syncPoints)
+                && baseFrequency.Equals(other.baseFrequency)
+                && localTime.Equals(other.localTime)
+                && playbackSpeed.Equals(other.playbackSpeed)
+                && numSyncPoints.Equals(other.numSyncPoints)
+                && isCyclic.Equals(other.isCyclic)
+                && isMirrored.Equals(other.isMirrored)
+                && isAdditive.Equals(other.isAdditive)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -112,4 +117,3 @@ namespace HKX2E
         }
     }
 }
-

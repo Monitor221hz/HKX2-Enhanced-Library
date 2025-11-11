@@ -7,22 +7,22 @@ namespace HKX2E
 {
     // hkbBlenderGenerator Signatire: 0x22df7147 size: 160 flags: FLAGS_NONE
 
-    // referencePoseWeightThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // blendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // minCyclicBlendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // maxCyclicBlendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // indexOfSyncMasterChild class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // flags class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 90 flags: FLAGS_NONE enum: 
-    // subtractLastChild class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // children class: hkbBlenderGeneratorChild Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // childrenInternalStates class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // sortedChildren class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // endIntervalWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // numActiveChildren class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 148 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // beginIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // endIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 154 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // initSync class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // doSubtractiveBlend class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 157 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // referencePoseWeightThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // blendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    // minCyclicBlendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // maxCyclicBlendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // indexOfSyncMasterChild class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // flags class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 90 flags: FLAGS_NONE enum:
+    // subtractLastChild class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // children class: hkbBlenderGeneratorChild Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // childrenInternalStates class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // sortedChildren class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // endIntervalWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // numActiveChildren class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 148 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // beginIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // endIntervalIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 154 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // initSync class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // doSubtractiveBlend class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 157 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbBlenderGenerator : hkbGenerator, IEquatable<hkbBlenderGenerator?>
     {
         public float referencePoseWeightThreshold { set; get; }
@@ -32,7 +32,8 @@ namespace HKX2E
         public short indexOfSyncMasterChild { set; get; }
         public short flags { set; get; }
         public bool subtractLastChild { set; get; }
-        public IList<hkbBlenderGeneratorChild> children { set; get; } = Array.Empty<hkbBlenderGeneratorChild>();
+        public IList<hkbBlenderGeneratorChild> children { set; get; } =
+            Array.Empty<hkbBlenderGeneratorChild>();
         public IList<object> childrenInternalStates { set; get; } = Array.Empty<object>();
         public IList<object> sortedChildren { set; get; } = Array.Empty<object>();
         private float endIntervalWeight { set; get; }
@@ -100,7 +101,11 @@ namespace HKX2E
             indexOfSyncMasterChild = xd.ReadInt16(xe, nameof(indexOfSyncMasterChild));
             flags = xd.ReadInt16(xe, nameof(flags));
             subtractLastChild = xd.ReadBoolean(xe, nameof(subtractLastChild));
-            children = xd.ReadClassPointerArray<hkbBlenderGeneratorChild>(this, xe, nameof(children));
+            children = xd.ReadClassPointerArray<hkbBlenderGeneratorChild>(
+                this,
+                xe,
+                nameof(children)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -131,17 +136,18 @@ namespace HKX2E
 
         public bool Equals(hkbBlenderGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   referencePoseWeightThreshold.Equals(other.referencePoseWeightThreshold) &&
-                   blendParameter.Equals(other.blendParameter) &&
-                   minCyclicBlendParameter.Equals(other.minCyclicBlendParameter) &&
-                   maxCyclicBlendParameter.Equals(other.maxCyclicBlendParameter) &&
-                   indexOfSyncMasterChild.Equals(other.indexOfSyncMasterChild) &&
-                   flags.Equals(other.flags) &&
-                   subtractLastChild.Equals(other.subtractLastChild) &&
-                   children.SequenceEqual(other.children) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && referencePoseWeightThreshold.Equals(other.referencePoseWeightThreshold)
+                && blendParameter.Equals(other.blendParameter)
+                && minCyclicBlendParameter.Equals(other.minCyclicBlendParameter)
+                && maxCyclicBlendParameter.Equals(other.maxCyclicBlendParameter)
+                && indexOfSyncMasterChild.Equals(other.indexOfSyncMasterChild)
+                && flags.Equals(other.flags)
+                && subtractLastChild.Equals(other.subtractLastChild)
+                && children.SequenceEqual(other.children)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -161,4 +167,3 @@ namespace HKX2E
         }
     }
 }
-

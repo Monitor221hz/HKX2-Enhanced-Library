@@ -6,23 +6,25 @@ namespace HKX2E
 {
     // hkpCharacterRigidBodyCinfo Signatire: 0x892f441 size: 128 flags: FLAGS_NONE
 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // mass class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // friction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // maxLinearVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // allowedPenetrationDepth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // maxSlope class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // maxForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // unweldingHeightOffsetFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // maxSpeedForSimplexSolver class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // supportDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // hardSupportDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum: 
-    // vdbColor class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    public partial class hkpCharacterRigidBodyCinfo : hkpCharacterControllerCinfo, IEquatable<hkpCharacterRigidBodyCinfo?>
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // mass class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // friction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // maxLinearVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // allowedPenetrationDepth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // maxSlope class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // maxForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // unweldingHeightOffsetFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // maxSpeedForSimplexSolver class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // supportDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // hardSupportDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum:
+    // vdbColor class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    public partial class hkpCharacterRigidBodyCinfo
+        : hkpCharacterControllerCinfo,
+            IEquatable<hkpCharacterRigidBodyCinfo?>
     {
         public uint collisionFilterInfo { set; get; }
         public hkpShape? shape { set; get; }
@@ -138,25 +140,33 @@ namespace HKX2E
 
         public bool Equals(hkpCharacterRigidBodyCinfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   ((shape is null && other.shape is null) || (shape is not null && other.shape is not null && shape.Equals((IHavokObject)other.shape))) &&
-                   position.Equals(other.position) &&
-                   rotation.Equals(other.rotation) &&
-                   mass.Equals(other.mass) &&
-                   friction.Equals(other.friction) &&
-                   maxLinearVelocity.Equals(other.maxLinearVelocity) &&
-                   allowedPenetrationDepth.Equals(other.allowedPenetrationDepth) &&
-                   up.Equals(other.up) &&
-                   maxSlope.Equals(other.maxSlope) &&
-                   maxForce.Equals(other.maxForce) &&
-                   unweldingHeightOffsetFactor.Equals(other.unweldingHeightOffsetFactor) &&
-                   maxSpeedForSimplexSolver.Equals(other.maxSpeedForSimplexSolver) &&
-                   supportDistance.Equals(other.supportDistance) &&
-                   hardSupportDistance.Equals(other.hardSupportDistance) &&
-                   vdbColor.Equals(other.vdbColor) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && (
+                    (shape is null && other.shape is null)
+                    || (
+                        shape is not null
+                        && other.shape is not null
+                        && shape.Equals((IHavokObject)other.shape)
+                    )
+                )
+                && position.Equals(other.position)
+                && rotation.Equals(other.rotation)
+                && mass.Equals(other.mass)
+                && friction.Equals(other.friction)
+                && maxLinearVelocity.Equals(other.maxLinearVelocity)
+                && allowedPenetrationDepth.Equals(other.allowedPenetrationDepth)
+                && up.Equals(other.up)
+                && maxSlope.Equals(other.maxSlope)
+                && maxForce.Equals(other.maxForce)
+                && unweldingHeightOffsetFactor.Equals(other.unweldingHeightOffsetFactor)
+                && maxSpeedForSimplexSolver.Equals(other.maxSpeedForSimplexSolver)
+                && supportDistance.Equals(other.supportDistance)
+                && hardSupportDistance.Equals(other.hardSupportDistance)
+                && vdbColor.Equals(other.vdbColor)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -184,4 +194,3 @@ namespace HKX2E
         }
     }
 }
-

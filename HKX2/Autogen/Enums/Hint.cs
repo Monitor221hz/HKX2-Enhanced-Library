@@ -10,4 +10,3 @@ namespace HKX2E
         HINT_FLIP = 8,
     }
 }
-

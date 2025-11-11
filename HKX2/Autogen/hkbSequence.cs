@@ -7,27 +7,31 @@ namespace HKX2E
 {
     // hkbSequence Signatire: 0x43182ca3 size: 248 flags: FLAGS_NONE
 
-    // eventSequencedData class: hkbEventSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // realVariableSequencedData class: hkbRealVariableSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // boolVariableSequencedData class: hkbBoolVariableSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // intVariableSequencedData class: hkbIntVariableSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // enableEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // disableEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum: 
-    // stringData class: hkbSequenceStringData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // variableIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nextSampleEvents class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nextSampleReals class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nextSampleBools class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nextSampleInts class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 244 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // eventSequencedData class: hkbEventSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // realVariableSequencedData class: hkbRealVariableSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // boolVariableSequencedData class: hkbBoolVariableSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // intVariableSequencedData class: hkbIntVariableSequencedData Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // enableEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // disableEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum:
+    // stringData class: hkbSequenceStringData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // variableIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nextSampleEvents class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nextSampleReals class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nextSampleBools class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nextSampleInts class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 244 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbSequence : hkbModifier, IEquatable<hkbSequence?>
     {
-        public IList<hkbEventSequencedData> eventSequencedData { set; get; } = Array.Empty<hkbEventSequencedData>();
-        public IList<hkbRealVariableSequencedData> realVariableSequencedData { set; get; } = Array.Empty<hkbRealVariableSequencedData>();
-        public IList<hkbBoolVariableSequencedData> boolVariableSequencedData { set; get; } = Array.Empty<hkbBoolVariableSequencedData>();
-        public IList<hkbIntVariableSequencedData> intVariableSequencedData { set; get; } = Array.Empty<hkbIntVariableSequencedData>();
+        public IList<hkbEventSequencedData> eventSequencedData { set; get; } =
+            Array.Empty<hkbEventSequencedData>();
+        public IList<hkbRealVariableSequencedData> realVariableSequencedData { set; get; } =
+            Array.Empty<hkbRealVariableSequencedData>();
+        public IList<hkbBoolVariableSequencedData> boolVariableSequencedData { set; get; } =
+            Array.Empty<hkbBoolVariableSequencedData>();
+        public IList<hkbIntVariableSequencedData> intVariableSequencedData { set; get; } =
+            Array.Empty<hkbIntVariableSequencedData>();
         public int enableEventId { set; get; }
         public int disableEventId { set; get; }
         public hkbSequenceStringData? stringData { set; get; }
@@ -87,10 +91,26 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            eventSequencedData = xd.ReadClassPointerArray<hkbEventSequencedData>(this, xe, nameof(eventSequencedData));
-            realVariableSequencedData = xd.ReadClassPointerArray<hkbRealVariableSequencedData>(this, xe, nameof(realVariableSequencedData));
-            boolVariableSequencedData = xd.ReadClassPointerArray<hkbBoolVariableSequencedData>(this, xe, nameof(boolVariableSequencedData));
-            intVariableSequencedData = xd.ReadClassPointerArray<hkbIntVariableSequencedData>(this, xe, nameof(intVariableSequencedData));
+            eventSequencedData = xd.ReadClassPointerArray<hkbEventSequencedData>(
+                this,
+                xe,
+                nameof(eventSequencedData)
+            );
+            realVariableSequencedData = xd.ReadClassPointerArray<hkbRealVariableSequencedData>(
+                this,
+                xe,
+                nameof(realVariableSequencedData)
+            );
+            boolVariableSequencedData = xd.ReadClassPointerArray<hkbBoolVariableSequencedData>(
+                this,
+                xe,
+                nameof(boolVariableSequencedData)
+            );
+            intVariableSequencedData = xd.ReadClassPointerArray<hkbIntVariableSequencedData>(
+                this,
+                xe,
+                nameof(intVariableSequencedData)
+            );
             enableEventId = xd.ReadInt32(xe, nameof(enableEventId));
             disableEventId = xd.ReadInt32(xe, nameof(disableEventId));
             stringData = xd.ReadClassPointer<hkbSequenceStringData>(this, xe, nameof(stringData));
@@ -100,9 +120,21 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointerArray(xe, nameof(eventSequencedData), eventSequencedData!);
-            xs.WriteClassPointerArray(xe, nameof(realVariableSequencedData), realVariableSequencedData!);
-            xs.WriteClassPointerArray(xe, nameof(boolVariableSequencedData), boolVariableSequencedData!);
-            xs.WriteClassPointerArray(xe, nameof(intVariableSequencedData), intVariableSequencedData!);
+            xs.WriteClassPointerArray(
+                xe,
+                nameof(realVariableSequencedData),
+                realVariableSequencedData!
+            );
+            xs.WriteClassPointerArray(
+                xe,
+                nameof(boolVariableSequencedData),
+                boolVariableSequencedData!
+            );
+            xs.WriteClassPointerArray(
+                xe,
+                nameof(intVariableSequencedData),
+                intVariableSequencedData!
+            );
             xs.WriteNumber(xe, nameof(enableEventId), enableEventId);
             xs.WriteNumber(xe, nameof(disableEventId), disableEventId);
             xs.WriteClassPointer(xe, nameof(stringData), stringData);
@@ -123,16 +155,24 @@ namespace HKX2E
 
         public bool Equals(hkbSequence? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   eventSequencedData.SequenceEqual(other.eventSequencedData) &&
-                   realVariableSequencedData.SequenceEqual(other.realVariableSequencedData) &&
-                   boolVariableSequencedData.SequenceEqual(other.boolVariableSequencedData) &&
-                   intVariableSequencedData.SequenceEqual(other.intVariableSequencedData) &&
-                   enableEventId.Equals(other.enableEventId) &&
-                   disableEventId.Equals(other.disableEventId) &&
-                   ((stringData is null && other.stringData is null) || (stringData is not null && other.stringData is not null && stringData.Equals((IHavokObject)other.stringData))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && eventSequencedData.SequenceEqual(other.eventSequencedData)
+                && realVariableSequencedData.SequenceEqual(other.realVariableSequencedData)
+                && boolVariableSequencedData.SequenceEqual(other.boolVariableSequencedData)
+                && intVariableSequencedData.SequenceEqual(other.intVariableSequencedData)
+                && enableEventId.Equals(other.enableEventId)
+                && disableEventId.Equals(other.disableEventId)
+                && (
+                    (stringData is null && other.stringData is null)
+                    || (
+                        stringData is not null
+                        && other.stringData is not null
+                        && stringData.Equals((IHavokObject)other.stringData)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -140,9 +180,15 @@ namespace HKX2E
             var hashcode = new HashCode();
             hashcode.Add(base.GetHashCode());
             hashcode.Add(eventSequencedData.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(realVariableSequencedData.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(boolVariableSequencedData.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
-            hashcode.Add(intVariableSequencedData.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0));
+            hashcode.Add(
+                realVariableSequencedData.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0)
+            );
+            hashcode.Add(
+                boolVariableSequencedData.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0)
+            );
+            hashcode.Add(
+                intVariableSequencedData.Aggregate(0, (x, y) => x ^ y?.GetHashCode() ?? 0)
+            );
             hashcode.Add(enableEventId);
             hashcode.Add(disableEventId);
             hashcode.Add(stringData);
@@ -151,4 +197,3 @@ namespace HKX2E
         }
     }
 }
-

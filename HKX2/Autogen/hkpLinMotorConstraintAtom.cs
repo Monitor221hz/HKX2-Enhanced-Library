@@ -5,13 +5,15 @@ namespace HKX2E
 {
     // hkpLinMotorConstraintAtom Signatire: 0x10312464 size: 24 flags: FLAGS_NONE
 
-    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // motorAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // initializedOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // previousTargetPositionOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
-    // targetPosition class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // motor class: hkpConstraintMotor Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpLinMotorConstraintAtom : hkpConstraintAtom, IEquatable<hkpLinMotorConstraintAtom?>
+    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // motorAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
+    // initializedOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // previousTargetPositionOffset class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum:
+    // targetPosition class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // motor class: hkpConstraintMotor Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpLinMotorConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpLinMotorConstraintAtom?>
     {
         public bool isEnabled { set; get; }
         public byte motorAxis { set; get; }
@@ -75,15 +77,23 @@ namespace HKX2E
 
         public bool Equals(hkpLinMotorConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isEnabled.Equals(other.isEnabled) &&
-                   motorAxis.Equals(other.motorAxis) &&
-                   initializedOffset.Equals(other.initializedOffset) &&
-                   previousTargetPositionOffset.Equals(other.previousTargetPositionOffset) &&
-                   targetPosition.Equals(other.targetPosition) &&
-                   ((motor is null && other.motor is null) || (motor is not null && other.motor is not null && motor.Equals((IHavokObject)other.motor))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isEnabled.Equals(other.isEnabled)
+                && motorAxis.Equals(other.motorAxis)
+                && initializedOffset.Equals(other.initializedOffset)
+                && previousTargetPositionOffset.Equals(other.previousTargetPositionOffset)
+                && targetPosition.Equals(other.targetPosition)
+                && (
+                    (motor is null && other.motor is null)
+                    || (
+                        motor is not null
+                        && other.motor is not null
+                        && motor.Equals((IHavokObject)other.motor)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -101,4 +111,3 @@ namespace HKX2E
         }
     }
 }
-

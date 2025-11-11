@@ -5,7 +5,6 @@ namespace HKX2E
 {
     // hkpShapeContainer Signatire: 0xe0708a00 size: 8 flags: FLAGS_NONE
 
-
     public partial class hkpShapeContainer : IHavokObject, IEquatable<hkpShapeContainer?>
     {
         private byte[] unk0 = new byte[8];
@@ -22,15 +21,9 @@ namespace HKX2E
             bw.WriteBytes(unk0);
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
-        }
-
-        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
-        {
-
-        }
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe) { }
 
         public override bool Equals(object? obj)
         {
@@ -39,8 +32,8 @@ namespace HKX2E
 
         public bool Equals(hkpShapeContainer? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -52,4 +45,3 @@ namespace HKX2E
         }
     }
 }
-

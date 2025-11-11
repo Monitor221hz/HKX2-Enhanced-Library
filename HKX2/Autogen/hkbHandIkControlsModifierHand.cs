@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkbHandIkControlsModifierHand Signatire: 0x9c72e9e3 size: 112 flags: FLAGS_NONE
 
-    // controlData class: hkbHandIkControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // handIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    public partial class hkbHandIkControlsModifierHand : IHavokObject, IEquatable<hkbHandIkControlsModifierHand?>
+    // controlData class: hkbHandIkControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // handIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    public partial class hkbHandIkControlsModifierHand
+        : IHavokObject,
+            IEquatable<hkbHandIkControlsModifierHand?>
     {
         public hkbHandIkControlData controlData { set; get; } = new();
         public int handIndex { set; get; }
@@ -53,11 +55,19 @@ namespace HKX2E
 
         public bool Equals(hkbHandIkControlsModifierHand? other)
         {
-            return other is not null &&
-                   ((controlData is null && other.controlData is null) || (controlData is not null && other.controlData is not null && controlData.Equals((IHavokObject)other.controlData))) &&
-                   handIndex.Equals(other.handIndex) &&
-                   enable.Equals(other.enable) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (controlData is null && other.controlData is null)
+                    || (
+                        controlData is not null
+                        && other.controlData is not null
+                        && controlData.Equals((IHavokObject)other.controlData)
+                    )
+                )
+                && handIndex.Equals(other.handIndex)
+                && enable.Equals(other.enable)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

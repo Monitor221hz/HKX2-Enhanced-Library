@@ -6,4 +6,3 @@ namespace HKX2E
         ALIGN_MODE_FORWARD = 1,
     }
 }
-

@@ -7,10 +7,13 @@ namespace HKX2E
 {
     // hkbEventSequencedData Signatire: 0x76798eb8 size: 32 flags: FLAGS_NONE
 
-    // events class: hkbEventSequencedDataSequencedEvent Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbEventSequencedData : hkbSequencedData, IEquatable<hkbEventSequencedData?>
+    // events class: hkbEventSequencedDataSequencedEvent Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbEventSequencedData
+        : hkbSequencedData,
+            IEquatable<hkbEventSequencedData?>
     {
-        public IList<hkbEventSequencedDataSequencedEvent> events { set; get; } = Array.Empty<hkbEventSequencedDataSequencedEvent>();
+        public IList<hkbEventSequencedDataSequencedEvent> events { set; get; } =
+            Array.Empty<hkbEventSequencedDataSequencedEvent>();
 
         public override uint Signature { set; get; } = 0x76798eb8;
 
@@ -45,10 +48,11 @@ namespace HKX2E
 
         public bool Equals(hkbEventSequencedData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   events.SequenceEqual(other.events) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && events.SequenceEqual(other.events)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +65,3 @@ namespace HKX2E
         }
     }
 }
-

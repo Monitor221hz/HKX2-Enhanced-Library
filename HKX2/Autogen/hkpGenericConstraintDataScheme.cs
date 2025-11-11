@@ -8,12 +8,14 @@ namespace HKX2E
 {
     // hkpGenericConstraintDataScheme Signatire: 0x11fd6f6c size: 80 flags: FLAGS_NONE
 
-    // info class: hkpGenericConstraintDataSchemeConstraintInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // data class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // commands class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // modifiers class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // motors class: hkpConstraintMotor Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpGenericConstraintDataScheme : IHavokObject, IEquatable<hkpGenericConstraintDataScheme?>
+    // info class: hkpGenericConstraintDataSchemeConstraintInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // data class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // commands class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // modifiers class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // motors class: hkpConstraintMotor Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpGenericConstraintDataScheme
+        : IHavokObject,
+            IEquatable<hkpGenericConstraintDataScheme?>
     {
         public hkpGenericConstraintDataSchemeConstraintInfo info { set; get; } = new();
         public IList<Vector4> data { set; get; } = Array.Empty<Vector4>();
@@ -64,11 +66,12 @@ namespace HKX2E
 
         public bool Equals(hkpGenericConstraintDataScheme? other)
         {
-            return other is not null &&
-                   data.SequenceEqual(other.data) &&
-                   commands.SequenceEqual(other.commands) &&
-                   motors.SequenceEqual(other.motors) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && data.SequenceEqual(other.data)
+                && commands.SequenceEqual(other.commands)
+                && motors.SequenceEqual(other.motors)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -82,4 +85,3 @@ namespace HKX2E
         }
     }
 }
-

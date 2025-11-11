@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbGetHandleOnBoneModifier Signatire: 0x50c34a17 size: 104 flags: FLAGS_NONE
 
-    // handleOut class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // localFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // ragdollBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // animationBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 98 flags: FLAGS_NONE enum: 
-    public partial class hkbGetHandleOnBoneModifier : hkbModifier, IEquatable<hkbGetHandleOnBoneModifier?>
+    // handleOut class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // localFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // ragdollBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // animationBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 98 flags: FLAGS_NONE enum:
+    public partial class hkbGetHandleOnBoneModifier
+        : hkbModifier,
+            IEquatable<hkbGetHandleOnBoneModifier?>
     {
         public hkbHandle? handleOut { set; get; }
         public string localFrameName { set; get; } = "";
@@ -63,13 +65,26 @@ namespace HKX2E
 
         public bool Equals(hkbGetHandleOnBoneModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((handleOut is null && other.handleOut is null) || (handleOut is not null && other.handleOut is not null && handleOut.Equals((IHavokObject)other.handleOut))) &&
-                   (localFrameName is null && other.localFrameName is null || localFrameName == other.localFrameName || localFrameName is null && other.localFrameName == "" || localFrameName == "" && other.localFrameName is null) &&
-                   ragdollBoneIndex.Equals(other.ragdollBoneIndex) &&
-                   animationBoneIndex.Equals(other.animationBoneIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (handleOut is null && other.handleOut is null)
+                    || (
+                        handleOut is not null
+                        && other.handleOut is not null
+                        && handleOut.Equals((IHavokObject)other.handleOut)
+                    )
+                )
+                && (
+                    localFrameName is null && other.localFrameName is null
+                    || localFrameName == other.localFrameName
+                    || localFrameName is null && other.localFrameName == ""
+                    || localFrameName == "" && other.localFrameName is null
+                )
+                && ragdollBoneIndex.Equals(other.ragdollBoneIndex)
+                && animationBoneIndex.Equals(other.animationBoneIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -85,4 +100,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkGizmoAttribute Signatire: 0x23aadfb6 size: 24 flags: FLAGS_NONE
 
-    // visible class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // label class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // visible class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // label class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: GizmoType
     public partial class hkGizmoAttribute : IHavokObject, IEquatable<hkGizmoAttribute?>
     {
@@ -55,11 +55,17 @@ namespace HKX2E
 
         public bool Equals(hkGizmoAttribute? other)
         {
-            return other is not null &&
-                   visible.Equals(other.visible) &&
-                   (label is null && other.label is null || label == other.label || label is null && other.label == "" || label == "" && other.label is null) &&
-                   type.Equals(other.type) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && visible.Equals(other.visible)
+                && (
+                    label is null && other.label is null
+                    || label == other.label
+                    || label is null && other.label == ""
+                    || label == "" && other.label is null
+                )
+                && type.Equals(other.type)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -73,4 +79,3 @@ namespace HKX2E
         }
     }
 }
-

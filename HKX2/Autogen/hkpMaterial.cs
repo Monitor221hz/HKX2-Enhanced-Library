@@ -6,9 +6,9 @@ namespace HKX2E
     // hkpMaterial Signatire: 0x33be6570 size: 12 flags: FLAGS_NONE
 
     // responseType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: ResponseType
-    // rollingFrictionMultiplier class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // friction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // restitution class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // rollingFrictionMultiplier class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // friction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // restitution class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkpMaterial : IHavokObject, IEquatable<hkpMaterial?>
     {
         public sbyte responseType { set; get; }
@@ -59,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkpMaterial? other)
         {
-            return other is not null &&
-                   responseType.Equals(other.responseType) &&
-                   rollingFrictionMultiplier.Equals(other.rollingFrictionMultiplier) &&
-                   friction.Equals(other.friction) &&
-                   restitution.Equals(other.restitution) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && responseType.Equals(other.responseType)
+                && rollingFrictionMultiplier.Equals(other.rollingFrictionMultiplier)
+                && friction.Equals(other.friction)
+                && restitution.Equals(other.restitution)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

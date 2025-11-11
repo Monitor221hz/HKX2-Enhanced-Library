@@ -7,10 +7,12 @@ namespace HKX2E
 {
     // hkbBehaviorEventsInfo Signatire: 0x66840004 size: 48 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // externalEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    public partial class hkbBehaviorEventsInfo : hkReferencedObject, IEquatable<hkbBehaviorEventsInfo?>
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // externalEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    public partial class hkbBehaviorEventsInfo
+        : hkReferencedObject,
+            IEquatable<hkbBehaviorEventsInfo?>
     {
         public ulong characterId { set; get; }
         public IList<short> externalEventIds { set; get; } = Array.Empty<short>();
@@ -59,12 +61,13 @@ namespace HKX2E
 
         public bool Equals(hkbBehaviorEventsInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   externalEventIds.SequenceEqual(other.externalEventIds) &&
-                   padding.Equals(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && externalEventIds.SequenceEqual(other.externalEventIds)
+                && padding.Equals(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +82,3 @@ namespace HKX2E
         }
     }
 }
-

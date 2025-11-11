@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // hkGeometryTriangle Signatire: 0x9687513b size: 16 flags: FLAGS_NONE
 
-    // a class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // b class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // c class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // material class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
+    // a class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // b class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // c class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // material class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
     public partial class hkGeometryTriangle : IHavokObject, IEquatable<hkGeometryTriangle?>
     {
         public int a { set; get; }
@@ -57,12 +57,13 @@ namespace HKX2E
 
         public bool Equals(hkGeometryTriangle? other)
         {
-            return other is not null &&
-                   a.Equals(other.a) &&
-                   b.Equals(other.b) &&
-                   c.Equals(other.c) &&
-                   material.Equals(other.material) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && a.Equals(other.a)
+                && b.Equals(other.b)
+                && c.Equals(other.c)
+                && material.Equals(other.material)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +78,3 @@ namespace HKX2E
         }
     }
 }
-

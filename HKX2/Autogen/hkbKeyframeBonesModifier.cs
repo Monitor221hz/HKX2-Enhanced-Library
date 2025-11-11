@@ -7,11 +7,14 @@ namespace HKX2E
 {
     // hkbKeyframeBonesModifier Signatire: 0x95f66629 size: 104 flags: FLAGS_NONE
 
-    // keyframeInfo class: hkbKeyframeBonesModifierKeyframeInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // keyframedBonesList class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    public partial class hkbKeyframeBonesModifier : hkbModifier, IEquatable<hkbKeyframeBonesModifier?>
+    // keyframeInfo class: hkbKeyframeBonesModifierKeyframeInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // keyframedBonesList class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    public partial class hkbKeyframeBonesModifier
+        : hkbModifier,
+            IEquatable<hkbKeyframeBonesModifier?>
     {
-        public IList<hkbKeyframeBonesModifierKeyframeInfo> keyframeInfo { set; get; } = Array.Empty<hkbKeyframeBonesModifierKeyframeInfo>();
+        public IList<hkbKeyframeBonesModifierKeyframeInfo> keyframeInfo { set; get; } =
+            Array.Empty<hkbKeyframeBonesModifierKeyframeInfo>();
         public hkbBoneIndexArray? keyframedBonesList { set; get; }
 
         public override uint Signature { set; get; } = 0x95f66629;
@@ -33,8 +36,15 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            keyframeInfo = xd.ReadClassArray<hkbKeyframeBonesModifierKeyframeInfo>(xe, nameof(keyframeInfo));
-            keyframedBonesList = xd.ReadClassPointer<hkbBoneIndexArray>(this, xe, nameof(keyframedBonesList));
+            keyframeInfo = xd.ReadClassArray<hkbKeyframeBonesModifierKeyframeInfo>(
+                xe,
+                nameof(keyframeInfo)
+            );
+            keyframedBonesList = xd.ReadClassPointer<hkbBoneIndexArray>(
+                this,
+                xe,
+                nameof(keyframedBonesList)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -51,11 +61,19 @@ namespace HKX2E
 
         public bool Equals(hkbKeyframeBonesModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   keyframeInfo.SequenceEqual(other.keyframeInfo) &&
-                   ((keyframedBonesList is null && other.keyframedBonesList is null) || (keyframedBonesList is not null && other.keyframedBonesList is not null && keyframedBonesList.Equals((IHavokObject)other.keyframedBonesList))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && keyframeInfo.SequenceEqual(other.keyframeInfo)
+                && (
+                    (keyframedBonesList is null && other.keyframedBonesList is null)
+                    || (
+                        keyframedBonesList is not null
+                        && other.keyframedBonesList is not null
+                        && keyframedBonesList.Equals((IHavokObject)other.keyframedBonesList)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +87,3 @@ namespace HKX2E
         }
     }
 }
-

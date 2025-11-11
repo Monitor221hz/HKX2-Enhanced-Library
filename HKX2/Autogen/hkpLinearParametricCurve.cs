@@ -8,12 +8,14 @@ namespace HKX2E
 {
     // hkpLinearParametricCurve Signatire: 0xd7b3be03 size: 80 flags: FLAGS_NONE
 
-    // smoothingFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // closedLoop class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // dirNotParallelToTangentAlongWholePath class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // points class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // distance class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpLinearParametricCurve : hkpParametricCurve, IEquatable<hkpLinearParametricCurve?>
+    // smoothingFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // closedLoop class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // dirNotParallelToTangentAlongWholePath class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // points class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // distance class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpLinearParametricCurve
+        : hkpParametricCurve,
+            IEquatable<hkpLinearParametricCurve?>
     {
         public float smoothingFactor { set; get; }
         public bool closedLoop { set; get; }
@@ -50,7 +52,10 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             smoothingFactor = xd.ReadSingle(xe, nameof(smoothingFactor));
             closedLoop = xd.ReadBoolean(xe, nameof(closedLoop));
-            dirNotParallelToTangentAlongWholePath = xd.ReadVector4(xe, nameof(dirNotParallelToTangentAlongWholePath));
+            dirNotParallelToTangentAlongWholePath = xd.ReadVector4(
+                xe,
+                nameof(dirNotParallelToTangentAlongWholePath)
+            );
             points = xd.ReadVector4Array(xe, nameof(points));
             distance = xd.ReadSingleArray(xe, nameof(distance));
         }
@@ -60,7 +65,11 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteFloat(xe, nameof(smoothingFactor), smoothingFactor);
             xs.WriteBoolean(xe, nameof(closedLoop), closedLoop);
-            xs.WriteVector4(xe, nameof(dirNotParallelToTangentAlongWholePath), dirNotParallelToTangentAlongWholePath);
+            xs.WriteVector4(
+                xe,
+                nameof(dirNotParallelToTangentAlongWholePath),
+                dirNotParallelToTangentAlongWholePath
+            );
             xs.WriteVector4Array(xe, nameof(points), points);
             xs.WriteFloatArray(xe, nameof(distance), distance);
         }
@@ -72,14 +81,17 @@ namespace HKX2E
 
         public bool Equals(hkpLinearParametricCurve? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   smoothingFactor.Equals(other.smoothingFactor) &&
-                   closedLoop.Equals(other.closedLoop) &&
-                   dirNotParallelToTangentAlongWholePath.Equals(other.dirNotParallelToTangentAlongWholePath) &&
-                   points.SequenceEqual(other.points) &&
-                   distance.SequenceEqual(other.distance) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && smoothingFactor.Equals(other.smoothingFactor)
+                && closedLoop.Equals(other.closedLoop)
+                && dirNotParallelToTangentAlongWholePath.Equals(
+                    other.dirNotParallelToTangentAlongWholePath
+                )
+                && points.SequenceEqual(other.points)
+                && distance.SequenceEqual(other.distance)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -96,4 +108,3 @@ namespace HKX2E
         }
     }
 }
-

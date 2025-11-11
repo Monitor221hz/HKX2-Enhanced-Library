@@ -6,10 +6,10 @@ namespace HKX2E
 {
     // BSDistTriggerModifier Signatire: 0xb34d2bbd size: 128 flags: FLAGS_NONE
 
-    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // distance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // distanceTrigger class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // triggerEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // distance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // distanceTrigger class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // triggerEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
     public partial class BSDistTriggerModifier : hkbModifier, IEquatable<BSDistTriggerModifier?>
     {
         public Vector4 targetPosition { set; get; }
@@ -64,13 +64,21 @@ namespace HKX2E
 
         public bool Equals(BSDistTriggerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   targetPosition.Equals(other.targetPosition) &&
-                   distance.Equals(other.distance) &&
-                   distanceTrigger.Equals(other.distanceTrigger) &&
-                   ((triggerEvent is null && other.triggerEvent is null) || (triggerEvent is not null && other.triggerEvent is not null && triggerEvent.Equals((IHavokObject)other.triggerEvent))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && targetPosition.Equals(other.targetPosition)
+                && distance.Equals(other.distance)
+                && distanceTrigger.Equals(other.distanceTrigger)
+                && (
+                    (triggerEvent is null && other.triggerEvent is null)
+                    || (
+                        triggerEvent is not null
+                        && other.triggerEvent is not null
+                        && triggerEvent.Equals((IHavokObject)other.triggerEvent)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +94,3 @@ namespace HKX2E
         }
     }
 }
-

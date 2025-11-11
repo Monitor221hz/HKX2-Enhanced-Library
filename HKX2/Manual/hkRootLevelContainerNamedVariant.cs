@@ -5,13 +5,14 @@ namespace HKX2E
 {
     // hkRootLevelContainerNamedVariant Signatire: 0xb103a2cd size: 24 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // className class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // variant class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // className class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // variant class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
 
-    public partial class hkRootLevelContainerNamedVariant : IHavokObject, IEquatable<hkRootLevelContainerNamedVariant?>
+    public partial class hkRootLevelContainerNamedVariant
+        : IHavokObject,
+            IEquatable<hkRootLevelContainerNamedVariant?>
     {
-
         public string name { set; get; } = "";
         public string className { set; get; } = "";
         public hkReferencedObject? variant { set; get; } = default;
@@ -31,14 +32,17 @@ namespace HKX2E
             s.WriteStringPointer(bw, className);
             s.WriteClassPointer(bw, variant);
         }
+
         public void WriteMetaData(PackFileSerializer s, BinaryWriterEx bw, ulong metaData)
         {
             bw.WriteUInt64(metaData);
         }
+
         public ulong ReadMetaData(PackFileDeserializer s, BinaryReaderEx br)
         {
             return br.ReadUInt64();
         }
+
         public void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             name = xd.ReadString(xe, nameof(name));
@@ -60,11 +64,14 @@ namespace HKX2E
 
         public bool Equals(hkRootLevelContainerNamedVariant? other)
         {
-            return other is not null &&
-                   name == other.name &&
-                   className == other.className &&
-                   ((variant is null && other.variant is null) || (variant is not null && variant.Equals((IHavokObject)other.variant!))) &&
-                   Signature == other.Signature;
+            return other is not null
+                && name == other.name
+                && className == other.className
+                && (
+                    (variant is null && other.variant is null)
+                    || (variant is not null && variant.Equals((IHavokObject)other.variant!))
+                )
+                && Signature == other.Signature;
         }
 
         public override int GetHashCode()
@@ -78,4 +85,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -7,8 +7,8 @@ namespace HKX2E
 {
     // hkxNodeSelectionSet Signatire: 0xd753fc4d size: 56 flags: FLAGS_NONE
 
-    // selectedNodes class: hkxNode Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // selectedNodes class: hkxNode Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkxNodeSelectionSet : hkxAttributeHolder, IEquatable<hkxNodeSelectionSet?>
     {
         public IList<hkxNode> selectedNodes { set; get; } = Array.Empty<hkxNode>();
@@ -51,11 +51,17 @@ namespace HKX2E
 
         public bool Equals(hkxNodeSelectionSet? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   selectedNodes.SequenceEqual(other.selectedNodes) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && selectedNodes.SequenceEqual(other.selectedNodes)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +75,3 @@ namespace HKX2E
         }
     }
 }
-

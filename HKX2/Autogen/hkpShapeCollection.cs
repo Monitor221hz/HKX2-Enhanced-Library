@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpShapeCollection Signatire: 0xe8c3991d size: 48 flags: FLAGS_NONE
 
-    // disableWelding class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // disableWelding class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
     // collectionType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 41 flags: FLAGS_NONE enum: CollectionType
     public partial class hkpShapeCollection : hkpShape, IEquatable<hkpShapeCollection?>
     {
@@ -53,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkpShapeCollection? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   disableWelding.Equals(other.disableWelding) &&
-                   collectionType.Equals(other.collectionType) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && disableWelding.Equals(other.disableWelding)
+                && collectionType.Equals(other.collectionType)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

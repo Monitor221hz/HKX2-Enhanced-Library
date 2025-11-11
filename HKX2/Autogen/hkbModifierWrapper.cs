@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkbModifierWrapper Signatire: 0x3697e044 size: 88 flags: FLAGS_NONE
 
-    // modifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // modifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     public partial class hkbModifierWrapper : hkbModifier, IEquatable<hkbModifierWrapper?>
     {
         public hkbModifier? modifier { set; get; }
@@ -43,10 +43,18 @@ namespace HKX2E
 
         public bool Equals(hkbModifierWrapper? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((modifier is null && other.modifier is null) || (modifier is not null && other.modifier is not null && modifier.Equals((IHavokObject)other.modifier))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (modifier is null && other.modifier is null)
+                    || (
+                        modifier is not null
+                        && other.modifier is not null
+                        && modifier.Equals((IHavokObject)other.modifier)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpLinSoftConstraintAtom Signatire: 0x52b27d69 size: 12 flags: FLAGS_NONE
 
-    // axisIndex class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpLinSoftConstraintAtom : hkpConstraintAtom, IEquatable<hkpLinSoftConstraintAtom?>
+    // axisIndex class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpLinSoftConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpLinSoftConstraintAtom?>
     {
         public byte axisIndex { set; get; }
         public float tau { set; get; }
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkpLinSoftConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   axisIndex.Equals(other.axisIndex) &&
-                   tau.Equals(other.tau) &&
-                   damping.Equals(other.damping) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && axisIndex.Equals(other.axisIndex)
+                && tau.Equals(other.tau)
+                && damping.Equals(other.damping)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

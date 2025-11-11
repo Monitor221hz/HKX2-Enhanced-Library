@@ -6,4 +6,3 @@ namespace HKX2E
         REBUILD_ALL = 1,
     }
 }
-

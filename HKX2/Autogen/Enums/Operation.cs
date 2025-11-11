@@ -8,4 +8,3 @@ namespace HKX2E
         TOI_OP = 3,
     }
 }
-

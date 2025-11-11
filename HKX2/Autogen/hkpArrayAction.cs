@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkpArrayAction Signatire: 0x674bcd2d size: 64 flags: FLAGS_NONE
 
-    // entities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // entities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkpArrayAction : hkpAction, IEquatable<hkpArrayAction?>
     {
         public IList<hkpEntity> entities { set; get; } = Array.Empty<hkpEntity>();
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkpArrayAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   entities.SequenceEqual(other.entities) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && entities.SequenceEqual(other.entities)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

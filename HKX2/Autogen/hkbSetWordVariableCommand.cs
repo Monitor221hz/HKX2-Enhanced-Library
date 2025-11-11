@@ -6,13 +6,15 @@ namespace HKX2E
 {
     // hkbSetWordVariableCommand Signatire: 0xf3ae5fca size: 64 flags: FLAGS_NONE
 
-    // quadValue class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // variableId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // value class: hkbVariableValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
+    // quadValue class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // variableId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // value class: hkbVariableValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: VariableType
-    // global class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 49 flags: FLAGS_NONE enum: 
-    public partial class hkbSetWordVariableCommand : hkReferencedObject, IEquatable<hkbSetWordVariableCommand?>
+    // global class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 49 flags: FLAGS_NONE enum:
+    public partial class hkbSetWordVariableCommand
+        : hkReferencedObject,
+            IEquatable<hkbSetWordVariableCommand?>
     {
         public Vector4 quadValue { set; get; }
         public ulong characterId { set; get; }
@@ -76,15 +78,23 @@ namespace HKX2E
 
         public bool Equals(hkbSetWordVariableCommand? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   quadValue.Equals(other.quadValue) &&
-                   characterId.Equals(other.characterId) &&
-                   variableId.Equals(other.variableId) &&
-                   ((value is null && other.value is null) || (value is not null && other.value is not null && value.Equals((IHavokObject)other.value))) &&
-                   type.Equals(other.type) &&
-                   global.Equals(other.global) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && quadValue.Equals(other.quadValue)
+                && characterId.Equals(other.characterId)
+                && variableId.Equals(other.variableId)
+                && (
+                    (value is null && other.value is null)
+                    || (
+                        value is not null
+                        && other.value is not null
+                        && value.Equals((IHavokObject)other.value)
+                    )
+                )
+                && type.Equals(other.type)
+                && global.Equals(other.global)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -102,4 +112,3 @@ namespace HKX2E
         }
     }
 }
-

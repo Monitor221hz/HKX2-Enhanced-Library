@@ -12,4 +12,3 @@ namespace HKX2E
         TOKEN_TYPE_CHARACTER_PROPERTY_INDEX = 7,
     }
 }
-

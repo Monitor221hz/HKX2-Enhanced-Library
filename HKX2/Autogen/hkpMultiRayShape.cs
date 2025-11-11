@@ -7,8 +7,8 @@ namespace HKX2E
 {
     // hkpMultiRayShape Signatire: 0xea2e7ec9 size: 56 flags: FLAGS_NONE
 
-    // rays class: hkpMultiRayShapeRay Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // rayPenetrationDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // rays class: hkpMultiRayShapeRay Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // rayPenetrationDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkpMultiRayShape : hkpShape, IEquatable<hkpMultiRayShape?>
     {
         public IList<hkpMultiRayShapeRay> rays { set; get; } = Array.Empty<hkpMultiRayShapeRay>();
@@ -53,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkpMultiRayShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rays.SequenceEqual(other.rays) &&
-                   rayPenetrationDistance.Equals(other.rayPenetrationDistance) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rays.SequenceEqual(other.rays)
+                && rayPenetrationDistance.Equals(other.rayPenetrationDistance)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

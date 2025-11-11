@@ -12,4 +12,3 @@ namespace HKX2E
         COLLECTION_MAX = 7,
     }
 }
-

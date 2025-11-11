@@ -8,4 +8,3 @@ namespace HKX2E
         EVENT_MODE_IGNORE_TO_GENERATOR = 3,
     }
 }
-

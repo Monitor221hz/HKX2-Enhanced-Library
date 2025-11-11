@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // BSSpeedSamplerModifier Signatire: 0xd297fda9 size: 96 flags: FLAGS_NONE
 
-    // state class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // direction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // goalSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // speedOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
+    // state class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // direction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // goalSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // speedOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
     public partial class BSSpeedSamplerModifier : hkbModifier, IEquatable<BSSpeedSamplerModifier?>
     {
         public int state { set; get; }
@@ -61,13 +61,14 @@ namespace HKX2E
 
         public bool Equals(BSSpeedSamplerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   state.Equals(other.state) &&
-                   direction.Equals(other.direction) &&
-                   goalSpeed.Equals(other.goalSpeed) &&
-                   speedOut.Equals(other.speedOut) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && state.Equals(other.state)
+                && direction.Equals(other.direction)
+                && goalSpeed.Equals(other.goalSpeed)
+                && speedOut.Equals(other.speedOut)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -83,4 +84,3 @@ namespace HKX2E
         }
     }
 }
-

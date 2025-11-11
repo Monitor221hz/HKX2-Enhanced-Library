@@ -5,16 +5,16 @@ namespace HKX2E
 {
     // BSIsActiveModifier Signatire: 0xb0fde45a size: 96 flags: FLAGS_NONE
 
-    // bIsActive0 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // bInvertActive0 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum: 
-    // bIsActive1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum: 
-    // bInvertActive1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 83 flags: FLAGS_NONE enum: 
-    // bIsActive2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // bInvertActive2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 85 flags: FLAGS_NONE enum: 
-    // bIsActive3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum: 
-    // bInvertActive3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 87 flags: FLAGS_NONE enum: 
-    // bIsActive4 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // bInvertActive4 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 89 flags: FLAGS_NONE enum: 
+    // bIsActive0 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // bInvertActive0 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum:
+    // bIsActive1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum:
+    // bInvertActive1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 83 flags: FLAGS_NONE enum:
+    // bIsActive2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // bInvertActive2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 85 flags: FLAGS_NONE enum:
+    // bIsActive3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum:
+    // bInvertActive3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 87 flags: FLAGS_NONE enum:
+    // bIsActive4 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // bInvertActive4 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 89 flags: FLAGS_NONE enum:
     public partial class BSIsActiveModifier : hkbModifier, IEquatable<BSIsActiveModifier?>
     {
         public bool bIsActive0 { set; get; }
@@ -99,19 +99,20 @@ namespace HKX2E
 
         public bool Equals(BSIsActiveModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   bIsActive0.Equals(other.bIsActive0) &&
-                   bInvertActive0.Equals(other.bInvertActive0) &&
-                   bIsActive1.Equals(other.bIsActive1) &&
-                   bInvertActive1.Equals(other.bInvertActive1) &&
-                   bIsActive2.Equals(other.bIsActive2) &&
-                   bInvertActive2.Equals(other.bInvertActive2) &&
-                   bIsActive3.Equals(other.bIsActive3) &&
-                   bInvertActive3.Equals(other.bInvertActive3) &&
-                   bIsActive4.Equals(other.bIsActive4) &&
-                   bInvertActive4.Equals(other.bInvertActive4) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && bIsActive0.Equals(other.bIsActive0)
+                && bInvertActive0.Equals(other.bInvertActive0)
+                && bIsActive1.Equals(other.bIsActive1)
+                && bInvertActive1.Equals(other.bInvertActive1)
+                && bIsActive2.Equals(other.bIsActive2)
+                && bInvertActive2.Equals(other.bInvertActive2)
+                && bIsActive3.Equals(other.bIsActive3)
+                && bInvertActive3.Equals(other.bInvertActive3)
+                && bIsActive4.Equals(other.bIsActive4)
+                && bInvertActive4.Equals(other.bInvertActive4)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -133,4 +134,3 @@ namespace HKX2E
         }
     }
 }
-

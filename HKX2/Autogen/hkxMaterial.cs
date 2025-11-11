@@ -8,26 +8,28 @@ namespace HKX2E
 {
     // hkxMaterial Signatire: 0x2954537a size: 176 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // stages class: hkxMaterialTextureStage Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // diffuseColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // ambientColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // specularColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // emissiveColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // subMaterials class: hkxMaterial Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // extraData class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // properties class: hkxMaterialProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // stages class: hkxMaterialTextureStage Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // diffuseColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // ambientColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // specularColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // emissiveColor class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // subMaterials class: hkxMaterial Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // extraData class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // properties class: hkxMaterialProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
     public partial class hkxMaterial : hkxAttributeHolder, IEquatable<hkxMaterial?>
     {
         public string name { set; get; } = "";
-        public IList<hkxMaterialTextureStage> stages { set; get; } = Array.Empty<hkxMaterialTextureStage>();
+        public IList<hkxMaterialTextureStage> stages { set; get; } =
+            Array.Empty<hkxMaterialTextureStage>();
         public Vector4 diffuseColor { set; get; }
         public Vector4 ambientColor { set; get; }
         public Vector4 specularColor { set; get; }
         public Vector4 emissiveColor { set; get; }
         public IList<hkxMaterial> subMaterials { set; get; } = Array.Empty<hkxMaterial>();
         public hkReferencedObject? extraData { set; get; }
-        public IList<hkxMaterialProperty> properties { set; get; } = Array.Empty<hkxMaterialProperty>();
+        public IList<hkxMaterialProperty> properties { set; get; } =
+            Array.Empty<hkxMaterialProperty>();
 
         public override uint Signature { set; get; } = 0x2954537a;
 
@@ -98,18 +100,31 @@ namespace HKX2E
 
         public bool Equals(hkxMaterial? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   stages.SequenceEqual(other.stages) &&
-                   diffuseColor.Equals(other.diffuseColor) &&
-                   ambientColor.Equals(other.ambientColor) &&
-                   specularColor.Equals(other.specularColor) &&
-                   emissiveColor.Equals(other.emissiveColor) &&
-                   subMaterials.SequenceEqual(other.subMaterials) &&
-                   ((extraData is null && other.extraData is null) || (extraData is not null && other.extraData is not null && extraData.Equals((IHavokObject)other.extraData))) &&
-                   properties.SequenceEqual(other.properties) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && stages.SequenceEqual(other.stages)
+                && diffuseColor.Equals(other.diffuseColor)
+                && ambientColor.Equals(other.ambientColor)
+                && specularColor.Equals(other.specularColor)
+                && emissiveColor.Equals(other.emissiveColor)
+                && subMaterials.SequenceEqual(other.subMaterials)
+                && (
+                    (extraData is null && other.extraData is null)
+                    || (
+                        extraData is not null
+                        && other.extraData is not null
+                        && extraData.Equals((IHavokObject)other.extraData)
+                    )
+                )
+                && properties.SequenceEqual(other.properties)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -130,4 +145,3 @@ namespace HKX2E
         }
     }
 }
-

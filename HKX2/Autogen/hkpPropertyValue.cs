@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpPropertyValue Signatire: 0xc75925aa size: 8 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // data class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkpPropertyValue : IHavokObject, IEquatable<hkpPropertyValue?>
     {
         public ulong data { set; get; }
@@ -39,9 +39,8 @@ namespace HKX2E
 
         public bool Equals(hkpPropertyValue? other)
         {
-            return other is not null &&
-                   data.Equals(other.data) &&
-                   Signature == other.Signature; ;
+            return other is not null && data.Equals(other.data) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +52,3 @@ namespace HKX2E
         }
     }
 }
-

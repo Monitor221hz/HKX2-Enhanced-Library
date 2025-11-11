@@ -9,4 +9,3 @@ namespace HKX2E
         MATERIAL_FOUR_BYTES_PER_TRIANGLE = 4,
     }
 }
-

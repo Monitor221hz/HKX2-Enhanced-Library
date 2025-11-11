@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkbFootIkControlData Signatire: 0xa111b704 size: 48 flags: FLAGS_NONE
 
-    // gains class: hkbFootIkGains Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
+    // gains class: hkbFootIkGains Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum:
     public partial class hkbFootIkControlData : IHavokObject, IEquatable<hkbFootIkControlData?>
     {
         public hkbFootIkGains gains { set; get; } = new();
@@ -39,9 +39,17 @@ namespace HKX2E
 
         public bool Equals(hkbFootIkControlData? other)
         {
-            return other is not null &&
-                   ((gains is null && other.gains is null) || (gains is not null && other.gains is not null && gains.Equals((IHavokObject)other.gains))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (gains is null && other.gains is null)
+                    || (
+                        gains is not null
+                        && other.gains is not null
+                        && gains.Equals((IHavokObject)other.gains)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +61,3 @@ namespace HKX2E
         }
     }
 }
-

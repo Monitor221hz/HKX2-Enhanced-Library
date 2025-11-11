@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkbComputeDirectionModifierInternalState Signatire: 0x6ac054d7 size: 48 flags: FLAGS_NONE
 
-    // pointOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // groundAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // upAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // computedOutput class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    public partial class hkbComputeDirectionModifierInternalState : hkReferencedObject, IEquatable<hkbComputeDirectionModifierInternalState?>
+    // pointOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // groundAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // upAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // computedOutput class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    public partial class hkbComputeDirectionModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbComputeDirectionModifierInternalState?>
     {
         public Vector4 pointOut { set; get; }
         public float groundAngleOut { set; get; }
@@ -64,13 +66,14 @@ namespace HKX2E
 
         public bool Equals(hkbComputeDirectionModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   pointOut.Equals(other.pointOut) &&
-                   groundAngleOut.Equals(other.groundAngleOut) &&
-                   upAngleOut.Equals(other.upAngleOut) &&
-                   computedOutput.Equals(other.computedOutput) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && pointOut.Equals(other.pointOut)
+                && groundAngleOut.Equals(other.groundAngleOut)
+                && upAngleOut.Equals(other.upAngleOut)
+                && computedOutput.Equals(other.computedOutput)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

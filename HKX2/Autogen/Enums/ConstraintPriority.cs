@@ -11,4 +11,3 @@ namespace HKX2E
         NUM_PRIORITIES = 6,
     }
 }
-

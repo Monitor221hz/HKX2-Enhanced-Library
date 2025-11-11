@@ -7,8 +7,8 @@ namespace HKX2E
 {
     // hkpMultiSphereShape Signatire: 0x61a590fc size: 176 flags: FLAGS_NONE
 
-    // numSpheres class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // spheres class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 8 offset: 48 flags: FLAGS_NONE enum: 
+    // numSpheres class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // spheres class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 8 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkpMultiSphereShape : hkpSphereRepShape, IEquatable<hkpMultiSphereShape?>
     {
         public int numSpheres { set; get; }
@@ -53,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkpMultiSphereShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   numSpheres.Equals(other.numSpheres) &&
-                   spheres.SequenceEqual(other.spheres) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && numSpheres.Equals(other.numSpheres)
+                && spheres.SequenceEqual(other.spheres)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

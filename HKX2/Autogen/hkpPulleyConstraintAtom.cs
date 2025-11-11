@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkpPulleyConstraintAtom Signatire: 0x94a08848 size: 64 flags: FLAGS_NONE
 
-    // fixedPivotAinWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // fixedPivotBinWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // ropeLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // leverageOnBodyB class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    public partial class hkpPulleyConstraintAtom : hkpConstraintAtom, IEquatable<hkpPulleyConstraintAtom?>
+    // fixedPivotAinWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // fixedPivotBinWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // ropeLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // leverageOnBodyB class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum:
+    public partial class hkpPulleyConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpPulleyConstraintAtom?>
     {
         public Vector4 fixedPivotAinWorld { set; get; }
         public Vector4 fixedPivotBinWorld { set; get; }
@@ -66,13 +68,14 @@ namespace HKX2E
 
         public bool Equals(hkpPulleyConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   fixedPivotAinWorld.Equals(other.fixedPivotAinWorld) &&
-                   fixedPivotBinWorld.Equals(other.fixedPivotBinWorld) &&
-                   ropeLength.Equals(other.ropeLength) &&
-                   leverageOnBodyB.Equals(other.leverageOnBodyB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && fixedPivotAinWorld.Equals(other.fixedPivotAinWorld)
+                && fixedPivotBinWorld.Equals(other.fixedPivotBinWorld)
+                && ropeLength.Equals(other.ropeLength)
+                && leverageOnBodyB.Equals(other.leverageOnBodyB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -88,4 +91,3 @@ namespace HKX2E
         }
     }
 }
-

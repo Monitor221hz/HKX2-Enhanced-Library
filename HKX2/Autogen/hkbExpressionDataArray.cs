@@ -7,10 +7,13 @@ namespace HKX2E
 {
     // hkbExpressionDataArray Signatire: 0x4b9ee1a2 size: 32 flags: FLAGS_NONE
 
-    // expressionsData class: hkbExpressionData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbExpressionDataArray : hkReferencedObject, IEquatable<hkbExpressionDataArray?>
+    // expressionsData class: hkbExpressionData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbExpressionDataArray
+        : hkReferencedObject,
+            IEquatable<hkbExpressionDataArray?>
     {
-        public IList<hkbExpressionData> expressionsData { set; get; } = Array.Empty<hkbExpressionData>();
+        public IList<hkbExpressionData> expressionsData { set; get; } =
+            Array.Empty<hkbExpressionData>();
 
         public override uint Signature { set; get; } = 0x4b9ee1a2;
 
@@ -45,10 +48,11 @@ namespace HKX2E
 
         public bool Equals(hkbExpressionDataArray? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   expressionsData.SequenceEqual(other.expressionsData) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && expressionsData.SequenceEqual(other.expressionsData)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +65,3 @@ namespace HKX2E
         }
     }
 }
-

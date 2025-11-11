@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkbEventsFromRangeModifier Signatire: 0xbc561b6e size: 112 flags: FLAGS_NONE
 
-    // inputValue class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // lowerBound class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // eventRanges class: hkbEventRangeDataArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // wasActiveInPreviousFrame class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbEventsFromRangeModifier : hkbModifier, IEquatable<hkbEventsFromRangeModifier?>
+    // inputValue class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // lowerBound class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // eventRanges class: hkbEventRangeDataArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // wasActiveInPreviousFrame class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbEventsFromRangeModifier
+        : hkbModifier,
+            IEquatable<hkbEventsFromRangeModifier?>
     {
         public float inputValue { set; get; }
         public float lowerBound { set; get; }
@@ -42,7 +44,11 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             inputValue = xd.ReadSingle(xe, nameof(inputValue));
             lowerBound = xd.ReadSingle(xe, nameof(lowerBound));
-            eventRanges = xd.ReadClassPointer<hkbEventRangeDataArray>(this, xe, nameof(eventRanges));
+            eventRanges = xd.ReadClassPointer<hkbEventRangeDataArray>(
+                this,
+                xe,
+                nameof(eventRanges)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -61,12 +67,20 @@ namespace HKX2E
 
         public bool Equals(hkbEventsFromRangeModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   inputValue.Equals(other.inputValue) &&
-                   lowerBound.Equals(other.lowerBound) &&
-                   ((eventRanges is null && other.eventRanges is null) || (eventRanges is not null && other.eventRanges is not null && eventRanges.Equals((IHavokObject)other.eventRanges))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && inputValue.Equals(other.inputValue)
+                && lowerBound.Equals(other.lowerBound)
+                && (
+                    (eventRanges is null && other.eventRanges is null)
+                    || (
+                        eventRanges is not null
+                        && other.eventRanges is not null
+                        && eventRanges.Equals((IHavokObject)other.eventRanges)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -81,4 +95,3 @@ namespace HKX2E
         }
     }
 }
-

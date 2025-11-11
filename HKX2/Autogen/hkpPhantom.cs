@@ -6,8 +6,8 @@ namespace HKX2E
 {
     // hkpPhantom Signatire: 0x9b7e6f86 size: 240 flags: FLAGS_NONE
 
-    // overlapListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // phantomListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // overlapListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // phantomListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpPhantom : hkpWorldObject, IEquatable<hkpPhantom?>
     {
         public IList<object> overlapListeners { set; get; } = Array.Empty<object>();
@@ -48,9 +48,8 @@ namespace HKX2E
 
         public bool Equals(hkpPhantom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +61,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,11 +6,11 @@ namespace HKX2E
 {
     // hkaBoneAttachment Signatire: 0xa8ccd5cf size: 128 flags: FLAGS_NONE
 
-    // originalSkeletonName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // boneFromAttachment class:  Type.TYPE_MATRIX4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // attachment class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // originalSkeletonName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // boneFromAttachment class:  Type.TYPE_MATRIX4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // attachment class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
     public partial class hkaBoneAttachment : hkReferencedObject, IEquatable<hkaBoneAttachment?>
     {
         public string originalSkeletonName { set; get; } = "";
@@ -72,14 +72,32 @@ namespace HKX2E
 
         public bool Equals(hkaBoneAttachment? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (originalSkeletonName is null && other.originalSkeletonName is null || originalSkeletonName == other.originalSkeletonName || originalSkeletonName is null && other.originalSkeletonName == "" || originalSkeletonName == "" && other.originalSkeletonName is null) &&
-                   boneFromAttachment.Equals(other.boneFromAttachment) &&
-                   ((attachment is null && other.attachment is null) || (attachment is not null && other.attachment is not null && attachment.Equals((IHavokObject)other.attachment))) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   boneIndex.Equals(other.boneIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    originalSkeletonName is null && other.originalSkeletonName is null
+                    || originalSkeletonName == other.originalSkeletonName
+                    || originalSkeletonName is null && other.originalSkeletonName == ""
+                    || originalSkeletonName == "" && other.originalSkeletonName is null
+                )
+                && boneFromAttachment.Equals(other.boneFromAttachment)
+                && (
+                    (attachment is null && other.attachment is null)
+                    || (
+                        attachment is not null
+                        && other.attachment is not null
+                        && attachment.Equals((IHavokObject)other.attachment)
+                    )
+                )
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && boneIndex.Equals(other.boneIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -96,4 +114,3 @@ namespace HKX2E
         }
     }
 }
-

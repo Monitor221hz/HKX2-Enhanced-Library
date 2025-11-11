@@ -9,4 +9,3 @@ namespace HKX2E
         CALLBACK_MOTOR_TYPE_USER_3 = 4,
     }
 }
-

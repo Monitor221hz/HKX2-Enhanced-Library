@@ -7,21 +7,23 @@ namespace HKX2E
 {
     // hkaFootstepAnalysisInfo Signatire: 0x824faf75 size: 208 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // nameStrike class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // nameLift class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // nameLock class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // nameUnlock class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // minPos class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // maxPos class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // minVel class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // maxVel class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // allBonesDown class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // anyBonesDown class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // posTol class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // velTol class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    public partial class hkaFootstepAnalysisInfo : hkReferencedObject, IEquatable<hkaFootstepAnalysisInfo?>
+    // name class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // nameStrike class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // nameLift class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // nameLock class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // nameUnlock class:  Type.TYPE_ARRAY Type.TYPE_CHAR arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // minPos class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // maxPos class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // minVel class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // maxVel class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // allBonesDown class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // anyBonesDown class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // posTol class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // velTol class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum:
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum:
+    public partial class hkaFootstepAnalysisInfo
+        : hkReferencedObject,
+            IEquatable<hkaFootstepAnalysisInfo?>
     {
         public string name { set; get; } = "";
         public string nameStrike { set; get; } = "";
@@ -125,23 +127,24 @@ namespace HKX2E
 
         public bool Equals(hkaFootstepAnalysisInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   name.SequenceEqual(other.name) &&
-                   nameStrike.SequenceEqual(other.nameStrike) &&
-                   nameLift.SequenceEqual(other.nameLift) &&
-                   nameLock.SequenceEqual(other.nameLock) &&
-                   nameUnlock.SequenceEqual(other.nameUnlock) &&
-                   minPos.SequenceEqual(other.minPos) &&
-                   maxPos.SequenceEqual(other.maxPos) &&
-                   minVel.SequenceEqual(other.minVel) &&
-                   maxVel.SequenceEqual(other.maxVel) &&
-                   allBonesDown.SequenceEqual(other.allBonesDown) &&
-                   anyBonesDown.SequenceEqual(other.anyBonesDown) &&
-                   posTol.Equals(other.posTol) &&
-                   velTol.Equals(other.velTol) &&
-                   duration.Equals(other.duration) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && name.SequenceEqual(other.name)
+                && nameStrike.SequenceEqual(other.nameStrike)
+                && nameLift.SequenceEqual(other.nameLift)
+                && nameLock.SequenceEqual(other.nameLock)
+                && nameUnlock.SequenceEqual(other.nameUnlock)
+                && minPos.SequenceEqual(other.minPos)
+                && maxPos.SequenceEqual(other.maxPos)
+                && minVel.SequenceEqual(other.minVel)
+                && maxVel.SequenceEqual(other.maxVel)
+                && allBonesDown.SequenceEqual(other.allBonesDown)
+                && anyBonesDown.SequenceEqual(other.anyBonesDown)
+                && posTol.Equals(other.posTol)
+                && velTol.Equals(other.velTol)
+                && duration.Equals(other.duration)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -167,4 +170,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkpConstraintChainInstanceAction Signatire: 0xc3971189 size: 56 flags: FLAGS_NONE
 
-    // constraintInstance class: hkpConstraintChainInstance Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: NOT_OWNED|FLAGS_NONE enum: 
-    public partial class hkpConstraintChainInstanceAction : hkpAction, IEquatable<hkpConstraintChainInstanceAction?>
+    // constraintInstance class: hkpConstraintChainInstance Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: NOT_OWNED|FLAGS_NONE enum:
+    public partial class hkpConstraintChainInstanceAction
+        : hkpAction,
+            IEquatable<hkpConstraintChainInstanceAction?>
     {
         public hkpConstraintChainInstance? constraintInstance { set; get; }
 
@@ -27,7 +29,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            constraintInstance = xd.ReadClassPointer<hkpConstraintChainInstance>(this, xe, nameof(constraintInstance));
+            constraintInstance = xd.ReadClassPointer<hkpConstraintChainInstance>(
+                this,
+                xe,
+                nameof(constraintInstance)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -43,10 +49,18 @@ namespace HKX2E
 
         public bool Equals(hkpConstraintChainInstanceAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((constraintInstance is null && other.constraintInstance is null) || (constraintInstance is not null && other.constraintInstance is not null && constraintInstance.Equals((IHavokObject)other.constraintInstance))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (constraintInstance is null && other.constraintInstance is null)
+                    || (
+                        constraintInstance is not null
+                        && other.constraintInstance is not null
+                        && constraintInstance.Equals((IHavokObject)other.constraintInstance)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

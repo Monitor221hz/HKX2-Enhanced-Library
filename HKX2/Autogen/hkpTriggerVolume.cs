@@ -7,14 +7,15 @@ namespace HKX2E
 {
     // hkpTriggerVolume Signatire: 0xa29a8d1a size: 88 flags: FLAGS_NONE
 
-    // overlappingBodies class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // eventQueue class: hkpTriggerVolumeEventInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // triggerBody class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // sequenceNumber class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // overlappingBodies class: hkpRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // eventQueue class: hkpTriggerVolumeEventInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // triggerBody class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // sequenceNumber class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     public partial class hkpTriggerVolume : hkReferencedObject, IEquatable<hkpTriggerVolume?>
     {
         public IList<hkpRigidBody> overlappingBodies { set; get; } = Array.Empty<hkpRigidBody>();
-        public IList<hkpTriggerVolumeEventInfo> eventQueue { set; get; } = Array.Empty<hkpTriggerVolumeEventInfo>();
+        public IList<hkpTriggerVolumeEventInfo> eventQueue { set; get; } =
+            Array.Empty<hkpTriggerVolumeEventInfo>();
         public hkpRigidBody? triggerBody { set; get; }
         public uint sequenceNumber { set; get; }
 
@@ -45,7 +46,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            overlappingBodies = xd.ReadClassPointerArray<hkpRigidBody>(this, xe, nameof(overlappingBodies));
+            overlappingBodies = xd.ReadClassPointerArray<hkpRigidBody>(
+                this,
+                xe,
+                nameof(overlappingBodies)
+            );
             eventQueue = xd.ReadClassArray<hkpTriggerVolumeEventInfo>(xe, nameof(eventQueue));
             triggerBody = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(triggerBody));
             sequenceNumber = xd.ReadUInt32(xe, nameof(sequenceNumber));
@@ -67,13 +72,21 @@ namespace HKX2E
 
         public bool Equals(hkpTriggerVolume? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   overlappingBodies.SequenceEqual(other.overlappingBodies) &&
-                   eventQueue.SequenceEqual(other.eventQueue) &&
-                   ((triggerBody is null && other.triggerBody is null) || (triggerBody is not null && other.triggerBody is not null && triggerBody.Equals((IHavokObject)other.triggerBody))) &&
-                   sequenceNumber.Equals(other.sequenceNumber) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && overlappingBodies.SequenceEqual(other.overlappingBodies)
+                && eventQueue.SequenceEqual(other.eventQueue)
+                && (
+                    (triggerBody is null && other.triggerBody is null)
+                    || (
+                        triggerBody is not null
+                        && other.triggerBody is not null
+                        && triggerBody.Equals((IHavokObject)other.triggerBody)
+                    )
+                )
+                && sequenceNumber.Equals(other.sequenceNumber)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -89,4 +102,3 @@ namespace HKX2E
         }
     }
 }
-

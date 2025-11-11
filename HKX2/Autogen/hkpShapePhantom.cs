@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpShapePhantom Signatire: 0xcb22fbcd size: 416 flags: FLAGS_NONE
 
-    // motionState class: hkMotionState Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum: 
+    // motionState class: hkMotionState Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum:
     public partial class hkpShapePhantom : hkpPhantom, IEquatable<hkpShapePhantom?>
     {
         public hkMotionState motionState { set; get; } = new();
@@ -43,10 +43,18 @@ namespace HKX2E
 
         public bool Equals(hkpShapePhantom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((motionState is null && other.motionState is null) || (motionState is not null && other.motionState is not null && motionState.Equals((IHavokObject)other.motionState))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (motionState is null && other.motionState is null)
+                    || (
+                        motionState is not null
+                        && other.motionState is not null
+                        && motionState.Equals((IHavokObject)other.motionState)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

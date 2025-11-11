@@ -7,27 +7,28 @@ namespace HKX2E
 {
     // hkbStateMachineStateInfo Signatire: 0xed7f9d0 size: 120 flags: FLAGS_NONE
 
-    // listeners class: hkbStateListener Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // enterNotifyEvents class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // exitNotifyEvents class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // transitions class: hkbStateMachineTransitionInfoArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // generator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // stateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // probability class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    public partial class hkbStateMachineStateInfo : hkbBindable, IEquatable<hkbStateMachineStateInfo?>
+    // listeners class: hkbStateListener Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // enterNotifyEvents class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // exitNotifyEvents class: hkbStateMachineEventPropertyArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // transitions class: hkbStateMachineTransitionInfoArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // generator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // stateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // probability class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    public partial class hkbStateMachineStateInfo
+        : hkbBindable,
+            IEquatable<hkbStateMachineStateInfo?>
     {
-        public static hkbStateMachineStateInfo GetDefault() => new()
-        {
-            probability = 1.0f, 
-            enable = true
-        };
+        public static hkbStateMachineStateInfo GetDefault() =>
+            new() { probability = 1.0f, enable = true };
+
         public void SetDefault()
         {
             probability = 1.0f;
-            enable = true; 
+            enable = true;
         }
+
         public IList<hkbStateListener> listeners { set; get; } = Array.Empty<hkbStateListener>();
         public hkbStateMachineEventPropertyArray? enterNotifyEvents { set; get; }
         public hkbStateMachineEventPropertyArray? exitNotifyEvents { set; get; }
@@ -74,9 +75,21 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             listeners = xd.ReadClassPointerArray<hkbStateListener>(this, xe, nameof(listeners));
-            enterNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(this, xe, nameof(enterNotifyEvents));
-            exitNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(this, xe, nameof(exitNotifyEvents));
-            transitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(this, xe, nameof(transitions));
+            enterNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(
+                this,
+                xe,
+                nameof(enterNotifyEvents)
+            );
+            exitNotifyEvents = xd.ReadClassPointer<hkbStateMachineEventPropertyArray>(
+                this,
+                xe,
+                nameof(exitNotifyEvents)
+            );
+            transitions = xd.ReadClassPointer<hkbStateMachineTransitionInfoArray>(
+                this,
+                xe,
+                nameof(transitions)
+            );
             generator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(generator));
             name = xd.ReadString(xe, nameof(name));
             stateId = xd.ReadInt32(xe, nameof(stateId));
@@ -105,18 +118,52 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineStateInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   listeners.SequenceEqual(other.listeners) &&
-                   ((enterNotifyEvents is null && other.enterNotifyEvents is null) || (enterNotifyEvents is not null && other.enterNotifyEvents is not null && enterNotifyEvents.Equals((IHavokObject)other.enterNotifyEvents))) &&
-                   ((exitNotifyEvents is null && other.exitNotifyEvents is null) || (exitNotifyEvents is not null && other.exitNotifyEvents is not null && exitNotifyEvents.Equals((IHavokObject)other.exitNotifyEvents))) &&
-                   ((transitions is null && other.transitions is null) || (transitions is not null && other.transitions is not null && transitions.Equals((IHavokObject)other.transitions))) &&
-                   ((generator is null && other.generator is null) || (generator is not null && other.generator is not null && generator.Equals((IHavokObject)other.generator))) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   stateId.Equals(other.stateId) &&
-                   probability.Equals(other.probability) &&
-                   enable.Equals(other.enable) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && listeners.SequenceEqual(other.listeners)
+                && (
+                    (enterNotifyEvents is null && other.enterNotifyEvents is null)
+                    || (
+                        enterNotifyEvents is not null
+                        && other.enterNotifyEvents is not null
+                        && enterNotifyEvents.Equals((IHavokObject)other.enterNotifyEvents)
+                    )
+                )
+                && (
+                    (exitNotifyEvents is null && other.exitNotifyEvents is null)
+                    || (
+                        exitNotifyEvents is not null
+                        && other.exitNotifyEvents is not null
+                        && exitNotifyEvents.Equals((IHavokObject)other.exitNotifyEvents)
+                    )
+                )
+                && (
+                    (transitions is null && other.transitions is null)
+                    || (
+                        transitions is not null
+                        && other.transitions is not null
+                        && transitions.Equals((IHavokObject)other.transitions)
+                    )
+                )
+                && (
+                    (generator is null && other.generator is null)
+                    || (
+                        generator is not null
+                        && other.generator is not null
+                        && generator.Equals((IHavokObject)other.generator)
+                    )
+                )
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && stateId.Equals(other.stateId)
+                && probability.Equals(other.probability)
+                && enable.Equals(other.enable)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -137,4 +184,3 @@ namespace HKX2E
         }
     }
 }
-

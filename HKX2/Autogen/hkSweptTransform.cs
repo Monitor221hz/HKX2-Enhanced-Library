@@ -6,11 +6,11 @@ namespace HKX2E
 {
     // hkSweptTransform Signatire: 0xb4e5770 size: 80 flags: FLAGS_NONE
 
-    // centerOfMass0 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // centerOfMass1 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // rotation0 class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // rotation1 class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // centerOfMassLocal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // centerOfMass0 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // centerOfMass1 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // rotation0 class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // rotation1 class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // centerOfMassLocal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
     public partial class hkSweptTransform : IHavokObject, IEquatable<hkSweptTransform?>
     {
         public Vector4 centerOfMass0 { set; get; }
@@ -64,13 +64,14 @@ namespace HKX2E
 
         public bool Equals(hkSweptTransform? other)
         {
-            return other is not null &&
-                   centerOfMass0.Equals(other.centerOfMass0) &&
-                   centerOfMass1.Equals(other.centerOfMass1) &&
-                   rotation0.Equals(other.rotation0) &&
-                   rotation1.Equals(other.rotation1) &&
-                   centerOfMassLocal.Equals(other.centerOfMassLocal) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && centerOfMass0.Equals(other.centerOfMass0)
+                && centerOfMass1.Equals(other.centerOfMass1)
+                && rotation0.Equals(other.rotation0)
+                && rotation1.Equals(other.rotation1)
+                && centerOfMassLocal.Equals(other.centerOfMassLocal)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +87,3 @@ namespace HKX2E
         }
     }
 }
-

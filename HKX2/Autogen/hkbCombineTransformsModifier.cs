@@ -6,16 +6,18 @@ namespace HKX2E
 {
     // hkbCombineTransformsModifier Signatire: 0xfd1f0b79 size: 192 flags: FLAGS_NONE
 
-    // translationOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // leftTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // leftRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // rightTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // rightRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // invertLeftTransform class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // invertRightTransform class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 177 flags: FLAGS_NONE enum: 
-    // invertResult class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 178 flags: FLAGS_NONE enum: 
-    public partial class hkbCombineTransformsModifier : hkbModifier, IEquatable<hkbCombineTransformsModifier?>
+    // translationOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // leftTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // leftRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // rightTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // rightRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // invertLeftTransform class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // invertRightTransform class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 177 flags: FLAGS_NONE enum:
+    // invertResult class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 178 flags: FLAGS_NONE enum:
+    public partial class hkbCombineTransformsModifier
+        : hkbModifier,
+            IEquatable<hkbCombineTransformsModifier?>
     {
         public Vector4 translationOut { set; get; }
         public Quaternion rotationOut { set; get; }
@@ -94,18 +96,19 @@ namespace HKX2E
 
         public bool Equals(hkbCombineTransformsModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   translationOut.Equals(other.translationOut) &&
-                   rotationOut.Equals(other.rotationOut) &&
-                   leftTranslation.Equals(other.leftTranslation) &&
-                   leftRotation.Equals(other.leftRotation) &&
-                   rightTranslation.Equals(other.rightTranslation) &&
-                   rightRotation.Equals(other.rightRotation) &&
-                   invertLeftTransform.Equals(other.invertLeftTransform) &&
-                   invertRightTransform.Equals(other.invertRightTransform) &&
-                   invertResult.Equals(other.invertResult) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && translationOut.Equals(other.translationOut)
+                && rotationOut.Equals(other.rotationOut)
+                && leftTranslation.Equals(other.leftTranslation)
+                && leftRotation.Equals(other.leftRotation)
+                && rightTranslation.Equals(other.rightTranslation)
+                && rightRotation.Equals(other.rightRotation)
+                && invertLeftTransform.Equals(other.invertLeftTransform)
+                && invertRightTransform.Equals(other.invertRightTransform)
+                && invertResult.Equals(other.invertResult)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -126,4 +129,3 @@ namespace HKX2E
         }
     }
 }
-

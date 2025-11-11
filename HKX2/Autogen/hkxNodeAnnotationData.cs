@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkxNodeAnnotationData Signatire: 0x433dee92 size: 16 flags: FLAGS_NONE
 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // description class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // description class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkxNodeAnnotationData : IHavokObject, IEquatable<hkxNodeAnnotationData?>
     {
         public float time { set; get; }
@@ -47,10 +47,16 @@ namespace HKX2E
 
         public bool Equals(hkxNodeAnnotationData? other)
         {
-            return other is not null &&
-                   time.Equals(other.time) &&
-                   (description is null && other.description is null || description == other.description || description is null && other.description == "" || description == "" && other.description is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && time.Equals(other.time)
+                && (
+                    description is null && other.description is null
+                    || description == other.description
+                    || description is null && other.description == ""
+                    || description == "" && other.description is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

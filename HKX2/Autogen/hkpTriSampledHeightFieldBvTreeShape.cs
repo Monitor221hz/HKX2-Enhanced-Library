@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkpTriSampledHeightFieldBvTreeShape Signatire: 0x58e1e585 size: 80 flags: FLAGS_NONE
 
-    // childContainer class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // childSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // wantAabbRejectionTest class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 12 offset: 61 flags: FLAGS_NONE enum: 
-    public partial class hkpTriSampledHeightFieldBvTreeShape : hkpBvTreeShape, IEquatable<hkpTriSampledHeightFieldBvTreeShape?>
+    // childContainer class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // childSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // wantAabbRejectionTest class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // padding class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 12 offset: 61 flags: FLAGS_NONE enum:
+    public partial class hkpTriSampledHeightFieldBvTreeShape
+        : hkpBvTreeShape,
+            IEquatable<hkpTriSampledHeightFieldBvTreeShape?>
     {
         public hkpSingleShapeContainer childContainer { set; get; } = new();
         private int childSize { set; get; }
@@ -63,12 +65,20 @@ namespace HKX2E
 
         public bool Equals(hkpTriSampledHeightFieldBvTreeShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((childContainer is null && other.childContainer is null) || (childContainer is not null && other.childContainer is not null && childContainer.Equals((IHavokObject)other.childContainer))) &&
-                   wantAabbRejectionTest.Equals(other.wantAabbRejectionTest) &&
-                   padding.SequenceEqual(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (childContainer is null && other.childContainer is null)
+                    || (
+                        childContainer is not null
+                        && other.childContainer is not null
+                        && childContainer.Equals((IHavokObject)other.childContainer)
+                    )
+                )
+                && wantAabbRejectionTest.Equals(other.wantAabbRejectionTest)
+                && padding.SequenceEqual(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -83,4 +93,3 @@ namespace HKX2E
         }
     }
 }
-

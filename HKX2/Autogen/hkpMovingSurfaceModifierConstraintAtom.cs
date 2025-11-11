@@ -6,8 +6,10 @@ namespace HKX2E
 {
     // hkpMovingSurfaceModifierConstraintAtom Signatire: 0x79ab517d size: 64 flags: FLAGS_NONE
 
-    // velocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkpMovingSurfaceModifierConstraintAtom : hkpModifierConstraintAtom, IEquatable<hkpMovingSurfaceModifierConstraintAtom?>
+    // velocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkpMovingSurfaceModifierConstraintAtom
+        : hkpModifierConstraintAtom,
+            IEquatable<hkpMovingSurfaceModifierConstraintAtom?>
     {
         public Vector4 velocity { set; get; }
 
@@ -44,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkpMovingSurfaceModifierConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   velocity.Equals(other.velocity) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && velocity.Equals(other.velocity)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -60,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkbEventProperty Signatire: 0xdb38a15 size: 16 flags: FLAGS_NONE
 
-
     public partial class hkbEventProperty : hkbEventBase, IEquatable<hkbEventProperty?>
     {
-
-
         public override uint Signature { set; get; } = 0xdb38a15;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkbEventProperty? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -7,10 +7,10 @@ namespace HKX2E
 {
     // hkaAnimationBinding Signatire: 0x66eac971 size: 72 flags: FLAGS_NONE
 
-    // originalSkeletonName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // animation class: hkaAnimation Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // transformTrackToBoneIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // floatTrackToFloatSlotIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // originalSkeletonName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // animation class: hkaAnimation Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // transformTrackToBoneIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // floatTrackToFloatSlotIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     // blendHint class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: BlendHint
     public partial class hkaAnimationBinding : hkReferencedObject, IEquatable<hkaAnimationBinding?>
     {
@@ -49,8 +49,14 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             originalSkeletonName = xd.ReadString(xe, nameof(originalSkeletonName));
             animation = xd.ReadClassPointer<hkaAnimation>(this, xe, nameof(animation));
-            transformTrackToBoneIndices = xd.ReadInt16Array(xe, nameof(transformTrackToBoneIndices));
-            floatTrackToFloatSlotIndices = xd.ReadInt16Array(xe, nameof(floatTrackToFloatSlotIndices));
+            transformTrackToBoneIndices = xd.ReadInt16Array(
+                xe,
+                nameof(transformTrackToBoneIndices)
+            );
+            floatTrackToFloatSlotIndices = xd.ReadInt16Array(
+                xe,
+                nameof(floatTrackToFloatSlotIndices)
+            );
             blendHint = xd.ReadFlag<BlendHint, sbyte>(xe, nameof(blendHint));
         }
 
@@ -59,8 +65,16 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(originalSkeletonName), originalSkeletonName);
             xs.WriteClassPointer(xe, nameof(animation), animation);
-            xs.WriteNumberArray(xe, nameof(transformTrackToBoneIndices), transformTrackToBoneIndices);
-            xs.WriteNumberArray(xe, nameof(floatTrackToFloatSlotIndices), floatTrackToFloatSlotIndices);
+            xs.WriteNumberArray(
+                xe,
+                nameof(transformTrackToBoneIndices),
+                transformTrackToBoneIndices
+            );
+            xs.WriteNumberArray(
+                xe,
+                nameof(floatTrackToFloatSlotIndices),
+                floatTrackToFloatSlotIndices
+            );
             xs.WriteEnum<BlendHint, sbyte>(xe, nameof(blendHint), blendHint);
         }
 
@@ -71,14 +85,27 @@ namespace HKX2E
 
         public bool Equals(hkaAnimationBinding? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (originalSkeletonName is null && other.originalSkeletonName is null || originalSkeletonName == other.originalSkeletonName || originalSkeletonName is null && other.originalSkeletonName == "" || originalSkeletonName == "" && other.originalSkeletonName is null) &&
-                   ((animation is null && other.animation is null) || (animation is not null && other.animation is not null && animation.Equals((IHavokObject)other.animation))) &&
-                   transformTrackToBoneIndices.SequenceEqual(other.transformTrackToBoneIndices) &&
-                   floatTrackToFloatSlotIndices.SequenceEqual(other.floatTrackToFloatSlotIndices) &&
-                   blendHint.Equals(other.blendHint) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    originalSkeletonName is null && other.originalSkeletonName is null
+                    || originalSkeletonName == other.originalSkeletonName
+                    || originalSkeletonName is null && other.originalSkeletonName == ""
+                    || originalSkeletonName == "" && other.originalSkeletonName is null
+                )
+                && (
+                    (animation is null && other.animation is null)
+                    || (
+                        animation is not null
+                        && other.animation is not null
+                        && animation.Equals((IHavokObject)other.animation)
+                    )
+                )
+                && transformTrackToBoneIndices.SequenceEqual(other.transformTrackToBoneIndices)
+                && floatTrackToFloatSlotIndices.SequenceEqual(other.floatTrackToFloatSlotIndices)
+                && blendHint.Equals(other.blendHint)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -95,4 +122,3 @@ namespace HKX2E
         }
     }
 }
-

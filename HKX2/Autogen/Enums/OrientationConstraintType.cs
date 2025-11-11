@@ -9,4 +9,3 @@ namespace HKX2E
         CONSTRAIN_ORIENTATION_MAX_ID = 4,
     }
 }
-

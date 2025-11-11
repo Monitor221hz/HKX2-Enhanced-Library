@@ -8,10 +8,10 @@ namespace HKX2E
 {
     // hkxSkinBinding Signatire: 0x5a93f338 size: 128 flags: FLAGS_NONE
 
-    // mesh class: hkxMesh Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // nodeNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // bindPose class:  Type.TYPE_ARRAY Type.TYPE_MATRIX4 arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // initSkinTransform class:  Type.TYPE_MATRIX4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // mesh class: hkxMesh Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // nodeNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // bindPose class:  Type.TYPE_ARRAY Type.TYPE_MATRIX4 arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // initSkinTransform class:  Type.TYPE_MATRIX4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
     public partial class hkxSkinBinding : hkReferencedObject, IEquatable<hkxSkinBinding?>
     {
         public hkxMesh? mesh { set; get; }
@@ -66,13 +66,21 @@ namespace HKX2E
 
         public bool Equals(hkxSkinBinding? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((mesh is null && other.mesh is null) || (mesh is not null && other.mesh is not null && mesh.Equals((IHavokObject)other.mesh))) &&
-                   nodeNames.SequenceEqual(other.nodeNames) &&
-                   bindPose.SequenceEqual(other.bindPose) &&
-                   initSkinTransform.Equals(other.initSkinTransform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (mesh is null && other.mesh is null)
+                    || (
+                        mesh is not null
+                        && other.mesh is not null
+                        && mesh.Equals((IHavokObject)other.mesh)
+                    )
+                )
+                && nodeNames.SequenceEqual(other.nodeNames)
+                && bindPose.SequenceEqual(other.bindPose)
+                && initSkinTransform.Equals(other.initSkinTransform)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -88,4 +96,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkpOverwritePivotConstraintAtom Signatire: 0x1f11b467 size: 4 flags: FLAGS_NONE
 
-    // copyToPivotBFromPivotA class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    public partial class hkpOverwritePivotConstraintAtom : hkpConstraintAtom, IEquatable<hkpOverwritePivotConstraintAtom?>
+    // copyToPivotBFromPivotA class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    public partial class hkpOverwritePivotConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpOverwritePivotConstraintAtom?>
     {
         public byte copyToPivotBFromPivotA { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkpOverwritePivotConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   copyToPivotBFromPivotA.Equals(other.copyToPivotBFromPivotA) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && copyToPivotBFromPivotA.Equals(other.copyToPivotBFromPivotA)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

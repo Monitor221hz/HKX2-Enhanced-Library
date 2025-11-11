@@ -5,14 +5,16 @@ namespace HKX2E
 {
     // BSEventEveryNEventsModifier Signatire: 0x6030970c size: 128 flags: FLAGS_NONE
 
-    // eventToCheckFor class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // eventToSend class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // numberOfEventsBeforeSend class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // minimumNumberOfEventsBeforeSend class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 113 flags: FLAGS_NONE enum: 
-    // randomizeNumberOfEvents class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 114 flags: FLAGS_NONE enum: 
-    // numberOfEventsSeen class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 116 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // calculatedNumberOfEventsBeforeSend class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSEventEveryNEventsModifier : hkbModifier, IEquatable<BSEventEveryNEventsModifier?>
+    // eventToCheckFor class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // eventToSend class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // numberOfEventsBeforeSend class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // minimumNumberOfEventsBeforeSend class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 113 flags: FLAGS_NONE enum:
+    // randomizeNumberOfEvents class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 114 flags: FLAGS_NONE enum:
+    // numberOfEventsSeen class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 116 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // calculatedNumberOfEventsBeforeSend class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSEventEveryNEventsModifier
+        : hkbModifier,
+            IEquatable<BSEventEveryNEventsModifier?>
     {
         public hkbEventProperty eventToCheckFor { set; get; } = new();
         public hkbEventProperty eventToSend { set; get; } = new();
@@ -58,7 +60,10 @@ namespace HKX2E
             eventToCheckFor = xd.ReadClass<hkbEventProperty>(xe, nameof(eventToCheckFor));
             eventToSend = xd.ReadClass<hkbEventProperty>(xe, nameof(eventToSend));
             numberOfEventsBeforeSend = xd.ReadSByte(xe, nameof(numberOfEventsBeforeSend));
-            minimumNumberOfEventsBeforeSend = xd.ReadSByte(xe, nameof(minimumNumberOfEventsBeforeSend));
+            minimumNumberOfEventsBeforeSend = xd.ReadSByte(
+                xe,
+                nameof(minimumNumberOfEventsBeforeSend)
+            );
             randomizeNumberOfEvents = xd.ReadBoolean(xe, nameof(randomizeNumberOfEvents));
         }
 
@@ -68,7 +73,11 @@ namespace HKX2E
             xs.WriteClass<hkbEventProperty>(xe, nameof(eventToCheckFor), eventToCheckFor);
             xs.WriteClass<hkbEventProperty>(xe, nameof(eventToSend), eventToSend);
             xs.WriteNumber(xe, nameof(numberOfEventsBeforeSend), numberOfEventsBeforeSend);
-            xs.WriteNumber(xe, nameof(minimumNumberOfEventsBeforeSend), minimumNumberOfEventsBeforeSend);
+            xs.WriteNumber(
+                xe,
+                nameof(minimumNumberOfEventsBeforeSend),
+                minimumNumberOfEventsBeforeSend
+            );
             xs.WriteBoolean(xe, nameof(randomizeNumberOfEvents), randomizeNumberOfEvents);
             xs.WriteSerializeIgnored(xe, nameof(numberOfEventsSeen));
             xs.WriteSerializeIgnored(xe, nameof(calculatedNumberOfEventsBeforeSend));
@@ -81,14 +90,29 @@ namespace HKX2E
 
         public bool Equals(BSEventEveryNEventsModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((eventToCheckFor is null && other.eventToCheckFor is null) || (eventToCheckFor is not null && other.eventToCheckFor is not null && eventToCheckFor.Equals((IHavokObject)other.eventToCheckFor))) &&
-                   ((eventToSend is null && other.eventToSend is null) || (eventToSend is not null && other.eventToSend is not null && eventToSend.Equals((IHavokObject)other.eventToSend))) &&
-                   numberOfEventsBeforeSend.Equals(other.numberOfEventsBeforeSend) &&
-                   minimumNumberOfEventsBeforeSend.Equals(other.minimumNumberOfEventsBeforeSend) &&
-                   randomizeNumberOfEvents.Equals(other.randomizeNumberOfEvents) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (eventToCheckFor is null && other.eventToCheckFor is null)
+                    || (
+                        eventToCheckFor is not null
+                        && other.eventToCheckFor is not null
+                        && eventToCheckFor.Equals((IHavokObject)other.eventToCheckFor)
+                    )
+                )
+                && (
+                    (eventToSend is null && other.eventToSend is null)
+                    || (
+                        eventToSend is not null
+                        && other.eventToSend is not null
+                        && eventToSend.Equals((IHavokObject)other.eventToSend)
+                    )
+                )
+                && numberOfEventsBeforeSend.Equals(other.numberOfEventsBeforeSend)
+                && minimumNumberOfEventsBeforeSend.Equals(other.minimumNumberOfEventsBeforeSend)
+                && randomizeNumberOfEvents.Equals(other.randomizeNumberOfEvents)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -105,4 +129,3 @@ namespace HKX2E
         }
     }
 }
-

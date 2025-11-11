@@ -5,13 +5,13 @@ namespace HKX2E
 {
     // hkbAttachmentSetup Signatire: 0x774632b size: 48 flags: FLAGS_NONE
 
-    // blendInTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // moveAttacherFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // extrapolationTimeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // fixUpGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // maxLinearDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // maxAngularDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // blendInTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // moveAttacherFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // extrapolationTimeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // fixUpGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // maxLinearDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // maxAngularDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
     // attachmentType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 44 flags: FLAGS_NONE enum: AttachmentType
     public partial class hkbAttachmentSetup : hkReferencedObject, IEquatable<hkbAttachmentSetup?>
     {
@@ -87,17 +87,18 @@ namespace HKX2E
 
         public bool Equals(hkbAttachmentSetup? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   blendInTime.Equals(other.blendInTime) &&
-                   moveAttacherFraction.Equals(other.moveAttacherFraction) &&
-                   gain.Equals(other.gain) &&
-                   extrapolationTimeStep.Equals(other.extrapolationTimeStep) &&
-                   fixUpGain.Equals(other.fixUpGain) &&
-                   maxLinearDistance.Equals(other.maxLinearDistance) &&
-                   maxAngularDistance.Equals(other.maxAngularDistance) &&
-                   attachmentType.Equals(other.attachmentType) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && blendInTime.Equals(other.blendInTime)
+                && moveAttacherFraction.Equals(other.moveAttacherFraction)
+                && gain.Equals(other.gain)
+                && extrapolationTimeStep.Equals(other.extrapolationTimeStep)
+                && fixUpGain.Equals(other.fixUpGain)
+                && maxLinearDistance.Equals(other.maxLinearDistance)
+                && maxAngularDistance.Equals(other.maxAngularDistance)
+                && attachmentType.Equals(other.attachmentType)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -117,4 +118,3 @@ namespace HKX2E
         }
     }
 }
-

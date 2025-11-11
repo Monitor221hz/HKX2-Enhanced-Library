@@ -5,11 +5,11 @@ namespace HKX2E
 {
     // BSInterpValueModifier Signatire: 0x29adc802 size: 104 flags: FLAGS_NONE
 
-    // source class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // target class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // result class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // source class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // target class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // result class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class BSInterpValueModifier : hkbModifier, IEquatable<BSInterpValueModifier?>
     {
         public float source { set; get; }
@@ -68,13 +68,14 @@ namespace HKX2E
 
         public bool Equals(BSInterpValueModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   source.Equals(other.source) &&
-                   target.Equals(other.target) &&
-                   result.Equals(other.result) &&
-                   gain.Equals(other.gain) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && source.Equals(other.source)
+                && target.Equals(other.target)
+                && result.Equals(other.result)
+                && gain.Equals(other.gain)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -90,4 +91,3 @@ namespace HKX2E
         }
     }
 }
-

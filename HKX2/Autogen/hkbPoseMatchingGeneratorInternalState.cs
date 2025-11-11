@@ -5,12 +5,14 @@ namespace HKX2E
 {
     // hkbPoseMatchingGeneratorInternalState Signatire: 0x552d9dd4 size: 40 flags: FLAGS_NONE
 
-    // currentMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // bestMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // timeSinceBetterMatch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // error class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // resetCurrentMatchLocalTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkbPoseMatchingGeneratorInternalState : hkReferencedObject, IEquatable<hkbPoseMatchingGeneratorInternalState?>
+    // currentMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // bestMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // timeSinceBetterMatch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // error class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // resetCurrentMatchLocalTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkbPoseMatchingGeneratorInternalState
+        : hkReferencedObject,
+            IEquatable<hkbPoseMatchingGeneratorInternalState?>
     {
         public int currentMatch { set; get; }
         public int bestMatch { set; get; }
@@ -69,14 +71,15 @@ namespace HKX2E
 
         public bool Equals(hkbPoseMatchingGeneratorInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   currentMatch.Equals(other.currentMatch) &&
-                   bestMatch.Equals(other.bestMatch) &&
-                   timeSinceBetterMatch.Equals(other.timeSinceBetterMatch) &&
-                   error.Equals(other.error) &&
-                   resetCurrentMatchLocalTime.Equals(other.resetCurrentMatchLocalTime) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && currentMatch.Equals(other.currentMatch)
+                && bestMatch.Equals(other.bestMatch)
+                && timeSinceBetterMatch.Equals(other.timeSinceBetterMatch)
+                && error.Equals(other.error)
+                && resetCurrentMatchLocalTime.Equals(other.resetCurrentMatchLocalTime)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -93,4 +96,3 @@ namespace HKX2E
         }
     }
 }
-

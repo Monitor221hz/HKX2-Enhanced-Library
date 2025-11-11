@@ -6,10 +6,10 @@ namespace HKX2E
 {
     // hkpReorientAction Signatire: 0x2dc0ec6a size: 112 flags: FLAGS_NONE
 
-    // rotationAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // upAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
+    // rotationAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // upAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
     public partial class hkpReorientAction : hkpUnaryAction, IEquatable<hkpReorientAction?>
     {
         public Vector4 rotationAxis { set; get; }
@@ -66,13 +66,14 @@ namespace HKX2E
 
         public bool Equals(hkpReorientAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rotationAxis.Equals(other.rotationAxis) &&
-                   upAxis.Equals(other.upAxis) &&
-                   strength.Equals(other.strength) &&
-                   damping.Equals(other.damping) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rotationAxis.Equals(other.rotationAxis)
+                && upAxis.Equals(other.upAxis)
+                && strength.Equals(other.strength)
+                && damping.Equals(other.damping)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -88,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

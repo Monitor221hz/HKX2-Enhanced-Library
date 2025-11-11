@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkpAngConstraintAtom Signatire: 0x35bb3cd0 size: 4 flags: FLAGS_NONE
 
-    // firstConstrainedAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // numConstrainedAxes class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
+    // firstConstrainedAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // numConstrainedAxes class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
     public partial class hkpAngConstraintAtom : hkpConstraintAtom, IEquatable<hkpAngConstraintAtom?>
     {
         public byte firstConstrainedAxis { set; get; }
@@ -49,11 +49,12 @@ namespace HKX2E
 
         public bool Equals(hkpAngConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   firstConstrainedAxis.Equals(other.firstConstrainedAxis) &&
-                   numConstrainedAxes.Equals(other.numConstrainedAxes) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && firstConstrainedAxis.Equals(other.firstConstrainedAxis)
+                && numConstrainedAxes.Equals(other.numConstrainedAxes)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +68,3 @@ namespace HKX2E
         }
     }
 }
-

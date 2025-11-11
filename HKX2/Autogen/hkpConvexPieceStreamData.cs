@@ -7,10 +7,12 @@ namespace HKX2E
 {
     // hkpConvexPieceStreamData Signatire: 0xa5bd1d6e size: 64 flags: FLAGS_NONE
 
-    // convexPieceStream class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // convexPieceOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // convexPieceSingleTriangles class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkpConvexPieceStreamData : hkReferencedObject, IEquatable<hkpConvexPieceStreamData?>
+    // convexPieceStream class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // convexPieceOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // convexPieceSingleTriangles class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkpConvexPieceStreamData
+        : hkReferencedObject,
+            IEquatable<hkpConvexPieceStreamData?>
     {
         public IList<uint> convexPieceStream { set; get; } = Array.Empty<uint>();
         public IList<uint> convexPieceOffsets { set; get; } = Array.Empty<uint>();
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkpConvexPieceStreamData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   convexPieceStream.SequenceEqual(other.convexPieceStream) &&
-                   convexPieceOffsets.SequenceEqual(other.convexPieceOffsets) &&
-                   convexPieceSingleTriangles.SequenceEqual(other.convexPieceSingleTriangles) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && convexPieceStream.SequenceEqual(other.convexPieceStream)
+                && convexPieceOffsets.SequenceEqual(other.convexPieceOffsets)
+                && convexPieceSingleTriangles.SequenceEqual(other.convexPieceSingleTriangles)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

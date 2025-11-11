@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpPoweredChainMapperTarget Signatire: 0xf651c74d size: 16 flags: FLAGS_NONE
 
-    // chain class: hkpPoweredChainData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // infoIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpPoweredChainMapperTarget : IHavokObject, IEquatable<hkpPoweredChainMapperTarget?>
+    // chain class: hkpPoweredChainData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // infoIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpPoweredChainMapperTarget
+        : IHavokObject,
+            IEquatable<hkpPoweredChainMapperTarget?>
     {
         public hkpPoweredChainData? chain { set; get; }
         public int infoIndex { set; get; }
@@ -47,10 +49,18 @@ namespace HKX2E
 
         public bool Equals(hkpPoweredChainMapperTarget? other)
         {
-            return other is not null &&
-                   ((chain is null && other.chain is null) || (chain is not null && other.chain is not null && chain.Equals((IHavokObject)other.chain))) &&
-                   infoIndex.Equals(other.infoIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (chain is null && other.chain is null)
+                    || (
+                        chain is not null
+                        && other.chain is not null
+                        && chain.Equals((IHavokObject)other.chain)
+                    )
+                )
+                && infoIndex.Equals(other.infoIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

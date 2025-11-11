@@ -12,7 +12,9 @@ namespace HKX2E
 {
     public class HavokXmlMetaDataSerializer : HavokXmlSerializer
     {
-        protected Dictionary<IHavokObject, ulong> idNodeMap = new(ReferenceEqualityComparer.Instance);
+        protected Dictionary<IHavokObject, ulong> idNodeMap = new(
+            ReferenceEqualityComparer.Instance
+        );
 
         protected ulong GetIndex(IHavokObject obj)
         {
@@ -20,11 +22,12 @@ namespace HKX2E
             {
                 if (idNodeMap.TryGetValue(obj, out ulong index))
                 {
-                    return index; 
+                    return index;
                 }
             }
-            return GetIndex(); 
+            return GetIndex();
         }
+
         protected string GetIndexedName(IHavokObject obj) => FormatIndexName(GetIndex(obj));
 
         public void ShareContext(MetaPackFileDeserializerContext context)
@@ -34,6 +37,7 @@ namespace HKX2E
                 idNodeMap.TryAdd(kvp.Value, kvp.Key);
             }
         }
+
         public override void Serialize(IHavokObject rootObject, HKXHeader header, Stream stream)
         {
             nameObjectMap.Clear();
@@ -42,12 +46,14 @@ namespace HKX2E
 
             document = new XDocument(
                 new XDeclaration("1.0", "ascii", null),
-                new XElement("hkpackfile",
+                new XElement(
+                    "hkpackfile",
                     new XAttribute("classversion", header.FileVersion),
                     new XAttribute("contentsversion", header.ContentsVersionString),
                     new XAttribute("toplevelobject", index),
-                    new XElement("hksection",
-                        new XAttribute("name", "__data__"))));
+                    new XElement("hksection", new XAttribute("name", "__data__"))
+                )
+            );
 
             dataSection = document.Element("hkpackfile").Element("hksection");
 
@@ -56,7 +62,9 @@ namespace HKX2E
 
             document.Save(stream);
         }
-        public override XElement SerializeObject<T>(T hkObject) where T : default
+
+        public override XElement SerializeObject<T>(T hkObject)
+            where T : default
         {
             XElement ele = new("hkobject");
             string name;
@@ -64,7 +72,6 @@ namespace HKX2E
             {
                 if (!nameObjectMap.TryGetValue(hkObject, out string? existingName))
                 {
-
                     name = GetIndexedName(hkObject);
                     nameObjectMap.Add(hkObject, name);
                 }
@@ -73,11 +80,17 @@ namespace HKX2E
                     name = existingName;
                 }
             }
-            ele.Add(new XAttribute("name", name), new XAttribute("class", hkObject.GetType().Name), new XAttribute("signature", FormatSignature(hkObject.Signature)));
+            ele.Add(
+                new XAttribute("name", name),
+                new XAttribute("class", hkObject.GetType().Name),
+                new XAttribute("signature", FormatSignature(hkObject.Signature))
+            );
             hkObject.WriteXml(this, ele);
             return ele;
         }
-        public override void WriteClassPointer<T>(XElement xe, string paramName, T? value) where T : default
+
+        public override void WriteClassPointer<T>(XElement xe, string paramName, T? value)
+            where T : default
         {
             if (value is null)
             {
@@ -98,7 +111,13 @@ namespace HKX2E
                 value.WriteXml(this, node);
             }
         }
-        public override void WriteClassPointerArray<T>(XElement xe, string paramName, IList<T?> values) where T : default
+
+        public override void WriteClassPointerArray<T>(
+            XElement xe,
+            string paramName,
+            IList<T?> values
+        )
+            where T : default
         {
             var indexs = new List<string>();
             var hkparam = WriteParam(xe, paramName);

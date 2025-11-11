@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkpConstrainedSystemFilter Signatire: 0x20a447fe size: 88 flags: FLAGS_NONE
 
-    // otherFilter class: hkpCollisionFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    public partial class hkpConstrainedSystemFilter : hkpCollisionFilter, IEquatable<hkpConstrainedSystemFilter?>
+    // otherFilter class: hkpCollisionFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    public partial class hkpConstrainedSystemFilter
+        : hkpCollisionFilter,
+            IEquatable<hkpConstrainedSystemFilter?>
     {
         public hkpCollisionFilter? otherFilter { set; get; }
 
@@ -45,10 +47,18 @@ namespace HKX2E
 
         public bool Equals(hkpConstrainedSystemFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((otherFilter is null && other.otherFilter is null) || (otherFilter is not null && other.otherFilter is not null && otherFilter.Equals((IHavokObject)other.otherFilter))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (otherFilter is null && other.otherFilter is null)
+                    || (
+                        otherFilter is not null
+                        && other.otherFilter is not null
+                        && otherFilter.Equals((IHavokObject)other.otherFilter)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

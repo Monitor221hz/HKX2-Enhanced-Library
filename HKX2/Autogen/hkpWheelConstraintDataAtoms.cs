@@ -5,14 +5,16 @@ namespace HKX2E
 {
     // hkpWheelConstraintDataAtoms Signatire: 0x1188cbe1 size: 304 flags: FLAGS_NONE
 
-    // suspensionBase class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // lin0Limit class: hkpLinLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // lin0Soft class: hkpLinSoftConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum: 
-    // lin1 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // lin2 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum: 
-    // steeringBase class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    //  2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum: 
-    public partial class hkpWheelConstraintDataAtoms : IHavokObject, IEquatable<hkpWheelConstraintDataAtoms?>
+    // suspensionBase class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // lin0Limit class: hkpLinLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // lin0Soft class: hkpLinSoftConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum:
+    // lin1 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // lin2 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum:
+    // steeringBase class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    //  2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum:
+    public partial class hkpWheelConstraintDataAtoms
+        : IHavokObject,
+            IEquatable<hkpWheelConstraintDataAtoms?>
     {
         public hkpSetLocalTransformsConstraintAtom suspensionBase { set; get; } = new();
         public hkpLinLimitConstraintAtom lin0Limit { set; get; } = new();
@@ -50,23 +52,37 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            suspensionBase = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(suspensionBase));
+            suspensionBase = xd.ReadClass<hkpSetLocalTransformsConstraintAtom>(
+                xe,
+                nameof(suspensionBase)
+            );
             lin0Limit = xd.ReadClass<hkpLinLimitConstraintAtom>(xe, nameof(lin0Limit));
             lin0Soft = xd.ReadClass<hkpLinSoftConstraintAtom>(xe, nameof(lin0Soft));
             lin1 = xd.ReadClass<hkpLinConstraintAtom>(xe, nameof(lin1));
             lin2 = xd.ReadClass<hkpLinConstraintAtom>(xe, nameof(lin2));
-            steeringBase = xd.ReadClass<hkpSetLocalRotationsConstraintAtom>(xe, nameof(steeringBase));
+            steeringBase = xd.ReadClass<hkpSetLocalRotationsConstraintAtom>(
+                xe,
+                nameof(steeringBase)
+            );
             _2dAng = xd.ReadClass<hkp_2dAngConstraintAtom>(xe, nameof(_2dAng));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(xe, nameof(suspensionBase), suspensionBase);
+            xs.WriteClass<hkpSetLocalTransformsConstraintAtom>(
+                xe,
+                nameof(suspensionBase),
+                suspensionBase
+            );
             xs.WriteClass<hkpLinLimitConstraintAtom>(xe, nameof(lin0Limit), lin0Limit);
             xs.WriteClass<hkpLinSoftConstraintAtom>(xe, nameof(lin0Soft), lin0Soft);
             xs.WriteClass<hkpLinConstraintAtom>(xe, nameof(lin1), lin1);
             xs.WriteClass<hkpLinConstraintAtom>(xe, nameof(lin2), lin2);
-            xs.WriteClass<hkpSetLocalRotationsConstraintAtom>(xe, nameof(steeringBase), steeringBase);
+            xs.WriteClass<hkpSetLocalRotationsConstraintAtom>(
+                xe,
+                nameof(steeringBase),
+                steeringBase
+            );
             xs.WriteClass<hkp_2dAngConstraintAtom>(xe, nameof(_2dAng), _2dAng);
         }
 
@@ -77,15 +93,65 @@ namespace HKX2E
 
         public bool Equals(hkpWheelConstraintDataAtoms? other)
         {
-            return other is not null &&
-                   ((suspensionBase is null && other.suspensionBase is null) || (suspensionBase is not null && other.suspensionBase is not null && suspensionBase.Equals((IHavokObject)other.suspensionBase))) &&
-                   ((lin0Limit is null && other.lin0Limit is null) || (lin0Limit is not null && other.lin0Limit is not null && lin0Limit.Equals((IHavokObject)other.lin0Limit))) &&
-                   ((lin0Soft is null && other.lin0Soft is null) || (lin0Soft is not null && other.lin0Soft is not null && lin0Soft.Equals((IHavokObject)other.lin0Soft))) &&
-                   ((lin1 is null && other.lin1 is null) || (lin1 is not null && other.lin1 is not null && lin1.Equals((IHavokObject)other.lin1))) &&
-                   ((lin2 is null && other.lin2 is null) || (lin2 is not null && other.lin2 is not null && lin2.Equals((IHavokObject)other.lin2))) &&
-                   ((steeringBase is null && other.steeringBase is null) || (steeringBase is not null && other.steeringBase is not null && steeringBase.Equals((IHavokObject)other.steeringBase))) &&
-                   ((_2dAng is null && other._2dAng is null) || (_2dAng is not null && other._2dAng is not null && _2dAng.Equals((IHavokObject)other._2dAng))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (suspensionBase is null && other.suspensionBase is null)
+                    || (
+                        suspensionBase is not null
+                        && other.suspensionBase is not null
+                        && suspensionBase.Equals((IHavokObject)other.suspensionBase)
+                    )
+                )
+                && (
+                    (lin0Limit is null && other.lin0Limit is null)
+                    || (
+                        lin0Limit is not null
+                        && other.lin0Limit is not null
+                        && lin0Limit.Equals((IHavokObject)other.lin0Limit)
+                    )
+                )
+                && (
+                    (lin0Soft is null && other.lin0Soft is null)
+                    || (
+                        lin0Soft is not null
+                        && other.lin0Soft is not null
+                        && lin0Soft.Equals((IHavokObject)other.lin0Soft)
+                    )
+                )
+                && (
+                    (lin1 is null && other.lin1 is null)
+                    || (
+                        lin1 is not null
+                        && other.lin1 is not null
+                        && lin1.Equals((IHavokObject)other.lin1)
+                    )
+                )
+                && (
+                    (lin2 is null && other.lin2 is null)
+                    || (
+                        lin2 is not null
+                        && other.lin2 is not null
+                        && lin2.Equals((IHavokObject)other.lin2)
+                    )
+                )
+                && (
+                    (steeringBase is null && other.steeringBase is null)
+                    || (
+                        steeringBase is not null
+                        && other.steeringBase is not null
+                        && steeringBase.Equals((IHavokObject)other.steeringBase)
+                    )
+                )
+                && (
+                    (_2dAng is null && other._2dAng is null)
+                    || (
+                        _2dAng is not null
+                        && other._2dAng is not null
+                        && _2dAng.Equals((IHavokObject)other._2dAng)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -103,4 +169,3 @@ namespace HKX2E
         }
     }
 }
-

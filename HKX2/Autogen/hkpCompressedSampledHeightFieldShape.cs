@@ -7,11 +7,13 @@ namespace HKX2E
 {
     // hkpCompressedSampledHeightFieldShape Signatire: 0x97b6e143 size: 144 flags: FLAGS_NONE
 
-    // storage class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // triangleFlip class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // offset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
-    // scale class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    public partial class hkpCompressedSampledHeightFieldShape : hkpSampledHeightFieldShape, IEquatable<hkpCompressedSampledHeightFieldShape?>
+    // storage class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // triangleFlip class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // offset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum:
+    // scale class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    public partial class hkpCompressedSampledHeightFieldShape
+        : hkpSampledHeightFieldShape,
+            IEquatable<hkpCompressedSampledHeightFieldShape?>
     {
         public IList<ushort> storage { set; get; } = Array.Empty<ushort>();
         public bool triangleFlip { set; get; }
@@ -67,13 +69,14 @@ namespace HKX2E
 
         public bool Equals(hkpCompressedSampledHeightFieldShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   storage.SequenceEqual(other.storage) &&
-                   triangleFlip.Equals(other.triangleFlip) &&
-                   offset.Equals(other.offset) &&
-                   scale.Equals(other.scale) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && storage.SequenceEqual(other.storage)
+                && triangleFlip.Equals(other.triangleFlip)
+                && offset.Equals(other.offset)
+                && scale.Equals(other.scale)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -89,4 +92,3 @@ namespace HKX2E
         }
     }
 }
-

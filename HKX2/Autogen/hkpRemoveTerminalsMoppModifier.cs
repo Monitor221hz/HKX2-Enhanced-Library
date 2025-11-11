@@ -7,9 +7,11 @@ namespace HKX2E
 {
     // hkpRemoveTerminalsMoppModifier Signatire: 0x91367f03 size: 48 flags: FLAGS_NONE
 
-    // removeInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // tempShapesToRemove class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkpRemoveTerminalsMoppModifier : hkReferencedObject, IEquatable<hkpRemoveTerminalsMoppModifier?>
+    // removeInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // tempShapesToRemove class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkpRemoveTerminalsMoppModifier
+        : hkReferencedObject,
+            IEquatable<hkpRemoveTerminalsMoppModifier?>
     {
         public IList<uint> removeInfo { set; get; } = Array.Empty<uint>();
         private object? tempShapesToRemove { set; get; }
@@ -52,10 +54,11 @@ namespace HKX2E
 
         public bool Equals(hkpRemoveTerminalsMoppModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   removeInfo.SequenceEqual(other.removeInfo) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && removeInfo.SequenceEqual(other.removeInfo)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -68,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

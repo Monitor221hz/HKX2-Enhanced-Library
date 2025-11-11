@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpSetLocalRotationsConstraintAtom Signatire: 0xf81db8e size: 112 flags: FLAGS_NONE
 
-    // rotationA class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // rotationB class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpSetLocalRotationsConstraintAtom : hkpConstraintAtom, IEquatable<hkpSetLocalRotationsConstraintAtom?>
+    // rotationA class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // rotationB class:  Type.TYPE_ROTATION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpSetLocalRotationsConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpSetLocalRotationsConstraintAtom?>
     {
         public Matrix4x4 rotationA { set; get; }
         public Matrix4x4 rotationB { set; get; }
@@ -52,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkpSetLocalRotationsConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rotationA.Equals(other.rotationA) &&
-                   rotationB.Equals(other.rotationB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rotationA.Equals(other.rotationA)
+                && rotationB.Equals(other.rotationB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

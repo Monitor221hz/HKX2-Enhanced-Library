@@ -12,4 +12,3 @@ namespace HKX2E
         ROLE_TIME = 7,
     }
 }
-

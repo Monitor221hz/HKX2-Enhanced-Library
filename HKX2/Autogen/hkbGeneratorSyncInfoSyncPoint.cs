@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbGeneratorSyncInfoSyncPoint Signatire: 0xb597cf92 size: 8 flags: FLAGS_NONE
 
-    // id class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    public partial class hkbGeneratorSyncInfoSyncPoint : IHavokObject, IEquatable<hkbGeneratorSyncInfoSyncPoint?>
+    // id class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    public partial class hkbGeneratorSyncInfoSyncPoint
+        : IHavokObject,
+            IEquatable<hkbGeneratorSyncInfoSyncPoint?>
     {
         public int id { set; get; }
         public float time { set; get; }
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbGeneratorSyncInfoSyncPoint? other)
         {
-            return other is not null &&
-                   id.Equals(other.id) &&
-                   time.Equals(other.time) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && id.Equals(other.id)
+                && time.Equals(other.time)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

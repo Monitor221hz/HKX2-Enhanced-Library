@@ -6,26 +6,26 @@ namespace HKX2E
 {
     // hkbLookAtModifier Signatire: 0x3d28e066 size: 240 flags: FLAGS_NONE
 
-    // targetWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // headForwardLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // neckForwardLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // neckRightLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // eyePositionHS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // newTargetGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 164 flags: FLAGS_NONE enum: 
-    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum: 
-    // limitAngleLeft class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // limitAngleRight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum: 
-    // limitAngleUp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // limitAngleDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    // headIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // neckIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 194 flags: FLAGS_NONE enum: 
-    // isOn class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // individualLimitsOn class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 197 flags: FLAGS_NONE enum: 
-    // isTargetInsideLimitCone class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 198 flags: FLAGS_NONE enum: 
-    // lookAtLastTargetWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // lookAtWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // targetWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // headForwardLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // neckForwardLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // neckRightLS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // eyePositionHS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // newTargetGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 164 flags: FLAGS_NONE enum:
+    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum:
+    // limitAngleLeft class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // limitAngleRight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum:
+    // limitAngleUp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // limitAngleDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum:
+    // headIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // neckIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 194 flags: FLAGS_NONE enum:
+    // isOn class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum:
+    // individualLimitsOn class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 197 flags: FLAGS_NONE enum:
+    // isTargetInsideLimitCone class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 198 flags: FLAGS_NONE enum:
+    // lookAtLastTargetWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // lookAtWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbLookAtModifier : hkbModifier, IEquatable<hkbLookAtModifier?>
     {
         public Vector4 targetWS { set; get; }
@@ -160,27 +160,28 @@ namespace HKX2E
 
         public bool Equals(hkbLookAtModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   targetWS.Equals(other.targetWS) &&
-                   headForwardLS.Equals(other.headForwardLS) &&
-                   neckForwardLS.Equals(other.neckForwardLS) &&
-                   neckRightLS.Equals(other.neckRightLS) &&
-                   eyePositionHS.Equals(other.eyePositionHS) &&
-                   newTargetGain.Equals(other.newTargetGain) &&
-                   onGain.Equals(other.onGain) &&
-                   offGain.Equals(other.offGain) &&
-                   limitAngleDegrees.Equals(other.limitAngleDegrees) &&
-                   limitAngleLeft.Equals(other.limitAngleLeft) &&
-                   limitAngleRight.Equals(other.limitAngleRight) &&
-                   limitAngleUp.Equals(other.limitAngleUp) &&
-                   limitAngleDown.Equals(other.limitAngleDown) &&
-                   headIndex.Equals(other.headIndex) &&
-                   neckIndex.Equals(other.neckIndex) &&
-                   isOn.Equals(other.isOn) &&
-                   individualLimitsOn.Equals(other.individualLimitsOn) &&
-                   isTargetInsideLimitCone.Equals(other.isTargetInsideLimitCone) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && targetWS.Equals(other.targetWS)
+                && headForwardLS.Equals(other.headForwardLS)
+                && neckForwardLS.Equals(other.neckForwardLS)
+                && neckRightLS.Equals(other.neckRightLS)
+                && eyePositionHS.Equals(other.eyePositionHS)
+                && newTargetGain.Equals(other.newTargetGain)
+                && onGain.Equals(other.onGain)
+                && offGain.Equals(other.offGain)
+                && limitAngleDegrees.Equals(other.limitAngleDegrees)
+                && limitAngleLeft.Equals(other.limitAngleLeft)
+                && limitAngleRight.Equals(other.limitAngleRight)
+                && limitAngleUp.Equals(other.limitAngleUp)
+                && limitAngleDown.Equals(other.limitAngleDown)
+                && headIndex.Equals(other.headIndex)
+                && neckIndex.Equals(other.neckIndex)
+                && isOn.Equals(other.isOn)
+                && individualLimitsOn.Equals(other.individualLimitsOn)
+                && isTargetInsideLimitCone.Equals(other.isTargetInsideLimitCone)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -210,4 +211,3 @@ namespace HKX2E
         }
     }
 }
-

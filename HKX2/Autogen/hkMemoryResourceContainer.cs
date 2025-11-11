@@ -7,16 +7,20 @@ namespace HKX2E
 {
     // hkMemoryResourceContainer Signatire: 0x4762f92a size: 64 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // parent class: hkMemoryResourceContainer Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // resourceHandles class: hkMemoryResourceHandle Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // children class: hkMemoryResourceContainer Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkMemoryResourceContainer : hkResourceContainer, IEquatable<hkMemoryResourceContainer?>
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // parent class: hkMemoryResourceContainer Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // resourceHandles class: hkMemoryResourceHandle Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // children class: hkMemoryResourceContainer Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkMemoryResourceContainer
+        : hkResourceContainer,
+            IEquatable<hkMemoryResourceContainer?>
     {
         public string name { set; get; } = "";
         private hkMemoryResourceContainer? parent { set; get; }
-        public IList<hkMemoryResourceHandle> resourceHandles { set; get; } = Array.Empty<hkMemoryResourceHandle>();
-        public IList<hkMemoryResourceContainer> children { set; get; } = Array.Empty<hkMemoryResourceContainer>();
+        public IList<hkMemoryResourceHandle> resourceHandles { set; get; } =
+            Array.Empty<hkMemoryResourceHandle>();
+        public IList<hkMemoryResourceContainer> children { set; get; } =
+            Array.Empty<hkMemoryResourceContainer>();
 
         public override uint Signature { set; get; } = 0x4762f92a;
 
@@ -42,8 +46,16 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             name = xd.ReadString(xe, nameof(name));
-            resourceHandles = xd.ReadClassPointerArray<hkMemoryResourceHandle>(this, xe, nameof(resourceHandles));
-            children = xd.ReadClassPointerArray<hkMemoryResourceContainer>(this, xe, nameof(children));
+            resourceHandles = xd.ReadClassPointerArray<hkMemoryResourceHandle>(
+                this,
+                xe,
+                nameof(resourceHandles)
+            );
+            children = xd.ReadClassPointerArray<hkMemoryResourceContainer>(
+                this,
+                xe,
+                nameof(children)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -62,12 +74,18 @@ namespace HKX2E
 
         public bool Equals(hkMemoryResourceContainer? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   resourceHandles.SequenceEqual(other.resourceHandles) &&
-                   children.SequenceEqual(other.children) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && resourceHandles.SequenceEqual(other.resourceHandles)
+                && children.SequenceEqual(other.children)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -82,4 +100,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -7,7 +7,7 @@ namespace HKX2E
 
     // selfTransitionMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 72 flags: FLAGS_NONE enum: SelfTransitionMode
     // eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 73 flags: FLAGS_NONE enum: EventMode
-    // defaultEventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 74 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // defaultEventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 74 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbTransitionEffect : hkbGenerator, IEquatable<hkbTransitionEffect?>
     {
         public sbyte selfTransitionMode { set; get; }
@@ -37,14 +37,21 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            selfTransitionMode = xd.ReadFlag<SelfTransitionMode, sbyte>(xe, nameof(selfTransitionMode));
+            selfTransitionMode = xd.ReadFlag<SelfTransitionMode, sbyte>(
+                xe,
+                nameof(selfTransitionMode)
+            );
             eventMode = xd.ReadFlag<EventMode, sbyte>(xe, nameof(eventMode));
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
             base.WriteXml(xs, xe);
-            xs.WriteEnum<SelfTransitionMode, sbyte>(xe, nameof(selfTransitionMode), selfTransitionMode);
+            xs.WriteEnum<SelfTransitionMode, sbyte>(
+                xe,
+                nameof(selfTransitionMode),
+                selfTransitionMode
+            );
             xs.WriteEnum<EventMode, sbyte>(xe, nameof(eventMode), eventMode);
             xs.WriteSerializeIgnored(xe, nameof(defaultEventMode));
         }
@@ -56,11 +63,12 @@ namespace HKX2E
 
         public bool Equals(hkbTransitionEffect? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   selfTransitionMode.Equals(other.selfTransitionMode) &&
-                   eventMode.Equals(other.eventMode) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && selfTransitionMode.Equals(other.selfTransitionMode)
+                && eventMode.Equals(other.eventMode)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -74,4 +82,3 @@ namespace HKX2E
         }
     }
 }
-

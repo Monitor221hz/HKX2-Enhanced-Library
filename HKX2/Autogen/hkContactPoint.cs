@@ -6,8 +6,8 @@ namespace HKX2E
 {
     // hkContactPoint Signatire: 0x91d7dd8e size: 32 flags: FLAGS_NONE
 
-    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // separatingNormal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // separatingNormal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkContactPoint : IHavokObject, IEquatable<hkContactPoint?>
     {
         public Vector4 position { set; get; }
@@ -46,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkContactPoint? other)
         {
-            return other is not null &&
-                   position.Equals(other.position) &&
-                   separatingNormal.Equals(other.separatingNormal) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && position.Equals(other.position)
+                && separatingNormal.Equals(other.separatingNormal)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -8,4 +8,3 @@ namespace HKX2E
         SELF_TRANSITION_MODE_BLEND = 3,
     }
 }
-

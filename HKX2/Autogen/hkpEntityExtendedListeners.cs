@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpEntityExtendedListeners Signatire: 0xf557023c size: 32 flags: FLAGS_NONE
 
-    // activationListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // entityListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkpEntityExtendedListeners : IHavokObject, IEquatable<hkpEntityExtendedListeners?>
+    // activationListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // entityListeners class: hkpEntitySmallArraySerializeOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkpEntityExtendedListeners
+        : IHavokObject,
+            IEquatable<hkpEntityExtendedListeners?>
     {
         public hkpEntitySmallArraySerializeOverrideType activationListeners { set; get; } = new();
         public hkpEntitySmallArraySerializeOverrideType entityListeners { set; get; } = new();
@@ -26,10 +28,7 @@ namespace HKX2E
             entityListeners.Write(s, bw);
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
-
-        }
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
@@ -44,8 +43,8 @@ namespace HKX2E
 
         public bool Equals(hkpEntityExtendedListeners? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -57,4 +56,3 @@ namespace HKX2E
         }
     }
 }
-

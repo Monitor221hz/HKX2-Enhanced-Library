@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkpBoxMotion Signatire: 0xbafa2bb7 size: 320 flags: FLAGS_NONE
 
-
     public partial class hkpBoxMotion : hkpMotion, IEquatable<hkpBoxMotion?>
     {
-
-
         public override uint Signature { set; get; } = 0xbafa2bb7;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkpBoxMotion? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

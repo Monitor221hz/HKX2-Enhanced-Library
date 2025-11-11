@@ -7,4 +7,3 @@ namespace HKX2E
         HIDDEN = 2,
     }
 }
-

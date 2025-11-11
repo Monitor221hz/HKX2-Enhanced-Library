@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpMalleableConstraintData Signatire: 0x6748b2cf size: 64 flags: FLAGS_NONE
 
-    // constraintData class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    public partial class hkpMalleableConstraintData : hkpConstraintData, IEquatable<hkpMalleableConstraintData?>
+    // constraintData class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    public partial class hkpMalleableConstraintData
+        : hkpConstraintData,
+            IEquatable<hkpMalleableConstraintData?>
     {
         public hkpConstraintData? constraintData { set; get; }
         public hkpBridgeAtoms atoms { set; get; } = new();
@@ -37,7 +39,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            constraintData = xd.ReadClassPointer<hkpConstraintData>(this, xe, nameof(constraintData));
+            constraintData = xd.ReadClassPointer<hkpConstraintData>(
+                this,
+                xe,
+                nameof(constraintData)
+            );
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
             strength = xd.ReadSingle(xe, nameof(strength));
         }
@@ -57,12 +63,27 @@ namespace HKX2E
 
         public bool Equals(hkpMalleableConstraintData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((constraintData is null && other.constraintData is null) || (constraintData is not null && other.constraintData is not null && constraintData.Equals((IHavokObject)other.constraintData))) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   strength.Equals(other.strength) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (constraintData is null && other.constraintData is null)
+                    || (
+                        constraintData is not null
+                        && other.constraintData is not null
+                        && constraintData.Equals((IHavokObject)other.constraintData)
+                    )
+                )
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && strength.Equals(other.strength)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +98,3 @@ namespace HKX2E
         }
     }
 }
-

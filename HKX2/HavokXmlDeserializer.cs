@@ -1,6 +1,4 @@
-﻿using HKX2E.Extensions;
-using HKX2E.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -8,97 +6,117 @@ using System.Linq;
 using System.Numerics;
 using System.Xml;
 using System.Xml.Linq;
+using HKX2E.Extensions;
+using HKX2E.Utils;
 
 namespace HKX2E
 {
+    public class HavokXmlDeserializer : IHavokXmlReader, INameHavokObjectMap
+    {
+        private XDocument? document;
+        private HKXHeader header = HKXHeader.SkyrimSE();
 
-	public class HavokXmlDeserializer : IHavokXmlReader, INameHavokObjectMap
-	{
-		private XDocument? document;
-		private HKXHeader header = HKXHeader.SkyrimSE(); 
-		// store deserialized
-		protected Dictionary<string, IHavokObject> objectNameMap;
-		protected Dictionary<string, XElement> elementNameMap;
-		protected HavokXmlDeserializerOptions options;
-		public virtual HavokXmlDeserializerContext Context => new(objectNameMap, elementNameMap, options);
-		public HavokXmlDeserializer()
+        // store deserialized
+        protected Dictionary<string, IHavokObject> objectNameMap;
+        protected Dictionary<string, XElement> elementNameMap;
+        protected HavokXmlDeserializerOptions options;
+        public virtual HavokXmlDeserializerContext Context =>
+            new(objectNameMap, elementNameMap, options);
+
+        public HavokXmlDeserializer()
         {
             objectNameMap = new();
             elementNameMap = new();
             options = HavokXmlDeserializerOptions.None;
         }
+
         public HavokXmlDeserializer(HavokXmlDeserializerOptions options)
         {
             objectNameMap = new();
             elementNameMap = new();
             this.options = options;
         }
+
         public HavokXmlDeserializer(HavokXmlDeserializerContext context)
         {
             objectNameMap = context.ObjectNameMap;
             elementNameMap = context.ElementNameMap;
             options = context.Options;
         }
+
         public virtual void Collect(string name, XElement element)
         {
-			lock (elementNameMap)
-			{
+            lock (elementNameMap)
+            {
                 elementNameMap.TryAdd(name, element);
             }
         }
+
         public virtual void UpdateMapping(string name, IHavokObject newObject)
         {
-			lock (objectNameMap)
-			{
+            lock (objectNameMap)
+            {
                 if (objectNameMap.ContainsKey(name))
                 {
                     objectNameMap[name] = newObject;
                 }
 #if DEBUG_VERBOSE
-						else
-						{
-							Debug.WriteLine($"Could not update mapping for object {name}");
-						}
+                else
+                {
+                    Debug.WriteLine($"Could not update mapping for object {name}");
+                }
 #endif
             }
         }
+
         public virtual void ShareContext(HavokXmlDeserializerContext context)
         {
             objectNameMap = context.ObjectNameMap;
             elementNameMap = context.ElementNameMap;
             options = context.Options;
         }
-        public IHavokObject DeserializeContextual(Stream stream, HKXHeader header, HavokXmlDeserializerContext context, HavokXmlDeserializerOptions options)
-		{
-			document = XDocument.Load(stream, LoadOptions.SetLineInfo);
-			this.header = header;
-			objectNameMap = context.ObjectNameMap;
-			elementNameMap = context.ElementNameMap;
-			this.options = options;
 
-			var hksection = document.Element("hkpackfile")?.Element("hksection");
-			if (hksection is null)
-				throw new Exception("Xml missing hkpackfile and hksection tag");
+        public IHavokObject DeserializeContextual(
+            Stream stream,
+            HKXHeader header,
+            HavokXmlDeserializerContext context,
+            HavokXmlDeserializerOptions options
+        )
+        {
+            document = XDocument.Load(stream, LoadOptions.SetLineInfo);
+            this.header = header;
+            objectNameMap = context.ObjectNameMap;
+            elementNameMap = context.ElementNameMap;
+            this.options = options;
 
-			//skip node collection
+            var hksection = document.Element("hkpackfile")?.Element("hksection");
+            if (hksection is null)
+                throw new Exception("Xml missing hkpackfile and hksection tag");
 
-			var testnode = elementNameMap.First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer").Value;
-			var rootrefName = testnode.Attribute("name")!.Value;
-			var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
-			objectNameMap.Add(rootrefName, testobj);
+            //skip node collection
 
-			testobj.ReadXml(this, testnode);
+            var testnode = elementNameMap
+                .First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer")
+                .Value;
+            var rootrefName = testnode.Attribute("name")!.Value;
+            var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
+            objectNameMap.Add(rootrefName, testobj);
 
-			var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
+            testobj.ReadXml(this, testnode);
 
-			return hkRootLevelContainer;
-		}
+            var hkRootLevelContainer = objectNameMap
+                .First(item => item.Value.Signature == 0x2772c11e)
+                .Value;
+
+            return hkRootLevelContainer;
+        }
+
         public IHavokObject Deserialize(Stream stream, HKXHeader header)
         {
             document = XDocument.Load(stream, LoadOptions.SetLineInfo);
             this.header = header;
-			objectNameMap.Clear();
-			elementNameMap.Clear(); 
+            objectNameMap.Clear();
+            elementNameMap.Clear();
             options = HavokXmlDeserializerOptions.None;
 
             var hksection = document.Element("hkpackfile")?.Element("hksection");
@@ -112,29 +130,36 @@ namespace HKX2E
 #if DEBUG
                 elementNameMap.Add(name, item);
 #else
-				elementNameMap.TryAdd(name, item);
+                elementNameMap.TryAdd(name, item);
 #endif
             }
 
-            var testnode = elementNameMap.First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer").Value;
+            var testnode = elementNameMap
+                .First(item => item.Value.Attribute("class")!.Value == "hkRootLevelContainer")
+                .Value;
             var rootrefName = testnode.Attribute("name")!.Value;
             var testobj = ConstructVirtualClass<hkRootLevelContainer>(testnode);
             objectNameMap.Add(rootrefName, testobj);
 
             testobj.ReadXml(this, testnode);
 
-            var hkRootLevelContainer = objectNameMap.First(item => item.Value.Signature == 0x2772c11e).Value;
+            var hkRootLevelContainer = objectNameMap
+                .First(item => item.Value.Signature == 0x2772c11e)
+                .Value;
 
             return hkRootLevelContainer;
         }
-        public virtual T DeserializeDetachedObject<T>(XElement element) where T : IHavokObject, new()
+
+        public virtual T DeserializeDetachedObject<T>(XElement element)
+            where T : IHavokObject, new()
         {
             T ret = new T();
             ret.ReadXml(this, element);
             return ret;
         }
 
-        public virtual T DeserializeObjectOverwrite<T>(XElement element) where T : IHavokObject, new()
+        public virtual T DeserializeObjectOverwrite<T>(XElement element)
+            where T : IHavokObject, new()
         {
             string name = element.Attribute("name")!.Value;
             IHavokObject obj = new T();
@@ -152,7 +177,9 @@ namespace HKX2E
             }
             return (T)obj;
         }
-        public virtual T DeserializeObject<T>(XElement element) where T : IHavokObject, new()
+
+        public virtual T DeserializeObject<T>(XElement element)
+            where T : IHavokObject, new()
         {
             string name = element.Attribute("name")!.Value;
             IHavokObject? obj;
@@ -171,7 +198,9 @@ namespace HKX2E
             }
             return (T)obj;
         }
-        public virtual T DeserializeNamedObject<T>(XElement element, string name) where T : IHavokObject, new()
+
+        public virtual T DeserializeNamedObject<T>(XElement element, string name)
+            where T : IHavokObject, new()
         {
             IHavokObject? obj;
             lock (objectNameMap)
@@ -189,6 +218,7 @@ namespace HKX2E
             }
             return (T)obj;
         }
+
         /// <summary>
         /// Only use this for havok compliant xml, and when the type is unknown.
         /// </summary>
@@ -201,10 +231,12 @@ namespace HKX2E
 
             var hkClassName = element.Attribute("class")!.Value;
             var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
-            if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+            if (hkClass is null)
+                throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
             var obj = (IHavokObject)Activator.CreateInstance(hkClass)!;
-            if (obj is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+            if (obj is null)
+                throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
             if (obj.GetType().IsAssignableTo(hkClass))
             {
@@ -223,10 +255,13 @@ namespace HKX2E
                 return obj;
             }
             if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
-                throw new Exception($@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?");
+                throw new Exception(
+                    $@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?"
+                );
 
             return hkDummyBuilder.CreateDummy(obj, hkClass);
         }
+
         /// <summary>
         /// Only use this for havok compliant xml, and when the type is unknown.
         /// </summary>
@@ -244,13 +279,14 @@ namespace HKX2E
                 }
             }
 
-
             var hkClassName = element.Attribute("class")!.Value;
             var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
-            if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+            if (hkClass is null)
+                throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
             var obj = (IHavokObject)Activator.CreateInstance(hkClass)!;
-            if (obj is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+            if (obj is null)
+                throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
             if (obj.GetType().IsAssignableTo(hkClass))
             {
@@ -262,132 +298,152 @@ namespace HKX2E
                 return obj;
             }
             if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
-                throw new Exception($@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?");
+                throw new Exception(
+                    $@"Could not convert '{hkClass}' to '{obj.GetType()}'. Is source malformed?"
+                );
 
             return hkDummyBuilder.CreateDummy(obj, hkClass);
         }
+
         public virtual bool TryGetObject(string name, [NotNullWhen(true)] out IHavokObject? obj)
-		{
+        {
             lock (objectNameMap)
-			{
+            {
                 return objectNameMap.TryGetValue(name, out obj);
             }
-		}
-		public virtual bool TryGetObjectAs<T>(string name, [NotNullWhen(true)] out T? obj) where T : class, IHavokObject
-		{
-			obj = null;
+        }
+
+        public virtual bool TryGetObjectAs<T>(string name, [NotNullWhen(true)] out T? obj)
+            where T : class, IHavokObject
+        {
+            obj = null;
             lock (objectNameMap)
-			{
+            {
                 if (objectNameMap.TryGetValue(name, out var value))
                 {
                     obj = value as T;
                 }
             }
-			return (obj != null);
-		}
-		public virtual T GetObjectAs<T>(string name) where T : class, IHavokObject => (T)objectNameMap[name];
+            return (obj != null);
+        }
 
-		protected virtual IHavokObject ConstructVirtualClass<T>(XElement xElement) where T : IHavokObject
-		{
-			var name = xElement.Attribute("name")!.Value;
+        public virtual T GetObjectAs<T>(string name)
+            where T : class, IHavokObject => (T)objectNameMap[name];
 
-			if (objectNameMap.TryGetValue(name, out IHavokObject? value))
-			{
-				return value!;
-			}
+        protected virtual IHavokObject ConstructVirtualClass<T>(XElement xElement)
+            where T : IHavokObject
+        {
+            var name = xElement.Attribute("name")!.Value;
 
-			var hkClassName = xElement.Attribute("class")!.Value;
-			var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
-			if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+            if (objectNameMap.TryGetValue(name, out IHavokObject? value))
+            {
+                return value!;
+            }
 
-			var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
-			if (ret is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+            var hkClassName = xElement.Attribute("class")!.Value;
+            var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
+            if (hkClass is null)
+                throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
-			if (ret.GetType().IsAssignableTo(typeof(T)))
-				return ret;
+            var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
+            if (ret is null)
+                throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
-			if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
-				throw new Exception($@"Could not convert '{typeof(T)}' to '{ret.GetType()}'. Is source malformed?");
+            if (ret.GetType().IsAssignableTo(typeof(T)))
+                return ret;
 
-			return hkDummyBuilder.CreateDummy(ret, typeof(T));
-		}
+            if (!options.HasFlag(HavokXmlDeserializerOptions.IgnoreNonFatalErrors))
+                throw new Exception(
+                    $@"Could not convert '{typeof(T)}' to '{ret.GetType()}'. Is source malformed?"
+                );
 
-
+            return hkDummyBuilder.CreateDummy(ret, typeof(T));
+        }
 
         #region Class Types
 
-        public virtual T ReadClass<T>(XElement element, string name) where T : IHavokObject, new()
-		{
-			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name)?.Element("hkobject");
+        public virtual T ReadClass<T>(XElement element, string name)
+            where T : IHavokObject, new()
+        {
+            var ele = HavokXmlDeserializerExtensions
+                .GetPropertyElement(element, name)
+                ?.Element("hkobject");
 
-			var ret = new T();
-			if (ele != null)
-			{
-				ret.ReadXml(this, ele);
-			}
+            var ret = new T();
+            if (ele != null)
+            {
+                ret.ReadXml(this, ele);
+            }
 
-			return ret;
-		}
-		public virtual IList<T> ReadClassArray<T>(XElement element, string name) where T : IHavokObject, new()
-		{
-			var eles = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
-			if (eles is null)
-				return new List<T>();
+            return ret;
+        }
 
-			var result = new List<T>();
+        public virtual IList<T> ReadClassArray<T>(XElement element, string name)
+            where T : IHavokObject, new()
+        {
+            var eles = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (eles is null)
+                return new List<T>();
 
-			if (!int.TryParse(eles.Attribute("numelements")?.Value, out int _))
-			{
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
-			}
+            var result = new List<T>();
 
-			foreach (var e in eles.Elements("hkobject"))
-			{
-				var cls = new T();
-				cls.ReadXml(this, e);
-				result.Add(cls);
-			}
-			return result;
-		}
+            if (!int.TryParse(eles.Attribute("numelements")?.Value, out int _))
+            {
+                throw new Exception(
+                    $"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}"
+                );
+            }
 
-		public virtual T[] ReadClassCStyleArray<T>(XElement element, string name, short length) where T : IHavokObject, new()
-		{
-			var eles = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
-			if (eles is null)
-				return Array.Empty<T>();
+            foreach (var e in eles.Elements("hkobject"))
+            {
+                var cls = new T();
+                cls.ReadXml(this, e);
+                result.Add(cls);
+            }
+            return result;
+        }
 
-			var arr = new T[length];
+        public virtual T[] ReadClassCStyleArray<T>(XElement element, string name, short length)
+            where T : IHavokObject, new()
+        {
+            var eles = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (eles is null)
+                return Array.Empty<T>();
 
-			if (length != eles.Elements("hkobject").Count())
-				throw new Exception($"Content's elements mismatch property requierd. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Length}");
+            var arr = new T[length];
 
-			foreach (var (value, i) in eles.Elements("hkobject").Select((v, i) => (v, i)))
-			{
-				var cls = new T();
-				cls.ReadXml(this, value);
-				arr[i] = cls;
-			}
-			return arr;
-		}
+            if (length != eles.Elements("hkobject").Count())
+                throw new Exception(
+                    $"Content's elements mismatch property requierd. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Length}"
+                );
+
+            foreach (var (value, i) in eles.Elements("hkobject").Select((v, i) => (v, i)))
+            {
+                var cls = new T();
+                cls.ReadXml(this, value);
+                arr[i] = cls;
+            }
+            return arr;
+        }
 
         #endregion
 
 
-
         #region ClassPointer Types
 
-        public virtual T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
-		{
-			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
-			if (ele is null)
-				return default;
+        public virtual T? ReadClassPointer<T>(IHavokObject owner, XElement element, string name)
+            where T : IHavokObject, new()
+        {
+            var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (ele is null)
+                return default;
 
-			var refName = ele.Value;
-			if (refName == "null")
-				return default;
+            var refName = ele.Value;
+            if (refName == "null")
+                return default;
 
-			if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
-				return (T)value;
+            if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
+                return (T)value;
 
             if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
             {
@@ -396,99 +452,127 @@ namespace HKX2E
             }
 
             T ret = (T)ConstructVirtualClass<T>(refEle);
-			ret.ReadXml(this, refEle);
-			objectNameMap.Add(refName, ret);
+            ret.ReadXml(this, refEle);
+            objectNameMap.Add(refName, ret);
 
-			return ret;
-		}
+            return ret;
+        }
 
-		public virtual IList<T> ReadClassPointerArray<T>(IHavokObject owner, XElement element, string name) where T : IHavokObject, new()
-		{
-			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
-			if (ele is null)
-				return new List<T>();
+        public virtual IList<T> ReadClassPointerArray<T>(
+            IHavokObject owner,
+            XElement element,
+            string name
+        )
+            where T : IHavokObject, new()
+        {
+            var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (ele is null)
+                return new List<T>();
 
-			var result = new List<T>();
+            var result = new List<T>();
 
-			if (!int.TryParse(ele.Attribute("numelements")?.Value, out int count))
-				throw new Exception($"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}");
+            if (!int.TryParse(ele.Attribute("numelements")?.Value, out int count))
+                throw new Exception(
+                    $"numelemnets is not vaild number at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}"
+                );
 
-			if (count == 0)
-				return result;
+            if (count == 0)
+                return result;
 
-			var refNames = ele.Value.Split(HavokXmlDeserializerExtensions.SplitSpaceList, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			foreach (var refName in refNames)
-			{
-				if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
-				{
-					result.Add((T)value);
-					continue;
-				}
+            var refNames = ele.Value.Split(
+                HavokXmlDeserializerExtensions.SplitSpaceList,
+                StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
+            );
+            foreach (var refName in refNames)
+            {
+                if (objectNameMap.TryGetValue(refName, out IHavokObject? value))
+                {
+                    result.Add((T)value);
+                    continue;
+                }
 
                 if (!elementNameMap.TryGetValue(refName, out XElement? refEle))
                     continue;
 
                 var ret = (T)ConstructVirtualClass<T>(refEle);
-				ret.ReadXml(this, refEle);
-				objectNameMap.Add(refName, ret);
+                ret.ReadXml(this, refEle);
+                objectNameMap.Add(refName, ret);
 
-				result.Add(ret);
-			}
-			return result;
-		}
+                result.Add(ret);
+            }
+            return result;
+        }
 
-		public virtual T?[] ReadClassPointerCStyleArray<T>(IHavokObject owner, XElement element, string name, short length) where T : IHavokObject, new()
-		{
-			var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
-			if (ele is null)
-				return Array.Empty<T>();
+        public virtual T?[] ReadClassPointerCStyleArray<T>(
+            IHavokObject owner,
+            XElement element,
+            string name,
+            short length
+        )
+            where T : IHavokObject, new()
+        {
+            var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
+            if (ele is null)
+                return Array.Empty<T>();
 
-			var arr = new T?[length];
+            var arr = new T?[length];
 
-			var refNames = ele.Value.Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
-			if (refNames.Length != length)
-				throw new Exception($"Content's elements mismatch property requierd. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Length}");
+            var refNames = ele.Value.Split(
+                " ",
+                StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
+            );
+            if (refNames.Length != length)
+                throw new Exception(
+                    $"Content's elements mismatch property requierd. at Line: {((IXmlLineInfo)element)?.LineNumber ?? -1}, Property: {name}, require: {length} got: {arr.Length}"
+                );
 
-			foreach (var (refName, i) in refNames.Select((v, i) => (v, i)))
-			{
-				if (refName == "null")
-				{
-					arr[i] = default;
-					continue;
-				}
+            foreach (var (refName, i) in refNames.Select((v, i) => (v, i)))
+            {
+                if (refName == "null")
+                {
+                    arr[i] = default;
+                    continue;
+                }
 
-				if (objectNameMap.TryGetValue(refName, out var value))
-				{
-					arr[i] = (T)value;
-					continue;
-				}
+                if (objectNameMap.TryGetValue(refName, out var value))
+                {
+                    arr[i] = (T)value;
+                    continue;
+                }
 
-				if (!elementNameMap.TryGetValue(refName, out var refEle))
-					continue;
+                if (!elementNameMap.TryGetValue(refName, out var refEle))
+                    continue;
 
-				var ret = (T)ConstructVirtualClass<T>(refEle);
-				ret.ReadXml(this, refEle);
-				objectNameMap.Add(refName, ret);
+                var ret = (T)ConstructVirtualClass<T>(refEle);
+                ret.ReadXml(this, refEle);
+                objectNameMap.Add(refName, ret);
 
-				arr[i] = ret;
-			}
-			return arr;
-		}
+                arr[i] = ret;
+            }
+            return arr;
+        }
 
         #endregion
 
 
-
-
-        public virtual TValue ReadFlag<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
+        public virtual TValue ReadFlag<TEnum, TValue>(XElement element, string name)
+            where TEnum : Enum
+            where TValue : IBinaryInteger<TValue>
         {
             var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
             if (ele is null)
                 return TValue.Zero;
-            return ele.Value.Split("|", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToFlagValue<TEnum, TValue>();
+            return ele
+                .Value.Split(
+                    "|",
+                    StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
+                )
+                .ToFlagValue<TEnum, TValue>();
         }
 
-        public virtual TValue ReadEnum<TEnum, TValue>(XElement element, string name) where TEnum : Enum where TValue : IBinaryInteger<TValue>
+        public virtual TValue ReadEnum<TEnum, TValue>(XElement element, string name)
+            where TEnum : Enum
+            where TValue : IBinaryInteger<TValue>
         {
             var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
             if (ele is null)
@@ -496,27 +580,42 @@ namespace HKX2E
             return ele.Value.ToEnumValue<TEnum, TValue>();
         }
 
-
-
-
         #region Read Primitive
 
         // ========== Primitive Types =========
 
-        public virtual byte ReadByte(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<byte>(element, name);
-        public virtual sbyte ReadSByte(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<sbyte>(element, name);
-        public virtual bool ReadBoolean(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<bool>(element, name);
+        public virtual byte ReadByte(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<byte>(element, name);
 
-        public virtual short ReadInt16(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<short>(element, name);
-        public virtual int ReadInt32(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<int>(element, name);
-        public virtual long ReadInt64(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<long>(element, name);
+        public virtual sbyte ReadSByte(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<sbyte>(element, name);
 
-        public virtual ushort ReadUInt16(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<ushort>(element, name);
-        public virtual uint ReadUInt32(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<uint>(element, name);
-        public virtual ulong ReadUInt64(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<ulong>(element, name);
+        public virtual bool ReadBoolean(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<bool>(element, name);
 
-        public virtual Half ReadHalf(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<Half>(element, name);
-        public virtual float ReadSingle(XElement element, string name) => HavokXmlDeserializerExtensions.ReadValueSpan<float>(element, name);
+        public virtual short ReadInt16(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<short>(element, name);
+
+        public virtual int ReadInt32(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<int>(element, name);
+
+        public virtual long ReadInt64(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<long>(element, name);
+
+        public virtual ushort ReadUInt16(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<ushort>(element, name);
+
+        public virtual uint ReadUInt32(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<uint>(element, name);
+
+        public virtual ulong ReadUInt64(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<ulong>(element, name);
+
+        public virtual Half ReadHalf(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<Half>(element, name);
+
+        public virtual float ReadSingle(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadValueSpan<float>(element, name);
 
         public virtual string ReadString(XElement element, string name)
         {
@@ -524,27 +623,45 @@ namespace HKX2E
             // if ele exist it is and '\u2400' return null (cstring)
             // if not exist it is SERIALIZE_IGNORED flag (null)
             var ele = HavokXmlDeserializerExtensions.GetPropertyElement(element, name);
-            if (ele is null || ele.Value == "\u2400") return null;
+            if (ele is null || ele.Value == "\u2400")
+                return null;
             return ele.Value.Trim();
         }
 
-
         // ========== Primitive Arrays =========
 
-        public virtual IList<byte> ReadByteArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, byte.Parse);
-        public virtual IList<sbyte> ReadSByteArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, sbyte.Parse);
-        public virtual IList<bool> ReadBooleanArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, bool.Parse);
+        public virtual IList<byte> ReadByteArray(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, byte.Parse);
 
-        public virtual IList<short> ReadInt16Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, short.Parse);
-        public virtual IList<int> ReadInt32Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, int.Parse);
-        public virtual IList<long> ReadInt64Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, long.Parse);
+        public virtual IList<sbyte> ReadSByteArray(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, sbyte.Parse);
 
-        public virtual IList<ushort> ReadUInt16Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, ushort.Parse);
-        public virtual IList<uint> ReadUInt32Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, uint.Parse);
-        public virtual IList<ulong> ReadUInt64Array(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, ulong.Parse);
+        public virtual IList<bool> ReadBooleanArray(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, bool.Parse);
 
-        public virtual IList<Half> ReadHalfArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, Half.Parse);
-        public virtual IList<float> ReadSingleArray(XElement element, string name) => HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, float.Parse);
+        public virtual IList<short> ReadInt16Array(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, short.Parse);
+
+        public virtual IList<int> ReadInt32Array(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, int.Parse);
+
+        public virtual IList<long> ReadInt64Array(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, long.Parse);
+
+        public virtual IList<ushort> ReadUInt16Array(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, ushort.Parse);
+
+        public virtual IList<uint> ReadUInt32Array(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, uint.Parse);
+
+        public virtual IList<ulong> ReadUInt64Array(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, ulong.Parse);
+
+        public virtual IList<Half> ReadHalfArray(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, Half.Parse);
+
+        public virtual IList<float> ReadSingleArray(XElement element, string name) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveArray(element, name, float.Parse);
 
         public virtual IList<string> ReadStringArray(XElement element, string name)
         {
@@ -552,33 +669,104 @@ namespace HKX2E
             if (ele is null)
                 return new List<string>();
 
-            return ele.Elements("hkcstring")
-                      .Select(ele => ele.Value.Trim())
-                      .ToList();
+            return ele.Elements("hkcstring").Select(ele => ele.Value.Trim()).ToList();
         }
-
 
         // ========== Primitive CStyle Arrays =========
 
-        public virtual sbyte[] ReadSByteCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, sbyte.Parse);
-        public virtual byte[] ReadByteCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, byte.Parse);
-        public virtual bool[] ReadBooleanCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, s => s == "true");
+        public virtual sbyte[] ReadSByteCStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                sbyte.Parse
+            );
 
-        public virtual short[] ReadInt16CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, short.Parse);
-        public virtual int[] ReadInt32CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, int.Parse);
-        public virtual long[] ReadInt64CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, long.Parse);
+        public virtual byte[] ReadByteCStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                byte.Parse
+            );
 
-        public virtual ushort[] ReadUInt16CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, ushort.Parse);
-        public virtual uint[] ReadUInt32CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, uint.Parse);
-        public virtual ulong[] ReadUInt64CStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, ulong.Parse);
+        public virtual bool[] ReadBooleanCStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                s => s == "true"
+            );
 
-        public virtual Half[] ReadHalfCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, Half.Parse);
-        public virtual float[] ReadSingleCStyleArray(XElement element, string name, short length) => HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(element, name, length, float.Parse);
+        public virtual short[] ReadInt16CStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                short.Parse
+            );
+
+        public virtual int[] ReadInt32CStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                int.Parse
+            );
+
+        public virtual long[] ReadInt64CStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                long.Parse
+            );
+
+        public virtual ushort[] ReadUInt16CStyleArray(
+            XElement element,
+            string name,
+            short length
+        ) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                ushort.Parse
+            );
+
+        public virtual uint[] ReadUInt32CStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                uint.Parse
+            );
+
+        public virtual ulong[] ReadUInt64CStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                ulong.Parse
+            );
+
+        public virtual Half[] ReadHalfCStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                Half.Parse
+            );
+
+        public virtual float[] ReadSingleCStyleArray(XElement element, string name, short length) =>
+            HavokXmlDeserializerExtensions.ReadPrimitiveCStyleArray(
+                element,
+                name,
+                length,
+                float.Parse
+            );
 
         #endregion
-
-
-
 
 
         #region Read Complex
@@ -587,175 +775,420 @@ namespace HKX2E
 
         public virtual Vector4 ReadVector4(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, vec =>
-                new Vector4(vec[0], vec[1], vec[2], vec[3])
+            return HavokXmlDeserializerExtensions.ReadComplexType(
+                element,
+                name,
+                vec => new Vector4(vec[0], vec[1], vec[2], vec[3])
             );
         }
 
         public virtual Matrix4x4 ReadMatrix3(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, mat3 =>
-                new Matrix4x4(mat3[0], mat3[1], mat3[2], 0,
-                              mat3[3], mat3[4], mat3[5], 0,
-                              mat3[6], mat3[7], mat3[8], 0,
-                              0, 0, 0, 0)
+            return HavokXmlDeserializerExtensions.ReadComplexType(
+                element,
+                name,
+                mat3 => new Matrix4x4(
+                    mat3[0],
+                    mat3[1],
+                    mat3[2],
+                    0,
+                    mat3[3],
+                    mat3[4],
+                    mat3[5],
+                    0,
+                    mat3[6],
+                    mat3[7],
+                    mat3[8],
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                )
             );
         }
 
         public virtual Matrix4x4 ReadMatrix4(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, mat4 =>
-                new Matrix4x4(mat4[0], mat4[1], mat4[2], mat4[3],
-                              mat4[4], mat4[5], mat4[6], mat4[7],
-                              mat4[8], mat4[9], mat4[10], mat4[11],
-                              mat4[12], mat4[13], mat4[14], mat4[15])
+            return HavokXmlDeserializerExtensions.ReadComplexType(
+                element,
+                name,
+                mat4 => new Matrix4x4(
+                    mat4[0],
+                    mat4[1],
+                    mat4[2],
+                    mat4[3],
+                    mat4[4],
+                    mat4[5],
+                    mat4[6],
+                    mat4[7],
+                    mat4[8],
+                    mat4[9],
+                    mat4[10],
+                    mat4[11],
+                    mat4[12],
+                    mat4[13],
+                    mat4[14],
+                    mat4[15]
+                )
             );
         }
 
         public virtual Matrix4x4 ReadTransform(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, trans =>
-                new Matrix4x4(trans[0], trans[1], trans[2], 0,
-                              trans[3], trans[4], trans[5], 0,
-                              trans[6], trans[7], trans[8], 0,
-                              trans[9], trans[10], trans[11], 1)
+            return HavokXmlDeserializerExtensions.ReadComplexType(
+                element,
+                name,
+                trans => new Matrix4x4(
+                    trans[0],
+                    trans[1],
+                    trans[2],
+                    0,
+                    trans[3],
+                    trans[4],
+                    trans[5],
+                    0,
+                    trans[6],
+                    trans[7],
+                    trans[8],
+                    0,
+                    trans[9],
+                    trans[10],
+                    trans[11],
+                    1
+                )
             );
         }
 
-        public virtual Matrix4x4 ReadRotation(XElement element, string name) => ReadMatrix3(element, name);
+        public virtual Matrix4x4 ReadRotation(XElement element, string name) =>
+            ReadMatrix3(element, name);
 
         public virtual Matrix4x4 ReadQSTransform(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, qs =>
-                new Matrix4x4(qs[0], qs[1], qs[2], 0,
-                              qs[3], qs[4], qs[5], qs[6],
-                              qs[7], qs[8], qs[9], 0,
-                              0, 0, 0, 0)
+            return HavokXmlDeserializerExtensions.ReadComplexType(
+                element,
+                name,
+                qs => new Matrix4x4(
+                    qs[0],
+                    qs[1],
+                    qs[2],
+                    0,
+                    qs[3],
+                    qs[4],
+                    qs[5],
+                    qs[6],
+                    qs[7],
+                    qs[8],
+                    qs[9],
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                )
             );
         }
 
         public virtual Quaternion ReadQuaternion(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexType(element, name, quant =>
-                new Quaternion(quant[0], quant[1], quant[2], quant[3])
+            return HavokXmlDeserializerExtensions.ReadComplexType(
+                element,
+                name,
+                quant => new Quaternion(quant[0], quant[1], quant[2], quant[3])
             );
         }
-
 
         // ========== Complex Arrays =========
 
         public virtual IList<Vector4> ReadVector4Array(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 4, vec =>
-                new Vector4(vec[0], vec[1], vec[2], vec[3])
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(
+                element,
+                name,
+                chunkSize: 4,
+                vec => new Vector4(vec[0], vec[1], vec[2], vec[3])
             );
         }
 
         public virtual IList<Matrix4x4> ReadMatrix3Array(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 9, vec =>
-                new Matrix4x4(vec[0], vec[1], vec[2], 0,
-                              vec[3], vec[4], vec[5], 0,
-                              vec[6], vec[7], vec[8], 0,
-                              0, 0, 0, 0)
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(
+                element,
+                name,
+                chunkSize: 9,
+                vec => new Matrix4x4(
+                    vec[0],
+                    vec[1],
+                    vec[2],
+                    0,
+                    vec[3],
+                    vec[4],
+                    vec[5],
+                    0,
+                    vec[6],
+                    vec[7],
+                    vec[8],
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                )
             );
         }
 
         public virtual IList<Matrix4x4> ReadMatrix4Array(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 16, vec =>
-                new Matrix4x4(vec[0], vec[1], vec[2], vec[3],
-                              vec[4], vec[5], vec[6], vec[7],
-                              vec[8], vec[9], vec[10], vec[11],
-                              vec[12], vec[13], vec[14], vec[15])
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(
+                element,
+                name,
+                chunkSize: 16,
+                vec => new Matrix4x4(
+                    vec[0],
+                    vec[1],
+                    vec[2],
+                    vec[3],
+                    vec[4],
+                    vec[5],
+                    vec[6],
+                    vec[7],
+                    vec[8],
+                    vec[9],
+                    vec[10],
+                    vec[11],
+                    vec[12],
+                    vec[13],
+                    vec[14],
+                    vec[15]
+                )
             );
         }
 
         public virtual IList<Matrix4x4> ReadTransformArray(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 12, trans =>
-                new Matrix4x4(trans[0], trans[1], trans[2], 0,
-                              trans[3], trans[4], trans[5], 0,
-                              trans[6], trans[7], trans[8], 0,
-                              trans[9], trans[10], trans[11], 1)
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(
+                element,
+                name,
+                chunkSize: 12,
+                trans => new Matrix4x4(
+                    trans[0],
+                    trans[1],
+                    trans[2],
+                    0,
+                    trans[3],
+                    trans[4],
+                    trans[5],
+                    0,
+                    trans[6],
+                    trans[7],
+                    trans[8],
+                    0,
+                    trans[9],
+                    trans[10],
+                    trans[11],
+                    1
+                )
             );
         }
 
-        public virtual IList<Matrix4x4> ReadRotationArray(XElement element, string name) => ReadMatrix3Array(element, name);
+        public virtual IList<Matrix4x4> ReadRotationArray(XElement element, string name) =>
+            ReadMatrix3Array(element, name);
 
         public virtual IList<Matrix4x4> ReadQSTransformArray(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 10, qs =>
-                new Matrix4x4(qs[0], qs[1], qs[2], 0,
-                              qs[3], qs[4], qs[5], qs[6],
-                              qs[7], qs[8], qs[9], 0,
-                              0, 0, 0, 0)
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(
+                element,
+                name,
+                chunkSize: 10,
+                qs => new Matrix4x4(
+                    qs[0],
+                    qs[1],
+                    qs[2],
+                    0,
+                    qs[3],
+                    qs[4],
+                    qs[5],
+                    qs[6],
+                    qs[7],
+                    qs[8],
+                    qs[9],
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                )
             );
         }
 
         public virtual IList<Quaternion> ReadQuaternionArray(XElement element, string name)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(element, name, chunkSize: 4, quant =>
-                new Quaternion(quant[0], quant[1], quant[2], quant[3])
+            return HavokXmlDeserializerExtensions.ReadComplexTypeArray(
+                element,
+                name,
+                chunkSize: 4,
+                quant => new Quaternion(quant[0], quant[1], quant[2], quant[3])
             );
         }
-
-
 
         // ========== Complex CStyle Arrays =========
         public virtual Vector4[] ReadVector4CStyleArray(XElement element, string name, short length)
         {
-            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 4, vec =>
-                new Vector4(vec[0], vec[1], vec[2], vec[3])
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(
+                element,
+                name,
+                length,
+                4,
+                vec => new Vector4(vec[0], vec[1], vec[2], vec[3])
             );
         }
 
-        public virtual Matrix4x4[] ReadMatrix3CStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadMatrix3CStyleArray(
+            XElement element,
+            string name,
+            short length
+        )
         {
-            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 9, vec =>
-                new Matrix4x4(vec[0], vec[1], vec[2], 0,
-                              vec[3], vec[4], vec[5], 0,
-                              vec[6], vec[7], vec[8], 0,
-                              0, 0, 0, 0)
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(
+                element,
+                name,
+                length,
+                9,
+                vec => new Matrix4x4(
+                    vec[0],
+                    vec[1],
+                    vec[2],
+                    0,
+                    vec[3],
+                    vec[4],
+                    vec[5],
+                    0,
+                    vec[6],
+                    vec[7],
+                    vec[8],
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                )
             );
         }
 
-        public virtual Matrix4x4[] ReadMatrix4CStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadMatrix4CStyleArray(
+            XElement element,
+            string name,
+            short length
+        )
         {
-            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 16, vec =>
-                new Matrix4x4(vec[0], vec[1], vec[2], vec[3],
-                              vec[4], vec[5], vec[6], vec[7],
-                              vec[8], vec[9], vec[10], vec[11],
-                              vec[12], vec[13], vec[14], vec[15])
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(
+                element,
+                name,
+                length,
+                16,
+                vec => new Matrix4x4(
+                    vec[0],
+                    vec[1],
+                    vec[2],
+                    vec[3],
+                    vec[4],
+                    vec[5],
+                    vec[6],
+                    vec[7],
+                    vec[8],
+                    vec[9],
+                    vec[10],
+                    vec[11],
+                    vec[12],
+                    vec[13],
+                    vec[14],
+                    vec[15]
+                )
             );
         }
 
-        public virtual Matrix4x4[] ReadTransformCStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadTransformCStyleArray(
+            XElement element,
+            string name,
+            short length
+        )
         {
-            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 12, trans =>
-                new Matrix4x4(trans[0], trans[1], trans[2], 0,
-                              trans[3], trans[4], trans[5], 0,
-                              trans[6], trans[7], trans[8], 0,
-                              trans[9], trans[10], trans[11], 1)
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(
+                element,
+                name,
+                length,
+                12,
+                trans => new Matrix4x4(
+                    trans[0],
+                    trans[1],
+                    trans[2],
+                    0,
+                    trans[3],
+                    trans[4],
+                    trans[5],
+                    0,
+                    trans[6],
+                    trans[7],
+                    trans[8],
+                    0,
+                    trans[9],
+                    trans[10],
+                    trans[11],
+                    1
+                )
             );
         }
 
-        public virtual Matrix4x4[] ReadRotationCStyleArray(XElement element, string name, short length) => ReadMatrix3CStyleArray(element, name, length);
+        public virtual Matrix4x4[] ReadRotationCStyleArray(
+            XElement element,
+            string name,
+            short length
+        ) => ReadMatrix3CStyleArray(element, name, length);
 
-        public virtual Matrix4x4[] ReadQSTransformCStyleArray(XElement element, string name, short length)
+        public virtual Matrix4x4[] ReadQSTransformCStyleArray(
+            XElement element,
+            string name,
+            short length
+        )
         {
-            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 10, qs =>
-                new Matrix4x4(qs[0], qs[1], qs[2], 0,
-                              qs[3], qs[4], qs[5], qs[6],
-                              qs[7], qs[8], qs[9], 0,
-                              0, 0, 0, 0)
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(
+                element,
+                name,
+                length,
+                10,
+                qs => new Matrix4x4(
+                    qs[0],
+                    qs[1],
+                    qs[2],
+                    0,
+                    qs[3],
+                    qs[4],
+                    qs[5],
+                    qs[6],
+                    qs[7],
+                    qs[8],
+                    qs[9],
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                )
             );
         }
 
-        public virtual Quaternion[] ReadQuaternionCStyleArray(XElement element, string name, short length)
+        public virtual Quaternion[] ReadQuaternionCStyleArray(
+            XElement element,
+            string name,
+            short length
+        )
         {
-            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(element, name, length, 4, quant =>
-                new Quaternion(quant[0], quant[1], quant[2], quant[3])
+            return HavokXmlDeserializerExtensions.ReadComplexCStyleArray(
+                element,
+                name,
+                length,
+                4,
+                quant => new Quaternion(quant[0], quant[1], quant[2], quant[3])
             );
         }
 

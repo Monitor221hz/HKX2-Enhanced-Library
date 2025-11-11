@@ -7,14 +7,19 @@ namespace HKX2E
 {
     // hkpPoweredChainMapper Signatire: 0x7a77ef5 size: 64 flags: FLAGS_NONE
 
-    // links class: hkpPoweredChainMapperLinkInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // targets class: hkpPoweredChainMapperTarget Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // chains class: hkpConstraintChainInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkpPoweredChainMapper : hkReferencedObject, IEquatable<hkpPoweredChainMapper?>
+    // links class: hkpPoweredChainMapperLinkInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // targets class: hkpPoweredChainMapperTarget Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // chains class: hkpConstraintChainInstance Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkpPoweredChainMapper
+        : hkReferencedObject,
+            IEquatable<hkpPoweredChainMapper?>
     {
-        public IList<hkpPoweredChainMapperLinkInfo> links { set; get; } = Array.Empty<hkpPoweredChainMapperLinkInfo>();
-        public IList<hkpPoweredChainMapperTarget> targets { set; get; } = Array.Empty<hkpPoweredChainMapperTarget>();
-        public IList<hkpConstraintChainInstance> chains { set; get; } = Array.Empty<hkpConstraintChainInstance>();
+        public IList<hkpPoweredChainMapperLinkInfo> links { set; get; } =
+            Array.Empty<hkpPoweredChainMapperLinkInfo>();
+        public IList<hkpPoweredChainMapperTarget> targets { set; get; } =
+            Array.Empty<hkpPoweredChainMapperTarget>();
+        public IList<hkpConstraintChainInstance> chains { set; get; } =
+            Array.Empty<hkpConstraintChainInstance>();
 
         public override uint Signature { set; get; } = 0x7a77ef5;
 
@@ -57,12 +62,13 @@ namespace HKX2E
 
         public bool Equals(hkpPoweredChainMapper? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   links.SequenceEqual(other.links) &&
-                   targets.SequenceEqual(other.targets) &&
-                   chains.SequenceEqual(other.chains) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && links.SequenceEqual(other.links)
+                && targets.SequenceEqual(other.targets)
+                && chains.SequenceEqual(other.chains)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +83,3 @@ namespace HKX2E
         }
     }
 }
-

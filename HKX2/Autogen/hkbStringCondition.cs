@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkbStringCondition Signatire: 0x5ab50487 size: 24 flags: FLAGS_NONE
 
-    // conditionString class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // conditionString class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkbStringCondition : hkbCondition, IEquatable<hkbStringCondition?>
     {
         public string conditionString { set; get; } = "";
@@ -43,10 +43,16 @@ namespace HKX2E
 
         public bool Equals(hkbStringCondition? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (conditionString is null && other.conditionString is null || conditionString == other.conditionString || conditionString is null && other.conditionString == "" || conditionString == "" && other.conditionString is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    conditionString is null && other.conditionString is null
+                    || conditionString == other.conditionString
+                    || conditionString is null && other.conditionString == ""
+                    || conditionString == "" && other.conditionString is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +65,3 @@ namespace HKX2E
         }
     }
 }
-

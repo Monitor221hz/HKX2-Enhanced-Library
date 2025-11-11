@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpBroadPhaseHandle Signatire: 0x940569dc size: 4 flags: FLAGS_NONE
 
-    // id class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // id class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpBroadPhaseHandle : IHavokObject, IEquatable<hkpBroadPhaseHandle?>
     {
         private uint id { set; get; }
@@ -22,10 +22,7 @@ namespace HKX2E
             bw.WriteUInt32(id);
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
-
-        }
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
@@ -39,8 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkpBroadPhaseHandle? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -52,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

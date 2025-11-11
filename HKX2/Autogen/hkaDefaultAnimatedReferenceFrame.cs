@@ -8,11 +8,13 @@ namespace HKX2E
 {
     // hkaDefaultAnimatedReferenceFrame Signatire: 0x6d85e445 size: 80 flags: FLAGS_NONE
 
-    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // forward class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // referenceFrameSamples class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    public partial class hkaDefaultAnimatedReferenceFrame : hkaAnimatedReferenceFrame, IEquatable<hkaDefaultAnimatedReferenceFrame?>
+    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // forward class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // referenceFrameSamples class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    public partial class hkaDefaultAnimatedReferenceFrame
+        : hkaAnimatedReferenceFrame,
+            IEquatable<hkaDefaultAnimatedReferenceFrame?>
     {
         public Vector4 up { set; get; }
         public Vector4 forward { set; get; }
@@ -68,13 +70,14 @@ namespace HKX2E
 
         public bool Equals(hkaDefaultAnimatedReferenceFrame? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   up.Equals(other.up) &&
-                   forward.Equals(other.forward) &&
-                   duration.Equals(other.duration) &&
-                   referenceFrameSamples.SequenceEqual(other.referenceFrameSamples) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && up.Equals(other.up)
+                && forward.Equals(other.forward)
+                && duration.Equals(other.duration)
+                && referenceFrameSamples.SequenceEqual(other.referenceFrameSamples)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -90,4 +93,3 @@ namespace HKX2E
         }
     }
 }
-

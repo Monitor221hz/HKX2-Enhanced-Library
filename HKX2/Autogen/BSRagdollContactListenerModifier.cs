@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // BSRagdollContactListenerModifier Signatire: 0x8003d8ce size: 136 flags: FLAGS_NONE
 
-    // contactEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // bones class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // throwEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // ragdollRigidBodies class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSRagdollContactListenerModifier : hkbModifier, IEquatable<BSRagdollContactListenerModifier?>
+    // contactEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // bones class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // throwEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // ragdollRigidBodies class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSRagdollContactListenerModifier
+        : hkbModifier,
+            IEquatable<BSRagdollContactListenerModifier?>
     {
         public hkbEventProperty contactEvent { set; get; } = new();
         public hkbBoneIndexArray? bones { set; get; }
@@ -64,11 +66,26 @@ namespace HKX2E
 
         public bool Equals(BSRagdollContactListenerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((contactEvent is null && other.contactEvent is null) || (contactEvent is not null && other.contactEvent is not null && contactEvent.Equals((IHavokObject)other.contactEvent))) &&
-                   ((bones is null && other.bones is null) || (bones is not null && other.bones is not null && bones.Equals((IHavokObject)other.bones))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (contactEvent is null && other.contactEvent is null)
+                    || (
+                        contactEvent is not null
+                        && other.contactEvent is not null
+                        && contactEvent.Equals((IHavokObject)other.contactEvent)
+                    )
+                )
+                && (
+                    (bones is null && other.bones is null)
+                    || (
+                        bones is not null
+                        && other.bones is not null
+                        && bones.Equals((IHavokObject)other.bones)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -82,4 +99,3 @@ namespace HKX2E
         }
     }
 }
-

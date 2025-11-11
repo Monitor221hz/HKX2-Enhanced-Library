@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkbBoneWeightArray Signatire: 0xcd902b77 size: 64 flags: FLAGS_NONE
 
-    // boneWeights class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // boneWeights class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkbBoneWeightArray : hkbBindable, IEquatable<hkbBoneWeightArray?>
     {
         public IList<float> boneWeights { set; get; } = Array.Empty<float>();
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkbBoneWeightArray? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   boneWeights.SequenceEqual(other.boneWeights) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && boneWeights.SequenceEqual(other.boneWeights)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

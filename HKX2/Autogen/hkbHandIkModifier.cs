@@ -7,12 +7,13 @@ namespace HKX2E
 {
     // hkbHandIkModifier Signatire: 0xef8bc2f7 size: 120 flags: FLAGS_NONE
 
-    // hands class: hkbHandIkModifierHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // hands class: hkbHandIkModifierHand Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     // fadeInOutCurve class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 96 flags: FLAGS_NONE enum: BlendCurve
-    // internalHandData class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // internalHandData class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbHandIkModifier : hkbModifier, IEquatable<hkbHandIkModifier?>
     {
-        public IList<hkbHandIkModifierHand> hands { set; get; } = Array.Empty<hkbHandIkModifierHand>();
+        public IList<hkbHandIkModifierHand> hands { set; get; } =
+            Array.Empty<hkbHandIkModifierHand>();
         public sbyte fadeInOutCurve { set; get; }
         public IList<object> internalHandData { set; get; } = Array.Empty<object>();
 
@@ -58,11 +59,12 @@ namespace HKX2E
 
         public bool Equals(hkbHandIkModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   hands.SequenceEqual(other.hands) &&
-                   fadeInOutCurve.Equals(other.fadeInOutCurve) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && hands.SequenceEqual(other.hands)
+                && fadeInOutCurve.Equals(other.fadeInOutCurve)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -76,4 +78,3 @@ namespace HKX2E
         }
     }
 }
-

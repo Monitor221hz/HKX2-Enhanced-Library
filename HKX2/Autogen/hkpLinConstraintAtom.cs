@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpLinConstraintAtom Signatire: 0x7b6b0210 size: 4 flags: FLAGS_NONE
 
-    // axisIndex class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
+    // axisIndex class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
     public partial class hkpLinConstraintAtom : hkpConstraintAtom, IEquatable<hkpLinConstraintAtom?>
     {
         public byte axisIndex { set; get; }
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkpLinConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   axisIndex.Equals(other.axisIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && axisIndex.Equals(other.axisIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

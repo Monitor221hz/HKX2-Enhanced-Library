@@ -6,10 +6,10 @@ namespace HKX2E
 {
     // hkpFirstPersonGun Signatire: 0x852ab70b size: 56 flags: FLAGS_NONE
 
-    // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
     // keyboardKey class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: KeyboardKey
-    // listeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // listeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpFirstPersonGun : hkReferencedObject, IEquatable<hkpFirstPersonGun?>
     {
         private byte type { set; get; }
@@ -64,11 +64,17 @@ namespace HKX2E
 
         public bool Equals(hkpFirstPersonGun? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   keyboardKey.Equals(other.keyboardKey) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && keyboardKey.Equals(other.keyboardKey)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -82,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

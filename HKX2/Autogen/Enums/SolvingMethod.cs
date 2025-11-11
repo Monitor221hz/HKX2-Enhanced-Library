@@ -6,4 +6,3 @@ namespace HKX2E
         METHOD_OLD = 1,
     }
 }
-

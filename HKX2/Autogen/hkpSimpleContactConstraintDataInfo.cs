@@ -6,13 +6,15 @@ namespace HKX2E
 {
     // hkpSimpleContactConstraintDataInfo Signatire: 0xb59d1734 size: 32 flags: FLAGS_NONE
 
-    // flags class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
-    // index class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // internalData0 class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // rollingFrictionMultiplier class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // internalData1 class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum: 
-    // data class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 5 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkpSimpleContactConstraintDataInfo : IHavokObject, IEquatable<hkpSimpleContactConstraintDataInfo?>
+    // flags class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum:
+    // index class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // internalData0 class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // rollingFrictionMultiplier class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // internalData1 class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum:
+    // data class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 5 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkpSimpleContactConstraintDataInfo
+        : IHavokObject,
+            IEquatable<hkpSimpleContactConstraintDataInfo?>
     {
         public ushort flags { set; get; }
         public ushort index { set; get; }
@@ -70,14 +72,15 @@ namespace HKX2E
 
         public bool Equals(hkpSimpleContactConstraintDataInfo? other)
         {
-            return other is not null &&
-                   flags.Equals(other.flags) &&
-                   index.Equals(other.index) &&
-                   internalData0.Equals(other.internalData0) &&
-                   rollingFrictionMultiplier.Equals(other.rollingFrictionMultiplier) &&
-                   internalData1.Equals(other.internalData1) &&
-                   data.SequenceEqual(other.data) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && flags.Equals(other.flags)
+                && index.Equals(other.index)
+                && internalData0.Equals(other.internalData0)
+                && rollingFrictionMultiplier.Equals(other.rollingFrictionMultiplier)
+                && internalData1.Equals(other.internalData1)
+                && data.SequenceEqual(other.data)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -94,4 +97,3 @@ namespace HKX2E
         }
     }
 }
-

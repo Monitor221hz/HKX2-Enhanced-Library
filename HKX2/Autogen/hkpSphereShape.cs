@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpSphereShape Signatire: 0x795d9fa size: 56 flags: FLAGS_NONE
 
-    // pad16 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // pad16 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpSphereShape : hkpConvexShape, IEquatable<hkpSphereShape?>
     {
         public uint[] pad16 = new uint[3];
@@ -44,9 +44,8 @@ namespace HKX2E
 
         public bool Equals(hkpSphereShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -58,4 +57,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -8,9 +8,11 @@ namespace HKX2E
 {
     // hkaInterleavedUncompressedAnimation Signatire: 0x930af031 size: 88 flags: FLAGS_NONE
 
-    // transforms class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // floats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    public partial class hkaInterleavedUncompressedAnimation : hkaAnimation, IEquatable<hkaInterleavedUncompressedAnimation?>
+    // transforms class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // floats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    public partial class hkaInterleavedUncompressedAnimation
+        : hkaAnimation,
+            IEquatable<hkaInterleavedUncompressedAnimation?>
     {
         public IList<Matrix4x4> transforms { set; get; } = Array.Empty<Matrix4x4>();
         public IList<float> floats { set; get; } = Array.Empty<float>();
@@ -52,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkaInterleavedUncompressedAnimation? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   transforms.SequenceEqual(other.transforms) &&
-                   floats.SequenceEqual(other.floats) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && transforms.SequenceEqual(other.transforms)
+                && floats.SequenceEqual(other.floats)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

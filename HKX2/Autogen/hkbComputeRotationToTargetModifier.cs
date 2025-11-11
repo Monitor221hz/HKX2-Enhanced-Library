@@ -6,14 +6,16 @@ namespace HKX2E
 {
     // hkbComputeRotationToTargetModifier Signatire: 0x47665f1c size: 192 flags: FLAGS_NONE
 
-    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // currentPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // currentRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // localAxisOfRotation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // localFacingDirection class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // resultIsDelta class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    public partial class hkbComputeRotationToTargetModifier : hkbModifier, IEquatable<hkbComputeRotationToTargetModifier?>
+    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // currentPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // currentRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // localAxisOfRotation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // localFacingDirection class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // resultIsDelta class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    public partial class hkbComputeRotationToTargetModifier
+        : hkbModifier,
+            IEquatable<hkbComputeRotationToTargetModifier?>
     {
         public Quaternion rotationOut { set; get; }
         public Vector4 targetPosition { set; get; }
@@ -82,16 +84,17 @@ namespace HKX2E
 
         public bool Equals(hkbComputeRotationToTargetModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rotationOut.Equals(other.rotationOut) &&
-                   targetPosition.Equals(other.targetPosition) &&
-                   currentPosition.Equals(other.currentPosition) &&
-                   currentRotation.Equals(other.currentRotation) &&
-                   localAxisOfRotation.Equals(other.localAxisOfRotation) &&
-                   localFacingDirection.Equals(other.localFacingDirection) &&
-                   resultIsDelta.Equals(other.resultIsDelta) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rotationOut.Equals(other.rotationOut)
+                && targetPosition.Equals(other.targetPosition)
+                && currentPosition.Equals(other.currentPosition)
+                && currentRotation.Equals(other.currentRotation)
+                && localAxisOfRotation.Equals(other.localAxisOfRotation)
+                && localFacingDirection.Equals(other.localFacingDirection)
+                && resultIsDelta.Equals(other.resultIsDelta)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -110,4 +113,3 @@ namespace HKX2E
         }
     }
 }
-

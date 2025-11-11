@@ -6,4 +6,3 @@ namespace HKX2E
         BINDING_TYPE_CHARACTER_PROPERTY = 1,
     }
 }
-

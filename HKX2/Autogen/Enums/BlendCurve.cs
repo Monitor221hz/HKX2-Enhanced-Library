@@ -8,4 +8,3 @@ namespace HKX2E
         BLEND_CURVE_SMOOTH_TO_LINEAR = 3,
     }
 }
-

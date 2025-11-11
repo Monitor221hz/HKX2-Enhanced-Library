@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // hkpListShapeChildInfo Signatire: 0x80df0f90 size: 32 flags: FLAGS_NONE
 
-    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // shapeSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // numChildShapes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // shape class: hkpShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // shapeSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // numChildShapes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpListShapeChildInfo : IHavokObject, IEquatable<hkpListShapeChildInfo?>
     {
         public hkpShape? shape { set; get; }
@@ -57,10 +57,18 @@ namespace HKX2E
 
         public bool Equals(hkpListShapeChildInfo? other)
         {
-            return other is not null &&
-                   ((shape is null && other.shape is null) || (shape is not null && other.shape is not null && shape.Equals((IHavokObject)other.shape))) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (shape is null && other.shape is null)
+                    || (
+                        shape is not null
+                        && other.shape is not null
+                        && shape.Equals((IHavokObject)other.shape)
+                    )
+                )
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -73,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

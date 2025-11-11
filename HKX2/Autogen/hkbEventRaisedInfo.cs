@@ -5,11 +5,11 @@ namespace HKX2E
 {
     // hkbEventRaisedInfo Signatire: 0xc02da3 size: 48 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // eventName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // raisedBySdk class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // senderId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // eventName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // raisedBySdk class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // senderId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
     public partial class hkbEventRaisedInfo : hkReferencedObject, IEquatable<hkbEventRaisedInfo?>
     {
         public ulong characterId { set; get; }
@@ -71,14 +71,20 @@ namespace HKX2E
 
         public bool Equals(hkbEventRaisedInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   (eventName is null && other.eventName is null || eventName == other.eventName || eventName is null && other.eventName == "" || eventName == "" && other.eventName is null) &&
-                   raisedBySdk.Equals(other.raisedBySdk) &&
-                   senderId.Equals(other.senderId) &&
-                   padding.Equals(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && (
+                    eventName is null && other.eventName is null
+                    || eventName == other.eventName
+                    || eventName is null && other.eventName == ""
+                    || eventName == "" && other.eventName is null
+                )
+                && raisedBySdk.Equals(other.raisedBySdk)
+                && senderId.Equals(other.senderId)
+                && padding.Equals(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -95,4 +101,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,9 +6,9 @@ namespace HKX2E
 {
     // hkpAabbPhantom Signatire: 0x2c5189dd size: 304 flags: FLAGS_NONE
 
-    // aabb class: hkAabb Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum: 
-    // overlappingCollidables class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // aabb class: hkAabb Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum:
+    // overlappingCollidables class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpAabbPhantom : hkpPhantom, IEquatable<hkpAabbPhantom?>
     {
         public hkAabb aabb { set; get; } = new();
@@ -56,10 +56,18 @@ namespace HKX2E
 
         public bool Equals(hkpAabbPhantom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((aabb is null && other.aabb is null) || (aabb is not null && other.aabb is not null && aabb.Equals((IHavokObject)other.aabb))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (aabb is null && other.aabb is null)
+                    || (
+                        aabb is not null
+                        && other.aabb is not null
+                        && aabb.Equals((IHavokObject)other.aabb)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -72,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkbMessageLog Signatire: 0x26a196c5 size: 16 flags: FLAGS_NONE
 
-    // messages class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // maxMessages class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // messages class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // maxMessages class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbMessageLog : IHavokObject, IEquatable<hkbMessageLog?>
     {
         private object? messages { set; get; }
@@ -28,10 +28,7 @@ namespace HKX2E
             bw.Position += 4;
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
-
-        }
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
@@ -46,8 +43,8 @@ namespace HKX2E
 
         public bool Equals(hkbMessageLog? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +56,3 @@ namespace HKX2E
         }
     }
 }
-

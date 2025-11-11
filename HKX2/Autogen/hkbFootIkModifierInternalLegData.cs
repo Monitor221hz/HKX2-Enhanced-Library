@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkbFootIkModifierInternalLegData Signatire: 0xe5ca3677 size: 32 flags: FLAGS_NONE
 
-    // groundPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // footIkSolver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbFootIkModifierInternalLegData : IHavokObject, IEquatable<hkbFootIkModifierInternalLegData?>
+    // groundPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // footIkSolver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbFootIkModifierInternalLegData
+        : IHavokObject,
+            IEquatable<hkbFootIkModifierInternalLegData?>
     {
         public Vector4 groundPosition { set; get; }
         private object? footIkSolver { set; get; }
@@ -47,9 +49,10 @@ namespace HKX2E
 
         public bool Equals(hkbFootIkModifierInternalLegData? other)
         {
-            return other is not null &&
-                   groundPosition.Equals(other.groundPosition) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && groundPosition.Equals(other.groundPosition)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

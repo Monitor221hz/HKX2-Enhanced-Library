@@ -6,11 +6,13 @@ namespace HKX2E
     // hkpBallSocketConstraintAtom Signatire: 0xe70e4dfa size: 16 flags: FLAGS_NONE
 
     // solvingMethod class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 2 flags: FLAGS_NONE enum: SolvingMethod
-    // bodiesToNotify class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // velocityStabilizationFactor class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // maxImpulse class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // inertiaStabilizationFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkpBallSocketConstraintAtom : hkpConstraintAtom, IEquatable<hkpBallSocketConstraintAtom?>
+    // bodiesToNotify class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
+    // velocityStabilizationFactor class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // maxImpulse class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // inertiaStabilizationFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkpBallSocketConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpBallSocketConstraintAtom?>
     {
         public byte solvingMethod { set; get; }
         public byte bodiesToNotify { set; get; }
@@ -69,14 +71,15 @@ namespace HKX2E
 
         public bool Equals(hkpBallSocketConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   solvingMethod.Equals(other.solvingMethod) &&
-                   bodiesToNotify.Equals(other.bodiesToNotify) &&
-                   velocityStabilizationFactor.Equals(other.velocityStabilizationFactor) &&
-                   maxImpulse.Equals(other.maxImpulse) &&
-                   inertiaStabilizationFactor.Equals(other.inertiaStabilizationFactor) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && solvingMethod.Equals(other.solvingMethod)
+                && bodiesToNotify.Equals(other.bodiesToNotify)
+                && velocityStabilizationFactor.Equals(other.velocityStabilizationFactor)
+                && maxImpulse.Equals(other.maxImpulse)
+                && inertiaStabilizationFactor.Equals(other.inertiaStabilizationFactor)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -93,4 +96,3 @@ namespace HKX2E
         }
     }
 }
-

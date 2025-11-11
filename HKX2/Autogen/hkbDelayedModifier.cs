@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // hkbDelayedModifier Signatire: 0x8e101a7a size: 104 flags: FLAGS_NONE
 
-    // delaySeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // durationSeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // delaySeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // durationSeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbDelayedModifier : hkbModifierWrapper, IEquatable<hkbDelayedModifier?>
     {
         public float delaySeconds { set; get; }
@@ -61,11 +61,12 @@ namespace HKX2E
 
         public bool Equals(hkbDelayedModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   delaySeconds.Equals(other.delaySeconds) &&
-                   durationSeconds.Equals(other.durationSeconds) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && delaySeconds.Equals(other.delaySeconds)
+                && durationSeconds.Equals(other.durationSeconds)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

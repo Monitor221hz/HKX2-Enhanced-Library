@@ -9,4 +9,3 @@ namespace HKX2E
         RESPONSE_MAX_ID = 4,
     }
 }
-

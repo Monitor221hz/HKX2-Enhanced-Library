@@ -5,16 +5,18 @@ namespace HKX2E
 {
     // BSCyclicBlendTransitionGenerator Signatire: 0x5119eb06 size: 176 flags: FLAGS_NONE
 
-    // pBlenderGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum: 
-    // EventToFreezeBlendValue class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // EventToCrossBlend class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // fBlendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // fTransitionDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
+    // pBlenderGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum:
+    // EventToFreezeBlendValue class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // EventToCrossBlend class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // fBlendParameter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // fTransitionDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum:
     // eBlendCurve class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 128 flags: FLAGS_NONE enum: BlendCurve
-    // pTransitionBlenderGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|ALIGN_16|FLAGS_NONE enum: 
-    // pTransitionEffect class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|ALIGN_16|FLAGS_NONE enum: 
-    // currentMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSCyclicBlendTransitionGenerator : hkbGenerator, IEquatable<BSCyclicBlendTransitionGenerator?>
+    // pTransitionBlenderGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|ALIGN_16|FLAGS_NONE enum:
+    // pTransitionEffect class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|ALIGN_16|FLAGS_NONE enum:
+    // currentMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSCyclicBlendTransitionGenerator
+        : hkbGenerator,
+            IEquatable<BSCyclicBlendTransitionGenerator?>
     {
         public hkbGenerator? pBlenderGenerator { set; get; }
         public hkbEventProperty EventToFreezeBlendValue { set; get; } = new();
@@ -67,8 +69,15 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pBlenderGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pBlenderGenerator));
-            EventToFreezeBlendValue = xd.ReadClass<hkbEventProperty>(xe, nameof(EventToFreezeBlendValue));
+            pBlenderGenerator = xd.ReadClassPointer<hkbGenerator>(
+                this,
+                xe,
+                nameof(pBlenderGenerator)
+            );
+            EventToFreezeBlendValue = xd.ReadClass<hkbEventProperty>(
+                xe,
+                nameof(EventToFreezeBlendValue)
+            );
             EventToCrossBlend = xd.ReadClass<hkbEventProperty>(xe, nameof(EventToCrossBlend));
             fBlendParameter = xd.ReadSingle(xe, nameof(fBlendParameter));
             fTransitionDuration = xd.ReadSingle(xe, nameof(fTransitionDuration));
@@ -79,7 +88,11 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(pBlenderGenerator), pBlenderGenerator);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(EventToFreezeBlendValue), EventToFreezeBlendValue);
+            xs.WriteClass<hkbEventProperty>(
+                xe,
+                nameof(EventToFreezeBlendValue),
+                EventToFreezeBlendValue
+            );
             xs.WriteClass<hkbEventProperty>(xe, nameof(EventToCrossBlend), EventToCrossBlend);
             xs.WriteFloat(xe, nameof(fBlendParameter), fBlendParameter);
             xs.WriteFloat(xe, nameof(fTransitionDuration), fTransitionDuration);
@@ -96,15 +109,39 @@ namespace HKX2E
 
         public bool Equals(BSCyclicBlendTransitionGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((pBlenderGenerator is null && other.pBlenderGenerator is null) || (pBlenderGenerator is not null && other.pBlenderGenerator is not null && pBlenderGenerator.Equals((IHavokObject)other.pBlenderGenerator))) &&
-                   ((EventToFreezeBlendValue is null && other.EventToFreezeBlendValue is null) || (EventToFreezeBlendValue is not null && other.EventToFreezeBlendValue is not null && EventToFreezeBlendValue.Equals((IHavokObject)other.EventToFreezeBlendValue))) &&
-                   ((EventToCrossBlend is null && other.EventToCrossBlend is null) || (EventToCrossBlend is not null && other.EventToCrossBlend is not null && EventToCrossBlend.Equals((IHavokObject)other.EventToCrossBlend))) &&
-                   fBlendParameter.Equals(other.fBlendParameter) &&
-                   fTransitionDuration.Equals(other.fTransitionDuration) &&
-                   eBlendCurve.Equals(other.eBlendCurve) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (pBlenderGenerator is null && other.pBlenderGenerator is null)
+                    || (
+                        pBlenderGenerator is not null
+                        && other.pBlenderGenerator is not null
+                        && pBlenderGenerator.Equals((IHavokObject)other.pBlenderGenerator)
+                    )
+                )
+                && (
+                    (EventToFreezeBlendValue is null && other.EventToFreezeBlendValue is null)
+                    || (
+                        EventToFreezeBlendValue is not null
+                        && other.EventToFreezeBlendValue is not null
+                        && EventToFreezeBlendValue.Equals(
+                            (IHavokObject)other.EventToFreezeBlendValue
+                        )
+                    )
+                )
+                && (
+                    (EventToCrossBlend is null && other.EventToCrossBlend is null)
+                    || (
+                        EventToCrossBlend is not null
+                        && other.EventToCrossBlend is not null
+                        && EventToCrossBlend.Equals((IHavokObject)other.EventToCrossBlend)
+                    )
+                )
+                && fBlendParameter.Equals(other.fBlendParameter)
+                && fTransitionDuration.Equals(other.fTransitionDuration)
+                && eBlendCurve.Equals(other.eBlendCurve)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -122,4 +159,3 @@ namespace HKX2E
         }
     }
 }
-

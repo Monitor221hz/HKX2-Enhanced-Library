@@ -7,4 +7,3 @@ namespace HKX2E
         CONTACT_POINT_REJECT_MANY = 2,
     }
 }
-

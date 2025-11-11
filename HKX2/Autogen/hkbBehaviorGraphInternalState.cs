@@ -7,11 +7,14 @@ namespace HKX2E
 {
     // hkbBehaviorGraphInternalState Signatire: 0x8699b6eb size: 40 flags: FLAGS_NONE
 
-    // nodeInternalStateInfos class: hkbNodeInternalStateInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // variableValueSet class: hkbVariableValueSet Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkbBehaviorGraphInternalState : hkReferencedObject, IEquatable<hkbBehaviorGraphInternalState?>
+    // nodeInternalStateInfos class: hkbNodeInternalStateInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // variableValueSet class: hkbVariableValueSet Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkbBehaviorGraphInternalState
+        : hkReferencedObject,
+            IEquatable<hkbBehaviorGraphInternalState?>
     {
-        public IList<hkbNodeInternalStateInfo> nodeInternalStateInfos { set; get; } = Array.Empty<hkbNodeInternalStateInfo>();
+        public IList<hkbNodeInternalStateInfo> nodeInternalStateInfos { set; get; } =
+            Array.Empty<hkbNodeInternalStateInfo>();
         public hkbVariableValueSet? variableValueSet { set; get; }
 
         public override uint Signature { set; get; } = 0x8699b6eb;
@@ -33,8 +36,16 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            nodeInternalStateInfos = xd.ReadClassPointerArray<hkbNodeInternalStateInfo>(this, xe, nameof(nodeInternalStateInfos));
-            variableValueSet = xd.ReadClassPointer<hkbVariableValueSet>(this, xe, nameof(variableValueSet));
+            nodeInternalStateInfos = xd.ReadClassPointerArray<hkbNodeInternalStateInfo>(
+                this,
+                xe,
+                nameof(nodeInternalStateInfos)
+            );
+            variableValueSet = xd.ReadClassPointer<hkbVariableValueSet>(
+                this,
+                xe,
+                nameof(variableValueSet)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -51,11 +62,19 @@ namespace HKX2E
 
         public bool Equals(hkbBehaviorGraphInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   nodeInternalStateInfos.SequenceEqual(other.nodeInternalStateInfos) &&
-                   ((variableValueSet is null && other.variableValueSet is null) || (variableValueSet is not null && other.variableValueSet is not null && variableValueSet.Equals((IHavokObject)other.variableValueSet))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && nodeInternalStateInfos.SequenceEqual(other.nodeInternalStateInfos)
+                && (
+                    (variableValueSet is null && other.variableValueSet is null)
+                    || (
+                        variableValueSet is not null
+                        && other.variableValueSet is not null
+                        && variableValueSet.Equals((IHavokObject)other.variableValueSet)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

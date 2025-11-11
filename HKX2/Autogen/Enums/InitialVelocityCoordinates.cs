@@ -6,4 +6,3 @@ namespace HKX2E
         INITIAL_VELOCITY_IN_MODEL_COORDINATES = 1,
     }
 }
-

@@ -7,12 +7,14 @@ namespace HKX2E
 {
     // hkpPointToPathConstraintData Signatire: 0x8e7cb5da size: 192 flags: FLAGS_NONE
 
-    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // path class: hkpParametricCurve Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // maxFrictionForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
+    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // path class: hkpParametricCurve Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // maxFrictionForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
     // angularConstrainedDOF class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 60 flags: FLAGS_NONE enum: OrientationConstraintType
-    // transforOS_KS class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 2 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpPointToPathConstraintData : hkpConstraintData, IEquatable<hkpPointToPathConstraintData?>
+    // transforOS_KS class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 2 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpPointToPathConstraintData
+        : hkpConstraintData,
+            IEquatable<hkpPointToPathConstraintData?>
     {
         public hkpBridgeAtoms atoms { set; get; } = new();
         public hkpParametricCurve? path { set; get; }
@@ -50,7 +52,10 @@ namespace HKX2E
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
             path = xd.ReadClassPointer<hkpParametricCurve>(this, xe, nameof(path));
             maxFrictionForce = xd.ReadSingle(xe, nameof(maxFrictionForce));
-            angularConstrainedDOF = xd.ReadFlag<OrientationConstraintType, sbyte>(xe, nameof(angularConstrainedDOF));
+            angularConstrainedDOF = xd.ReadFlag<OrientationConstraintType, sbyte>(
+                xe,
+                nameof(angularConstrainedDOF)
+            );
             transforOS_KS = xd.ReadTransformCStyleArray(xe, nameof(transforOS_KS), 2);
         }
 
@@ -60,7 +65,11 @@ namespace HKX2E
             xs.WriteClass<hkpBridgeAtoms>(xe, nameof(atoms), atoms);
             xs.WriteClassPointer(xe, nameof(path), path);
             xs.WriteFloat(xe, nameof(maxFrictionForce), maxFrictionForce);
-            xs.WriteEnum<OrientationConstraintType, sbyte>(xe, nameof(angularConstrainedDOF), angularConstrainedDOF);
+            xs.WriteEnum<OrientationConstraintType, sbyte>(
+                xe,
+                nameof(angularConstrainedDOF),
+                angularConstrainedDOF
+            );
             xs.WriteTransformArray(xe, nameof(transforOS_KS), transforOS_KS);
         }
 
@@ -71,14 +80,29 @@ namespace HKX2E
 
         public bool Equals(hkpPointToPathConstraintData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   ((path is null && other.path is null) || (path is not null && other.path is not null && path.Equals((IHavokObject)other.path))) &&
-                   maxFrictionForce.Equals(other.maxFrictionForce) &&
-                   angularConstrainedDOF.Equals(other.angularConstrainedDOF) &&
-                   transforOS_KS.SequenceEqual(other.transforOS_KS) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && (
+                    (path is null && other.path is null)
+                    || (
+                        path is not null
+                        && other.path is not null
+                        && path.Equals((IHavokObject)other.path)
+                    )
+                )
+                && maxFrictionForce.Equals(other.maxFrictionForce)
+                && angularConstrainedDOF.Equals(other.angularConstrainedDOF)
+                && transforOS_KS.SequenceEqual(other.transforOS_KS)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -95,4 +119,3 @@ namespace HKX2E
         }
     }
 }
-

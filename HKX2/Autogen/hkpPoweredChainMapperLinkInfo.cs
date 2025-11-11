@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpPoweredChainMapperLinkInfo Signatire: 0xcf071a1b size: 16 flags: FLAGS_NONE
 
-    // firstTargetIdx class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // numTargets class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // limitConstraint class: hkpConstraintInstance Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpPoweredChainMapperLinkInfo : IHavokObject, IEquatable<hkpPoweredChainMapperLinkInfo?>
+    // firstTargetIdx class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // numTargets class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // limitConstraint class: hkpConstraintInstance Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpPoweredChainMapperLinkInfo
+        : IHavokObject,
+            IEquatable<hkpPoweredChainMapperLinkInfo?>
     {
         public int firstTargetIdx { set; get; }
         public int numTargets { set; get; }
@@ -34,7 +36,11 @@ namespace HKX2E
         {
             firstTargetIdx = xd.ReadInt32(xe, nameof(firstTargetIdx));
             numTargets = xd.ReadInt32(xe, nameof(numTargets));
-            limitConstraint = xd.ReadClassPointer<hkpConstraintInstance>(this, xe, nameof(limitConstraint));
+            limitConstraint = xd.ReadClassPointer<hkpConstraintInstance>(
+                this,
+                xe,
+                nameof(limitConstraint)
+            );
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -51,11 +57,19 @@ namespace HKX2E
 
         public bool Equals(hkpPoweredChainMapperLinkInfo? other)
         {
-            return other is not null &&
-                   firstTargetIdx.Equals(other.firstTargetIdx) &&
-                   numTargets.Equals(other.numTargets) &&
-                   ((limitConstraint is null && other.limitConstraint is null) || (limitConstraint is not null && other.limitConstraint is not null && limitConstraint.Equals((IHavokObject)other.limitConstraint))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && firstTargetIdx.Equals(other.firstTargetIdx)
+                && numTargets.Equals(other.numTargets)
+                && (
+                    (limitConstraint is null && other.limitConstraint is null)
+                    || (
+                        limitConstraint is not null
+                        && other.limitConstraint is not null
+                        && limitConstraint.Equals((IHavokObject)other.limitConstraint)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +83,3 @@ namespace HKX2E
         }
     }
 }
-

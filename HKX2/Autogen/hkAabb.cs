@@ -6,8 +6,8 @@ namespace HKX2E
 {
     // hkAabb Signatire: 0x4a948b16 size: 32 flags: FLAGS_NONE
 
-    // min class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // max class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // min class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // max class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkAabb : IHavokObject, IEquatable<hkAabb?>
     {
         public Vector4 min { set; get; }
@@ -46,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkAabb? other)
         {
-            return other is not null &&
-                   min.Equals(other.min) &&
-                   max.Equals(other.max) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && min.Equals(other.min)
+                && max.Equals(other.max)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

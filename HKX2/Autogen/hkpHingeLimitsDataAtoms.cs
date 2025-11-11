@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpHingeLimitsDataAtoms Signatire: 0x555876ff size: 144 flags: FLAGS_NONE
 
-    // rotations class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // angLimit class: hkpAngLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    //  2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    public partial class hkpHingeLimitsDataAtoms : IHavokObject, IEquatable<hkpHingeLimitsDataAtoms?>
+    // rotations class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // angLimit class: hkpAngLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    //  2dAng class: hkp_2dAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    public partial class hkpHingeLimitsDataAtoms
+        : IHavokObject,
+            IEquatable<hkpHingeLimitsDataAtoms?>
     {
         public hkpSetLocalRotationsConstraintAtom rotations { set; get; } = new();
         public hkpAngLimitConstraintAtom angLimit { set; get; } = new();
@@ -53,11 +55,33 @@ namespace HKX2E
 
         public bool Equals(hkpHingeLimitsDataAtoms? other)
         {
-            return other is not null &&
-                   ((rotations is null && other.rotations is null) || (rotations is not null && other.rotations is not null && rotations.Equals((IHavokObject)other.rotations))) &&
-                   ((angLimit is null && other.angLimit is null) || (angLimit is not null && other.angLimit is not null && angLimit.Equals((IHavokObject)other.angLimit))) &&
-                   ((_2dAng is null && other._2dAng is null) || (_2dAng is not null && other._2dAng is not null && _2dAng.Equals((IHavokObject)other._2dAng))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (rotations is null && other.rotations is null)
+                    || (
+                        rotations is not null
+                        && other.rotations is not null
+                        && rotations.Equals((IHavokObject)other.rotations)
+                    )
+                )
+                && (
+                    (angLimit is null && other.angLimit is null)
+                    || (
+                        angLimit is not null
+                        && other.angLimit is not null
+                        && angLimit.Equals((IHavokObject)other.angLimit)
+                    )
+                )
+                && (
+                    (_2dAng is null && other._2dAng is null)
+                    || (
+                        _2dAng is not null
+                        && other._2dAng is not null
+                        && _2dAng.Equals((IHavokObject)other._2dAng)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +95,3 @@ namespace HKX2E
         }
     }
 }
-

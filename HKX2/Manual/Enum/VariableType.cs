@@ -14,4 +14,3 @@ namespace HKX2E
         VARIABLE_TYPE_QUATERNION = 8,
     }
 }
-

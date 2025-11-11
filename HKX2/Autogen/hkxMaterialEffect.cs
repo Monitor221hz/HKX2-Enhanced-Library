@@ -7,9 +7,9 @@ namespace HKX2E
 {
     // hkxMaterialEffect Signatire: 0x1d39f925 size: 48 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: EffectType
-    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
     public partial class hkxMaterialEffect : hkReferencedObject, IEquatable<hkxMaterialEffect?>
     {
         public string name { set; get; } = "";
@@ -59,12 +59,18 @@ namespace HKX2E
 
         public bool Equals(hkxMaterialEffect? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   type.Equals(other.type) &&
-                   data.SequenceEqual(other.data) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && type.Equals(other.type)
+                && data.SequenceEqual(other.data)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +85,3 @@ namespace HKX2E
         }
     }
 }
-

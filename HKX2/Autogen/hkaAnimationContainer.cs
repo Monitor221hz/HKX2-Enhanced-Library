@@ -7,17 +7,21 @@ namespace HKX2E
 {
     // hkaAnimationContainer Signatire: 0x8dc20333 size: 96 flags: FLAGS_NONE
 
-    // skeletons class: hkaSkeleton Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // animations class: hkaAnimation Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // bindings class: hkaAnimationBinding Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // attachments class: hkaBoneAttachment Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // skins class: hkaMeshBinding Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    public partial class hkaAnimationContainer : hkReferencedObject, IEquatable<hkaAnimationContainer?>
+    // skeletons class: hkaSkeleton Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // animations class: hkaAnimation Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // bindings class: hkaAnimationBinding Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // attachments class: hkaBoneAttachment Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // skins class: hkaMeshBinding Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    public partial class hkaAnimationContainer
+        : hkReferencedObject,
+            IEquatable<hkaAnimationContainer?>
     {
         public IList<hkaSkeleton> skeletons { set; get; } = Array.Empty<hkaSkeleton>();
         public IList<hkaAnimation> animations { set; get; } = Array.Empty<hkaAnimation>();
-        public IList<hkaAnimationBinding> bindings { set; get; } = Array.Empty<hkaAnimationBinding>();
-        public IList<hkaBoneAttachment> attachments { set; get; } = Array.Empty<hkaBoneAttachment>();
+        public IList<hkaAnimationBinding> bindings { set; get; } =
+            Array.Empty<hkaAnimationBinding>();
+        public IList<hkaBoneAttachment> attachments { set; get; } =
+            Array.Empty<hkaBoneAttachment>();
         public IList<hkaMeshBinding> skins { set; get; } = Array.Empty<hkaMeshBinding>();
 
         public override uint Signature { set; get; } = 0x8dc20333;
@@ -48,7 +52,11 @@ namespace HKX2E
             skeletons = xd.ReadClassPointerArray<hkaSkeleton>(this, xe, nameof(skeletons));
             animations = xd.ReadClassPointerArray<hkaAnimation>(this, xe, nameof(animations));
             bindings = xd.ReadClassPointerArray<hkaAnimationBinding>(this, xe, nameof(bindings));
-            attachments = xd.ReadClassPointerArray<hkaBoneAttachment>(this, xe, nameof(attachments));
+            attachments = xd.ReadClassPointerArray<hkaBoneAttachment>(
+                this,
+                xe,
+                nameof(attachments)
+            );
             skins = xd.ReadClassPointerArray<hkaMeshBinding>(this, xe, nameof(skins));
         }
 
@@ -69,14 +77,15 @@ namespace HKX2E
 
         public bool Equals(hkaAnimationContainer? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   skeletons.SequenceEqual(other.skeletons) &&
-                   animations.SequenceEqual(other.animations) &&
-                   bindings.SequenceEqual(other.bindings) &&
-                   attachments.SequenceEqual(other.attachments) &&
-                   skins.SequenceEqual(other.skins) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && skeletons.SequenceEqual(other.skeletons)
+                && animations.SequenceEqual(other.animations)
+                && bindings.SequenceEqual(other.bindings)
+                && attachments.SequenceEqual(other.attachments)
+                && skins.SequenceEqual(other.skins)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -93,4 +102,3 @@ namespace HKX2E
         }
     }
 }
-

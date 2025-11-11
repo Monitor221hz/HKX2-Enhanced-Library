@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpBridgeConstraintAtom Signatire: 0x87a4f31b size: 24 flags: FLAGS_NONE
 
-    // buildJacobianFunc class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // constraintData class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: NOT_OWNED|FLAGS_NONE enum: 
-    public partial class hkpBridgeConstraintAtom : hkpConstraintAtom, IEquatable<hkpBridgeConstraintAtom?>
+    // buildJacobianFunc class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // constraintData class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: NOT_OWNED|FLAGS_NONE enum:
+    public partial class hkpBridgeConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpBridgeConstraintAtom?>
     {
         private object? buildJacobianFunc { set; get; }
         public hkpConstraintData? constraintData { set; get; }
@@ -33,7 +35,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            constraintData = xd.ReadClassPointer<hkpConstraintData>(this, xe, nameof(constraintData));
+            constraintData = xd.ReadClassPointer<hkpConstraintData>(
+                this,
+                xe,
+                nameof(constraintData)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -50,10 +56,18 @@ namespace HKX2E
 
         public bool Equals(hkpBridgeConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((constraintData is null && other.constraintData is null) || (constraintData is not null && other.constraintData is not null && constraintData.Equals((IHavokObject)other.constraintData))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (constraintData is null && other.constraintData is null)
+                    || (
+                        constraintData is not null
+                        && other.constraintData is not null
+                        && constraintData.Equals((IHavokObject)other.constraintData)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -66,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

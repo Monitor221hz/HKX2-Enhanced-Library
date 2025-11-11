@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkPostFinishAttribute Signatire: 0x903abb2c size: 8 flags: FLAGS_NONE
 
-    // postFinishFunction class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // postFinishFunction class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkPostFinishAttribute : IHavokObject, IEquatable<hkPostFinishAttribute?>
     {
         private object? postFinishFunction { set; get; }
@@ -22,10 +22,7 @@ namespace HKX2E
             s.WriteVoidPointer(bw);
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
-
-        }
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
@@ -39,8 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkPostFinishAttribute? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -52,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

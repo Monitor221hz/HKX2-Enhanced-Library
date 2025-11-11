@@ -1,7 +1,7 @@
-﻿using HKX2E.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
+using HKX2E.Utils;
 
 namespace HKX2E
 {
@@ -19,16 +19,19 @@ namespace HKX2E
 
         protected virtual IHavokObject ConstructVirtualClass(BinaryReaderEx br, uint offset)
         {
-            if (_deserializedObjects.ContainsKey(offset)) return _deserializedObjects[offset];
+            if (_deserializedObjects.ContainsKey(offset))
+                return _deserializedObjects[offset];
 
             var fixup = _dataSection._virtualMap[offset];
             var hkClassName = _classnames.OffsetClassNamesMap[fixup.Dst].ClassName;
 
             var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
-            if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+            if (hkClass is null)
+                throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
             var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
-            if (ret is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+            if (ret is null)
+                throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
             br.StepIn(offset);
             ret.Read(this, br);
@@ -72,7 +75,11 @@ namespace HKX2E
 
             // Deserialize the objects
             _deserializedObjects = new Dictionary<uint, IHavokObject>();
-            var br2 = new BinaryReaderEx(_header.Endian == 0, _header.PointerSize == 8, _dataSection.SectionData);
+            var br2 = new BinaryReaderEx(
+                _header.Endian == 0,
+                _header.PointerSize == 8,
+                _dataSection.SectionData
+            );
             return ConstructVirtualClass(br2, 0);
         }
 
@@ -80,7 +87,8 @@ namespace HKX2E
 
         protected void PadToPointerSizeIfPaddingOption(BinaryReaderEx br)
         {
-            if (_header.PaddingOption == 1) br.Pad(_header.PointerSize);
+            if (_header.PaddingOption == 1)
+                br.Pad(_header.PointerSize);
         }
 
         public void ReadEmptyPointer(BinaryReaderEx br)
@@ -96,7 +104,8 @@ namespace HKX2E
             br.AssertUInt32(size | ((uint)0x80 << 24));
         }
 
-        protected T ReadPointerBase<T, F>(Func<BinaryReaderEx, F, T> func, BinaryReaderEx br) where F : Fixup, new()
+        protected T ReadPointerBase<T, F>(Func<BinaryReaderEx, F, T> func, BinaryReaderEx br)
+            where F : Fixup, new()
         {
             Dictionary<uint, F> map;
             if (typeof(F) == typeof(LocalFixup))
@@ -116,7 +125,8 @@ namespace HKX2E
             {
                 // If the read type is an array, continue like normal
                 var oType = typeof(T);
-                if (oType.IsGenericType && oType.GetGenericTypeDefinition() == typeof(List<>)) return func(br, new F());
+                if (oType.IsGenericType && oType.GetGenericTypeDefinition() == typeof(List<>))
+                    return func(br, new F());
 
                 return default!;
             }
@@ -127,35 +137,45 @@ namespace HKX2E
 
         public List<T> ReadArrayBase<T>(Func<BinaryReaderEx, T> func, BinaryReaderEx br)
         {
-            return ReadPointerBase((BinaryReaderEx _br, LocalFixup f) =>
-            {
-                var size = _br.ReadUInt32();
-                _br.AssertUInt32(size | ((uint)0x80 << 24)); // Capacity and flags
+            return ReadPointerBase(
+                (BinaryReaderEx _br, LocalFixup f) =>
+                {
+                    var size = _br.ReadUInt32();
+                    _br.AssertUInt32(size | ((uint)0x80 << 24)); // Capacity and flags
 
-                var res = new List<T>();
+                    var res = new List<T>();
 
-                if (size <= 0) return res;
+                    if (size <= 0)
+                        return res;
 
-                _br.StepIn(f.Dst);
-                for (var i = 0; i < size; i++) res.Add(func(_br));
+                    _br.StepIn(f.Dst);
+                    for (var i = 0; i < size; i++)
+                        res.Add(func(_br));
 
-                _br.StepOut();
+                    _br.StepOut();
 
-                return res;
-            }, br);
+                    return res;
+                },
+                br
+            );
         }
 
-        public List<T> ReadClassArray<T>(BinaryReaderEx br) where T : IHavokObject, new()
+        public List<T> ReadClassArray<T>(BinaryReaderEx br)
+            where T : IHavokObject, new()
         {
-            return ReadArrayBase(_br =>
-            {
-                var cls = new T();
-                cls.Read(this, _br);
-                return cls;
-            }, br);
+            return ReadArrayBase(
+                _br =>
+                {
+                    var cls = new T();
+                    cls.Read(this, _br);
+                    return cls;
+                },
+                br
+            );
         }
 
-        public virtual T ReadClassPointer<T>(BinaryReaderEx br) where T : IHavokObject
+        public virtual T ReadClassPointer<T>(BinaryReaderEx br)
+            where T : IHavokObject
         {
             PadToPointerSizeIfPaddingOption(br);
 
@@ -165,7 +185,8 @@ namespace HKX2E
             br.AssertUSize(0);
 
             // Do a global fixup lookup
-            if (!_dataSection._globalMap.ContainsKey(key)) return default!;
+            if (!_dataSection._globalMap.ContainsKey(key))
+                return default!;
 
             var f = _dataSection._globalMap[key];
             var klass = ConstructVirtualClass(br, f.Dst);
@@ -174,13 +195,16 @@ namespace HKX2E
                 return (T)klass;
 
             if (!_ignoreNonFatalError)
-                throw new Exception($@"Could not convert '{typeof(T)}' to '{klass.GetType()}'. Is source malformed?");
+                throw new Exception(
+                    $@"Could not convert '{typeof(T)}' to '{klass.GetType()}'. Is source malformed?"
+                );
 
             // TODO: this assume klass was read on correct block
             return hkDummyBuilder.CreateDummy(klass, typeof(T));
         }
 
-        public virtual List<T> ReadClassPointerArray<T>(BinaryReaderEx br) where T : IHavokObject
+        public virtual List<T> ReadClassPointerArray<T>(BinaryReaderEx br)
+            where T : IHavokObject
         {
             return ReadArrayBase(ReadClassPointer<T>, br);
         }
@@ -195,7 +219,8 @@ namespace HKX2E
             br.AssertUSize(0);
 
             // Do a local fixup lookup
-            if (!_dataSection._localMap.ContainsKey(key)) return string.Empty;
+            if (!_dataSection._localMap.ContainsKey(key))
+                return string.Empty;
 
             var f = _dataSection._localMap[key];
             br.StepIn(f.Dst);
@@ -219,7 +244,8 @@ namespace HKX2E
             br.AssertUSize(0);
 
             // Do a local fixup lookup
-            if (!_dataSection._localMap.ContainsKey(key)) return null;
+            if (!_dataSection._localMap.ContainsKey(key))
+                return null;
 
             var f = _dataSection._localMap[key];
             br.StepIn(f.Dst);
@@ -264,7 +290,6 @@ namespace HKX2E
         {
             return ReadArrayBase(ReadUInt16, br);
         }
-
 
         public short ReadInt16(BinaryReaderEx br)
         {
@@ -359,14 +384,27 @@ namespace HKX2E
         public Matrix4x4 ReadMatrix3(BinaryReaderEx br)
         {
             var mat3 = new Matrix4x4(
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                0, 0, 0, 0)
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                0,
+                0,
+                0,
+                0
+            )
             {
                 M14 = 0,
                 M24 = 0,
-                M34 = 0
+                M34 = 0,
             };
             return mat3;
         }
@@ -379,10 +417,23 @@ namespace HKX2E
         public Matrix4x4 ReadMatrix4(BinaryReaderEx br)
         {
             return new Matrix4x4(
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle()
+            );
         }
 
         public List<Matrix4x4> ReadMatrix4Array(BinaryReaderEx br)
@@ -393,15 +444,28 @@ namespace HKX2E
         public Matrix4x4 ReadTransform(BinaryReaderEx br)
         {
             var transform = new Matrix4x4(
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle())
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle()
+            )
             {
                 M14 = 0,
                 M24 = 0,
                 M34 = 0,
-                M44 = 1
+                M44 = 1,
             };
 
             return transform;
@@ -415,10 +479,23 @@ namespace HKX2E
         public Matrix4x4 ReadQSTransform(BinaryReaderEx br)
         {
             var qsTransform = new Matrix4x4(
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
-                0, 0, 0, 0)
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                0,
+                0,
+                0,
+                0
+            )
             {
                 M14 = 0,
                 M34 = 0,
@@ -434,7 +511,12 @@ namespace HKX2E
 
         public Quaternion ReadQuaternion(BinaryReaderEx br)
         {
-            return new Quaternion(br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+            return new Quaternion(
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle(),
+                br.ReadSingle()
+            );
         }
 
         public List<Quaternion> ReadQuaternionArray(BinaryReaderEx br)
@@ -442,9 +524,12 @@ namespace HKX2E
             return ReadArrayBase(ReadQuaternion, br);
         }
 
-
         #region C Style Array
-        private T[] ReadCStyleArrayBase<T>(Func<BinaryReaderEx, T> func, BinaryReaderEx br, short length)
+        private T[] ReadCStyleArrayBase<T>(
+            Func<BinaryReaderEx, T> func,
+            BinaryReaderEx br,
+            short length
+        )
         {
             var res = new T[length];
             for (int i = 0; i < length; i++)
@@ -478,10 +563,12 @@ namespace HKX2E
         {
             return ReadCStyleArrayBase(ReadUInt16, br, length);
         }
+
         public int[] ReadInt32CStyleArray(BinaryReaderEx br, short length)
         {
             return ReadCStyleArrayBase(ReadInt32, br, length);
         }
+
         public uint[] ReadUInt32CStyleArray(BinaryReaderEx br, short length)
         {
             return ReadCStyleArrayBase(ReadUInt32, br, length);
@@ -516,6 +603,7 @@ namespace HKX2E
         {
             return ReadCStyleArrayBase(ReadQuaternion, br, length);
         }
+
         public Matrix4x4[] ReadMatrix3CStyleArray(BinaryReaderEx br, short length)
         {
             return ReadCStyleArrayBase(ReadMatrix3, br, length);
@@ -541,7 +629,8 @@ namespace HKX2E
             return ReadCStyleArrayBase(ReadTransform, br, length);
         }
 
-        public T[] ReadClassPointerCStyleArray<T>(BinaryReaderEx br, short length) where T : IHavokObject, new()
+        public T[] ReadClassPointerCStyleArray<T>(BinaryReaderEx br, short length)
+            where T : IHavokObject, new()
         {
             return ReadCStyleArrayBase(ReadClassPointer<T>, br, length);
         }
@@ -554,7 +643,8 @@ namespace HKX2E
             }
         }
 
-        public T[] ReadStructCStyleArray<T>(BinaryReaderEx br, short length) where T : IHavokObject, new()
+        public T[] ReadStructCStyleArray<T>(BinaryReaderEx br, short length)
+            where T : IHavokObject, new()
         {
             var res = new T[length];
             for (int i = 0; i < length; i++)

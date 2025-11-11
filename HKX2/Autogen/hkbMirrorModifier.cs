@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkbMirrorModifier Signatire: 0xa9a271ea size: 88 flags: FLAGS_NONE
 
-    // isAdditive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // isAdditive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     public partial class hkbMirrorModifier : hkbModifier, IEquatable<hkbMirrorModifier?>
     {
         public bool isAdditive { set; get; }
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkbMirrorModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isAdditive.Equals(other.isAdditive) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isAdditive.Equals(other.isAdditive)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

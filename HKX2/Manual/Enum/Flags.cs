@@ -8,4 +8,3 @@ namespace HKX2E
         FLAG_SYNC_POINT = 2,
     }
 }
-

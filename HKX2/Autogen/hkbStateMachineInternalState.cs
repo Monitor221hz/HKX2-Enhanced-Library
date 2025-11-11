@@ -7,23 +7,27 @@ namespace HKX2E
 {
     // hkbStateMachineInternalState Signatire: 0xbd1a7502 size: 104 flags: FLAGS_NONE
 
-    // activeTransitions class: hkbStateMachineActiveTransitionInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // transitionFlags class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // wildcardTransitionFlags class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // delayedTransitions class: hkbStateMachineDelayedTransitionInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // timeInState class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // lastLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // currentStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // previousStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // nextStartStateIndexOverride class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // stateOrTransitionChanged class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // echoNextUpdate class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 101 flags: FLAGS_NONE enum: 
-    public partial class hkbStateMachineInternalState : hkReferencedObject, IEquatable<hkbStateMachineInternalState?>
+    // activeTransitions class: hkbStateMachineActiveTransitionInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // transitionFlags class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // wildcardTransitionFlags class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // delayedTransitions class: hkbStateMachineDelayedTransitionInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // timeInState class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // lastLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // currentStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // previousStateId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // nextStartStateIndexOverride class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // stateOrTransitionChanged class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // echoNextUpdate class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 101 flags: FLAGS_NONE enum:
+    public partial class hkbStateMachineInternalState
+        : hkReferencedObject,
+            IEquatable<hkbStateMachineInternalState?>
     {
-        public IList<hkbStateMachineActiveTransitionInfo> activeTransitions { set; get; } = Array.Empty<hkbStateMachineActiveTransitionInfo>();
+        public IList<hkbStateMachineActiveTransitionInfo> activeTransitions { set; get; } =
+            Array.Empty<hkbStateMachineActiveTransitionInfo>();
         public IList<byte> transitionFlags { set; get; } = Array.Empty<byte>();
         public IList<byte> wildcardTransitionFlags { set; get; } = Array.Empty<byte>();
-        public IList<hkbStateMachineDelayedTransitionInfo> delayedTransitions { set; get; } = Array.Empty<hkbStateMachineDelayedTransitionInfo>();
+        public IList<hkbStateMachineDelayedTransitionInfo> delayedTransitions { set; get; } =
+            Array.Empty<hkbStateMachineDelayedTransitionInfo>();
         public float timeInState { set; get; }
         public float lastLocalTime { set; get; }
         public int currentStateId { set; get; }
@@ -71,10 +75,16 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            activeTransitions = xd.ReadClassArray<hkbStateMachineActiveTransitionInfo>(xe, nameof(activeTransitions));
+            activeTransitions = xd.ReadClassArray<hkbStateMachineActiveTransitionInfo>(
+                xe,
+                nameof(activeTransitions)
+            );
             transitionFlags = xd.ReadByteArray(xe, nameof(transitionFlags));
             wildcardTransitionFlags = xd.ReadByteArray(xe, nameof(wildcardTransitionFlags));
-            delayedTransitions = xd.ReadClassArray<hkbStateMachineDelayedTransitionInfo>(xe, nameof(delayedTransitions));
+            delayedTransitions = xd.ReadClassArray<hkbStateMachineDelayedTransitionInfo>(
+                xe,
+                nameof(delayedTransitions)
+            );
             timeInState = xd.ReadSingle(xe, nameof(timeInState));
             lastLocalTime = xd.ReadSingle(xe, nameof(lastLocalTime));
             currentStateId = xd.ReadInt32(xe, nameof(currentStateId));
@@ -107,20 +117,21 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   activeTransitions.SequenceEqual(other.activeTransitions) &&
-                   transitionFlags.SequenceEqual(other.transitionFlags) &&
-                   wildcardTransitionFlags.SequenceEqual(other.wildcardTransitionFlags) &&
-                   delayedTransitions.SequenceEqual(other.delayedTransitions) &&
-                   timeInState.Equals(other.timeInState) &&
-                   lastLocalTime.Equals(other.lastLocalTime) &&
-                   currentStateId.Equals(other.currentStateId) &&
-                   previousStateId.Equals(other.previousStateId) &&
-                   nextStartStateIndexOverride.Equals(other.nextStartStateIndexOverride) &&
-                   stateOrTransitionChanged.Equals(other.stateOrTransitionChanged) &&
-                   echoNextUpdate.Equals(other.echoNextUpdate) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && activeTransitions.SequenceEqual(other.activeTransitions)
+                && transitionFlags.SequenceEqual(other.transitionFlags)
+                && wildcardTransitionFlags.SequenceEqual(other.wildcardTransitionFlags)
+                && delayedTransitions.SequenceEqual(other.delayedTransitions)
+                && timeInState.Equals(other.timeInState)
+                && lastLocalTime.Equals(other.lastLocalTime)
+                && currentStateId.Equals(other.currentStateId)
+                && previousStateId.Equals(other.previousStateId)
+                && nextStartStateIndexOverride.Equals(other.nextStartStateIndexOverride)
+                && stateOrTransitionChanged.Equals(other.stateOrTransitionChanged)
+                && echoNextUpdate.Equals(other.echoNextUpdate)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -143,4 +154,3 @@ namespace HKX2E
         }
     }
 }
-

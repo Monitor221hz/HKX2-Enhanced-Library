@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkpRigidBody Signatire: 0x75f8d805 size: 720 flags: FLAGS_NONE
 
-
     public partial class hkpRigidBody : hkpEntity, IEquatable<hkpRigidBody?>
     {
-
-
         public override uint Signature { set; get; } = 0x75f8d805;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkpRigidBody? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

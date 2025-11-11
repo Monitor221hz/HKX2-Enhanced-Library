@@ -6,4 +6,3 @@ namespace HKX2E
         EVENT_MODE_SEND_WHEN_IN_RANGE = 1,
     }
 }
-

@@ -8,93 +8,93 @@ namespace HKX2E
 {
     // hkpWorld Signatire: 0xaadcec37 size: 1072 flags: FLAGS_NOT_SERIALIZABLE
 
-    // simulation class: hkpSimulation Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // gravity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // fixedIsland class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // fixedRigidBody class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // activeSimulationIslands class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // inactiveSimulationIslands class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // dirtySimulationIslands class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // maintenanceMgr class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // memoryWatchDog class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // assertOnRunningOutOfSolverMemory class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // broadPhase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // kdTreeManager class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // autoUpdateTree class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // broadPhaseDispatcher class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // phantomBroadPhaseListener class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // entityEntityBroadPhaseListener class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // broadPhaseBorderListener class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // multithreadedSimulationJobData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // collisionInput class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // collisionFilter class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // collisionDispatcher class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // convexListFilter class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pendingOperations class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pendingOperationsCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum: 
-    // pendingBodyOperationsCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 244 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // criticalOperationsLockCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 248 flags: FLAGS_NONE enum: 
-    // criticalOperationsLockCountForPhantoms class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 252 flags: FLAGS_NONE enum: 
-    // blockExecutingPendingOperations class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 256 flags: FLAGS_NONE enum: 
-    // criticalOperationsAllowed class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 257 flags: FLAGS_NONE enum: 
-    // pendingOperationQueues class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 264 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pendingOperationQueueCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 272 flags: FLAGS_NONE enum: 
-    // multiThreadCheck class: hkMultiThreadCheck Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 276 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // processActionsInSingleThread class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum: 
-    // allowIntegrationOfIslandsWithoutConstraintsInASeparateJob class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 289 flags: FLAGS_NONE enum: 
-    // minDesiredIslandSize class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 292 flags: FLAGS_NONE enum: 
-    // modifyConstraintCriticalSection class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 296 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isLocked class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 304 flags: FLAGS_NONE enum: 
-    // islandDirtyListCriticalSection class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 312 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // propertyMasterLock class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 320 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // wantSimulationIslands class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 328 flags: FLAGS_NONE enum: 
-    // useHybridBroadphase class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 329 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // snapCollisionToConvexEdgeThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 332 flags: FLAGS_NONE enum: 
-    // snapCollisionToConcaveEdgeThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 336 flags: FLAGS_NONE enum: 
-    // enableToiWeldRejection class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 340 flags: FLAGS_NONE enum: 
-    // wantDeactivation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 341 flags: FLAGS_NONE enum: 
-    // shouldActivateOnRigidBodyTransformChange class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 342 flags: FLAGS_NONE enum: 
-    // deactivationReferenceDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 344 flags: FLAGS_NONE enum: 
-    // toiCollisionResponseRotateNormal class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 348 flags: FLAGS_NONE enum: 
-    // maxSectorsPerMidphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 352 flags: FLAGS_NONE enum: 
-    // maxSectorsPerNarrowphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 356 flags: FLAGS_NONE enum: 
-    // processToisMultithreaded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 360 flags: FLAGS_NONE enum: 
-    // maxEntriesPerToiMidphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 364 flags: FLAGS_NONE enum: 
-    // maxEntriesPerToiNarrowphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 368 flags: FLAGS_NONE enum: 
-    // maxNumToiCollisionPairsSinglethreaded class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 372 flags: FLAGS_NONE enum: 
-    // simulationType class:  Type.TYPE_ENUM Type.TYPE_INT32 arrSize: 0 offset: 376 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // numToisTillAllowedPenetrationSimplifiedToi class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 380 flags: FLAGS_NONE enum: 
-    // numToisTillAllowedPenetrationToi class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 384 flags: FLAGS_NONE enum: 
-    // numToisTillAllowedPenetrationToiHigher class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 388 flags: FLAGS_NONE enum: 
-    // numToisTillAllowedPenetrationToiForced class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 392 flags: FLAGS_NONE enum: 
-    // lastEntityUid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 396 flags: FLAGS_NONE enum: 
-    // lastIslandUid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 400 flags: FLAGS_NONE enum: 
-    // lastConstraintUid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 404 flags: FLAGS_NONE enum: 
-    // phantoms class: hkpPhantom Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 408 flags: FLAGS_NONE enum: 
-    // actionListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 424 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // entityListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 440 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // phantomListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 456 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // constraintListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 472 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // worldDeletionListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 488 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // islandActivationListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 504 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // worldPostSimulationListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 520 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // worldPostIntegrateListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 536 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // worldPostCollideListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 552 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // islandPostIntegrateListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 568 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // islandPostCollideListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 584 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // contactListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 600 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // contactImpulseLimitBreachedListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 616 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // worldExtensions class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 632 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // violatedConstraintArray class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 648 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // broadPhaseBorder class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 656 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // destructionWorld class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 664 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // npWorld class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 672 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // broadPhaseExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 2 offset: 1008 flags: FLAGS_NONE enum: 
-    // broadPhaseNumMarkers class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1040 flags: FLAGS_NONE enum: 
-    // sizeOfToiEventQueue class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1044 flags: FLAGS_NONE enum: 
-    // broadPhaseQuerySize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1048 flags: FLAGS_NONE enum: 
-    // broadPhaseUpdateSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1052 flags: FLAGS_NONE enum: 
-    // contactPointGeneration class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 1056 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // simulation class: hkpSimulation Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // gravity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // fixedIsland class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // fixedRigidBody class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // activeSimulationIslands class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // inactiveSimulationIslands class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // dirtySimulationIslands class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // maintenanceMgr class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // memoryWatchDog class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // assertOnRunningOutOfSolverMemory class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // broadPhase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // kdTreeManager class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // autoUpdateTree class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // broadPhaseDispatcher class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // phantomBroadPhaseListener class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // entityEntityBroadPhaseListener class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // broadPhaseBorderListener class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // multithreadedSimulationJobData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // collisionInput class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // collisionFilter class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // collisionDispatcher class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // convexListFilter class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pendingOperations class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pendingOperationsCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum:
+    // pendingBodyOperationsCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 244 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // criticalOperationsLockCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 248 flags: FLAGS_NONE enum:
+    // criticalOperationsLockCountForPhantoms class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 252 flags: FLAGS_NONE enum:
+    // blockExecutingPendingOperations class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 256 flags: FLAGS_NONE enum:
+    // criticalOperationsAllowed class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 257 flags: FLAGS_NONE enum:
+    // pendingOperationQueues class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 264 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pendingOperationQueueCount class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 272 flags: FLAGS_NONE enum:
+    // multiThreadCheck class: hkMultiThreadCheck Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 276 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // processActionsInSingleThread class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum:
+    // allowIntegrationOfIslandsWithoutConstraintsInASeparateJob class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 289 flags: FLAGS_NONE enum:
+    // minDesiredIslandSize class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 292 flags: FLAGS_NONE enum:
+    // modifyConstraintCriticalSection class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 296 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isLocked class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 304 flags: FLAGS_NONE enum:
+    // islandDirtyListCriticalSection class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 312 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // propertyMasterLock class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 320 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // wantSimulationIslands class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 328 flags: FLAGS_NONE enum:
+    // useHybridBroadphase class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 329 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // snapCollisionToConvexEdgeThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 332 flags: FLAGS_NONE enum:
+    // snapCollisionToConcaveEdgeThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 336 flags: FLAGS_NONE enum:
+    // enableToiWeldRejection class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 340 flags: FLAGS_NONE enum:
+    // wantDeactivation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 341 flags: FLAGS_NONE enum:
+    // shouldActivateOnRigidBodyTransformChange class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 342 flags: FLAGS_NONE enum:
+    // deactivationReferenceDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 344 flags: FLAGS_NONE enum:
+    // toiCollisionResponseRotateNormal class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 348 flags: FLAGS_NONE enum:
+    // maxSectorsPerMidphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 352 flags: FLAGS_NONE enum:
+    // maxSectorsPerNarrowphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 356 flags: FLAGS_NONE enum:
+    // processToisMultithreaded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 360 flags: FLAGS_NONE enum:
+    // maxEntriesPerToiMidphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 364 flags: FLAGS_NONE enum:
+    // maxEntriesPerToiNarrowphaseCollideTask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 368 flags: FLAGS_NONE enum:
+    // maxNumToiCollisionPairsSinglethreaded class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 372 flags: FLAGS_NONE enum:
+    // simulationType class:  Type.TYPE_ENUM Type.TYPE_INT32 arrSize: 0 offset: 376 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // numToisTillAllowedPenetrationSimplifiedToi class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 380 flags: FLAGS_NONE enum:
+    // numToisTillAllowedPenetrationToi class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 384 flags: FLAGS_NONE enum:
+    // numToisTillAllowedPenetrationToiHigher class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 388 flags: FLAGS_NONE enum:
+    // numToisTillAllowedPenetrationToiForced class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 392 flags: FLAGS_NONE enum:
+    // lastEntityUid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 396 flags: FLAGS_NONE enum:
+    // lastIslandUid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 400 flags: FLAGS_NONE enum:
+    // lastConstraintUid class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 404 flags: FLAGS_NONE enum:
+    // phantoms class: hkpPhantom Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 408 flags: FLAGS_NONE enum:
+    // actionListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 424 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // entityListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 440 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // phantomListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 456 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // constraintListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 472 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // worldDeletionListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 488 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // islandActivationListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 504 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // worldPostSimulationListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 520 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // worldPostIntegrateListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 536 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // worldPostCollideListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 552 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // islandPostIntegrateListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 568 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // islandPostCollideListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 584 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // contactListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 600 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // contactImpulseLimitBreachedListeners class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 616 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // worldExtensions class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 632 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // violatedConstraintArray class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 648 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // broadPhaseBorder class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 656 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // destructionWorld class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 664 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // npWorld class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 672 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // broadPhaseExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 2 offset: 1008 flags: FLAGS_NONE enum:
+    // broadPhaseNumMarkers class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1040 flags: FLAGS_NONE enum:
+    // sizeOfToiEventQueue class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1044 flags: FLAGS_NONE enum:
+    // broadPhaseQuerySize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1048 flags: FLAGS_NONE enum:
+    // broadPhaseUpdateSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 1052 flags: FLAGS_NONE enum:
+    // contactPointGeneration class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 1056 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpWorld : hkReferencedObject, IEquatable<hkpWorld?>
     {
         public hkpSimulation? simulation { set; get; }
@@ -172,7 +172,8 @@ namespace HKX2E
         public IList<object> islandPostIntegrateListeners { set; get; } = Array.Empty<object>();
         public IList<object> islandPostCollideListeners { set; get; } = Array.Empty<object>();
         public IList<object> contactListeners { set; get; } = Array.Empty<object>();
-        public IList<object> contactImpulseLimitBreachedListeners { set; get; } = Array.Empty<object>();
+        public IList<object> contactImpulseLimitBreachedListeners { set; get; } =
+            Array.Empty<object>();
         public IList<object> worldExtensions { set; get; } = Array.Empty<object>();
         private object? violatedConstraintArray { set; get; }
         private object? broadPhaseBorder { set; get; }
@@ -402,32 +403,83 @@ namespace HKX2E
             autoUpdateTree = xd.ReadBoolean(xe, nameof(autoUpdateTree));
             pendingOperationsCount = xd.ReadInt32(xe, nameof(pendingOperationsCount));
             criticalOperationsLockCount = xd.ReadInt32(xe, nameof(criticalOperationsLockCount));
-            criticalOperationsLockCountForPhantoms = xd.ReadInt32(xe, nameof(criticalOperationsLockCountForPhantoms));
-            blockExecutingPendingOperations = xd.ReadBoolean(xe, nameof(blockExecutingPendingOperations));
+            criticalOperationsLockCountForPhantoms = xd.ReadInt32(
+                xe,
+                nameof(criticalOperationsLockCountForPhantoms)
+            );
+            blockExecutingPendingOperations = xd.ReadBoolean(
+                xe,
+                nameof(blockExecutingPendingOperations)
+            );
             criticalOperationsAllowed = xd.ReadBoolean(xe, nameof(criticalOperationsAllowed));
             pendingOperationQueueCount = xd.ReadInt32(xe, nameof(pendingOperationQueueCount));
             processActionsInSingleThread = xd.ReadBoolean(xe, nameof(processActionsInSingleThread));
-            allowIntegrationOfIslandsWithoutConstraintsInASeparateJob = xd.ReadBoolean(xe, nameof(allowIntegrationOfIslandsWithoutConstraintsInASeparateJob));
+            allowIntegrationOfIslandsWithoutConstraintsInASeparateJob = xd.ReadBoolean(
+                xe,
+                nameof(allowIntegrationOfIslandsWithoutConstraintsInASeparateJob)
+            );
             minDesiredIslandSize = xd.ReadUInt32(xe, nameof(minDesiredIslandSize));
             isLocked = xd.ReadInt32(xe, nameof(isLocked));
             wantSimulationIslands = xd.ReadBoolean(xe, nameof(wantSimulationIslands));
-            snapCollisionToConvexEdgeThreshold = xd.ReadSingle(xe, nameof(snapCollisionToConvexEdgeThreshold));
-            snapCollisionToConcaveEdgeThreshold = xd.ReadSingle(xe, nameof(snapCollisionToConcaveEdgeThreshold));
+            snapCollisionToConvexEdgeThreshold = xd.ReadSingle(
+                xe,
+                nameof(snapCollisionToConvexEdgeThreshold)
+            );
+            snapCollisionToConcaveEdgeThreshold = xd.ReadSingle(
+                xe,
+                nameof(snapCollisionToConcaveEdgeThreshold)
+            );
             enableToiWeldRejection = xd.ReadBoolean(xe, nameof(enableToiWeldRejection));
             wantDeactivation = xd.ReadBoolean(xe, nameof(wantDeactivation));
-            shouldActivateOnRigidBodyTransformChange = xd.ReadBoolean(xe, nameof(shouldActivateOnRigidBodyTransformChange));
-            deactivationReferenceDistance = xd.ReadSingle(xe, nameof(deactivationReferenceDistance));
-            toiCollisionResponseRotateNormal = xd.ReadSingle(xe, nameof(toiCollisionResponseRotateNormal));
-            maxSectorsPerMidphaseCollideTask = xd.ReadInt32(xe, nameof(maxSectorsPerMidphaseCollideTask));
-            maxSectorsPerNarrowphaseCollideTask = xd.ReadInt32(xe, nameof(maxSectorsPerNarrowphaseCollideTask));
+            shouldActivateOnRigidBodyTransformChange = xd.ReadBoolean(
+                xe,
+                nameof(shouldActivateOnRigidBodyTransformChange)
+            );
+            deactivationReferenceDistance = xd.ReadSingle(
+                xe,
+                nameof(deactivationReferenceDistance)
+            );
+            toiCollisionResponseRotateNormal = xd.ReadSingle(
+                xe,
+                nameof(toiCollisionResponseRotateNormal)
+            );
+            maxSectorsPerMidphaseCollideTask = xd.ReadInt32(
+                xe,
+                nameof(maxSectorsPerMidphaseCollideTask)
+            );
+            maxSectorsPerNarrowphaseCollideTask = xd.ReadInt32(
+                xe,
+                nameof(maxSectorsPerNarrowphaseCollideTask)
+            );
             processToisMultithreaded = xd.ReadBoolean(xe, nameof(processToisMultithreaded));
-            maxEntriesPerToiMidphaseCollideTask = xd.ReadInt32(xe, nameof(maxEntriesPerToiMidphaseCollideTask));
-            maxEntriesPerToiNarrowphaseCollideTask = xd.ReadInt32(xe, nameof(maxEntriesPerToiNarrowphaseCollideTask));
-            maxNumToiCollisionPairsSinglethreaded = xd.ReadInt32(xe, nameof(maxNumToiCollisionPairsSinglethreaded));
-            numToisTillAllowedPenetrationSimplifiedToi = xd.ReadSingle(xe, nameof(numToisTillAllowedPenetrationSimplifiedToi));
-            numToisTillAllowedPenetrationToi = xd.ReadSingle(xe, nameof(numToisTillAllowedPenetrationToi));
-            numToisTillAllowedPenetrationToiHigher = xd.ReadSingle(xe, nameof(numToisTillAllowedPenetrationToiHigher));
-            numToisTillAllowedPenetrationToiForced = xd.ReadSingle(xe, nameof(numToisTillAllowedPenetrationToiForced));
+            maxEntriesPerToiMidphaseCollideTask = xd.ReadInt32(
+                xe,
+                nameof(maxEntriesPerToiMidphaseCollideTask)
+            );
+            maxEntriesPerToiNarrowphaseCollideTask = xd.ReadInt32(
+                xe,
+                nameof(maxEntriesPerToiNarrowphaseCollideTask)
+            );
+            maxNumToiCollisionPairsSinglethreaded = xd.ReadInt32(
+                xe,
+                nameof(maxNumToiCollisionPairsSinglethreaded)
+            );
+            numToisTillAllowedPenetrationSimplifiedToi = xd.ReadSingle(
+                xe,
+                nameof(numToisTillAllowedPenetrationSimplifiedToi)
+            );
+            numToisTillAllowedPenetrationToi = xd.ReadSingle(
+                xe,
+                nameof(numToisTillAllowedPenetrationToi)
+            );
+            numToisTillAllowedPenetrationToiHigher = xd.ReadSingle(
+                xe,
+                nameof(numToisTillAllowedPenetrationToiHigher)
+            );
+            numToisTillAllowedPenetrationToiForced = xd.ReadSingle(
+                xe,
+                nameof(numToisTillAllowedPenetrationToiForced)
+            );
             lastEntityUid = xd.ReadUInt32(xe, nameof(lastEntityUid));
             lastIslandUid = xd.ReadUInt32(xe, nameof(lastIslandUid));
             lastConstraintUid = xd.ReadUInt32(xe, nameof(lastConstraintUid));
@@ -468,14 +520,26 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(pendingOperationsCount), pendingOperationsCount);
             xs.WriteSerializeIgnored(xe, nameof(pendingBodyOperationsCount));
             xs.WriteNumber(xe, nameof(criticalOperationsLockCount), criticalOperationsLockCount);
-            xs.WriteNumber(xe, nameof(criticalOperationsLockCountForPhantoms), criticalOperationsLockCountForPhantoms);
-            xs.WriteBoolean(xe, nameof(blockExecutingPendingOperations), blockExecutingPendingOperations);
+            xs.WriteNumber(
+                xe,
+                nameof(criticalOperationsLockCountForPhantoms),
+                criticalOperationsLockCountForPhantoms
+            );
+            xs.WriteBoolean(
+                xe,
+                nameof(blockExecutingPendingOperations),
+                blockExecutingPendingOperations
+            );
             xs.WriteBoolean(xe, nameof(criticalOperationsAllowed), criticalOperationsAllowed);
             xs.WriteSerializeIgnored(xe, nameof(pendingOperationQueues));
             xs.WriteNumber(xe, nameof(pendingOperationQueueCount), pendingOperationQueueCount);
             xs.WriteSerializeIgnored(xe, nameof(multiThreadCheck));
             xs.WriteBoolean(xe, nameof(processActionsInSingleThread), processActionsInSingleThread);
-            xs.WriteBoolean(xe, nameof(allowIntegrationOfIslandsWithoutConstraintsInASeparateJob), allowIntegrationOfIslandsWithoutConstraintsInASeparateJob);
+            xs.WriteBoolean(
+                xe,
+                nameof(allowIntegrationOfIslandsWithoutConstraintsInASeparateJob),
+                allowIntegrationOfIslandsWithoutConstraintsInASeparateJob
+            );
             xs.WriteNumber(xe, nameof(minDesiredIslandSize), minDesiredIslandSize);
             xs.WriteSerializeIgnored(xe, nameof(modifyConstraintCriticalSection));
             xs.WriteNumber(xe, nameof(isLocked), isLocked);
@@ -483,24 +547,76 @@ namespace HKX2E
             xs.WriteSerializeIgnored(xe, nameof(propertyMasterLock));
             xs.WriteBoolean(xe, nameof(wantSimulationIslands), wantSimulationIslands);
             xs.WriteSerializeIgnored(xe, nameof(useHybridBroadphase));
-            xs.WriteFloat(xe, nameof(snapCollisionToConvexEdgeThreshold), snapCollisionToConvexEdgeThreshold);
-            xs.WriteFloat(xe, nameof(snapCollisionToConcaveEdgeThreshold), snapCollisionToConcaveEdgeThreshold);
+            xs.WriteFloat(
+                xe,
+                nameof(snapCollisionToConvexEdgeThreshold),
+                snapCollisionToConvexEdgeThreshold
+            );
+            xs.WriteFloat(
+                xe,
+                nameof(snapCollisionToConcaveEdgeThreshold),
+                snapCollisionToConcaveEdgeThreshold
+            );
             xs.WriteBoolean(xe, nameof(enableToiWeldRejection), enableToiWeldRejection);
             xs.WriteBoolean(xe, nameof(wantDeactivation), wantDeactivation);
-            xs.WriteBoolean(xe, nameof(shouldActivateOnRigidBodyTransformChange), shouldActivateOnRigidBodyTransformChange);
+            xs.WriteBoolean(
+                xe,
+                nameof(shouldActivateOnRigidBodyTransformChange),
+                shouldActivateOnRigidBodyTransformChange
+            );
             xs.WriteFloat(xe, nameof(deactivationReferenceDistance), deactivationReferenceDistance);
-            xs.WriteFloat(xe, nameof(toiCollisionResponseRotateNormal), toiCollisionResponseRotateNormal);
-            xs.WriteNumber(xe, nameof(maxSectorsPerMidphaseCollideTask), maxSectorsPerMidphaseCollideTask);
-            xs.WriteNumber(xe, nameof(maxSectorsPerNarrowphaseCollideTask), maxSectorsPerNarrowphaseCollideTask);
+            xs.WriteFloat(
+                xe,
+                nameof(toiCollisionResponseRotateNormal),
+                toiCollisionResponseRotateNormal
+            );
+            xs.WriteNumber(
+                xe,
+                nameof(maxSectorsPerMidphaseCollideTask),
+                maxSectorsPerMidphaseCollideTask
+            );
+            xs.WriteNumber(
+                xe,
+                nameof(maxSectorsPerNarrowphaseCollideTask),
+                maxSectorsPerNarrowphaseCollideTask
+            );
             xs.WriteBoolean(xe, nameof(processToisMultithreaded), processToisMultithreaded);
-            xs.WriteNumber(xe, nameof(maxEntriesPerToiMidphaseCollideTask), maxEntriesPerToiMidphaseCollideTask);
-            xs.WriteNumber(xe, nameof(maxEntriesPerToiNarrowphaseCollideTask), maxEntriesPerToiNarrowphaseCollideTask);
-            xs.WriteNumber(xe, nameof(maxNumToiCollisionPairsSinglethreaded), maxNumToiCollisionPairsSinglethreaded);
+            xs.WriteNumber(
+                xe,
+                nameof(maxEntriesPerToiMidphaseCollideTask),
+                maxEntriesPerToiMidphaseCollideTask
+            );
+            xs.WriteNumber(
+                xe,
+                nameof(maxEntriesPerToiNarrowphaseCollideTask),
+                maxEntriesPerToiNarrowphaseCollideTask
+            );
+            xs.WriteNumber(
+                xe,
+                nameof(maxNumToiCollisionPairsSinglethreaded),
+                maxNumToiCollisionPairsSinglethreaded
+            );
             xs.WriteSerializeIgnored(xe, nameof(simulationType));
-            xs.WriteFloat(xe, nameof(numToisTillAllowedPenetrationSimplifiedToi), numToisTillAllowedPenetrationSimplifiedToi);
-            xs.WriteFloat(xe, nameof(numToisTillAllowedPenetrationToi), numToisTillAllowedPenetrationToi);
-            xs.WriteFloat(xe, nameof(numToisTillAllowedPenetrationToiHigher), numToisTillAllowedPenetrationToiHigher);
-            xs.WriteFloat(xe, nameof(numToisTillAllowedPenetrationToiForced), numToisTillAllowedPenetrationToiForced);
+            xs.WriteFloat(
+                xe,
+                nameof(numToisTillAllowedPenetrationSimplifiedToi),
+                numToisTillAllowedPenetrationSimplifiedToi
+            );
+            xs.WriteFloat(
+                xe,
+                nameof(numToisTillAllowedPenetrationToi),
+                numToisTillAllowedPenetrationToi
+            );
+            xs.WriteFloat(
+                xe,
+                nameof(numToisTillAllowedPenetrationToiHigher),
+                numToisTillAllowedPenetrationToiHigher
+            );
+            xs.WriteFloat(
+                xe,
+                nameof(numToisTillAllowedPenetrationToiForced),
+                numToisTillAllowedPenetrationToiForced
+            );
             xs.WriteNumber(xe, nameof(lastEntityUid), lastEntityUid);
             xs.WriteNumber(xe, nameof(lastIslandUid), lastIslandUid);
             xs.WriteNumber(xe, nameof(lastConstraintUid), lastConstraintUid);
@@ -538,50 +654,89 @@ namespace HKX2E
 
         public bool Equals(hkpWorld? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((simulation is null && other.simulation is null) || (simulation is not null && other.simulation is not null && simulation.Equals((IHavokObject)other.simulation))) &&
-                   gravity.Equals(other.gravity) &&
-                   ((fixedRigidBody is null && other.fixedRigidBody is null) || (fixedRigidBody is not null && other.fixedRigidBody is not null && fixedRigidBody.Equals((IHavokObject)other.fixedRigidBody))) &&
-                   autoUpdateTree.Equals(other.autoUpdateTree) &&
-                   pendingOperationsCount.Equals(other.pendingOperationsCount) &&
-                   criticalOperationsLockCount.Equals(other.criticalOperationsLockCount) &&
-                   criticalOperationsLockCountForPhantoms.Equals(other.criticalOperationsLockCountForPhantoms) &&
-                   blockExecutingPendingOperations.Equals(other.blockExecutingPendingOperations) &&
-                   criticalOperationsAllowed.Equals(other.criticalOperationsAllowed) &&
-                   pendingOperationQueueCount.Equals(other.pendingOperationQueueCount) &&
-                   processActionsInSingleThread.Equals(other.processActionsInSingleThread) &&
-                   allowIntegrationOfIslandsWithoutConstraintsInASeparateJob.Equals(other.allowIntegrationOfIslandsWithoutConstraintsInASeparateJob) &&
-                   minDesiredIslandSize.Equals(other.minDesiredIslandSize) &&
-                   isLocked.Equals(other.isLocked) &&
-                   wantSimulationIslands.Equals(other.wantSimulationIslands) &&
-                   snapCollisionToConvexEdgeThreshold.Equals(other.snapCollisionToConvexEdgeThreshold) &&
-                   snapCollisionToConcaveEdgeThreshold.Equals(other.snapCollisionToConcaveEdgeThreshold) &&
-                   enableToiWeldRejection.Equals(other.enableToiWeldRejection) &&
-                   wantDeactivation.Equals(other.wantDeactivation) &&
-                   shouldActivateOnRigidBodyTransformChange.Equals(other.shouldActivateOnRigidBodyTransformChange) &&
-                   deactivationReferenceDistance.Equals(other.deactivationReferenceDistance) &&
-                   toiCollisionResponseRotateNormal.Equals(other.toiCollisionResponseRotateNormal) &&
-                   maxSectorsPerMidphaseCollideTask.Equals(other.maxSectorsPerMidphaseCollideTask) &&
-                   maxSectorsPerNarrowphaseCollideTask.Equals(other.maxSectorsPerNarrowphaseCollideTask) &&
-                   processToisMultithreaded.Equals(other.processToisMultithreaded) &&
-                   maxEntriesPerToiMidphaseCollideTask.Equals(other.maxEntriesPerToiMidphaseCollideTask) &&
-                   maxEntriesPerToiNarrowphaseCollideTask.Equals(other.maxEntriesPerToiNarrowphaseCollideTask) &&
-                   maxNumToiCollisionPairsSinglethreaded.Equals(other.maxNumToiCollisionPairsSinglethreaded) &&
-                   numToisTillAllowedPenetrationSimplifiedToi.Equals(other.numToisTillAllowedPenetrationSimplifiedToi) &&
-                   numToisTillAllowedPenetrationToi.Equals(other.numToisTillAllowedPenetrationToi) &&
-                   numToisTillAllowedPenetrationToiHigher.Equals(other.numToisTillAllowedPenetrationToiHigher) &&
-                   numToisTillAllowedPenetrationToiForced.Equals(other.numToisTillAllowedPenetrationToiForced) &&
-                   lastEntityUid.Equals(other.lastEntityUid) &&
-                   lastIslandUid.Equals(other.lastIslandUid) &&
-                   lastConstraintUid.Equals(other.lastConstraintUid) &&
-                   phantoms.SequenceEqual(other.phantoms) &&
-                   broadPhaseExtents.SequenceEqual(other.broadPhaseExtents) &&
-                   broadPhaseNumMarkers.Equals(other.broadPhaseNumMarkers) &&
-                   sizeOfToiEventQueue.Equals(other.sizeOfToiEventQueue) &&
-                   broadPhaseQuerySize.Equals(other.broadPhaseQuerySize) &&
-                   broadPhaseUpdateSize.Equals(other.broadPhaseUpdateSize) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (simulation is null && other.simulation is null)
+                    || (
+                        simulation is not null
+                        && other.simulation is not null
+                        && simulation.Equals((IHavokObject)other.simulation)
+                    )
+                )
+                && gravity.Equals(other.gravity)
+                && (
+                    (fixedRigidBody is null && other.fixedRigidBody is null)
+                    || (
+                        fixedRigidBody is not null
+                        && other.fixedRigidBody is not null
+                        && fixedRigidBody.Equals((IHavokObject)other.fixedRigidBody)
+                    )
+                )
+                && autoUpdateTree.Equals(other.autoUpdateTree)
+                && pendingOperationsCount.Equals(other.pendingOperationsCount)
+                && criticalOperationsLockCount.Equals(other.criticalOperationsLockCount)
+                && criticalOperationsLockCountForPhantoms.Equals(
+                    other.criticalOperationsLockCountForPhantoms
+                )
+                && blockExecutingPendingOperations.Equals(other.blockExecutingPendingOperations)
+                && criticalOperationsAllowed.Equals(other.criticalOperationsAllowed)
+                && pendingOperationQueueCount.Equals(other.pendingOperationQueueCount)
+                && processActionsInSingleThread.Equals(other.processActionsInSingleThread)
+                && allowIntegrationOfIslandsWithoutConstraintsInASeparateJob.Equals(
+                    other.allowIntegrationOfIslandsWithoutConstraintsInASeparateJob
+                )
+                && minDesiredIslandSize.Equals(other.minDesiredIslandSize)
+                && isLocked.Equals(other.isLocked)
+                && wantSimulationIslands.Equals(other.wantSimulationIslands)
+                && snapCollisionToConvexEdgeThreshold.Equals(
+                    other.snapCollisionToConvexEdgeThreshold
+                )
+                && snapCollisionToConcaveEdgeThreshold.Equals(
+                    other.snapCollisionToConcaveEdgeThreshold
+                )
+                && enableToiWeldRejection.Equals(other.enableToiWeldRejection)
+                && wantDeactivation.Equals(other.wantDeactivation)
+                && shouldActivateOnRigidBodyTransformChange.Equals(
+                    other.shouldActivateOnRigidBodyTransformChange
+                )
+                && deactivationReferenceDistance.Equals(other.deactivationReferenceDistance)
+                && toiCollisionResponseRotateNormal.Equals(other.toiCollisionResponseRotateNormal)
+                && maxSectorsPerMidphaseCollideTask.Equals(other.maxSectorsPerMidphaseCollideTask)
+                && maxSectorsPerNarrowphaseCollideTask.Equals(
+                    other.maxSectorsPerNarrowphaseCollideTask
+                )
+                && processToisMultithreaded.Equals(other.processToisMultithreaded)
+                && maxEntriesPerToiMidphaseCollideTask.Equals(
+                    other.maxEntriesPerToiMidphaseCollideTask
+                )
+                && maxEntriesPerToiNarrowphaseCollideTask.Equals(
+                    other.maxEntriesPerToiNarrowphaseCollideTask
+                )
+                && maxNumToiCollisionPairsSinglethreaded.Equals(
+                    other.maxNumToiCollisionPairsSinglethreaded
+                )
+                && numToisTillAllowedPenetrationSimplifiedToi.Equals(
+                    other.numToisTillAllowedPenetrationSimplifiedToi
+                )
+                && numToisTillAllowedPenetrationToi.Equals(other.numToisTillAllowedPenetrationToi)
+                && numToisTillAllowedPenetrationToiHigher.Equals(
+                    other.numToisTillAllowedPenetrationToiHigher
+                )
+                && numToisTillAllowedPenetrationToiForced.Equals(
+                    other.numToisTillAllowedPenetrationToiForced
+                )
+                && lastEntityUid.Equals(other.lastEntityUid)
+                && lastIslandUid.Equals(other.lastIslandUid)
+                && lastConstraintUid.Equals(other.lastConstraintUid)
+                && phantoms.SequenceEqual(other.phantoms)
+                && broadPhaseExtents.SequenceEqual(other.broadPhaseExtents)
+                && broadPhaseNumMarkers.Equals(other.broadPhaseNumMarkers)
+                && sizeOfToiEventQueue.Equals(other.sizeOfToiEventQueue)
+                && broadPhaseQuerySize.Equals(other.broadPhaseQuerySize)
+                && broadPhaseUpdateSize.Equals(other.broadPhaseUpdateSize)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -634,4 +789,3 @@ namespace HKX2E
         }
     }
 }
-

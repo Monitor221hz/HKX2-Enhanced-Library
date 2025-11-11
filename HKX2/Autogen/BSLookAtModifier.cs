@@ -8,30 +8,32 @@ namespace HKX2E
 {
     // BSLookAtModifier Signatire: 0xd756fc25 size: 224 flags: FLAGS_NONE
 
-    // lookAtTarget class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // bones class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // eyeBones class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // limitAngleThresholdDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
-    // continueLookOutsideOfLimit class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
-    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // useBoneGains class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum: 
-    // targetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // targetOutsideLimits class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // targetOutOfLimitEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // lookAtCamera class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // lookAtCameraX class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    // lookAtCameraY class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // lookAtCameraZ class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // ballBonesValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 204 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // lookAtTarget class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // bones class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // eyeBones class: BSLookAtModifierBoneData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // limitAngleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // limitAngleThresholdDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum:
+    // continueLookOutsideOfLimit class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum:
+    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // useBoneGains class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum:
+    // targetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // targetOutsideLimits class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // targetOutOfLimitEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // lookAtCamera class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // lookAtCameraX class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum:
+    // lookAtCameraY class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // lookAtCameraZ class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum:
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // ballBonesValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 204 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class BSLookAtModifier : hkbModifier, IEquatable<BSLookAtModifier?>
     {
         public bool lookAtTarget { set; get; }
-        public IList<BSLookAtModifierBoneData> bones { set; get; } = Array.Empty<BSLookAtModifierBoneData>();
-        public IList<BSLookAtModifierBoneData> eyeBones { set; get; } = Array.Empty<BSLookAtModifierBoneData>();
+        public IList<BSLookAtModifierBoneData> bones { set; get; } =
+            Array.Empty<BSLookAtModifierBoneData>();
+        public IList<BSLookAtModifierBoneData> eyeBones { set; get; } =
+            Array.Empty<BSLookAtModifierBoneData>();
         public float limitAngleDegrees { set; get; }
         public float limitAngleThresholdDegrees { set; get; }
         public bool continueLookOutsideOfLimit { set; get; }
@@ -127,7 +129,10 @@ namespace HKX2E
             useBoneGains = xd.ReadBoolean(xe, nameof(useBoneGains));
             targetLocation = xd.ReadVector4(xe, nameof(targetLocation));
             targetOutsideLimits = xd.ReadBoolean(xe, nameof(targetOutsideLimits));
-            targetOutOfLimitEvent = xd.ReadClass<hkbEventProperty>(xe, nameof(targetOutOfLimitEvent));
+            targetOutOfLimitEvent = xd.ReadClass<hkbEventProperty>(
+                xe,
+                nameof(targetOutOfLimitEvent)
+            );
             lookAtCamera = xd.ReadBoolean(xe, nameof(lookAtCamera));
             lookAtCameraX = xd.ReadSingle(xe, nameof(lookAtCameraX));
             lookAtCameraY = xd.ReadSingle(xe, nameof(lookAtCameraY));
@@ -148,7 +153,11 @@ namespace HKX2E
             xs.WriteBoolean(xe, nameof(useBoneGains), useBoneGains);
             xs.WriteVector4(xe, nameof(targetLocation), targetLocation);
             xs.WriteBoolean(xe, nameof(targetOutsideLimits), targetOutsideLimits);
-            xs.WriteClass<hkbEventProperty>(xe, nameof(targetOutOfLimitEvent), targetOutOfLimitEvent);
+            xs.WriteClass<hkbEventProperty>(
+                xe,
+                nameof(targetOutOfLimitEvent),
+                targetOutOfLimitEvent
+            );
             xs.WriteBoolean(xe, nameof(lookAtCamera), lookAtCamera);
             xs.WriteFloat(xe, nameof(lookAtCameraX), lookAtCameraX);
             xs.WriteFloat(xe, nameof(lookAtCameraY), lookAtCameraY);
@@ -165,25 +174,33 @@ namespace HKX2E
 
         public bool Equals(BSLookAtModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   lookAtTarget.Equals(other.lookAtTarget) &&
-                   bones.SequenceEqual(other.bones) &&
-                   eyeBones.SequenceEqual(other.eyeBones) &&
-                   limitAngleDegrees.Equals(other.limitAngleDegrees) &&
-                   limitAngleThresholdDegrees.Equals(other.limitAngleThresholdDegrees) &&
-                   continueLookOutsideOfLimit.Equals(other.continueLookOutsideOfLimit) &&
-                   onGain.Equals(other.onGain) &&
-                   offGain.Equals(other.offGain) &&
-                   useBoneGains.Equals(other.useBoneGains) &&
-                   targetLocation.Equals(other.targetLocation) &&
-                   targetOutsideLimits.Equals(other.targetOutsideLimits) &&
-                   ((targetOutOfLimitEvent is null && other.targetOutOfLimitEvent is null) || (targetOutOfLimitEvent is not null && other.targetOutOfLimitEvent is not null && targetOutOfLimitEvent.Equals((IHavokObject)other.targetOutOfLimitEvent))) &&
-                   lookAtCamera.Equals(other.lookAtCamera) &&
-                   lookAtCameraX.Equals(other.lookAtCameraX) &&
-                   lookAtCameraY.Equals(other.lookAtCameraY) &&
-                   lookAtCameraZ.Equals(other.lookAtCameraZ) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && lookAtTarget.Equals(other.lookAtTarget)
+                && bones.SequenceEqual(other.bones)
+                && eyeBones.SequenceEqual(other.eyeBones)
+                && limitAngleDegrees.Equals(other.limitAngleDegrees)
+                && limitAngleThresholdDegrees.Equals(other.limitAngleThresholdDegrees)
+                && continueLookOutsideOfLimit.Equals(other.continueLookOutsideOfLimit)
+                && onGain.Equals(other.onGain)
+                && offGain.Equals(other.offGain)
+                && useBoneGains.Equals(other.useBoneGains)
+                && targetLocation.Equals(other.targetLocation)
+                && targetOutsideLimits.Equals(other.targetOutsideLimits)
+                && (
+                    (targetOutOfLimitEvent is null && other.targetOutOfLimitEvent is null)
+                    || (
+                        targetOutOfLimitEvent is not null
+                        && other.targetOutOfLimitEvent is not null
+                        && targetOutOfLimitEvent.Equals((IHavokObject)other.targetOutOfLimitEvent)
+                    )
+                )
+                && lookAtCamera.Equals(other.lookAtCamera)
+                && lookAtCameraX.Equals(other.lookAtCameraX)
+                && lookAtCameraY.Equals(other.lookAtCameraY)
+                && lookAtCameraZ.Equals(other.lookAtCameraZ)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -211,4 +228,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -2,11 +2,11 @@
 
 namespace HKX2E
 {
-	[Flags]
-	public enum HavokXmlDeserializerOptions
-	{
-		None, 
-		IgnoreNonFatalErrors, 
-		IgnoreMissingPointers,
-	}
+    [Flags]
+    public enum HavokXmlDeserializerOptions
+    {
+        None,
+        IgnoreNonFatalErrors,
+        IgnoreMissingPointers,
+    }
 }

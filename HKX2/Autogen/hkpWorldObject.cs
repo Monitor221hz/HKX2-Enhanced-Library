@@ -7,13 +7,13 @@ namespace HKX2E
 {
     // hkpWorldObject Signatire: 0x49fb6f2e size: 208 flags: FLAGS_NONE
 
-    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // collidable class: hkpLinkedCollidable Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // multiThreadCheck class: hkMultiThreadCheck Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // properties class: hkpProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // treeData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // collidable class: hkpLinkedCollidable Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // multiThreadCheck class: hkMultiThreadCheck Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // properties class: hkpProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // treeData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpWorldObject : hkReferencedObject, IEquatable<hkpWorldObject?>
     {
         private object? world { set; get; }
@@ -81,14 +81,34 @@ namespace HKX2E
 
         public bool Equals(hkpWorldObject? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   userData.Equals(other.userData) &&
-                   ((collidable is null && other.collidable is null) || (collidable is not null && other.collidable is not null && collidable.Equals((IHavokObject)other.collidable))) &&
-                   ((multiThreadCheck is null && other.multiThreadCheck is null) || (multiThreadCheck is not null && other.multiThreadCheck is not null && multiThreadCheck.Equals((IHavokObject)other.multiThreadCheck))) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   properties.SequenceEqual(other.properties) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && userData.Equals(other.userData)
+                && (
+                    (collidable is null && other.collidable is null)
+                    || (
+                        collidable is not null
+                        && other.collidable is not null
+                        && collidable.Equals((IHavokObject)other.collidable)
+                    )
+                )
+                && (
+                    (multiThreadCheck is null && other.multiThreadCheck is null)
+                    || (
+                        multiThreadCheck is not null
+                        && other.multiThreadCheck is not null
+                        && multiThreadCheck.Equals((IHavokObject)other.multiThreadCheck)
+                    )
+                )
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && properties.SequenceEqual(other.properties)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -105,4 +125,3 @@ namespace HKX2E
         }
     }
 }
-

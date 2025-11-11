@@ -7,4 +7,3 @@ namespace HKX2E
         END_MODE_CAP_DURATION_AT_END_OF_FROM_GENERATOR = 2,
     }
 }
-

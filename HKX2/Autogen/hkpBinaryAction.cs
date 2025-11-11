@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkpBinaryAction Signatire: 0xc00f3403 size: 64 flags: FLAGS_NONE
 
-    // entityA class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // entityB class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
+    // entityA class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // entityB class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
     public partial class hkpBinaryAction : hkpAction, IEquatable<hkpBinaryAction?>
     {
         public hkpEntity? entityA { set; get; }
@@ -49,11 +49,26 @@ namespace HKX2E
 
         public bool Equals(hkpBinaryAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((entityA is null && other.entityA is null) || (entityA is not null && other.entityA is not null && entityA.Equals((IHavokObject)other.entityA))) &&
-                   ((entityB is null && other.entityB is null) || (entityB is not null && other.entityB is not null && entityB.Equals((IHavokObject)other.entityB))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (entityA is null && other.entityA is null)
+                    || (
+                        entityA is not null
+                        && other.entityA is not null
+                        && entityA.Equals((IHavokObject)other.entityA)
+                    )
+                )
+                && (
+                    (entityB is null && other.entityB is null)
+                    || (
+                        entityB is not null
+                        && other.entityB is not null
+                        && entityB.Equals((IHavokObject)other.entityB)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +82,3 @@ namespace HKX2E
         }
     }
 }
-

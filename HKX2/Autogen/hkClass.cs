@@ -5,16 +5,16 @@ namespace HKX2E
 {
     // hkClass Signatire: 0x75585ef6 size: 80 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // parent class: hkClass Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // objectSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // numImplementedInterfaces class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // declaredEnums class: hkClassEnum Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // declaredMembers class: hkClassMember Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // defaults class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // attributes class: hkCustomAttributes Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // name class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // parent class: hkClass Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // objectSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // numImplementedInterfaces class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // declaredEnums class: hkClassEnum Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // declaredMembers class: hkClassMember Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // defaults class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // attributes class: hkCustomAttributes Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     // flags class:  Type.TYPE_FLAGS Type.TYPE_UINT32 arrSize: 0 offset: 72 flags: FLAGS_NONE enum: FlagValues
-    // describedVersion class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
+    // describedVersion class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
     public partial class hkClass : IHavokObject, IEquatable<hkClass?>
     {
         public string name { set; get; } = "";
@@ -91,16 +91,29 @@ namespace HKX2E
 
         public bool Equals(hkClass? other)
         {
-            return other is not null &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   ((parent is null && other.parent is null) || (parent is not null && other.parent is not null && parent.Equals((IHavokObject)other.parent))) &&
-                   objectSize.Equals(other.objectSize) &&
-                   numImplementedInterfaces.Equals(other.numImplementedInterfaces) &&
-                   declaredEnums!.Equals(other.declaredEnums!) &&
-                   declaredMembers!.Equals(other.declaredMembers) &&
-                   flags.Equals(other.flags) &&
-                   describedVersion.Equals(other.describedVersion) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && (
+                    (parent is null && other.parent is null)
+                    || (
+                        parent is not null
+                        && other.parent is not null
+                        && parent.Equals((IHavokObject)other.parent)
+                    )
+                )
+                && objectSize.Equals(other.objectSize)
+                && numImplementedInterfaces.Equals(other.numImplementedInterfaces)
+                && declaredEnums!.Equals(other.declaredEnums!)
+                && declaredMembers!.Equals(other.declaredMembers)
+                && flags.Equals(other.flags)
+                && describedVersion.Equals(other.describedVersion)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -119,4 +132,3 @@ namespace HKX2E
         }
     }
 }
-

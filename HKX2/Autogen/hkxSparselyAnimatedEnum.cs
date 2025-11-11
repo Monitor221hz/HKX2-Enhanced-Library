@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkxSparselyAnimatedEnum Signatire: 0x68a47b64 size: 56 flags: FLAGS_NONE
 
-    //  enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkxSparselyAnimatedEnum : hkxSparselyAnimatedInt, IEquatable<hkxSparselyAnimatedEnum?>
+    //  enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkxSparselyAnimatedEnum
+        : hkxSparselyAnimatedInt,
+            IEquatable<hkxSparselyAnimatedEnum?>
     {
         public hkxEnum? _enum { set; get; }
 
@@ -43,10 +45,18 @@ namespace HKX2E
 
         public bool Equals(hkxSparselyAnimatedEnum? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((_enum is null && other._enum is null) || (_enum is not null && other._enum is not null && _enum.Equals((IHavokObject)other._enum))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (_enum is null && other._enum is null)
+                    || (
+                        _enum is not null
+                        && other._enum is not null
+                        && _enum.Equals((IHavokObject)other._enum)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

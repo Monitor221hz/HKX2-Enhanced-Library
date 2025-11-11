@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpSerializedSubTrack1nInfo Signatire: 0x10155a size: 40 flags: FLAGS_NONE
 
-    // sectorIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // offsetInSector class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    public partial class hkpSerializedSubTrack1nInfo : hkpSerializedTrack1nInfo, IEquatable<hkpSerializedSubTrack1nInfo?>
+    // sectorIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // offsetInSector class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    public partial class hkpSerializedSubTrack1nInfo
+        : hkpSerializedTrack1nInfo,
+            IEquatable<hkpSerializedSubTrack1nInfo?>
     {
         public int sectorIndex { set; get; }
         public int offsetInSector { set; get; }
@@ -49,11 +51,12 @@ namespace HKX2E
 
         public bool Equals(hkpSerializedSubTrack1nInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   sectorIndex.Equals(other.sectorIndex) &&
-                   offsetInSector.Equals(other.offsetInSector) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && sectorIndex.Equals(other.sectorIndex)
+                && offsetInSector.Equals(other.offsetInSector)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

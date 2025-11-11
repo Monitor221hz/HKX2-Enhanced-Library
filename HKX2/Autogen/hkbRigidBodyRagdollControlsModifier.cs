@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbRigidBodyRagdollControlsModifier Signatire: 0xaa87d1eb size: 160 flags: FLAGS_NONE
 
-    // controlData class: hkbRigidBodyRagdollControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // bones class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    public partial class hkbRigidBodyRagdollControlsModifier : hkbModifier, IEquatable<hkbRigidBodyRagdollControlsModifier?>
+    // controlData class: hkbRigidBodyRagdollControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // bones class: hkbBoneIndexArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    public partial class hkbRigidBodyRagdollControlsModifier
+        : hkbModifier,
+            IEquatable<hkbRigidBodyRagdollControlsModifier?>
     {
         public hkbRigidBodyRagdollControlData controlData { set; get; } = new();
         public hkbBoneIndexArray? bones { set; get; }
@@ -51,11 +53,26 @@ namespace HKX2E
 
         public bool Equals(hkbRigidBodyRagdollControlsModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((controlData is null && other.controlData is null) || (controlData is not null && other.controlData is not null && controlData.Equals((IHavokObject)other.controlData))) &&
-                   ((bones is null && other.bones is null) || (bones is not null && other.bones is not null && bones.Equals((IHavokObject)other.bones))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (controlData is null && other.controlData is null)
+                    || (
+                        controlData is not null
+                        && other.controlData is not null
+                        && controlData.Equals((IHavokObject)other.controlData)
+                    )
+                )
+                && (
+                    (bones is null && other.bones is null)
+                    || (
+                        bones is not null
+                        && other.bones is not null
+                        && bones.Equals((IHavokObject)other.bones)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +86,3 @@ namespace HKX2E
         }
     }
 }
-

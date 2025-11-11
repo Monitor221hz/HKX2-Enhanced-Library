@@ -19,4 +19,3 @@ namespace HKX2E
         FLAG_ABUT_AT_END_OF_FROM_GENERATOR = 16384,
     }
 }
-

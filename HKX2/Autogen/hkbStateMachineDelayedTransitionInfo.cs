@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbStateMachineDelayedTransitionInfo Signatire: 0x26d5499 size: 24 flags: FLAGS_NONE
 
-    // delayedTransition class: hkbStateMachineProspectiveTransitionInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // timeDelayed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // isDelayedTransitionReturnToPreviousState class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // wasInAbutRangeLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 21 flags: FLAGS_NONE enum: 
-    public partial class hkbStateMachineDelayedTransitionInfo : IHavokObject, IEquatable<hkbStateMachineDelayedTransitionInfo?>
+    // delayedTransition class: hkbStateMachineProspectiveTransitionInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // timeDelayed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // isDelayedTransitionReturnToPreviousState class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // wasInAbutRangeLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 21 flags: FLAGS_NONE enum:
+    public partial class hkbStateMachineDelayedTransitionInfo
+        : IHavokObject,
+            IEquatable<hkbStateMachineDelayedTransitionInfo?>
     {
         public hkbStateMachineProspectiveTransitionInfo delayedTransition { set; get; } = new();
         public float timeDelayed { set; get; }
@@ -38,17 +40,31 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            delayedTransition = xd.ReadClass<hkbStateMachineProspectiveTransitionInfo>(xe, nameof(delayedTransition));
+            delayedTransition = xd.ReadClass<hkbStateMachineProspectiveTransitionInfo>(
+                xe,
+                nameof(delayedTransition)
+            );
             timeDelayed = xd.ReadSingle(xe, nameof(timeDelayed));
-            isDelayedTransitionReturnToPreviousState = xd.ReadBoolean(xe, nameof(isDelayedTransitionReturnToPreviousState));
+            isDelayedTransitionReturnToPreviousState = xd.ReadBoolean(
+                xe,
+                nameof(isDelayedTransitionReturnToPreviousState)
+            );
             wasInAbutRangeLastFrame = xd.ReadBoolean(xe, nameof(wasInAbutRangeLastFrame));
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
-            xs.WriteClass<hkbStateMachineProspectiveTransitionInfo>(xe, nameof(delayedTransition), delayedTransition);
+            xs.WriteClass<hkbStateMachineProspectiveTransitionInfo>(
+                xe,
+                nameof(delayedTransition),
+                delayedTransition
+            );
             xs.WriteFloat(xe, nameof(timeDelayed), timeDelayed);
-            xs.WriteBoolean(xe, nameof(isDelayedTransitionReturnToPreviousState), isDelayedTransitionReturnToPreviousState);
+            xs.WriteBoolean(
+                xe,
+                nameof(isDelayedTransitionReturnToPreviousState),
+                isDelayedTransitionReturnToPreviousState
+            );
             xs.WriteBoolean(xe, nameof(wasInAbutRangeLastFrame), wasInAbutRangeLastFrame);
         }
 
@@ -59,12 +75,22 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineDelayedTransitionInfo? other)
         {
-            return other is not null &&
-                   ((delayedTransition is null && other.delayedTransition is null) || (delayedTransition is not null && other.delayedTransition is not null && delayedTransition.Equals((IHavokObject)other.delayedTransition))) &&
-                   timeDelayed.Equals(other.timeDelayed) &&
-                   isDelayedTransitionReturnToPreviousState.Equals(other.isDelayedTransitionReturnToPreviousState) &&
-                   wasInAbutRangeLastFrame.Equals(other.wasInAbutRangeLastFrame) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (delayedTransition is null && other.delayedTransition is null)
+                    || (
+                        delayedTransition is not null
+                        && other.delayedTransition is not null
+                        && delayedTransition.Equals((IHavokObject)other.delayedTransition)
+                    )
+                )
+                && timeDelayed.Equals(other.timeDelayed)
+                && isDelayedTransitionReturnToPreviousState.Equals(
+                    other.isDelayedTransitionReturnToPreviousState
+                )
+                && wasInAbutRangeLastFrame.Equals(other.wasInAbutRangeLastFrame)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +105,3 @@ namespace HKX2E
         }
     }
 }
-

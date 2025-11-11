@@ -48,4 +48,3 @@ namespace HKX2E
         OP_COND = 43,
     }
 }
-

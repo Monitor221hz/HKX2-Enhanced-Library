@@ -6,8 +6,10 @@ namespace HKX2E
 {
     // hkpSerializedDisplayMarker Signatire: 0xd7c8c54f size: 80 flags: FLAGS_NONE
 
-    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpSerializedDisplayMarker : hkReferencedObject, IEquatable<hkpSerializedDisplayMarker?>
+    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpSerializedDisplayMarker
+        : hkReferencedObject,
+            IEquatable<hkpSerializedDisplayMarker?>
     {
         public Matrix4x4 transform { set; get; }
 
@@ -44,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkpSerializedDisplayMarker? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   transform.Equals(other.transform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && transform.Equals(other.transform)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -60,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

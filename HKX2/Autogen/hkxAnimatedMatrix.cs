@@ -8,7 +8,7 @@ namespace HKX2E
 {
     // hkxAnimatedMatrix Signatire: 0x5838e337 size: 40 flags: FLAGS_NONE
 
-    // matrices class:  Type.TYPE_ARRAY Type.TYPE_MATRIX4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // matrices class:  Type.TYPE_ARRAY Type.TYPE_MATRIX4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // hint class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: Hint
     public partial class hkxAnimatedMatrix : hkReferencedObject, IEquatable<hkxAnimatedMatrix?>
     {
@@ -54,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkxAnimatedMatrix? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   matrices.SequenceEqual(other.matrices) &&
-                   hint.Equals(other.hint) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && matrices.SequenceEqual(other.matrices)
+                && hint.Equals(other.hint)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -72,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

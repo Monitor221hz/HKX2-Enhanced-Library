@@ -6,4 +6,3 @@ namespace HKX2E
         ROTATION_AXIS_IN_LOCAL_COORDINATES = 1,
     }
 }
-

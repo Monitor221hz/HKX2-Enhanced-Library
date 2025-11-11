@@ -8,4 +8,3 @@ namespace HKX2E
         EVENT_MODE_SEND_EVERY_FRAME_ONCE_TRUE = 3,
     }
 }
-

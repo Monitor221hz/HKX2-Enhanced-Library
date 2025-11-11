@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkHalf8 Signatire: 0x7684dc80 size: 16 flags: FLAGS_NONE
 
-    // quad class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 8 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
+    // quad class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 8 offset: 0 flags: ALIGN_16|FLAGS_NONE enum:
     public partial class hkHalf8 : IHavokObject, IEquatable<hkHalf8?>
     {
         public Half[] quad = new Half[8];
@@ -40,9 +40,10 @@ namespace HKX2E
 
         public bool Equals(hkHalf8? other)
         {
-            return other is not null &&
-                   quad.SequenceEqual(other.quad) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && quad.SequenceEqual(other.quad)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -54,4 +55,3 @@ namespace HKX2E
         }
     }
 }
-

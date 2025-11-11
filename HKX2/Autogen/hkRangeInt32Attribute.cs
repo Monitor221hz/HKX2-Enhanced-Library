@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // hkRangeInt32Attribute Signatire: 0x4846be29 size: 16 flags: FLAGS_NONE
 
-    // absmin class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // absmax class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // softmin class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // softmax class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
+    // absmin class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // absmax class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // softmin class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // softmax class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
     public partial class hkRangeInt32Attribute : IHavokObject, IEquatable<hkRangeInt32Attribute?>
     {
         public int absmin { set; get; }
@@ -57,12 +57,13 @@ namespace HKX2E
 
         public bool Equals(hkRangeInt32Attribute? other)
         {
-            return other is not null &&
-                   absmin.Equals(other.absmin) &&
-                   absmax.Equals(other.absmax) &&
-                   softmin.Equals(other.softmin) &&
-                   softmax.Equals(other.softmax) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && absmin.Equals(other.absmin)
+                && absmax.Equals(other.absmax)
+                && softmin.Equals(other.softmin)
+                && softmax.Equals(other.softmax)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +78,3 @@ namespace HKX2E
         }
     }
 }
-

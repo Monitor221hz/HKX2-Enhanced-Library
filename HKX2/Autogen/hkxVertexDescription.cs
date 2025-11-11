@@ -7,10 +7,11 @@ namespace HKX2E
 {
     // hkxVertexDescription Signatire: 0x2df6313d size: 16 flags: FLAGS_NONE
 
-    // decls class: hkxVertexDescriptionElementDecl Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // decls class: hkxVertexDescriptionElementDecl Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkxVertexDescription : IHavokObject, IEquatable<hkxVertexDescription?>
     {
-        public IList<hkxVertexDescriptionElementDecl> decls { set; get; } = Array.Empty<hkxVertexDescriptionElementDecl>();
+        public IList<hkxVertexDescriptionElementDecl> decls { set; get; } =
+            Array.Empty<hkxVertexDescriptionElementDecl>();
 
         public virtual uint Signature { set; get; } = 0x2df6313d;
 
@@ -41,9 +42,10 @@ namespace HKX2E
 
         public bool Equals(hkxVertexDescription? other)
         {
-            return other is not null &&
-                   decls.SequenceEqual(other.decls) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && decls.SequenceEqual(other.decls)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -55,4 +57,3 @@ namespace HKX2E
         }
     }
 }
-

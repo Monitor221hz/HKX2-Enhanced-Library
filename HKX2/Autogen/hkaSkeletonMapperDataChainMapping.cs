@@ -6,13 +6,15 @@ namespace HKX2E
 {
     // hkaSkeletonMapperDataChainMapping Signatire: 0xa528f7cf size: 112 flags: FLAGS_NONE
 
-    // startBoneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // endBoneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // startBoneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // endBoneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum: 
-    // startAFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // endAFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkaSkeletonMapperDataChainMapping : IHavokObject, IEquatable<hkaSkeletonMapperDataChainMapping?>
+    // startBoneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // endBoneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // startBoneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // endBoneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 6 flags: FLAGS_NONE enum:
+    // startAFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // endAFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkaSkeletonMapperDataChainMapping
+        : IHavokObject,
+            IEquatable<hkaSkeletonMapperDataChainMapping?>
     {
         public short startBoneA { set; get; }
         public short endBoneA { set; get; }
@@ -72,14 +74,15 @@ namespace HKX2E
 
         public bool Equals(hkaSkeletonMapperDataChainMapping? other)
         {
-            return other is not null &&
-                   startBoneA.Equals(other.startBoneA) &&
-                   endBoneA.Equals(other.endBoneA) &&
-                   startBoneB.Equals(other.startBoneB) &&
-                   endBoneB.Equals(other.endBoneB) &&
-                   startAFromBTransform.Equals(other.startAFromBTransform) &&
-                   endAFromBTransform.Equals(other.endAFromBTransform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && startBoneA.Equals(other.startBoneA)
+                && endBoneA.Equals(other.endBoneA)
+                && startBoneB.Equals(other.startBoneB)
+                && endBoneB.Equals(other.endBoneB)
+                && startAFromBTransform.Equals(other.startAFromBTransform)
+                && endAFromBTransform.Equals(other.endAFromBTransform)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -96,4 +99,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,14 +5,14 @@ namespace HKX2E
 {
     // hkUiAttribute Signatire: 0xeb6e96e3 size: 40 flags: FLAGS_NONE
 
-    // visible class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // visible class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     // hideInModeler class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 1 flags: FLAGS_NONE enum: HideInModeler
-    // label class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // group class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // hideBaseClassMembers class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // endGroup class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // endGroup2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 33 flags: FLAGS_NONE enum: 
-    // advanced class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 34 flags: FLAGS_NONE enum: 
+    // label class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // group class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // hideBaseClassMembers class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // endGroup class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // endGroup2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 33 flags: FLAGS_NONE enum:
+    // advanced class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 34 flags: FLAGS_NONE enum:
     public partial class hkUiAttribute : IHavokObject, IEquatable<hkUiAttribute?>
     {
         public bool visible { set; get; }
@@ -85,16 +85,32 @@ namespace HKX2E
 
         public bool Equals(hkUiAttribute? other)
         {
-            return other is not null &&
-                   visible.Equals(other.visible) &&
-                   hideInModeler.Equals(other.hideInModeler) &&
-                   (label is null && other.label is null || label == other.label || label is null && other.label == "" || label == "" && other.label is null) &&
-                   (group is null && other.group is null || group == other.group || group is null && other.group == "" || group == "" && other.group is null) &&
-                   (hideBaseClassMembers is null && other.hideBaseClassMembers is null || hideBaseClassMembers == other.hideBaseClassMembers || hideBaseClassMembers is null && other.hideBaseClassMembers == "" || hideBaseClassMembers == "" && other.hideBaseClassMembers is null) &&
-                   endGroup.Equals(other.endGroup) &&
-                   endGroup2.Equals(other.endGroup2) &&
-                   advanced.Equals(other.advanced) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && visible.Equals(other.visible)
+                && hideInModeler.Equals(other.hideInModeler)
+                && (
+                    label is null && other.label is null
+                    || label == other.label
+                    || label is null && other.label == ""
+                    || label == "" && other.label is null
+                )
+                && (
+                    group is null && other.group is null
+                    || group == other.group
+                    || group is null && other.group == ""
+                    || group == "" && other.group is null
+                )
+                && (
+                    hideBaseClassMembers is null && other.hideBaseClassMembers is null
+                    || hideBaseClassMembers == other.hideBaseClassMembers
+                    || hideBaseClassMembers is null && other.hideBaseClassMembers == ""
+                    || hideBaseClassMembers == "" && other.hideBaseClassMembers is null
+                )
+                && endGroup.Equals(other.endGroup)
+                && endGroup2.Equals(other.endGroup2)
+                && advanced.Equals(other.advanced)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -113,4 +129,3 @@ namespace HKX2E
         }
     }
 }
-

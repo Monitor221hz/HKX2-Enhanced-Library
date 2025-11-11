@@ -39,9 +39,8 @@ namespace HKX2E
 
         public bool Equals(hkSemanticsAttribute? other)
         {
-            return other is not null &&
-                   type.Equals(other.type) &&
-                   Signature == other.Signature; ;
+            return other is not null && type.Equals(other.type) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +52,3 @@ namespace HKX2E
         }
     }
 }
-

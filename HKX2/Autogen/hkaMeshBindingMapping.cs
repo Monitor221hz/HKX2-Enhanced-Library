@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkaMeshBindingMapping Signatire: 0x48aceb75 size: 16 flags: FLAGS_NONE
 
-    // mapping class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // mapping class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkaMeshBindingMapping : IHavokObject, IEquatable<hkaMeshBindingMapping?>
     {
         public IList<short> mapping { set; get; } = Array.Empty<short>();
@@ -41,9 +41,10 @@ namespace HKX2E
 
         public bool Equals(hkaMeshBindingMapping? other)
         {
-            return other is not null &&
-                   mapping.SequenceEqual(other.mapping) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && mapping.SequenceEqual(other.mapping)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -55,4 +56,3 @@ namespace HKX2E
         }
     }
 }
-

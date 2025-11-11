@@ -7,18 +7,21 @@ namespace HKX2E
 {
     // hkbStateMachineTransitionInfoArray Signatire: 0xe397b11e size: 32 flags: FLAGS_NONE
 
-    // transitions class: hkbStateMachineTransitionInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbStateMachineTransitionInfoArray : hkReferencedObject, IEquatable<hkbStateMachineTransitionInfoArray?>
+    // transitions class: hkbStateMachineTransitionInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbStateMachineTransitionInfoArray
+        : hkReferencedObject,
+            IEquatable<hkbStateMachineTransitionInfoArray?>
     {
-        public static hkbStateMachineTransitionInfoArray GetDefault() => new()
+        public static hkbStateMachineTransitionInfoArray GetDefault() =>
+            new() { transitions = new List<hkbStateMachineTransitionInfo>() };
+
+        public void SetDefault()
         {
-            transitions = new List<hkbStateMachineTransitionInfo>(), 
-        };
-		public void SetDefault()
-		{
             transitions = new List<hkbStateMachineTransitionInfo>();
-		}
-		public IList<hkbStateMachineTransitionInfo> transitions { set; get; } = Array.Empty<hkbStateMachineTransitionInfo>();
+        }
+
+        public IList<hkbStateMachineTransitionInfo> transitions { set; get; } =
+            Array.Empty<hkbStateMachineTransitionInfo>();
 
         public override uint Signature { set; get; } = 0xe397b11e;
 
@@ -53,10 +56,11 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineTransitionInfoArray? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   transitions.SequenceEqual(other.transitions) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && transitions.SequenceEqual(other.transitions)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

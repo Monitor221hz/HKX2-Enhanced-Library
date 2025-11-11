@@ -7,27 +7,30 @@ namespace HKX2E
 {
     // hkbCharacterStringData Signatire: 0x655b42bc size: 192 flags: FLAGS_NONE
 
-    // deformableSkinNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // rigidSkinNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // animationNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // animationFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // characterPropertyNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // retargetingSkeletonMapperFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // lodNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // mirroredSyncPointSubstringsA class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // mirroredSyncPointSubstringsB class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // rigName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // ragdollName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // behaviorFilename class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    public partial class hkbCharacterStringData : hkReferencedObject, IEquatable<hkbCharacterStringData?>
+    // deformableSkinNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // rigidSkinNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // animationNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // animationFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // characterPropertyNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // retargetingSkeletonMapperFilenames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // lodNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // mirroredSyncPointSubstringsA class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // mirroredSyncPointSubstringsB class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // rigName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // ragdollName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // behaviorFilename class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    public partial class hkbCharacterStringData
+        : hkReferencedObject,
+            IEquatable<hkbCharacterStringData?>
     {
         public IList<string> deformableSkinNames { set; get; } = Array.Empty<string>();
         public IList<string> rigidSkinNames { set; get; } = Array.Empty<string>();
         public IList<string> animationNames { set; get; } = Array.Empty<string>();
         public IList<string> animationFilenames { set; get; } = Array.Empty<string>();
         public IList<string> characterPropertyNames { set; get; } = Array.Empty<string>();
-        public IList<string> retargetingSkeletonMapperFilenames { set; get; } = Array.Empty<string>();
+        public IList<string> retargetingSkeletonMapperFilenames { set; get; } =
+            Array.Empty<string>();
         public IList<string> lodNames { set; get; } = Array.Empty<string>();
         public IList<string> mirroredSyncPointSubstringsA { set; get; } = Array.Empty<string>();
         public IList<string> mirroredSyncPointSubstringsB { set; get; } = Array.Empty<string>();
@@ -82,10 +85,19 @@ namespace HKX2E
             animationNames = xd.ReadStringArray(xe, nameof(animationNames));
             animationFilenames = xd.ReadStringArray(xe, nameof(animationFilenames));
             characterPropertyNames = xd.ReadStringArray(xe, nameof(characterPropertyNames));
-            retargetingSkeletonMapperFilenames = xd.ReadStringArray(xe, nameof(retargetingSkeletonMapperFilenames));
+            retargetingSkeletonMapperFilenames = xd.ReadStringArray(
+                xe,
+                nameof(retargetingSkeletonMapperFilenames)
+            );
             lodNames = xd.ReadStringArray(xe, nameof(lodNames));
-            mirroredSyncPointSubstringsA = xd.ReadStringArray(xe, nameof(mirroredSyncPointSubstringsA));
-            mirroredSyncPointSubstringsB = xd.ReadStringArray(xe, nameof(mirroredSyncPointSubstringsB));
+            mirroredSyncPointSubstringsA = xd.ReadStringArray(
+                xe,
+                nameof(mirroredSyncPointSubstringsA)
+            );
+            mirroredSyncPointSubstringsB = xd.ReadStringArray(
+                xe,
+                nameof(mirroredSyncPointSubstringsB)
+            );
             name = xd.ReadString(xe, nameof(name));
             rigName = xd.ReadString(xe, nameof(rigName));
             ragdollName = xd.ReadString(xe, nameof(ragdollName));
@@ -100,10 +112,22 @@ namespace HKX2E
             xs.WriteStringArray(xe, nameof(animationNames), animationNames);
             xs.WriteStringArray(xe, nameof(animationFilenames), animationFilenames);
             xs.WriteStringArray(xe, nameof(characterPropertyNames), characterPropertyNames);
-            xs.WriteStringArray(xe, nameof(retargetingSkeletonMapperFilenames), retargetingSkeletonMapperFilenames);
+            xs.WriteStringArray(
+                xe,
+                nameof(retargetingSkeletonMapperFilenames),
+                retargetingSkeletonMapperFilenames
+            );
             xs.WriteStringArray(xe, nameof(lodNames), lodNames);
-            xs.WriteStringArray(xe, nameof(mirroredSyncPointSubstringsA), mirroredSyncPointSubstringsA);
-            xs.WriteStringArray(xe, nameof(mirroredSyncPointSubstringsB), mirroredSyncPointSubstringsB);
+            xs.WriteStringArray(
+                xe,
+                nameof(mirroredSyncPointSubstringsA),
+                mirroredSyncPointSubstringsA
+            );
+            xs.WriteStringArray(
+                xe,
+                nameof(mirroredSyncPointSubstringsB),
+                mirroredSyncPointSubstringsB
+            );
             xs.WriteString(xe, nameof(name), name);
             xs.WriteString(xe, nameof(rigName), rigName);
             xs.WriteString(xe, nameof(ragdollName), ragdollName);
@@ -117,22 +141,45 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterStringData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   deformableSkinNames.SequenceEqual(other.deformableSkinNames) &&
-                   rigidSkinNames.SequenceEqual(other.rigidSkinNames) &&
-                   animationNames.SequenceEqual(other.animationNames) &&
-                   animationFilenames.SequenceEqual(other.animationFilenames) &&
-                   characterPropertyNames.SequenceEqual(other.characterPropertyNames) &&
-                   retargetingSkeletonMapperFilenames.SequenceEqual(other.retargetingSkeletonMapperFilenames) &&
-                   lodNames.SequenceEqual(other.lodNames) &&
-                   mirroredSyncPointSubstringsA.SequenceEqual(other.mirroredSyncPointSubstringsA) &&
-                   mirroredSyncPointSubstringsB.SequenceEqual(other.mirroredSyncPointSubstringsB) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   (rigName is null && other.rigName is null || rigName == other.rigName || rigName is null && other.rigName == "" || rigName == "" && other.rigName is null) &&
-                   (ragdollName is null && other.ragdollName is null || ragdollName == other.ragdollName || ragdollName is null && other.ragdollName == "" || ragdollName == "" && other.ragdollName is null) &&
-                   (behaviorFilename is null && other.behaviorFilename is null || behaviorFilename == other.behaviorFilename || behaviorFilename is null && other.behaviorFilename == "" || behaviorFilename == "" && other.behaviorFilename is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && deformableSkinNames.SequenceEqual(other.deformableSkinNames)
+                && rigidSkinNames.SequenceEqual(other.rigidSkinNames)
+                && animationNames.SequenceEqual(other.animationNames)
+                && animationFilenames.SequenceEqual(other.animationFilenames)
+                && characterPropertyNames.SequenceEqual(other.characterPropertyNames)
+                && retargetingSkeletonMapperFilenames.SequenceEqual(
+                    other.retargetingSkeletonMapperFilenames
+                )
+                && lodNames.SequenceEqual(other.lodNames)
+                && mirroredSyncPointSubstringsA.SequenceEqual(other.mirroredSyncPointSubstringsA)
+                && mirroredSyncPointSubstringsB.SequenceEqual(other.mirroredSyncPointSubstringsB)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && (
+                    rigName is null && other.rigName is null
+                    || rigName == other.rigName
+                    || rigName is null && other.rigName == ""
+                    || rigName == "" && other.rigName is null
+                )
+                && (
+                    ragdollName is null && other.ragdollName is null
+                    || ragdollName == other.ragdollName
+                    || ragdollName is null && other.ragdollName == ""
+                    || ragdollName == "" && other.ragdollName is null
+                )
+                && (
+                    behaviorFilename is null && other.behaviorFilename is null
+                    || behaviorFilename == other.behaviorFilename
+                    || behaviorFilename is null && other.behaviorFilename == ""
+                    || behaviorFilename == "" && other.behaviorFilename is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -144,7 +191,9 @@ namespace HKX2E
             hashcode.Add(animationNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(animationFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(characterPropertyNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
-            hashcode.Add(retargetingSkeletonMapperFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
+            hashcode.Add(
+                retargetingSkeletonMapperFilenames.Aggregate(0, (x, y) => x ^ y.GetHashCode())
+            );
             hashcode.Add(lodNames.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(mirroredSyncPointSubstringsA.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
             hashcode.Add(mirroredSyncPointSubstringsB.Aggregate(0, (x, y) => x ^ y.GetHashCode()));
@@ -157,4 +206,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,16 +5,18 @@ namespace HKX2E
 {
     // hkAlignSceneToNodeOptions Signatire: 0x207cb01 size: 40 flags: FLAGS_NONE
 
-    // invert class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // transformPositionX class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 17 flags: FLAGS_NONE enum: 
-    // transformPositionY class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum: 
-    // transformPositionZ class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 19 flags: FLAGS_NONE enum: 
-    // transformRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // transformScale class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 21 flags: FLAGS_NONE enum: 
-    // transformSkew class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 22 flags: FLAGS_NONE enum: 
-    // keyframe class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // nodeName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkAlignSceneToNodeOptions : hkReferencedObject, IEquatable<hkAlignSceneToNodeOptions?>
+    // invert class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // transformPositionX class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 17 flags: FLAGS_NONE enum:
+    // transformPositionY class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum:
+    // transformPositionZ class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 19 flags: FLAGS_NONE enum:
+    // transformRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // transformScale class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 21 flags: FLAGS_NONE enum:
+    // transformSkew class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 22 flags: FLAGS_NONE enum:
+    // keyframe class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // nodeName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkAlignSceneToNodeOptions
+        : hkReferencedObject,
+            IEquatable<hkAlignSceneToNodeOptions?>
     {
         public bool invert { set; get; }
         public bool transformPositionX { set; get; }
@@ -95,18 +97,24 @@ namespace HKX2E
 
         public bool Equals(hkAlignSceneToNodeOptions? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   invert.Equals(other.invert) &&
-                   transformPositionX.Equals(other.transformPositionX) &&
-                   transformPositionY.Equals(other.transformPositionY) &&
-                   transformPositionZ.Equals(other.transformPositionZ) &&
-                   transformRotation.Equals(other.transformRotation) &&
-                   transformScale.Equals(other.transformScale) &&
-                   transformSkew.Equals(other.transformSkew) &&
-                   keyframe.Equals(other.keyframe) &&
-                   (nodeName is null && other.nodeName is null || nodeName == other.nodeName || nodeName is null && other.nodeName == "" || nodeName == "" && other.nodeName is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && invert.Equals(other.invert)
+                && transformPositionX.Equals(other.transformPositionX)
+                && transformPositionY.Equals(other.transformPositionY)
+                && transformPositionZ.Equals(other.transformPositionZ)
+                && transformRotation.Equals(other.transformRotation)
+                && transformScale.Equals(other.transformScale)
+                && transformSkew.Equals(other.transformSkew)
+                && keyframe.Equals(other.keyframe)
+                && (
+                    nodeName is null && other.nodeName is null
+                    || nodeName == other.nodeName
+                    || nodeName is null && other.nodeName == ""
+                    || nodeName == "" && other.nodeName is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -127,4 +135,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,13 +5,13 @@ namespace HKX2E
 {
     // hkbCharacterInfo Signatire: 0xd9709ff2 size: 32 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // eventclass:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: Event
-    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
+    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
     public partial class hkbCharacterInfo : hkReferencedObject, IEquatable<hkbCharacterInfo?>
     {
         public ulong characterId { set; get; }
-        public byte _event{ set; get; }
+        public byte _event { set; get; }
         public int padding { set; get; }
 
         public override uint Signature { set; get; } = 0xd9709ff2;
@@ -20,7 +20,7 @@ namespace HKX2E
         {
             base.Read(des, br);
             characterId = br.ReadUInt64();
-            _event= br.ReadByte();
+            _event = br.ReadByte();
             br.Position += 3;
             padding = br.ReadInt32();
         }
@@ -38,7 +38,7 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            _event= xd.ReadFlag<Event, byte>(xe, LITERAL.EVENT);
+            _event = xd.ReadFlag<Event, byte>(xe, LITERAL.EVENT);
             padding = xd.ReadInt32(xe, nameof(padding));
         }
 
@@ -57,12 +57,13 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   _event.Equals(other._event) &&
-                   padding.Equals(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && _event.Equals(other._event)
+                && padding.Equals(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +78,3 @@ namespace HKX2E
         }
     }
 }
-

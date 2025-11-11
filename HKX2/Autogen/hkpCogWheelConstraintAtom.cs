@@ -5,13 +5,15 @@ namespace HKX2E
 {
     // hkpCogWheelConstraintAtom Signatire: 0xf2b1f399 size: 16 flags: FLAGS_NONE
 
-    // cogWheelRadiusA class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // cogWheelRadiusB class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // isScrew class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // memOffsetToInitialAngleOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 13 flags: FLAGS_NONE enum: 
-    // memOffsetToPrevAngle class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 14 flags: FLAGS_NONE enum: 
-    // memOffsetToRevolutionCounter class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 15 flags: FLAGS_NONE enum: 
-    public partial class hkpCogWheelConstraintAtom : hkpConstraintAtom, IEquatable<hkpCogWheelConstraintAtom?>
+    // cogWheelRadiusA class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // cogWheelRadiusB class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // isScrew class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // memOffsetToInitialAngleOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 13 flags: FLAGS_NONE enum:
+    // memOffsetToPrevAngle class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 14 flags: FLAGS_NONE enum:
+    // memOffsetToRevolutionCounter class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 15 flags: FLAGS_NONE enum:
+    public partial class hkpCogWheelConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpCogWheelConstraintAtom?>
     {
         public float cogWheelRadiusA { set; get; }
         public float cogWheelRadiusB { set; get; }
@@ -63,7 +65,11 @@ namespace HKX2E
             xs.WriteFloat(xe, nameof(cogWheelRadiusA), cogWheelRadiusA);
             xs.WriteFloat(xe, nameof(cogWheelRadiusB), cogWheelRadiusB);
             xs.WriteBoolean(xe, nameof(isScrew), isScrew);
-            xs.WriteNumber(xe, nameof(memOffsetToInitialAngleOffset), memOffsetToInitialAngleOffset);
+            xs.WriteNumber(
+                xe,
+                nameof(memOffsetToInitialAngleOffset),
+                memOffsetToInitialAngleOffset
+            );
             xs.WriteNumber(xe, nameof(memOffsetToPrevAngle), memOffsetToPrevAngle);
             xs.WriteNumber(xe, nameof(memOffsetToRevolutionCounter), memOffsetToRevolutionCounter);
         }
@@ -75,15 +81,16 @@ namespace HKX2E
 
         public bool Equals(hkpCogWheelConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   cogWheelRadiusA.Equals(other.cogWheelRadiusA) &&
-                   cogWheelRadiusB.Equals(other.cogWheelRadiusB) &&
-                   isScrew.Equals(other.isScrew) &&
-                   memOffsetToInitialAngleOffset.Equals(other.memOffsetToInitialAngleOffset) &&
-                   memOffsetToPrevAngle.Equals(other.memOffsetToPrevAngle) &&
-                   memOffsetToRevolutionCounter.Equals(other.memOffsetToRevolutionCounter) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && cogWheelRadiusA.Equals(other.cogWheelRadiusA)
+                && cogWheelRadiusB.Equals(other.cogWheelRadiusB)
+                && isScrew.Equals(other.isScrew)
+                && memOffsetToInitialAngleOffset.Equals(other.memOffsetToInitialAngleOffset)
+                && memOffsetToPrevAngle.Equals(other.memOffsetToPrevAngle)
+                && memOffsetToRevolutionCounter.Equals(other.memOffsetToRevolutionCounter)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -101,4 +108,3 @@ namespace HKX2E
         }
     }
 }
-

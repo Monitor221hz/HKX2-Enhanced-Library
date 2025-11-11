@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkaSkeletonMapper Signatire: 0x12df42a5 size: 144 flags: FLAGS_NONE
 
-    // mapping class: hkaSkeletonMapperData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // mapping class: hkaSkeletonMapperData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkaSkeletonMapper : hkReferencedObject, IEquatable<hkaSkeletonMapper?>
     {
         public hkaSkeletonMapperData mapping { set; get; } = new();
@@ -43,10 +43,18 @@ namespace HKX2E
 
         public bool Equals(hkaSkeletonMapper? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((mapping is null && other.mapping is null) || (mapping is not null && other.mapping is not null && mapping.Equals((IHavokObject)other.mapping))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (mapping is null && other.mapping is null)
+                    || (
+                        mapping is not null
+                        && other.mapping is not null
+                        && mapping.Equals((IHavokObject)other.mapping)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

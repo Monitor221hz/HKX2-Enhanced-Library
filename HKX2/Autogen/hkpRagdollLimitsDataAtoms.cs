@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkpRagdollLimitsDataAtoms Signatire: 0x82b894c3 size: 176 flags: FLAGS_NONE
 
-    // rotations class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // twistLimit class: hkpTwistLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // coneLimit class: hkpConeLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
-    // planesLimit class: hkpConeLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    public partial class hkpRagdollLimitsDataAtoms : IHavokObject, IEquatable<hkpRagdollLimitsDataAtoms?>
+    // rotations class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // twistLimit class: hkpTwistLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // coneLimit class: hkpConeLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum:
+    // planesLimit class: hkpConeLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    public partial class hkpRagdollLimitsDataAtoms
+        : IHavokObject,
+            IEquatable<hkpRagdollLimitsDataAtoms?>
     {
         public hkpSetLocalRotationsConstraintAtom rotations { set; get; } = new();
         public hkpTwistLimitConstraintAtom twistLimit { set; get; } = new();
@@ -59,12 +61,41 @@ namespace HKX2E
 
         public bool Equals(hkpRagdollLimitsDataAtoms? other)
         {
-            return other is not null &&
-                   ((rotations is null && other.rotations is null) || (rotations is not null && other.rotations is not null && rotations.Equals((IHavokObject)other.rotations))) &&
-                   ((twistLimit is null && other.twistLimit is null) || (twistLimit is not null && other.twistLimit is not null && twistLimit.Equals((IHavokObject)other.twistLimit))) &&
-                   ((coneLimit is null && other.coneLimit is null) || (coneLimit is not null && other.coneLimit is not null && coneLimit.Equals((IHavokObject)other.coneLimit))) &&
-                   ((planesLimit is null && other.planesLimit is null) || (planesLimit is not null && other.planesLimit is not null && planesLimit.Equals((IHavokObject)other.planesLimit))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (rotations is null && other.rotations is null)
+                    || (
+                        rotations is not null
+                        && other.rotations is not null
+                        && rotations.Equals((IHavokObject)other.rotations)
+                    )
+                )
+                && (
+                    (twistLimit is null && other.twistLimit is null)
+                    || (
+                        twistLimit is not null
+                        && other.twistLimit is not null
+                        && twistLimit.Equals((IHavokObject)other.twistLimit)
+                    )
+                )
+                && (
+                    (coneLimit is null && other.coneLimit is null)
+                    || (
+                        coneLimit is not null
+                        && other.coneLimit is not null
+                        && coneLimit.Equals((IHavokObject)other.coneLimit)
+                    )
+                )
+                && (
+                    (planesLimit is null && other.planesLimit is null)
+                    || (
+                        planesLimit is not null
+                        && other.planesLimit is not null
+                        && planesLimit.Equals((IHavokObject)other.planesLimit)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +110,3 @@ namespace HKX2E
         }
     }
 }
-

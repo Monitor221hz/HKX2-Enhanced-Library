@@ -7,4 +7,3 @@ namespace HKX2E
         STAGE_BLENDING_OUT = 2,
     }
 }
-

@@ -7,12 +7,12 @@ namespace HKX2E
 {
     // hkRootLevelContainer Signatire: 0x2772c11e size: 16 flags: FLAGS_NONE
 
-    // namedVariants class: hkRootLevelContainerNamedVariant Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // namedVariants class: hkRootLevelContainerNamedVariant Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
 
     public partial class hkRootLevelContainer : IHavokObject, IEquatable<hkRootLevelContainer?>
     {
-
-        public IList<hkRootLevelContainerNamedVariant?> namedVariants { get; set; } = Array.Empty<hkRootLevelContainerNamedVariant?>();
+        public IList<hkRootLevelContainerNamedVariant?> namedVariants { get; set; } =
+            Array.Empty<hkRootLevelContainerNamedVariant?>();
 
         public uint Signature { set; get; } = 0x2772c11e;
 
@@ -25,17 +25,23 @@ namespace HKX2E
         {
             s.WriteClassArray(bw, namedVariants);
         }
+
         public void WriteMetaData(PackFileSerializer s, BinaryWriterEx bw, ulong metaData)
         {
             bw.WriteUInt64(metaData);
         }
+
         public ulong ReadMetaData(PackFileDeserializer s, BinaryReaderEx br)
         {
             return br.ReadUInt64();
         }
+
         public void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            namedVariants = xd.ReadClassArray<hkRootLevelContainerNamedVariant>(xe, nameof(namedVariants));
+            namedVariants = xd.ReadClassArray<hkRootLevelContainerNamedVariant>(
+                xe,
+                nameof(namedVariants)
+            );
         }
 
         public void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -50,9 +56,9 @@ namespace HKX2E
 
         public bool Equals(hkRootLevelContainer? other)
         {
-            return other is not null &&
-                   namedVariants.SequenceEqual(other.namedVariants) &&
-                   Signature == other.Signature;
+            return other is not null
+                && namedVariants.SequenceEqual(other.namedVariants)
+                && Signature == other.Signature;
         }
 
         public override int GetHashCode()
@@ -64,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

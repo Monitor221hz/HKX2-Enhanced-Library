@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbExtractRagdollPoseModifier Signatire: 0x804dcbab size: 88 flags: FLAGS_NONE
 
-    // poseMatchingBone0 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // poseMatchingBone1 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum: 
-    // poseMatchingBone2 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // enableComputeWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum: 
-    public partial class hkbExtractRagdollPoseModifier : hkbModifier, IEquatable<hkbExtractRagdollPoseModifier?>
+    // poseMatchingBone0 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // poseMatchingBone1 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum:
+    // poseMatchingBone2 class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // enableComputeWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum:
+    public partial class hkbExtractRagdollPoseModifier
+        : hkbModifier,
+            IEquatable<hkbExtractRagdollPoseModifier?>
     {
         public short poseMatchingBone0 { set; get; }
         public short poseMatchingBone1 { set; get; }
@@ -63,13 +65,14 @@ namespace HKX2E
 
         public bool Equals(hkbExtractRagdollPoseModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   poseMatchingBone0.Equals(other.poseMatchingBone0) &&
-                   poseMatchingBone1.Equals(other.poseMatchingBone1) &&
-                   poseMatchingBone2.Equals(other.poseMatchingBone2) &&
-                   enableComputeWorldFromModel.Equals(other.enableComputeWorldFromModel) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && poseMatchingBone0.Equals(other.poseMatchingBone0)
+                && poseMatchingBone1.Equals(other.poseMatchingBone1)
+                && poseMatchingBone2.Equals(other.poseMatchingBone2)
+                && enableComputeWorldFromModel.Equals(other.enableComputeWorldFromModel)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -85,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

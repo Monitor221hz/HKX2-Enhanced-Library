@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbEventSequencedDataSequencedEvent Signatire: 0x9139b821 size: 32 flags: FLAGS_NONE
 
-    // eventclass: hkbEvent Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    public partial class hkbEventSequencedDataSequencedEvent : IHavokObject, IEquatable<hkbEventSequencedDataSequencedEvent?>
+    // eventclass: hkbEvent Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    public partial class hkbEventSequencedDataSequencedEvent
+        : IHavokObject,
+            IEquatable<hkbEventSequencedDataSequencedEvent?>
     {
-        public hkbEvent _event{ set; get; } = new();
+        public hkbEvent _event { set; get; } = new();
         public float time { set; get; }
 
         public virtual uint Signature { set; get; } = 0x9139b821;
@@ -30,7 +32,7 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            _event= xd.ReadClass<hkbEvent>(xe, LITERAL.EVENT);
+            _event = xd.ReadClass<hkbEvent>(xe, LITERAL.EVENT);
             time = xd.ReadSingle(xe, nameof(time));
         }
 
@@ -47,10 +49,18 @@ namespace HKX2E
 
         public bool Equals(hkbEventSequencedDataSequencedEvent? other)
         {
-            return other is not null &&
-                   ((_event is null && other._event is null) || (_event is not null && other._event is not null && _event.Equals((IHavokObject)other._event))) &&
-                   time.Equals(other.time) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (_event is null && other._event is null)
+                    || (
+                        _event is not null
+                        && other._event is not null
+                        && _event.Equals((IHavokObject)other._event)
+                    )
+                )
+                && time.Equals(other.time)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

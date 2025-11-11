@@ -8,18 +8,19 @@ namespace HKX2E
 {
     // hkpMeshShape Signatire: 0x3bf12c0f size: 128 flags: FLAGS_NONE
 
-    // scaling class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // numBitsForSubpartIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // subparts class: hkpMeshShapeSubpart Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // weldingInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // scaling class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // numBitsForSubpartIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // subparts class: hkpMeshShapeSubpart Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // weldingInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
     // weldingType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 104 flags: FLAGS_NONE enum: WeldingType
-    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // pad class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 3 offset: 112 flags: FLAGS_NONE enum: 
+    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // pad class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 3 offset: 112 flags: FLAGS_NONE enum:
     public partial class hkpMeshShape : hkpShapeCollection, IEquatable<hkpMeshShape?>
     {
         public Vector4 scaling { set; get; }
         public int numBitsForSubpartIndex { set; get; }
-        public IList<hkpMeshShapeSubpart> subparts { set; get; } = Array.Empty<hkpMeshShapeSubpart>();
+        public IList<hkpMeshShapeSubpart> subparts { set; get; } =
+            Array.Empty<hkpMeshShapeSubpart>();
         public IList<ushort> weldingInfo { set; get; } = Array.Empty<ushort>();
         public byte weldingType { set; get; }
         public float radius { set; get; }
@@ -88,16 +89,17 @@ namespace HKX2E
 
         public bool Equals(hkpMeshShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   scaling.Equals(other.scaling) &&
-                   numBitsForSubpartIndex.Equals(other.numBitsForSubpartIndex) &&
-                   subparts.SequenceEqual(other.subparts) &&
-                   weldingInfo.SequenceEqual(other.weldingInfo) &&
-                   weldingType.Equals(other.weldingType) &&
-                   radius.Equals(other.radius) &&
-                   pad.SequenceEqual(other.pad) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && scaling.Equals(other.scaling)
+                && numBitsForSubpartIndex.Equals(other.numBitsForSubpartIndex)
+                && subparts.SequenceEqual(other.subparts)
+                && weldingInfo.SequenceEqual(other.weldingInfo)
+                && weldingType.Equals(other.weldingType)
+                && radius.Equals(other.radius)
+                && pad.SequenceEqual(other.pad)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -116,4 +118,3 @@ namespace HKX2E
         }
     }
 }
-

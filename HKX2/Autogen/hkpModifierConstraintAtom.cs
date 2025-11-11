@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkpModifierConstraintAtom Signatire: 0xb13fef1f size: 48 flags: FLAGS_NONE
 
-    // modifierAtomSize class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 16 flags: ALIGN_16|FLAGS_NONE enum: 
-    // childSize class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum: 
-    // child class: hkpConstraintAtom Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // pad class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 2 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkpModifierConstraintAtom : hkpConstraintAtom, IEquatable<hkpModifierConstraintAtom?>
+    // modifierAtomSize class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 16 flags: ALIGN_16|FLAGS_NONE enum:
+    // childSize class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum:
+    // child class: hkpConstraintAtom Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // pad class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 2 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkpModifierConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpModifierConstraintAtom?>
     {
         public ushort modifierAtomSize { set; get; }
         public ushort childSize { set; get; }
@@ -68,13 +70,21 @@ namespace HKX2E
 
         public bool Equals(hkpModifierConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   modifierAtomSize.Equals(other.modifierAtomSize) &&
-                   childSize.Equals(other.childSize) &&
-                   ((child is null && other.child is null) || (child is not null && other.child is not null && child.Equals((IHavokObject)other.child))) &&
-                   pad.SequenceEqual(other.pad) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && modifierAtomSize.Equals(other.modifierAtomSize)
+                && childSize.Equals(other.childSize)
+                && (
+                    (child is null && other.child is null)
+                    || (
+                        child is not null
+                        && other.child is not null
+                        && child.Equals((IHavokObject)other.child)
+                    )
+                )
+                && pad.SequenceEqual(other.pad)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -90,4 +100,3 @@ namespace HKX2E
         }
     }
 }
-

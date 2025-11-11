@@ -7,20 +7,22 @@ namespace HKX2E
 {
     // hkaSplineCompressedAnimation Signatire: 0x792ee0bb size: 176 flags: FLAGS_NONE
 
-    // numFrames class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // numBlocks class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // maxFramesPerBlock class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // maskAndQuantizationSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // blockDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // blockInverseDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // frameDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // blockOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // floatBlockOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // transformOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // floatOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // endian class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    public partial class hkaSplineCompressedAnimation : hkaAnimation, IEquatable<hkaSplineCompressedAnimation?>
+    // numFrames class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // numBlocks class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // maxFramesPerBlock class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // maskAndQuantizationSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // blockDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // blockInverseDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    // frameDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // blockOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // floatBlockOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // transformOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // floatOffsets class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // endian class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    public partial class hkaSplineCompressedAnimation
+        : hkaAnimation,
+            IEquatable<hkaSplineCompressedAnimation?>
     {
         public int numFrames { set; get; }
         public int numBlocks { set; get; }
@@ -121,22 +123,23 @@ namespace HKX2E
 
         public bool Equals(hkaSplineCompressedAnimation? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   numFrames.Equals(other.numFrames) &&
-                   numBlocks.Equals(other.numBlocks) &&
-                   maxFramesPerBlock.Equals(other.maxFramesPerBlock) &&
-                   maskAndQuantizationSize.Equals(other.maskAndQuantizationSize) &&
-                   blockDuration.Equals(other.blockDuration) &&
-                   blockInverseDuration.Equals(other.blockInverseDuration) &&
-                   frameDuration.Equals(other.frameDuration) &&
-                   blockOffsets.SequenceEqual(other.blockOffsets) &&
-                   floatBlockOffsets.SequenceEqual(other.floatBlockOffsets) &&
-                   transformOffsets.SequenceEqual(other.transformOffsets) &&
-                   floatOffsets.SequenceEqual(other.floatOffsets) &&
-                   data.SequenceEqual(other.data) &&
-                   endian.Equals(other.endian) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && numFrames.Equals(other.numFrames)
+                && numBlocks.Equals(other.numBlocks)
+                && maxFramesPerBlock.Equals(other.maxFramesPerBlock)
+                && maskAndQuantizationSize.Equals(other.maskAndQuantizationSize)
+                && blockDuration.Equals(other.blockDuration)
+                && blockInverseDuration.Equals(other.blockInverseDuration)
+                && frameDuration.Equals(other.frameDuration)
+                && blockOffsets.SequenceEqual(other.blockOffsets)
+                && floatBlockOffsets.SequenceEqual(other.floatBlockOffsets)
+                && transformOffsets.SequenceEqual(other.transformOffsets)
+                && floatOffsets.SequenceEqual(other.floatOffsets)
+                && data.SequenceEqual(other.data)
+                && endian.Equals(other.endian)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -161,4 +164,3 @@ namespace HKX2E
         }
     }
 }
-

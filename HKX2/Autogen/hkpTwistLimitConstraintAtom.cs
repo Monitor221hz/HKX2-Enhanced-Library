@@ -5,13 +5,15 @@ namespace HKX2E
 {
     // hkpTwistLimitConstraintAtom Signatire: 0x7c9b1052 size: 20 flags: FLAGS_NONE
 
-    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // twistAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum: 
-    // refAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // minAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // angularLimitsTauFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpTwistLimitConstraintAtom : hkpConstraintAtom, IEquatable<hkpTwistLimitConstraintAtom?>
+    // isEnabled class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // twistAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 3 flags: FLAGS_NONE enum:
+    // refAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // minAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // angularLimitsTauFactor class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpTwistLimitConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpTwistLimitConstraintAtom?>
     {
         public byte isEnabled { set; get; }
         public byte twistAxis { set; get; }
@@ -75,15 +77,16 @@ namespace HKX2E
 
         public bool Equals(hkpTwistLimitConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isEnabled.Equals(other.isEnabled) &&
-                   twistAxis.Equals(other.twistAxis) &&
-                   refAxis.Equals(other.refAxis) &&
-                   minAngle.Equals(other.minAngle) &&
-                   maxAngle.Equals(other.maxAngle) &&
-                   angularLimitsTauFactor.Equals(other.angularLimitsTauFactor) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isEnabled.Equals(other.isEnabled)
+                && twistAxis.Equals(other.twistAxis)
+                && refAxis.Equals(other.refAxis)
+                && minAngle.Equals(other.minAngle)
+                && maxAngle.Equals(other.maxAngle)
+                && angularLimitsTauFactor.Equals(other.angularLimitsTauFactor)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -101,4 +104,3 @@ namespace HKX2E
         }
     }
 }
-

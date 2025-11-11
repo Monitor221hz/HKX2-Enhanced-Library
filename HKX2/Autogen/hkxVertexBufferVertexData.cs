@@ -8,18 +8,20 @@ namespace HKX2E
 {
     // hkxVertexBufferVertexData Signatire: 0xd72b6fd0 size: 104 flags: FLAGS_NONE
 
-    // vectorData class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // floatData class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // uint32Data class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // uint16Data class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // uint8Data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // numVerts class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // vectorStride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // floatStride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // uint32Stride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // uint16Stride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // uint8Stride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    public partial class hkxVertexBufferVertexData : IHavokObject, IEquatable<hkxVertexBufferVertexData?>
+    // vectorData class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // floatData class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // uint32Data class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // uint16Data class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // uint8Data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // numVerts class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // vectorStride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // floatStride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // uint32Stride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // uint16Stride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // uint8Stride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    public partial class hkxVertexBufferVertexData
+        : IHavokObject,
+            IEquatable<hkxVertexBufferVertexData?>
     {
         public IList<Vector4> vectorData { set; get; } = Array.Empty<Vector4>();
         public IList<float> floatData { set; get; } = Array.Empty<float>();
@@ -102,19 +104,20 @@ namespace HKX2E
 
         public bool Equals(hkxVertexBufferVertexData? other)
         {
-            return other is not null &&
-                   vectorData.SequenceEqual(other.vectorData) &&
-                   floatData.SequenceEqual(other.floatData) &&
-                   uint32Data.SequenceEqual(other.uint32Data) &&
-                   uint16Data.SequenceEqual(other.uint16Data) &&
-                   uint8Data.SequenceEqual(other.uint8Data) &&
-                   numVerts.Equals(other.numVerts) &&
-                   vectorStride.Equals(other.vectorStride) &&
-                   floatStride.Equals(other.floatStride) &&
-                   uint32Stride.Equals(other.uint32Stride) &&
-                   uint16Stride.Equals(other.uint16Stride) &&
-                   uint8Stride.Equals(other.uint8Stride) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && vectorData.SequenceEqual(other.vectorData)
+                && floatData.SequenceEqual(other.floatData)
+                && uint32Data.SequenceEqual(other.uint32Data)
+                && uint16Data.SequenceEqual(other.uint16Data)
+                && uint8Data.SequenceEqual(other.uint8Data)
+                && numVerts.Equals(other.numVerts)
+                && vectorStride.Equals(other.vectorStride)
+                && floatStride.Equals(other.floatStride)
+                && uint32Stride.Equals(other.uint32Stride)
+                && uint16Stride.Equals(other.uint16Stride)
+                && uint8Stride.Equals(other.uint8Stride)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -136,4 +139,3 @@ namespace HKX2E
         }
     }
 }
-

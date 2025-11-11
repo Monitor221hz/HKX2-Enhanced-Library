@@ -6,8 +6,8 @@ namespace HKX2E
 {
     // hkQTransform Signatire: 0x471a21ee size: 32 flags: FLAGS_NONE
 
-    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // translation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // translation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkQTransform : IHavokObject, IEquatable<hkQTransform?>
     {
         public Quaternion rotation { set; get; }
@@ -46,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkQTransform? other)
         {
-            return other is not null &&
-                   rotation.Equals(other.rotation) &&
-                   translation.Equals(other.translation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && rotation.Equals(other.rotation)
+                && translation.Equals(other.translation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

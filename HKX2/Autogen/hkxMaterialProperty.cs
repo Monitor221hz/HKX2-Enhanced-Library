@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkxMaterialProperty Signatire: 0xd295234d size: 8 flags: FLAGS_NONE
 
-    // key class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // value class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
+    // key class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // value class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
     public partial class hkxMaterialProperty : IHavokObject, IEquatable<hkxMaterialProperty?>
     {
         public uint key { set; get; }
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkxMaterialProperty? other)
         {
-            return other is not null &&
-                   key.Equals(other.key) &&
-                   value.Equals(other.value) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && key.Equals(other.key)
+                && value.Equals(other.value)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

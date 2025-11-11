@@ -7,10 +7,11 @@ namespace HKX2E
 {
     // hkxAttributeHolder Signatire: 0x7468cc44 size: 32 flags: FLAGS_NONE
 
-    // attributeGroups class: hkxAttributeGroup Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // attributeGroups class: hkxAttributeGroup Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkxAttributeHolder : hkReferencedObject, IEquatable<hkxAttributeHolder?>
     {
-        public IList<hkxAttributeGroup> attributeGroups { set; get; } = Array.Empty<hkxAttributeGroup>();
+        public IList<hkxAttributeGroup> attributeGroups { set; get; } =
+            Array.Empty<hkxAttributeGroup>();
 
         public override uint Signature { set; get; } = 0x7468cc44;
 
@@ -45,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkxAttributeHolder? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   attributeGroups.SequenceEqual(other.attributeGroups) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && attributeGroups.SequenceEqual(other.attributeGroups)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

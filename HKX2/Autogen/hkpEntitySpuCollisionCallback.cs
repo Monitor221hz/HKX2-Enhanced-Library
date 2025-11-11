@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkpEntitySpuCollisionCallback Signatire: 0x81147f05 size: 16 flags: FLAGS_NONE
 
-    // util class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // capacity class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // eventFilter class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum: 
-    // userFilter class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 11 flags: FLAGS_NONE enum: 
-    public partial class hkpEntitySpuCollisionCallback : IHavokObject, IEquatable<hkpEntitySpuCollisionCallback?>
+    // util class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // capacity class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // eventFilter class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum:
+    // userFilter class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 11 flags: FLAGS_NONE enum:
+    public partial class hkpEntitySpuCollisionCallback
+        : IHavokObject,
+            IEquatable<hkpEntitySpuCollisionCallback?>
     {
         private object? util { set; get; }
         private ushort capacity { set; get; }
@@ -57,10 +59,11 @@ namespace HKX2E
 
         public bool Equals(hkpEntitySpuCollisionCallback? other)
         {
-            return other is not null &&
-                   eventFilter.Equals(other.eventFilter) &&
-                   userFilter.Equals(other.userFilter) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && eventFilter.Equals(other.eventFilter)
+                && userFilter.Equals(other.userFilter)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -73,4 +76,3 @@ namespace HKX2E
         }
     }
 }
-

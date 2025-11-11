@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbBehaviorInfoIdToNamePair Signatire: 0x35a0439a size: 24 flags: FLAGS_NONE
 
-    // behaviorName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // nodeName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // behaviorName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // nodeName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     // toolType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: ToolNodeType
-    // id class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum: 
-    public partial class hkbBehaviorInfoIdToNamePair : IHavokObject, IEquatable<hkbBehaviorInfoIdToNamePair?>
+    // id class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum:
+    public partial class hkbBehaviorInfoIdToNamePair
+        : IHavokObject,
+            IEquatable<hkbBehaviorInfoIdToNamePair?>
     {
         public string behaviorName { set; get; } = "";
         public string nodeName { set; get; } = "";
@@ -61,12 +63,23 @@ namespace HKX2E
 
         public bool Equals(hkbBehaviorInfoIdToNamePair? other)
         {
-            return other is not null &&
-                   (behaviorName is null && other.behaviorName is null || behaviorName == other.behaviorName || behaviorName is null && other.behaviorName == "" || behaviorName == "" && other.behaviorName is null) &&
-                   (nodeName is null && other.nodeName is null || nodeName == other.nodeName || nodeName is null && other.nodeName == "" || nodeName == "" && other.nodeName is null) &&
-                   toolType.Equals(other.toolType) &&
-                   id.Equals(other.id) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    behaviorName is null && other.behaviorName is null
+                    || behaviorName == other.behaviorName
+                    || behaviorName is null && other.behaviorName == ""
+                    || behaviorName == "" && other.behaviorName is null
+                )
+                && (
+                    nodeName is null && other.nodeName is null
+                    || nodeName == other.nodeName
+                    || nodeName is null && other.nodeName == ""
+                    || nodeName == "" && other.nodeName is null
+                )
+                && toolType.Equals(other.toolType)
+                && id.Equals(other.id)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -81,4 +94,3 @@ namespace HKX2E
         }
     }
 }
-

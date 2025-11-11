@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpLinLimitConstraintAtom Signatire: 0xa44d1b07 size: 12 flags: FLAGS_NONE
 
-    // axisIndex class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // min class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // max class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpLinLimitConstraintAtom : hkpConstraintAtom, IEquatable<hkpLinLimitConstraintAtom?>
+    // axisIndex class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // min class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // max class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpLinLimitConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpLinLimitConstraintAtom?>
     {
         public byte axisIndex { set; get; }
         public float min { set; get; }
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkpLinLimitConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   axisIndex.Equals(other.axisIndex) &&
-                   min.Equals(other.min) &&
-                   max.Equals(other.max) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && axisIndex.Equals(other.axisIndex)
+                && min.Equals(other.min)
+                && max.Equals(other.max)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

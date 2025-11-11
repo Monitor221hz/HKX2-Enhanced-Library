@@ -7,14 +7,14 @@ namespace HKX2E
 {
     // hkpMouseSpringAction Signatire: 0x6e087fd6 size: 144 flags: FLAGS_NONE
 
-    // positionInRbLocal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // mousePositionInWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // springDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // springElasticity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // maxRelativeForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // objectDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // shapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // applyCallbacks class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // positionInRbLocal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // mousePositionInWorld class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // springDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // springElasticity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // maxRelativeForce class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // objectDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // shapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // applyCallbacks class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpMouseSpringAction : hkpUnaryAction, IEquatable<hkpMouseSpringAction?>
     {
         public Vector4 positionInRbLocal { set; get; }
@@ -92,16 +92,17 @@ namespace HKX2E
 
         public bool Equals(hkpMouseSpringAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   positionInRbLocal.Equals(other.positionInRbLocal) &&
-                   mousePositionInWorld.Equals(other.mousePositionInWorld) &&
-                   springDamping.Equals(other.springDamping) &&
-                   springElasticity.Equals(other.springElasticity) &&
-                   maxRelativeForce.Equals(other.maxRelativeForce) &&
-                   objectDamping.Equals(other.objectDamping) &&
-                   shapeKey.Equals(other.shapeKey) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && positionInRbLocal.Equals(other.positionInRbLocal)
+                && mousePositionInWorld.Equals(other.mousePositionInWorld)
+                && springDamping.Equals(other.springDamping)
+                && springElasticity.Equals(other.springElasticity)
+                && maxRelativeForce.Equals(other.maxRelativeForce)
+                && objectDamping.Equals(other.objectDamping)
+                && shapeKey.Equals(other.shapeKey)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -120,4 +121,3 @@ namespace HKX2E
         }
     }
 }
-

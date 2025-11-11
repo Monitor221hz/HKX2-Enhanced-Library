@@ -6,4 +6,3 @@ namespace HKX2E
         RAMPED = 1,
     }
 }
-

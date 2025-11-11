@@ -8,20 +8,21 @@ namespace HKX2E
 {
     // hkxNode Signatire: 0x5a218502 size: 112 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // object class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // keyFrames class:  Type.TYPE_ARRAY Type.TYPE_MATRIX4 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // children class: hkxNode Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // annotations class: hkxNodeAnnotationData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // userProperties class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // selected class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // object class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // keyFrames class:  Type.TYPE_ARRAY Type.TYPE_MATRIX4 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // children class: hkxNode Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // annotations class: hkxNodeAnnotationData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // userProperties class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // selected class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
     public partial class hkxNode : hkxAttributeHolder, IEquatable<hkxNode?>
     {
         public string name { set; get; } = "";
         public hkReferencedObject? _object { set; get; }
         public IList<Matrix4x4> keyFrames { set; get; } = Array.Empty<Matrix4x4>();
         public IList<hkxNode> children { set; get; } = Array.Empty<hkxNode>();
-        public IList<hkxNodeAnnotationData> annotations { set; get; } = Array.Empty<hkxNodeAnnotationData>();
+        public IList<hkxNodeAnnotationData> annotations { set; get; } =
+            Array.Empty<hkxNodeAnnotationData>();
         public string userProperties { set; get; } = "";
         public bool selected { set; get; }
 
@@ -84,16 +85,34 @@ namespace HKX2E
 
         public bool Equals(hkxNode? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   ((_object is null && other._object is null) || (_object is not null && other._object is not null && _object.Equals((IHavokObject)other._object))) &&
-                   keyFrames.SequenceEqual(other.keyFrames) &&
-                   children.SequenceEqual(other.children) &&
-                   annotations.SequenceEqual(other.annotations) &&
-                   (userProperties is null && other.userProperties is null || userProperties == other.userProperties || userProperties is null && other.userProperties == "" || userProperties == "" && other.userProperties is null) &&
-                   selected.Equals(other.selected) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && (
+                    (_object is null && other._object is null)
+                    || (
+                        _object is not null
+                        && other._object is not null
+                        && _object.Equals((IHavokObject)other._object)
+                    )
+                )
+                && keyFrames.SequenceEqual(other.keyFrames)
+                && children.SequenceEqual(other.children)
+                && annotations.SequenceEqual(other.annotations)
+                && (
+                    userProperties is null && other.userProperties is null
+                    || userProperties == other.userProperties
+                    || userProperties is null && other.userProperties == ""
+                    || userProperties == "" && other.userProperties is null
+                )
+                && selected.Equals(other.selected)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -112,4 +131,3 @@ namespace HKX2E
         }
     }
 }
-

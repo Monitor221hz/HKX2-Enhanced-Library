@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // BSGetTimeStepModifier Signatire: 0xbda33bfe size: 88 flags: FLAGS_NONE
 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     public partial class BSGetTimeStepModifier : hkbModifier, IEquatable<BSGetTimeStepModifier?>
     {
         public float timeStep { set; get; }
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(BSGetTimeStepModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   timeStep.Equals(other.timeStep) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && timeStep.Equals(other.timeStep)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,14 +5,16 @@ namespace HKX2E
 {
     // hkpPrismaticConstraintDataAtoms Signatire: 0x7f516137 size: 208 flags: FLAGS_NONE
 
-    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // motor class: hkpLinMotorConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // friction class: hkpLinFrictionConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // ang class: hkpAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // lin0 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum: 
-    // lin1 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // linLimit class: hkpLinLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    public partial class hkpPrismaticConstraintDataAtoms : IHavokObject, IEquatable<hkpPrismaticConstraintDataAtoms?>
+    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // motor class: hkpLinMotorConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // friction class: hkpLinFrictionConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // ang class: hkpAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // lin0 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum:
+    // lin1 class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // linLimit class: hkpLinLimitConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum:
+    public partial class hkpPrismaticConstraintDataAtoms
+        : IHavokObject,
+            IEquatable<hkpPrismaticConstraintDataAtoms?>
     {
         public hkpSetLocalTransformsConstraintAtom transforms { set; get; } = new();
         public hkpLinMotorConstraintAtom motor { set; get; } = new();
@@ -77,15 +79,65 @@ namespace HKX2E
 
         public bool Equals(hkpPrismaticConstraintDataAtoms? other)
         {
-            return other is not null &&
-                   ((transforms is null && other.transforms is null) || (transforms is not null && other.transforms is not null && transforms.Equals((IHavokObject)other.transforms))) &&
-                   ((motor is null && other.motor is null) || (motor is not null && other.motor is not null && motor.Equals((IHavokObject)other.motor))) &&
-                   ((friction is null && other.friction is null) || (friction is not null && other.friction is not null && friction.Equals((IHavokObject)other.friction))) &&
-                   ((ang is null && other.ang is null) || (ang is not null && other.ang is not null && ang.Equals((IHavokObject)other.ang))) &&
-                   ((lin0 is null && other.lin0 is null) || (lin0 is not null && other.lin0 is not null && lin0.Equals((IHavokObject)other.lin0))) &&
-                   ((lin1 is null && other.lin1 is null) || (lin1 is not null && other.lin1 is not null && lin1.Equals((IHavokObject)other.lin1))) &&
-                   ((linLimit is null && other.linLimit is null) || (linLimit is not null && other.linLimit is not null && linLimit.Equals((IHavokObject)other.linLimit))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (transforms is null && other.transforms is null)
+                    || (
+                        transforms is not null
+                        && other.transforms is not null
+                        && transforms.Equals((IHavokObject)other.transforms)
+                    )
+                )
+                && (
+                    (motor is null && other.motor is null)
+                    || (
+                        motor is not null
+                        && other.motor is not null
+                        && motor.Equals((IHavokObject)other.motor)
+                    )
+                )
+                && (
+                    (friction is null && other.friction is null)
+                    || (
+                        friction is not null
+                        && other.friction is not null
+                        && friction.Equals((IHavokObject)other.friction)
+                    )
+                )
+                && (
+                    (ang is null && other.ang is null)
+                    || (
+                        ang is not null
+                        && other.ang is not null
+                        && ang.Equals((IHavokObject)other.ang)
+                    )
+                )
+                && (
+                    (lin0 is null && other.lin0 is null)
+                    || (
+                        lin0 is not null
+                        && other.lin0 is not null
+                        && lin0.Equals((IHavokObject)other.lin0)
+                    )
+                )
+                && (
+                    (lin1 is null && other.lin1 is null)
+                    || (
+                        lin1 is not null
+                        && other.lin1 is not null
+                        && lin1.Equals((IHavokObject)other.lin1)
+                    )
+                )
+                && (
+                    (linLimit is null && other.linLimit is null)
+                    || (
+                        linLimit is not null
+                        && other.linLimit is not null
+                        && linLimit.Equals((IHavokObject)other.linLimit)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -103,4 +155,3 @@ namespace HKX2E
         }
     }
 }
-

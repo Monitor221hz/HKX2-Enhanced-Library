@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkpConstraintMotor? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   type.Equals(other.type) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && type.Equals(other.type)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

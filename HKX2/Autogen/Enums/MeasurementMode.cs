@@ -6,4 +6,3 @@ namespace HKX2E
         ZERO_WHEN_VECTORS_PERPENDICULAR = 1,
     }
 }
-

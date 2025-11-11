@@ -7,4 +7,3 @@ namespace HKX2E
         ENTITIES = 2,
     }
 }
-

@@ -8,15 +8,16 @@ namespace HKX2E
 {
     // hkpListShape Signatire: 0xa1937cbd size: 144 flags: FLAGS_NONE
 
-    // childInfo class: hkpListShapeChildInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // flags class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // numDisabledChildren class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum: 
-    // aabbHalfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // aabbCenter class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // enabledChildren class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 8 offset: 112 flags: FLAGS_NONE enum: 
+    // childInfo class: hkpListShapeChildInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // flags class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // numDisabledChildren class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum:
+    // aabbHalfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // aabbCenter class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // enabledChildren class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 8 offset: 112 flags: FLAGS_NONE enum:
     public partial class hkpListShape : hkpShapeCollection, IEquatable<hkpListShape?>
     {
-        public IList<hkpListShapeChildInfo> childInfo { set; get; } = Array.Empty<hkpListShapeChildInfo>();
+        public IList<hkpListShapeChildInfo> childInfo { set; get; } =
+            Array.Empty<hkpListShapeChildInfo>();
         public ushort flags { set; get; }
         public ushort numDisabledChildren { set; get; }
         public Vector4 aabbHalfExtents { set; get; }
@@ -78,15 +79,16 @@ namespace HKX2E
 
         public bool Equals(hkpListShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   childInfo.SequenceEqual(other.childInfo) &&
-                   flags.Equals(other.flags) &&
-                   numDisabledChildren.Equals(other.numDisabledChildren) &&
-                   aabbHalfExtents.Equals(other.aabbHalfExtents) &&
-                   aabbCenter.Equals(other.aabbCenter) &&
-                   enabledChildren.SequenceEqual(other.enabledChildren) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && childInfo.SequenceEqual(other.childInfo)
+                && flags.Equals(other.flags)
+                && numDisabledChildren.Equals(other.numDisabledChildren)
+                && aabbHalfExtents.Equals(other.aabbHalfExtents)
+                && aabbCenter.Equals(other.aabbCenter)
+                && enabledChildren.SequenceEqual(other.enabledChildren)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -104,4 +106,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpPointToPlaneConstraintDataAtoms Signatire: 0x749bc260 size: 160 flags: FLAGS_NONE
 
-    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // lin class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    public partial class hkpPointToPlaneConstraintDataAtoms : IHavokObject, IEquatable<hkpPointToPlaneConstraintDataAtoms?>
+    // transforms class: hkpSetLocalTransformsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // lin class: hkpLinConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    public partial class hkpPointToPlaneConstraintDataAtoms
+        : IHavokObject,
+            IEquatable<hkpPointToPlaneConstraintDataAtoms?>
     {
         public hkpSetLocalTransformsConstraintAtom transforms { set; get; } = new();
         public hkpLinConstraintAtom lin { set; get; } = new();
@@ -47,10 +49,25 @@ namespace HKX2E
 
         public bool Equals(hkpPointToPlaneConstraintDataAtoms? other)
         {
-            return other is not null &&
-                   ((transforms is null && other.transforms is null) || (transforms is not null && other.transforms is not null && transforms.Equals((IHavokObject)other.transforms))) &&
-                   ((lin is null && other.lin is null) || (lin is not null && other.lin is not null && lin.Equals((IHavokObject)other.lin))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (transforms is null && other.transforms is null)
+                    || (
+                        transforms is not null
+                        && other.transforms is not null
+                        && transforms.Equals((IHavokObject)other.transforms)
+                    )
+                )
+                && (
+                    (lin is null && other.lin is null)
+                    || (
+                        lin is not null
+                        && other.lin is not null
+                        && lin.Equals((IHavokObject)other.lin)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

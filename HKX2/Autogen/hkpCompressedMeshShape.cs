@@ -8,30 +8,32 @@ namespace HKX2E
 {
     // hkpCompressedMeshShape Signatire: 0xe3d1dba size: 304 flags: FLAGS_NONE
 
-    // bitsPerIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // bitsPerWIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    // wIndexMask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // indexMask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // bitsPerIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // bitsPerWIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum:
+    // wIndexMask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // indexMask class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
     // weldingType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 68 flags: FLAGS_NONE enum: WeldingType
     // materialType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 69 flags: FLAGS_NONE enum: MaterialType
-    // materials class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // materials16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // materials8 class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // transforms class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // bigVertices class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // bigTriangles class: hkpCompressedMeshShapeBigTriangle Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // chunks class: hkpCompressedMeshShapeChunk Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // convexPieces class: hkpCompressedMeshShapeConvexPiece Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // error class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    // bounds class: hkAabb Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
-    // defaultCollisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum: 
-    // meshMaterials class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // materialStriding class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 256 flags: FLAGS_NONE enum: 
-    // numMaterials class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 258 flags: FLAGS_NONE enum: 
-    // namedMaterials class: hkpNamedMeshMaterial Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 264 flags: FLAGS_NONE enum: 
-    // scaling class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum: 
-    public partial class hkpCompressedMeshShape : hkpShapeCollection, IEquatable<hkpCompressedMeshShape?>
+    // materials class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // materials16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // materials8 class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // transforms class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // bigVertices class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // bigTriangles class: hkpCompressedMeshShapeBigTriangle Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // chunks class: hkpCompressedMeshShapeChunk Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // convexPieces class: hkpCompressedMeshShapeConvexPiece Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // error class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum:
+    // bounds class: hkAabb Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum:
+    // defaultCollisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 240 flags: FLAGS_NONE enum:
+    // meshMaterials class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // materialStriding class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 256 flags: FLAGS_NONE enum:
+    // numMaterials class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 258 flags: FLAGS_NONE enum:
+    // namedMaterials class: hkpNamedMeshMaterial Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 264 flags: FLAGS_NONE enum:
+    // scaling class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 288 flags: FLAGS_NONE enum:
+    public partial class hkpCompressedMeshShape
+        : hkpShapeCollection,
+            IEquatable<hkpCompressedMeshShape?>
     {
         public int bitsPerIndex { set; get; }
         public int bitsPerWIndex { set; get; }
@@ -45,16 +47,20 @@ namespace HKX2E
         public IList<byte> materials8 { set; get; } = Array.Empty<byte>();
         public IList<Matrix4x4> transforms { set; get; } = Array.Empty<Matrix4x4>();
         public IList<Vector4> bigVertices { set; get; } = Array.Empty<Vector4>();
-        public IList<hkpCompressedMeshShapeBigTriangle> bigTriangles { set; get; } = Array.Empty<hkpCompressedMeshShapeBigTriangle>();
-        public IList<hkpCompressedMeshShapeChunk> chunks { set; get; } = Array.Empty<hkpCompressedMeshShapeChunk>();
-        public IList<hkpCompressedMeshShapeConvexPiece> convexPieces { set; get; } = Array.Empty<hkpCompressedMeshShapeConvexPiece>();
+        public IList<hkpCompressedMeshShapeBigTriangle> bigTriangles { set; get; } =
+            Array.Empty<hkpCompressedMeshShapeBigTriangle>();
+        public IList<hkpCompressedMeshShapeChunk> chunks { set; get; } =
+            Array.Empty<hkpCompressedMeshShapeChunk>();
+        public IList<hkpCompressedMeshShapeConvexPiece> convexPieces { set; get; } =
+            Array.Empty<hkpCompressedMeshShapeConvexPiece>();
         public float error { set; get; }
         public hkAabb bounds { set; get; } = new();
         public uint defaultCollisionFilterInfo { set; get; }
         private object? meshMaterials { set; get; }
         public ushort materialStriding { set; get; }
         public ushort numMaterials { set; get; }
-        public IList<hkpNamedMeshMaterial> namedMaterials { set; get; } = Array.Empty<hkpNamedMeshMaterial>();
+        public IList<hkpNamedMeshMaterial> namedMaterials { set; get; } =
+            Array.Empty<hkpNamedMeshMaterial>();
         public Vector4 scaling { set; get; }
 
         public override uint Signature { set; get; } = 0xe3d1dba;
@@ -140,9 +146,15 @@ namespace HKX2E
             materials8 = xd.ReadByteArray(xe, nameof(materials8));
             transforms = xd.ReadQSTransformArray(xe, nameof(transforms));
             bigVertices = xd.ReadVector4Array(xe, nameof(bigVertices));
-            bigTriangles = xd.ReadClassArray<hkpCompressedMeshShapeBigTriangle>(xe, nameof(bigTriangles));
+            bigTriangles = xd.ReadClassArray<hkpCompressedMeshShapeBigTriangle>(
+                xe,
+                nameof(bigTriangles)
+            );
             chunks = xd.ReadClassArray<hkpCompressedMeshShapeChunk>(xe, nameof(chunks));
-            convexPieces = xd.ReadClassArray<hkpCompressedMeshShapeConvexPiece>(xe, nameof(convexPieces));
+            convexPieces = xd.ReadClassArray<hkpCompressedMeshShapeConvexPiece>(
+                xe,
+                nameof(convexPieces)
+            );
             error = xd.ReadSingle(xe, nameof(error));
             bounds = xd.ReadClass<hkAabb>(xe, nameof(bounds));
             defaultCollisionFilterInfo = xd.ReadUInt32(xe, nameof(defaultCollisionFilterInfo));
@@ -187,31 +199,39 @@ namespace HKX2E
 
         public bool Equals(hkpCompressedMeshShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   bitsPerIndex.Equals(other.bitsPerIndex) &&
-                   bitsPerWIndex.Equals(other.bitsPerWIndex) &&
-                   wIndexMask.Equals(other.wIndexMask) &&
-                   indexMask.Equals(other.indexMask) &&
-                   radius.Equals(other.radius) &&
-                   weldingType.Equals(other.weldingType) &&
-                   materialType.Equals(other.materialType) &&
-                   materials.SequenceEqual(other.materials) &&
-                   materials16.SequenceEqual(other.materials16) &&
-                   materials8.SequenceEqual(other.materials8) &&
-                   transforms.SequenceEqual(other.transforms) &&
-                   bigVertices.SequenceEqual(other.bigVertices) &&
-                   bigTriangles.SequenceEqual(other.bigTriangles) &&
-                   chunks.SequenceEqual(other.chunks) &&
-                   convexPieces.SequenceEqual(other.convexPieces) &&
-                   error.Equals(other.error) &&
-                   ((bounds is null && other.bounds is null) || (bounds is not null && other.bounds is not null && bounds.Equals((IHavokObject)other.bounds))) &&
-                   defaultCollisionFilterInfo.Equals(other.defaultCollisionFilterInfo) &&
-                   materialStriding.Equals(other.materialStriding) &&
-                   numMaterials.Equals(other.numMaterials) &&
-                   namedMaterials.SequenceEqual(other.namedMaterials) &&
-                   scaling.Equals(other.scaling) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && bitsPerIndex.Equals(other.bitsPerIndex)
+                && bitsPerWIndex.Equals(other.bitsPerWIndex)
+                && wIndexMask.Equals(other.wIndexMask)
+                && indexMask.Equals(other.indexMask)
+                && radius.Equals(other.radius)
+                && weldingType.Equals(other.weldingType)
+                && materialType.Equals(other.materialType)
+                && materials.SequenceEqual(other.materials)
+                && materials16.SequenceEqual(other.materials16)
+                && materials8.SequenceEqual(other.materials8)
+                && transforms.SequenceEqual(other.transforms)
+                && bigVertices.SequenceEqual(other.bigVertices)
+                && bigTriangles.SequenceEqual(other.bigTriangles)
+                && chunks.SequenceEqual(other.chunks)
+                && convexPieces.SequenceEqual(other.convexPieces)
+                && error.Equals(other.error)
+                && (
+                    (bounds is null && other.bounds is null)
+                    || (
+                        bounds is not null
+                        && other.bounds is not null
+                        && bounds.Equals((IHavokObject)other.bounds)
+                    )
+                )
+                && defaultCollisionFilterInfo.Equals(other.defaultCollisionFilterInfo)
+                && materialStriding.Equals(other.materialStriding)
+                && numMaterials.Equals(other.numMaterials)
+                && namedMaterials.SequenceEqual(other.namedMaterials)
+                && scaling.Equals(other.scaling)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -245,4 +265,3 @@ namespace HKX2E
         }
     }
 }
-

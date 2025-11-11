@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbRealVariableSequencedDataSample Signatire: 0xbb708bbd size: 8 flags: FLAGS_NONE
 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // value class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    public partial class hkbRealVariableSequencedDataSample : IHavokObject, IEquatable<hkbRealVariableSequencedDataSample?>
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // value class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    public partial class hkbRealVariableSequencedDataSample
+        : IHavokObject,
+            IEquatable<hkbRealVariableSequencedDataSample?>
     {
         public float time { set; get; }
         public float value { set; get; }
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbRealVariableSequencedDataSample? other)
         {
-            return other is not null &&
-                   time.Equals(other.time) &&
-                   value.Equals(other.value) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && time.Equals(other.time)
+                && value.Equals(other.value)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkaSkeletonMapperDataSimpleMapping Signatire: 0x3405deca size: 64 flags: FLAGS_NONE
 
-    // boneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // boneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // aFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkaSkeletonMapperDataSimpleMapping : IHavokObject, IEquatable<hkaSkeletonMapperDataSimpleMapping?>
+    // boneA class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // boneB class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // aFromBTransform class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkaSkeletonMapperDataSimpleMapping
+        : IHavokObject,
+            IEquatable<hkaSkeletonMapperDataSimpleMapping?>
     {
         public short boneA { set; get; }
         public short boneB { set; get; }
@@ -54,11 +56,12 @@ namespace HKX2E
 
         public bool Equals(hkaSkeletonMapperDataSimpleMapping? other)
         {
-            return other is not null &&
-                   boneA.Equals(other.boneA) &&
-                   boneB.Equals(other.boneB) &&
-                   aFromBTransform.Equals(other.aFromBTransform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && boneA.Equals(other.boneA)
+                && boneB.Equals(other.boneB)
+                && aFromBTransform.Equals(other.aFromBTransform)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -72,4 +75,3 @@ namespace HKX2E
         }
     }
 }
-

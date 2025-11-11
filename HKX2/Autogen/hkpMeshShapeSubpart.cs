@@ -5,21 +5,21 @@ namespace HKX2E
 {
     // hkpMeshShapeSubpart Signatire: 0x27336e5d size: 80 flags: FLAGS_NONE
 
-    // vertexBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // vertexStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // numVertices class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // indexBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // vertexBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // vertexStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // numVertices class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // indexBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     // stridingType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: MeshShapeIndexStridingType
     // materialIndexStridingType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 25 flags: FLAGS_NONE enum: MeshShapeMaterialIndexStridingType
-    // indexStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // flipAlternateTriangles class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // numTriangles class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // materialIndexBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // materialIndexStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // materialBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // materialStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // numMaterials class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // triangleOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // indexStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // flipAlternateTriangles class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // numTriangles class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // materialIndexBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 40 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // materialIndexStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // materialBase class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // materialStriding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // numMaterials class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // triangleOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
     public partial class hkpMeshShapeSubpart : IHavokObject, IEquatable<hkpMeshShapeSubpart?>
     {
         private object? vertexBase { set; get; }
@@ -89,7 +89,10 @@ namespace HKX2E
             vertexStriding = xd.ReadInt32(xe, nameof(vertexStriding));
             numVertices = xd.ReadInt32(xe, nameof(numVertices));
             stridingType = xd.ReadFlag<MeshShapeIndexStridingType, sbyte>(xe, nameof(stridingType));
-            materialIndexStridingType = xd.ReadFlag<MeshShapeMaterialIndexStridingType, sbyte>(xe, nameof(materialIndexStridingType));
+            materialIndexStridingType = xd.ReadFlag<MeshShapeMaterialIndexStridingType, sbyte>(
+                xe,
+                nameof(materialIndexStridingType)
+            );
             indexStriding = xd.ReadInt32(xe, nameof(indexStriding));
             flipAlternateTriangles = xd.ReadInt32(xe, nameof(flipAlternateTriangles));
             numTriangles = xd.ReadInt32(xe, nameof(numTriangles));
@@ -106,7 +109,11 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(numVertices), numVertices);
             xs.WriteSerializeIgnored(xe, nameof(indexBase));
             xs.WriteEnum<MeshShapeIndexStridingType, sbyte>(xe, nameof(stridingType), stridingType);
-            xs.WriteEnum<MeshShapeMaterialIndexStridingType, sbyte>(xe, nameof(materialIndexStridingType), materialIndexStridingType);
+            xs.WriteEnum<MeshShapeMaterialIndexStridingType, sbyte>(
+                xe,
+                nameof(materialIndexStridingType),
+                materialIndexStridingType
+            );
             xs.WriteNumber(xe, nameof(indexStriding), indexStriding);
             xs.WriteNumber(xe, nameof(flipAlternateTriangles), flipAlternateTriangles);
             xs.WriteNumber(xe, nameof(numTriangles), numTriangles);
@@ -125,19 +132,20 @@ namespace HKX2E
 
         public bool Equals(hkpMeshShapeSubpart? other)
         {
-            return other is not null &&
-                   vertexStriding.Equals(other.vertexStriding) &&
-                   numVertices.Equals(other.numVertices) &&
-                   stridingType.Equals(other.stridingType) &&
-                   materialIndexStridingType.Equals(other.materialIndexStridingType) &&
-                   indexStriding.Equals(other.indexStriding) &&
-                   flipAlternateTriangles.Equals(other.flipAlternateTriangles) &&
-                   numTriangles.Equals(other.numTriangles) &&
-                   materialIndexStriding.Equals(other.materialIndexStriding) &&
-                   materialStriding.Equals(other.materialStriding) &&
-                   numMaterials.Equals(other.numMaterials) &&
-                   triangleOffset.Equals(other.triangleOffset) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && vertexStriding.Equals(other.vertexStriding)
+                && numVertices.Equals(other.numVertices)
+                && stridingType.Equals(other.stridingType)
+                && materialIndexStridingType.Equals(other.materialIndexStridingType)
+                && indexStriding.Equals(other.indexStriding)
+                && flipAlternateTriangles.Equals(other.flipAlternateTriangles)
+                && numTriangles.Equals(other.numTriangles)
+                && materialIndexStriding.Equals(other.materialIndexStriding)
+                && materialStriding.Equals(other.materialStriding)
+                && numMaterials.Equals(other.numMaterials)
+                && triangleOffset.Equals(other.triangleOffset)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -159,4 +167,3 @@ namespace HKX2E
         }
     }
 }
-

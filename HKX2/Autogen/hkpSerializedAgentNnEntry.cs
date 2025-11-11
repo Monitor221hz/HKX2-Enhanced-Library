@@ -7,21 +7,23 @@ namespace HKX2E
 {
     // hkpSerializedAgentNnEntry Signatire: 0x49ec7de3 size: 368 flags: FLAGS_NONE
 
-    // bodyA class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // bodyB class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // bodyAId class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // bodyBId class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // useEntityIds class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // bodyA class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // bodyB class: hkpEntity Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // bodyAId class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // bodyBId class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // useEntityIds class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     // agentType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 49 flags: FLAGS_NONE enum: SerializedAgentType
-    // atom class: hkpSimpleContactConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // propertiesStream class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // contactPoints class: hkContactPoint Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // cpIdMgr class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // nnEntryData class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 160 offset: 160 flags: FLAGS_NONE enum: 
-    // trackInfo class: hkpSerializedTrack1nInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 320 flags: FLAGS_NONE enum: 
-    // endianCheckBuffer class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 4 offset: 352 flags: FLAGS_NONE enum: 
-    // version class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 356 flags: FLAGS_NONE enum: 
-    public partial class hkpSerializedAgentNnEntry : hkReferencedObject, IEquatable<hkpSerializedAgentNnEntry?>
+    // atom class: hkpSimpleContactConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // propertiesStream class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // contactPoints class: hkContactPoint Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // cpIdMgr class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // nnEntryData class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 160 offset: 160 flags: FLAGS_NONE enum:
+    // trackInfo class: hkpSerializedTrack1nInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 320 flags: FLAGS_NONE enum:
+    // endianCheckBuffer class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 4 offset: 352 flags: FLAGS_NONE enum:
+    // version class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 356 flags: FLAGS_NONE enum:
+    public partial class hkpSerializedAgentNnEntry
+        : hkReferencedObject,
+            IEquatable<hkpSerializedAgentNnEntry?>
     {
         public hkpEntity? bodyA { set; get; }
         public hkpEntity? bodyB { set; get; }
@@ -127,23 +129,52 @@ namespace HKX2E
 
         public bool Equals(hkpSerializedAgentNnEntry? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((bodyA is null && other.bodyA is null) || (bodyA is not null && other.bodyA is not null && bodyA.Equals((IHavokObject)other.bodyA))) &&
-                   ((bodyB is null && other.bodyB is null) || (bodyB is not null && other.bodyB is not null && bodyB.Equals((IHavokObject)other.bodyB))) &&
-                   bodyAId.Equals(other.bodyAId) &&
-                   bodyBId.Equals(other.bodyBId) &&
-                   useEntityIds.Equals(other.useEntityIds) &&
-                   agentType.Equals(other.agentType) &&
-                   ((atom is null && other.atom is null) || (atom is not null && other.atom is not null && atom.Equals((IHavokObject)other.atom))) &&
-                   propertiesStream.SequenceEqual(other.propertiesStream) &&
-                   contactPoints.SequenceEqual(other.contactPoints) &&
-                   cpIdMgr.SequenceEqual(other.cpIdMgr) &&
-                   nnEntryData.SequenceEqual(other.nnEntryData) &&
-                   ((trackInfo is null && other.trackInfo is null) || (trackInfo is not null && other.trackInfo is not null && trackInfo.Equals((IHavokObject)other.trackInfo))) &&
-                   endianCheckBuffer.SequenceEqual(other.endianCheckBuffer) &&
-                   version.Equals(other.version) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (bodyA is null && other.bodyA is null)
+                    || (
+                        bodyA is not null
+                        && other.bodyA is not null
+                        && bodyA.Equals((IHavokObject)other.bodyA)
+                    )
+                )
+                && (
+                    (bodyB is null && other.bodyB is null)
+                    || (
+                        bodyB is not null
+                        && other.bodyB is not null
+                        && bodyB.Equals((IHavokObject)other.bodyB)
+                    )
+                )
+                && bodyAId.Equals(other.bodyAId)
+                && bodyBId.Equals(other.bodyBId)
+                && useEntityIds.Equals(other.useEntityIds)
+                && agentType.Equals(other.agentType)
+                && (
+                    (atom is null && other.atom is null)
+                    || (
+                        atom is not null
+                        && other.atom is not null
+                        && atom.Equals((IHavokObject)other.atom)
+                    )
+                )
+                && propertiesStream.SequenceEqual(other.propertiesStream)
+                && contactPoints.SequenceEqual(other.contactPoints)
+                && cpIdMgr.SequenceEqual(other.cpIdMgr)
+                && nnEntryData.SequenceEqual(other.nnEntryData)
+                && (
+                    (trackInfo is null && other.trackInfo is null)
+                    || (
+                        trackInfo is not null
+                        && other.trackInfo is not null
+                        && trackInfo.Equals((IHavokObject)other.trackInfo)
+                    )
+                )
+                && endianCheckBuffer.SequenceEqual(other.endianCheckBuffer)
+                && version.Equals(other.version)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -169,4 +200,3 @@ namespace HKX2E
         }
     }
 }
-

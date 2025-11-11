@@ -7,13 +7,15 @@ namespace HKX2E
 {
     // hkpStorageMeshShapeSubpartStorage Signatire: 0xbf27438 size: 112 flags: FLAGS_NONE
 
-    // vertices class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // indices16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // indices32 class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // materialIndices class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // materials class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // materialIndices16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    public partial class hkpStorageMeshShapeSubpartStorage : hkReferencedObject, IEquatable<hkpStorageMeshShapeSubpartStorage?>
+    // vertices class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // indices16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // indices32 class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // materialIndices class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // materials class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // materialIndices16 class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    public partial class hkpStorageMeshShapeSubpartStorage
+        : hkReferencedObject,
+            IEquatable<hkpStorageMeshShapeSubpartStorage?>
     {
         public IList<float> vertices { set; get; } = Array.Empty<float>();
         public IList<ushort> indices16 { set; get; } = Array.Empty<ushort>();
@@ -75,15 +77,16 @@ namespace HKX2E
 
         public bool Equals(hkpStorageMeshShapeSubpartStorage? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   vertices.SequenceEqual(other.vertices) &&
-                   indices16.SequenceEqual(other.indices16) &&
-                   indices32.SequenceEqual(other.indices32) &&
-                   materialIndices.SequenceEqual(other.materialIndices) &&
-                   materials.SequenceEqual(other.materials) &&
-                   materialIndices16.SequenceEqual(other.materialIndices16) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && vertices.SequenceEqual(other.vertices)
+                && indices16.SequenceEqual(other.indices16)
+                && indices32.SequenceEqual(other.indices32)
+                && materialIndices.SequenceEqual(other.materialIndices)
+                && materials.SequenceEqual(other.materials)
+                && materialIndices16.SequenceEqual(other.materialIndices16)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -101,4 +104,3 @@ namespace HKX2E
         }
     }
 }
-

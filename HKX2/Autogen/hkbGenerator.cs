@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkbGenerator Signatire: 0xd68aefc size: 72 flags: FLAGS_NONE
 
-
     public partial class hkbGenerator : hkbNode, IEquatable<hkbGenerator?>
     {
-
-
         public override uint Signature { set; get; } = 0xd68aefc;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkbGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

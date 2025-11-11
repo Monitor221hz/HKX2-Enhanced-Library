@@ -8,4 +8,3 @@ namespace HKX2E
         FLAG_IGNORE_TO_WORLD_FROM_MODEL = 4,
     }
 }
-

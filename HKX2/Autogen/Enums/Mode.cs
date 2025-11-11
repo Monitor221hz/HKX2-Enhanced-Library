@@ -6,4 +6,3 @@ namespace HKX2E
         MODE_PLAY = 1,
     }
 }
-

@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpEntitySmallArraySerializeOverrideType Signatire: 0xee3c2aec size: 16 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // size class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // capacityAndFlags class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum: 
-    public partial class hkpEntitySmallArraySerializeOverrideType : IHavokObject, IEquatable<hkpEntitySmallArraySerializeOverrideType?>
+    // data class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // size class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // capacityAndFlags class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 10 flags: FLAGS_NONE enum:
+    public partial class hkpEntitySmallArraySerializeOverrideType
+        : IHavokObject,
+            IEquatable<hkpEntitySmallArraySerializeOverrideType?>
     {
         private object? data { set; get; }
         public ushort size { set; get; }
@@ -52,10 +54,11 @@ namespace HKX2E
 
         public bool Equals(hkpEntitySmallArraySerializeOverrideType? other)
         {
-            return other is not null &&
-                   size.Equals(other.size) &&
-                   capacityAndFlags.Equals(other.capacityAndFlags) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && size.Equals(other.size)
+                && capacityAndFlags.Equals(other.capacityAndFlags)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -68,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

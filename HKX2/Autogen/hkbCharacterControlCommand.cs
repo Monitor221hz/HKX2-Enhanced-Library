@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkbCharacterControlCommand Signatire: 0x7a195d1d size: 32 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // command class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: CharacterControlCommand
-    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    public partial class hkbCharacterControlCommand : hkReferencedObject, IEquatable<hkbCharacterControlCommand?>
+    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    public partial class hkbCharacterControlCommand
+        : hkReferencedObject,
+            IEquatable<hkbCharacterControlCommand?>
     {
         public ulong characterId { set; get; }
         public byte command { set; get; }
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterControlCommand? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   command.Equals(other.command) &&
-                   padding.Equals(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && command.Equals(other.command)
+                && padding.Equals(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

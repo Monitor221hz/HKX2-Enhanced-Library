@@ -7,9 +7,11 @@ namespace HKX2E
 {
     // hkxSparselyAnimatedBool Signatire: 0x7a894596 size: 48 flags: FLAGS_NONE
 
-    // bools class:  Type.TYPE_ARRAY Type.TYPE_BOOL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // times class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkxSparselyAnimatedBool : hkReferencedObject, IEquatable<hkxSparselyAnimatedBool?>
+    // bools class:  Type.TYPE_ARRAY Type.TYPE_BOOL arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // times class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkxSparselyAnimatedBool
+        : hkReferencedObject,
+            IEquatable<hkxSparselyAnimatedBool?>
     {
         public IList<bool> bools { set; get; } = Array.Empty<bool>();
         public IList<float> times { set; get; } = Array.Empty<float>();
@@ -51,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkxSparselyAnimatedBool? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   bools.SequenceEqual(other.bools) &&
-                   times.SequenceEqual(other.times) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && bools.SequenceEqual(other.bools)
+                && times.SequenceEqual(other.times)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

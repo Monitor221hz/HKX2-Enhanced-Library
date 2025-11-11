@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkbMoveCharacterModifier Signatire: 0x8f7492a0 size: 112 flags: FLAGS_NONE
 
-    // offsetPerSecondMS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // timeSinceLastModify class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbMoveCharacterModifier : hkbModifier, IEquatable<hkbMoveCharacterModifier?>
+    // offsetPerSecondMS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // timeSinceLastModify class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbMoveCharacterModifier
+        : hkbModifier,
+            IEquatable<hkbMoveCharacterModifier?>
     {
         public Vector4 offsetPerSecondMS { set; get; }
         private float timeSinceLastModify { set; get; }
@@ -51,10 +53,11 @@ namespace HKX2E
 
         public bool Equals(hkbMoveCharacterModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   offsetPerSecondMS.Equals(other.offsetPerSecondMS) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && offsetPerSecondMS.Equals(other.offsetPerSecondMS)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

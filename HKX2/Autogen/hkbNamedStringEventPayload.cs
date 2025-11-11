@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbNamedStringEventPayload Signatire: 0x6caa9113 size: 32 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    public partial class hkbNamedStringEventPayload : hkbNamedEventPayload, IEquatable<hkbNamedStringEventPayload?>
+    // data class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    public partial class hkbNamedStringEventPayload
+        : hkbNamedEventPayload,
+            IEquatable<hkbNamedStringEventPayload?>
     {
         public string data { set; get; } = "";
 
@@ -43,10 +45,16 @@ namespace HKX2E
 
         public bool Equals(hkbNamedStringEventPayload? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (data is null && other.data is null || data == other.data || data is null && other.data == "" || data == "" && other.data is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    data is null && other.data is null
+                    || data == other.data
+                    || data is null && other.data == ""
+                    || data == "" && other.data is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

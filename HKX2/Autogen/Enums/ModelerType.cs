@@ -6,4 +6,3 @@ namespace HKX2E
         LOCATOR = 1,
     }
 }
-

@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbBehaviorReferenceGenerator Signatire: 0xfcb5423 size: 88 flags: FLAGS_NONE
 
-    // behaviorName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // behavior class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbBehaviorReferenceGenerator : hkbGenerator, IEquatable<hkbBehaviorReferenceGenerator?>
+    // behaviorName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // behavior class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbBehaviorReferenceGenerator
+        : hkbGenerator,
+            IEquatable<hkbBehaviorReferenceGenerator?>
     {
         public string behaviorName { set; get; } = "";
         private object? behavior { set; get; }
@@ -48,10 +50,16 @@ namespace HKX2E
 
         public bool Equals(hkbBehaviorReferenceGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (behaviorName is null && other.behaviorName is null || behaviorName == other.behaviorName || behaviorName is null && other.behaviorName == "" || behaviorName == "" && other.behaviorName is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    behaviorName is null && other.behaviorName is null
+                    || behaviorName == other.behaviorName
+                    || behaviorName is null && other.behaviorName == ""
+                    || behaviorName == "" && other.behaviorName is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -64,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -7,30 +7,30 @@ namespace HKX2E
 {
     // BSDirectAtModifier Signatire: 0x19a005c0 size: 224 flags: FLAGS_NONE
 
-    // directAtTarget class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // sourceBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum: 
-    // startBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // endBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum: 
-    // limitHeadingDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // limitPitchDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // offsetHeadingDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // offsetPitchDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // targetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // userInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // directAtCamera class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum: 
-    // directAtCameraX class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // directAtCameraY class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum: 
-    // directAtCameraZ class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // active class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum: 
-    // currentHeadingOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum: 
-    // currentPitchOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // hasTarget class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // directAtTargetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // boneChainIndices class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // directAtTarget class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // sourceBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 82 flags: FLAGS_NONE enum:
+    // startBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // endBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 86 flags: FLAGS_NONE enum:
+    // limitHeadingDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // limitPitchDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // offsetHeadingDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // offsetPitchDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // onGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // offGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // targetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // userInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // directAtCamera class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 132 flags: FLAGS_NONE enum:
+    // directAtCameraX class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // directAtCameraY class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 140 flags: FLAGS_NONE enum:
+    // directAtCameraZ class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // active class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 148 flags: FLAGS_NONE enum:
+    // currentHeadingOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: FLAGS_NONE enum:
+    // currentPitchOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 156 flags: FLAGS_NONE enum:
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pSkeletonMemory class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // hasTarget class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // directAtTargetLocation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // boneChainIndices class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class BSDirectAtModifier : hkbModifier, IEquatable<BSDirectAtModifier?>
     {
         public bool directAtTarget { set; get; }
@@ -188,28 +188,29 @@ namespace HKX2E
 
         public bool Equals(BSDirectAtModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   directAtTarget.Equals(other.directAtTarget) &&
-                   sourceBoneIndex.Equals(other.sourceBoneIndex) &&
-                   startBoneIndex.Equals(other.startBoneIndex) &&
-                   endBoneIndex.Equals(other.endBoneIndex) &&
-                   limitHeadingDegrees.Equals(other.limitHeadingDegrees) &&
-                   limitPitchDegrees.Equals(other.limitPitchDegrees) &&
-                   offsetHeadingDegrees.Equals(other.offsetHeadingDegrees) &&
-                   offsetPitchDegrees.Equals(other.offsetPitchDegrees) &&
-                   onGain.Equals(other.onGain) &&
-                   offGain.Equals(other.offGain) &&
-                   targetLocation.Equals(other.targetLocation) &&
-                   userInfo.Equals(other.userInfo) &&
-                   directAtCamera.Equals(other.directAtCamera) &&
-                   directAtCameraX.Equals(other.directAtCameraX) &&
-                   directAtCameraY.Equals(other.directAtCameraY) &&
-                   directAtCameraZ.Equals(other.directAtCameraZ) &&
-                   active.Equals(other.active) &&
-                   currentHeadingOffset.Equals(other.currentHeadingOffset) &&
-                   currentPitchOffset.Equals(other.currentPitchOffset) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && directAtTarget.Equals(other.directAtTarget)
+                && sourceBoneIndex.Equals(other.sourceBoneIndex)
+                && startBoneIndex.Equals(other.startBoneIndex)
+                && endBoneIndex.Equals(other.endBoneIndex)
+                && limitHeadingDegrees.Equals(other.limitHeadingDegrees)
+                && limitPitchDegrees.Equals(other.limitPitchDegrees)
+                && offsetHeadingDegrees.Equals(other.offsetHeadingDegrees)
+                && offsetPitchDegrees.Equals(other.offsetPitchDegrees)
+                && onGain.Equals(other.onGain)
+                && offGain.Equals(other.offGain)
+                && targetLocation.Equals(other.targetLocation)
+                && userInfo.Equals(other.userInfo)
+                && directAtCamera.Equals(other.directAtCamera)
+                && directAtCameraX.Equals(other.directAtCameraX)
+                && directAtCameraY.Equals(other.directAtCameraY)
+                && directAtCameraZ.Equals(other.directAtCameraZ)
+                && active.Equals(other.active)
+                && currentHeadingOffset.Equals(other.currentHeadingOffset)
+                && currentPitchOffset.Equals(other.currentPitchOffset)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -240,4 +241,3 @@ namespace HKX2E
         }
     }
 }
-

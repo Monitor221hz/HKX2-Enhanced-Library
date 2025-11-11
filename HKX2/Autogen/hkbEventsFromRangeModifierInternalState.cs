@@ -7,8 +7,10 @@ namespace HKX2E
 {
     // hkbEventsFromRangeModifierInternalState Signatire: 0xcc47b48d size: 32 flags: FLAGS_NONE
 
-    // wasActiveInPreviousFrame class:  Type.TYPE_ARRAY Type.TYPE_BOOL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbEventsFromRangeModifierInternalState : hkReferencedObject, IEquatable<hkbEventsFromRangeModifierInternalState?>
+    // wasActiveInPreviousFrame class:  Type.TYPE_ARRAY Type.TYPE_BOOL arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbEventsFromRangeModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbEventsFromRangeModifierInternalState?>
     {
         public IList<bool> wasActiveInPreviousFrame { set; get; } = Array.Empty<bool>();
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbEventsFromRangeModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   wasActiveInPreviousFrame.SequenceEqual(other.wasActiveInPreviousFrame) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && wasActiveInPreviousFrame.SequenceEqual(other.wasActiveInPreviousFrame)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -9,7 +9,7 @@ namespace HKX2E
         public const string OBJECT = "object";
         public const string ENUM = "enum";
         public const string OPERATOR = "operator";
-        public const string EVENT = "event"; 
+        public const string EVENT = "event";
         public const string INT = "int";
         public const string STRING = "string";
     }
@@ -80,12 +80,17 @@ namespace HKX2E
             WriteXml(root, header, stream);
         }
 
-        public static bool ScrambledEquals<T>(this IEnumerable<T?>? list1, IEnumerable<T?>? list2) where T : notnull
+        public static bool ScrambledEquals<T>(this IEnumerable<T?>? list1, IEnumerable<T?>? list2)
+            where T : notnull
         {
-            if (list1 is null && list2 is null) return true;
-            if (list1 is null || list2 is null) return false;
-            if (!list1.Any() && !list2.Any()) return true;
-            if (list1.Count() != list2.Count()) return false;
+            if (list1 is null && list2 is null)
+                return true;
+            if (list1 is null || list2 is null)
+                return false;
+            if (!list1.Any() && !list2.Any())
+                return true;
+            if (list1.Count() != list2.Count())
+                return false;
 
             //var firstNotSecond = list1.Except(list2);
             //var secondNotFirst = list2.Except(list1);

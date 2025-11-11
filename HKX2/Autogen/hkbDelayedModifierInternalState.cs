@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbDelayedModifierInternalState Signatire: 0x85fb0b80 size: 24 flags: FLAGS_NONE
 
-    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    public partial class hkbDelayedModifierInternalState : hkReferencedObject, IEquatable<hkbDelayedModifierInternalState?>
+    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    public partial class hkbDelayedModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbDelayedModifierInternalState?>
     {
         public float secondsElapsed { set; get; }
         public bool isActive { set; get; }
@@ -51,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkbDelayedModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   secondsElapsed.Equals(other.secondsElapsed) &&
-                   isActive.Equals(other.isActive) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && secondsElapsed.Equals(other.secondsElapsed)
+                && isActive.Equals(other.isActive)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

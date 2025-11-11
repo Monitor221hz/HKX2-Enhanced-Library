@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbManualSelectorGeneratorInternalState Signatire: 0x492c6137 size: 24 flags: FLAGS_NONE
 
-    // currentGeneratorIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbManualSelectorGeneratorInternalState : hkReferencedObject, IEquatable<hkbManualSelectorGeneratorInternalState?>
+    // currentGeneratorIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbManualSelectorGeneratorInternalState
+        : hkReferencedObject,
+            IEquatable<hkbManualSelectorGeneratorInternalState?>
     {
         public sbyte currentGeneratorIndex { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbManualSelectorGeneratorInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   currentGeneratorIndex.Equals(other.currentGeneratorIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && currentGeneratorIndex.Equals(other.currentGeneratorIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

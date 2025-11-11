@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkpFastMeshShape Signatire: 0x3d3da311 size: 128 flags: FLAGS_NONE
 
-
     public partial class hkpFastMeshShape : hkpMeshShape, IEquatable<hkpFastMeshShape?>
     {
-
-
         public override uint Signature { set; get; } = 0x3d3da311;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkpFastMeshShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

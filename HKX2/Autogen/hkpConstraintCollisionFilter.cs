@@ -5,11 +5,10 @@ namespace HKX2E
 {
     // hkpConstraintCollisionFilter Signatire: 0xc3b577b1 size: 104 flags: FLAGS_NONE
 
-
-    public partial class hkpConstraintCollisionFilter : hkpPairCollisionFilter, IEquatable<hkpConstraintCollisionFilter?>
+    public partial class hkpConstraintCollisionFilter
+        : hkpPairCollisionFilter,
+            IEquatable<hkpConstraintCollisionFilter?>
     {
-
-
         public override uint Signature { set; get; } = 0xc3b577b1;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +38,8 @@ namespace HKX2E
 
         public bool Equals(hkpConstraintCollisionFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +51,3 @@ namespace HKX2E
         }
     }
 }
-

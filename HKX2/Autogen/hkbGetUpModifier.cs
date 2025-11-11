@@ -6,15 +6,15 @@ namespace HKX2E
 {
     // hkbGetUpModifier Signatire: 0x61cb7ac0 size: 128 flags: FLAGS_NONE
 
-    // groundNormal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // alignWithGroundDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // rootBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // otherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 106 flags: FLAGS_NONE enum: 
-    // anotherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // timeSinceBegin class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // initNextModify class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // groundNormal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // alignWithGroundDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // rootBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // otherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 106 flags: FLAGS_NONE enum:
+    // anotherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // timeSinceBegin class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // initNextModify class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbGetUpModifier : hkbModifier, IEquatable<hkbGetUpModifier?>
     {
         public Vector4 groundNormal { set; get; }
@@ -93,15 +93,16 @@ namespace HKX2E
 
         public bool Equals(hkbGetUpModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   groundNormal.Equals(other.groundNormal) &&
-                   duration.Equals(other.duration) &&
-                   alignWithGroundDuration.Equals(other.alignWithGroundDuration) &&
-                   rootBoneIndex.Equals(other.rootBoneIndex) &&
-                   otherBoneIndex.Equals(other.otherBoneIndex) &&
-                   anotherBoneIndex.Equals(other.anotherBoneIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && groundNormal.Equals(other.groundNormal)
+                && duration.Equals(other.duration)
+                && alignWithGroundDuration.Equals(other.alignWithGroundDuration)
+                && rootBoneIndex.Equals(other.rootBoneIndex)
+                && otherBoneIndex.Equals(other.otherBoneIndex)
+                && anotherBoneIndex.Equals(other.anotherBoneIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -119,4 +120,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkbExpressionCondition Signatire: 0x1c3c1045 size: 32 flags: FLAGS_NONE
 
-    // expression class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // compiledExpressionSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // expression class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // compiledExpressionSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbExpressionCondition : hkbCondition, IEquatable<hkbExpressionCondition?>
     {
         public string expression { set; get; } = "";
@@ -48,10 +48,16 @@ namespace HKX2E
 
         public bool Equals(hkbExpressionCondition? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (expression is null && other.expression is null || expression == other.expression || expression is null && other.expression == "" || expression == "" && other.expression is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    expression is null && other.expression is null
+                    || expression == other.expression
+                    || expression is null && other.expression == ""
+                    || expression == "" && other.expression is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -64,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

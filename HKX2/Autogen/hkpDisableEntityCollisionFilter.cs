@@ -7,8 +7,10 @@ namespace HKX2E
 {
     // hkpDisableEntityCollisionFilter Signatire: 0xfac3351c size: 96 flags: FLAGS_NONE
 
-    // disabledEntities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    public partial class hkpDisableEntityCollisionFilter : hkpCollisionFilter, IEquatable<hkpDisableEntityCollisionFilter?>
+    // disabledEntities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    public partial class hkpDisableEntityCollisionFilter
+        : hkpCollisionFilter,
+            IEquatable<hkpDisableEntityCollisionFilter?>
     {
         public IList<hkpEntity> disabledEntities { set; get; } = Array.Empty<hkpEntity>();
 
@@ -31,7 +33,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            disabledEntities = xd.ReadClassPointerArray<hkpEntity>(this, xe, nameof(disabledEntities));
+            disabledEntities = xd.ReadClassPointerArray<hkpEntity>(
+                this,
+                xe,
+                nameof(disabledEntities)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -47,10 +53,11 @@ namespace HKX2E
 
         public bool Equals(hkpDisableEntityCollisionFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   disabledEntities.SequenceEqual(other.disabledEntities) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && disabledEntities.SequenceEqual(other.disabledEntities)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

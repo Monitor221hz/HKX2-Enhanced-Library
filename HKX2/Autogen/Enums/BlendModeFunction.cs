@@ -7,4 +7,3 @@ namespace HKX2E
         BMF_ONE_MINUS_PERCENT = 2,
     }
 }
-

@@ -17,4 +17,3 @@ namespace HKX2E
         TEX_NOTEXPORTED = 12,
     }
 }
-

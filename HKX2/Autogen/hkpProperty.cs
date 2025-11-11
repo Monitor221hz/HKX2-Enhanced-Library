@@ -5,9 +5,9 @@ namespace HKX2E
 {
     // hkpProperty Signatire: 0x9ce308e9 size: 16 flags: FLAGS_NONE
 
-    // key class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // alignmentPadding class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // value class: hkpPropertyValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // key class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // alignmentPadding class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // value class: hkpPropertyValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkpProperty : IHavokObject, IEquatable<hkpProperty?>
     {
         public uint key { set; get; }
@@ -51,11 +51,19 @@ namespace HKX2E
 
         public bool Equals(hkpProperty? other)
         {
-            return other is not null &&
-                   key.Equals(other.key) &&
-                   alignmentPadding.Equals(other.alignmentPadding) &&
-                   ((value is null && other.value is null) || (value is not null && other.value is not null && value.Equals((IHavokObject)other.value))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && key.Equals(other.key)
+                && alignmentPadding.Equals(other.alignmentPadding)
+                && (
+                    (value is null && other.value is null)
+                    || (
+                        value is not null
+                        && other.value is not null
+                        && value.Equals((IHavokObject)other.value)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +77,3 @@ namespace HKX2E
         }
     }
 }
-

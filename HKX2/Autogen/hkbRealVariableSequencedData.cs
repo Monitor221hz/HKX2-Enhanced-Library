@@ -7,11 +7,14 @@ namespace HKX2E
 {
     // hkbRealVariableSequencedData Signatire: 0xe2862d02 size: 40 flags: FLAGS_NONE
 
-    // samples class: hkbRealVariableSequencedDataSample Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // variableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkbRealVariableSequencedData : hkbSequencedData, IEquatable<hkbRealVariableSequencedData?>
+    // samples class: hkbRealVariableSequencedDataSample Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // variableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkbRealVariableSequencedData
+        : hkbSequencedData,
+            IEquatable<hkbRealVariableSequencedData?>
     {
-        public IList<hkbRealVariableSequencedDataSample> samples { set; get; } = Array.Empty<hkbRealVariableSequencedDataSample>();
+        public IList<hkbRealVariableSequencedDataSample> samples { set; get; } =
+            Array.Empty<hkbRealVariableSequencedDataSample>();
         public int variableIndex { set; get; }
 
         public override uint Signature { set; get; } = 0xe2862d02;
@@ -53,11 +56,12 @@ namespace HKX2E
 
         public bool Equals(hkbRealVariableSequencedData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   samples.SequenceEqual(other.samples) &&
-                   variableIndex.Equals(other.variableIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && samples.SequenceEqual(other.samples)
+                && variableIndex.Equals(other.variableIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +75,3 @@ namespace HKX2E
         }
     }
 }
-

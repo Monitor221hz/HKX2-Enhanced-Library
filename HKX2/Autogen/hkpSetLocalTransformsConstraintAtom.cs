@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpSetLocalTransformsConstraintAtom Signatire: 0x6e2a5198 size: 144 flags: FLAGS_NONE
 
-    // transformA class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // transformB class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    public partial class hkpSetLocalTransformsConstraintAtom : hkpConstraintAtom, IEquatable<hkpSetLocalTransformsConstraintAtom?>
+    // transformA class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // transformB class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    public partial class hkpSetLocalTransformsConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpSetLocalTransformsConstraintAtom?>
     {
         public Matrix4x4 transformA { set; get; }
         public Matrix4x4 transformB { set; get; }
@@ -52,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkpSetLocalTransformsConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   transformA.Equals(other.transformA) &&
-                   transformB.Equals(other.transformB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && transformA.Equals(other.transformA)
+                && transformB.Equals(other.transformB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

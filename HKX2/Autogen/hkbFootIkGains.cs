@@ -5,18 +5,18 @@ namespace HKX2E
 {
     // hkbFootIkGains Signatire: 0xa681b7f0 size: 48 flags: FLAGS_NONE
 
-    // onOffGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // groundAscendingGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // groundDescendingGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // footPlantedGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // footRaisedGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // footUnlockGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // worldFromModelFeedbackGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // errorUpDownBias class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // alignWorldFromModelGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // hipOrientationGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // maxKneeAngleDifference class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // ankleOrientationGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
+    // onOffGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // groundAscendingGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // groundDescendingGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // footPlantedGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // footRaisedGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // footUnlockGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // worldFromModelFeedbackGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // errorUpDownBias class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // alignWorldFromModelGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // hipOrientationGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // maxKneeAngleDifference class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // ankleOrientationGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
     public partial class hkbFootIkGains : IHavokObject, IEquatable<hkbFootIkGains?>
     {
         public float onOffGain { set; get; }
@@ -105,20 +105,21 @@ namespace HKX2E
 
         public bool Equals(hkbFootIkGains? other)
         {
-            return other is not null &&
-                   onOffGain.Equals(other.onOffGain) &&
-                   groundAscendingGain.Equals(other.groundAscendingGain) &&
-                   groundDescendingGain.Equals(other.groundDescendingGain) &&
-                   footPlantedGain.Equals(other.footPlantedGain) &&
-                   footRaisedGain.Equals(other.footRaisedGain) &&
-                   footUnlockGain.Equals(other.footUnlockGain) &&
-                   worldFromModelFeedbackGain.Equals(other.worldFromModelFeedbackGain) &&
-                   errorUpDownBias.Equals(other.errorUpDownBias) &&
-                   alignWorldFromModelGain.Equals(other.alignWorldFromModelGain) &&
-                   hipOrientationGain.Equals(other.hipOrientationGain) &&
-                   maxKneeAngleDifference.Equals(other.maxKneeAngleDifference) &&
-                   ankleOrientationGain.Equals(other.ankleOrientationGain) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && onOffGain.Equals(other.onOffGain)
+                && groundAscendingGain.Equals(other.groundAscendingGain)
+                && groundDescendingGain.Equals(other.groundDescendingGain)
+                && footPlantedGain.Equals(other.footPlantedGain)
+                && footRaisedGain.Equals(other.footRaisedGain)
+                && footUnlockGain.Equals(other.footUnlockGain)
+                && worldFromModelFeedbackGain.Equals(other.worldFromModelFeedbackGain)
+                && errorUpDownBias.Equals(other.errorUpDownBias)
+                && alignWorldFromModelGain.Equals(other.alignWorldFromModelGain)
+                && hipOrientationGain.Equals(other.hipOrientationGain)
+                && maxKneeAngleDifference.Equals(other.maxKneeAngleDifference)
+                && ankleOrientationGain.Equals(other.ankleOrientationGain)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -141,4 +142,3 @@ namespace HKX2E
         }
     }
 }
-

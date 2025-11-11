@@ -8,4 +8,3 @@ namespace HKX2E
         BROADPHASE_BORDER_DO_NOTHING = 3,
     }
 }
-

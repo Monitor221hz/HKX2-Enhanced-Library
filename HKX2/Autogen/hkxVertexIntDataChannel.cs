@@ -7,8 +7,10 @@ namespace HKX2E
 {
     // hkxVertexIntDataChannel Signatire: 0x5a50e673 size: 32 flags: FLAGS_NONE
 
-    // perVertexInts class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkxVertexIntDataChannel : hkReferencedObject, IEquatable<hkxVertexIntDataChannel?>
+    // perVertexInts class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkxVertexIntDataChannel
+        : hkReferencedObject,
+            IEquatable<hkxVertexIntDataChannel?>
     {
         public IList<int> perVertexInts { set; get; } = Array.Empty<int>();
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkxVertexIntDataChannel? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   perVertexInts.SequenceEqual(other.perVertexInts) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && perVertexInts.SequenceEqual(other.perVertexInts)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

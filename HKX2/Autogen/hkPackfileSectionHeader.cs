@@ -6,16 +6,18 @@ namespace HKX2E
 {
     // hkPackfileSectionHeader Signatire: 0xf2a92154 size: 48 flags: FLAGS_NONE
 
-    // sectionTag class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 19 offset: 0 flags: FLAGS_NONE enum: 
-    // nullByte class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 0 offset: 19 flags: FLAGS_NONE enum: 
-    // absoluteDataStart class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // localFixupsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // globalFixupsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // virtualFixupsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // exportsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // importsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // endOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    public partial class hkPackfileSectionHeader : IHavokObject, IEquatable<hkPackfileSectionHeader?>
+    // sectionTag class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 19 offset: 0 flags: FLAGS_NONE enum:
+    // nullByte class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 0 offset: 19 flags: FLAGS_NONE enum:
+    // absoluteDataStart class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // localFixupsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // globalFixupsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // virtualFixupsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // exportsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // importsOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // endOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
+    public partial class hkPackfileSectionHeader
+        : IHavokObject,
+            IEquatable<hkPackfileSectionHeader?>
     {
         public string sectionTag { set; get; } = "";
         public string nullByte { set; get; } = "";
@@ -88,17 +90,18 @@ namespace HKX2E
 
         public bool Equals(hkPackfileSectionHeader? other)
         {
-            return other is not null &&
-                   sectionTag.SequenceEqual(other.sectionTag) &&
-                   nullByte.Equals(other.nullByte) &&
-                   absoluteDataStart.Equals(other.absoluteDataStart) &&
-                   localFixupsOffset.Equals(other.localFixupsOffset) &&
-                   globalFixupsOffset.Equals(other.globalFixupsOffset) &&
-                   virtualFixupsOffset.Equals(other.virtualFixupsOffset) &&
-                   exportsOffset.Equals(other.exportsOffset) &&
-                   importsOffset.Equals(other.importsOffset) &&
-                   endOffset.Equals(other.endOffset) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && sectionTag.SequenceEqual(other.sectionTag)
+                && nullByte.Equals(other.nullByte)
+                && absoluteDataStart.Equals(other.absoluteDataStart)
+                && localFixupsOffset.Equals(other.localFixupsOffset)
+                && globalFixupsOffset.Equals(other.globalFixupsOffset)
+                && virtualFixupsOffset.Equals(other.virtualFixupsOffset)
+                && exportsOffset.Equals(other.exportsOffset)
+                && importsOffset.Equals(other.importsOffset)
+                && endOffset.Equals(other.endOffset)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -118,4 +121,3 @@ namespace HKX2E
         }
     }
 }
-

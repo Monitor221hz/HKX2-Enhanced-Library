@@ -8,12 +8,13 @@ namespace HKX2E
 {
     // hkGeometry Signatire: 0x98dd8bdc size: 32 flags: FLAGS_NONE
 
-    // vertices class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // triangles class: hkGeometryTriangle Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // vertices class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // triangles class: hkGeometryTriangle Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkGeometry : IHavokObject, IEquatable<hkGeometry?>
     {
         public IList<Vector4> vertices { set; get; } = Array.Empty<Vector4>();
-        public IList<hkGeometryTriangle> triangles { set; get; } = Array.Empty<hkGeometryTriangle>();
+        public IList<hkGeometryTriangle> triangles { set; get; } =
+            Array.Empty<hkGeometryTriangle>();
 
         public virtual uint Signature { set; get; } = 0x98dd8bdc;
 
@@ -48,10 +49,11 @@ namespace HKX2E
 
         public bool Equals(hkGeometry? other)
         {
-            return other is not null &&
-                   vertices.SequenceEqual(other.vertices) &&
-                   triangles.SequenceEqual(other.triangles) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && vertices.SequenceEqual(other.vertices)
+                && triangles.SequenceEqual(other.triangles)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -64,4 +66,3 @@ namespace HKX2E
         }
     }
 }
-

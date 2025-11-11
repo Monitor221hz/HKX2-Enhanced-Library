@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkbClipTriggerArray Signatire: 0x59c23a0f size: 32 flags: FLAGS_NONE
 
-    // triggers class: hkbClipTrigger Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // triggers class: hkbClipTrigger Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkbClipTriggerArray : hkReferencedObject, IEquatable<hkbClipTriggerArray?>
     {
         public IList<hkbClipTrigger> triggers { set; get; } = Array.Empty<hkbClipTrigger>();
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkbClipTriggerArray? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   triggers.SequenceEqual(other.triggers) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && triggers.SequenceEqual(other.triggers)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

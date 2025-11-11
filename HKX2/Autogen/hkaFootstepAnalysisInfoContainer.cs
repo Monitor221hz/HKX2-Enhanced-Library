@@ -7,10 +7,13 @@ namespace HKX2E
 {
     // hkaFootstepAnalysisInfoContainer Signatire: 0x1d81207c size: 32 flags: FLAGS_NONE
 
-    // previewInfo class: hkaFootstepAnalysisInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkaFootstepAnalysisInfoContainer : hkReferencedObject, IEquatable<hkaFootstepAnalysisInfoContainer?>
+    // previewInfo class: hkaFootstepAnalysisInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkaFootstepAnalysisInfoContainer
+        : hkReferencedObject,
+            IEquatable<hkaFootstepAnalysisInfoContainer?>
     {
-        public IList<hkaFootstepAnalysisInfo> previewInfo { set; get; } = Array.Empty<hkaFootstepAnalysisInfo>();
+        public IList<hkaFootstepAnalysisInfo> previewInfo { set; get; } =
+            Array.Empty<hkaFootstepAnalysisInfo>();
 
         public override uint Signature { set; get; } = 0x1d81207c;
 
@@ -29,7 +32,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            previewInfo = xd.ReadClassPointerArray<hkaFootstepAnalysisInfo>(this, xe, nameof(previewInfo));
+            previewInfo = xd.ReadClassPointerArray<hkaFootstepAnalysisInfo>(
+                this,
+                xe,
+                nameof(previewInfo)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +52,11 @@ namespace HKX2E
 
         public bool Equals(hkaFootstepAnalysisInfoContainer? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   previewInfo.SequenceEqual(other.previewInfo) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && previewInfo.SequenceEqual(other.previewInfo)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

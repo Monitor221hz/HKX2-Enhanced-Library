@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpBallSocketChainDataConstraintInfo Signatire: 0xc9cbedf2 size: 32 flags: FLAGS_NONE
 
-    // pivotInA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // pivotInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpBallSocketChainDataConstraintInfo : IHavokObject, IEquatable<hkpBallSocketChainDataConstraintInfo?>
+    // pivotInA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // pivotInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpBallSocketChainDataConstraintInfo
+        : IHavokObject,
+            IEquatable<hkpBallSocketChainDataConstraintInfo?>
     {
         public Vector4 pivotInA { set; get; }
         public Vector4 pivotInB { set; get; }
@@ -46,10 +48,11 @@ namespace HKX2E
 
         public bool Equals(hkpBallSocketChainDataConstraintInfo? other)
         {
-            return other is not null &&
-                   pivotInA.Equals(other.pivotInA) &&
-                   pivotInB.Equals(other.pivotInB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && pivotInA.Equals(other.pivotInA)
+                && pivotInB.Equals(other.pivotInB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +65,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkpPairCollisionFilterMapPairFilterKeyOverrideType Signatire: 0x36195969 size: 16 flags: FLAGS_NONE
 
-    // elem class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // numElems class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // hashMod class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkpPairCollisionFilterMapPairFilterKeyOverrideType : IHavokObject, IEquatable<hkpPairCollisionFilterMapPairFilterKeyOverrideType?>
+    // elem class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // numElems class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // hashMod class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkpPairCollisionFilterMapPairFilterKeyOverrideType
+        : IHavokObject,
+            IEquatable<hkpPairCollisionFilterMapPairFilterKeyOverrideType?>
     {
         private object? elem { set; get; }
         public int numElems { set; get; }
@@ -50,10 +52,11 @@ namespace HKX2E
 
         public bool Equals(hkpPairCollisionFilterMapPairFilterKeyOverrideType? other)
         {
-            return other is not null &&
-                   numElems.Equals(other.numElems) &&
-                   hashMod.Equals(other.hashMod) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && numElems.Equals(other.numElems)
+                && hashMod.Equals(other.hashMod)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -66,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,18 +5,20 @@ namespace HKX2E
 {
     // hkbVariableBindingSetBinding Signatire: 0x4d592f72 size: 40 flags: FLAGS_NONE
 
-    // memberPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // memberClass class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // offsetInObjectPlusOne class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // offsetInArrayPlusOne class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // rootVariableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // variableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // bitIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // memberPath class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // memberClass class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // offsetInObjectPlusOne class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // offsetInArrayPlusOne class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // rootVariableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // variableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // bitIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
     // bindingType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 33 flags: FLAGS_NONE enum: BindingType
-    // memberType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // variableType class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 35 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // flags class:  Type.TYPE_FLAGS Type.TYPE_INT8 arrSize: 0 offset: 36 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbVariableBindingSetBinding : IHavokObject, IEquatable<hkbVariableBindingSetBinding?>
+    // memberType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // variableType class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 35 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // flags class:  Type.TYPE_FLAGS Type.TYPE_INT8 arrSize: 0 offset: 36 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbVariableBindingSetBinding
+        : IHavokObject,
+            IEquatable<hkbVariableBindingSetBinding?>
     {
         public string memberPath { set; get; } = "";
         private object? memberClass { set; get; }
@@ -94,12 +96,18 @@ namespace HKX2E
 
         public bool Equals(hkbVariableBindingSetBinding? other)
         {
-            return other is not null &&
-                   (memberPath is null && other.memberPath is null || memberPath == other.memberPath || memberPath is null && other.memberPath == "" || memberPath == "" && other.memberPath is null) &&
-                   variableIndex.Equals(other.variableIndex) &&
-                   bitIndex.Equals(other.bitIndex) &&
-                   bindingType.Equals(other.bindingType) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    memberPath is null && other.memberPath is null
+                    || memberPath == other.memberPath
+                    || memberPath is null && other.memberPath == ""
+                    || memberPath == "" && other.memberPath is null
+                )
+                && variableIndex.Equals(other.variableIndex)
+                && bitIndex.Equals(other.bitIndex)
+                && bindingType.Equals(other.bindingType)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -114,4 +122,3 @@ namespace HKX2E
         }
     }
 }
-

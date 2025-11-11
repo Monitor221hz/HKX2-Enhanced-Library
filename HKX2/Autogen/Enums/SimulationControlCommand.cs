@@ -10,4 +10,3 @@ namespace HKX2E
         COMMAND_DO_NOT_ACCUMULATE_MOTION = 5,
     }
 }
-

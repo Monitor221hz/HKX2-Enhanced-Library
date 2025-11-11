@@ -6,12 +6,12 @@ namespace HKX2E
 {
     // hkAabbUint32 Signatire: 0x11e7c11 size: 32 flags: FLAGS_NONE
 
-    // min class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
-    // expansionMin class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 12 flags: FLAGS_NONE enum: 
-    // expansionShift class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 15 flags: FLAGS_NONE enum: 
-    // max class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 16 flags: FLAGS_NONE enum: 
-    // expansionMax class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 28 flags: FLAGS_NONE enum: 
-    // shapeKeyByte class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 31 flags: FLAGS_NONE enum: 
+    // min class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 0 flags: ALIGN_16|FLAGS_NONE enum:
+    // expansionMin class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 12 flags: FLAGS_NONE enum:
+    // expansionShift class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 15 flags: FLAGS_NONE enum:
+    // max class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 3 offset: 16 flags: FLAGS_NONE enum:
+    // expansionMax class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 3 offset: 28 flags: FLAGS_NONE enum:
+    // shapeKeyByte class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 31 flags: FLAGS_NONE enum:
     public partial class hkAabbUint32 : IHavokObject, IEquatable<hkAabbUint32?>
     {
         public uint[] min = new uint[3];
@@ -70,14 +70,15 @@ namespace HKX2E
 
         public bool Equals(hkAabbUint32? other)
         {
-            return other is not null &&
-                   min.SequenceEqual(other.min) &&
-                   expansionMin.SequenceEqual(other.expansionMin) &&
-                   expansionShift.Equals(other.expansionShift) &&
-                   max.SequenceEqual(other.max) &&
-                   expansionMax.SequenceEqual(other.expansionMax) &&
-                   shapeKeyByte.Equals(other.shapeKeyByte) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && min.SequenceEqual(other.min)
+                && expansionMin.SequenceEqual(other.expansionMin)
+                && expansionShift.Equals(other.expansionShift)
+                && max.SequenceEqual(other.max)
+                && expansionMax.SequenceEqual(other.expansionMax)
+                && shapeKeyByte.Equals(other.shapeKeyByte)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -94,4 +95,3 @@ namespace HKX2E
         }
     }
 }
-

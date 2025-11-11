@@ -5,16 +5,16 @@ namespace HKX2E
 {
     // hkbContext Signatire: 0xe0c4d4a7 size: 80 flags: FLAGS_NONE
 
-    // character class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // behavior class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nodeToIndexMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // sharedEventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // generatorOutputListener class: hkbGeneratorOutputListener Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // eventTriggeredTransition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // attachmentManager class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // animationCache class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // character class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // behavior class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nodeToIndexMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 16 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // sharedEventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // generatorOutputListener class: hkbGeneratorOutputListener Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // eventTriggeredTransition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // attachmentManager class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // animationCache class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbContext : IHavokObject, IEquatable<hkbContext?>
     {
         private object? character { set; get; }
@@ -62,7 +62,11 @@ namespace HKX2E
 
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
-            generatorOutputListener = xd.ReadClassPointer<hkbGeneratorOutputListener>(this, xe, nameof(generatorOutputListener));
+            generatorOutputListener = xd.ReadClassPointer<hkbGeneratorOutputListener>(
+                this,
+                xe,
+                nameof(generatorOutputListener)
+            );
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -86,9 +90,19 @@ namespace HKX2E
 
         public bool Equals(hkbContext? other)
         {
-            return other is not null &&
-                   ((generatorOutputListener is null && other.generatorOutputListener is null) || (generatorOutputListener is not null && other.generatorOutputListener is not null && generatorOutputListener.Equals((IHavokObject)other.generatorOutputListener))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (generatorOutputListener is null && other.generatorOutputListener is null)
+                    || (
+                        generatorOutputListener is not null
+                        && other.generatorOutputListener is not null
+                        && generatorOutputListener.Equals(
+                            (IHavokObject)other.generatorOutputListener
+                        )
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -100,4 +114,3 @@ namespace HKX2E
         }
     }
 }
-

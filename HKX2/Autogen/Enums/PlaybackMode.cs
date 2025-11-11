@@ -9,4 +9,3 @@ namespace HKX2E
         MODE_COUNT = 4,
     }
 }
-

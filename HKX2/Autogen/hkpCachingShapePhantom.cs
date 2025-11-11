@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpCachingShapePhantom Signatire: 0xcf227f58 size: 448 flags: FLAGS_NONE
 
-    // collisionDetails class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkpCachingShapePhantom : hkpShapePhantom, IEquatable<hkpCachingShapePhantom?>
+    // collisionDetails class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkpCachingShapePhantom
+        : hkpShapePhantom,
+            IEquatable<hkpCachingShapePhantom?>
     {
         public IList<object> collisionDetails { set; get; } = Array.Empty<object>();
         private bool orderDirty { set; get; }
@@ -50,9 +52,8 @@ namespace HKX2E
 
         public bool Equals(hkpCachingShapePhantom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -64,4 +65,3 @@ namespace HKX2E
         }
     }
 }
-

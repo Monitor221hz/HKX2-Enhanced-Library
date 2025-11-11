@@ -7,10 +7,13 @@ namespace HKX2E
 {
     // hkpSerializedDisplayMarkerList Signatire: 0x54785c77 size: 32 flags: FLAGS_NONE
 
-    // markers class: hkpSerializedDisplayMarker Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkpSerializedDisplayMarkerList : hkReferencedObject, IEquatable<hkpSerializedDisplayMarkerList?>
+    // markers class: hkpSerializedDisplayMarker Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkpSerializedDisplayMarkerList
+        : hkReferencedObject,
+            IEquatable<hkpSerializedDisplayMarkerList?>
     {
-        public IList<hkpSerializedDisplayMarker> markers { set; get; } = Array.Empty<hkpSerializedDisplayMarker>();
+        public IList<hkpSerializedDisplayMarker> markers { set; get; } =
+            Array.Empty<hkpSerializedDisplayMarker>();
 
         public override uint Signature { set; get; } = 0x54785c77;
 
@@ -29,7 +32,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            markers = xd.ReadClassPointerArray<hkpSerializedDisplayMarker>(this, xe, nameof(markers));
+            markers = xd.ReadClassPointerArray<hkpSerializedDisplayMarker>(
+                this,
+                xe,
+                nameof(markers)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +52,11 @@ namespace HKX2E
 
         public bool Equals(hkpSerializedDisplayMarkerList? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   markers.SequenceEqual(other.markers) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && markers.SequenceEqual(other.markers)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

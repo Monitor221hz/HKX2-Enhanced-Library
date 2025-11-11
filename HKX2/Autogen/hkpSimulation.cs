@@ -5,15 +5,15 @@ namespace HKX2E
 {
     // hkpSimulation Signatire: 0x97aba922 size: 64 flags: FLAGS_NOT_SERIALIZABLE
 
-    // determinismCheckFrameCounter class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // world class: hkpWorld Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
+    // determinismCheckFrameCounter class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // world class: hkpWorld Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
     // lastProcessingStep class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: LastProcessingStep
-    // currentTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // currentPsiTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // physicsDeltaTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    // simulateUntilTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // frameMarkerPsiSnap class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    // previousStepResult class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
+    // currentTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // currentPsiTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // physicsDeltaTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
+    // simulateUntilTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // frameMarkerPsiSnap class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum:
+    // previousStepResult class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
     public partial class hkpSimulation : hkReferencedObject, IEquatable<hkpSimulation?>
     {
         public uint determinismCheckFrameCounter { set; get; }
@@ -67,7 +67,10 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             determinismCheckFrameCounter = xd.ReadUInt32(xe, nameof(determinismCheckFrameCounter));
             world = xd.ReadClassPointer<hkpWorld>(this, xe, nameof(world));
-            lastProcessingStep = xd.ReadFlag<LastProcessingStep, byte>(xe, nameof(lastProcessingStep));
+            lastProcessingStep = xd.ReadFlag<LastProcessingStep, byte>(
+                xe,
+                nameof(lastProcessingStep)
+            );
             currentTime = xd.ReadSingle(xe, nameof(currentTime));
             currentPsiTime = xd.ReadSingle(xe, nameof(currentPsiTime));
             physicsDeltaTime = xd.ReadSingle(xe, nameof(physicsDeltaTime));
@@ -81,7 +84,11 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteNumber(xe, nameof(determinismCheckFrameCounter), determinismCheckFrameCounter);
             xs.WriteClassPointer(xe, nameof(world), world);
-            xs.WriteEnum<LastProcessingStep, byte>(xe, nameof(lastProcessingStep), lastProcessingStep);
+            xs.WriteEnum<LastProcessingStep, byte>(
+                xe,
+                nameof(lastProcessingStep),
+                lastProcessingStep
+            );
             xs.WriteFloat(xe, nameof(currentTime), currentTime);
             xs.WriteFloat(xe, nameof(currentPsiTime), currentPsiTime);
             xs.WriteFloat(xe, nameof(physicsDeltaTime), physicsDeltaTime);
@@ -97,18 +104,26 @@ namespace HKX2E
 
         public bool Equals(hkpSimulation? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   determinismCheckFrameCounter.Equals(other.determinismCheckFrameCounter) &&
-                   ((world is null && other.world is null) || (world is not null && other.world is not null && world.Equals((IHavokObject)other.world))) &&
-                   lastProcessingStep.Equals(other.lastProcessingStep) &&
-                   currentTime.Equals(other.currentTime) &&
-                   currentPsiTime.Equals(other.currentPsiTime) &&
-                   physicsDeltaTime.Equals(other.physicsDeltaTime) &&
-                   simulateUntilTime.Equals(other.simulateUntilTime) &&
-                   frameMarkerPsiSnap.Equals(other.frameMarkerPsiSnap) &&
-                   previousStepResult.Equals(other.previousStepResult) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && determinismCheckFrameCounter.Equals(other.determinismCheckFrameCounter)
+                && (
+                    (world is null && other.world is null)
+                    || (
+                        world is not null
+                        && other.world is not null
+                        && world.Equals((IHavokObject)other.world)
+                    )
+                )
+                && lastProcessingStep.Equals(other.lastProcessingStep)
+                && currentTime.Equals(other.currentTime)
+                && currentPsiTime.Equals(other.currentPsiTime)
+                && physicsDeltaTime.Equals(other.physicsDeltaTime)
+                && simulateUntilTime.Equals(other.simulateUntilTime)
+                && frameMarkerPsiSnap.Equals(other.frameMarkerPsiSnap)
+                && previousStepResult.Equals(other.previousStepResult)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -129,4 +144,3 @@ namespace HKX2E
         }
     }
 }
-

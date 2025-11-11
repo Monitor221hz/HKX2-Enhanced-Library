@@ -8,9 +8,11 @@ namespace HKX2E
 {
     // hkbMirroredSkeletonInfo Signatire: 0xc6c2da4f size: 48 flags: FLAGS_NONE
 
-    // mirrorAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // bonePairMap class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkbMirroredSkeletonInfo : hkReferencedObject, IEquatable<hkbMirroredSkeletonInfo?>
+    // mirrorAxis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // bonePairMap class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkbMirroredSkeletonInfo
+        : hkReferencedObject,
+            IEquatable<hkbMirroredSkeletonInfo?>
     {
         public Vector4 mirrorAxis { set; get; }
         public IList<short> bonePairMap { set; get; } = Array.Empty<short>();
@@ -52,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkbMirroredSkeletonInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   mirrorAxis.Equals(other.mirrorAxis) &&
-                   bonePairMap.SequenceEqual(other.bonePairMap) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && mirrorAxis.Equals(other.mirrorAxis)
+                && bonePairMap.SequenceEqual(other.bonePairMap)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkpStiffSpringConstraintAtom Signatire: 0x6c128096 size: 8 flags: FLAGS_NONE
 
-    // length class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    public partial class hkpStiffSpringConstraintAtom : hkpConstraintAtom, IEquatable<hkpStiffSpringConstraintAtom?>
+    // length class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    public partial class hkpStiffSpringConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpStiffSpringConstraintAtom?>
     {
         public float length { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkpStiffSpringConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   length.Equals(other.length) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && length.Equals(other.length)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

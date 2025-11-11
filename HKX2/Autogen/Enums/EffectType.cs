@@ -11,4 +11,3 @@ namespace HKX2E
         EFFECT_TYPE_MAX_ID = 6,
     }
 }
-

@@ -7,8 +7,10 @@ namespace HKX2E
 {
     // hkxMaterialShaderSet Signatire: 0x154650f3 size: 32 flags: FLAGS_NONE
 
-    // shaders class: hkxMaterialShader Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkxMaterialShaderSet : hkReferencedObject, IEquatable<hkxMaterialShaderSet?>
+    // shaders class: hkxMaterialShader Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkxMaterialShaderSet
+        : hkReferencedObject,
+            IEquatable<hkxMaterialShaderSet?>
     {
         public IList<hkxMaterialShader> shaders { set; get; } = Array.Empty<hkxMaterialShader>();
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkxMaterialShaderSet? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   shaders.SequenceEqual(other.shaders) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && shaders.SequenceEqual(other.shaders)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

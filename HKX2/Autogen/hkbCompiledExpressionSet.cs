@@ -7,12 +7,15 @@ namespace HKX2E
 {
     // hkbCompiledExpressionSet Signatire: 0x3a7d76cc size: 56 flags: FLAGS_NONE
 
-    // rpn class: hkbCompiledExpressionSetToken Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // expressionToRpnIndex class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // numExpressions class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkbCompiledExpressionSet : hkReferencedObject, IEquatable<hkbCompiledExpressionSet?>
+    // rpn class: hkbCompiledExpressionSetToken Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // expressionToRpnIndex class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // numExpressions class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkbCompiledExpressionSet
+        : hkReferencedObject,
+            IEquatable<hkbCompiledExpressionSet?>
     {
-        public IList<hkbCompiledExpressionSetToken> rpn { set; get; } = Array.Empty<hkbCompiledExpressionSetToken>();
+        public IList<hkbCompiledExpressionSetToken> rpn { set; get; } =
+            Array.Empty<hkbCompiledExpressionSetToken>();
         public IList<int> expressionToRpnIndex { set; get; } = Array.Empty<int>();
         public sbyte numExpressions { set; get; }
 
@@ -59,12 +62,13 @@ namespace HKX2E
 
         public bool Equals(hkbCompiledExpressionSet? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rpn.SequenceEqual(other.rpn) &&
-                   expressionToRpnIndex.SequenceEqual(other.expressionToRpnIndex) &&
-                   numExpressions.Equals(other.numExpressions) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rpn.SequenceEqual(other.rpn)
+                && expressionToRpnIndex.SequenceEqual(other.expressionToRpnIndex)
+                && numExpressions.Equals(other.numExpressions)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +83,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // BSEventOnDeactivateModifier Signatire: 0x1062d993 size: 96 flags: FLAGS_NONE
 
-    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    public partial class BSEventOnDeactivateModifier : hkbModifier, IEquatable<BSEventOnDeactivateModifier?>
+    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    public partial class BSEventOnDeactivateModifier
+        : hkbModifier,
+            IEquatable<BSEventOnDeactivateModifier?>
     {
-        public hkbEventProperty _event{ set; get; } = new();
+        public hkbEventProperty _event { set; get; } = new();
 
         public override uint Signature { set; get; } = 0x1062d993;
 
@@ -27,7 +29,7 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            _event= xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
+            _event = xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -43,10 +45,18 @@ namespace HKX2E
 
         public bool Equals(BSEventOnDeactivateModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((_event is null && other._event is null) || (_event is not null && other._event is not null && _event.Equals((IHavokObject)other._event))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (_event is null && other._event is null)
+                    || (
+                        _event is not null
+                        && other._event is not null
+                        && _event.Equals((IHavokObject)other._event)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

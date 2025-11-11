@@ -6,7 +6,9 @@ namespace HKX2E
     // hkModelerNodeTypeAttribute Signatire: 0x338c092f size: 1 flags: FLAGS_NONE
 
     // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 0 flags: FLAGS_NONE enum: ModelerType
-    public partial class hkModelerNodeTypeAttribute : IHavokObject, IEquatable<hkModelerNodeTypeAttribute?>
+    public partial class hkModelerNodeTypeAttribute
+        : IHavokObject,
+            IEquatable<hkModelerNodeTypeAttribute?>
     {
         public sbyte type { set; get; }
 
@@ -39,9 +41,8 @@ namespace HKX2E
 
         public bool Equals(hkModelerNodeTypeAttribute? other)
         {
-            return other is not null &&
-                   type.Equals(other.type) &&
-                   Signature == other.Signature; ;
+            return other is not null && type.Equals(other.type) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +54,3 @@ namespace HKX2E
         }
     }
 }
-

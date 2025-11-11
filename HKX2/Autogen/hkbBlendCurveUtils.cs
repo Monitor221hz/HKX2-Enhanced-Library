@@ -5,7 +5,6 @@ namespace HKX2E
 {
     // hkbBlendCurveUtils Signatire: 0x23041af0 size: 1 flags: FLAGS_NONE
 
-
     public partial class hkbBlendCurveUtils : IHavokObject, IEquatable<hkbBlendCurveUtils?>
     {
         private byte[] unk0 = new byte[1];
@@ -22,15 +21,9 @@ namespace HKX2E
             bw.WriteBytes(unk0);
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
-        }
-
-        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
-        {
-
-        }
+        public virtual void WriteXml(IHavokXmlWriter xs, XElement xe) { }
 
         public override bool Equals(object? obj)
         {
@@ -39,8 +32,8 @@ namespace HKX2E
 
         public bool Equals(hkbBlendCurveUtils? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -52,4 +45,3 @@ namespace HKX2E
         }
     }
 }
-

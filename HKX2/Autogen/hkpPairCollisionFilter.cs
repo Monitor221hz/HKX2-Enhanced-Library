@@ -5,11 +5,14 @@ namespace HKX2E
 {
     // hkpPairCollisionFilter Signatire: 0x4abc140e size: 96 flags: FLAGS_NONE
 
-    // disabledPairs class: hkpPairCollisionFilterMapPairFilterKeyOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // childFilter class: hkpCollisionFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    public partial class hkpPairCollisionFilter : hkpCollisionFilter, IEquatable<hkpPairCollisionFilter?>
+    // disabledPairs class: hkpPairCollisionFilterMapPairFilterKeyOverrideType Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // childFilter class: hkpCollisionFilter Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    public partial class hkpPairCollisionFilter
+        : hkpCollisionFilter,
+            IEquatable<hkpPairCollisionFilter?>
     {
-        public hkpPairCollisionFilterMapPairFilterKeyOverrideType disabledPairs { set; get; } = new();
+        public hkpPairCollisionFilterMapPairFilterKeyOverrideType disabledPairs { set; get; } =
+            new();
         public hkpCollisionFilter? childFilter { set; get; }
 
         public override uint Signature { set; get; } = 0x4abc140e;
@@ -48,10 +51,18 @@ namespace HKX2E
 
         public bool Equals(hkpPairCollisionFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((childFilter is null && other.childFilter is null) || (childFilter is not null && other.childFilter is not null && childFilter.Equals((IHavokObject)other.childFilter))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (childFilter is null && other.childFilter is null)
+                    || (
+                        childFilter is not null
+                        && other.childFilter is not null
+                        && childFilter.Equals((IHavokObject)other.childFilter)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -64,4 +75,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkbComputeRotationFromAxisAngleModifier Signatire: 0x9b3f6936 size: 128 flags: FLAGS_NONE
 
-    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // axis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // angleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    public partial class hkbComputeRotationFromAxisAngleModifier : hkbModifier, IEquatable<hkbComputeRotationFromAxisAngleModifier?>
+    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // axis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // angleDegrees class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    public partial class hkbComputeRotationFromAxisAngleModifier
+        : hkbModifier,
+            IEquatable<hkbComputeRotationFromAxisAngleModifier?>
     {
         public Quaternion rotationOut { set; get; }
         public Vector4 axis { set; get; }
@@ -58,12 +60,13 @@ namespace HKX2E
 
         public bool Equals(hkbComputeRotationFromAxisAngleModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rotationOut.Equals(other.rotationOut) &&
-                   axis.Equals(other.axis) &&
-                   angleDegrees.Equals(other.angleDegrees) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rotationOut.Equals(other.rotationOut)
+                && axis.Equals(other.axis)
+                && angleDegrees.Equals(other.angleDegrees)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

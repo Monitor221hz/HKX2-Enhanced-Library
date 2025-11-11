@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpConvexShape Signatire: 0xf8f74f85 size: 40 flags: FLAGS_NONE
 
-    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
     public partial class hkpConvexShape : hkpSphereRepShape, IEquatable<hkpConvexShape?>
     {
         public float radius { set; get; }
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkpConvexShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   radius.Equals(other.radius) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && radius.Equals(other.radius)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

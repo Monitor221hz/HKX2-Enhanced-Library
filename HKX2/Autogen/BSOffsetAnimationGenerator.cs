@@ -6,18 +6,20 @@ namespace HKX2E
 {
     // BSOffsetAnimationGenerator Signatire: 0xb8571122 size: 176 flags: FLAGS_NONE
 
-    // pDefaultGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum: 
-    // pOffsetClipGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: ALIGN_16|FLAGS_NONE enum: 
-    // fOffsetVariable class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // fOffsetRangeStart class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // fOffsetRangeEnd class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // BoneOffsetA class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // BoneIndexA class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // fCurrentPercentage class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // iCurrentFrame class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bZeroOffset class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bOffsetValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 161 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSOffsetAnimationGenerator : hkbGenerator, IEquatable<BSOffsetAnimationGenerator?>
+    // pDefaultGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum:
+    // pOffsetClipGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: ALIGN_16|FLAGS_NONE enum:
+    // fOffsetVariable class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // fOffsetRangeStart class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // fOffsetRangeEnd class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // BoneOffsetA class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // BoneIndexA class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // fCurrentPercentage class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // iCurrentFrame class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bZeroOffset class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bOffsetValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 161 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSOffsetAnimationGenerator
+        : hkbGenerator,
+            IEquatable<BSOffsetAnimationGenerator?>
     {
         public hkbGenerator? pDefaultGenerator { set; get; }
         public hkbGenerator? pOffsetClipGenerator { set; get; }
@@ -76,8 +78,16 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pDefaultGenerator));
-            pOffsetClipGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pOffsetClipGenerator));
+            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(
+                this,
+                xe,
+                nameof(pDefaultGenerator)
+            );
+            pOffsetClipGenerator = xd.ReadClassPointer<hkbGenerator>(
+                this,
+                xe,
+                nameof(pOffsetClipGenerator)
+            );
             fOffsetVariable = xd.ReadSingle(xe, nameof(fOffsetVariable));
             fOffsetRangeStart = xd.ReadSingle(xe, nameof(fOffsetRangeStart));
             fOffsetRangeEnd = xd.ReadSingle(xe, nameof(fOffsetRangeEnd));
@@ -106,14 +116,29 @@ namespace HKX2E
 
         public bool Equals(BSOffsetAnimationGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((pDefaultGenerator is null && other.pDefaultGenerator is null) || (pDefaultGenerator is not null && other.pDefaultGenerator is not null && pDefaultGenerator.Equals((IHavokObject)other.pDefaultGenerator))) &&
-                   ((pOffsetClipGenerator is null && other.pOffsetClipGenerator is null) || (pOffsetClipGenerator is not null && other.pOffsetClipGenerator is not null && pOffsetClipGenerator.Equals((IHavokObject)other.pOffsetClipGenerator))) &&
-                   fOffsetVariable.Equals(other.fOffsetVariable) &&
-                   fOffsetRangeStart.Equals(other.fOffsetRangeStart) &&
-                   fOffsetRangeEnd.Equals(other.fOffsetRangeEnd) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (pDefaultGenerator is null && other.pDefaultGenerator is null)
+                    || (
+                        pDefaultGenerator is not null
+                        && other.pDefaultGenerator is not null
+                        && pDefaultGenerator.Equals((IHavokObject)other.pDefaultGenerator)
+                    )
+                )
+                && (
+                    (pOffsetClipGenerator is null && other.pOffsetClipGenerator is null)
+                    || (
+                        pOffsetClipGenerator is not null
+                        && other.pOffsetClipGenerator is not null
+                        && pOffsetClipGenerator.Equals((IHavokObject)other.pOffsetClipGenerator)
+                    )
+                )
+                && fOffsetVariable.Equals(other.fOffsetVariable)
+                && fOffsetRangeStart.Equals(other.fOffsetRangeStart)
+                && fOffsetRangeEnd.Equals(other.fOffsetRangeEnd)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -130,4 +155,3 @@ namespace HKX2E
         }
     }
 }
-

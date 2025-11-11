@@ -8,14 +8,16 @@ namespace HKX2E
 {
     // hkbCharacterAddedInfo Signatire: 0x3544e182 size: 128 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // instanceName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // templateName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // fullPathToProject class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // skeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // worldFromModel class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // poseModelSpace class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    public partial class hkbCharacterAddedInfo : hkReferencedObject, IEquatable<hkbCharacterAddedInfo?>
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // instanceName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // templateName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // fullPathToProject class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // skeleton class: hkaSkeleton Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // worldFromModel class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // poseModelSpace class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    public partial class hkbCharacterAddedInfo
+        : hkReferencedObject,
+            IEquatable<hkbCharacterAddedInfo?>
     {
         public ulong characterId { set; get; }
         public string instanceName { set; get; } = "";
@@ -84,16 +86,39 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterAddedInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   (instanceName is null && other.instanceName is null || instanceName == other.instanceName || instanceName is null && other.instanceName == "" || instanceName == "" && other.instanceName is null) &&
-                   (templateName is null && other.templateName is null || templateName == other.templateName || templateName is null && other.templateName == "" || templateName == "" && other.templateName is null) &&
-                   (fullPathToProject is null && other.fullPathToProject is null || fullPathToProject == other.fullPathToProject || fullPathToProject is null && other.fullPathToProject == "" || fullPathToProject == "" && other.fullPathToProject is null) &&
-                   ((skeleton is null && other.skeleton is null) || (skeleton is not null && other.skeleton is not null && skeleton.Equals((IHavokObject)other.skeleton))) &&
-                   worldFromModel.Equals(other.worldFromModel) &&
-                   poseModelSpace.SequenceEqual(other.poseModelSpace) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && (
+                    instanceName is null && other.instanceName is null
+                    || instanceName == other.instanceName
+                    || instanceName is null && other.instanceName == ""
+                    || instanceName == "" && other.instanceName is null
+                )
+                && (
+                    templateName is null && other.templateName is null
+                    || templateName == other.templateName
+                    || templateName is null && other.templateName == ""
+                    || templateName == "" && other.templateName is null
+                )
+                && (
+                    fullPathToProject is null && other.fullPathToProject is null
+                    || fullPathToProject == other.fullPathToProject
+                    || fullPathToProject is null && other.fullPathToProject == ""
+                    || fullPathToProject == "" && other.fullPathToProject is null
+                )
+                && (
+                    (skeleton is null && other.skeleton is null)
+                    || (
+                        skeleton is not null
+                        && other.skeleton is not null
+                        && skeleton.Equals((IHavokObject)other.skeleton)
+                    )
+                )
+                && worldFromModel.Equals(other.worldFromModel)
+                && poseModelSpace.SequenceEqual(other.poseModelSpace)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -112,4 +137,3 @@ namespace HKX2E
         }
     }
 }
-

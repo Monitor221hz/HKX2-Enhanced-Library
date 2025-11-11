@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpRotationalConstraintDataAtoms Signatire: 0xa0c64586 size: 128 flags: FLAGS_NONE
 
-    // rotations class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // ang class: hkpAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    public partial class hkpRotationalConstraintDataAtoms : IHavokObject, IEquatable<hkpRotationalConstraintDataAtoms?>
+    // rotations class: hkpSetLocalRotationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // ang class: hkpAngConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    public partial class hkpRotationalConstraintDataAtoms
+        : IHavokObject,
+            IEquatable<hkpRotationalConstraintDataAtoms?>
     {
         public hkpSetLocalRotationsConstraintAtom rotations { set; get; } = new();
         public hkpAngConstraintAtom ang { set; get; } = new();
@@ -47,10 +49,25 @@ namespace HKX2E
 
         public bool Equals(hkpRotationalConstraintDataAtoms? other)
         {
-            return other is not null &&
-                   ((rotations is null && other.rotations is null) || (rotations is not null && other.rotations is not null && rotations.Equals((IHavokObject)other.rotations))) &&
-                   ((ang is null && other.ang is null) || (ang is not null && other.ang is not null && ang.Equals((IHavokObject)other.ang))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (rotations is null && other.rotations is null)
+                    || (
+                        rotations is not null
+                        && other.rotations is not null
+                        && rotations.Equals((IHavokObject)other.rotations)
+                    )
+                )
+                && (
+                    (ang is null && other.ang is null)
+                    || (
+                        ang is not null
+                        && other.ang is not null
+                        && ang.Equals((IHavokObject)other.ang)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,9 +6,9 @@ namespace HKX2E
 {
     // hkbRegisteredGenerator Signatire: 0x58b1d082 size: 96 flags: FLAGS_NONE
 
-    // generator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // relativePosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // relativeDirection class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // generator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // relativePosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // relativeDirection class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     public partial class hkbRegisteredGenerator : hkbBindable, IEquatable<hkbRegisteredGenerator?>
     {
         public hkbGenerator? generator { set; get; }
@@ -58,12 +58,20 @@ namespace HKX2E
 
         public bool Equals(hkbRegisteredGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((generator is null && other.generator is null) || (generator is not null && other.generator is not null && generator.Equals((IHavokObject)other.generator))) &&
-                   relativePosition.Equals(other.relativePosition) &&
-                   relativeDirection.Equals(other.relativeDirection) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (generator is null && other.generator is null)
+                    || (
+                        generator is not null
+                        && other.generator is not null
+                        && generator.Equals((IHavokObject)other.generator)
+                    )
+                )
+                && relativePosition.Equals(other.relativePosition)
+                && relativeDirection.Equals(other.relativeDirection)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +86,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkpMoppCodeCodeInfo Signatire: 0xd8fdbb08 size: 16 flags: FLAGS_NONE
 
-    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // offset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkpMoppCodeCodeInfo : IHavokObject, IEquatable<hkpMoppCodeCodeInfo?>
     {
         public Vector4 offset { set; get; }
@@ -40,9 +40,8 @@ namespace HKX2E
 
         public bool Equals(hkpMoppCodeCodeInfo? other)
         {
-            return other is not null &&
-                   offset.Equals(other.offset) &&
-                   Signature == other.Signature; ;
+            return other is not null && offset.Equals(other.offset) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -54,4 +53,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbCameraShakeEventPayload Signatire: 0x64136982 size: 24 flags: FLAGS_NONE
 
-    // amplitude class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // halfLife class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    public partial class hkbCameraShakeEventPayload : hkbEventPayload, IEquatable<hkbCameraShakeEventPayload?>
+    // amplitude class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // halfLife class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    public partial class hkbCameraShakeEventPayload
+        : hkbEventPayload,
+            IEquatable<hkbCameraShakeEventPayload?>
     {
         public float amplitude { set; get; }
         public float halfLife { set; get; }
@@ -49,11 +51,12 @@ namespace HKX2E
 
         public bool Equals(hkbCameraShakeEventPayload? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   amplitude.Equals(other.amplitude) &&
-                   halfLife.Equals(other.halfLife) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && amplitude.Equals(other.amplitude)
+                && halfLife.Equals(other.halfLife)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,13 +5,13 @@ namespace HKX2E
 {
     // hkbEventRangeData Signatire: 0x6cb92c76 size: 32 flags: FLAGS_NONE
 
-    // upperBound class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // upperBound class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // eventclass: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     // eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: EventRangeMode
     public partial class hkbEventRangeData : IHavokObject, IEquatable<hkbEventRangeData?>
     {
         public float upperBound { set; get; }
-        public hkbEventProperty _event{ set; get; } = new();
+        public hkbEventProperty _event { set; get; } = new();
         public sbyte eventMode { set; get; }
 
         public virtual uint Signature { set; get; } = 0x6cb92c76;
@@ -37,7 +37,7 @@ namespace HKX2E
         public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             upperBound = xd.ReadSingle(xe, nameof(upperBound));
-            _event= xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
+            _event = xd.ReadClass<hkbEventProperty>(xe, LITERAL.EVENT);
             eventMode = xd.ReadFlag<EventRangeMode, sbyte>(xe, nameof(eventMode));
         }
 
@@ -55,11 +55,19 @@ namespace HKX2E
 
         public bool Equals(hkbEventRangeData? other)
         {
-            return other is not null &&
-                   upperBound.Equals(other.upperBound) &&
-                   ((_event is null && other._event is null) || (_event is not null && other._event is not null && _event.Equals((IHavokObject)other._event))) &&
-                   eventMode.Equals(other.eventMode) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && upperBound.Equals(other.upperBound)
+                && (
+                    (_event is null && other._event is null)
+                    || (
+                        _event is not null
+                        && other._event is not null
+                        && _event.Equals((IHavokObject)other._event)
+                    )
+                )
+                && eventMode.Equals(other.eventMode)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -73,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

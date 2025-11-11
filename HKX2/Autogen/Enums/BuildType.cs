@@ -7,4 +7,3 @@ namespace HKX2E
         BUILD_NOT_SET = 2,
     }
 }
-

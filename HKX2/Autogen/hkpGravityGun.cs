@@ -7,14 +7,14 @@ namespace HKX2E
 {
     // hkpGravityGun Signatire: 0x5e2754cd size: 128 flags: FLAGS_NONE
 
-    // grabbedBodies class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // maxNumObjectsPicked class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // maxMassOfObjectPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // maxDistOfObjectPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // impulseAppliedWhenObjectNotPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // throwVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // capturedObjectPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // capturedObjectsOffset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // grabbedBodies class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // maxNumObjectsPicked class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // maxMassOfObjectPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    // maxDistOfObjectPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // impulseAppliedWhenObjectNotPicked class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // throwVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // capturedObjectPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // capturedObjectsOffset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
     public partial class hkpGravityGun : hkpFirstPersonGun, IEquatable<hkpGravityGun?>
     {
         public IList<object> grabbedBodies { set; get; } = Array.Empty<object>();
@@ -62,7 +62,10 @@ namespace HKX2E
             maxNumObjectsPicked = xd.ReadInt32(xe, nameof(maxNumObjectsPicked));
             maxMassOfObjectPicked = xd.ReadSingle(xe, nameof(maxMassOfObjectPicked));
             maxDistOfObjectPicked = xd.ReadSingle(xe, nameof(maxDistOfObjectPicked));
-            impulseAppliedWhenObjectNotPicked = xd.ReadSingle(xe, nameof(impulseAppliedWhenObjectNotPicked));
+            impulseAppliedWhenObjectNotPicked = xd.ReadSingle(
+                xe,
+                nameof(impulseAppliedWhenObjectNotPicked)
+            );
             throwVelocity = xd.ReadSingle(xe, nameof(throwVelocity));
             capturedObjectPosition = xd.ReadVector4(xe, nameof(capturedObjectPosition));
             capturedObjectsOffset = xd.ReadVector4(xe, nameof(capturedObjectsOffset));
@@ -75,7 +78,11 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(maxNumObjectsPicked), maxNumObjectsPicked);
             xs.WriteFloat(xe, nameof(maxMassOfObjectPicked), maxMassOfObjectPicked);
             xs.WriteFloat(xe, nameof(maxDistOfObjectPicked), maxDistOfObjectPicked);
-            xs.WriteFloat(xe, nameof(impulseAppliedWhenObjectNotPicked), impulseAppliedWhenObjectNotPicked);
+            xs.WriteFloat(
+                xe,
+                nameof(impulseAppliedWhenObjectNotPicked),
+                impulseAppliedWhenObjectNotPicked
+            );
             xs.WriteFloat(xe, nameof(throwVelocity), throwVelocity);
             xs.WriteVector4(xe, nameof(capturedObjectPosition), capturedObjectPosition);
             xs.WriteVector4(xe, nameof(capturedObjectsOffset), capturedObjectsOffset);
@@ -88,16 +95,17 @@ namespace HKX2E
 
         public bool Equals(hkpGravityGun? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   maxNumObjectsPicked.Equals(other.maxNumObjectsPicked) &&
-                   maxMassOfObjectPicked.Equals(other.maxMassOfObjectPicked) &&
-                   maxDistOfObjectPicked.Equals(other.maxDistOfObjectPicked) &&
-                   impulseAppliedWhenObjectNotPicked.Equals(other.impulseAppliedWhenObjectNotPicked) &&
-                   throwVelocity.Equals(other.throwVelocity) &&
-                   capturedObjectPosition.Equals(other.capturedObjectPosition) &&
-                   capturedObjectsOffset.Equals(other.capturedObjectsOffset) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && maxNumObjectsPicked.Equals(other.maxNumObjectsPicked)
+                && maxMassOfObjectPicked.Equals(other.maxMassOfObjectPicked)
+                && maxDistOfObjectPicked.Equals(other.maxDistOfObjectPicked)
+                && impulseAppliedWhenObjectNotPicked.Equals(other.impulseAppliedWhenObjectNotPicked)
+                && throwVelocity.Equals(other.throwVelocity)
+                && capturedObjectPosition.Equals(other.capturedObjectPosition)
+                && capturedObjectsOffset.Equals(other.capturedObjectsOffset)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -116,4 +124,3 @@ namespace HKX2E
         }
     }
 }
-

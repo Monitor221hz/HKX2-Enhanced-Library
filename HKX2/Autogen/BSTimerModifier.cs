@@ -5,10 +5,10 @@ namespace HKX2E
 {
     // BSTimerModifier Signatire: 0x531f3292 size: 112 flags: FLAGS_NONE
 
-    // alarmTimeSeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // alarmEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // resetAlarm class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // alarmTimeSeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // alarmEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // resetAlarm class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class BSTimerModifier : hkbModifier, IEquatable<BSTimerModifier?>
     {
         public float alarmTimeSeconds { set; get; }
@@ -64,12 +64,20 @@ namespace HKX2E
 
         public bool Equals(BSTimerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   alarmTimeSeconds.Equals(other.alarmTimeSeconds) &&
-                   ((alarmEvent is null && other.alarmEvent is null) || (alarmEvent is not null && other.alarmEvent is not null && alarmEvent.Equals((IHavokObject)other.alarmEvent))) &&
-                   resetAlarm.Equals(other.resetAlarm) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && alarmTimeSeconds.Equals(other.alarmTimeSeconds)
+                && (
+                    (alarmEvent is null && other.alarmEvent is null)
+                    || (
+                        alarmEvent is not null
+                        && other.alarmEvent is not null
+                        && alarmEvent.Equals((IHavokObject)other.alarmEvent)
+                    )
+                )
+                && resetAlarm.Equals(other.resetAlarm)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -84,4 +92,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -7,16 +7,19 @@ namespace HKX2E
 {
     // hkbBehaviorGraphInternalStateInfo Signatire: 0x645f898b size: 80 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // internalState class: hkbBehaviorGraphInternalState Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // auxiliaryNodeInfo class: hkbAuxiliaryNodeInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // activeEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // activeVariableIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkbBehaviorGraphInternalStateInfo : hkReferencedObject, IEquatable<hkbBehaviorGraphInternalStateInfo?>
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // internalState class: hkbBehaviorGraphInternalState Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // auxiliaryNodeInfo class: hkbAuxiliaryNodeInfo Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // activeEventIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // activeVariableIds class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkbBehaviorGraphInternalStateInfo
+        : hkReferencedObject,
+            IEquatable<hkbBehaviorGraphInternalStateInfo?>
     {
         public ulong characterId { set; get; }
         public hkbBehaviorGraphInternalState? internalState { set; get; }
-        public IList<hkbAuxiliaryNodeInfo> auxiliaryNodeInfo { set; get; } = Array.Empty<hkbAuxiliaryNodeInfo>();
+        public IList<hkbAuxiliaryNodeInfo> auxiliaryNodeInfo { set; get; } =
+            Array.Empty<hkbAuxiliaryNodeInfo>();
         public IList<short> activeEventIds { set; get; } = Array.Empty<short>();
         public IList<short> activeVariableIds { set; get; } = Array.Empty<short>();
 
@@ -46,8 +49,16 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
-            internalState = xd.ReadClassPointer<hkbBehaviorGraphInternalState>(this, xe, nameof(internalState));
-            auxiliaryNodeInfo = xd.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(this, xe, nameof(auxiliaryNodeInfo));
+            internalState = xd.ReadClassPointer<hkbBehaviorGraphInternalState>(
+                this,
+                xe,
+                nameof(internalState)
+            );
+            auxiliaryNodeInfo = xd.ReadClassPointerArray<hkbAuxiliaryNodeInfo>(
+                this,
+                xe,
+                nameof(auxiliaryNodeInfo)
+            );
             activeEventIds = xd.ReadInt16Array(xe, nameof(activeEventIds));
             activeVariableIds = xd.ReadInt16Array(xe, nameof(activeVariableIds));
         }
@@ -69,14 +80,22 @@ namespace HKX2E
 
         public bool Equals(hkbBehaviorGraphInternalStateInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   ((internalState is null && other.internalState is null) || (internalState is not null && other.internalState is not null && internalState.Equals((IHavokObject)other.internalState))) &&
-                   auxiliaryNodeInfo.SequenceEqual(other.auxiliaryNodeInfo) &&
-                   activeEventIds.SequenceEqual(other.activeEventIds) &&
-                   activeVariableIds.SequenceEqual(other.activeVariableIds) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && (
+                    (internalState is null && other.internalState is null)
+                    || (
+                        internalState is not null
+                        && other.internalState is not null
+                        && internalState.Equals((IHavokObject)other.internalState)
+                    )
+                )
+                && auxiliaryNodeInfo.SequenceEqual(other.auxiliaryNodeInfo)
+                && activeEventIds.SequenceEqual(other.activeEventIds)
+                && activeVariableIds.SequenceEqual(other.activeVariableIds)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -93,4 +112,3 @@ namespace HKX2E
         }
     }
 }
-

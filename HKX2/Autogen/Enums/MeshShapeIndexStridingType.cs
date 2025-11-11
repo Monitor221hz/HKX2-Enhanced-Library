@@ -8,4 +8,3 @@ namespace HKX2E
         INDICES_MAX_ID = 3,
     }
 }
-

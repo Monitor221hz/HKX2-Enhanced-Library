@@ -8,14 +8,17 @@ namespace HKX2E
 {
     // hkbFootIkControlsModifier Signatire: 0xe5b6f544 size: 176 flags: FLAGS_NONE
 
-    // controlData class: hkbFootIkControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // legs class: hkbFootIkControlsModifierLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // errorOutTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // alignWithGroundRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    public partial class hkbFootIkControlsModifier : hkbModifier, IEquatable<hkbFootIkControlsModifier?>
+    // controlData class: hkbFootIkControlData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // legs class: hkbFootIkControlsModifierLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // errorOutTranslation class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // alignWithGroundRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    public partial class hkbFootIkControlsModifier
+        : hkbModifier,
+            IEquatable<hkbFootIkControlsModifier?>
     {
         public hkbFootIkControlData controlData { set; get; } = new();
-        public IList<hkbFootIkControlsModifierLeg> legs { set; get; } = Array.Empty<hkbFootIkControlsModifierLeg>();
+        public IList<hkbFootIkControlsModifierLeg> legs { set; get; } =
+            Array.Empty<hkbFootIkControlsModifierLeg>();
         public Vector4 errorOutTranslation { set; get; }
         public Quaternion alignWithGroundRotation { set; get; }
 
@@ -64,13 +67,21 @@ namespace HKX2E
 
         public bool Equals(hkbFootIkControlsModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((controlData is null && other.controlData is null) || (controlData is not null && other.controlData is not null && controlData.Equals((IHavokObject)other.controlData))) &&
-                   legs.SequenceEqual(other.legs) &&
-                   errorOutTranslation.Equals(other.errorOutTranslation) &&
-                   alignWithGroundRotation.Equals(other.alignWithGroundRotation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (controlData is null && other.controlData is null)
+                    || (
+                        controlData is not null
+                        && other.controlData is not null
+                        && controlData.Equals((IHavokObject)other.controlData)
+                    )
+                )
+                && legs.SequenceEqual(other.legs)
+                && errorOutTranslation.Equals(other.errorOutTranslation)
+                && alignWithGroundRotation.Equals(other.alignWithGroundRotation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +97,3 @@ namespace HKX2E
         }
     }
 }
-

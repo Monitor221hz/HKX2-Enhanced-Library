@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkaSplineCompressedAnimationAnimationCompressionParams Signatire: 0xde830789 size: 4 flags: FLAGS_NONE
 
-    // maxFramesPerBlock class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // enableSampleSingleTracks class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    public partial class hkaSplineCompressedAnimationAnimationCompressionParams : IHavokObject, IEquatable<hkaSplineCompressedAnimationAnimationCompressionParams?>
+    // maxFramesPerBlock class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // enableSampleSingleTracks class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    public partial class hkaSplineCompressedAnimationAnimationCompressionParams
+        : IHavokObject,
+            IEquatable<hkaSplineCompressedAnimationAnimationCompressionParams?>
     {
         public ushort maxFramesPerBlock { set; get; }
         public bool enableSampleSingleTracks { set; get; }
@@ -47,10 +49,11 @@ namespace HKX2E
 
         public bool Equals(hkaSplineCompressedAnimationAnimationCompressionParams? other)
         {
-            return other is not null &&
-                   maxFramesPerBlock.Equals(other.maxFramesPerBlock) &&
-                   enableSampleSingleTracks.Equals(other.enableSampleSingleTracks) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && maxFramesPerBlock.Equals(other.maxFramesPerBlock)
+                && enableSampleSingleTracks.Equals(other.enableSampleSingleTracks)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +66,3 @@ namespace HKX2E
         }
     }
 }
-

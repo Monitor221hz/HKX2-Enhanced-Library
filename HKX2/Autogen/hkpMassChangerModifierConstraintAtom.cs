@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpMassChangerModifierConstraintAtom Signatire: 0xb6b28240 size: 80 flags: FLAGS_NONE
 
-    // factorA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // factorB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpMassChangerModifierConstraintAtom : hkpModifierConstraintAtom, IEquatable<hkpMassChangerModifierConstraintAtom?>
+    // factorA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // factorB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpMassChangerModifierConstraintAtom
+        : hkpModifierConstraintAtom,
+            IEquatable<hkpMassChangerModifierConstraintAtom?>
     {
         public Vector4 factorA { set; get; }
         public Vector4 factorB { set; get; }
@@ -50,11 +52,12 @@ namespace HKX2E
 
         public bool Equals(hkpMassChangerModifierConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   factorA.Equals(other.factorA) &&
-                   factorB.Equals(other.factorB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && factorA.Equals(other.factorA)
+                && factorB.Equals(other.factorB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -68,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // BSBoneSwitchGeneratorBoneData Signatire: 0xc1215be6 size: 64 flags: FLAGS_NONE
 
-    // pGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: ALIGN_16|FLAGS_NONE enum: 
-    // spBoneWeight class: hkbBoneWeightArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    public partial class BSBoneSwitchGeneratorBoneData : hkbBindable, IEquatable<BSBoneSwitchGeneratorBoneData?>
+    // pGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: ALIGN_16|FLAGS_NONE enum:
+    // spBoneWeight class: hkbBoneWeightArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    public partial class BSBoneSwitchGeneratorBoneData
+        : hkbBindable,
+            IEquatable<BSBoneSwitchGeneratorBoneData?>
     {
         public hkbGenerator? pGenerator { set; get; }
         public hkbBoneWeightArray? spBoneWeight { set; get; }
@@ -49,11 +51,26 @@ namespace HKX2E
 
         public bool Equals(BSBoneSwitchGeneratorBoneData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((pGenerator is null && other.pGenerator is null) || (pGenerator is not null && other.pGenerator is not null && pGenerator.Equals((IHavokObject)other.pGenerator))) &&
-                   ((spBoneWeight is null && other.spBoneWeight is null) || (spBoneWeight is not null && other.spBoneWeight is not null && spBoneWeight.Equals((IHavokObject)other.spBoneWeight))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (pGenerator is null && other.pGenerator is null)
+                    || (
+                        pGenerator is not null
+                        && other.pGenerator is not null
+                        && pGenerator.Equals((IHavokObject)other.pGenerator)
+                    )
+                )
+                && (
+                    (spBoneWeight is null && other.spBoneWeight is null)
+                    || (
+                        spBoneWeight is not null
+                        && other.spBoneWeight is not null
+                        && spBoneWeight.Equals((IHavokObject)other.spBoneWeight)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -67,4 +84,3 @@ namespace HKX2E
         }
     }
 }
-

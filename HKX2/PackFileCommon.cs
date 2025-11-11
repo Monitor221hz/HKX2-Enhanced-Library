@@ -28,9 +28,7 @@ namespace HKX2E
         public uint Unk4C;
         public int UserTag;
 
-        private HKXHeader()
-        {
-        }
+        private HKXHeader() { }
 
         internal HKXHeader(BinaryReaderEx br)
         {
@@ -52,7 +50,8 @@ namespace HKX2E
             MaxPredicate = br.ReadInt16();
             SectionOffset = br.ReadInt16();
 
-            if (SectionOffset != 16) return;
+            if (SectionOffset != 16)
+                return;
 
             Unk40 = br.ReadInt16();
             Unk42 = br.ReadInt16();
@@ -82,7 +81,8 @@ namespace HKX2E
             bw.WriteInt16(MaxPredicate);
             bw.WriteInt16(SectionOffset);
 
-            if (SectionOffset != 16) return;
+            if (SectionOffset != 16)
+                return;
 
             bw.WriteInt16(Unk40);
             bw.WriteInt16(Unk42);
@@ -116,7 +116,7 @@ namespace HKX2E
                 Unk42 = 0,
                 Unk44 = 0,
                 Unk48 = 0,
-                Unk4C = 0
+                Unk4C = 0,
             };
         }
 
@@ -145,7 +145,7 @@ namespace HKX2E
                 Unk42 = 0,
                 Unk44 = 0,
                 Unk48 = 0,
-                Unk4C = 0
+                Unk4C = 0,
             };
         }
 
@@ -174,20 +174,16 @@ namespace HKX2E
                 Unk42 = 0,
                 Unk44 = 0,
                 Unk48 = 0,
-                Unk4C = 0
+                Unk4C = 0,
             };
         }
     }
 
-    public interface Fixup
-    {
-    }
+    public interface Fixup { }
 
     public class LocalFixup : Fixup
     {
-        public LocalFixup()
-        {
-        }
+        public LocalFixup() { }
 
         internal LocalFixup(BinaryReaderEx br)
         {
@@ -211,8 +207,10 @@ namespace HKX2E
 
         public override bool Equals(object? obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
             return obj.GetType() == GetType() && Equals((LocalFixup)obj);
         }
 
@@ -224,9 +222,7 @@ namespace HKX2E
 
     public class GlobalFixup : Fixup
     {
-        public GlobalFixup()
-        {
-        }
+        public GlobalFixup() { }
 
         internal GlobalFixup(BinaryReaderEx br)
         {
@@ -253,8 +249,10 @@ namespace HKX2E
 
         public override bool Equals(object? obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
             return obj.GetType() == GetType() && Equals((GlobalFixup)obj);
         }
 
@@ -266,9 +264,7 @@ namespace HKX2E
 
     public class VirtualFixup : Fixup
     {
-        internal VirtualFixup()
-        {
-        }
+        internal VirtualFixup() { }
 
         internal VirtualFixup(BinaryReaderEx br)
         {
@@ -295,8 +291,10 @@ namespace HKX2E
 
         public override bool Equals(object? obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
             return obj.GetType() == GetType() && Equals((VirtualFixup)obj);
         }
 
@@ -311,9 +309,7 @@ namespace HKX2E
         public string ClassName;
         public uint Signature;
 
-        internal HKXClassName()
-        {
-        }
+        internal HKXClassName() { }
 
         internal HKXClassName(BinaryReaderEx br)
         {
@@ -335,6 +331,7 @@ namespace HKX2E
     {
         private List<HKXClassName> ClassNames;
         public Dictionary<uint, HKXClassName> OffsetClassNamesMap;
+
         public void ReadWithMetaData(BinaryReaderEx br)
         {
             ClassNames = new List<HKXClassName>();
@@ -358,9 +355,11 @@ namespace HKX2E
                 var className = new HKXClassName(br);
                 ClassNames.Add(className);
                 OffsetClassNamesMap.Add(stringStart, className);
-                if (br.Position == br.Length) break;
+                if (br.Position == br.Length)
+                    break;
             }
         }
+
         public void Read(BinaryReaderEx br)
         {
             ClassNames = new List<HKXClassName>();
@@ -384,7 +383,8 @@ namespace HKX2E
                 var className = new HKXClassName(br);
                 ClassNames.Add(className);
                 OffsetClassNamesMap.Add(stringStart, className);
-                if (br.Position == br.Length) break;
+                if (br.Position == br.Length)
+                    break;
             }
         }
     }
@@ -407,9 +407,7 @@ namespace HKX2E
 
         public string ContentsVersionString;
 
-        internal HKXSection()
-        {
-        }
+        internal HKXSection() { }
 
         internal HKXSection(BinaryReaderEx br, string ContentsVersionString)
         {
@@ -471,7 +469,8 @@ namespace HKX2E
             br.StepOut();
 
             // skyrim se dont have padding?
-            if (ContentsVersionString == "hk_2010.2.0-r1") return;
+            if (ContentsVersionString == "hk_2010.2.0-r1")
+                return;
             br.AssertUInt32(0xFFFFFFFF);
             br.AssertUInt32(0xFFFFFFFF);
             br.AssertUInt32(0xFFFFFFFF);
@@ -491,7 +490,8 @@ namespace HKX2E
             bw.ReserveUInt32("endoffset" + SectionID);
 
             // skyrim se dont have padding?
-            if (ContentsVersionString == "hk_2010.2.0-r1") return;
+            if (ContentsVersionString == "hk_2010.2.0-r1")
+                return;
             bw.WriteUInt32(0xFFFFFFFF);
             bw.WriteUInt32(0xFFFFFFFF);
             bw.WriteUInt32(0xFFFFFFFF);
@@ -503,22 +503,29 @@ namespace HKX2E
             var absoluteOffset = (uint)bw.Position;
             bw.FillUInt32("absoffset" + SectionID, absoluteOffset);
             bw.WriteBytes(SectionData);
-            while (bw.Position % 16 != 0) bw.WriteByte(0xFF); // 16 byte align
+            while (bw.Position % 16 != 0)
+                bw.WriteByte(0xFF); // 16 byte align
 
             // Local fixups
             bw.FillUInt32("locoffset" + SectionID, (uint)bw.Position - absoluteOffset);
-            foreach (var loc in LocalFixups) loc.Write(bw);
-            while (bw.Position % 16 != 0) bw.WriteByte(0xFF); // 16 byte align
+            foreach (var loc in LocalFixups)
+                loc.Write(bw);
+            while (bw.Position % 16 != 0)
+                bw.WriteByte(0xFF); // 16 byte align
 
             // Global fixups
             bw.FillUInt32("globoffset" + SectionID, (uint)bw.Position - absoluteOffset);
-            foreach (var glob in GlobalFixups) glob.Write(bw);
-            while (bw.Position % 16 != 0) bw.WriteByte(0xFF); // 16 byte align
+            foreach (var glob in GlobalFixups)
+                glob.Write(bw);
+            while (bw.Position % 16 != 0)
+                bw.WriteByte(0xFF); // 16 byte align
 
             // Virtual fixups
             bw.FillUInt32("virtoffset" + SectionID, (uint)bw.Position - absoluteOffset);
-            foreach (var virt in VirtualFixups) virt.Write(bw);
-            while (bw.Position % 16 != 0) bw.WriteByte(0xFF); // 16 byte align
+            foreach (var virt in VirtualFixups)
+                virt.Write(bw);
+            while (bw.Position % 16 != 0)
+                bw.WriteByte(0xFF); // 16 byte align
 
             bw.FillUInt32("expoffset" + SectionID, (uint)bw.Position - absoluteOffset);
             bw.FillUInt32("impoffset" + SectionID, (uint)bw.Position - absoluteOffset);

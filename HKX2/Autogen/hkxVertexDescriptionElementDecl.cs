@@ -5,12 +5,14 @@ namespace HKX2E
 {
     // hkxVertexDescriptionElementDecl Signatire: 0x483a429b size: 16 flags: FLAGS_NONE
 
-    // byteOffset class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // byteOffset class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT16 arrSize: 0 offset: 4 flags: FLAGS_NONE enum: DataType
     // usage class:  Type.TYPE_ENUM Type.TYPE_UINT16 arrSize: 0 offset: 6 flags: FLAGS_NONE enum: DataUsage
-    // byteStride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // numElements class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkxVertexDescriptionElementDecl : IHavokObject, IEquatable<hkxVertexDescriptionElementDecl?>
+    // byteStride class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // numElements class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkxVertexDescriptionElementDecl
+        : IHavokObject,
+            IEquatable<hkxVertexDescriptionElementDecl?>
     {
         public uint byteOffset { set; get; }
         public ushort type { set; get; }
@@ -65,13 +67,14 @@ namespace HKX2E
 
         public bool Equals(hkxVertexDescriptionElementDecl? other)
         {
-            return other is not null &&
-                   byteOffset.Equals(other.byteOffset) &&
-                   type.Equals(other.type) &&
-                   usage.Equals(other.usage) &&
-                   byteStride.Equals(other.byteStride) &&
-                   numElements.Equals(other.numElements) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && byteOffset.Equals(other.byteOffset)
+                && type.Equals(other.type)
+                && usage.Equals(other.usage)
+                && byteStride.Equals(other.byteStride)
+                && numElements.Equals(other.numElements)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -87,4 +90,3 @@ namespace HKX2E
         }
     }
 }
-

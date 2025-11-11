@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkbBoneIndexArray Signatire: 0xaa8619 size: 64 flags: FLAGS_NONE
 
-    // boneIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // boneIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkbBoneIndexArray : hkbBindable, IEquatable<hkbBoneIndexArray?>
     {
         public IList<short> boneIndices { set; get; } = Array.Empty<short>();
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkbBoneIndexArray? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   boneIndices.SequenceEqual(other.boneIndices) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && boneIndices.SequenceEqual(other.boneIndices)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

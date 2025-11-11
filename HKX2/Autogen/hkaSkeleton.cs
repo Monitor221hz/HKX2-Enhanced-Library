@@ -8,13 +8,13 @@ namespace HKX2E
 {
     // hkaSkeleton Signatire: 0x366e8220 size: 120 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // parentIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // bones class: hkaBone Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // referencePose class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // referenceFloats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // floatSlots class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // localFrames class: hkaSkeletonLocalFrameOnBone Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // parentIndices class:  Type.TYPE_ARRAY Type.TYPE_INT16 arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // bones class: hkaBone Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // referencePose class:  Type.TYPE_ARRAY Type.TYPE_QSTRANSFORM arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // referenceFloats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // floatSlots class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // localFrames class: hkaSkeletonLocalFrameOnBone Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
     public partial class hkaSkeleton : hkReferencedObject, IEquatable<hkaSkeleton?>
     {
         public string name { set; get; } = "";
@@ -23,7 +23,8 @@ namespace HKX2E
         public IList<Matrix4x4> referencePose { set; get; } = Array.Empty<Matrix4x4>();
         public IList<float> referenceFloats { set; get; } = Array.Empty<float>();
         public IList<string> floatSlots { set; get; } = Array.Empty<string>();
-        public IList<hkaSkeletonLocalFrameOnBone> localFrames { set; get; } = Array.Empty<hkaSkeletonLocalFrameOnBone>();
+        public IList<hkaSkeletonLocalFrameOnBone> localFrames { set; get; } =
+            Array.Empty<hkaSkeletonLocalFrameOnBone>();
 
         public override uint Signature { set; get; } = 0x366e8220;
 
@@ -82,16 +83,22 @@ namespace HKX2E
 
         public bool Equals(hkaSkeleton? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   parentIndices.SequenceEqual(other.parentIndices) &&
-                   bones.SequenceEqual(other.bones) &&
-                   referencePose.SequenceEqual(other.referencePose) &&
-                   referenceFloats.SequenceEqual(other.referenceFloats) &&
-                   floatSlots.SequenceEqual(other.floatSlots) &&
-                   localFrames.SequenceEqual(other.localFrames) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && parentIndices.SequenceEqual(other.parentIndices)
+                && bones.SequenceEqual(other.bones)
+                && referencePose.SequenceEqual(other.referencePose)
+                && referenceFloats.SequenceEqual(other.referenceFloats)
+                && floatSlots.SequenceEqual(other.floatSlots)
+                && localFrames.SequenceEqual(other.localFrames)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -110,4 +117,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkxAttribute Signatire: 0x7375cae3 size: 16 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // value class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // value class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkxAttribute : IHavokObject, IEquatable<hkxAttribute?>
     {
         public string name { set; get; } = "";
@@ -45,10 +45,23 @@ namespace HKX2E
 
         public bool Equals(hkxAttribute? other)
         {
-            return other is not null &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   ((value is null && other.value is null) || (value is not null && other.value is not null && value.Equals((IHavokObject)other.value))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && (
+                    (value is null && other.value is null)
+                    || (
+                        value is not null
+                        && other.value is not null
+                        && value.Equals((IHavokObject)other.value)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +74,3 @@ namespace HKX2E
         }
     }
 }
-

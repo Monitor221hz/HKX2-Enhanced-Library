@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbDetectCloseToGroundModifierInternalState Signatire: 0x7b32d942 size: 24 flags: FLAGS_NONE
 
-    // isCloseToGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbDetectCloseToGroundModifierInternalState : hkReferencedObject, IEquatable<hkbDetectCloseToGroundModifierInternalState?>
+    // isCloseToGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbDetectCloseToGroundModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbDetectCloseToGroundModifierInternalState?>
     {
         public bool isCloseToGround { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbDetectCloseToGroundModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isCloseToGround.Equals(other.isCloseToGround) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isCloseToGround.Equals(other.isCloseToGround)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

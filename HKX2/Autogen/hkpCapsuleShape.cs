@@ -6,8 +6,8 @@ namespace HKX2E
 {
     // hkpCapsuleShape Signatire: 0xdd0b1fd3 size: 80 flags: FLAGS_NONE
 
-    // vertexA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // vertexB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // vertexA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // vertexB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
     public partial class hkpCapsuleShape : hkpConvexShape, IEquatable<hkpCapsuleShape?>
     {
         public Vector4 vertexA { set; get; }
@@ -52,11 +52,12 @@ namespace HKX2E
 
         public bool Equals(hkpCapsuleShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   vertexA.Equals(other.vertexA) &&
-                   vertexB.Equals(other.vertexB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && vertexA.Equals(other.vertexA)
+                && vertexB.Equals(other.vertexB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

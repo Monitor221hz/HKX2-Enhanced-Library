@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkbLookAtModifierInternalState Signatire: 0xa14caba6 size: 48 flags: FLAGS_NONE
 
-    // lookAtLastTargetWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // lookAtWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // isTargetInsideLimitCone class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    public partial class hkbLookAtModifierInternalState : hkReferencedObject, IEquatable<hkbLookAtModifierInternalState?>
+    // lookAtLastTargetWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // lookAtWeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // isTargetInsideLimitCone class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    public partial class hkbLookAtModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbLookAtModifierInternalState?>
     {
         public Vector4 lookAtLastTargetWS { set; get; }
         public float lookAtWeight { set; get; }
@@ -58,12 +60,13 @@ namespace HKX2E
 
         public bool Equals(hkbLookAtModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   lookAtLastTargetWS.Equals(other.lookAtLastTargetWS) &&
-                   lookAtWeight.Equals(other.lookAtWeight) &&
-                   isTargetInsideLimitCone.Equals(other.isTargetInsideLimitCone) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && lookAtLastTargetWS.Equals(other.lookAtLastTargetWS)
+                && lookAtWeight.Equals(other.lookAtWeight)
+                && isTargetInsideLimitCone.Equals(other.isTargetInsideLimitCone)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

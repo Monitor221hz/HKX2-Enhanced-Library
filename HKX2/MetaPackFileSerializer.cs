@@ -9,7 +9,10 @@ namespace HKX2E
 {
     public class MetaPackFileSerializer : PackFileSerializer
     {
-        protected Dictionary<IHavokObject, ulong> idNodeMap = new(ReferenceEqualityComparer.Instance);
+        protected Dictionary<IHavokObject, ulong> idNodeMap = new(
+            ReferenceEqualityComparer.Instance
+        );
+
         public void ShareContext(HavokXmlDeserializerContext context)
         {
             foreach (var kvp in context.ObjectNameMap)
@@ -35,7 +38,9 @@ namespace HKX2E
 
             _localWriteQueues = new List<Queue<Action>>();
             _serializationQueues = new List<Queue<IHavokObject>>();
-            _pendingGlobals = new Dictionary<IHavokObject, List<uint>>(ReferenceEqualityComparer.Instance);
+            _pendingGlobals = new Dictionary<IHavokObject, List<uint>>(
+                ReferenceEqualityComparer.Instance
+            );
             _pendingVirtuals = new HashSet<IHavokObject>(ReferenceEqualityComparer.Instance);
 
             _serializedObjects = new HashSet<IHavokObject>(ReferenceEqualityComparer.Instance);
@@ -43,20 +48,34 @@ namespace HKX2E
             // Memory stream for writing all the class definitions
             var classms = new MemoryStream();
             var classbw = new BinaryWriterEx(
-                _header.Endian == 0, _header.PointerSize == 8, classms);
+                _header.Endian == 0,
+                _header.PointerSize == 8,
+                classms
+            );
 
             // Data memory stream for havok objects
             // debugging
             //var datams = new FileStream(".\\dump.hex", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite | FileShare.Delete, 1, FileOptions.WriteThrough);
             var datams = new MemoryStream();
-            var databw = new BinaryWriterEx(
-                _header.Endian == 0, _header.PointerSize == 8, datams);
+            var databw = new BinaryWriterEx(_header.Endian == 0, _header.PointerSize == 8, datams);
 
             // Populate class names with some stuff havok always has
             var hkClass = new HKXClassName { ClassName = "hkClass", Signature = 0x75585EF6 };
-            var hkClassMember = new HKXClassName { ClassName = "hkClassMember", Signature = 0x5C7EA4C2 };
-            var hkClassEnum = new HKXClassName { ClassName = "hkClassEnum", Signature = 0x8A3609CF };
-            var hkClassEnumItem = new HKXClassName { ClassName = "hkClassEnumItem", Signature = 0xCE6F8A6C };
+            var hkClassMember = new HKXClassName
+            {
+                ClassName = "hkClassMember",
+                Signature = 0x5C7EA4C2,
+            };
+            var hkClassEnum = new HKXClassName
+            {
+                ClassName = "hkClassEnum",
+                Signature = 0x8A3609CF,
+            };
+            var hkClassEnumItem = new HKXClassName
+            {
+                ClassName = "hkClassEnumItem",
+                Signature = 0xCE6F8A6C,
+            };
 
             hkClass.Write(classbw);
             hkClassMember.Write(classbw);
@@ -78,12 +97,14 @@ namespace HKX2E
                     sq = _serializationQueues.Last();
                 }
 
-                if (sq == null || sq.Count == 0) continue;
+                if (sq == null || sq.Count == 0)
+                    continue;
 
                 var obj = sq.Dequeue();
                 _currentSerializationQueue = _serializationQueues.Count - 1;
 
-                if (_serializedObjects.Contains(obj)) continue;
+                if (_serializedObjects.Contains(obj))
+                    continue;
 
                 // See if we need to add virtual bookkeeping
                 if (_pendingVirtuals.Contains(obj))
@@ -96,7 +117,7 @@ namespace HKX2E
                         var cname = new HKXClassName
                         {
                             ClassName = classname,
-                            Signature = obj.Signature
+                            Signature = obj.Signature,
                         };
                         var offset = (uint)classbw.Position;
                         cname.Write(classbw);
@@ -108,7 +129,7 @@ namespace HKX2E
                     {
                         Src = (uint)databw.Position,
                         DstSectionIndex = 0,
-                        Dst = _virtualLookup[classname]
+                        Dst = _virtualLookup[classname],
                     };
                     _virtualFixups.Add(vfu);
 
@@ -122,7 +143,7 @@ namespace HKX2E
                             {
                                 Src = src,
                                 DstSectionIndex = 2,
-                                Dst = (uint)databw.Position
+                                Dst = (uint)databw.Position,
                             };
                             _globalFixups.Add(gfu);
                         }
@@ -133,13 +154,13 @@ namespace HKX2E
                     // Add global lookup
                     _globalLookup.Add(obj, (uint)databw.Position);
                 }
-                if (idNodeMap.TryGetValue(obj, out var id)) 
-                {  
-                    obj.WriteMetaData(this, databw, id); 
+                if (idNodeMap.TryGetValue(obj, out var id))
+                {
+                    obj.WriteMetaData(this, databw, id);
                 }
-                else 
-                { 
-                    obj.WriteMetaData(this, databw, 0); 
+                else
+                {
+                    obj.WriteMetaData(this, databw, 0);
                 }
                 obj.Write(this, databw);
                 _serializedObjects.Add(obj);
@@ -151,7 +172,8 @@ namespace HKX2E
                     var q = _localWriteQueues.Last();
                     while (q != null && q.Count == 0 && _localWriteQueues.Count > 1)
                     {
-                        if (_localWriteQueues.Count > 1) _localWriteQueues.RemoveAt(_localWriteQueues.Count - 1);
+                        if (_localWriteQueues.Count > 1)
+                            _localWriteQueues.RemoveAt(_localWriteQueues.Count - 1);
 
                         q = _localWriteQueues.Last();
 
@@ -178,9 +200,15 @@ namespace HKX2E
                 SectionID = 0,
                 SectionTag = "__classnames__",
                 SectionData = classms.ToArray(),
-                ContentsVersionString = _header.ContentsVersionString
+                ContentsVersionString = _header.ContentsVersionString,
             };
-            var types = new HKXSection { SectionID = 1, SectionTag = "__types__", SectionData = Array.Empty<byte>(), ContentsVersionString = _header.ContentsVersionString };
+            var types = new HKXSection
+            {
+                SectionID = 1,
+                SectionTag = "__types__",
+                SectionData = Array.Empty<byte>(),
+                ContentsVersionString = _header.ContentsVersionString,
+            };
             // debugging
             //var ms = new MemoryStream();
             //var tempPosition = datams.Position;
@@ -196,7 +224,7 @@ namespace HKX2E
                 LocalFixups = _localFixups.OrderBy(x => x.Dst).ToList(),
                 GlobalFixups = _globalFixups.OrderBy(x => x.Src).ToList(),
                 VirtualFixups = _virtualFixups,
-                ContentsVersionString = _header.ContentsVersionString
+                ContentsVersionString = _header.ContentsVersionString,
             };
 
             classNames.WriteHeader(bw);

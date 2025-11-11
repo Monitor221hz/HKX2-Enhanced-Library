@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkaSkeletonLocalFrameOnBone Signatire: 0x52e8043 size: 16 flags: FLAGS_NONE
 
-    // localFrame class: hkLocalFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // boneIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkaSkeletonLocalFrameOnBone : IHavokObject, IEquatable<hkaSkeletonLocalFrameOnBone?>
+    // localFrame class: hkLocalFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // boneIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkaSkeletonLocalFrameOnBone
+        : IHavokObject,
+            IEquatable<hkaSkeletonLocalFrameOnBone?>
     {
         public hkLocalFrame? localFrame { set; get; }
         public int boneIndex { set; get; }
@@ -47,10 +49,18 @@ namespace HKX2E
 
         public bool Equals(hkaSkeletonLocalFrameOnBone? other)
         {
-            return other is not null &&
-                   ((localFrame is null && other.localFrame is null) || (localFrame is not null && other.localFrame is not null && localFrame.Equals((IHavokObject)other.localFrame))) &&
-                   boneIndex.Equals(other.boneIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (localFrame is null && other.localFrame is null)
+                    || (
+                        localFrame is not null
+                        && other.localFrame is not null
+                        && localFrame.Equals((IHavokObject)other.localFrame)
+                    )
+                )
+                && boneIndex.Equals(other.boneIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

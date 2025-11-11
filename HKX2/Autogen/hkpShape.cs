@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkpShape Signatire: 0x666490a1 size: 32 flags: FLAGS_NONE
 
-    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // type class:  Type.TYPE_ENUM Type.TYPE_UINT32 arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // type class:  Type.TYPE_ENUM Type.TYPE_UINT32 arrSize: 0 offset: 24 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpShape : hkReferencedObject, IEquatable<hkpShape?>
     {
         public ulong userData { set; get; }
@@ -50,10 +50,11 @@ namespace HKX2E
 
         public bool Equals(hkpShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   userData.Equals(other.userData) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && userData.Equals(other.userData)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -66,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

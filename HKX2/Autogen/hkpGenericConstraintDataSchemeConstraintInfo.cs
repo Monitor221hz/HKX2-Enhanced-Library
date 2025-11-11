@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkpGenericConstraintDataSchemeConstraintInfo Signatire: 0xd6421f19 size: 16 flags: FLAGS_NONE
 
-    // maxSizeOfSchema class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // sizeOfSchemas class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // numSolverResults class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // numSolverElemTemps class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkpGenericConstraintDataSchemeConstraintInfo : IHavokObject, IEquatable<hkpGenericConstraintDataSchemeConstraintInfo?>
+    // maxSizeOfSchema class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // sizeOfSchemas class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // numSolverResults class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // numSolverElemTemps class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkpGenericConstraintDataSchemeConstraintInfo
+        : IHavokObject,
+            IEquatable<hkpGenericConstraintDataSchemeConstraintInfo?>
     {
         public int maxSizeOfSchema { set; get; }
         public int sizeOfSchemas { set; get; }
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkpGenericConstraintDataSchemeConstraintInfo? other)
         {
-            return other is not null &&
-                   maxSizeOfSchema.Equals(other.maxSizeOfSchema) &&
-                   sizeOfSchemas.Equals(other.sizeOfSchemas) &&
-                   numSolverResults.Equals(other.numSolverResults) &&
-                   numSolverElemTemps.Equals(other.numSolverElemTemps) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && maxSizeOfSchema.Equals(other.maxSizeOfSchema)
+                && sizeOfSchemas.Equals(other.sizeOfSchemas)
+                && numSolverResults.Equals(other.numSolverResults)
+                && numSolverElemTemps.Equals(other.numSolverElemTemps)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

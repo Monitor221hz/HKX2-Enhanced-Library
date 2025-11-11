@@ -5,12 +5,12 @@ namespace HKX2E
 {
     // hkbExpressionData Signatire: 0x6740042a size: 24 flags: FLAGS_NONE
 
-    // expression class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // assignmentVariableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // assignmentEventIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
+    // expression class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // assignmentVariableIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // assignmentEventIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
     // eventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: ExpressionEventMode
-    // raisedEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 17 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // wasTrueInPreviousFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 18 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // raisedEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 17 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // wasTrueInPreviousFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 18 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbExpressionData : IHavokObject, IEquatable<hkbExpressionData?>
     {
         public string expression { set; get; } = "";
@@ -69,12 +69,18 @@ namespace HKX2E
 
         public bool Equals(hkbExpressionData? other)
         {
-            return other is not null &&
-                   (expression is null && other.expression is null || expression == other.expression || expression is null && other.expression == "" || expression == "" && other.expression is null) &&
-                   assignmentVariableIndex.Equals(other.assignmentVariableIndex) &&
-                   assignmentEventIndex.Equals(other.assignmentEventIndex) &&
-                   eventMode.Equals(other.eventMode) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    expression is null && other.expression is null
+                    || expression == other.expression
+                    || expression is null && other.expression == ""
+                    || expression == "" && other.expression is null
+                )
+                && assignmentVariableIndex.Equals(other.assignmentVariableIndex)
+                && assignmentEventIndex.Equals(other.assignmentEventIndex)
+                && eventMode.Equals(other.eventMode)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -89,4 +95,3 @@ namespace HKX2E
         }
     }
 }
-

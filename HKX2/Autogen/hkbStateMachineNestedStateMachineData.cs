@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbStateMachineNestedStateMachineData Signatire: 0x7358f5da size: 16 flags: FLAGS_NONE
 
-    // nestedStateMachine class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbStateMachineNestedStateMachineData : IHavokObject, IEquatable<hkbStateMachineNestedStateMachineData?>
+    // nestedStateMachine class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 0 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 8 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbStateMachineNestedStateMachineData
+        : IHavokObject,
+            IEquatable<hkbStateMachineNestedStateMachineData?>
     {
         private object? nestedStateMachine { set; get; }
         private object? eventIdMap { set; get; }
@@ -26,10 +28,7 @@ namespace HKX2E
             s.WriteVoidPointer(bw);
         }
 
-        public virtual void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
-
-        }
+        public virtual void ReadXml(IHavokXmlReader xd, XElement xe) { }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
         {
@@ -44,8 +43,8 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineNestedStateMachineData? other)
         {
-            return other is not null &&
-                   Signature == other.Signature; ;
+            return other is not null && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -57,4 +56,3 @@ namespace HKX2E
         }
     }
 }
-

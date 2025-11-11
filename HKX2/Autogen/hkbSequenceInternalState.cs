@@ -7,13 +7,15 @@ namespace HKX2E
 {
     // hkbSequenceInternalState Signatire: 0x419b9a05 size: 88 flags: FLAGS_NONE
 
-    // nextSampleEvents class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // nextSampleReals class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // nextSampleBools class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // nextSampleInts class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    public partial class hkbSequenceInternalState : hkReferencedObject, IEquatable<hkbSequenceInternalState?>
+    // nextSampleEvents class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // nextSampleReals class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // nextSampleBools class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // nextSampleInts class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // isEnabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    public partial class hkbSequenceInternalState
+        : hkReferencedObject,
+            IEquatable<hkbSequenceInternalState?>
     {
         public IList<int> nextSampleEvents { set; get; } = Array.Empty<int>();
         public IList<int> nextSampleReals { set; get; } = Array.Empty<int>();
@@ -77,15 +79,16 @@ namespace HKX2E
 
         public bool Equals(hkbSequenceInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   nextSampleEvents.SequenceEqual(other.nextSampleEvents) &&
-                   nextSampleReals.SequenceEqual(other.nextSampleReals) &&
-                   nextSampleBools.SequenceEqual(other.nextSampleBools) &&
-                   nextSampleInts.SequenceEqual(other.nextSampleInts) &&
-                   time.Equals(other.time) &&
-                   isEnabled.Equals(other.isEnabled) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && nextSampleEvents.SequenceEqual(other.nextSampleEvents)
+                && nextSampleReals.SequenceEqual(other.nextSampleReals)
+                && nextSampleBools.SequenceEqual(other.nextSampleBools)
+                && nextSampleInts.SequenceEqual(other.nextSampleInts)
+                && time.Equals(other.time)
+                && isEnabled.Equals(other.isEnabled)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -103,4 +106,3 @@ namespace HKX2E
         }
     }
 }
-

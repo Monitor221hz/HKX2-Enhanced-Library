@@ -6,13 +6,13 @@ namespace HKX2E
 {
     // hkpTriangleShape Signatire: 0x95ad1a25 size: 112 flags: FLAGS_NONE
 
-    // weldingInfo class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
+    // weldingInfo class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
     // weldingType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 42 flags: FLAGS_NONE enum: WeldingType
-    // isExtruded class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 43 flags: FLAGS_NONE enum: 
-    // vertexA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // vertexB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // vertexC class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // extrusion class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
+    // isExtruded class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 43 flags: FLAGS_NONE enum:
+    // vertexA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // vertexB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // vertexC class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // extrusion class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
     public partial class hkpTriangleShape : hkpConvexShape, IEquatable<hkpTriangleShape?>
     {
         public ushort weldingInfo { set; get; }
@@ -82,16 +82,17 @@ namespace HKX2E
 
         public bool Equals(hkpTriangleShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   weldingInfo.Equals(other.weldingInfo) &&
-                   weldingType.Equals(other.weldingType) &&
-                   isExtruded.Equals(other.isExtruded) &&
-                   vertexA.Equals(other.vertexA) &&
-                   vertexB.Equals(other.vertexB) &&
-                   vertexC.Equals(other.vertexC) &&
-                   extrusion.Equals(other.extrusion) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && weldingInfo.Equals(other.weldingInfo)
+                && weldingType.Equals(other.weldingType)
+                && isExtruded.Equals(other.isExtruded)
+                && vertexA.Equals(other.vertexA)
+                && vertexB.Equals(other.vertexB)
+                && vertexC.Equals(other.vertexC)
+                && extrusion.Equals(other.extrusion)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -110,4 +111,3 @@ namespace HKX2E
         }
     }
 }
-

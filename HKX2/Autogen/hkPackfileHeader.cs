@@ -6,18 +6,18 @@ namespace HKX2E
 {
     // hkPackfileHeader Signatire: 0x79f9ffda size: 64 flags: FLAGS_NONE
 
-    // magic class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 2 offset: 0 flags: FLAGS_NONE enum: 
-    // userTag class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // fileVersion class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // layoutRules class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 4 offset: 16 flags: FLAGS_NONE enum: 
-    // numSections class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // contentsSectionIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // contentsSectionOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // contentsClassNameSectionIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // contentsClassNameSectionOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // contentsVersion class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 16 offset: 40 flags: FLAGS_NONE enum: 
-    // flags class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // pad class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 1 offset: 60 flags: FLAGS_NONE enum: 
+    // magic class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 2 offset: 0 flags: FLAGS_NONE enum:
+    // userTag class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // fileVersion class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // layoutRules class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 4 offset: 16 flags: FLAGS_NONE enum:
+    // numSections class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // contentsSectionIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // contentsSectionOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // contentsClassNameSectionIndex class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // contentsClassNameSectionOffset class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // contentsVersion class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 16 offset: 40 flags: FLAGS_NONE enum:
+    // flags class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // pad class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 1 offset: 60 flags: FLAGS_NONE enum:
     public partial class hkPackfileHeader : IHavokObject, IEquatable<hkPackfileHeader?>
     {
         public int[] magic = new int[2];
@@ -77,7 +77,10 @@ namespace HKX2E
             contentsSectionIndex = xd.ReadInt32(xe, nameof(contentsSectionIndex));
             contentsSectionOffset = xd.ReadInt32(xe, nameof(contentsSectionOffset));
             contentsClassNameSectionIndex = xd.ReadInt32(xe, nameof(contentsClassNameSectionIndex));
-            contentsClassNameSectionOffset = xd.ReadInt32(xe, nameof(contentsClassNameSectionOffset));
+            contentsClassNameSectionOffset = xd.ReadInt32(
+                xe,
+                nameof(contentsClassNameSectionOffset)
+            );
             contentsVersion = xd.ReadString(xe, nameof(contentsVersion));
             flags = xd.ReadInt32(xe, nameof(flags));
             pad = xd.ReadInt32CStyleArray(xe, nameof(pad), 1);
@@ -92,8 +95,16 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(numSections), numSections);
             xs.WriteNumber(xe, nameof(contentsSectionIndex), contentsSectionIndex);
             xs.WriteNumber(xe, nameof(contentsSectionOffset), contentsSectionOffset);
-            xs.WriteNumber(xe, nameof(contentsClassNameSectionIndex), contentsClassNameSectionIndex);
-            xs.WriteNumber(xe, nameof(contentsClassNameSectionOffset), contentsClassNameSectionOffset);
+            xs.WriteNumber(
+                xe,
+                nameof(contentsClassNameSectionIndex),
+                contentsClassNameSectionIndex
+            );
+            xs.WriteNumber(
+                xe,
+                nameof(contentsClassNameSectionOffset),
+                contentsClassNameSectionOffset
+            );
             xs.WriteString(xe, nameof(contentsVersion), contentsVersion);
             xs.WriteNumber(xe, nameof(flags), flags);
             xs.WriteNumberArray(xe, nameof(pad), pad);
@@ -106,20 +117,21 @@ namespace HKX2E
 
         public bool Equals(hkPackfileHeader? other)
         {
-            return other is not null &&
-                   magic.SequenceEqual(other.magic) &&
-                   userTag.Equals(other.userTag) &&
-                   fileVersion.Equals(other.fileVersion) &&
-                   layoutRules.SequenceEqual(other.layoutRules) &&
-                   numSections.Equals(other.numSections) &&
-                   contentsSectionIndex.Equals(other.contentsSectionIndex) &&
-                   contentsSectionOffset.Equals(other.contentsSectionOffset) &&
-                   contentsClassNameSectionIndex.Equals(other.contentsClassNameSectionIndex) &&
-                   contentsClassNameSectionOffset.Equals(other.contentsClassNameSectionOffset) &&
-                   contentsVersion.SequenceEqual(other.contentsVersion) &&
-                   flags.Equals(other.flags) &&
-                   pad.SequenceEqual(other.pad) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && magic.SequenceEqual(other.magic)
+                && userTag.Equals(other.userTag)
+                && fileVersion.Equals(other.fileVersion)
+                && layoutRules.SequenceEqual(other.layoutRules)
+                && numSections.Equals(other.numSections)
+                && contentsSectionIndex.Equals(other.contentsSectionIndex)
+                && contentsSectionOffset.Equals(other.contentsSectionOffset)
+                && contentsClassNameSectionIndex.Equals(other.contentsClassNameSectionIndex)
+                && contentsClassNameSectionOffset.Equals(other.contentsClassNameSectionOffset)
+                && contentsVersion.SequenceEqual(other.contentsVersion)
+                && flags.Equals(other.flags)
+                && pad.SequenceEqual(other.pad)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -142,4 +154,3 @@ namespace HKX2E
         }
     }
 }
-

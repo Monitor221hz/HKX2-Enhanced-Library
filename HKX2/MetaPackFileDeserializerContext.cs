@@ -10,7 +10,9 @@ namespace HKX2E
             ReferenceIDMap = refIDMap;
         }
 
-        public static explicit operator HavokXmlDeserializerContext(MetaPackFileDeserializerContext context)
+        public static explicit operator HavokXmlDeserializerContext(
+            MetaPackFileDeserializerContext context
+        )
         {
             Dictionary<string, IHavokObject> objectNameMap = new();
 
@@ -18,11 +20,12 @@ namespace HKX2E
             {
                 objectNameMap.Add($"#{kvp.Key:0000}", kvp.Value);
             }
-            Dictionary<string, XElement> elementNameMap = new(); 
+            Dictionary<string, XElement> elementNameMap = new();
             HavokXmlDeserializerOptions options = HavokXmlDeserializerOptions.None;
 
             return new HavokXmlDeserializerContext(objectNameMap, elementNameMap, options);
         }
+
         public Dictionary<ulong, IHavokObject> ReferenceIDMap { get; set; }
     }
 }

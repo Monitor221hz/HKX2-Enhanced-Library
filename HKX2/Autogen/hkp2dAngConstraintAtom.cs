@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkp_2dAngConstraintAtom Signatire: 0xdcdb8b8b size: 4 flags: FLAGS_NONE
 
-    // freeRotationAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    public partial class hkp_2dAngConstraintAtom : hkpConstraintAtom, IEquatable<hkp_2dAngConstraintAtom?>
+    // freeRotationAxis class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    public partial class hkp_2dAngConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkp_2dAngConstraintAtom?>
     {
         public byte freeRotationAxis { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkp_2dAngConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   freeRotationAxis.Equals(other.freeRotationAxis) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && freeRotationAxis.Equals(other.freeRotationAxis)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

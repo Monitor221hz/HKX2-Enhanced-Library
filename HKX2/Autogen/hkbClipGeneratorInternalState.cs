@@ -8,20 +8,23 @@ namespace HKX2E
 {
     // hkbClipGeneratorInternalState Signatire: 0x26ce5bf3 size: 112 flags: FLAGS_NONE
 
-    // extractedMotion class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // echos class: hkbClipGeneratorEcho Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // previousUserControlledTimeFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // bufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // echoBufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // atEnd class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // ignoreStartTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 101 flags: FLAGS_NONE enum: 
-    // pingPongBackward class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 102 flags: FLAGS_NONE enum: 
-    public partial class hkbClipGeneratorInternalState : hkReferencedObject, IEquatable<hkbClipGeneratorInternalState?>
+    // extractedMotion class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // echos class: hkbClipGeneratorEcho Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // previousUserControlledTimeFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // bufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // echoBufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // atEnd class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // ignoreStartTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 101 flags: FLAGS_NONE enum:
+    // pingPongBackward class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 102 flags: FLAGS_NONE enum:
+    public partial class hkbClipGeneratorInternalState
+        : hkReferencedObject,
+            IEquatable<hkbClipGeneratorInternalState?>
     {
         public Matrix4x4 extractedMotion { set; get; }
-        public IList<hkbClipGeneratorEcho> echos { set; get; } = Array.Empty<hkbClipGeneratorEcho>();
+        public IList<hkbClipGeneratorEcho> echos { set; get; } =
+            Array.Empty<hkbClipGeneratorEcho>();
         public float localTime { set; get; }
         public float time { set; get; }
         public float previousUserControlledTimeFraction { set; get; }
@@ -72,7 +75,10 @@ namespace HKX2E
             echos = xd.ReadClassArray<hkbClipGeneratorEcho>(xe, nameof(echos));
             localTime = xd.ReadSingle(xe, nameof(localTime));
             time = xd.ReadSingle(xe, nameof(time));
-            previousUserControlledTimeFraction = xd.ReadSingle(xe, nameof(previousUserControlledTimeFraction));
+            previousUserControlledTimeFraction = xd.ReadSingle(
+                xe,
+                nameof(previousUserControlledTimeFraction)
+            );
             bufferSize = xd.ReadInt32(xe, nameof(bufferSize));
             echoBufferSize = xd.ReadInt32(xe, nameof(echoBufferSize));
             atEnd = xd.ReadBoolean(xe, nameof(atEnd));
@@ -87,7 +93,11 @@ namespace HKX2E
             xs.WriteClassArray(xe, nameof(echos), echos);
             xs.WriteFloat(xe, nameof(localTime), localTime);
             xs.WriteFloat(xe, nameof(time), time);
-            xs.WriteFloat(xe, nameof(previousUserControlledTimeFraction), previousUserControlledTimeFraction);
+            xs.WriteFloat(
+                xe,
+                nameof(previousUserControlledTimeFraction),
+                previousUserControlledTimeFraction
+            );
             xs.WriteNumber(xe, nameof(bufferSize), bufferSize);
             xs.WriteNumber(xe, nameof(echoBufferSize), echoBufferSize);
             xs.WriteBoolean(xe, nameof(atEnd), atEnd);
@@ -102,19 +112,22 @@ namespace HKX2E
 
         public bool Equals(hkbClipGeneratorInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   extractedMotion.Equals(other.extractedMotion) &&
-                   echos.SequenceEqual(other.echos) &&
-                   localTime.Equals(other.localTime) &&
-                   time.Equals(other.time) &&
-                   previousUserControlledTimeFraction.Equals(other.previousUserControlledTimeFraction) &&
-                   bufferSize.Equals(other.bufferSize) &&
-                   echoBufferSize.Equals(other.echoBufferSize) &&
-                   atEnd.Equals(other.atEnd) &&
-                   ignoreStartTime.Equals(other.ignoreStartTime) &&
-                   pingPongBackward.Equals(other.pingPongBackward) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && extractedMotion.Equals(other.extractedMotion)
+                && echos.SequenceEqual(other.echos)
+                && localTime.Equals(other.localTime)
+                && time.Equals(other.time)
+                && previousUserControlledTimeFraction.Equals(
+                    other.previousUserControlledTimeFraction
+                )
+                && bufferSize.Equals(other.bufferSize)
+                && echoBufferSize.Equals(other.echoBufferSize)
+                && atEnd.Equals(other.atEnd)
+                && ignoreStartTime.Equals(other.ignoreStartTime)
+                && pingPongBackward.Equals(other.pingPongBackward)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -136,4 +149,3 @@ namespace HKX2E
         }
     }
 }
-

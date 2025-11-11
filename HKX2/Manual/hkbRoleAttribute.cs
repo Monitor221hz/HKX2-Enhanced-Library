@@ -46,12 +46,12 @@ namespace HKX2E
         public bool Equals(hkbRoleAttribute? other)
         {
             // FIXME: flag type overflow https://github.com/ret2end/HKX2Library/issues/4
-            return other is not null &&
-                   role.Equals(other.role) &&
-                   //flags.Equals(other.flags) &&
-                   Signature == other.Signature;
+            return other is not null
+                && role.Equals(other.role)
+                &&
+                //flags.Equals(other.flags) &&
+                Signature == other.Signature;
         }
-
 
         public override int GetHashCode()
         {
@@ -59,8 +59,8 @@ namespace HKX2E
             hashcode.Add(role);
             //hashcode.Add(flags);
             hashcode.Add(Signature);
-            return hashcode.ToHashCode(); ;
+            return hashcode.ToHashCode();
+            ;
         }
     }
 }
-

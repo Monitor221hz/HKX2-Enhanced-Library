@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkpSetupStabilizationAtom Signatire: 0xf05d137e size: 16 flags: FLAGS_NONE
 
-    // enabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 8 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkpSetupStabilizationAtom : hkpConstraintAtom, IEquatable<hkpSetupStabilizationAtom?>
+    // enabled class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // maxAngle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // padding class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 8 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkpSetupStabilizationAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpSetupStabilizationAtom?>
     {
         public bool enabled { set; get; }
         public float maxAngle { set; get; }
@@ -58,12 +60,13 @@ namespace HKX2E
 
         public bool Equals(hkpSetupStabilizationAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   enabled.Equals(other.enabled) &&
-                   maxAngle.Equals(other.maxAngle) &&
-                   padding.SequenceEqual(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && enabled.Equals(other.enabled)
+                && maxAngle.Equals(other.maxAngle)
+                && padding.SequenceEqual(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

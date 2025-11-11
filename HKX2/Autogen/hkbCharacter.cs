@@ -7,25 +7,25 @@ namespace HKX2E
 {
     // hkbCharacter Signatire: 0x3088a5c5 size: 160 flags: FLAGS_NONE
 
-    // nearbyCharacters class: hkbCharacter Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // currentLod class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // numTracksInLod class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // ragdollDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // characterControllerDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // footIkDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // handIkDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // setup class: hkbCharacterSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // behaviorGraph class: hkbBehaviorGraph Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // projectData class: hkbProjectData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // animationBindingSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // raycastInterface class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|NOT_OWNED|FLAGS_NONE enum: 
-    // eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // worldFromModel class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // poseLocal class:  Type.TYPE_SIMPLEARRAY Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // deleteWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // deletePoseLocal class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 157 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // nearbyCharacters class: hkbCharacter Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // currentLod class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // numTracksInLod class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // ragdollDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // characterControllerDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // footIkDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // handIkDriver class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // setup class: hkbCharacterSetup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // behaviorGraph class: hkbBehaviorGraph Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // projectData class: hkbProjectData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // animationBindingSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // raycastInterface class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|NOT_OWNED|FLAGS_NONE enum:
+    // eventQueue class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // worldFromModel class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // poseLocal class:  Type.TYPE_SIMPLEARRAY Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // deleteWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 156 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // deletePoseLocal class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 157 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbCharacter : hkReferencedObject, IEquatable<hkbCharacter?>
     {
         public IList<hkbCharacter> nearbyCharacters { set; get; } = Array.Empty<hkbCharacter>();
@@ -103,7 +103,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            nearbyCharacters = xd.ReadClassPointerArray<hkbCharacter>(this, xe, nameof(nearbyCharacters));
+            nearbyCharacters = xd.ReadClassPointerArray<hkbCharacter>(
+                this,
+                xe,
+                nameof(nearbyCharacters)
+            );
             currentLod = xd.ReadInt16(xe, nameof(currentLod));
             name = xd.ReadString(xe, nameof(name));
             setup = xd.ReadClassPointer<hkbCharacterSetup>(this, xe, nameof(setup));
@@ -142,15 +146,42 @@ namespace HKX2E
 
         public bool Equals(hkbCharacter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   nearbyCharacters.SequenceEqual(other.nearbyCharacters) &&
-                   currentLod.Equals(other.currentLod) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   ((setup is null && other.setup is null) || (setup is not null && other.setup is not null && setup.Equals((IHavokObject)other.setup))) &&
-                   ((behaviorGraph is null && other.behaviorGraph is null) || (behaviorGraph is not null && other.behaviorGraph is not null && behaviorGraph.Equals((IHavokObject)other.behaviorGraph))) &&
-                   ((projectData is null && other.projectData is null) || (projectData is not null && other.projectData is not null && projectData.Equals((IHavokObject)other.projectData))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && nearbyCharacters.SequenceEqual(other.nearbyCharacters)
+                && currentLod.Equals(other.currentLod)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && (
+                    (setup is null && other.setup is null)
+                    || (
+                        setup is not null
+                        && other.setup is not null
+                        && setup.Equals((IHavokObject)other.setup)
+                    )
+                )
+                && (
+                    (behaviorGraph is null && other.behaviorGraph is null)
+                    || (
+                        behaviorGraph is not null
+                        && other.behaviorGraph is not null
+                        && behaviorGraph.Equals((IHavokObject)other.behaviorGraph)
+                    )
+                )
+                && (
+                    (projectData is null && other.projectData is null)
+                    || (
+                        projectData is not null
+                        && other.projectData is not null
+                        && projectData.Equals((IHavokObject)other.projectData)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -168,4 +199,3 @@ namespace HKX2E
         }
     }
 }
-

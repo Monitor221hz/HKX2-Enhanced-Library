@@ -7,9 +7,11 @@ namespace HKX2E
 {
     // hkpStorageSampledHeightFieldShape Signatire: 0x15ff414b size: 144 flags: FLAGS_NONE
 
-    // storage class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // triangleFlip class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    public partial class hkpStorageSampledHeightFieldShape : hkpSampledHeightFieldShape, IEquatable<hkpStorageSampledHeightFieldShape?>
+    // storage class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // triangleFlip class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    public partial class hkpStorageSampledHeightFieldShape
+        : hkpSampledHeightFieldShape,
+            IEquatable<hkpStorageSampledHeightFieldShape?>
     {
         public IList<float> storage { set; get; } = Array.Empty<float>();
         public bool triangleFlip { set; get; }
@@ -53,11 +55,12 @@ namespace HKX2E
 
         public bool Equals(hkpStorageSampledHeightFieldShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   storage.SequenceEqual(other.storage) &&
-                   triangleFlip.Equals(other.triangleFlip) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && storage.SequenceEqual(other.storage)
+                && triangleFlip.Equals(other.triangleFlip)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +74,3 @@ namespace HKX2E
         }
     }
 }
-

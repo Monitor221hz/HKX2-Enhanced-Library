@@ -57,7 +57,10 @@ namespace HKX2E.Tests
         {
             // FLAG_NOT_VARIABLE|FLAG_NORMALIZED|FLAG_RAGDOLL
             short flagValue = 4 | 2 | 1;
-            Assert.AreEqual("FLAG_NOT_VARIABLE|FLAG_NORMALIZED|FLAG_RAGDOLL", flagValue.ToFlagString<RoleFlags, short>());
+            Assert.AreEqual(
+                "FLAG_NOT_VARIABLE|FLAG_NORMALIZED|FLAG_RAGDOLL",
+                flagValue.ToFlagString<RoleFlags, short>()
+            );
         }
 
         [TestMethod]
@@ -65,14 +68,21 @@ namespace HKX2E.Tests
         {
             // FLAG_NOT_VARIABLE|FLAG_NORMALIZED|FLAG_RAGDOLL|192
             short flagValue = 4 | 2 | 1 | 192;
-            Assert.AreEqual("FLAG_NOT_VARIABLE|FLAG_NORMALIZED|FLAG_RAGDOLL|192", flagValue.ToFlagString<RoleFlags, short>());
+            Assert.AreEqual(
+                "FLAG_NOT_VARIABLE|FLAG_NORMALIZED|FLAG_RAGDOLL|192",
+                flagValue.ToFlagString<RoleFlags, short>()
+            );
         }
+
         [TestMethod]
         public void ValueToFlagStringWithNotExist2()
         {
             // FLAG_NOT_VARIABLE|FLAG_RAGDOLL|FLAG_NONE|0x4c0
             short flagValue = 4 | 1 | 0 | 0x4c0;
-            Assert.AreEqual("FLAG_NOT_VARIABLE|FLAG_RAGDOLL|1216", flagValue.ToFlagString<RoleFlags, short>());
+            Assert.AreEqual(
+                "FLAG_NOT_VARIABLE|FLAG_RAGDOLL|1216",
+                flagValue.ToFlagString<RoleFlags, short>()
+            );
         }
 
         [TestMethod]

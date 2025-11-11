@@ -8,12 +8,14 @@ namespace HKX2E
 {
     // hkpTriSampledHeightFieldCollection Signatire: 0xc291ddde size: 96 flags: FLAGS_NONE
 
-    // heightfield class: hkpSampledHeightFieldShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // childSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // weldingInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // triangleExtrusion class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    public partial class hkpTriSampledHeightFieldCollection : hkpShapeCollection, IEquatable<hkpTriSampledHeightFieldCollection?>
+    // heightfield class: hkpSampledHeightFieldShape Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // childSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // radius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // weldingInfo class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // triangleExtrusion class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    public partial class hkpTriSampledHeightFieldCollection
+        : hkpShapeCollection,
+            IEquatable<hkpTriSampledHeightFieldCollection?>
     {
         public hkpSampledHeightFieldShape? heightfield { set; get; }
         private int childSize { set; get; }
@@ -46,7 +48,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            heightfield = xd.ReadClassPointer<hkpSampledHeightFieldShape>(this, xe, nameof(heightfield));
+            heightfield = xd.ReadClassPointer<hkpSampledHeightFieldShape>(
+                this,
+                xe,
+                nameof(heightfield)
+            );
             radius = xd.ReadSingle(xe, nameof(radius));
             weldingInfo = xd.ReadUInt16Array(xe, nameof(weldingInfo));
             triangleExtrusion = xd.ReadVector4(xe, nameof(triangleExtrusion));
@@ -69,13 +75,21 @@ namespace HKX2E
 
         public bool Equals(hkpTriSampledHeightFieldCollection? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((heightfield is null && other.heightfield is null) || (heightfield is not null && other.heightfield is not null && heightfield.Equals((IHavokObject)other.heightfield))) &&
-                   radius.Equals(other.radius) &&
-                   weldingInfo.SequenceEqual(other.weldingInfo) &&
-                   triangleExtrusion.Equals(other.triangleExtrusion) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (heightfield is null && other.heightfield is null)
+                    || (
+                        heightfield is not null
+                        && other.heightfield is not null
+                        && heightfield.Equals((IHavokObject)other.heightfield)
+                    )
+                )
+                && radius.Equals(other.radius)
+                && weldingInfo.SequenceEqual(other.weldingInfo)
+                && triangleExtrusion.Equals(other.triangleExtrusion)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -91,4 +105,3 @@ namespace HKX2E
         }
     }
 }
-

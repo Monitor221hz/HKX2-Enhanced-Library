@@ -5,12 +5,14 @@ namespace HKX2E
 {
     // hkbSetNodePropertyCommand Signatire: 0xc5160b64 size: 48 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // nodeName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // propertyName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // propertyValue class: hkbVariableValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    public partial class hkbSetNodePropertyCommand : hkReferencedObject, IEquatable<hkbSetNodePropertyCommand?>
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // nodeName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // propertyName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // propertyValue class: hkbVariableValue Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // padding class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
+    public partial class hkbSetNodePropertyCommand
+        : hkReferencedObject,
+            IEquatable<hkbSetNodePropertyCommand?>
     {
         public ulong characterId { set; get; }
         public string nodeName { set; get; } = "";
@@ -67,14 +69,32 @@ namespace HKX2E
 
         public bool Equals(hkbSetNodePropertyCommand? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   (nodeName is null && other.nodeName is null || nodeName == other.nodeName || nodeName is null && other.nodeName == "" || nodeName == "" && other.nodeName is null) &&
-                   (propertyName is null && other.propertyName is null || propertyName == other.propertyName || propertyName is null && other.propertyName == "" || propertyName == "" && other.propertyName is null) &&
-                   ((propertyValue is null && other.propertyValue is null) || (propertyValue is not null && other.propertyValue is not null && propertyValue.Equals((IHavokObject)other.propertyValue))) &&
-                   padding.Equals(other.padding) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && (
+                    nodeName is null && other.nodeName is null
+                    || nodeName == other.nodeName
+                    || nodeName is null && other.nodeName == ""
+                    || nodeName == "" && other.nodeName is null
+                )
+                && (
+                    propertyName is null && other.propertyName is null
+                    || propertyName == other.propertyName
+                    || propertyName is null && other.propertyName == ""
+                    || propertyName == "" && other.propertyName is null
+                )
+                && (
+                    (propertyValue is null && other.propertyValue is null)
+                    || (
+                        propertyValue is not null
+                        && other.propertyValue is not null
+                        && propertyValue.Equals((IHavokObject)other.propertyValue)
+                    )
+                )
+                && padding.Equals(other.padding)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -91,4 +111,3 @@ namespace HKX2E
         }
     }
 }
-

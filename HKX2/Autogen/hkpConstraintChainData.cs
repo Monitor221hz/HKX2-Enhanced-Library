@@ -5,11 +5,10 @@ namespace HKX2E
 {
     // hkpConstraintChainData Signatire: 0x5facc7ff size: 24 flags: FLAGS_NONE
 
-
-    public partial class hkpConstraintChainData : hkpConstraintData, IEquatable<hkpConstraintChainData?>
+    public partial class hkpConstraintChainData
+        : hkpConstraintData,
+            IEquatable<hkpConstraintChainData?>
     {
-
-
         public override uint Signature { set; get; } = 0x5facc7ff;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +38,8 @@ namespace HKX2E
 
         public bool Equals(hkpConstraintChainData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +51,3 @@ namespace HKX2E
         }
     }
 }
-

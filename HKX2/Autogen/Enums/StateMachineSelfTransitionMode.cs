@@ -7,4 +7,3 @@ namespace HKX2E
         SELF_TRANSITION_MODE_FORCE_TRANSITION_TO_START_STATE = 2,
     }
 }
-

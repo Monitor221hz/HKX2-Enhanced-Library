@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpMeshMaterial Signatire: 0x886cde0c size: 4 flags: FLAGS_NONE
 
-    // filterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // filterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkpMeshMaterial : IHavokObject, IEquatable<hkpMeshMaterial?>
     {
         public uint filterInfo { set; get; }
@@ -39,9 +39,10 @@ namespace HKX2E
 
         public bool Equals(hkpMeshMaterial? other)
         {
-            return other is not null &&
-                   filterInfo.Equals(other.filterInfo) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && filterInfo.Equals(other.filterInfo)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +54,3 @@ namespace HKX2E
         }
     }
 }
-

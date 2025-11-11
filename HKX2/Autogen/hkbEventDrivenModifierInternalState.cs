@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbEventDrivenModifierInternalState Signatire: 0xd14bf000 size: 24 flags: FLAGS_NONE
 
-    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbEventDrivenModifierInternalState : hkReferencedObject, IEquatable<hkbEventDrivenModifierInternalState?>
+    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbEventDrivenModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbEventDrivenModifierInternalState?>
     {
         public bool isActive { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbEventDrivenModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   isActive.Equals(other.isActive) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && isActive.Equals(other.isActive)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

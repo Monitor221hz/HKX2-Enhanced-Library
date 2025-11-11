@@ -8,4 +8,3 @@ namespace HKX2E
         BVTREE_MAX = 3,
     }
 }
-

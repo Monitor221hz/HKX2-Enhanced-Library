@@ -6,18 +6,18 @@ namespace HKX2E
 {
     // hkbHandIkControlData Signatire: 0xd72b8d17 size: 96 flags: FLAGS_NONE
 
-    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // targetRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // targetNormal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // targetHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // transformOnFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // normalOnFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // fadeInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // fadeOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // extrapolationTimeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // handleChangeSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
+    // targetPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // targetRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // targetNormal class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // targetHandle class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // transformOnFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // normalOnFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // fadeInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // fadeOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // extrapolationTimeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // handleChangeSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
     // handleChangeMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: HandleChangeMode
-    // fixUp class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum: 
+    // fixUp class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum:
     public partial class hkbHandIkControlData : IHavokObject, IEquatable<hkbHandIkControlData?>
     {
         public Vector4 targetPosition { set; get; }
@@ -108,20 +108,28 @@ namespace HKX2E
 
         public bool Equals(hkbHandIkControlData? other)
         {
-            return other is not null &&
-                   targetPosition.Equals(other.targetPosition) &&
-                   targetRotation.Equals(other.targetRotation) &&
-                   targetNormal.Equals(other.targetNormal) &&
-                   ((targetHandle is null && other.targetHandle is null) || (targetHandle is not null && other.targetHandle is not null && targetHandle.Equals((IHavokObject)other.targetHandle))) &&
-                   transformOnFraction.Equals(other.transformOnFraction) &&
-                   normalOnFraction.Equals(other.normalOnFraction) &&
-                   fadeInDuration.Equals(other.fadeInDuration) &&
-                   fadeOutDuration.Equals(other.fadeOutDuration) &&
-                   extrapolationTimeStep.Equals(other.extrapolationTimeStep) &&
-                   handleChangeSpeed.Equals(other.handleChangeSpeed) &&
-                   handleChangeMode.Equals(other.handleChangeMode) &&
-                   fixUp.Equals(other.fixUp) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && targetPosition.Equals(other.targetPosition)
+                && targetRotation.Equals(other.targetRotation)
+                && targetNormal.Equals(other.targetNormal)
+                && (
+                    (targetHandle is null && other.targetHandle is null)
+                    || (
+                        targetHandle is not null
+                        && other.targetHandle is not null
+                        && targetHandle.Equals((IHavokObject)other.targetHandle)
+                    )
+                )
+                && transformOnFraction.Equals(other.transformOnFraction)
+                && normalOnFraction.Equals(other.normalOnFraction)
+                && fadeInDuration.Equals(other.fadeInDuration)
+                && fadeOutDuration.Equals(other.fadeOutDuration)
+                && extrapolationTimeStep.Equals(other.extrapolationTimeStep)
+                && handleChangeSpeed.Equals(other.handleChangeSpeed)
+                && handleChangeMode.Equals(other.handleChangeMode)
+                && fixUp.Equals(other.fixUp)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -144,4 +152,3 @@ namespace HKX2E
         }
     }
 }
-

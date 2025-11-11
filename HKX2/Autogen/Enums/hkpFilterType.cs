@@ -11,4 +11,3 @@ namespace HKX2E
         HK_FILTER_CONSTRAINT = 6,
     }
 }
-

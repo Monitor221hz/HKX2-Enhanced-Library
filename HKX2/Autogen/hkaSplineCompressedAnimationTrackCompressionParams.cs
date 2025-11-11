@@ -5,19 +5,21 @@ namespace HKX2E
 {
     // hkaSplineCompressedAnimationTrackCompressionParams Signatire: 0x42e878d3 size: 28 flags: FLAGS_NONE
 
-    // rotationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // translationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // scaleTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // floatingTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // rotationDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // translationDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum: 
-    // scaleDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // floatingDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 22 flags: FLAGS_NONE enum: 
+    // rotationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // translationTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // scaleTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // floatingTolerance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // rotationDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // translationDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 18 flags: FLAGS_NONE enum:
+    // scaleDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // floatingDegree class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 22 flags: FLAGS_NONE enum:
     // rotationQuantizationType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: RotationQuantization
     // translationQuantizationType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 25 flags: FLAGS_NONE enum: ScalarQuantization
     // scaleQuantizationType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 26 flags: FLAGS_NONE enum: ScalarQuantization
     // floatQuantizationType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 27 flags: FLAGS_NONE enum: ScalarQuantization
-    public partial class hkaSplineCompressedAnimationTrackCompressionParams : IHavokObject, IEquatable<hkaSplineCompressedAnimationTrackCompressionParams?>
+    public partial class hkaSplineCompressedAnimationTrackCompressionParams
+        : IHavokObject,
+            IEquatable<hkaSplineCompressedAnimationTrackCompressionParams?>
     {
         public float rotationTolerance { set; get; }
         public float translationTolerance { set; get; }
@@ -76,10 +78,22 @@ namespace HKX2E
             translationDegree = xd.ReadUInt16(xe, nameof(translationDegree));
             scaleDegree = xd.ReadUInt16(xe, nameof(scaleDegree));
             floatingDegree = xd.ReadUInt16(xe, nameof(floatingDegree));
-            rotationQuantizationType = xd.ReadFlag<RotationQuantization, byte>(xe, nameof(rotationQuantizationType));
-            translationQuantizationType = xd.ReadFlag<ScalarQuantization, byte>(xe, nameof(translationQuantizationType));
-            scaleQuantizationType = xd.ReadFlag<ScalarQuantization, byte>(xe, nameof(scaleQuantizationType));
-            floatQuantizationType = xd.ReadFlag<ScalarQuantization, byte>(xe, nameof(floatQuantizationType));
+            rotationQuantizationType = xd.ReadFlag<RotationQuantization, byte>(
+                xe,
+                nameof(rotationQuantizationType)
+            );
+            translationQuantizationType = xd.ReadFlag<ScalarQuantization, byte>(
+                xe,
+                nameof(translationQuantizationType)
+            );
+            scaleQuantizationType = xd.ReadFlag<ScalarQuantization, byte>(
+                xe,
+                nameof(scaleQuantizationType)
+            );
+            floatQuantizationType = xd.ReadFlag<ScalarQuantization, byte>(
+                xe,
+                nameof(floatQuantizationType)
+            );
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -92,10 +106,26 @@ namespace HKX2E
             xs.WriteNumber(xe, nameof(translationDegree), translationDegree);
             xs.WriteNumber(xe, nameof(scaleDegree), scaleDegree);
             xs.WriteNumber(xe, nameof(floatingDegree), floatingDegree);
-            xs.WriteEnum<RotationQuantization, byte>(xe, nameof(rotationQuantizationType), rotationQuantizationType);
-            xs.WriteEnum<ScalarQuantization, byte>(xe, nameof(translationQuantizationType), translationQuantizationType);
-            xs.WriteEnum<ScalarQuantization, byte>(xe, nameof(scaleQuantizationType), scaleQuantizationType);
-            xs.WriteEnum<ScalarQuantization, byte>(xe, nameof(floatQuantizationType), floatQuantizationType);
+            xs.WriteEnum<RotationQuantization, byte>(
+                xe,
+                nameof(rotationQuantizationType),
+                rotationQuantizationType
+            );
+            xs.WriteEnum<ScalarQuantization, byte>(
+                xe,
+                nameof(translationQuantizationType),
+                translationQuantizationType
+            );
+            xs.WriteEnum<ScalarQuantization, byte>(
+                xe,
+                nameof(scaleQuantizationType),
+                scaleQuantizationType
+            );
+            xs.WriteEnum<ScalarQuantization, byte>(
+                xe,
+                nameof(floatQuantizationType),
+                floatQuantizationType
+            );
         }
 
         public override bool Equals(object? obj)
@@ -105,20 +135,21 @@ namespace HKX2E
 
         public bool Equals(hkaSplineCompressedAnimationTrackCompressionParams? other)
         {
-            return other is not null &&
-                   rotationTolerance.Equals(other.rotationTolerance) &&
-                   translationTolerance.Equals(other.translationTolerance) &&
-                   scaleTolerance.Equals(other.scaleTolerance) &&
-                   floatingTolerance.Equals(other.floatingTolerance) &&
-                   rotationDegree.Equals(other.rotationDegree) &&
-                   translationDegree.Equals(other.translationDegree) &&
-                   scaleDegree.Equals(other.scaleDegree) &&
-                   floatingDegree.Equals(other.floatingDegree) &&
-                   rotationQuantizationType.Equals(other.rotationQuantizationType) &&
-                   translationQuantizationType.Equals(other.translationQuantizationType) &&
-                   scaleQuantizationType.Equals(other.scaleQuantizationType) &&
-                   floatQuantizationType.Equals(other.floatQuantizationType) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && rotationTolerance.Equals(other.rotationTolerance)
+                && translationTolerance.Equals(other.translationTolerance)
+                && scaleTolerance.Equals(other.scaleTolerance)
+                && floatingTolerance.Equals(other.floatingTolerance)
+                && rotationDegree.Equals(other.rotationDegree)
+                && translationDegree.Equals(other.translationDegree)
+                && scaleDegree.Equals(other.scaleDegree)
+                && floatingDegree.Equals(other.floatingDegree)
+                && rotationQuantizationType.Equals(other.rotationQuantizationType)
+                && translationQuantizationType.Equals(other.translationQuantizationType)
+                && scaleQuantizationType.Equals(other.scaleQuantizationType)
+                && floatQuantizationType.Equals(other.floatQuantizationType)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -141,4 +172,3 @@ namespace HKX2E
         }
     }
 }
-

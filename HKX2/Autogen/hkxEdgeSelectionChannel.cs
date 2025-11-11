@@ -7,8 +7,10 @@ namespace HKX2E
 {
     // hkxEdgeSelectionChannel Signatire: 0x9ad32a5e size: 32 flags: FLAGS_NONE
 
-    // selectedEdges class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkxEdgeSelectionChannel : hkReferencedObject, IEquatable<hkxEdgeSelectionChannel?>
+    // selectedEdges class:  Type.TYPE_ARRAY Type.TYPE_INT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkxEdgeSelectionChannel
+        : hkReferencedObject,
+            IEquatable<hkxEdgeSelectionChannel?>
     {
         public IList<int> selectedEdges { set; get; } = Array.Empty<int>();
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkxEdgeSelectionChannel? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   selectedEdges.SequenceEqual(other.selectedEdges) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && selectedEdges.SequenceEqual(other.selectedEdges)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

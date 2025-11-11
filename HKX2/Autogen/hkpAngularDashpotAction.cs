@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkpAngularDashpotAction Signatire: 0x35f4c487 size: 96 flags: FLAGS_NONE
 
-    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    public partial class hkpAngularDashpotAction : hkpBinaryAction, IEquatable<hkpAngularDashpotAction?>
+    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // strength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    public partial class hkpAngularDashpotAction
+        : hkpBinaryAction,
+            IEquatable<hkpAngularDashpotAction?>
     {
         public Quaternion rotation { set; get; }
         public float strength { set; get; }
@@ -58,12 +60,13 @@ namespace HKX2E
 
         public bool Equals(hkpAngularDashpotAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rotation.Equals(other.rotation) &&
-                   strength.Equals(other.strength) &&
-                   damping.Equals(other.damping) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rotation.Equals(other.rotation)
+                && strength.Equals(other.strength)
+                && damping.Equals(other.damping)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +81,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -11,4 +11,3 @@ namespace HKX2E
         HK_QUANTIZED_COMPRESSED_ANIMATION = 6,
     }
 }
-

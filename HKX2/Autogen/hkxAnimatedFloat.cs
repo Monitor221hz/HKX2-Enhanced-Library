@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkxAnimatedFloat Signatire: 0xce8b2fbd size: 40 flags: FLAGS_NONE
 
-    // floats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // floats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // hint class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: Hint
     public partial class hkxAnimatedFloat : hkReferencedObject, IEquatable<hkxAnimatedFloat?>
     {
@@ -53,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkxAnimatedFloat? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   floats.SequenceEqual(other.floats) &&
-                   hint.Equals(other.hint) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && floats.SequenceEqual(other.floats)
+                && hint.Equals(other.hint)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

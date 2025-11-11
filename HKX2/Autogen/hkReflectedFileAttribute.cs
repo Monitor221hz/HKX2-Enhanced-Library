@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkReflectedFileAttribute Signatire: 0xedb6b8f7 size: 8 flags: FLAGS_NONE
 
-    // value class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    public partial class hkReflectedFileAttribute : IHavokObject, IEquatable<hkReflectedFileAttribute?>
+    // value class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    public partial class hkReflectedFileAttribute
+        : IHavokObject,
+            IEquatable<hkReflectedFileAttribute?>
     {
         public string value { set; get; } = "";
 
@@ -39,9 +41,15 @@ namespace HKX2E
 
         public bool Equals(hkReflectedFileAttribute? other)
         {
-            return other is not null &&
-                   (value is null && other.value is null || value == other.value || value is null && other.value == "" || value == "" && other.value is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    value is null && other.value is null
+                    || value == other.value
+                    || value is null && other.value == ""
+                    || value == "" && other.value is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +61,3 @@ namespace HKX2E
         }
     }
 }
-

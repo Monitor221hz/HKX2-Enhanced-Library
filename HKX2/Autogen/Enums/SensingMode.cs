@@ -14,4 +14,3 @@ namespace HKX2E
         SENSE_IN_GIVEN_LOCAL_FRAME_GROUP = 9,
     }
 }
-

@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkpMoppBvTreeShape Signatire: 0x90b29d39 size: 112 flags: FLAGS_NONE
 
-    // child class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // childSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // child class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // childSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpMoppBvTreeShape : hkMoppBvTreeShapeBase, IEquatable<hkpMoppBvTreeShape?>
     {
         public hkpSingleShapeContainer child { set; get; } = new();
@@ -50,10 +50,18 @@ namespace HKX2E
 
         public bool Equals(hkpMoppBvTreeShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((child is null && other.child is null) || (child is not null && other.child is not null && child.Equals((IHavokObject)other.child))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (child is null && other.child is null)
+                    || (
+                        child is not null
+                        && other.child is not null
+                        && child.Equals((IHavokObject)other.child)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -66,4 +74,3 @@ namespace HKX2E
         }
     }
 }
-

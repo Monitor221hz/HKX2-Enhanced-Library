@@ -5,19 +5,23 @@ namespace HKX2E
 {
     // hkbStateMachineTimeInterval Signatire: 0x60a881e5 size: 16 flags: FLAGS_NONE
 
-    // enterEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // exitEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // enterTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // exitTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    public partial class hkbStateMachineTimeInterval : IHavokObject, IEquatable<hkbStateMachineTimeInterval?>
+    // enterEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // exitEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // enterTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // exitTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    public partial class hkbStateMachineTimeInterval
+        : IHavokObject,
+            IEquatable<hkbStateMachineTimeInterval?>
     {
-        public static hkbStateMachineTimeInterval GetDefault() => new()
-        {
-            enterEventId = -1, 
-            exitEventId = -1,
-            enterTime = 0.0f,
-            exitTime = 0.0f,
-        };
+        public static hkbStateMachineTimeInterval GetDefault() =>
+            new()
+            {
+                enterEventId = -1,
+                exitEventId = -1,
+                enterTime = 0.0f,
+                exitTime = 0.0f,
+            };
+
         public void SetDefault()
         {
             enterEventId = -1;
@@ -25,6 +29,7 @@ namespace HKX2E
             enterTime = 0.0f;
             exitTime = 0.0f;
         }
+
         public int enterEventId { set; get; }
         public int exitEventId { set; get; }
         public float enterTime { set; get; }
@@ -71,12 +76,13 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineTimeInterval? other)
         {
-            return other is not null &&
-                   enterEventId.Equals(other.enterEventId) &&
-                   exitEventId.Equals(other.exitEventId) &&
-                   enterTime.Equals(other.enterTime) &&
-                   exitTime.Equals(other.exitTime) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && enterEventId.Equals(other.enterEventId)
+                && exitEventId.Equals(other.exitEventId)
+                && enterTime.Equals(other.enterTime)
+                && exitTime.Equals(other.exitTime)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -91,4 +97,3 @@ namespace HKX2E
         }
     }
 }
-

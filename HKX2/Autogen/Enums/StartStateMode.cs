@@ -8,4 +8,3 @@ namespace HKX2E
         START_STATE_MODE_CHOOSER = 3,
     }
 }
-

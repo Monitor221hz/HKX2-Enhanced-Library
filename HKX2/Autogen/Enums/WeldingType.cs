@@ -8,4 +8,3 @@ namespace HKX2E
         WELDING_TYPE_NONE = 6,
     }
 }
-

@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkpStiffSpringChainDataConstraintInfo Signatire: 0xc624a180 size: 48 flags: FLAGS_NONE
 
-    // pivotInA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // pivotInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // springLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkpStiffSpringChainDataConstraintInfo : IHavokObject, IEquatable<hkpStiffSpringChainDataConstraintInfo?>
+    // pivotInA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // pivotInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // springLength class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkpStiffSpringChainDataConstraintInfo
+        : IHavokObject,
+            IEquatable<hkpStiffSpringChainDataConstraintInfo?>
     {
         public Vector4 pivotInA { set; get; }
         public Vector4 pivotInB { set; get; }
@@ -54,11 +56,12 @@ namespace HKX2E
 
         public bool Equals(hkpStiffSpringChainDataConstraintInfo? other)
         {
-            return other is not null &&
-                   pivotInA.Equals(other.pivotInA) &&
-                   pivotInB.Equals(other.pivotInB) &&
-                   springLength.Equals(other.springLength) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && pivotInA.Equals(other.pivotInA)
+                && pivotInB.Equals(other.pivotInB)
+                && springLength.Equals(other.springLength)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -72,4 +75,3 @@ namespace HKX2E
         }
     }
 }
-

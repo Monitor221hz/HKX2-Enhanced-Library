@@ -6,26 +6,28 @@ namespace HKX2E
 {
     // BSSynchronizedClipGenerator Signatire: 0xd83bea64 size: 304 flags: FLAGS_NONE
 
-    // pClipGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum: 
-    // SyncAnimPrefix class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // bSyncClipIgnoreMarkPlacement class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // fGetToMarkTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // fMarkErrorThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // bLeadCharacter class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // bReorientSupportChar class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 109 flags: FLAGS_NONE enum: 
-    // bApplyMotionFromRoot class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 110 flags: FLAGS_NONE enum: 
-    // pSyncScene class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // StartMarkWS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // EndMarkWS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // StartMarkMS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // fCurrentLerp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pLocalSyncBinding class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pEventMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // sAnimationBindingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 296 flags: FLAGS_NONE enum: 
-    // bAtMark class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 298 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bAllCharactersInScene class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 299 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bAllCharactersAtMarks class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 300 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSSynchronizedClipGenerator : hkbGenerator, IEquatable<BSSynchronizedClipGenerator?>
+    // pClipGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum:
+    // SyncAnimPrefix class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // bSyncClipIgnoreMarkPlacement class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // fGetToMarkTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // fMarkErrorThreshold class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // bLeadCharacter class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // bReorientSupportChar class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 109 flags: FLAGS_NONE enum:
+    // bApplyMotionFromRoot class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 110 flags: FLAGS_NONE enum:
+    // pSyncScene class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // StartMarkWS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 128 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // EndMarkWS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // StartMarkMS class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // fCurrentLerp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pLocalSyncBinding class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pEventMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 288 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // sAnimationBindingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 296 flags: FLAGS_NONE enum:
+    // bAtMark class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 298 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bAllCharactersInScene class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 299 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bAllCharactersAtMarks class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 300 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSSynchronizedClipGenerator
+        : hkbGenerator,
+            IEquatable<BSSynchronizedClipGenerator?>
     {
         public hkbGenerator? pClipGenerator { set; get; }
         public string SyncAnimPrefix { set; get; } = "";
@@ -154,18 +156,31 @@ namespace HKX2E
 
         public bool Equals(BSSynchronizedClipGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((pClipGenerator is null && other.pClipGenerator is null) || (pClipGenerator is not null && other.pClipGenerator is not null && pClipGenerator.Equals((IHavokObject)other.pClipGenerator))) &&
-                   (SyncAnimPrefix is null && other.SyncAnimPrefix is null || SyncAnimPrefix == other.SyncAnimPrefix || SyncAnimPrefix is null && other.SyncAnimPrefix == "" || SyncAnimPrefix == "" && other.SyncAnimPrefix is null) &&
-                   bSyncClipIgnoreMarkPlacement.Equals(other.bSyncClipIgnoreMarkPlacement) &&
-                   fGetToMarkTime.Equals(other.fGetToMarkTime) &&
-                   fMarkErrorThreshold.Equals(other.fMarkErrorThreshold) &&
-                   bLeadCharacter.Equals(other.bLeadCharacter) &&
-                   bReorientSupportChar.Equals(other.bReorientSupportChar) &&
-                   bApplyMotionFromRoot.Equals(other.bApplyMotionFromRoot) &&
-                   sAnimationBindingIndex.Equals(other.sAnimationBindingIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (pClipGenerator is null && other.pClipGenerator is null)
+                    || (
+                        pClipGenerator is not null
+                        && other.pClipGenerator is not null
+                        && pClipGenerator.Equals((IHavokObject)other.pClipGenerator)
+                    )
+                )
+                && (
+                    SyncAnimPrefix is null && other.SyncAnimPrefix is null
+                    || SyncAnimPrefix == other.SyncAnimPrefix
+                    || SyncAnimPrefix is null && other.SyncAnimPrefix == ""
+                    || SyncAnimPrefix == "" && other.SyncAnimPrefix is null
+                )
+                && bSyncClipIgnoreMarkPlacement.Equals(other.bSyncClipIgnoreMarkPlacement)
+                && fGetToMarkTime.Equals(other.fGetToMarkTime)
+                && fMarkErrorThreshold.Equals(other.fMarkErrorThreshold)
+                && bLeadCharacter.Equals(other.bLeadCharacter)
+                && bReorientSupportChar.Equals(other.bReorientSupportChar)
+                && bApplyMotionFromRoot.Equals(other.bApplyMotionFromRoot)
+                && sAnimationBindingIndex.Equals(other.sAnimationBindingIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -186,4 +201,3 @@ namespace HKX2E
         }
     }
 }
-

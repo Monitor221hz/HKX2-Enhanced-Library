@@ -6,35 +6,35 @@ namespace HKX2E
 {
     // hkbProxyModifier Signatire: 0x8a41554f size: 288 flags: FLAGS_NONE
 
-    // proxyInfo class: hkbProxyModifierProxyInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // linearVelocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // horizontalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // verticalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum: 
-    // maxHorizontalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // maxVerticalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    // verticalDisplacementError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // verticalDisplacementErrorGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // maxVerticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    // minVerticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
-    // capsuleHeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
-    // capsuleRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum: 
-    // maxSlopeForRotation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 216 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: FLAGS_NONE enum: 
+    // proxyInfo class: hkbProxyModifierProxyInfo Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // linearVelocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // horizontalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // verticalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum:
+    // maxHorizontalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // maxVerticalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum:
+    // verticalDisplacementError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // verticalDisplacementErrorGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum:
+    // maxVerticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum:
+    // minVerticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum:
+    // capsuleHeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum:
+    // capsuleRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 212 flags: FLAGS_NONE enum:
+    // maxSlopeForRotation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 216 flags: FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: FLAGS_NONE enum:
     // phantomType class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 224 flags: FLAGS_NONE enum: PhantomType
     // linearVelocityMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 225 flags: FLAGS_NONE enum: LinearVelocityMode
-    // ignoreIncomingRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 226 flags: FLAGS_NONE enum: 
-    // ignoreCollisionDuringRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 227 flags: FLAGS_NONE enum: 
-    // ignoreIncomingTranslation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 228 flags: FLAGS_NONE enum: 
-    // includeDownwardMomentum class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 229 flags: FLAGS_NONE enum: 
-    // followWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 230 flags: FLAGS_NONE enum: 
-    // isTouchingGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 231 flags: FLAGS_NONE enum: 
-    // characterProxy class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // phantom class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // phantomShape class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // horizontalDisplacement class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // verticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // timestep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 276 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // previousFrameFollowWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // ignoreIncomingRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 226 flags: FLAGS_NONE enum:
+    // ignoreCollisionDuringRotation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 227 flags: FLAGS_NONE enum:
+    // ignoreIncomingTranslation class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 228 flags: FLAGS_NONE enum:
+    // includeDownwardMomentum class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 229 flags: FLAGS_NONE enum:
+    // followWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 230 flags: FLAGS_NONE enum:
+    // isTouchingGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 231 flags: FLAGS_NONE enum:
+    // characterProxy class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // phantom class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // phantomShape class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // horizontalDisplacement class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // verticalDisplacement class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 272 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // timestep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 276 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // previousFrameFollowWorldFromModel class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbProxyModifier : hkbModifier, IEquatable<hkbProxyModifier?>
     {
         public hkbProxyModifierProxyInfo proxyInfo { set; get; } = new();
@@ -149,7 +149,10 @@ namespace HKX2E
             maxHorizontalSeparation = xd.ReadSingle(xe, nameof(maxHorizontalSeparation));
             maxVerticalSeparation = xd.ReadSingle(xe, nameof(maxVerticalSeparation));
             verticalDisplacementError = xd.ReadSingle(xe, nameof(verticalDisplacementError));
-            verticalDisplacementErrorGain = xd.ReadSingle(xe, nameof(verticalDisplacementErrorGain));
+            verticalDisplacementErrorGain = xd.ReadSingle(
+                xe,
+                nameof(verticalDisplacementErrorGain)
+            );
             maxVerticalDisplacement = xd.ReadSingle(xe, nameof(maxVerticalDisplacement));
             minVerticalDisplacement = xd.ReadSingle(xe, nameof(minVerticalDisplacement));
             capsuleHeight = xd.ReadSingle(xe, nameof(capsuleHeight));
@@ -157,9 +160,15 @@ namespace HKX2E
             maxSlopeForRotation = xd.ReadSingle(xe, nameof(maxSlopeForRotation));
             collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
             phantomType = xd.ReadFlag<PhantomType, sbyte>(xe, nameof(phantomType));
-            linearVelocityMode = xd.ReadFlag<LinearVelocityMode, sbyte>(xe, nameof(linearVelocityMode));
+            linearVelocityMode = xd.ReadFlag<LinearVelocityMode, sbyte>(
+                xe,
+                nameof(linearVelocityMode)
+            );
             ignoreIncomingRotation = xd.ReadBoolean(xe, nameof(ignoreIncomingRotation));
-            ignoreCollisionDuringRotation = xd.ReadBoolean(xe, nameof(ignoreCollisionDuringRotation));
+            ignoreCollisionDuringRotation = xd.ReadBoolean(
+                xe,
+                nameof(ignoreCollisionDuringRotation)
+            );
             ignoreIncomingTranslation = xd.ReadBoolean(xe, nameof(ignoreIncomingTranslation));
             includeDownwardMomentum = xd.ReadBoolean(xe, nameof(includeDownwardMomentum));
             followWorldFromModel = xd.ReadBoolean(xe, nameof(followWorldFromModel));
@@ -184,9 +193,17 @@ namespace HKX2E
             xs.WriteFloat(xe, nameof(maxSlopeForRotation), maxSlopeForRotation);
             xs.WriteNumber(xe, nameof(collisionFilterInfo), collisionFilterInfo);
             xs.WriteEnum<PhantomType, sbyte>(xe, nameof(phantomType), phantomType);
-            xs.WriteEnum<LinearVelocityMode, sbyte>(xe, nameof(linearVelocityMode), linearVelocityMode);
+            xs.WriteEnum<LinearVelocityMode, sbyte>(
+                xe,
+                nameof(linearVelocityMode),
+                linearVelocityMode
+            );
             xs.WriteBoolean(xe, nameof(ignoreIncomingRotation), ignoreIncomingRotation);
-            xs.WriteBoolean(xe, nameof(ignoreCollisionDuringRotation), ignoreCollisionDuringRotation);
+            xs.WriteBoolean(
+                xe,
+                nameof(ignoreCollisionDuringRotation),
+                ignoreCollisionDuringRotation
+            );
             xs.WriteBoolean(xe, nameof(ignoreIncomingTranslation), ignoreIncomingTranslation);
             xs.WriteBoolean(xe, nameof(includeDownwardMomentum), includeDownwardMomentum);
             xs.WriteBoolean(xe, nameof(followWorldFromModel), followWorldFromModel);
@@ -207,31 +224,39 @@ namespace HKX2E
 
         public bool Equals(hkbProxyModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((proxyInfo is null && other.proxyInfo is null) || (proxyInfo is not null && other.proxyInfo is not null && proxyInfo.Equals((IHavokObject)other.proxyInfo))) &&
-                   linearVelocity.Equals(other.linearVelocity) &&
-                   horizontalGain.Equals(other.horizontalGain) &&
-                   verticalGain.Equals(other.verticalGain) &&
-                   maxHorizontalSeparation.Equals(other.maxHorizontalSeparation) &&
-                   maxVerticalSeparation.Equals(other.maxVerticalSeparation) &&
-                   verticalDisplacementError.Equals(other.verticalDisplacementError) &&
-                   verticalDisplacementErrorGain.Equals(other.verticalDisplacementErrorGain) &&
-                   maxVerticalDisplacement.Equals(other.maxVerticalDisplacement) &&
-                   minVerticalDisplacement.Equals(other.minVerticalDisplacement) &&
-                   capsuleHeight.Equals(other.capsuleHeight) &&
-                   capsuleRadius.Equals(other.capsuleRadius) &&
-                   maxSlopeForRotation.Equals(other.maxSlopeForRotation) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   phantomType.Equals(other.phantomType) &&
-                   linearVelocityMode.Equals(other.linearVelocityMode) &&
-                   ignoreIncomingRotation.Equals(other.ignoreIncomingRotation) &&
-                   ignoreCollisionDuringRotation.Equals(other.ignoreCollisionDuringRotation) &&
-                   ignoreIncomingTranslation.Equals(other.ignoreIncomingTranslation) &&
-                   includeDownwardMomentum.Equals(other.includeDownwardMomentum) &&
-                   followWorldFromModel.Equals(other.followWorldFromModel) &&
-                   isTouchingGround.Equals(other.isTouchingGround) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (proxyInfo is null && other.proxyInfo is null)
+                    || (
+                        proxyInfo is not null
+                        && other.proxyInfo is not null
+                        && proxyInfo.Equals((IHavokObject)other.proxyInfo)
+                    )
+                )
+                && linearVelocity.Equals(other.linearVelocity)
+                && horizontalGain.Equals(other.horizontalGain)
+                && verticalGain.Equals(other.verticalGain)
+                && maxHorizontalSeparation.Equals(other.maxHorizontalSeparation)
+                && maxVerticalSeparation.Equals(other.maxVerticalSeparation)
+                && verticalDisplacementError.Equals(other.verticalDisplacementError)
+                && verticalDisplacementErrorGain.Equals(other.verticalDisplacementErrorGain)
+                && maxVerticalDisplacement.Equals(other.maxVerticalDisplacement)
+                && minVerticalDisplacement.Equals(other.minVerticalDisplacement)
+                && capsuleHeight.Equals(other.capsuleHeight)
+                && capsuleRadius.Equals(other.capsuleRadius)
+                && maxSlopeForRotation.Equals(other.maxSlopeForRotation)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && phantomType.Equals(other.phantomType)
+                && linearVelocityMode.Equals(other.linearVelocityMode)
+                && ignoreIncomingRotation.Equals(other.ignoreIncomingRotation)
+                && ignoreCollisionDuringRotation.Equals(other.ignoreCollisionDuringRotation)
+                && ignoreIncomingTranslation.Equals(other.ignoreIncomingTranslation)
+                && includeDownwardMomentum.Equals(other.includeDownwardMomentum)
+                && followWorldFromModel.Equals(other.followWorldFromModel)
+                && isTouchingGround.Equals(other.isTouchingGround)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -265,4 +290,3 @@ namespace HKX2E
         }
     }
 }
-

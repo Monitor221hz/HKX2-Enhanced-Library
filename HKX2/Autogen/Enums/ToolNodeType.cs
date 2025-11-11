@@ -13,4 +13,3 @@ namespace HKX2E
         NODE_TYPE_BEHAVIOR_FILE_REFERENCE = 8,
     }
 }
-

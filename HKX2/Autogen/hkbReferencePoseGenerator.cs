@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbReferencePoseGenerator Signatire: 0x26a5675a size: 80 flags: FLAGS_NONE
 
-    // skeleton class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbReferencePoseGenerator : hkbGenerator, IEquatable<hkbReferencePoseGenerator?>
+    // skeleton class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbReferencePoseGenerator
+        : hkbGenerator,
+            IEquatable<hkbReferencePoseGenerator?>
     {
         private object? skeleton { set; get; }
 
@@ -42,9 +44,8 @@ namespace HKX2E
 
         public bool Equals(hkbReferencePoseGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -56,4 +57,3 @@ namespace HKX2E
         }
     }
 }
-

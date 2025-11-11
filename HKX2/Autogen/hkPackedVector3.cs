@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkPackedVector3 Signatire: 0x9c16df5b size: 8 flags: FLAGS_NONE
 
-    // values class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 4 offset: 0 flags: FLAGS_NONE enum: 
+    // values class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 4 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkPackedVector3 : IHavokObject, IEquatable<hkPackedVector3?>
     {
         public short[] values = new short[4];
@@ -40,9 +40,10 @@ namespace HKX2E
 
         public bool Equals(hkPackedVector3? other)
         {
-            return other is not null &&
-                   values.SequenceEqual(other.values) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && values.SequenceEqual(other.values)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -54,4 +55,3 @@ namespace HKX2E
         }
     }
 }
-

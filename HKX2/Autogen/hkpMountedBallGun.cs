@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkpMountedBallGun Signatire: 0x6791ffce size: 128 flags: FLAGS_NONE
 
-    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
     public partial class hkpMountedBallGun : hkpBallGun, IEquatable<hkpMountedBallGun?>
     {
         public Vector4 position { set; get; }
@@ -44,10 +44,11 @@ namespace HKX2E
 
         public bool Equals(hkpMountedBallGun? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   position.Equals(other.position) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && position.Equals(other.position)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -60,4 +61,3 @@ namespace HKX2E
         }
     }
 }
-

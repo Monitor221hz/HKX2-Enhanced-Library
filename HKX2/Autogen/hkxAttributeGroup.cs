@@ -7,8 +7,8 @@ namespace HKX2E
 {
     // hkxAttributeGroup Signatire: 0x345ca95d size: 24 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // attributes class: hkxAttribute Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // attributes class: hkxAttribute Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkxAttributeGroup : IHavokObject, IEquatable<hkxAttributeGroup?>
     {
         public string name { set; get; } = "";
@@ -47,10 +47,16 @@ namespace HKX2E
 
         public bool Equals(hkxAttributeGroup? other)
         {
-            return other is not null &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   attributes.SequenceEqual(other.attributes) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && attributes.SequenceEqual(other.attributes)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

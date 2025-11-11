@@ -9,4 +9,3 @@ namespace HKX2E
         PARENT_NAME = 4,
     }
 }
-

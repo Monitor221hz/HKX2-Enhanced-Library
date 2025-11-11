@@ -6,4 +6,3 @@ namespace HKX2E
         HK_RETARGETING_MAPPING = 1,
     }
 }
-

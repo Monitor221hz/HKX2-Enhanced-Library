@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkSphere Signatire: 0x143dff99 size: 16 flags: FLAGS_NONE
 
-    // pos class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // pos class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkSphere : IHavokObject, IEquatable<hkSphere?>
     {
         public Vector4 pos { set; get; }
@@ -40,9 +40,8 @@ namespace HKX2E
 
         public bool Equals(hkSphere? other)
         {
-            return other is not null &&
-                   pos.Equals(other.pos) &&
-                   Signature == other.Signature; ;
+            return other is not null && pos.Equals(other.pos) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -54,4 +53,3 @@ namespace HKX2E
         }
     }
 }
-

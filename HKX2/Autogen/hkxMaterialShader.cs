@@ -7,12 +7,12 @@ namespace HKX2E
 {
     // hkxMaterialShader Signatire: 0x28515eff size: 72 flags: FLAGS_NONE
 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // type class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: ShaderType
-    // vertexEntryName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // geomEntryName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // pixelEntryName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
+    // vertexEntryName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // geomEntryName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // pixelEntryName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
     public partial class hkxMaterialShader : hkReferencedObject, IEquatable<hkxMaterialShader?>
     {
         public string name { set; get; } = "";
@@ -77,15 +77,36 @@ namespace HKX2E
 
         public bool Equals(hkxMaterialShader? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   type.Equals(other.type) &&
-                   (vertexEntryName is null && other.vertexEntryName is null || vertexEntryName == other.vertexEntryName || vertexEntryName is null && other.vertexEntryName == "" || vertexEntryName == "" && other.vertexEntryName is null) &&
-                   (geomEntryName is null && other.geomEntryName is null || geomEntryName == other.geomEntryName || geomEntryName is null && other.geomEntryName == "" || geomEntryName == "" && other.geomEntryName is null) &&
-                   (pixelEntryName is null && other.pixelEntryName is null || pixelEntryName == other.pixelEntryName || pixelEntryName is null && other.pixelEntryName == "" || pixelEntryName == "" && other.pixelEntryName is null) &&
-                   data.SequenceEqual(other.data) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && type.Equals(other.type)
+                && (
+                    vertexEntryName is null && other.vertexEntryName is null
+                    || vertexEntryName == other.vertexEntryName
+                    || vertexEntryName is null && other.vertexEntryName == ""
+                    || vertexEntryName == "" && other.vertexEntryName is null
+                )
+                && (
+                    geomEntryName is null && other.geomEntryName is null
+                    || geomEntryName == other.geomEntryName
+                    || geomEntryName is null && other.geomEntryName == ""
+                    || geomEntryName == "" && other.geomEntryName is null
+                )
+                && (
+                    pixelEntryName is null && other.pixelEntryName is null
+                    || pixelEntryName == other.pixelEntryName
+                    || pixelEntryName is null && other.pixelEntryName == ""
+                    || pixelEntryName == "" && other.pixelEntryName is null
+                )
+                && data.SequenceEqual(other.data)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -103,4 +124,3 @@ namespace HKX2E
         }
     }
 }
-

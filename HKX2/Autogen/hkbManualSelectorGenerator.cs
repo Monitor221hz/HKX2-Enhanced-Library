@@ -7,10 +7,12 @@ namespace HKX2E
 {
     // hkbManualSelectorGenerator Signatire: 0xd932fab8 size: 96 flags: FLAGS_NONE
 
-    // generators class: hkbGenerator Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // selectedGeneratorIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // currentGeneratorIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 89 flags: FLAGS_NONE enum: 
-    public partial class hkbManualSelectorGenerator : hkbGenerator, IEquatable<hkbManualSelectorGenerator?>
+    // generators class: hkbGenerator Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // selectedGeneratorIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // currentGeneratorIndex class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 89 flags: FLAGS_NONE enum:
+    public partial class hkbManualSelectorGenerator
+        : hkbGenerator,
+            IEquatable<hkbManualSelectorGenerator?>
     {
         public IList<hkbGenerator> generators { set; get; } = Array.Empty<hkbGenerator>();
         public sbyte selectedGeneratorIndex { set; get; }
@@ -59,12 +61,13 @@ namespace HKX2E
 
         public bool Equals(hkbManualSelectorGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   generators.SequenceEqual(other.generators) &&
-                   selectedGeneratorIndex.Equals(other.selectedGeneratorIndex) &&
-                   currentGeneratorIndex.Equals(other.currentGeneratorIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && generators.SequenceEqual(other.generators)
+                && selectedGeneratorIndex.Equals(other.selectedGeneratorIndex)
+                && currentGeneratorIndex.Equals(other.currentGeneratorIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +82,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // hkbModifier Signatire: 0x96ec5ced size: 80 flags: FLAGS_NONE
 
-    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // padModifier class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 3 offset: 73 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // enable class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // padModifier class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 3 offset: 73 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbModifier : hkbNode, IEquatable<hkbModifier?>
     {
         public bool enable { set; get; }
@@ -50,10 +50,11 @@ namespace HKX2E
 
         public bool Equals(hkbModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   enable.Equals(other.enable) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && enable.Equals(other.enable)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -66,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,7 +6,7 @@ namespace HKX2E
 {
     // hkpBoxShape Signatire: 0x3444d2d5 size: 64 flags: FLAGS_NONE
 
-    // halfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // halfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkpBoxShape : hkpConvexShape, IEquatable<hkpBoxShape?>
     {
         public Vector4 halfExtents { set; get; }
@@ -46,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkpBoxShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   halfExtents.Equals(other.halfExtents) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && halfExtents.Equals(other.halfExtents)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

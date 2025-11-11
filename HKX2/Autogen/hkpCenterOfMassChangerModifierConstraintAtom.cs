@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpCenterOfMassChangerModifierConstraintAtom Signatire: 0x1d7dbdd2 size: 80 flags: FLAGS_NONE
 
-    // displacementA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // displacementB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    public partial class hkpCenterOfMassChangerModifierConstraintAtom : hkpModifierConstraintAtom, IEquatable<hkpCenterOfMassChangerModifierConstraintAtom?>
+    // displacementA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // displacementB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    public partial class hkpCenterOfMassChangerModifierConstraintAtom
+        : hkpModifierConstraintAtom,
+            IEquatable<hkpCenterOfMassChangerModifierConstraintAtom?>
     {
         public Vector4 displacementA { set; get; }
         public Vector4 displacementB { set; get; }
@@ -50,11 +52,12 @@ namespace HKX2E
 
         public bool Equals(hkpCenterOfMassChangerModifierConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   displacementA.Equals(other.displacementA) &&
-                   displacementB.Equals(other.displacementB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && displacementA.Equals(other.displacementA)
+                && displacementB.Equals(other.displacementB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -68,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

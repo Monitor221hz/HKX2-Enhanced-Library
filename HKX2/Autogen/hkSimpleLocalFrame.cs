@@ -8,11 +8,11 @@ namespace HKX2E
 {
     // hkSimpleLocalFrame Signatire: 0xe758f63c size: 128 flags: FLAGS_NONE
 
-    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // children class: hkLocalFrame Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // parentFrame class: hkLocalFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: NOT_OWNED|FLAGS_NONE enum: 
-    // group class: hkLocalFrameGroup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // children class: hkLocalFrame Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // parentFrame class: hkLocalFrame Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: NOT_OWNED|FLAGS_NONE enum:
+    // group class: hkLocalFrameGroup Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
     public partial class hkSimpleLocalFrame : hkLocalFrame, IEquatable<hkSimpleLocalFrame?>
     {
         public Matrix4x4 transform { set; get; }
@@ -72,14 +72,34 @@ namespace HKX2E
 
         public bool Equals(hkSimpleLocalFrame? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   transform.Equals(other.transform) &&
-                   children.SequenceEqual(other.children) &&
-                   ((parentFrame is null && other.parentFrame is null) || (parentFrame is not null && other.parentFrame is not null && parentFrame.Equals((IHavokObject)other.parentFrame))) &&
-                   ((group is null && other.group is null) || (group is not null && other.group is not null && group.Equals((IHavokObject)other.group))) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && transform.Equals(other.transform)
+                && children.SequenceEqual(other.children)
+                && (
+                    (parentFrame is null && other.parentFrame is null)
+                    || (
+                        parentFrame is not null
+                        && other.parentFrame is not null
+                        && parentFrame.Equals((IHavokObject)other.parentFrame)
+                    )
+                )
+                && (
+                    (group is null && other.group is null)
+                    || (
+                        group is not null
+                        && other.group is not null
+                        && group.Equals((IHavokObject)other.group)
+                    )
+                )
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -96,4 +116,3 @@ namespace HKX2E
         }
     }
 }
-

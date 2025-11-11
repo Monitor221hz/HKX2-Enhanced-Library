@@ -7,8 +7,8 @@ namespace HKX2E
 {
     // hkbLinkedSymbolInfo Signatire: 0x6a5094e3 size: 48 flags: FLAGS_NONE
 
-    // eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // variableNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // eventNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // variableNames class:  Type.TYPE_ARRAY Type.TYPE_STRINGPTR arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
     public partial class hkbLinkedSymbolInfo : hkReferencedObject, IEquatable<hkbLinkedSymbolInfo?>
     {
         public IList<string> eventNames { set; get; } = Array.Empty<string>();
@@ -51,11 +51,12 @@ namespace HKX2E
 
         public bool Equals(hkbLinkedSymbolInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   eventNames.SequenceEqual(other.eventNames) &&
-                   variableNames.SequenceEqual(other.variableNames) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && eventNames.SequenceEqual(other.eventNames)
+                && variableNames.SequenceEqual(other.variableNames)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

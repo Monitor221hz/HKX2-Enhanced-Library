@@ -6,4 +6,3 @@ namespace HKX2E
         BITS16 = 1,
     }
 }
-

@@ -6,16 +6,16 @@ namespace HKX2E
 {
     // hkMotionState Signatire: 0x5797386e size: 176 flags: FLAGS_NONE
 
-    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // sweptTransform class: hkSweptTransform Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // deltaAngle class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // objectRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // linearDamping class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 164 flags: FLAGS_NONE enum: 
-    // angularDamping class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 166 flags: FLAGS_NONE enum: 
-    // timeFactor class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // maxLinearVelocity class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 170 flags: FLAGS_NONE enum: 
-    // maxAngularVelocity class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 171 flags: FLAGS_NONE enum: 
-    // deactivationClass class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum: 
+    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // sweptTransform class: hkSweptTransform Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // deltaAngle class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // objectRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // linearDamping class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 164 flags: FLAGS_NONE enum:
+    // angularDamping class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 166 flags: FLAGS_NONE enum:
+    // timeFactor class:  Type.TYPE_HALF Type.TYPE_VOID arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // maxLinearVelocity class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 170 flags: FLAGS_NONE enum:
+    // maxAngularVelocity class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 171 flags: FLAGS_NONE enum:
+    // deactivationClass class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 172 flags: FLAGS_NONE enum:
     public partial class hkMotionState : IHavokObject, IEquatable<hkMotionState?>
     {
         public Matrix4x4 transform { set; get; }
@@ -96,18 +96,26 @@ namespace HKX2E
 
         public bool Equals(hkMotionState? other)
         {
-            return other is not null &&
-                   transform.Equals(other.transform) &&
-                   ((sweptTransform is null && other.sweptTransform is null) || (sweptTransform is not null && other.sweptTransform is not null && sweptTransform.Equals((IHavokObject)other.sweptTransform))) &&
-                   deltaAngle.Equals(other.deltaAngle) &&
-                   objectRadius.Equals(other.objectRadius) &&
-                   linearDamping.Equals(other.linearDamping) &&
-                   angularDamping.Equals(other.angularDamping) &&
-                   timeFactor.Equals(other.timeFactor) &&
-                   maxLinearVelocity.Equals(other.maxLinearVelocity) &&
-                   maxAngularVelocity.Equals(other.maxAngularVelocity) &&
-                   deactivationClass.Equals(other.deactivationClass) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && transform.Equals(other.transform)
+                && (
+                    (sweptTransform is null && other.sweptTransform is null)
+                    || (
+                        sweptTransform is not null
+                        && other.sweptTransform is not null
+                        && sweptTransform.Equals((IHavokObject)other.sweptTransform)
+                    )
+                )
+                && deltaAngle.Equals(other.deltaAngle)
+                && objectRadius.Equals(other.objectRadius)
+                && linearDamping.Equals(other.linearDamping)
+                && angularDamping.Equals(other.angularDamping)
+                && timeFactor.Equals(other.timeFactor)
+                && maxLinearVelocity.Equals(other.maxLinearVelocity)
+                && maxAngularVelocity.Equals(other.maxAngularVelocity)
+                && deactivationClass.Equals(other.deactivationClass)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -128,4 +136,3 @@ namespace HKX2E
         }
     }
 }
-

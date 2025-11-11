@@ -7,10 +7,11 @@ namespace HKX2E
 {
     // hkpStorageMeshShape Signatire: 0xbefd8b39 size: 144 flags: FLAGS_NONE
 
-    // storage class: hkpStorageMeshShapeSubpartStorage Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
+    // storage class: hkpStorageMeshShapeSubpartStorage Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
     public partial class hkpStorageMeshShape : hkpMeshShape, IEquatable<hkpStorageMeshShape?>
     {
-        public IList<hkpStorageMeshShapeSubpartStorage> storage { set; get; } = Array.Empty<hkpStorageMeshShapeSubpartStorage>();
+        public IList<hkpStorageMeshShapeSubpartStorage> storage { set; get; } =
+            Array.Empty<hkpStorageMeshShapeSubpartStorage>();
 
         public override uint Signature { set; get; } = 0xbefd8b39;
 
@@ -29,7 +30,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            storage = xd.ReadClassPointerArray<hkpStorageMeshShapeSubpartStorage>(this, xe, nameof(storage));
+            storage = xd.ReadClassPointerArray<hkpStorageMeshShapeSubpartStorage>(
+                this,
+                xe,
+                nameof(storage)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +50,11 @@ namespace HKX2E
 
         public bool Equals(hkpStorageMeshShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   storage.SequenceEqual(other.storage) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && storage.SequenceEqual(other.storage)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +67,3 @@ namespace HKX2E
         }
     }
 }
-

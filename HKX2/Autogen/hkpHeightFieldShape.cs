@@ -5,11 +5,8 @@ namespace HKX2E
 {
     // hkpHeightFieldShape Signatire: 0xe7eca7eb size: 32 flags: FLAGS_NONE
 
-
     public partial class hkpHeightFieldShape : hkpShape, IEquatable<hkpHeightFieldShape?>
     {
-
-
         public override uint Signature { set; get; } = 0xe7eca7eb;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +36,8 @@ namespace HKX2E
 
         public bool Equals(hkpHeightFieldShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +49,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkbCompiledExpressionSetToken Signatire: 0xc6aaccc8 size: 8 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // data class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 4 flags: FLAGS_NONE enum: TokenType
     // operator class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 5 flags: FLAGS_NONE enum: Operator
-    public partial class hkbCompiledExpressionSetToken : IHavokObject, IEquatable<hkbCompiledExpressionSetToken?>
+    public partial class hkbCompiledExpressionSetToken
+        : IHavokObject,
+            IEquatable<hkbCompiledExpressionSetToken?>
     {
         public float data { set; get; }
         public sbyte type { set; get; }
@@ -53,11 +55,12 @@ namespace HKX2E
 
         public bool Equals(hkbCompiledExpressionSetToken? other)
         {
-            return other is not null &&
-                   data.Equals(other.data) &&
-                   type.Equals(other.type) &&
-                   _operator.Equals(other._operator) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && data.Equals(other.data)
+                && type.Equals(other.type)
+                && _operator.Equals(other._operator)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +74,3 @@ namespace HKX2E
         }
     }
 }
-

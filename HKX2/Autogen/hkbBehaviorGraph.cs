@@ -7,35 +7,35 @@ namespace HKX2E
     // hkbBehaviorGraph Signatire: 0xb1218f86 size: 304 flags: FLAGS_NONE
 
     // variableMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 72 flags: FLAGS_NONE enum: VariableMode
-    // uniqueIdPool class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // idToStateMachineTemplateMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // mirroredExternalIdMap class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pseudoRandomGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // rootGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // data class: hkbBehaviorGraphData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // rootGeneratorClone class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // activeNodes class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // activeNodeTemplateToIndexMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // activeNodesChildrenIndices class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // globalTransitionData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // attributeIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // variableIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // characterPropertyIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // variableValueSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nodeTemplateToCloneMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nodeCloneToTemplateMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // stateListenerTemplateToCloneMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nodePartitionInfo class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // numIntermediateOutputs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // jobs class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 264 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // allPartitionMemory class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // numStaticNodes class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 296 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // nextUniqueId class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 298 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 300 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // isLinked class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 301 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // updateActiveNodes class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 302 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // stateOrTransitionChanged class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 303 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // uniqueIdPool class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // idToStateMachineTemplateMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // mirroredExternalIdMap class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pseudoRandomGenerator class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // rootGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // data class: hkbBehaviorGraphData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // rootGeneratorClone class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // activeNodes class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // activeNodeTemplateToIndexMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // activeNodesChildrenIndices class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // globalTransitionData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // eventIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 184 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // attributeIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 192 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // variableIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 200 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // characterPropertyIdMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 208 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // variableValueSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nodeTemplateToCloneMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nodeCloneToTemplateMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // stateListenerTemplateToCloneMap class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nodePartitionInfo class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // numIntermediateOutputs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // jobs class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 264 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // allPartitionMemory class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 280 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // numStaticNodes class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 296 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // nextUniqueId class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 298 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 300 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // isLinked class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 301 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // updateActiveNodes class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 302 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // stateOrTransitionChanged class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 303 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbBehaviorGraph : hkbGenerator, IEquatable<hkbBehaviorGraph?>
     {
         public sbyte variableMode { set; get; }
@@ -195,12 +195,27 @@ namespace HKX2E
 
         public bool Equals(hkbBehaviorGraph? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   variableMode.Equals(other.variableMode) &&
-                   ((rootGenerator is null && other.rootGenerator is null) || (rootGenerator is not null && other.rootGenerator is not null && rootGenerator.Equals((IHavokObject)other.rootGenerator))) &&
-                   ((data is null && other.data is null) || (data is not null && other.data is not null && data.Equals((IHavokObject)other.data))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && variableMode.Equals(other.variableMode)
+                && (
+                    (rootGenerator is null && other.rootGenerator is null)
+                    || (
+                        rootGenerator is not null
+                        && other.rootGenerator is not null
+                        && rootGenerator.Equals((IHavokObject)other.rootGenerator)
+                    )
+                )
+                && (
+                    (data is null && other.data is null)
+                    || (
+                        data is not null
+                        && other.data is not null
+                        && data.Equals((IHavokObject)other.data)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -215,4 +230,3 @@ namespace HKX2E
         }
     }
 }
-

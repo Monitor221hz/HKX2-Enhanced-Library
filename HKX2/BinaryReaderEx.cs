@@ -14,9 +14,15 @@ public class BinaryReaderEx
     private readonly Stack<long> steps;
     private readonly BinaryReader br;
 
-    public BinaryReaderEx(byte[] input) : this(false, false, new MemoryStream(input)) { }
-    public BinaryReaderEx(Stream stream) : this(false, false, stream) { }
-    public BinaryReaderEx(bool bigEndian, bool uSizeLong, byte[] input) : this(bigEndian, uSizeLong, new MemoryStream(input)) { }
+    public BinaryReaderEx(byte[] input)
+        : this(false, false, new MemoryStream(input)) { }
+
+    public BinaryReaderEx(Stream stream)
+        : this(false, false, stream) { }
+
+    public BinaryReaderEx(bool bigEndian, bool uSizeLong, byte[] input)
+        : this(bigEndian, uSizeLong, new MemoryStream(input)) { }
+
     public BinaryReaderEx(bool bigEndian, bool uSizeLong, Stream stream)
     {
         BigEndian = bigEndian;
@@ -31,25 +37,34 @@ public class BinaryReaderEx
     public bool USizeLong { get; }
     public Stream Stream { get; }
 
-    public long Position { get => Stream.Position; set => Stream.Position = value; }
+    public long Position
+    {
+        get => Stream.Position;
+        set => Stream.Position = value;
+    }
     public long Length => Stream.Length;
 
     public byte[] ReadBytes(int count)
     {
         ArgumentOutOfRangeException.ThrowIfNegative(count);
-        if (count == 0) return Array.Empty<byte>();
+        if (count == 0)
+            return Array.Empty<byte>();
 
         var buffer = new byte[count];
         Stream.ReadExactly(buffer);
         return buffer;
     }
 
-
-    public void StepIn(long offset) { steps.Push(Stream.Position); Stream.Position = offset; }
+    public void StepIn(long offset)
+    {
+        steps.Push(Stream.Position);
+        Stream.Position = offset;
+    }
 
     public void StepOut()
     {
-        if (steps.Count == 0) throw new InvalidOperationException("Reader is already stepped all the way out.");
+        if (steps.Count == 0)
+            throw new InvalidOperationException("Reader is already stepped all the way out.");
         Stream.Position = steps.Pop();
     }
 
@@ -58,13 +73,16 @@ public class BinaryReaderEx
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(align);
 
         long mod = Stream.Position % align;
-        if (mod > 0) Stream.Position += align - mod;
+        if (mod > 0)
+            Stream.Position += align - mod;
     }
 
-    private static T AssertValue<T>(T value, string typeName, string valueFormat, T[] options) where T : IEquatable<T>
+    private static T AssertValue<T>(T value, string typeName, string valueFormat, T[] options)
+        where T : IEquatable<T>
     {
         foreach (var option in options)
-            if (value.Equals(option)) return value;
+            if (value.Equals(option))
+                return value;
         var strValue = string.Format(valueFormat, value);
         var strOptions = string.Join(", ", options.Select(o => string.Format(valueFormat, o)));
 
@@ -92,6 +110,7 @@ public class BinaryReaderEx
             return BinaryPrimitives.ReadInt16BigEndian(buf);
         }
     }
+
     public ushort ReadUInt16()
     {
         if (!BigEndian)
@@ -119,6 +138,7 @@ public class BinaryReaderEx
             return BinaryPrimitives.ReadInt32BigEndian(buf);
         }
     }
+
     public uint ReadUInt32()
     {
         if (!BigEndian)
@@ -132,6 +152,7 @@ public class BinaryReaderEx
             return BinaryPrimitives.ReadUInt32BigEndian(buf);
         }
     }
+
     public long ReadInt64()
     {
         if (!BigEndian)
@@ -145,6 +166,7 @@ public class BinaryReaderEx
             return BinaryPrimitives.ReadInt64BigEndian(buf);
         }
     }
+
     public ulong ReadUInt64()
     {
         if (!BigEndian)
@@ -182,6 +204,7 @@ public class BinaryReaderEx
         float floatValue = BitConverter.UInt32BitsToSingle((uint)halfBits << 16);
         return (Half)floatValue;
     }
+
     public float ReadSingle()
     {
         float val;
@@ -221,7 +244,8 @@ public class BinaryReaderEx
 
     private string ReadChars(Encoding encoding, int length)
     {
-        if (length <= 0) return string.Empty;
+        if (length <= 0)
+            return string.Empty;
         byte[] rented = ArrayPool<byte>.Shared.Rent(length);
         try
         {
@@ -247,11 +271,13 @@ public class BinaryReaderEx
     }
 
     public string ReadASCII() => ReadCharsTerminated(Encoding.ASCII);
+
     public string ReadASCII(int length) => ReadChars(Encoding.ASCII, length);
 
     public string ReadFixStr(int size)
     {
-        if (size <= 0) return string.Empty;
+        if (size <= 0)
+            return string.Empty;
         byte[] rented = ArrayPool<byte>.Shared.Rent(size);
         try
         {

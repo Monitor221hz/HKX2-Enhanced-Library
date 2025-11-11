@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkbGetUpModifierInternalState Signatire: 0xd84cad4a size: 32 flags: FLAGS_NONE
 
-    // timeSinceBegin class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // initNextModify class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    public partial class hkbGetUpModifierInternalState : hkReferencedObject, IEquatable<hkbGetUpModifierInternalState?>
+    // timeSinceBegin class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // timeStep class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // initNextModify class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    public partial class hkbGetUpModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbGetUpModifierInternalState?>
     {
         public float timeSinceBegin { set; get; }
         public float timeStep { set; get; }
@@ -57,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkbGetUpModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   timeSinceBegin.Equals(other.timeSinceBegin) &&
-                   timeStep.Equals(other.timeStep) &&
-                   initNextModify.Equals(other.initNextModify) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && timeSinceBegin.Equals(other.timeSinceBegin)
+                && timeStep.Equals(other.timeStep)
+                && initNextModify.Equals(other.initNextModify)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

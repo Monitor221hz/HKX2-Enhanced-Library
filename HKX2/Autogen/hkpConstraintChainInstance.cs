@@ -7,9 +7,11 @@ namespace HKX2E
 {
     // hkpConstraintChainInstance Signatire: 0x7a490753 size: 136 flags: FLAGS_NONE
 
-    // chainedEntities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // action class: hkpConstraintChainInstanceAction Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    public partial class hkpConstraintChainInstance : hkpConstraintInstance, IEquatable<hkpConstraintChainInstance?>
+    // chainedEntities class: hkpEntity Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // action class: hkpConstraintChainInstanceAction Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    public partial class hkpConstraintChainInstance
+        : hkpConstraintInstance,
+            IEquatable<hkpConstraintChainInstance?>
     {
         public IList<hkpEntity> chainedEntities { set; get; } = Array.Empty<hkpEntity>();
         public hkpConstraintChainInstanceAction? action { set; get; }
@@ -33,8 +35,16 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            chainedEntities = xd.ReadClassPointerArray<hkpEntity>(this, xe, nameof(chainedEntities));
-            action = xd.ReadClassPointer<hkpConstraintChainInstanceAction>(this, xe, nameof(action));
+            chainedEntities = xd.ReadClassPointerArray<hkpEntity>(
+                this,
+                xe,
+                nameof(chainedEntities)
+            );
+            action = xd.ReadClassPointer<hkpConstraintChainInstanceAction>(
+                this,
+                xe,
+                nameof(action)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -51,11 +61,19 @@ namespace HKX2E
 
         public bool Equals(hkpConstraintChainInstance? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   chainedEntities.SequenceEqual(other.chainedEntities) &&
-                   ((action is null && other.action is null) || (action is not null && other.action is not null && action.Equals((IHavokObject)other.action))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && chainedEntities.SequenceEqual(other.chainedEntities)
+                && (
+                    (action is null && other.action is null)
+                    || (
+                        action is not null
+                        && other.action is not null
+                        && action.Equals((IHavokObject)other.action)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +87,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpConstraintData Signatire: 0x80559a4e size: 24 flags: FLAGS_NONE
 
-    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // userData class:  Type.TYPE_ULONG Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkpConstraintData : hkReferencedObject, IEquatable<hkpConstraintData?>
     {
         public ulong userData { set; get; }
@@ -43,10 +43,11 @@ namespace HKX2E
 
         public bool Equals(hkpConstraintData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   userData.Equals(other.userData) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && userData.Equals(other.userData)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -59,4 +60,3 @@ namespace HKX2E
         }
     }
 }
-

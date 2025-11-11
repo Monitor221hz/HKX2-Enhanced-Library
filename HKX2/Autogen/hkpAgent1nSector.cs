@@ -6,11 +6,11 @@ namespace HKX2E
 {
     // hkpAgent1nSector Signatire: 0x626e55a size: 512 flags: FLAGS_NONE
 
-    // bytesAllocated class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // pad0 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // pad1 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // pad2 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // data class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 496 offset: 16 flags: FLAGS_NONE enum: 
+    // bytesAllocated class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // pad0 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // pad1 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // pad2 class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // data class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 496 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkpAgent1nSector : IHavokObject, IEquatable<hkpAgent1nSector?>
     {
         public uint bytesAllocated { set; get; }
@@ -64,13 +64,14 @@ namespace HKX2E
 
         public bool Equals(hkpAgent1nSector? other)
         {
-            return other is not null &&
-                   bytesAllocated.Equals(other.bytesAllocated) &&
-                   pad0.Equals(other.pad0) &&
-                   pad1.Equals(other.pad1) &&
-                   pad2.Equals(other.pad2) &&
-                   data.SequenceEqual(other.data) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && bytesAllocated.Equals(other.bytesAllocated)
+                && pad0.Equals(other.pad0)
+                && pad1.Equals(other.pad1)
+                && pad2.Equals(other.pad2)
+                && data.SequenceEqual(other.data)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +87,3 @@ namespace HKX2E
         }
     }
 }
-

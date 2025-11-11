@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbEvaluateExpressionModifierInternalExpressionData Signatire: 0xb8686f6b size: 2 flags: FLAGS_NONE
 
-    // raisedEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // wasTrueInPreviousFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 1 flags: FLAGS_NONE enum: 
-    public partial class hkbEvaluateExpressionModifierInternalExpressionData : IHavokObject, IEquatable<hkbEvaluateExpressionModifierInternalExpressionData?>
+    // raisedEvent class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // wasTrueInPreviousFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 1 flags: FLAGS_NONE enum:
+    public partial class hkbEvaluateExpressionModifierInternalExpressionData
+        : IHavokObject,
+            IEquatable<hkbEvaluateExpressionModifierInternalExpressionData?>
     {
         public bool raisedEvent { set; get; }
         public bool wasTrueInPreviousFrame { set; get; }
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbEvaluateExpressionModifierInternalExpressionData? other)
         {
-            return other is not null &&
-                   raisedEvent.Equals(other.raisedEvent) &&
-                   wasTrueInPreviousFrame.Equals(other.wasTrueInPreviousFrame) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && raisedEvent.Equals(other.raisedEvent)
+                && wasTrueInPreviousFrame.Equals(other.wasTrueInPreviousFrame)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

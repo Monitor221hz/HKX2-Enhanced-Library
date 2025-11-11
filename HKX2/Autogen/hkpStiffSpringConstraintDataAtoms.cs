@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpStiffSpringConstraintDataAtoms Signatire: 0x207eb376 size: 64 flags: FLAGS_NONE
 
-    // pivots class: hkpSetLocalTranslationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // spring class: hkpStiffSpringConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    public partial class hkpStiffSpringConstraintDataAtoms : IHavokObject, IEquatable<hkpStiffSpringConstraintDataAtoms?>
+    // pivots class: hkpSetLocalTranslationsConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // spring class: hkpStiffSpringConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    public partial class hkpStiffSpringConstraintDataAtoms
+        : IHavokObject,
+            IEquatable<hkpStiffSpringConstraintDataAtoms?>
     {
         public hkpSetLocalTranslationsConstraintAtom pivots { set; get; } = new();
         public hkpStiffSpringConstraintAtom spring { set; get; } = new();
@@ -47,10 +49,25 @@ namespace HKX2E
 
         public bool Equals(hkpStiffSpringConstraintDataAtoms? other)
         {
-            return other is not null &&
-                   ((pivots is null && other.pivots is null) || (pivots is not null && other.pivots is not null && pivots.Equals((IHavokObject)other.pivots))) &&
-                   ((spring is null && other.spring is null) || (spring is not null && other.spring is not null && spring.Equals((IHavokObject)other.spring))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (pivots is null && other.pivots is null)
+                    || (
+                        pivots is not null
+                        && other.pivots is not null
+                        && pivots.Equals((IHavokObject)other.pivots)
+                    )
+                )
+                && (
+                    (spring is null && other.spring is null)
+                    || (
+                        spring is not null
+                        && other.spring is not null
+                        && spring.Equals((IHavokObject)other.spring)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

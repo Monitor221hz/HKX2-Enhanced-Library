@@ -8,4 +8,3 @@ namespace HKX2E
         SIMULATION_TYPE_MULTITHREADED = 3,
     }
 }
-

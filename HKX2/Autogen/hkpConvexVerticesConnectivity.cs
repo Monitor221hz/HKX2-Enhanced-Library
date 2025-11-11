@@ -7,9 +7,11 @@ namespace HKX2E
 {
     // hkpConvexVerticesConnectivity Signatire: 0x63d38e9c size: 48 flags: FLAGS_NONE
 
-    // vertexIndices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // numVerticesPerFace class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkpConvexVerticesConnectivity : hkReferencedObject, IEquatable<hkpConvexVerticesConnectivity?>
+    // vertexIndices class:  Type.TYPE_ARRAY Type.TYPE_UINT16 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // numVerticesPerFace class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkpConvexVerticesConnectivity
+        : hkReferencedObject,
+            IEquatable<hkpConvexVerticesConnectivity?>
     {
         public IList<ushort> vertexIndices { set; get; } = Array.Empty<ushort>();
         public IList<byte> numVerticesPerFace { set; get; } = Array.Empty<byte>();
@@ -51,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkpConvexVerticesConnectivity? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   vertexIndices.SequenceEqual(other.vertexIndices) &&
-                   numVerticesPerFace.SequenceEqual(other.numVerticesPerFace) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && vertexIndices.SequenceEqual(other.vertexIndices)
+                && numVerticesPerFace.SequenceEqual(other.numVerticesPerFace)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

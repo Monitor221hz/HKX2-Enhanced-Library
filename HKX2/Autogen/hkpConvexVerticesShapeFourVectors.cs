@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkpConvexVerticesShapeFourVectors Signatire: 0x3d80c5bf size: 48 flags: FLAGS_NONE
 
-    // x class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // y class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // z class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkpConvexVerticesShapeFourVectors : IHavokObject, IEquatable<hkpConvexVerticesShapeFourVectors?>
+    // x class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // y class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // z class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkpConvexVerticesShapeFourVectors
+        : IHavokObject,
+            IEquatable<hkpConvexVerticesShapeFourVectors?>
     {
         public Vector4 x { set; get; }
         public Vector4 y { set; get; }
@@ -52,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkpConvexVerticesShapeFourVectors? other)
         {
-            return other is not null &&
-                   x.Equals(other.x) &&
-                   y.Equals(other.y) &&
-                   z.Equals(other.z) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && x.Equals(other.x)
+                && y.Equals(other.y)
+                && z.Equals(other.z)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

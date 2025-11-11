@@ -5,8 +5,8 @@ namespace HKX2E
 {
     // BSModifyOnceModifier Signatire: 0x1e20a97a size: 112 flags: FLAGS_NONE
 
-    // pOnActivateModifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum: 
-    // pOnDeactivateModifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: ALIGN_16|FLAGS_NONE enum: 
+    // pOnActivateModifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum:
+    // pOnDeactivateModifier class: hkbModifier Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 96 flags: ALIGN_16|FLAGS_NONE enum:
     public partial class BSModifyOnceModifier : hkbModifier, IEquatable<BSModifyOnceModifier?>
     {
         public hkbModifier? pOnActivateModifier { set; get; }
@@ -35,8 +35,16 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pOnActivateModifier = xd.ReadClassPointer<hkbModifier>(this, xe, nameof(pOnActivateModifier));
-            pOnDeactivateModifier = xd.ReadClassPointer<hkbModifier>(this, xe, nameof(pOnDeactivateModifier));
+            pOnActivateModifier = xd.ReadClassPointer<hkbModifier>(
+                this,
+                xe,
+                nameof(pOnActivateModifier)
+            );
+            pOnDeactivateModifier = xd.ReadClassPointer<hkbModifier>(
+                this,
+                xe,
+                nameof(pOnDeactivateModifier)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -53,11 +61,26 @@ namespace HKX2E
 
         public bool Equals(BSModifyOnceModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((pOnActivateModifier is null && other.pOnActivateModifier is null) || (pOnActivateModifier is not null && other.pOnActivateModifier is not null && pOnActivateModifier.Equals((IHavokObject)other.pOnActivateModifier))) &&
-                   ((pOnDeactivateModifier is null && other.pOnDeactivateModifier is null) || (pOnDeactivateModifier is not null && other.pOnDeactivateModifier is not null && pOnDeactivateModifier.Equals((IHavokObject)other.pOnDeactivateModifier))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (pOnActivateModifier is null && other.pOnActivateModifier is null)
+                    || (
+                        pOnActivateModifier is not null
+                        && other.pOnActivateModifier is not null
+                        && pOnActivateModifier.Equals((IHavokObject)other.pOnActivateModifier)
+                    )
+                )
+                && (
+                    (pOnDeactivateModifier is null && other.pOnDeactivateModifier is null)
+                    || (
+                        pOnDeactivateModifier is not null
+                        && other.pOnDeactivateModifier is not null
+                        && pOnDeactivateModifier.Equals((IHavokObject)other.pOnDeactivateModifier)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +94,3 @@ namespace HKX2E
         }
     }
 }
-

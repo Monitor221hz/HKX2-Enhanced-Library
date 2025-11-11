@@ -6,9 +6,9 @@ namespace HKX2E
 {
     // hkpPlaneShape Signatire: 0xc36bbd30 size: 80 flags: FLAGS_NONE
 
-    // plane class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // aabbCenter class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // aabbHalfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
+    // plane class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // aabbCenter class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // aabbHalfExtents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
     public partial class hkpPlaneShape : hkpHeightFieldShape, IEquatable<hkpPlaneShape?>
     {
         public Vector4 plane { set; get; }
@@ -56,12 +56,13 @@ namespace HKX2E
 
         public bool Equals(hkpPlaneShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   plane.Equals(other.plane) &&
-                   aabbCenter.Equals(other.aabbCenter) &&
-                   aabbHalfExtents.Equals(other.aabbHalfExtents) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && plane.Equals(other.plane)
+                && aabbCenter.Equals(other.aabbCenter)
+                && aabbHalfExtents.Equals(other.aabbHalfExtents)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -76,4 +77,3 @@ namespace HKX2E
         }
     }
 }
-

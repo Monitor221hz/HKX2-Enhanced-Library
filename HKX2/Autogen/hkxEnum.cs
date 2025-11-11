@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkxEnum Signatire: 0xc4e1211 size: 32 flags: FLAGS_NONE
 
-    // items class: hkxEnumItem Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // items class: hkxEnumItem Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkxEnum : hkReferencedObject, IEquatable<hkxEnum?>
     {
         public IList<hkxEnumItem> items { set; get; } = Array.Empty<hkxEnumItem>();
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkxEnum? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   items.SequenceEqual(other.items) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && items.SequenceEqual(other.items)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -8,7 +8,7 @@ namespace HKX2E
 {
     // hkxAnimatedVector Signatire: 0x34b1a197 size: 40 flags: FLAGS_NONE
 
-    // vectors class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // vectors class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // hint class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: Hint
     public partial class hkxAnimatedVector : hkReferencedObject, IEquatable<hkxAnimatedVector?>
     {
@@ -54,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkxAnimatedVector? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   vectors.SequenceEqual(other.vectors) &&
-                   hint.Equals(other.hint) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && vectors.SequenceEqual(other.vectors)
+                && hint.Equals(other.hint)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -72,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

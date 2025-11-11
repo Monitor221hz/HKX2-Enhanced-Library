@@ -7,14 +7,15 @@ namespace HKX2E
 {
     // hkbBehaviorInfo Signatire: 0xf7645395 size: 48 flags: FLAGS_NONE
 
-    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // data class: hkbBehaviorGraphData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // idToNamePairs class: hkbBehaviorInfoIdToNamePair Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // characterId class:  Type.TYPE_UINT64 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // data class: hkbBehaviorGraphData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // idToNamePairs class: hkbBehaviorInfoIdToNamePair Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
     public partial class hkbBehaviorInfo : hkReferencedObject, IEquatable<hkbBehaviorInfo?>
     {
         public ulong characterId { set; get; }
         public hkbBehaviorGraphData? data { set; get; }
-        public IList<hkbBehaviorInfoIdToNamePair> idToNamePairs { set; get; } = Array.Empty<hkbBehaviorInfoIdToNamePair>();
+        public IList<hkbBehaviorInfoIdToNamePair> idToNamePairs { set; get; } =
+            Array.Empty<hkbBehaviorInfoIdToNamePair>();
 
         public override uint Signature { set; get; } = 0xf7645395;
 
@@ -39,7 +40,10 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             characterId = xd.ReadUInt64(xe, nameof(characterId));
             data = xd.ReadClassPointer<hkbBehaviorGraphData>(this, xe, nameof(data));
-            idToNamePairs = xd.ReadClassArray<hkbBehaviorInfoIdToNamePair>(xe, nameof(idToNamePairs));
+            idToNamePairs = xd.ReadClassArray<hkbBehaviorInfoIdToNamePair>(
+                xe,
+                nameof(idToNamePairs)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -57,12 +61,20 @@ namespace HKX2E
 
         public bool Equals(hkbBehaviorInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   characterId.Equals(other.characterId) &&
-                   ((data is null && other.data is null) || (data is not null && other.data is not null && data.Equals((IHavokObject)other.data))) &&
-                   idToNamePairs.SequenceEqual(other.idToNamePairs) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && characterId.Equals(other.characterId)
+                && (
+                    (data is null && other.data is null)
+                    || (
+                        data is not null
+                        && other.data is not null
+                        && data.Equals((IHavokObject)other.data)
+                    )
+                )
+                && idToNamePairs.SequenceEqual(other.idToNamePairs)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

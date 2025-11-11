@@ -7,9 +7,9 @@ namespace HKX2E
 {
     // hkpGroupFilter Signatire: 0x65ee88e4 size: 272 flags: FLAGS_NONE
 
-    // nextFreeSystemGroup class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // collisionLookupTable class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 32 offset: 76 flags: FLAGS_NONE enum: 
-    // pad256 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 4 offset: 208 flags: FLAGS_NONE enum: 
+    // nextFreeSystemGroup class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // collisionLookupTable class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 32 offset: 76 flags: FLAGS_NONE enum:
+    // pad256 class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 4 offset: 208 flags: FLAGS_NONE enum:
     public partial class hkpGroupFilter : hkpCollisionFilter, IEquatable<hkpGroupFilter?>
     {
         public int nextFreeSystemGroup { set; get; }
@@ -59,12 +59,13 @@ namespace HKX2E
 
         public bool Equals(hkpGroupFilter? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   nextFreeSystemGroup.Equals(other.nextFreeSystemGroup) &&
-                   collisionLookupTable.SequenceEqual(other.collisionLookupTable) &&
-                   pad256.SequenceEqual(other.pad256) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && nextFreeSystemGroup.Equals(other.nextFreeSystemGroup)
+                && collisionLookupTable.SequenceEqual(other.collisionLookupTable)
+                && pad256.SequenceEqual(other.pad256)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +80,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpBridgeAtoms Signatire: 0xde152a4d size: 24 flags: FLAGS_NONE
 
-    // bridgeAtom class: hkpBridgeConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // bridgeAtom class: hkpBridgeConstraintAtom Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkpBridgeAtoms : IHavokObject, IEquatable<hkpBridgeAtoms?>
     {
         public hkpBridgeConstraintAtom bridgeAtom { set; get; } = new();
@@ -39,9 +39,17 @@ namespace HKX2E
 
         public bool Equals(hkpBridgeAtoms? other)
         {
-            return other is not null &&
-                   ((bridgeAtom is null && other.bridgeAtom is null) || (bridgeAtom is not null && other.bridgeAtom is not null && bridgeAtom.Equals((IHavokObject)other.bridgeAtom))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (bridgeAtom is null && other.bridgeAtom is null)
+                    || (
+                        bridgeAtom is not null
+                        && other.bridgeAtom is not null
+                        && bridgeAtom.Equals((IHavokObject)other.bridgeAtom)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +61,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -6,8 +6,8 @@ namespace HKX2E
 {
     // hkbProjectData Signatire: 0x13a39ba7 size: 48 flags: FLAGS_NONE
 
-    // worldUpWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // stringData class: hkbProjectStringData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
+    // worldUpWS class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // stringData class: hkbProjectStringData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
     // defaultEventMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 40 flags: FLAGS_NONE enum: EventMode
     public partial class hkbProjectData : hkReferencedObject, IEquatable<hkbProjectData?>
     {
@@ -58,12 +58,20 @@ namespace HKX2E
 
         public bool Equals(hkbProjectData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   worldUpWS.Equals(other.worldUpWS) &&
-                   ((stringData is null && other.stringData is null) || (stringData is not null && other.stringData is not null && stringData.Equals((IHavokObject)other.stringData))) &&
-                   defaultEventMode.Equals(other.defaultEventMode) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && worldUpWS.Equals(other.worldUpWS)
+                && (
+                    (stringData is null && other.stringData is null)
+                    || (
+                        stringData is not null
+                        && other.stringData is not null
+                        && stringData.Equals((IHavokObject)other.stringData)
+                    )
+                )
+                && defaultEventMode.Equals(other.defaultEventMode)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +86,3 @@ namespace HKX2E
         }
     }
 }
-

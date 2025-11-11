@@ -6,4 +6,3 @@ namespace HKX2E
         MOTION_MODE_DYNAMIC = 1,
     }
 }
-

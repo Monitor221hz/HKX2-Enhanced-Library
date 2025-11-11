@@ -5,9 +5,9 @@ namespace HKX2E
 {
     // hkbTimerModifier Signatire: 0x338b4879 size: 112 flags: FLAGS_NONE
 
-    // alarmTimeSeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // alarmEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // alarmTimeSeconds class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // alarmEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbTimerModifier : hkbModifier, IEquatable<hkbTimerModifier?>
     {
         public float alarmTimeSeconds { set; get; }
@@ -58,11 +58,19 @@ namespace HKX2E
 
         public bool Equals(hkbTimerModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   alarmTimeSeconds.Equals(other.alarmTimeSeconds) &&
-                   ((alarmEvent is null && other.alarmEvent is null) || (alarmEvent is not null && other.alarmEvent is not null && alarmEvent.Equals((IHavokObject)other.alarmEvent))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && alarmTimeSeconds.Equals(other.alarmTimeSeconds)
+                && (
+                    (alarmEvent is null && other.alarmEvent is null)
+                    || (
+                        alarmEvent is not null
+                        && other.alarmEvent is not null
+                        && alarmEvent.Equals((IHavokObject)other.alarmEvent)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -76,4 +84,3 @@ namespace HKX2E
         }
     }
 }
-

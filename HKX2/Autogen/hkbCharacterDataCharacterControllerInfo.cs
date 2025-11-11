@@ -5,11 +5,13 @@ namespace HKX2E
 {
     // hkbCharacterDataCharacterControllerInfo Signatire: 0xa0f415bf size: 24 flags: FLAGS_NONE
 
-    // capsuleHeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // capsuleRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // characterControllerCinfo class: hkpCharacterControllerCinfo Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbCharacterDataCharacterControllerInfo : IHavokObject, IEquatable<hkbCharacterDataCharacterControllerInfo?>
+    // capsuleHeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // capsuleRadius class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // characterControllerCinfo class: hkpCharacterControllerCinfo Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbCharacterDataCharacterControllerInfo
+        : IHavokObject,
+            IEquatable<hkbCharacterDataCharacterControllerInfo?>
     {
         public float capsuleHeight { set; get; }
         public float capsuleRadius { set; get; }
@@ -41,7 +43,11 @@ namespace HKX2E
             capsuleHeight = xd.ReadSingle(xe, nameof(capsuleHeight));
             capsuleRadius = xd.ReadSingle(xe, nameof(capsuleRadius));
             collisionFilterInfo = xd.ReadUInt32(xe, nameof(collisionFilterInfo));
-            characterControllerCinfo = xd.ReadClassPointer<hkpCharacterControllerCinfo>(this, xe, nameof(characterControllerCinfo));
+            characterControllerCinfo = xd.ReadClassPointer<hkpCharacterControllerCinfo>(
+                this,
+                xe,
+                nameof(characterControllerCinfo)
+            );
         }
 
         public virtual void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -59,12 +65,22 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterDataCharacterControllerInfo? other)
         {
-            return other is not null &&
-                   capsuleHeight.Equals(other.capsuleHeight) &&
-                   capsuleRadius.Equals(other.capsuleRadius) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   ((characterControllerCinfo is null && other.characterControllerCinfo is null) || (characterControllerCinfo is not null && other.characterControllerCinfo is not null && characterControllerCinfo.Equals((IHavokObject)other.characterControllerCinfo))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && capsuleHeight.Equals(other.capsuleHeight)
+                && capsuleRadius.Equals(other.capsuleRadius)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && (
+                    (characterControllerCinfo is null && other.characterControllerCinfo is null)
+                    || (
+                        characterControllerCinfo is not null
+                        && other.characterControllerCinfo is not null
+                        && characterControllerCinfo.Equals(
+                            (IHavokObject)other.characterControllerCinfo
+                        )
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -79,4 +95,3 @@ namespace HKX2E
         }
     }
 }
-

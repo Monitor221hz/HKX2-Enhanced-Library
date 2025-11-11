@@ -6,12 +6,12 @@ namespace HKX2E
 {
     // hkpProjectileGun Signatire: 0xb4f30148 size: 104 flags: FLAGS_NONE
 
-    // maxProjectiles class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // reloadTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // reload class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // projectiles class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // destructionWorld class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // maxProjectiles class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // reloadTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // reload class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // projectiles class:  Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 72 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // world class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // destructionWorld class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpProjectileGun : hkpFirstPersonGun, IEquatable<hkpProjectileGun?>
     {
         public int maxProjectiles { set; get; }
@@ -72,11 +72,12 @@ namespace HKX2E
 
         public bool Equals(hkpProjectileGun? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   maxProjectiles.Equals(other.maxProjectiles) &&
-                   reloadTime.Equals(other.reloadTime) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && maxProjectiles.Equals(other.maxProjectiles)
+                && reloadTime.Equals(other.reloadTime)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -90,4 +91,3 @@ namespace HKX2E
         }
     }
 }
-

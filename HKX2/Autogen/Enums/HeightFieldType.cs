@@ -8,4 +8,3 @@ namespace HKX2E
         HEIGHTFIELD_MAX_ID = 3,
     }
 }
-

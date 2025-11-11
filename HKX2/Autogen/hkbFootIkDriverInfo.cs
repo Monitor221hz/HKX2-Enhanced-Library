@@ -7,21 +7,22 @@ namespace HKX2E
 {
     // hkbFootIkDriverInfo Signatire: 0xc6a09dbf size: 72 flags: FLAGS_NONE
 
-    // legs class: hkbFootIkDriverInfoLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // raycastDistanceUp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // raycastDistanceDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // originalGroundHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // verticalOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // forwardAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    // sidewaysAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // sidewaysSampleWidth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // lockFeetWhenPlanted class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // useCharacterUpVector class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 65 flags: FLAGS_NONE enum: 
-    // isQuadrupedNarrow class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum: 
+    // legs class: hkbFootIkDriverInfoLeg Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // raycastDistanceUp class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // raycastDistanceDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // originalGroundHeightMS class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // verticalOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // forwardAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum:
+    // sidewaysAlignFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // sidewaysSampleWidth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // lockFeetWhenPlanted class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // useCharacterUpVector class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 65 flags: FLAGS_NONE enum:
+    // isQuadrupedNarrow class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 66 flags: FLAGS_NONE enum:
     public partial class hkbFootIkDriverInfo : hkReferencedObject, IEquatable<hkbFootIkDriverInfo?>
     {
-        public IList<hkbFootIkDriverInfoLeg> legs { set; get; } = Array.Empty<hkbFootIkDriverInfoLeg>();
+        public IList<hkbFootIkDriverInfoLeg> legs { set; get; } =
+            Array.Empty<hkbFootIkDriverInfoLeg>();
         public float raycastDistanceUp { set; get; }
         public float raycastDistanceDown { set; get; }
         public float originalGroundHeightMS { set; get; }
@@ -113,21 +114,22 @@ namespace HKX2E
 
         public bool Equals(hkbFootIkDriverInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   legs.SequenceEqual(other.legs) &&
-                   raycastDistanceUp.Equals(other.raycastDistanceUp) &&
-                   raycastDistanceDown.Equals(other.raycastDistanceDown) &&
-                   originalGroundHeightMS.Equals(other.originalGroundHeightMS) &&
-                   verticalOffset.Equals(other.verticalOffset) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   forwardAlignFraction.Equals(other.forwardAlignFraction) &&
-                   sidewaysAlignFraction.Equals(other.sidewaysAlignFraction) &&
-                   sidewaysSampleWidth.Equals(other.sidewaysSampleWidth) &&
-                   lockFeetWhenPlanted.Equals(other.lockFeetWhenPlanted) &&
-                   useCharacterUpVector.Equals(other.useCharacterUpVector) &&
-                   isQuadrupedNarrow.Equals(other.isQuadrupedNarrow) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && legs.SequenceEqual(other.legs)
+                && raycastDistanceUp.Equals(other.raycastDistanceUp)
+                && raycastDistanceDown.Equals(other.raycastDistanceDown)
+                && originalGroundHeightMS.Equals(other.originalGroundHeightMS)
+                && verticalOffset.Equals(other.verticalOffset)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && forwardAlignFraction.Equals(other.forwardAlignFraction)
+                && sidewaysAlignFraction.Equals(other.sidewaysAlignFraction)
+                && sidewaysSampleWidth.Equals(other.sidewaysSampleWidth)
+                && lockFeetWhenPlanted.Equals(other.lockFeetWhenPlanted)
+                && useCharacterUpVector.Equals(other.useCharacterUpVector)
+                && isQuadrupedNarrow.Equals(other.isQuadrupedNarrow)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -151,4 +153,3 @@ namespace HKX2E
         }
     }
 }
-

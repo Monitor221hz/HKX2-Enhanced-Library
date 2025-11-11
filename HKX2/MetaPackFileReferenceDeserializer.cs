@@ -1,9 +1,9 @@
-﻿using HKX2E.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HKX2E.Utils;
 
 namespace HKX2E
 {
@@ -11,11 +11,16 @@ namespace HKX2E
     {
         private int nodeCount = 0;
         private Dictionary<string, int> nameOrderLookup = new();
+
         // store deserialized
-        private Dictionary<IHavokObject, HavokObjectReference> objectReferenceMap = new(ReferenceEqualityComparer.Instance);
+        private Dictionary<IHavokObject, HavokObjectReference> objectReferenceMap = new(
+            ReferenceEqualityComparer.Instance
+        );
         private Dictionary<string, List<IHavokReference>> referenceNameMap = new();
-        private Stack<IHavokObject> ownerStack = new(); 
+        private Stack<IHavokObject> ownerStack = new();
+
         protected virtual ulong GetIndexFromName(string name) => ulong.Parse(name.AsSpan(1));
+
         public virtual void UpdateObjectByName(string name, IHavokObject newObject)
         {
             lock (nodeIDMap)
@@ -27,29 +32,35 @@ namespace HKX2E
                     //objectNameMap[name] = newObject;
                 }
 #if DEBUG_VERBOSE
-				else
-				{
-
-					Debug.WriteLine($"Could not find object with name {name}");
-				}
+                else
+                {
+                    Debug.WriteLine($"Could not find object with name {name}");
+                }
 #endif
             }
         }
-        public virtual void UpdateDirectReference(IHavokObject existingObject, IHavokObject newObject)
+
+        public virtual void UpdateDirectReference(
+            IHavokObject existingObject,
+            IHavokObject newObject
+        )
         {
             if (objectReferenceMap.TryGetValue(existingObject, out var existingReference))
             {
                 existingReference.Update(newObject);
             }
 #if DEBUG_VERBOSE
-						else
-						{
-							Debug.WriteLine($"Could not update direct reference for object of type {existingObject.GetType()}");
-						}
+            else
+            {
+                Debug.WriteLine(
+                    $"Could not update direct reference for object of type {existingObject.GetType()}"
+                );
+            }
 #endif
-
         }
-        public virtual void UpdatePropertyReferences<T>(string name, T newObject) where T : IHavokObject
+
+        public virtual void UpdatePropertyReferences<T>(string name, T newObject)
+            where T : IHavokObject
         {
             if (referenceNameMap.TryGetValue(name, out var havokReferences))
             {
@@ -59,6 +70,7 @@ namespace HKX2E
                 }
             }
         }
+
         public virtual void UpdateMapping(string name, IHavokObject newObject)
         {
             var index = GetIndexFromName(name);
@@ -67,16 +79,25 @@ namespace HKX2E
                 nodeIDMap[index] = newObject;
             }
 #if DEBUG_VERBOSE
-						else
-						{
-							Debug.WriteLine($"Could not update mapping for object {name}");
-						}
+            else
+            {
+                Debug.WriteLine($"Could not update mapping for object {name}");
+            }
 #endif
-
         }
-        public virtual void AddPropertyReference(string name, IHavokObject owner, string propertyName, int listIndex)
+
+        public virtual void AddPropertyReference(
+            string name,
+            IHavokObject owner,
+            string propertyName,
+            int listIndex
+        )
         {
-            HavokIndexPropertyReference reference = new HavokIndexPropertyReference(GetObjectReference(owner), propertyName, listIndex);
+            HavokIndexPropertyReference reference = new HavokIndexPropertyReference(
+                GetObjectReference(owner),
+                propertyName,
+                listIndex
+            );
             List<IHavokReference> referenceList;
             lock (referenceNameMap)
             {
@@ -93,9 +114,13 @@ namespace HKX2E
                 referenceNameMap.Add(name, referenceList);
             }
         }
+
         public void AddPropertyReference(string name, IHavokObject owner, string propertyName)
         {
-            HavokPropertyReference reference = new HavokPropertyReference(GetObjectReference(owner), propertyName);
+            HavokPropertyReference reference = new HavokPropertyReference(
+                GetObjectReference(owner),
+                propertyName
+            );
             List<IHavokReference> referenceList;
             lock (referenceNameMap)
             {
@@ -112,6 +137,7 @@ namespace HKX2E
                 referenceNameMap.Add(name, referenceList);
             }
         }
+
         public HavokObjectReference GetObjectReference(IHavokObject havokObject)
         {
             lock (objectReferenceMap)
@@ -129,8 +155,7 @@ namespace HKX2E
             return objectReference;
         }
 
-
-        public override T ReadClassPointer<T>(BinaryReaderEx br) 
+        public override T ReadClassPointer<T>(BinaryReaderEx br)
         {
             PadToPointerSizeIfPaddingOption(br);
 
@@ -140,7 +165,8 @@ namespace HKX2E
             br.AssertUSize(0);
 
             // Do a global fixup lookup
-            if (!_dataSection._globalMap.ContainsKey(key)) return default!;
+            if (!_dataSection._globalMap.ContainsKey(key))
+                return default!;
 
             var f = _dataSection._globalMap[key];
             var klass = ConstructVirtualClass(br, f.Dst);
@@ -149,23 +175,29 @@ namespace HKX2E
                 return (T)klass;
 
             if (!_ignoreNonFatalError)
-                throw new Exception($@"Could not convert '{typeof(T)}' to '{klass.GetType()}'. Is source malformed?");
+                throw new Exception(
+                    $@"Could not convert '{typeof(T)}' to '{klass.GetType()}'. Is source malformed?"
+                );
 
             // TODO: this assume klass was read on correct block
             return hkDummyBuilder.CreateDummy(klass, typeof(T));
         }
+
         protected override IHavokObject ConstructVirtualClass(BinaryReaderEx br, uint offset)
         {
-            if (_deserializedObjects.ContainsKey(offset)) return _deserializedObjects[offset];
+            if (_deserializedObjects.ContainsKey(offset))
+                return _deserializedObjects[offset];
 
             var fixup = _dataSection._virtualMap[offset];
             var hkClassName = _classnames.OffsetClassNamesMap[fixup.Dst].ClassName;
 
             var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
-            if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+            if (hkClass is null)
+                throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
             var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
-            if (ret is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+            if (ret is null)
+                throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
             br.StepIn(offset);
             var explicitID = ret.ReadMetaData(this, br);
@@ -177,9 +209,10 @@ namespace HKX2E
             br.StepOut();
 
             _deserializedObjects.Add(offset, ret);
-            ownerStack.Push(ret); 
+            ownerStack.Push(ret);
             return ret;
         }
+
         public override void DeserializePartially(BinaryReaderEx br)
         {
             br.StepIn(0x11);
@@ -205,7 +238,11 @@ namespace HKX2E
             // Process the class names
             _classnames = _classSection.ReadClassnamesWithMetaData(br);
         }
-        public override IHavokObject Deserialize(BinaryReaderEx br, bool ignoreNonFatalError = false)
+
+        public override IHavokObject Deserialize(
+            BinaryReaderEx br,
+            bool ignoreNonFatalError = false
+        )
         {
             _ignoreNonFatalError = ignoreNonFatalError;
 
@@ -213,7 +250,11 @@ namespace HKX2E
 
             // Deserialize the objects
             _deserializedObjects = new Dictionary<uint, IHavokObject>();
-            var br2 = new BinaryReaderEx(_header.Endian == 0, _header.PointerSize == 8, _dataSection.SectionData);
+            var br2 = new BinaryReaderEx(
+                _header.Endian == 0,
+                _header.PointerSize == 8,
+                _dataSection.SectionData
+            );
             return ConstructVirtualClass(br2, 0);
         }
     }

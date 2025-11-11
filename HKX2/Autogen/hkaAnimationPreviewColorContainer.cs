@@ -7,8 +7,10 @@ namespace HKX2E
 {
     // hkaAnimationPreviewColorContainer Signatire: 0x4bc4c3e0 size: 32 flags: FLAGS_NONE
 
-    // previewColor class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkaAnimationPreviewColorContainer : hkReferencedObject, IEquatable<hkaAnimationPreviewColorContainer?>
+    // previewColor class:  Type.TYPE_ARRAY Type.TYPE_UINT32 arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkaAnimationPreviewColorContainer
+        : hkReferencedObject,
+            IEquatable<hkaAnimationPreviewColorContainer?>
     {
         public IList<uint> previewColor { set; get; } = Array.Empty<uint>();
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkaAnimationPreviewColorContainer? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   previewColor.SequenceEqual(other.previewColor) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && previewColor.SequenceEqual(other.previewColor)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

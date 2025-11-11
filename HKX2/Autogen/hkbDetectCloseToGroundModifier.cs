@@ -5,14 +5,16 @@ namespace HKX2E
 {
     // hkbDetectCloseToGroundModifier Signatire: 0x981687b2 size: 120 flags: FLAGS_NONE
 
-    // closeToGroundEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // closeToGroundHeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // raycastDistanceDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // animBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 110 flags: FLAGS_NONE enum: 
-    // isCloseToGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbDetectCloseToGroundModifier : hkbModifier, IEquatable<hkbDetectCloseToGroundModifier?>
+    // closeToGroundEvent class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // closeToGroundHeight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // raycastDistanceDown class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // animBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 110 flags: FLAGS_NONE enum:
+    // isCloseToGround class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 112 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbDetectCloseToGroundModifier
+        : hkbModifier,
+            IEquatable<hkbDetectCloseToGroundModifier?>
     {
         public hkbEventProperty closeToGroundEvent { set; get; } = new();
         public float closeToGroundHeight { set; get; }
@@ -80,15 +82,23 @@ namespace HKX2E
 
         public bool Equals(hkbDetectCloseToGroundModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((closeToGroundEvent is null && other.closeToGroundEvent is null) || (closeToGroundEvent is not null && other.closeToGroundEvent is not null && closeToGroundEvent.Equals((IHavokObject)other.closeToGroundEvent))) &&
-                   closeToGroundHeight.Equals(other.closeToGroundHeight) &&
-                   raycastDistanceDown.Equals(other.raycastDistanceDown) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   boneIndex.Equals(other.boneIndex) &&
-                   animBoneIndex.Equals(other.animBoneIndex) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (closeToGroundEvent is null && other.closeToGroundEvent is null)
+                    || (
+                        closeToGroundEvent is not null
+                        && other.closeToGroundEvent is not null
+                        && closeToGroundEvent.Equals((IHavokObject)other.closeToGroundEvent)
+                    )
+                )
+                && closeToGroundHeight.Equals(other.closeToGroundHeight)
+                && raycastDistanceDown.Equals(other.raycastDistanceDown)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && boneIndex.Equals(other.boneIndex)
+                && animBoneIndex.Equals(other.animBoneIndex)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -106,4 +116,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -15,4 +15,3 @@ namespace HKX2E
         NODE_TYPE_TRANSITION_EFFECT = 10,
     }
 }
-

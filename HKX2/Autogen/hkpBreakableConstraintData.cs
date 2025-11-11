@@ -5,14 +5,16 @@ namespace HKX2E
 {
     // hkpBreakableConstraintData Signatire: 0x7d6310c8 size: 72 flags: FLAGS_NONE
 
-    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // constraintData class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // childRuntimeSize class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum: 
-    // childNumSolverResults class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 58 flags: FLAGS_NONE enum: 
-    // solverResultLimit class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum: 
-    // removeWhenBroken class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // revertBackVelocityOnBreak class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 65 flags: FLAGS_NONE enum: 
-    public partial class hkpBreakableConstraintData : hkpConstraintData, IEquatable<hkpBreakableConstraintData?>
+    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // constraintData class: hkpConstraintData Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // childRuntimeSize class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 56 flags: FLAGS_NONE enum:
+    // childNumSolverResults class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 58 flags: FLAGS_NONE enum:
+    // solverResultLimit class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 60 flags: FLAGS_NONE enum:
+    // removeWhenBroken class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // revertBackVelocityOnBreak class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 65 flags: FLAGS_NONE enum:
+    public partial class hkpBreakableConstraintData
+        : hkpConstraintData,
+            IEquatable<hkpBreakableConstraintData?>
     {
         public hkpBridgeAtoms atoms { set; get; } = new();
         public hkpConstraintData? constraintData { set; get; }
@@ -54,7 +56,11 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             atoms = xd.ReadClass<hkpBridgeAtoms>(xe, nameof(atoms));
-            constraintData = xd.ReadClassPointer<hkpConstraintData>(this, xe, nameof(constraintData));
+            constraintData = xd.ReadClassPointer<hkpConstraintData>(
+                this,
+                xe,
+                nameof(constraintData)
+            );
             childRuntimeSize = xd.ReadUInt16(xe, nameof(childRuntimeSize));
             childNumSolverResults = xd.ReadUInt16(xe, nameof(childNumSolverResults));
             solverResultLimit = xd.ReadSingle(xe, nameof(solverResultLimit));
@@ -81,16 +87,31 @@ namespace HKX2E
 
         public bool Equals(hkpBreakableConstraintData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   ((constraintData is null && other.constraintData is null) || (constraintData is not null && other.constraintData is not null && constraintData.Equals((IHavokObject)other.constraintData))) &&
-                   childRuntimeSize.Equals(other.childRuntimeSize) &&
-                   childNumSolverResults.Equals(other.childNumSolverResults) &&
-                   solverResultLimit.Equals(other.solverResultLimit) &&
-                   removeWhenBroken.Equals(other.removeWhenBroken) &&
-                   revertBackVelocityOnBreak.Equals(other.revertBackVelocityOnBreak) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && (
+                    (constraintData is null && other.constraintData is null)
+                    || (
+                        constraintData is not null
+                        && other.constraintData is not null
+                        && constraintData.Equals((IHavokObject)other.constraintData)
+                    )
+                )
+                && childRuntimeSize.Equals(other.childRuntimeSize)
+                && childNumSolverResults.Equals(other.childNumSolverResults)
+                && solverResultLimit.Equals(other.solverResultLimit)
+                && removeWhenBroken.Equals(other.removeWhenBroken)
+                && revertBackVelocityOnBreak.Equals(other.revertBackVelocityOnBreak)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -109,4 +130,3 @@ namespace HKX2E
         }
     }
 }
-

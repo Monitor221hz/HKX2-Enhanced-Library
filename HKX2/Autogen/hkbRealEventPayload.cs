@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkbRealEventPayload Signatire: 0x9416affd size: 24 flags: FLAGS_NONE
 
-    // data class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // data class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkbRealEventPayload : hkbEventPayload, IEquatable<hkbRealEventPayload?>
     {
         public float data { set; get; }
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkbRealEventPayload? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   data.Equals(other.data) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && data.Equals(other.data)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

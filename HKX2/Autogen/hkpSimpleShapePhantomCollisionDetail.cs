@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkpSimpleShapePhantomCollisionDetail Signatire: 0x98bfa6ce size: 8 flags: FLAGS_NOT_SERIALIZABLE
 
-    // collidable class: hkpCollidable Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    public partial class hkpSimpleShapePhantomCollisionDetail : IHavokObject, IEquatable<hkpSimpleShapePhantomCollisionDetail?>
+    // collidable class: hkpCollidable Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    public partial class hkpSimpleShapePhantomCollisionDetail
+        : IHavokObject,
+            IEquatable<hkpSimpleShapePhantomCollisionDetail?>
     {
         public hkpCollidable? collidable { set; get; }
 
@@ -39,9 +41,17 @@ namespace HKX2E
 
         public bool Equals(hkpSimpleShapePhantomCollisionDetail? other)
         {
-            return other is not null &&
-                   ((collidable is null && other.collidable is null) || (collidable is not null && other.collidable is not null && collidable.Equals((IHavokObject)other.collidable))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    (collidable is null && other.collidable is null)
+                    || (
+                        collidable is not null
+                        && other.collidable is not null
+                        && collidable.Equals((IHavokObject)other.collidable)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

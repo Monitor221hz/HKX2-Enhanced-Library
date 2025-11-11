@@ -7,8 +7,10 @@ namespace HKX2E
 {
     // hkbStateMachineEventPropertyArray Signatire: 0xb07b4388 size: 32 flags: FLAGS_NONE
 
-    // events class: hkbEventProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbStateMachineEventPropertyArray : hkReferencedObject, IEquatable<hkbStateMachineEventPropertyArray?>
+    // events class: hkbEventProperty Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbStateMachineEventPropertyArray
+        : hkReferencedObject,
+            IEquatable<hkbStateMachineEventPropertyArray?>
     {
         public IList<hkbEventProperty> events { set; get; } = Array.Empty<hkbEventProperty>();
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineEventPropertyArray? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   events.SequenceEqual(other.events) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && events.SequenceEqual(other.events)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -8,4 +8,3 @@ namespace HKX2E
         STATE_ACTIVE = 3,
     }
 }
-

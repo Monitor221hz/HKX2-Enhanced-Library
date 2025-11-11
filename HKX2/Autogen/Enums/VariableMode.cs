@@ -6,4 +6,3 @@ namespace HKX2E
         VARIABLE_MODE_MAINTAIN_VALUES_WHEN_INACTIVE = 1,
     }
 }
-

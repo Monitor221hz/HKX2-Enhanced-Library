@@ -7,7 +7,7 @@ namespace HKX2E
 {
     // hkbEventPayloadList Signatire: 0x3d2dbd34 size: 32 flags: FLAGS_NONE
 
-    // payloads class: hkbEventPayload Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // payloads class: hkbEventPayload Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkbEventPayloadList : hkbEventPayload, IEquatable<hkbEventPayloadList?>
     {
         public IList<hkbEventPayload> payloads { set; get; } = Array.Empty<hkbEventPayload>();
@@ -45,10 +45,11 @@ namespace HKX2E
 
         public bool Equals(hkbEventPayloadList? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   payloads.SequenceEqual(other.payloads) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && payloads.SequenceEqual(other.payloads)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +62,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -8,30 +8,31 @@ namespace HKX2E
 {
     // hkbSenseHandleModifier Signatire: 0x2a064d99 size: 224 flags: FLAGS_NONE
 
-    // handle class: hkbHandle Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // sensorLocalOffset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // ranges class: hkbSenseHandleModifierRange Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum: 
-    // handleOut class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // handleIn class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 168 flags: FLAGS_NONE enum: 
-    // localFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // sensorLocalFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // minDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // maxDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // distanceOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
-    // sensorRagdollBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum: 
-    // sensorAnimationBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 210 flags: FLAGS_NONE enum: 
+    // handle class: hkbHandle Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 80 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // sensorLocalOffset class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // ranges class: hkbSenseHandleModifierRange Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 144 flags: FLAGS_NONE enum:
+    // handleOut class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // handleIn class: hkbHandle Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 168 flags: FLAGS_NONE enum:
+    // localFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // sensorLocalFrameName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // minDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // maxDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum:
+    // distanceOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum:
+    // collisionFilterInfo class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum:
+    // sensorRagdollBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 208 flags: FLAGS_NONE enum:
+    // sensorAnimationBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 210 flags: FLAGS_NONE enum:
     // sensingMode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 212 flags: FLAGS_NONE enum: SensingMode
-    // extrapolateSensorPosition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 213 flags: FLAGS_NONE enum: 
-    // keepFirstSensedHandle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 214 flags: FLAGS_NONE enum: 
-    // foundHandleOut class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 215 flags: FLAGS_NONE enum: 
-    // timeSinceLastModify class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // rangeIndexForEventToSendNextUpdate class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // extrapolateSensorPosition class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 213 flags: FLAGS_NONE enum:
+    // keepFirstSensedHandle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 214 flags: FLAGS_NONE enum:
+    // foundHandleOut class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 215 flags: FLAGS_NONE enum:
+    // timeSinceLastModify class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // rangeIndexForEventToSendNextUpdate class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 220 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbSenseHandleModifier : hkbModifier, IEquatable<hkbSenseHandleModifier?>
     {
         public hkbHandle handle { set; get; } = new();
         public Vector4 sensorLocalOffset { set; get; }
-        public IList<hkbSenseHandleModifierRange> ranges { set; get; } = Array.Empty<hkbSenseHandleModifierRange>();
+        public IList<hkbSenseHandleModifierRange> ranges { set; get; } =
+            Array.Empty<hkbSenseHandleModifierRange>();
         public hkbHandle? handleOut { set; get; }
         public hkbHandle? handleIn { set; get; }
         public string localFrameName { set; get; } = "";
@@ -151,25 +152,50 @@ namespace HKX2E
 
         public bool Equals(hkbSenseHandleModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   sensorLocalOffset.Equals(other.sensorLocalOffset) &&
-                   ranges.SequenceEqual(other.ranges) &&
-                   ((handleOut is null && other.handleOut is null) || (handleOut is not null && other.handleOut is not null && handleOut.Equals((IHavokObject)other.handleOut))) &&
-                   ((handleIn is null && other.handleIn is null) || (handleIn is not null && other.handleIn is not null && handleIn.Equals((IHavokObject)other.handleIn))) &&
-                   (localFrameName is null && other.localFrameName is null || localFrameName == other.localFrameName || localFrameName is null && other.localFrameName == "" || localFrameName == "" && other.localFrameName is null) &&
-                   (sensorLocalFrameName is null && other.sensorLocalFrameName is null || sensorLocalFrameName == other.sensorLocalFrameName || sensorLocalFrameName is null && other.sensorLocalFrameName == "" || sensorLocalFrameName == "" && other.sensorLocalFrameName is null) &&
-                   minDistance.Equals(other.minDistance) &&
-                   maxDistance.Equals(other.maxDistance) &&
-                   distanceOut.Equals(other.distanceOut) &&
-                   collisionFilterInfo.Equals(other.collisionFilterInfo) &&
-                   sensorRagdollBoneIndex.Equals(other.sensorRagdollBoneIndex) &&
-                   sensorAnimationBoneIndex.Equals(other.sensorAnimationBoneIndex) &&
-                   sensingMode.Equals(other.sensingMode) &&
-                   extrapolateSensorPosition.Equals(other.extrapolateSensorPosition) &&
-                   keepFirstSensedHandle.Equals(other.keepFirstSensedHandle) &&
-                   foundHandleOut.Equals(other.foundHandleOut) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && sensorLocalOffset.Equals(other.sensorLocalOffset)
+                && ranges.SequenceEqual(other.ranges)
+                && (
+                    (handleOut is null && other.handleOut is null)
+                    || (
+                        handleOut is not null
+                        && other.handleOut is not null
+                        && handleOut.Equals((IHavokObject)other.handleOut)
+                    )
+                )
+                && (
+                    (handleIn is null && other.handleIn is null)
+                    || (
+                        handleIn is not null
+                        && other.handleIn is not null
+                        && handleIn.Equals((IHavokObject)other.handleIn)
+                    )
+                )
+                && (
+                    localFrameName is null && other.localFrameName is null
+                    || localFrameName == other.localFrameName
+                    || localFrameName is null && other.localFrameName == ""
+                    || localFrameName == "" && other.localFrameName is null
+                )
+                && (
+                    sensorLocalFrameName is null && other.sensorLocalFrameName is null
+                    || sensorLocalFrameName == other.sensorLocalFrameName
+                    || sensorLocalFrameName is null && other.sensorLocalFrameName == ""
+                    || sensorLocalFrameName == "" && other.sensorLocalFrameName is null
+                )
+                && minDistance.Equals(other.minDistance)
+                && maxDistance.Equals(other.maxDistance)
+                && distanceOut.Equals(other.distanceOut)
+                && collisionFilterInfo.Equals(other.collisionFilterInfo)
+                && sensorRagdollBoneIndex.Equals(other.sensorRagdollBoneIndex)
+                && sensorAnimationBoneIndex.Equals(other.sensorAnimationBoneIndex)
+                && sensingMode.Equals(other.sensingMode)
+                && extrapolateSensorPosition.Equals(other.extrapolateSensorPosition)
+                && keepFirstSensedHandle.Equals(other.keepFirstSensedHandle)
+                && foundHandleOut.Equals(other.foundHandleOut)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -197,4 +223,3 @@ namespace HKX2E
         }
     }
 }
-

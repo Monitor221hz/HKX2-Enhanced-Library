@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkMemoryResourceHandleExternalLink Signatire: 0x3144d17c size: 16 flags: FLAGS_NONE
 
-    // memberName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // externalId class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkMemoryResourceHandleExternalLink : IHavokObject, IEquatable<hkMemoryResourceHandleExternalLink?>
+    // memberName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // externalId class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkMemoryResourceHandleExternalLink
+        : IHavokObject,
+            IEquatable<hkMemoryResourceHandleExternalLink?>
     {
         public string memberName { set; get; } = "";
         public string externalId { set; get; } = "";
@@ -45,10 +47,21 @@ namespace HKX2E
 
         public bool Equals(hkMemoryResourceHandleExternalLink? other)
         {
-            return other is not null &&
-                   (memberName is null && other.memberName is null || memberName == other.memberName || memberName is null && other.memberName == "" || memberName == "" && other.memberName is null) &&
-                   (externalId is null && other.externalId is null || externalId == other.externalId || externalId is null && other.externalId == "" || externalId == "" && other.externalId is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    memberName is null && other.memberName is null
+                    || memberName == other.memberName
+                    || memberName is null && other.memberName == ""
+                    || memberName == "" && other.memberName is null
+                )
+                && (
+                    externalId is null && other.externalId is null
+                    || externalId == other.externalId
+                    || externalId is null && other.externalId == ""
+                    || externalId == "" && other.externalId is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +74,3 @@ namespace HKX2E
         }
     }
 }
-

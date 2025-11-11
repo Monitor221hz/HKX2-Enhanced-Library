@@ -5,12 +5,12 @@ namespace HKX2E
 {
     // hkpCollidable Signatire: 0x9a0e42a5 size: 112 flags: FLAGS_NONE
 
-    // ownerOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // forceCollideOntoPpu class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 33 flags: FLAGS_NONE enum: 
-    // shapeSizeOnSpu class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // broadPhaseHandle class: hkpTypedBroadPhaseHandle Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // boundingVolumeData class: hkpCollidableBoundingVolumeData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // allowedPenetrationDepth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
+    // ownerOffset class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 32 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // forceCollideOntoPpu class:  Type.TYPE_UINT8 Type.TYPE_VOID arrSize: 0 offset: 33 flags: FLAGS_NONE enum:
+    // shapeSizeOnSpu class:  Type.TYPE_UINT16 Type.TYPE_VOID arrSize: 0 offset: 34 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // broadPhaseHandle class: hkpTypedBroadPhaseHandle Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // boundingVolumeData class: hkpCollidableBoundingVolumeData Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // allowedPenetrationDepth class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
     public partial class hkpCollidable : hkpCdBody, IEquatable<hkpCollidable?>
     {
         private sbyte ownerOffset { set; get; }
@@ -72,12 +72,20 @@ namespace HKX2E
 
         public bool Equals(hkpCollidable? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   forceCollideOntoPpu.Equals(other.forceCollideOntoPpu) &&
-                   ((broadPhaseHandle is null && other.broadPhaseHandle is null) || (broadPhaseHandle is not null && other.broadPhaseHandle is not null && broadPhaseHandle.Equals((IHavokObject)other.broadPhaseHandle))) &&
-                   allowedPenetrationDepth.Equals(other.allowedPenetrationDepth) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && forceCollideOntoPpu.Equals(other.forceCollideOntoPpu)
+                && (
+                    (broadPhaseHandle is null && other.broadPhaseHandle is null)
+                    || (
+                        broadPhaseHandle is not null
+                        && other.broadPhaseHandle is not null
+                        && broadPhaseHandle.Equals((IHavokObject)other.broadPhaseHandle)
+                    )
+                )
+                && allowedPenetrationDepth.Equals(other.allowedPenetrationDepth)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -92,4 +100,3 @@ namespace HKX2E
         }
     }
 }
-

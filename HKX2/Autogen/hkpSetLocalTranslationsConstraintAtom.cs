@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkpSetLocalTranslationsConstraintAtom Signatire: 0x5cbfcf4a size: 48 flags: FLAGS_NONE
 
-    // translationA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // translationB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkpSetLocalTranslationsConstraintAtom : hkpConstraintAtom, IEquatable<hkpSetLocalTranslationsConstraintAtom?>
+    // translationA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // translationB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkpSetLocalTranslationsConstraintAtom
+        : hkpConstraintAtom,
+            IEquatable<hkpSetLocalTranslationsConstraintAtom?>
     {
         public Vector4 translationA { set; get; }
         public Vector4 translationB { set; get; }
@@ -52,11 +54,12 @@ namespace HKX2E
 
         public bool Equals(hkpSetLocalTranslationsConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   translationA.Equals(other.translationA) &&
-                   translationB.Equals(other.translationB) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && translationA.Equals(other.translationA)
+                && translationB.Equals(other.translationB)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +73,3 @@ namespace HKX2E
         }
     }
 }
-

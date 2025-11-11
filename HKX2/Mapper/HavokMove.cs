@@ -9,9 +9,10 @@ namespace HKX2E.Mapper
     public partial class HavokMove
     {
         #region MoveSelf
-        public static void Move<T>(T source, T dest) where T : IHavokObject
+        public static void Move<T>(T source, T dest)
+            where T : IHavokObject
         {
-            switch(source)
+            switch (source)
             {
                 case BGSGamebryoSequenceGenerator x:
                     Move(x, (BGSGamebryoSequenceGenerator)(object)dest);
@@ -1782,593 +1783,2059 @@ namespace HKX2E.Mapper
                     break;
             }
         }
-        public static partial void Move(BGSGamebryoSequenceGenerator source, BGSGamebryoSequenceGenerator dest);
+
+        public static partial void Move(
+            BGSGamebryoSequenceGenerator source,
+            BGSGamebryoSequenceGenerator dest
+        );
+
         public static partial void Move(BSBoneSwitchGenerator source, BSBoneSwitchGenerator dest);
-        public static partial void Move(BSBoneSwitchGeneratorBoneData source, BSBoneSwitchGeneratorBoneData dest);
-        public static partial void Move(BSComputeAddBoneAnimModifier source, BSComputeAddBoneAnimModifier dest);
-        public static partial void Move(BSCyclicBlendTransitionGenerator source, BSCyclicBlendTransitionGenerator dest);
-        public static partial void Move(BSDecomposeVectorModifier source, BSDecomposeVectorModifier dest);
+
+        public static partial void Move(
+            BSBoneSwitchGeneratorBoneData source,
+            BSBoneSwitchGeneratorBoneData dest
+        );
+
+        public static partial void Move(
+            BSComputeAddBoneAnimModifier source,
+            BSComputeAddBoneAnimModifier dest
+        );
+
+        public static partial void Move(
+            BSCyclicBlendTransitionGenerator source,
+            BSCyclicBlendTransitionGenerator dest
+        );
+
+        public static partial void Move(
+            BSDecomposeVectorModifier source,
+            BSDecomposeVectorModifier dest
+        );
+
         public static partial void Move(BSDirectAtModifier source, BSDirectAtModifier dest);
+
         public static partial void Move(BSDistTriggerModifier source, BSDistTriggerModifier dest);
-        public static partial void Move(BSEventEveryNEventsModifier source, BSEventEveryNEventsModifier dest);
-        public static partial void Move(BSEventOnDeactivateModifier source, BSEventOnDeactivateModifier dest);
-        public static partial void Move(BSEventOnFalseToTrueModifier source, BSEventOnFalseToTrueModifier dest);
+
+        public static partial void Move(
+            BSEventEveryNEventsModifier source,
+            BSEventEveryNEventsModifier dest
+        );
+
+        public static partial void Move(
+            BSEventOnDeactivateModifier source,
+            BSEventOnDeactivateModifier dest
+        );
+
+        public static partial void Move(
+            BSEventOnFalseToTrueModifier source,
+            BSEventOnFalseToTrueModifier dest
+        );
+
         public static partial void Move(BSGetTimeStepModifier source, BSGetTimeStepModifier dest);
+
         public static partial void Move(BSInterpValueModifier source, BSInterpValueModifier dest);
+
         public static partial void Move(BSIsActiveModifier source, BSIsActiveModifier dest);
-        public static partial void Move(BSIStateManagerModifier source, BSIStateManagerModifier dest);
-        public static partial void Move(BSIStateManagerModifierBSiStateData source, BSIStateManagerModifierBSiStateData dest);
-        public static partial void Move(BSIStateManagerModifierBSIStateManagerStateListener source, BSIStateManagerModifierBSIStateManagerStateListener dest);
-        public static partial void Move(BSiStateTaggingGenerator source, BSiStateTaggingGenerator dest);
+
+        public static partial void Move(
+            BSIStateManagerModifier source,
+            BSIStateManagerModifier dest
+        );
+
+        public static partial void Move(
+            BSIStateManagerModifierBSiStateData source,
+            BSIStateManagerModifierBSiStateData dest
+        );
+
+        public static partial void Move(
+            BSIStateManagerModifierBSIStateManagerStateListener source,
+            BSIStateManagerModifierBSIStateManagerStateListener dest
+        );
+
+        public static partial void Move(
+            BSiStateTaggingGenerator source,
+            BSiStateTaggingGenerator dest
+        );
+
         public static partial void Move(BSLimbIKModifier source, BSLimbIKModifier dest);
+
         public static partial void Move(BSLookAtModifier source, BSLookAtModifier dest);
-        public static partial void Move(BSLookAtModifierBoneData source, BSLookAtModifierBoneData dest);
+
+        public static partial void Move(
+            BSLookAtModifierBoneData source,
+            BSLookAtModifierBoneData dest
+        );
+
         public static partial void Move(BSModifyOnceModifier source, BSModifyOnceModifier dest);
-        public static partial void Move(BSOffsetAnimationGenerator source, BSOffsetAnimationGenerator dest);
-        public static partial void Move(BSPassByTargetTriggerModifier source, BSPassByTargetTriggerModifier dest);
-        public static partial void Move(BSRagdollContactListenerModifier source, BSRagdollContactListenerModifier dest);
+
+        public static partial void Move(
+            BSOffsetAnimationGenerator source,
+            BSOffsetAnimationGenerator dest
+        );
+
+        public static partial void Move(
+            BSPassByTargetTriggerModifier source,
+            BSPassByTargetTriggerModifier dest
+        );
+
+        public static partial void Move(
+            BSRagdollContactListenerModifier source,
+            BSRagdollContactListenerModifier dest
+        );
+
         public static partial void Move(BSSpeedSamplerModifier source, BSSpeedSamplerModifier dest);
-        public static partial void Move(BSSynchronizedClipGenerator source, BSSynchronizedClipGenerator dest);
+
+        public static partial void Move(
+            BSSynchronizedClipGenerator source,
+            BSSynchronizedClipGenerator dest
+        );
+
         public static partial void Move(BSTimerModifier source, BSTimerModifier dest);
+
         public static partial void Move(BSTweenerModifier source, BSTweenerModifier dest);
+
         public static partial void Move(hkAabb source, hkAabb dest);
+
         public static partial void Move(hkAabbHalf source, hkAabbHalf dest);
+
         public static partial void Move(hkAabbUint32 source, hkAabbUint32 dest);
-        public static partial void Move(hkaAnimatedReferenceFrame source, hkaAnimatedReferenceFrame dest);
+
+        public static partial void Move(
+            hkaAnimatedReferenceFrame source,
+            hkaAnimatedReferenceFrame dest
+        );
+
         public static partial void Move(hkaAnimation source, hkaAnimation dest);
+
         public static partial void Move(hkaAnimationBinding source, hkaAnimationBinding dest);
+
         public static partial void Move(hkaAnimationContainer source, hkaAnimationContainer dest);
-        public static partial void Move(hkaAnimationPreviewColorContainer source, hkaAnimationPreviewColorContainer dest);
+
+        public static partial void Move(
+            hkaAnimationPreviewColorContainer source,
+            hkaAnimationPreviewColorContainer dest
+        );
+
         public static partial void Move(hkaAnnotationTrack source, hkaAnnotationTrack dest);
-        public static partial void Move(hkaAnnotationTrackAnnotation source, hkaAnnotationTrackAnnotation dest);
+
+        public static partial void Move(
+            hkaAnnotationTrackAnnotation source,
+            hkaAnnotationTrackAnnotation dest
+        );
+
         public static partial void Move(hkaBone source, hkaBone dest);
+
         public static partial void Move(hkaBoneAttachment source, hkaBoneAttachment dest);
-        public static partial void Move(hkaDefaultAnimatedReferenceFrame source, hkaDefaultAnimatedReferenceFrame dest);
-        public static partial void Move(hkaFootstepAnalysisInfo source, hkaFootstepAnalysisInfo dest);
-        public static partial void Move(hkaFootstepAnalysisInfoContainer source, hkaFootstepAnalysisInfoContainer dest);
-        public static partial void Move(hkaInterleavedUncompressedAnimation source, hkaInterleavedUncompressedAnimation dest);
-        public static partial void Move(hkaKeyFrameHierarchyUtility source, hkaKeyFrameHierarchyUtility dest);
-        public static partial void Move(hkaKeyFrameHierarchyUtilityControlData source, hkaKeyFrameHierarchyUtilityControlData dest);
-        public static partial void Move(hkAlignSceneToNodeOptions source, hkAlignSceneToNodeOptions dest);
+
+        public static partial void Move(
+            hkaDefaultAnimatedReferenceFrame source,
+            hkaDefaultAnimatedReferenceFrame dest
+        );
+
+        public static partial void Move(
+            hkaFootstepAnalysisInfo source,
+            hkaFootstepAnalysisInfo dest
+        );
+
+        public static partial void Move(
+            hkaFootstepAnalysisInfoContainer source,
+            hkaFootstepAnalysisInfoContainer dest
+        );
+
+        public static partial void Move(
+            hkaInterleavedUncompressedAnimation source,
+            hkaInterleavedUncompressedAnimation dest
+        );
+
+        public static partial void Move(
+            hkaKeyFrameHierarchyUtility source,
+            hkaKeyFrameHierarchyUtility dest
+        );
+
+        public static partial void Move(
+            hkaKeyFrameHierarchyUtilityControlData source,
+            hkaKeyFrameHierarchyUtilityControlData dest
+        );
+
+        public static partial void Move(
+            hkAlignSceneToNodeOptions source,
+            hkAlignSceneToNodeOptions dest
+        );
+
         public static partial void Move(hkaMeshBinding source, hkaMeshBinding dest);
+
         public static partial void Move(hkaMeshBindingMapping source, hkaMeshBindingMapping dest);
+
         public static partial void Move(hkaQuantizedAnimation source, hkaQuantizedAnimation dest);
-        public static partial void Move(hkaQuantizedAnimationTrackCompressionParams source, hkaQuantizedAnimationTrackCompressionParams dest);
+
+        public static partial void Move(
+            hkaQuantizedAnimationTrackCompressionParams source,
+            hkaQuantizedAnimationTrackCompressionParams dest
+        );
+
         public static partial void Move(hkaRagdollInstance source, hkaRagdollInstance dest);
+
         public static partial void Move(hkArrayTypeAttribute source, hkArrayTypeAttribute dest);
+
         public static partial void Move(hkaSkeleton source, hkaSkeleton dest);
-        public static partial void Move(hkaSkeletonLocalFrameOnBone source, hkaSkeletonLocalFrameOnBone dest);
+
+        public static partial void Move(
+            hkaSkeletonLocalFrameOnBone source,
+            hkaSkeletonLocalFrameOnBone dest
+        );
+
         public static partial void Move(hkaSkeletonMapper source, hkaSkeletonMapper dest);
+
         public static partial void Move(hkaSkeletonMapperData source, hkaSkeletonMapperData dest);
-        public static partial void Move(hkaSkeletonMapperDataChainMapping source, hkaSkeletonMapperDataChainMapping dest);
-        public static partial void Move(hkaSkeletonMapperDataSimpleMapping source, hkaSkeletonMapperDataSimpleMapping dest);
-        public static partial void Move(hkaSplineCompressedAnimation source, hkaSplineCompressedAnimation dest);
-        public static partial void Move(hkaSplineCompressedAnimationAnimationCompressionParams source, hkaSplineCompressedAnimationAnimationCompressionParams dest);
-        public static partial void Move(hkaSplineCompressedAnimationTrackCompressionParams source, hkaSplineCompressedAnimationTrackCompressionParams dest);
+
+        public static partial void Move(
+            hkaSkeletonMapperDataChainMapping source,
+            hkaSkeletonMapperDataChainMapping dest
+        );
+
+        public static partial void Move(
+            hkaSkeletonMapperDataSimpleMapping source,
+            hkaSkeletonMapperDataSimpleMapping dest
+        );
+
+        public static partial void Move(
+            hkaSplineCompressedAnimation source,
+            hkaSplineCompressedAnimation dest
+        );
+
+        public static partial void Move(
+            hkaSplineCompressedAnimationAnimationCompressionParams source,
+            hkaSplineCompressedAnimationAnimationCompressionParams dest
+        );
+
+        public static partial void Move(
+            hkaSplineCompressedAnimationTrackCompressionParams source,
+            hkaSplineCompressedAnimationTrackCompressionParams dest
+        );
+
         public static partial void Move(hkbAttachmentModifier source, hkbAttachmentModifier dest);
+
         public static partial void Move(hkbAttachmentSetup source, hkbAttachmentSetup dest);
+
         public static partial void Move(hkbAttributeModifier source, hkbAttributeModifier dest);
-        public static partial void Move(hkbAttributeModifierAssignment source, hkbAttributeModifierAssignment dest);
+
+        public static partial void Move(
+            hkbAttributeModifierAssignment source,
+            hkbAttributeModifierAssignment dest
+        );
+
         public static partial void Move(hkbAuxiliaryNodeInfo source, hkbAuxiliaryNodeInfo dest);
+
         public static partial void Move(hkbBehaviorEventsInfo source, hkbBehaviorEventsInfo dest);
+
         public static partial void Move(hkbBehaviorGraph source, hkbBehaviorGraph dest);
+
         public static partial void Move(hkbBehaviorGraphData source, hkbBehaviorGraphData dest);
-        public static partial void Move(hkbBehaviorGraphInternalState source, hkbBehaviorGraphInternalState dest);
-        public static partial void Move(hkbBehaviorGraphInternalStateInfo source, hkbBehaviorGraphInternalStateInfo dest);
-        public static partial void Move(hkbBehaviorGraphStringData source, hkbBehaviorGraphStringData dest);
+
+        public static partial void Move(
+            hkbBehaviorGraphInternalState source,
+            hkbBehaviorGraphInternalState dest
+        );
+
+        public static partial void Move(
+            hkbBehaviorGraphInternalStateInfo source,
+            hkbBehaviorGraphInternalStateInfo dest
+        );
+
+        public static partial void Move(
+            hkbBehaviorGraphStringData source,
+            hkbBehaviorGraphStringData dest
+        );
+
         public static partial void Move(hkbBehaviorInfo source, hkbBehaviorInfo dest);
-        public static partial void Move(hkbBehaviorInfoIdToNamePair source, hkbBehaviorInfoIdToNamePair dest);
-        public static partial void Move(hkbBehaviorReferenceGenerator source, hkbBehaviorReferenceGenerator dest);
+
+        public static partial void Move(
+            hkbBehaviorInfoIdToNamePair source,
+            hkbBehaviorInfoIdToNamePair dest
+        );
+
+        public static partial void Move(
+            hkbBehaviorReferenceGenerator source,
+            hkbBehaviorReferenceGenerator dest
+        );
+
         public static partial void Move(hkbBindable source, hkbBindable dest);
+
         public static partial void Move(hkbBlendCurveUtils source, hkbBlendCurveUtils dest);
+
         public static partial void Move(hkbBlenderGenerator source, hkbBlenderGenerator dest);
-        public static partial void Move(hkbBlenderGeneratorChild source, hkbBlenderGeneratorChild dest);
-        public static partial void Move(hkbBlenderGeneratorChildInternalState source, hkbBlenderGeneratorChildInternalState dest);
-        public static partial void Move(hkbBlenderGeneratorInternalState source, hkbBlenderGeneratorInternalState dest);
-        public static partial void Move(hkbBlendingTransitionEffect source, hkbBlendingTransitionEffect dest);
-        public static partial void Move(hkbBlendingTransitionEffectInternalState source, hkbBlendingTransitionEffectInternalState dest);
+
+        public static partial void Move(
+            hkbBlenderGeneratorChild source,
+            hkbBlenderGeneratorChild dest
+        );
+
+        public static partial void Move(
+            hkbBlenderGeneratorChildInternalState source,
+            hkbBlenderGeneratorChildInternalState dest
+        );
+
+        public static partial void Move(
+            hkbBlenderGeneratorInternalState source,
+            hkbBlenderGeneratorInternalState dest
+        );
+
+        public static partial void Move(
+            hkbBlendingTransitionEffect source,
+            hkbBlendingTransitionEffect dest
+        );
+
+        public static partial void Move(
+            hkbBlendingTransitionEffectInternalState source,
+            hkbBlendingTransitionEffectInternalState dest
+        );
+
         public static partial void Move(hkbBoneIndexArray source, hkbBoneIndexArray dest);
+
         public static partial void Move(hkbBoneWeightArray source, hkbBoneWeightArray dest);
-        public static partial void Move(hkbBoolVariableSequencedData source, hkbBoolVariableSequencedData dest);
-        public static partial void Move(hkbBoolVariableSequencedDataSample source, hkbBoolVariableSequencedDataSample dest);
-        public static partial void Move(hkbCameraShakeEventPayload source, hkbCameraShakeEventPayload dest);
+
+        public static partial void Move(
+            hkbBoolVariableSequencedData source,
+            hkbBoolVariableSequencedData dest
+        );
+
+        public static partial void Move(
+            hkbBoolVariableSequencedDataSample source,
+            hkbBoolVariableSequencedDataSample dest
+        );
+
+        public static partial void Move(
+            hkbCameraShakeEventPayload source,
+            hkbCameraShakeEventPayload dest
+        );
+
         public static partial void Move(hkbCharacter source, hkbCharacter dest);
+
         public static partial void Move(hkbCharacterAddedInfo source, hkbCharacterAddedInfo dest);
-        public static partial void Move(hkbCharacterControlCommand source, hkbCharacterControlCommand dest);
-        public static partial void Move(hkbCharacterControllerControlData source, hkbCharacterControllerControlData dest);
-        public static partial void Move(hkbCharacterControllerModifier source, hkbCharacterControllerModifier dest);
-        public static partial void Move(hkbCharacterControllerModifierInternalState source, hkbCharacterControllerModifierInternalState dest);
+
+        public static partial void Move(
+            hkbCharacterControlCommand source,
+            hkbCharacterControlCommand dest
+        );
+
+        public static partial void Move(
+            hkbCharacterControllerControlData source,
+            hkbCharacterControllerControlData dest
+        );
+
+        public static partial void Move(
+            hkbCharacterControllerModifier source,
+            hkbCharacterControllerModifier dest
+        );
+
+        public static partial void Move(
+            hkbCharacterControllerModifierInternalState source,
+            hkbCharacterControllerModifierInternalState dest
+        );
+
         public static partial void Move(hkbCharacterData source, hkbCharacterData dest);
-        public static partial void Move(hkbCharacterDataCharacterControllerInfo source, hkbCharacterDataCharacterControllerInfo dest);
+
+        public static partial void Move(
+            hkbCharacterDataCharacterControllerInfo source,
+            hkbCharacterDataCharacterControllerInfo dest
+        );
+
         public static partial void Move(hkbCharacterInfo source, hkbCharacterInfo dest);
+
         public static partial void Move(hkbCharacterSetup source, hkbCharacterSetup dest);
+
         public static partial void Move(hkbCharacterSkinInfo source, hkbCharacterSkinInfo dest);
-        public static partial void Move(hkbCharacterSteppedInfo source, hkbCharacterSteppedInfo dest);
+
+        public static partial void Move(
+            hkbCharacterSteppedInfo source,
+            hkbCharacterSteppedInfo dest
+        );
+
         public static partial void Move(hkbCharacterStringData source, hkbCharacterStringData dest);
-        public static partial void Move(hkbClientCharacterState source, hkbClientCharacterState dest);
+
+        public static partial void Move(
+            hkbClientCharacterState source,
+            hkbClientCharacterState dest
+        );
+
         public static partial void Move(hkbClipGenerator source, hkbClipGenerator dest);
+
         public static partial void Move(hkbClipGeneratorEcho source, hkbClipGeneratorEcho dest);
-        public static partial void Move(hkbClipGeneratorInternalState source, hkbClipGeneratorInternalState dest);
+
+        public static partial void Move(
+            hkbClipGeneratorInternalState source,
+            hkbClipGeneratorInternalState dest
+        );
+
         public static partial void Move(hkbClipTrigger source, hkbClipTrigger dest);
+
         public static partial void Move(hkbClipTriggerArray source, hkbClipTriggerArray dest);
-        public static partial void Move(hkbCombineTransformsModifier source, hkbCombineTransformsModifier dest);
-        public static partial void Move(hkbCombineTransformsModifierInternalState source, hkbCombineTransformsModifierInternalState dest);
-        public static partial void Move(hkbCompiledExpressionSet source, hkbCompiledExpressionSet dest);
-        public static partial void Move(hkbCompiledExpressionSetToken source, hkbCompiledExpressionSetToken dest);
-        public static partial void Move(hkbComputeDirectionModifier source, hkbComputeDirectionModifier dest);
-        public static partial void Move(hkbComputeDirectionModifierInternalState source, hkbComputeDirectionModifierInternalState dest);
-        public static partial void Move(hkbComputeRotationFromAxisAngleModifier source, hkbComputeRotationFromAxisAngleModifier dest);
-        public static partial void Move(hkbComputeRotationFromAxisAngleModifierInternalState source, hkbComputeRotationFromAxisAngleModifierInternalState dest);
-        public static partial void Move(hkbComputeRotationToTargetModifier source, hkbComputeRotationToTargetModifier dest);
-        public static partial void Move(hkbComputeRotationToTargetModifierInternalState source, hkbComputeRotationToTargetModifierInternalState dest);
+
+        public static partial void Move(
+            hkbCombineTransformsModifier source,
+            hkbCombineTransformsModifier dest
+        );
+
+        public static partial void Move(
+            hkbCombineTransformsModifierInternalState source,
+            hkbCombineTransformsModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbCompiledExpressionSet source,
+            hkbCompiledExpressionSet dest
+        );
+
+        public static partial void Move(
+            hkbCompiledExpressionSetToken source,
+            hkbCompiledExpressionSetToken dest
+        );
+
+        public static partial void Move(
+            hkbComputeDirectionModifier source,
+            hkbComputeDirectionModifier dest
+        );
+
+        public static partial void Move(
+            hkbComputeDirectionModifierInternalState source,
+            hkbComputeDirectionModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbComputeRotationFromAxisAngleModifier source,
+            hkbComputeRotationFromAxisAngleModifier dest
+        );
+
+        public static partial void Move(
+            hkbComputeRotationFromAxisAngleModifierInternalState source,
+            hkbComputeRotationFromAxisAngleModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbComputeRotationToTargetModifier source,
+            hkbComputeRotationToTargetModifier dest
+        );
+
+        public static partial void Move(
+            hkbComputeRotationToTargetModifierInternalState source,
+            hkbComputeRotationToTargetModifierInternalState dest
+        );
+
         public static partial void Move(hkbCondition source, hkbCondition dest);
+
         public static partial void Move(hkbContext source, hkbContext dest);
+
         public static partial void Move(hkbDampingModifier source, hkbDampingModifier dest);
-        public static partial void Move(hkbDampingModifierInternalState source, hkbDampingModifierInternalState dest);
+
+        public static partial void Move(
+            hkbDampingModifierInternalState source,
+            hkbDampingModifierInternalState dest
+        );
+
         public static partial void Move(hkbDefaultMessageLog source, hkbDefaultMessageLog dest);
+
         public static partial void Move(hkbDelayedModifier source, hkbDelayedModifier dest);
-        public static partial void Move(hkbDelayedModifierInternalState source, hkbDelayedModifierInternalState dest);
-        public static partial void Move(hkbDetectCloseToGroundModifier source, hkbDetectCloseToGroundModifier dest);
-        public static partial void Move(hkbDetectCloseToGroundModifierInternalState source, hkbDetectCloseToGroundModifierInternalState dest);
-        public static partial void Move(hkbEvaluateExpressionModifier source, hkbEvaluateExpressionModifier dest);
-        public static partial void Move(hkbEvaluateExpressionModifierInternalExpressionData source, hkbEvaluateExpressionModifierInternalExpressionData dest);
-        public static partial void Move(hkbEvaluateExpressionModifierInternalState source, hkbEvaluateExpressionModifierInternalState dest);
-        public static partial void Move(hkbEvaluateHandleModifier source, hkbEvaluateHandleModifier dest);
+
+        public static partial void Move(
+            hkbDelayedModifierInternalState source,
+            hkbDelayedModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbDetectCloseToGroundModifier source,
+            hkbDetectCloseToGroundModifier dest
+        );
+
+        public static partial void Move(
+            hkbDetectCloseToGroundModifierInternalState source,
+            hkbDetectCloseToGroundModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbEvaluateExpressionModifier source,
+            hkbEvaluateExpressionModifier dest
+        );
+
+        public static partial void Move(
+            hkbEvaluateExpressionModifierInternalExpressionData source,
+            hkbEvaluateExpressionModifierInternalExpressionData dest
+        );
+
+        public static partial void Move(
+            hkbEvaluateExpressionModifierInternalState source,
+            hkbEvaluateExpressionModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbEvaluateHandleModifier source,
+            hkbEvaluateHandleModifier dest
+        );
+
         public static partial void Move(hkbEvent source, hkbEvent dest);
+
         public static partial void Move(hkbEventBase source, hkbEventBase dest);
+
         public static partial void Move(hkbEventDrivenModifier source, hkbEventDrivenModifier dest);
-        public static partial void Move(hkbEventDrivenModifierInternalState source, hkbEventDrivenModifierInternalState dest);
+
+        public static partial void Move(
+            hkbEventDrivenModifierInternalState source,
+            hkbEventDrivenModifierInternalState dest
+        );
+
         public static partial void Move(hkbEventInfo source, hkbEventInfo dest);
+
         public static partial void Move(hkbEventPayload source, hkbEventPayload dest);
+
         public static partial void Move(hkbEventPayloadList source, hkbEventPayloadList dest);
+
         public static partial void Move(hkbEventProperty source, hkbEventProperty dest);
+
         public static partial void Move(hkbEventRaisedInfo source, hkbEventRaisedInfo dest);
+
         public static partial void Move(hkbEventRangeData source, hkbEventRangeData dest);
+
         public static partial void Move(hkbEventRangeDataArray source, hkbEventRangeDataArray dest);
+
         public static partial void Move(hkbEventSequencedData source, hkbEventSequencedData dest);
-        public static partial void Move(hkbEventSequencedDataSequencedEvent source, hkbEventSequencedDataSequencedEvent dest);
-        public static partial void Move(hkbEventsFromRangeModifier source, hkbEventsFromRangeModifier dest);
-        public static partial void Move(hkbEventsFromRangeModifierInternalState source, hkbEventsFromRangeModifierInternalState dest);
+
+        public static partial void Move(
+            hkbEventSequencedDataSequencedEvent source,
+            hkbEventSequencedDataSequencedEvent dest
+        );
+
+        public static partial void Move(
+            hkbEventsFromRangeModifier source,
+            hkbEventsFromRangeModifier dest
+        );
+
+        public static partial void Move(
+            hkbEventsFromRangeModifierInternalState source,
+            hkbEventsFromRangeModifierInternalState dest
+        );
+
         public static partial void Move(hkbExpressionCondition source, hkbExpressionCondition dest);
+
         public static partial void Move(hkbExpressionData source, hkbExpressionData dest);
+
         public static partial void Move(hkbExpressionDataArray source, hkbExpressionDataArray dest);
-        public static partial void Move(hkbExtractRagdollPoseModifier source, hkbExtractRagdollPoseModifier dest);
+
+        public static partial void Move(
+            hkbExtractRagdollPoseModifier source,
+            hkbExtractRagdollPoseModifier dest
+        );
+
         public static partial void Move(hkbFootIkControlData source, hkbFootIkControlData dest);
-        public static partial void Move(hkbFootIkControlsModifier source, hkbFootIkControlsModifier dest);
-        public static partial void Move(hkbFootIkControlsModifierLeg source, hkbFootIkControlsModifierLeg dest);
+
+        public static partial void Move(
+            hkbFootIkControlsModifier source,
+            hkbFootIkControlsModifier dest
+        );
+
+        public static partial void Move(
+            hkbFootIkControlsModifierLeg source,
+            hkbFootIkControlsModifierLeg dest
+        );
+
         public static partial void Move(hkbFootIkDriverInfo source, hkbFootIkDriverInfo dest);
+
         public static partial void Move(hkbFootIkDriverInfoLeg source, hkbFootIkDriverInfoLeg dest);
+
         public static partial void Move(hkbFootIkGains source, hkbFootIkGains dest);
+
         public static partial void Move(hkbFootIkModifier source, hkbFootIkModifier dest);
-        public static partial void Move(hkbFootIkModifierInternalLegData source, hkbFootIkModifierInternalLegData dest);
+
+        public static partial void Move(
+            hkbFootIkModifierInternalLegData source,
+            hkbFootIkModifierInternalLegData dest
+        );
+
         public static partial void Move(hkbFootIkModifierLeg source, hkbFootIkModifierLeg dest);
+
         public static partial void Move(hkbGenerator source, hkbGenerator dest);
-        public static partial void Move(hkbGeneratorOutputListener source, hkbGeneratorOutputListener dest);
+
+        public static partial void Move(
+            hkbGeneratorOutputListener source,
+            hkbGeneratorOutputListener dest
+        );
+
         public static partial void Move(hkbGeneratorSyncInfo source, hkbGeneratorSyncInfo dest);
-        public static partial void Move(hkbGeneratorSyncInfoSyncPoint source, hkbGeneratorSyncInfoSyncPoint dest);
-        public static partial void Move(hkbGeneratorTransitionEffect source, hkbGeneratorTransitionEffect dest);
-        public static partial void Move(hkbGeneratorTransitionEffectInternalState source, hkbGeneratorTransitionEffectInternalState dest);
-        public static partial void Move(hkbGetHandleOnBoneModifier source, hkbGetHandleOnBoneModifier dest);
+
+        public static partial void Move(
+            hkbGeneratorSyncInfoSyncPoint source,
+            hkbGeneratorSyncInfoSyncPoint dest
+        );
+
+        public static partial void Move(
+            hkbGeneratorTransitionEffect source,
+            hkbGeneratorTransitionEffect dest
+        );
+
+        public static partial void Move(
+            hkbGeneratorTransitionEffectInternalState source,
+            hkbGeneratorTransitionEffectInternalState dest
+        );
+
+        public static partial void Move(
+            hkbGetHandleOnBoneModifier source,
+            hkbGetHandleOnBoneModifier dest
+        );
+
         public static partial void Move(hkbGetUpModifier source, hkbGetUpModifier dest);
-        public static partial void Move(hkbGetUpModifierInternalState source, hkbGetUpModifierInternalState dest);
-        public static partial void Move(hkbGetWorldFromModelModifier source, hkbGetWorldFromModelModifier dest);
-        public static partial void Move(hkbGetWorldFromModelModifierInternalState source, hkbGetWorldFromModelModifierInternalState dest);
+
+        public static partial void Move(
+            hkbGetUpModifierInternalState source,
+            hkbGetUpModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbGetWorldFromModelModifier source,
+            hkbGetWorldFromModelModifier dest
+        );
+
+        public static partial void Move(
+            hkbGetWorldFromModelModifierInternalState source,
+            hkbGetWorldFromModelModifierInternalState dest
+        );
+
         public static partial void Move(hkbHandIkControlData source, hkbHandIkControlData dest);
-        public static partial void Move(hkbHandIkControlsModifier source, hkbHandIkControlsModifier dest);
-        public static partial void Move(hkbHandIkControlsModifierHand source, hkbHandIkControlsModifierHand dest);
+
+        public static partial void Move(
+            hkbHandIkControlsModifier source,
+            hkbHandIkControlsModifier dest
+        );
+
+        public static partial void Move(
+            hkbHandIkControlsModifierHand source,
+            hkbHandIkControlsModifierHand dest
+        );
+
         public static partial void Move(hkbHandIkDriverInfo source, hkbHandIkDriverInfo dest);
-        public static partial void Move(hkbHandIkDriverInfoHand source, hkbHandIkDriverInfoHand dest);
+
+        public static partial void Move(
+            hkbHandIkDriverInfoHand source,
+            hkbHandIkDriverInfoHand dest
+        );
+
         public static partial void Move(hkbHandIkModifier source, hkbHandIkModifier dest);
+
         public static partial void Move(hkbHandIkModifierHand source, hkbHandIkModifierHand dest);
+
         public static partial void Move(hkbHandle source, hkbHandle dest);
+
         public static partial void Move(hkbIntEventPayload source, hkbIntEventPayload dest);
-        public static partial void Move(hkbIntVariableSequencedData source, hkbIntVariableSequencedData dest);
-        public static partial void Move(hkbIntVariableSequencedDataSample source, hkbIntVariableSequencedDataSample dest);
+
+        public static partial void Move(
+            hkbIntVariableSequencedData source,
+            hkbIntVariableSequencedData dest
+        );
+
+        public static partial void Move(
+            hkbIntVariableSequencedDataSample source,
+            hkbIntVariableSequencedDataSample dest
+        );
+
         public static partial void Move(hkBitField source, hkBitField dest);
-        public static partial void Move(hkbKeyframeBonesModifier source, hkbKeyframeBonesModifier dest);
-        public static partial void Move(hkbKeyframeBonesModifierKeyframeInfo source, hkbKeyframeBonesModifierKeyframeInfo dest);
+
+        public static partial void Move(
+            hkbKeyframeBonesModifier source,
+            hkbKeyframeBonesModifier dest
+        );
+
+        public static partial void Move(
+            hkbKeyframeBonesModifierKeyframeInfo source,
+            hkbKeyframeBonesModifierKeyframeInfo dest
+        );
+
         public static partial void Move(hkbLinkedSymbolInfo source, hkbLinkedSymbolInfo dest);
+
         public static partial void Move(hkbLookAtModifier source, hkbLookAtModifier dest);
-        public static partial void Move(hkbLookAtModifierInternalState source, hkbLookAtModifierInternalState dest);
-        public static partial void Move(hkbManualSelectorGenerator source, hkbManualSelectorGenerator dest);
-        public static partial void Move(hkbManualSelectorGeneratorInternalState source, hkbManualSelectorGeneratorInternalState dest);
+
+        public static partial void Move(
+            hkbLookAtModifierInternalState source,
+            hkbLookAtModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbManualSelectorGenerator source,
+            hkbManualSelectorGenerator dest
+        );
+
+        public static partial void Move(
+            hkbManualSelectorGeneratorInternalState source,
+            hkbManualSelectorGeneratorInternalState dest
+        );
+
         public static partial void Move(hkbMessageLog source, hkbMessageLog dest);
-        public static partial void Move(hkbMirroredSkeletonInfo source, hkbMirroredSkeletonInfo dest);
+
+        public static partial void Move(
+            hkbMirroredSkeletonInfo source,
+            hkbMirroredSkeletonInfo dest
+        );
+
         public static partial void Move(hkbMirrorModifier source, hkbMirrorModifier dest);
+
         public static partial void Move(hkbModifier source, hkbModifier dest);
+
         public static partial void Move(hkbModifierGenerator source, hkbModifierGenerator dest);
+
         public static partial void Move(hkbModifierList source, hkbModifierList dest);
+
         public static partial void Move(hkbModifierWrapper source, hkbModifierWrapper dest);
-        public static partial void Move(hkbMoveCharacterModifier source, hkbMoveCharacterModifier dest);
-        public static partial void Move(hkbMoveCharacterModifierInternalState source, hkbMoveCharacterModifierInternalState dest);
+
+        public static partial void Move(
+            hkbMoveCharacterModifier source,
+            hkbMoveCharacterModifier dest
+        );
+
+        public static partial void Move(
+            hkbMoveCharacterModifierInternalState source,
+            hkbMoveCharacterModifierInternalState dest
+        );
+
         public static partial void Move(hkbNamedEventPayload source, hkbNamedEventPayload dest);
-        public static partial void Move(hkbNamedIntEventPayload source, hkbNamedIntEventPayload dest);
-        public static partial void Move(hkbNamedRealEventPayload source, hkbNamedRealEventPayload dest);
-        public static partial void Move(hkbNamedStringEventPayload source, hkbNamedStringEventPayload dest);
+
+        public static partial void Move(
+            hkbNamedIntEventPayload source,
+            hkbNamedIntEventPayload dest
+        );
+
+        public static partial void Move(
+            hkbNamedRealEventPayload source,
+            hkbNamedRealEventPayload dest
+        );
+
+        public static partial void Move(
+            hkbNamedStringEventPayload source,
+            hkbNamedStringEventPayload dest
+        );
+
         public static partial void Move(hkbNode source, hkbNode dest);
-        public static partial void Move(hkbNodeInternalStateInfo source, hkbNodeInternalStateInfo dest);
-        public static partial void Move(hkbParticleSystemEventPayload source, hkbParticleSystemEventPayload dest);
-        public static partial void Move(hkbPoseMatchingGenerator source, hkbPoseMatchingGenerator dest);
-        public static partial void Move(hkbPoseMatchingGeneratorInternalState source, hkbPoseMatchingGeneratorInternalState dest);
-        public static partial void Move(hkbPoweredRagdollControlData source, hkbPoweredRagdollControlData dest);
-        public static partial void Move(hkbPoweredRagdollControlsModifier source, hkbPoweredRagdollControlsModifier dest);
+
+        public static partial void Move(
+            hkbNodeInternalStateInfo source,
+            hkbNodeInternalStateInfo dest
+        );
+
+        public static partial void Move(
+            hkbParticleSystemEventPayload source,
+            hkbParticleSystemEventPayload dest
+        );
+
+        public static partial void Move(
+            hkbPoseMatchingGenerator source,
+            hkbPoseMatchingGenerator dest
+        );
+
+        public static partial void Move(
+            hkbPoseMatchingGeneratorInternalState source,
+            hkbPoseMatchingGeneratorInternalState dest
+        );
+
+        public static partial void Move(
+            hkbPoweredRagdollControlData source,
+            hkbPoweredRagdollControlData dest
+        );
+
+        public static partial void Move(
+            hkbPoweredRagdollControlsModifier source,
+            hkbPoweredRagdollControlsModifier dest
+        );
+
         public static partial void Move(hkbProjectData source, hkbProjectData dest);
+
         public static partial void Move(hkbProjectStringData source, hkbProjectStringData dest);
+
         public static partial void Move(hkbProxyModifier source, hkbProxyModifier dest);
-        public static partial void Move(hkbProxyModifierProxyInfo source, hkbProxyModifierProxyInfo dest);
+
+        public static partial void Move(
+            hkbProxyModifierProxyInfo source,
+            hkbProxyModifierProxyInfo dest
+        );
+
         public static partial void Move(hkbRaiseEventCommand source, hkbRaiseEventCommand dest);
+
         public static partial void Move(hkbRealEventPayload source, hkbRealEventPayload dest);
-        public static partial void Move(hkbRealVariableSequencedData source, hkbRealVariableSequencedData dest);
-        public static partial void Move(hkbRealVariableSequencedDataSample source, hkbRealVariableSequencedDataSample dest);
-        public static partial void Move(hkbReferencePoseGenerator source, hkbReferencePoseGenerator dest);
+
+        public static partial void Move(
+            hkbRealVariableSequencedData source,
+            hkbRealVariableSequencedData dest
+        );
+
+        public static partial void Move(
+            hkbRealVariableSequencedDataSample source,
+            hkbRealVariableSequencedDataSample dest
+        );
+
+        public static partial void Move(
+            hkbReferencePoseGenerator source,
+            hkbReferencePoseGenerator dest
+        );
+
         public static partial void Move(hkbRegisteredGenerator source, hkbRegisteredGenerator dest);
-        public static partial void Move(hkbRigidBodyRagdollControlData source, hkbRigidBodyRagdollControlData dest);
-        public static partial void Move(hkbRigidBodyRagdollControlsModifier source, hkbRigidBodyRagdollControlsModifier dest);
-        public static partial void Move(hkbRotateCharacterModifier source, hkbRotateCharacterModifier dest);
-        public static partial void Move(hkbRotateCharacterModifierInternalState source, hkbRotateCharacterModifierInternalState dest);
+
+        public static partial void Move(
+            hkbRigidBodyRagdollControlData source,
+            hkbRigidBodyRagdollControlData dest
+        );
+
+        public static partial void Move(
+            hkbRigidBodyRagdollControlsModifier source,
+            hkbRigidBodyRagdollControlsModifier dest
+        );
+
+        public static partial void Move(
+            hkbRotateCharacterModifier source,
+            hkbRotateCharacterModifier dest
+        );
+
+        public static partial void Move(
+            hkbRotateCharacterModifierInternalState source,
+            hkbRotateCharacterModifierInternalState dest
+        );
+
         public static partial void Move(hkbSenseHandleModifier source, hkbSenseHandleModifier dest);
-        public static partial void Move(hkbSenseHandleModifierRange source, hkbSenseHandleModifierRange dest);
+
+        public static partial void Move(
+            hkbSenseHandleModifierRange source,
+            hkbSenseHandleModifierRange dest
+        );
+
         public static partial void Move(hkbSequence source, hkbSequence dest);
+
         public static partial void Move(hkbSequencedData source, hkbSequencedData dest);
-        public static partial void Move(hkbSequenceInternalState source, hkbSequenceInternalState dest);
+
+        public static partial void Move(
+            hkbSequenceInternalState source,
+            hkbSequenceInternalState dest
+        );
+
         public static partial void Move(hkbSequenceStringData source, hkbSequenceStringData dest);
+
         public static partial void Move(hkbSetBehaviorCommand source, hkbSetBehaviorCommand dest);
-        public static partial void Move(hkbSetLocalTimeOfClipGeneratorCommand source, hkbSetLocalTimeOfClipGeneratorCommand dest);
-        public static partial void Move(hkbSetNodePropertyCommand source, hkbSetNodePropertyCommand dest);
-        public static partial void Move(hkbSetWordVariableCommand source, hkbSetWordVariableCommand dest);
-        public static partial void Move(hkbSetWorldFromModelModifier source, hkbSetWorldFromModelModifier dest);
-        public static partial void Move(hkbSimulationControlCommand source, hkbSimulationControlCommand dest);
+
+        public static partial void Move(
+            hkbSetLocalTimeOfClipGeneratorCommand source,
+            hkbSetLocalTimeOfClipGeneratorCommand dest
+        );
+
+        public static partial void Move(
+            hkbSetNodePropertyCommand source,
+            hkbSetNodePropertyCommand dest
+        );
+
+        public static partial void Move(
+            hkbSetWordVariableCommand source,
+            hkbSetWordVariableCommand dest
+        );
+
+        public static partial void Move(
+            hkbSetWorldFromModelModifier source,
+            hkbSetWorldFromModelModifier dest
+        );
+
+        public static partial void Move(
+            hkbSimulationControlCommand source,
+            hkbSimulationControlCommand dest
+        );
+
         public static partial void Move(hkbSimulationStateInfo source, hkbSimulationStateInfo dest);
+
         public static partial void Move(hkbStateChooser source, hkbStateChooser dest);
+
         public static partial void Move(hkbStateListener source, hkbStateListener dest);
+
         public static partial void Move(hkbStateMachine source, hkbStateMachine dest);
-        public static partial void Move(hkbStateMachineActiveTransitionInfo source, hkbStateMachineActiveTransitionInfo dest);
-        public static partial void Move(hkbStateMachineDelayedTransitionInfo source, hkbStateMachineDelayedTransitionInfo dest);
-        public static partial void Move(hkbStateMachineEventPropertyArray source, hkbStateMachineEventPropertyArray dest);
-        public static partial void Move(hkbStateMachineInternalState source, hkbStateMachineInternalState dest);
-        public static partial void Move(hkbStateMachineNestedStateMachineData source, hkbStateMachineNestedStateMachineData dest);
-        public static partial void Move(hkbStateMachineProspectiveTransitionInfo source, hkbStateMachineProspectiveTransitionInfo dest);
-        public static partial void Move(hkbStateMachineStateInfo source, hkbStateMachineStateInfo dest);
-        public static partial void Move(hkbStateMachineTimeInterval source, hkbStateMachineTimeInterval dest);
-        public static partial void Move(hkbStateMachineTransitionInfo source, hkbStateMachineTransitionInfo dest);
-        public static partial void Move(hkbStateMachineTransitionInfoArray source, hkbStateMachineTransitionInfoArray dest);
-        public static partial void Move(hkbStateMachineTransitionInfoReference source, hkbStateMachineTransitionInfoReference dest);
+
+        public static partial void Move(
+            hkbStateMachineActiveTransitionInfo source,
+            hkbStateMachineActiveTransitionInfo dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineDelayedTransitionInfo source,
+            hkbStateMachineDelayedTransitionInfo dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineEventPropertyArray source,
+            hkbStateMachineEventPropertyArray dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineInternalState source,
+            hkbStateMachineInternalState dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineNestedStateMachineData source,
+            hkbStateMachineNestedStateMachineData dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineProspectiveTransitionInfo source,
+            hkbStateMachineProspectiveTransitionInfo dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineStateInfo source,
+            hkbStateMachineStateInfo dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineTimeInterval source,
+            hkbStateMachineTimeInterval dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineTransitionInfo source,
+            hkbStateMachineTransitionInfo dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineTransitionInfoArray source,
+            hkbStateMachineTransitionInfoArray dest
+        );
+
+        public static partial void Move(
+            hkbStateMachineTransitionInfoReference source,
+            hkbStateMachineTransitionInfoReference dest
+        );
+
         public static partial void Move(hkbStringCondition source, hkbStringCondition dest);
+
         public static partial void Move(hkbStringEventPayload source, hkbStringEventPayload dest);
+
         public static partial void Move(hkbTestStateChooser source, hkbTestStateChooser dest);
+
         public static partial void Move(hkbTimerModifier source, hkbTimerModifier dest);
-        public static partial void Move(hkbTimerModifierInternalState source, hkbTimerModifierInternalState dest);
-        public static partial void Move(hkbTransformVectorModifier source, hkbTransformVectorModifier dest);
-        public static partial void Move(hkbTransformVectorModifierInternalState source, hkbTransformVectorModifierInternalState dest);
+
+        public static partial void Move(
+            hkbTimerModifierInternalState source,
+            hkbTimerModifierInternalState dest
+        );
+
+        public static partial void Move(
+            hkbTransformVectorModifier source,
+            hkbTransformVectorModifier dest
+        );
+
+        public static partial void Move(
+            hkbTransformVectorModifierInternalState source,
+            hkbTransformVectorModifierInternalState dest
+        );
+
         public static partial void Move(hkbTransitionEffect source, hkbTransitionEffect dest);
+
         public static partial void Move(hkbTwistModifier source, hkbTwistModifier dest);
+
         public static partial void Move(hkbVariableBindingSet source, hkbVariableBindingSet dest);
-        public static partial void Move(hkbVariableBindingSetBinding source, hkbVariableBindingSetBinding dest);
+
+        public static partial void Move(
+            hkbVariableBindingSetBinding source,
+            hkbVariableBindingSetBinding dest
+        );
+
         public static partial void Move(hkbVariableValue source, hkbVariableValue dest);
+
         public static partial void Move(hkbVariableValueSet source, hkbVariableValueSet dest);
+
         public static partial void Move(hkbWorldEnums source, hkbWorldEnums dest);
-        public static partial void Move(hkbWorldFromModelModeData source, hkbWorldFromModelModeData dest);
+
+        public static partial void Move(
+            hkbWorldFromModelModeData source,
+            hkbWorldFromModelModeData dest
+        );
+
         public static partial void Move(hkClass source, hkClass dest);
+
         public static partial void Move(hkClassEnum source, hkClassEnum dest);
+
         public static partial void Move(hkClassEnumItem source, hkClassEnumItem dest);
+
         public static partial void Move(hkClassMember source, hkClassMember dest);
+
         public static partial void Move(hkColor source, hkColor dest);
+
         public static partial void Move(hkContactPoint source, hkContactPoint dest);
+
         public static partial void Move(hkContactPointMaterial source, hkContactPointMaterial dest);
+
         public static partial void Move(hkCustomAttributes source, hkCustomAttributes dest);
-        public static partial void Move(hkCustomAttributesAttribute source, hkCustomAttributesAttribute dest);
-        public static partial void Move(hkDataObjectTypeAttribute source, hkDataObjectTypeAttribute dest);
+
+        public static partial void Move(
+            hkCustomAttributesAttribute source,
+            hkCustomAttributesAttribute dest
+        );
+
+        public static partial void Move(
+            hkDataObjectTypeAttribute source,
+            hkDataObjectTypeAttribute dest
+        );
+
         public static partial void Move(hkDescriptionAttribute source, hkDescriptionAttribute dest);
-        public static partial void Move(hkDocumentationAttribute source, hkDocumentationAttribute dest);
+
+        public static partial void Move(
+            hkDocumentationAttribute source,
+            hkDocumentationAttribute dest
+        );
+
         public static partial void Move(hkGeometry source, hkGeometry dest);
+
         public static partial void Move(hkGeometryTriangle source, hkGeometryTriangle dest);
+
         public static partial void Move(hkGizmoAttribute source, hkGizmoAttribute dest);
+
         public static partial void Move(hkHalf8 source, hkHalf8 dest);
+
         public static partial void Move(hkLinkAttribute source, hkLinkAttribute dest);
+
         public static partial void Move(hkLocalFrame source, hkLocalFrame dest);
+
         public static partial void Move(hkLocalFrameGroup source, hkLocalFrameGroup dest);
-        public static partial void Move(hkMemoryResourceContainer source, hkMemoryResourceContainer dest);
+
+        public static partial void Move(
+            hkMemoryResourceContainer source,
+            hkMemoryResourceContainer dest
+        );
+
         public static partial void Move(hkMemoryResourceHandle source, hkMemoryResourceHandle dest);
-        public static partial void Move(hkMemoryResourceHandleExternalLink source, hkMemoryResourceHandleExternalLink dest);
-        public static partial void Move(hkMemoryTrackerAttribute source, hkMemoryTrackerAttribute dest);
-        public static partial void Move(hkModelerNodeTypeAttribute source, hkModelerNodeTypeAttribute dest);
+
+        public static partial void Move(
+            hkMemoryResourceHandleExternalLink source,
+            hkMemoryResourceHandleExternalLink dest
+        );
+
+        public static partial void Move(
+            hkMemoryTrackerAttribute source,
+            hkMemoryTrackerAttribute dest
+        );
+
+        public static partial void Move(
+            hkModelerNodeTypeAttribute source,
+            hkModelerNodeTypeAttribute dest
+        );
+
         public static partial void Move(hkMoppBvTreeShapeBase source, hkMoppBvTreeShapeBase dest);
+
         public static partial void Move(hkMotionState source, hkMotionState dest);
+
         public static partial void Move(hkMultiThreadCheck source, hkMultiThreadCheck dest);
+
         public static partial void Move(hkpAabbPhantom source, hkpAabbPhantom dest);
+
         public static partial void Move(hkPackedVector3 source, hkPackedVector3 dest);
+
         public static partial void Move(hkPackfileHeader source, hkPackfileHeader dest);
-        public static partial void Move(hkPackfileSectionHeader source, hkPackfileSectionHeader dest);
+
+        public static partial void Move(
+            hkPackfileSectionHeader source,
+            hkPackfileSectionHeader dest
+        );
+
         public static partial void Move(hkpAction source, hkpAction dest);
+
         public static partial void Move(hkpAgent1nSector source, hkpAgent1nSector dest);
+
         public static partial void Move(hkpAngConstraintAtom source, hkpAngConstraintAtom dest);
-        public static partial void Move(hkpAngFrictionConstraintAtom source, hkpAngFrictionConstraintAtom dest);
-        public static partial void Move(hkpAngLimitConstraintAtom source, hkpAngLimitConstraintAtom dest);
-        public static partial void Move(hkpAngMotorConstraintAtom source, hkpAngMotorConstraintAtom dest);
-        public static partial void Move(hkpAngularDashpotAction source, hkpAngularDashpotAction dest);
+
+        public static partial void Move(
+            hkpAngFrictionConstraintAtom source,
+            hkpAngFrictionConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpAngLimitConstraintAtom source,
+            hkpAngLimitConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpAngMotorConstraintAtom source,
+            hkpAngMotorConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpAngularDashpotAction source,
+            hkpAngularDashpotAction dest
+        );
+
         public static partial void Move(hkpArrayAction source, hkpArrayAction dest);
-        public static partial void Move(hkpBallAndSocketConstraintData source, hkpBallAndSocketConstraintData dest);
-        public static partial void Move(hkpBallAndSocketConstraintDataAtoms source, hkpBallAndSocketConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpBallAndSocketConstraintData source,
+            hkpBallAndSocketConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpBallAndSocketConstraintDataAtoms source,
+            hkpBallAndSocketConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpBallGun source, hkpBallGun dest);
+
         public static partial void Move(hkpBallSocketChainData source, hkpBallSocketChainData dest);
-        public static partial void Move(hkpBallSocketChainDataConstraintInfo source, hkpBallSocketChainDataConstraintInfo dest);
-        public static partial void Move(hkpBallSocketConstraintAtom source, hkpBallSocketConstraintAtom dest);
+
+        public static partial void Move(
+            hkpBallSocketChainDataConstraintInfo source,
+            hkpBallSocketChainDataConstraintInfo dest
+        );
+
+        public static partial void Move(
+            hkpBallSocketConstraintAtom source,
+            hkpBallSocketConstraintAtom dest
+        );
+
         public static partial void Move(hkpBinaryAction source, hkpBinaryAction dest);
+
         public static partial void Move(hkpBoxMotion source, hkpBoxMotion dest);
+
         public static partial void Move(hkpBoxShape source, hkpBoxShape dest);
+
         public static partial void Move(hkpBreakableBody source, hkpBreakableBody dest);
-        public static partial void Move(hkpBreakableConstraintData source, hkpBreakableConstraintData dest);
+
+        public static partial void Move(
+            hkpBreakableConstraintData source,
+            hkpBreakableConstraintData dest
+        );
+
         public static partial void Move(hkpBridgeAtoms source, hkpBridgeAtoms dest);
-        public static partial void Move(hkpBridgeConstraintAtom source, hkpBridgeConstraintAtom dest);
+
+        public static partial void Move(
+            hkpBridgeConstraintAtom source,
+            hkpBridgeConstraintAtom dest
+        );
+
         public static partial void Move(hkpBroadPhaseHandle source, hkpBroadPhaseHandle dest);
+
         public static partial void Move(hkpBvShape source, hkpBvShape dest);
+
         public static partial void Move(hkpBvTreeShape source, hkpBvTreeShape dest);
+
         public static partial void Move(hkpCachingShapePhantom source, hkpCachingShapePhantom dest);
-        public static partial void Move(hkpCallbackConstraintMotor source, hkpCallbackConstraintMotor dest);
+
+        public static partial void Move(
+            hkpCallbackConstraintMotor source,
+            hkpCallbackConstraintMotor dest
+        );
+
         public static partial void Move(hkpCapsuleShape source, hkpCapsuleShape dest);
+
         public static partial void Move(hkpCdBody source, hkpCdBody dest);
-        public static partial void Move(hkpCenterOfMassChangerModifierConstraintAtom source, hkpCenterOfMassChangerModifierConstraintAtom dest);
-        public static partial void Move(hkpCharacterControllerCinfo source, hkpCharacterControllerCinfo dest);
+
+        public static partial void Move(
+            hkpCenterOfMassChangerModifierConstraintAtom source,
+            hkpCenterOfMassChangerModifierConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpCharacterControllerCinfo source,
+            hkpCharacterControllerCinfo dest
+        );
+
         public static partial void Move(hkpCharacterMotion source, hkpCharacterMotion dest);
+
         public static partial void Move(hkpCharacterProxyCinfo source, hkpCharacterProxyCinfo dest);
-        public static partial void Move(hkpCharacterRigidBodyCinfo source, hkpCharacterRigidBodyCinfo dest);
-        public static partial void Move(hkpCogWheelConstraintAtom source, hkpCogWheelConstraintAtom dest);
-        public static partial void Move(hkpCogWheelConstraintData source, hkpCogWheelConstraintData dest);
-        public static partial void Move(hkpCogWheelConstraintDataAtoms source, hkpCogWheelConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpCharacterRigidBodyCinfo source,
+            hkpCharacterRigidBodyCinfo dest
+        );
+
+        public static partial void Move(
+            hkpCogWheelConstraintAtom source,
+            hkpCogWheelConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpCogWheelConstraintData source,
+            hkpCogWheelConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpCogWheelConstraintDataAtoms source,
+            hkpCogWheelConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpCollidable source, hkpCollidable dest);
-        public static partial void Move(hkpCollidableBoundingVolumeData source, hkpCollidableBoundingVolumeData dest);
-        public static partial void Move(hkpCollidableCollidableFilter source, hkpCollidableCollidableFilter dest);
+
+        public static partial void Move(
+            hkpCollidableBoundingVolumeData source,
+            hkpCollidableBoundingVolumeData dest
+        );
+
+        public static partial void Move(
+            hkpCollidableCollidableFilter source,
+            hkpCollidableCollidableFilter dest
+        );
+
         public static partial void Move(hkpCollisionFilter source, hkpCollisionFilter dest);
+
         public static partial void Move(hkpCollisionFilterList source, hkpCollisionFilterList dest);
+
         public static partial void Move(hkpCompressedMeshShape source, hkpCompressedMeshShape dest);
-        public static partial void Move(hkpCompressedMeshShapeBigTriangle source, hkpCompressedMeshShapeBigTriangle dest);
-        public static partial void Move(hkpCompressedMeshShapeChunk source, hkpCompressedMeshShapeChunk dest);
-        public static partial void Move(hkpCompressedMeshShapeConvexPiece source, hkpCompressedMeshShapeConvexPiece dest);
-        public static partial void Move(hkpCompressedSampledHeightFieldShape source, hkpCompressedSampledHeightFieldShape dest);
-        public static partial void Move(hkpConeLimitConstraintAtom source, hkpConeLimitConstraintAtom dest);
-        public static partial void Move(hkpConstrainedSystemFilter source, hkpConstrainedSystemFilter dest);
+
+        public static partial void Move(
+            hkpCompressedMeshShapeBigTriangle source,
+            hkpCompressedMeshShapeBigTriangle dest
+        );
+
+        public static partial void Move(
+            hkpCompressedMeshShapeChunk source,
+            hkpCompressedMeshShapeChunk dest
+        );
+
+        public static partial void Move(
+            hkpCompressedMeshShapeConvexPiece source,
+            hkpCompressedMeshShapeConvexPiece dest
+        );
+
+        public static partial void Move(
+            hkpCompressedSampledHeightFieldShape source,
+            hkpCompressedSampledHeightFieldShape dest
+        );
+
+        public static partial void Move(
+            hkpConeLimitConstraintAtom source,
+            hkpConeLimitConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpConstrainedSystemFilter source,
+            hkpConstrainedSystemFilter dest
+        );
+
         public static partial void Move(hkpConstraintAtom source, hkpConstraintAtom dest);
+
         public static partial void Move(hkpConstraintChainData source, hkpConstraintChainData dest);
-        public static partial void Move(hkpConstraintChainInstance source, hkpConstraintChainInstance dest);
-        public static partial void Move(hkpConstraintChainInstanceAction source, hkpConstraintChainInstanceAction dest);
-        public static partial void Move(hkpConstraintCollisionFilter source, hkpConstraintCollisionFilter dest);
+
+        public static partial void Move(
+            hkpConstraintChainInstance source,
+            hkpConstraintChainInstance dest
+        );
+
+        public static partial void Move(
+            hkpConstraintChainInstanceAction source,
+            hkpConstraintChainInstanceAction dest
+        );
+
+        public static partial void Move(
+            hkpConstraintCollisionFilter source,
+            hkpConstraintCollisionFilter dest
+        );
+
         public static partial void Move(hkpConstraintData source, hkpConstraintData dest);
+
         public static partial void Move(hkpConstraintInstance source, hkpConstraintInstance dest);
-        public static partial void Move(hkpConstraintInstanceSmallArraySerializeOverrideType source, hkpConstraintInstanceSmallArraySerializeOverrideType dest);
+
+        public static partial void Move(
+            hkpConstraintInstanceSmallArraySerializeOverrideType source,
+            hkpConstraintInstanceSmallArraySerializeOverrideType dest
+        );
+
         public static partial void Move(hkpConstraintMotor source, hkpConstraintMotor dest);
+
         public static partial void Move(hkpConvexListFilter source, hkpConvexListFilter dest);
+
         public static partial void Move(hkpConvexListShape source, hkpConvexListShape dest);
-        public static partial void Move(hkpConvexPieceStreamData source, hkpConvexPieceStreamData dest);
+
+        public static partial void Move(
+            hkpConvexPieceStreamData source,
+            hkpConvexPieceStreamData dest
+        );
+
         public static partial void Move(hkpConvexShape source, hkpConvexShape dest);
-        public static partial void Move(hkpConvexTransformShape source, hkpConvexTransformShape dest);
-        public static partial void Move(hkpConvexTransformShapeBase source, hkpConvexTransformShapeBase dest);
-        public static partial void Move(hkpConvexTranslateShape source, hkpConvexTranslateShape dest);
-        public static partial void Move(hkpConvexVerticesConnectivity source, hkpConvexVerticesConnectivity dest);
+
+        public static partial void Move(
+            hkpConvexTransformShape source,
+            hkpConvexTransformShape dest
+        );
+
+        public static partial void Move(
+            hkpConvexTransformShapeBase source,
+            hkpConvexTransformShapeBase dest
+        );
+
+        public static partial void Move(
+            hkpConvexTranslateShape source,
+            hkpConvexTranslateShape dest
+        );
+
+        public static partial void Move(
+            hkpConvexVerticesConnectivity source,
+            hkpConvexVerticesConnectivity dest
+        );
+
         public static partial void Move(hkpConvexVerticesShape source, hkpConvexVerticesShape dest);
-        public static partial void Move(hkpConvexVerticesShapeFourVectors source, hkpConvexVerticesShapeFourVectors dest);
+
+        public static partial void Move(
+            hkpConvexVerticesShapeFourVectors source,
+            hkpConvexVerticesShapeFourVectors dest
+        );
+
         public static partial void Move(hkpCylinderShape source, hkpCylinderShape dest);
+
         public static partial void Move(hkpDashpotAction source, hkpDashpotAction dest);
-        public static partial void Move(hkpDefaultConvexListFilter source, hkpDefaultConvexListFilter dest);
-        public static partial void Move(hkpDefaultWorldMemoryWatchDog source, hkpDefaultWorldMemoryWatchDog dest);
-        public static partial void Move(hkpDisableEntityCollisionFilter source, hkpDisableEntityCollisionFilter dest);
+
+        public static partial void Move(
+            hkpDefaultConvexListFilter source,
+            hkpDefaultConvexListFilter dest
+        );
+
+        public static partial void Move(
+            hkpDefaultWorldMemoryWatchDog source,
+            hkpDefaultWorldMemoryWatchDog dest
+        );
+
+        public static partial void Move(
+            hkpDisableEntityCollisionFilter source,
+            hkpDisableEntityCollisionFilter dest
+        );
+
         public static partial void Move(hkpDisplayBindingData source, hkpDisplayBindingData dest);
-        public static partial void Move(hkpDisplayBindingDataPhysicsSystem source, hkpDisplayBindingDataPhysicsSystem dest);
-        public static partial void Move(hkpDisplayBindingDataRigidBody source, hkpDisplayBindingDataRigidBody dest);
+
+        public static partial void Move(
+            hkpDisplayBindingDataPhysicsSystem source,
+            hkpDisplayBindingDataPhysicsSystem dest
+        );
+
+        public static partial void Move(
+            hkpDisplayBindingDataRigidBody source,
+            hkpDisplayBindingDataRigidBody dest
+        );
+
         public static partial void Move(hkpEntity source, hkpEntity dest);
-        public static partial void Move(hkpEntityExtendedListeners source, hkpEntityExtendedListeners dest);
-        public static partial void Move(hkpEntitySmallArraySerializeOverrideType source, hkpEntitySmallArraySerializeOverrideType dest);
-        public static partial void Move(hkpEntitySpuCollisionCallback source, hkpEntitySpuCollisionCallback dest);
+
+        public static partial void Move(
+            hkpEntityExtendedListeners source,
+            hkpEntityExtendedListeners dest
+        );
+
+        public static partial void Move(
+            hkpEntitySmallArraySerializeOverrideType source,
+            hkpEntitySmallArraySerializeOverrideType dest
+        );
+
+        public static partial void Move(
+            hkpEntitySpuCollisionCallback source,
+            hkpEntitySpuCollisionCallback dest
+        );
+
         public static partial void Move(hkpFastMeshShape source, hkpFastMeshShape dest);
+
         public static partial void Move(hkpFirstPersonGun source, hkpFirstPersonGun dest);
+
         public static partial void Move(hkpFixedRigidMotion source, hkpFixedRigidMotion dest);
-        public static partial void Move(hkpGenericConstraintData source, hkpGenericConstraintData dest);
-        public static partial void Move(hkpGenericConstraintDataScheme source, hkpGenericConstraintDataScheme dest);
-        public static partial void Move(hkpGenericConstraintDataSchemeConstraintInfo source, hkpGenericConstraintDataSchemeConstraintInfo dest);
+
+        public static partial void Move(
+            hkpGenericConstraintData source,
+            hkpGenericConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpGenericConstraintDataScheme source,
+            hkpGenericConstraintDataScheme dest
+        );
+
+        public static partial void Move(
+            hkpGenericConstraintDataSchemeConstraintInfo source,
+            hkpGenericConstraintDataSchemeConstraintInfo dest
+        );
+
         public static partial void Move(hkpGravityGun source, hkpGravityGun dest);
-        public static partial void Move(hkpGroupCollisionFilter source, hkpGroupCollisionFilter dest);
+
+        public static partial void Move(
+            hkpGroupCollisionFilter source,
+            hkpGroupCollisionFilter dest
+        );
+
         public static partial void Move(hkpGroupFilter source, hkpGroupFilter dest);
+
         public static partial void Move(hkpHeightFieldShape source, hkpHeightFieldShape dest);
+
         public static partial void Move(hkpHingeConstraintData source, hkpHingeConstraintData dest);
-        public static partial void Move(hkpHingeConstraintDataAtoms source, hkpHingeConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpHingeConstraintDataAtoms source,
+            hkpHingeConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpHingeLimitsData source, hkpHingeLimitsData dest);
-        public static partial void Move(hkpHingeLimitsDataAtoms source, hkpHingeLimitsDataAtoms dest);
-        public static partial void Move(hkpIgnoreModifierConstraintAtom source, hkpIgnoreModifierConstraintAtom dest);
-        public static partial void Move(hkpKeyframedRigidMotion source, hkpKeyframedRigidMotion dest);
-        public static partial void Move(hkpLimitedForceConstraintMotor source, hkpLimitedForceConstraintMotor dest);
-        public static partial void Move(hkpLimitedHingeConstraintData source, hkpLimitedHingeConstraintData dest);
-        public static partial void Move(hkpLimitedHingeConstraintDataAtoms source, hkpLimitedHingeConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpHingeLimitsDataAtoms source,
+            hkpHingeLimitsDataAtoms dest
+        );
+
+        public static partial void Move(
+            hkpIgnoreModifierConstraintAtom source,
+            hkpIgnoreModifierConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpKeyframedRigidMotion source,
+            hkpKeyframedRigidMotion dest
+        );
+
+        public static partial void Move(
+            hkpLimitedForceConstraintMotor source,
+            hkpLimitedForceConstraintMotor dest
+        );
+
+        public static partial void Move(
+            hkpLimitedHingeConstraintData source,
+            hkpLimitedHingeConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpLimitedHingeConstraintDataAtoms source,
+            hkpLimitedHingeConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpLinConstraintAtom source, hkpLinConstraintAtom dest);
-        public static partial void Move(hkpLinearParametricCurve source, hkpLinearParametricCurve dest);
-        public static partial void Move(hkpLinFrictionConstraintAtom source, hkpLinFrictionConstraintAtom dest);
+
+        public static partial void Move(
+            hkpLinearParametricCurve source,
+            hkpLinearParametricCurve dest
+        );
+
+        public static partial void Move(
+            hkpLinFrictionConstraintAtom source,
+            hkpLinFrictionConstraintAtom dest
+        );
+
         public static partial void Move(hkpLinkedCollidable source, hkpLinkedCollidable dest);
-        public static partial void Move(hkpLinLimitConstraintAtom source, hkpLinLimitConstraintAtom dest);
-        public static partial void Move(hkpLinMotorConstraintAtom source, hkpLinMotorConstraintAtom dest);
-        public static partial void Move(hkpLinSoftConstraintAtom source, hkpLinSoftConstraintAtom dest);
+
+        public static partial void Move(
+            hkpLinLimitConstraintAtom source,
+            hkpLinLimitConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpLinMotorConstraintAtom source,
+            hkpLinMotorConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpLinSoftConstraintAtom source,
+            hkpLinSoftConstraintAtom dest
+        );
+
         public static partial void Move(hkpListShape source, hkpListShape dest);
+
         public static partial void Move(hkpListShapeChildInfo source, hkpListShapeChildInfo dest);
-        public static partial void Move(hkpMalleableConstraintData source, hkpMalleableConstraintData dest);
-        public static partial void Move(hkpMassChangerModifierConstraintAtom source, hkpMassChangerModifierConstraintAtom dest);
+
+        public static partial void Move(
+            hkpMalleableConstraintData source,
+            hkpMalleableConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpMassChangerModifierConstraintAtom source,
+            hkpMassChangerModifierConstraintAtom dest
+        );
+
         public static partial void Move(hkpMaterial source, hkpMaterial dest);
+
         public static partial void Move(hkpMaxSizeMotion source, hkpMaxSizeMotion dest);
+
         public static partial void Move(hkpMeshMaterial source, hkpMeshMaterial dest);
+
         public static partial void Move(hkpMeshShape source, hkpMeshShape dest);
+
         public static partial void Move(hkpMeshShapeSubpart source, hkpMeshShapeSubpart dest);
-        public static partial void Move(hkpModifierConstraintAtom source, hkpModifierConstraintAtom dest);
+
+        public static partial void Move(
+            hkpModifierConstraintAtom source,
+            hkpModifierConstraintAtom dest
+        );
+
         public static partial void Move(hkpMoppBvTreeShape source, hkpMoppBvTreeShape dest);
+
         public static partial void Move(hkpMoppCode source, hkpMoppCode dest);
+
         public static partial void Move(hkpMoppCodeCodeInfo source, hkpMoppCodeCodeInfo dest);
-        public static partial void Move(hkpMoppCodeReindexedTerminal source, hkpMoppCodeReindexedTerminal dest);
+
+        public static partial void Move(
+            hkpMoppCodeReindexedTerminal source,
+            hkpMoppCodeReindexedTerminal dest
+        );
+
         public static partial void Move(hkpMotion source, hkpMotion dest);
+
         public static partial void Move(hkpMotorAction source, hkpMotorAction dest);
+
         public static partial void Move(hkpMountedBallGun source, hkpMountedBallGun dest);
+
         public static partial void Move(hkpMouseSpringAction source, hkpMouseSpringAction dest);
-        public static partial void Move(hkpMovingSurfaceModifierConstraintAtom source, hkpMovingSurfaceModifierConstraintAtom dest);
+
+        public static partial void Move(
+            hkpMovingSurfaceModifierConstraintAtom source,
+            hkpMovingSurfaceModifierConstraintAtom dest
+        );
+
         public static partial void Move(hkpMultiRayShape source, hkpMultiRayShape dest);
+
         public static partial void Move(hkpMultiRayShapeRay source, hkpMultiRayShapeRay dest);
+
         public static partial void Move(hkpMultiSphereShape source, hkpMultiSphereShape dest);
+
         public static partial void Move(hkpNamedMeshMaterial source, hkpNamedMeshMaterial dest);
+
         public static partial void Move(hkpNullCollisionFilter source, hkpNullCollisionFilter dest);
+
         public static partial void Move(hkPostFinishAttribute source, hkPostFinishAttribute dest);
-        public static partial void Move(hkpOverwritePivotConstraintAtom source, hkpOverwritePivotConstraintAtom dest);
+
+        public static partial void Move(
+            hkpOverwritePivotConstraintAtom source,
+            hkpOverwritePivotConstraintAtom dest
+        );
+
         public static partial void Move(hkpPairCollisionFilter source, hkpPairCollisionFilter dest);
-        public static partial void Move(hkpPairCollisionFilterMapPairFilterKeyOverrideType source, hkpPairCollisionFilterMapPairFilterKeyOverrideType dest);
+
+        public static partial void Move(
+            hkpPairCollisionFilterMapPairFilterKeyOverrideType source,
+            hkpPairCollisionFilterMapPairFilterKeyOverrideType dest
+        );
+
         public static partial void Move(hkpParametricCurve source, hkpParametricCurve dest);
+
         public static partial void Move(hkpPhantom source, hkpPhantom dest);
-        public static partial void Move(hkpPhantomCallbackShape source, hkpPhantomCallbackShape dest);
+
+        public static partial void Move(
+            hkpPhantomCallbackShape source,
+            hkpPhantomCallbackShape dest
+        );
+
         public static partial void Move(hkpPhysicsData source, hkpPhysicsData dest);
+
         public static partial void Move(hkpPhysicsSystem source, hkpPhysicsSystem dest);
-        public static partial void Move(hkpPhysicsSystemWithContacts source, hkpPhysicsSystemWithContacts dest);
+
+        public static partial void Move(
+            hkpPhysicsSystemWithContacts source,
+            hkpPhysicsSystemWithContacts dest
+        );
+
         public static partial void Move(hkpPlaneShape source, hkpPlaneShape dest);
-        public static partial void Move(hkpPointToPathConstraintData source, hkpPointToPathConstraintData dest);
-        public static partial void Move(hkpPointToPlaneConstraintData source, hkpPointToPlaneConstraintData dest);
-        public static partial void Move(hkpPointToPlaneConstraintDataAtoms source, hkpPointToPlaneConstraintDataAtoms dest);
-        public static partial void Move(hkpPositionConstraintMotor source, hkpPositionConstraintMotor dest);
+
+        public static partial void Move(
+            hkpPointToPathConstraintData source,
+            hkpPointToPathConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpPointToPlaneConstraintData source,
+            hkpPointToPlaneConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpPointToPlaneConstraintDataAtoms source,
+            hkpPointToPlaneConstraintDataAtoms dest
+        );
+
+        public static partial void Move(
+            hkpPositionConstraintMotor source,
+            hkpPositionConstraintMotor dest
+        );
+
         public static partial void Move(hkpPoweredChainData source, hkpPoweredChainData dest);
-        public static partial void Move(hkpPoweredChainDataConstraintInfo source, hkpPoweredChainDataConstraintInfo dest);
+
+        public static partial void Move(
+            hkpPoweredChainDataConstraintInfo source,
+            hkpPoweredChainDataConstraintInfo dest
+        );
+
         public static partial void Move(hkpPoweredChainMapper source, hkpPoweredChainMapper dest);
-        public static partial void Move(hkpPoweredChainMapperLinkInfo source, hkpPoweredChainMapperLinkInfo dest);
-        public static partial void Move(hkpPoweredChainMapperTarget source, hkpPoweredChainMapperTarget dest);
-        public static partial void Move(hkpPrismaticConstraintData source, hkpPrismaticConstraintData dest);
-        public static partial void Move(hkpPrismaticConstraintDataAtoms source, hkpPrismaticConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpPoweredChainMapperLinkInfo source,
+            hkpPoweredChainMapperLinkInfo dest
+        );
+
+        public static partial void Move(
+            hkpPoweredChainMapperTarget source,
+            hkpPoweredChainMapperTarget dest
+        );
+
+        public static partial void Move(
+            hkpPrismaticConstraintData source,
+            hkpPrismaticConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpPrismaticConstraintDataAtoms source,
+            hkpPrismaticConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpProjectileGun source, hkpProjectileGun dest);
+
         public static partial void Move(hkpProperty source, hkpProperty dest);
+
         public static partial void Move(hkpPropertyValue source, hkpPropertyValue dest);
-        public static partial void Move(hkpPulleyConstraintAtom source, hkpPulleyConstraintAtom dest);
-        public static partial void Move(hkpPulleyConstraintData source, hkpPulleyConstraintData dest);
-        public static partial void Move(hkpPulleyConstraintDataAtoms source, hkpPulleyConstraintDataAtoms dest);
-        public static partial void Move(hkpRackAndPinionConstraintAtom source, hkpRackAndPinionConstraintAtom dest);
-        public static partial void Move(hkpRackAndPinionConstraintData source, hkpRackAndPinionConstraintData dest);
-        public static partial void Move(hkpRackAndPinionConstraintDataAtoms source, hkpRackAndPinionConstraintDataAtoms dest);
-        public static partial void Move(hkpRagdollConstraintData source, hkpRagdollConstraintData dest);
-        public static partial void Move(hkpRagdollConstraintDataAtoms source, hkpRagdollConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpPulleyConstraintAtom source,
+            hkpPulleyConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpPulleyConstraintData source,
+            hkpPulleyConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpPulleyConstraintDataAtoms source,
+            hkpPulleyConstraintDataAtoms dest
+        );
+
+        public static partial void Move(
+            hkpRackAndPinionConstraintAtom source,
+            hkpRackAndPinionConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpRackAndPinionConstraintData source,
+            hkpRackAndPinionConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpRackAndPinionConstraintDataAtoms source,
+            hkpRackAndPinionConstraintDataAtoms dest
+        );
+
+        public static partial void Move(
+            hkpRagdollConstraintData source,
+            hkpRagdollConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpRagdollConstraintDataAtoms source,
+            hkpRagdollConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpRagdollLimitsData source, hkpRagdollLimitsData dest);
-        public static partial void Move(hkpRagdollLimitsDataAtoms source, hkpRagdollLimitsDataAtoms dest);
-        public static partial void Move(hkpRagdollMotorConstraintAtom source, hkpRagdollMotorConstraintAtom dest);
+
+        public static partial void Move(
+            hkpRagdollLimitsDataAtoms source,
+            hkpRagdollLimitsDataAtoms dest
+        );
+
+        public static partial void Move(
+            hkpRagdollMotorConstraintAtom source,
+            hkpRagdollMotorConstraintAtom dest
+        );
+
         public static partial void Move(hkpRayCollidableFilter source, hkpRayCollidableFilter dest);
-        public static partial void Move(hkpRayShapeCollectionFilter source, hkpRayShapeCollectionFilter dest);
-        public static partial void Move(hkpRemoveTerminalsMoppModifier source, hkpRemoveTerminalsMoppModifier dest);
+
+        public static partial void Move(
+            hkpRayShapeCollectionFilter source,
+            hkpRayShapeCollectionFilter dest
+        );
+
+        public static partial void Move(
+            hkpRemoveTerminalsMoppModifier source,
+            hkpRemoveTerminalsMoppModifier dest
+        );
+
         public static partial void Move(hkpReorientAction source, hkpReorientAction dest);
+
         public static partial void Move(hkpRigidBody source, hkpRigidBody dest);
-        public static partial void Move(hkpRotationalConstraintData source, hkpRotationalConstraintData dest);
-        public static partial void Move(hkpRotationalConstraintDataAtoms source, hkpRotationalConstraintDataAtoms dest);
-        public static partial void Move(hkpSampledHeightFieldShape source, hkpSampledHeightFieldShape dest);
-        public static partial void Move(hkpSerializedAgentNnEntry source, hkpSerializedAgentNnEntry dest);
-        public static partial void Move(hkpSerializedDisplayMarker source, hkpSerializedDisplayMarker dest);
-        public static partial void Move(hkpSerializedDisplayMarkerList source, hkpSerializedDisplayMarkerList dest);
-        public static partial void Move(hkpSerializedDisplayRbTransforms source, hkpSerializedDisplayRbTransforms dest);
-        public static partial void Move(hkpSerializedDisplayRbTransformsDisplayTransformPair source, hkpSerializedDisplayRbTransformsDisplayTransformPair dest);
-        public static partial void Move(hkpSerializedSubTrack1nInfo source, hkpSerializedSubTrack1nInfo dest);
-        public static partial void Move(hkpSerializedTrack1nInfo source, hkpSerializedTrack1nInfo dest);
-        public static partial void Move(hkpSetLocalRotationsConstraintAtom source, hkpSetLocalRotationsConstraintAtom dest);
-        public static partial void Move(hkpSetLocalTransformsConstraintAtom source, hkpSetLocalTransformsConstraintAtom dest);
-        public static partial void Move(hkpSetLocalTranslationsConstraintAtom source, hkpSetLocalTranslationsConstraintAtom dest);
-        public static partial void Move(hkpSetupStabilizationAtom source, hkpSetupStabilizationAtom dest);
+
+        public static partial void Move(
+            hkpRotationalConstraintData source,
+            hkpRotationalConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpRotationalConstraintDataAtoms source,
+            hkpRotationalConstraintDataAtoms dest
+        );
+
+        public static partial void Move(
+            hkpSampledHeightFieldShape source,
+            hkpSampledHeightFieldShape dest
+        );
+
+        public static partial void Move(
+            hkpSerializedAgentNnEntry source,
+            hkpSerializedAgentNnEntry dest
+        );
+
+        public static partial void Move(
+            hkpSerializedDisplayMarker source,
+            hkpSerializedDisplayMarker dest
+        );
+
+        public static partial void Move(
+            hkpSerializedDisplayMarkerList source,
+            hkpSerializedDisplayMarkerList dest
+        );
+
+        public static partial void Move(
+            hkpSerializedDisplayRbTransforms source,
+            hkpSerializedDisplayRbTransforms dest
+        );
+
+        public static partial void Move(
+            hkpSerializedDisplayRbTransformsDisplayTransformPair source,
+            hkpSerializedDisplayRbTransformsDisplayTransformPair dest
+        );
+
+        public static partial void Move(
+            hkpSerializedSubTrack1nInfo source,
+            hkpSerializedSubTrack1nInfo dest
+        );
+
+        public static partial void Move(
+            hkpSerializedTrack1nInfo source,
+            hkpSerializedTrack1nInfo dest
+        );
+
+        public static partial void Move(
+            hkpSetLocalRotationsConstraintAtom source,
+            hkpSetLocalRotationsConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpSetLocalTransformsConstraintAtom source,
+            hkpSetLocalTransformsConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpSetLocalTranslationsConstraintAtom source,
+            hkpSetLocalTranslationsConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpSetupStabilizationAtom source,
+            hkpSetupStabilizationAtom dest
+        );
+
         public static partial void Move(hkpShape source, hkpShape dest);
+
         public static partial void Move(hkpShapeCollection source, hkpShapeCollection dest);
-        public static partial void Move(hkpShapeCollectionFilter source, hkpShapeCollectionFilter dest);
+
+        public static partial void Move(
+            hkpShapeCollectionFilter source,
+            hkpShapeCollectionFilter dest
+        );
+
         public static partial void Move(hkpShapeContainer source, hkpShapeContainer dest);
+
         public static partial void Move(hkpShapeInfo source, hkpShapeInfo dest);
+
         public static partial void Move(hkpShapeModifier source, hkpShapeModifier dest);
+
         public static partial void Move(hkpShapePhantom source, hkpShapePhantom dest);
-        public static partial void Move(hkpSimpleContactConstraintAtom source, hkpSimpleContactConstraintAtom dest);
-        public static partial void Move(hkpSimpleContactConstraintDataInfo source, hkpSimpleContactConstraintDataInfo dest);
+
+        public static partial void Move(
+            hkpSimpleContactConstraintAtom source,
+            hkpSimpleContactConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpSimpleContactConstraintDataInfo source,
+            hkpSimpleContactConstraintDataInfo dest
+        );
+
         public static partial void Move(hkpSimpleShapePhantom source, hkpSimpleShapePhantom dest);
-        public static partial void Move(hkpSimpleShapePhantomCollisionDetail source, hkpSimpleShapePhantomCollisionDetail dest);
+
+        public static partial void Move(
+            hkpSimpleShapePhantomCollisionDetail source,
+            hkpSimpleShapePhantomCollisionDetail dest
+        );
+
         public static partial void Move(hkpSimulation source, hkpSimulation dest);
-        public static partial void Move(hkpSingleShapeContainer source, hkpSingleShapeContainer dest);
-        public static partial void Move(hkpSoftContactModifierConstraintAtom source, hkpSoftContactModifierConstraintAtom dest);
+
+        public static partial void Move(
+            hkpSingleShapeContainer source,
+            hkpSingleShapeContainer dest
+        );
+
+        public static partial void Move(
+            hkpSoftContactModifierConstraintAtom source,
+            hkpSoftContactModifierConstraintAtom dest
+        );
+
         public static partial void Move(hkpSphereMotion source, hkpSphereMotion dest);
+
         public static partial void Move(hkpSphereRepShape source, hkpSphereRepShape dest);
+
         public static partial void Move(hkpSphereShape source, hkpSphereShape dest);
+
         public static partial void Move(hkpSpringAction source, hkpSpringAction dest);
-        public static partial void Move(hkpSpringDamperConstraintMotor source, hkpSpringDamperConstraintMotor dest);
-        public static partial void Move(hkpStiffSpringChainData source, hkpStiffSpringChainData dest);
-        public static partial void Move(hkpStiffSpringChainDataConstraintInfo source, hkpStiffSpringChainDataConstraintInfo dest);
-        public static partial void Move(hkpStiffSpringConstraintAtom source, hkpStiffSpringConstraintAtom dest);
-        public static partial void Move(hkpStiffSpringConstraintData source, hkpStiffSpringConstraintData dest);
-        public static partial void Move(hkpStiffSpringConstraintDataAtoms source, hkpStiffSpringConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpSpringDamperConstraintMotor source,
+            hkpSpringDamperConstraintMotor dest
+        );
+
+        public static partial void Move(
+            hkpStiffSpringChainData source,
+            hkpStiffSpringChainData dest
+        );
+
+        public static partial void Move(
+            hkpStiffSpringChainDataConstraintInfo source,
+            hkpStiffSpringChainDataConstraintInfo dest
+        );
+
+        public static partial void Move(
+            hkpStiffSpringConstraintAtom source,
+            hkpStiffSpringConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpStiffSpringConstraintData source,
+            hkpStiffSpringConstraintData dest
+        );
+
+        public static partial void Move(
+            hkpStiffSpringConstraintDataAtoms source,
+            hkpStiffSpringConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpStorageMeshShape source, hkpStorageMeshShape dest);
-        public static partial void Move(hkpStorageMeshShapeSubpartStorage source, hkpStorageMeshShapeSubpartStorage dest);
-        public static partial void Move(hkpStorageSampledHeightFieldShape source, hkpStorageSampledHeightFieldShape dest);
+
+        public static partial void Move(
+            hkpStorageMeshShapeSubpartStorage source,
+            hkpStorageMeshShapeSubpartStorage dest
+        );
+
+        public static partial void Move(
+            hkpStorageSampledHeightFieldShape source,
+            hkpStorageSampledHeightFieldShape dest
+        );
+
         public static partial void Move(hkpThinBoxMotion source, hkpThinBoxMotion dest);
+
         public static partial void Move(hkpTransformShape source, hkpTransformShape dest);
+
         public static partial void Move(hkpTriangleShape source, hkpTriangleShape dest);
+
         public static partial void Move(hkpTriggerVolume source, hkpTriggerVolume dest);
-        public static partial void Move(hkpTriggerVolumeEventInfo source, hkpTriggerVolumeEventInfo dest);
-        public static partial void Move(hkpTriSampledHeightFieldBvTreeShape source, hkpTriSampledHeightFieldBvTreeShape dest);
-        public static partial void Move(hkpTriSampledHeightFieldCollection source, hkpTriSampledHeightFieldCollection dest);
-        public static partial void Move(hkpTwistLimitConstraintAtom source, hkpTwistLimitConstraintAtom dest);
-        public static partial void Move(hkpTypedBroadPhaseHandle source, hkpTypedBroadPhaseHandle dest);
+
+        public static partial void Move(
+            hkpTriggerVolumeEventInfo source,
+            hkpTriggerVolumeEventInfo dest
+        );
+
+        public static partial void Move(
+            hkpTriSampledHeightFieldBvTreeShape source,
+            hkpTriSampledHeightFieldBvTreeShape dest
+        );
+
+        public static partial void Move(
+            hkpTriSampledHeightFieldCollection source,
+            hkpTriSampledHeightFieldCollection dest
+        );
+
+        public static partial void Move(
+            hkpTwistLimitConstraintAtom source,
+            hkpTwistLimitConstraintAtom dest
+        );
+
+        public static partial void Move(
+            hkpTypedBroadPhaseHandle source,
+            hkpTypedBroadPhaseHandle dest
+        );
+
         public static partial void Move(hkpUnaryAction source, hkpUnaryAction dest);
-        public static partial void Move(hkpVelocityConstraintMotor source, hkpVelocityConstraintMotor dest);
-        public static partial void Move(hkpViscousSurfaceModifierConstraintAtom source, hkpViscousSurfaceModifierConstraintAtom dest);
+
+        public static partial void Move(
+            hkpVelocityConstraintMotor source,
+            hkpVelocityConstraintMotor dest
+        );
+
+        public static partial void Move(
+            hkpViscousSurfaceModifierConstraintAtom source,
+            hkpViscousSurfaceModifierConstraintAtom dest
+        );
+
         public static partial void Move(hkpWeldingUtility source, hkpWeldingUtility dest);
+
         public static partial void Move(hkpWheelConstraintData source, hkpWheelConstraintData dest);
-        public static partial void Move(hkpWheelConstraintDataAtoms source, hkpWheelConstraintDataAtoms dest);
+
+        public static partial void Move(
+            hkpWheelConstraintDataAtoms source,
+            hkpWheelConstraintDataAtoms dest
+        );
+
         public static partial void Move(hkpWorld source, hkpWorld dest);
+
         public static partial void Move(hkpWorldCinfo source, hkpWorldCinfo dest);
+
         public static partial void Move(hkpWorldObject source, hkpWorldObject dest);
+
         public static partial void Move(hkQTransform source, hkQTransform dest);
+
         public static partial void Move(hkRangeInt32Attribute source, hkRangeInt32Attribute dest);
+
         public static partial void Move(hkRangeRealAttribute source, hkRangeRealAttribute dest);
-        public static partial void Move(hkReflectedFileAttribute source, hkReflectedFileAttribute dest);
+
+        public static partial void Move(
+            hkReflectedFileAttribute source,
+            hkReflectedFileAttribute dest
+        );
+
         public static partial void Move(hkResourceBase source, hkResourceBase dest);
+
         public static partial void Move(hkResourceContainer source, hkResourceContainer dest);
+
         public static partial void Move(hkResourceHandle source, hkResourceHandle dest);
+
         public static partial void Move(hkSemanticsAttribute source, hkSemanticsAttribute dest);
+
         public static partial void Move(hkSimpleLocalFrame source, hkSimpleLocalFrame dest);
+
         public static partial void Move(hkSphere source, hkSphere dest);
+
         public static partial void Move(hkSweptTransform source, hkSweptTransform dest);
+
         public static partial void Move(hkTraceStreamTitle source, hkTraceStreamTitle dest);
-        public static partial void Move(hkTrackerSerializableScanSnapshot source, hkTrackerSerializableScanSnapshot dest);
-        public static partial void Move(hkTrackerSerializableScanSnapshotAllocation source, hkTrackerSerializableScanSnapshotAllocation dest);
-        public static partial void Move(hkTrackerSerializableScanSnapshotBlock source, hkTrackerSerializableScanSnapshotBlock dest);
+
+        public static partial void Move(
+            hkTrackerSerializableScanSnapshot source,
+            hkTrackerSerializableScanSnapshot dest
+        );
+
+        public static partial void Move(
+            hkTrackerSerializableScanSnapshotAllocation source,
+            hkTrackerSerializableScanSnapshotAllocation dest
+        );
+
+        public static partial void Move(
+            hkTrackerSerializableScanSnapshotBlock source,
+            hkTrackerSerializableScanSnapshotBlock dest
+        );
+
         public static partial void Move(hkUiAttribute source, hkUiAttribute dest);
-        public static partial void Move(hkWorldMemoryAvailableWatchDog source, hkWorldMemoryAvailableWatchDog dest);
+
+        public static partial void Move(
+            hkWorldMemoryAvailableWatchDog source,
+            hkWorldMemoryAvailableWatchDog dest
+        );
+
         public static partial void Move(hkxAnimatedFloat source, hkxAnimatedFloat dest);
+
         public static partial void Move(hkxAnimatedMatrix source, hkxAnimatedMatrix dest);
+
         public static partial void Move(hkxAnimatedQuaternion source, hkxAnimatedQuaternion dest);
+
         public static partial void Move(hkxAnimatedVector source, hkxAnimatedVector dest);
+
         public static partial void Move(hkxAttribute source, hkxAttribute dest);
+
         public static partial void Move(hkxAttributeGroup source, hkxAttributeGroup dest);
+
         public static partial void Move(hkxAttributeHolder source, hkxAttributeHolder dest);
+
         public static partial void Move(hkxCamera source, hkxCamera dest);
-        public static partial void Move(hkxEdgeSelectionChannel source, hkxEdgeSelectionChannel dest);
+
+        public static partial void Move(
+            hkxEdgeSelectionChannel source,
+            hkxEdgeSelectionChannel dest
+        );
+
         public static partial void Move(hkxEnum source, hkxEnum dest);
+
         public static partial void Move(hkxEnumItem source, hkxEnumItem dest);
+
         public static partial void Move(hkxEnvironment source, hkxEnvironment dest);
+
         public static partial void Move(hkxEnvironmentVariable source, hkxEnvironmentVariable dest);
+
         public static partial void Move(hkxIndexBuffer source, hkxIndexBuffer dest);
+
         public static partial void Move(hkxLight source, hkxLight dest);
+
         public static partial void Move(hkxMaterial source, hkxMaterial dest);
+
         public static partial void Move(hkxMaterialEffect source, hkxMaterialEffect dest);
+
         public static partial void Move(hkxMaterialProperty source, hkxMaterialProperty dest);
+
         public static partial void Move(hkxMaterialShader source, hkxMaterialShader dest);
+
         public static partial void Move(hkxMaterialShaderSet source, hkxMaterialShaderSet dest);
-        public static partial void Move(hkxMaterialTextureStage source, hkxMaterialTextureStage dest);
+
+        public static partial void Move(
+            hkxMaterialTextureStage source,
+            hkxMaterialTextureStage dest
+        );
+
         public static partial void Move(hkxMesh source, hkxMesh dest);
+
         public static partial void Move(hkxMeshSection source, hkxMeshSection dest);
+
         public static partial void Move(hkxMeshUserChannelInfo source, hkxMeshUserChannelInfo dest);
+
         public static partial void Move(hkxNode source, hkxNode dest);
+
         public static partial void Move(hkxNodeAnnotationData source, hkxNodeAnnotationData dest);
+
         public static partial void Move(hkxNodeSelectionSet source, hkxNodeSelectionSet dest);
+
         public static partial void Move(hkxScene source, hkxScene dest);
+
         public static partial void Move(hkxSkinBinding source, hkxSkinBinding dest);
-        public static partial void Move(hkxSparselyAnimatedBool source, hkxSparselyAnimatedBool dest);
-        public static partial void Move(hkxSparselyAnimatedEnum source, hkxSparselyAnimatedEnum dest);
+
+        public static partial void Move(
+            hkxSparselyAnimatedBool source,
+            hkxSparselyAnimatedBool dest
+        );
+
+        public static partial void Move(
+            hkxSparselyAnimatedEnum source,
+            hkxSparselyAnimatedEnum dest
+        );
+
         public static partial void Move(hkxSparselyAnimatedInt source, hkxSparselyAnimatedInt dest);
-        public static partial void Move(hkxSparselyAnimatedString source, hkxSparselyAnimatedString dest);
+
+        public static partial void Move(
+            hkxSparselyAnimatedString source,
+            hkxSparselyAnimatedString dest
+        );
+
         public static partial void Move(hkxTextureFile source, hkxTextureFile dest);
+
         public static partial void Move(hkxTextureInplace source, hkxTextureInplace dest);
-        public static partial void Move(hkxTriangleSelectionChannel source, hkxTriangleSelectionChannel dest);
+
+        public static partial void Move(
+            hkxTriangleSelectionChannel source,
+            hkxTriangleSelectionChannel dest
+        );
+
         public static partial void Move(hkxVertexBuffer source, hkxVertexBuffer dest);
-        public static partial void Move(hkxVertexBufferVertexData source, hkxVertexBufferVertexData dest);
+
+        public static partial void Move(
+            hkxVertexBufferVertexData source,
+            hkxVertexBufferVertexData dest
+        );
+
         public static partial void Move(hkxVertexDescription source, hkxVertexDescription dest);
-        public static partial void Move(hkxVertexDescriptionElementDecl source, hkxVertexDescriptionElementDecl dest);
-        public static partial void Move(hkxVertexFloatDataChannel source, hkxVertexFloatDataChannel dest);
-        public static partial void Move(hkxVertexIntDataChannel source, hkxVertexIntDataChannel dest);
-        public static partial void Move(hkxVertexSelectionChannel source, hkxVertexSelectionChannel dest);
-        public static partial void Move(hkxVertexVectorDataChannel source, hkxVertexVectorDataChannel dest);
-        #endregion 
+
+        public static partial void Move(
+            hkxVertexDescriptionElementDecl source,
+            hkxVertexDescriptionElementDecl dest
+        );
+
+        public static partial void Move(
+            hkxVertexFloatDataChannel source,
+            hkxVertexFloatDataChannel dest
+        );
+
+        public static partial void Move(
+            hkxVertexIntDataChannel source,
+            hkxVertexIntDataChannel dest
+        );
+
+        public static partial void Move(
+            hkxVertexSelectionChannel source,
+            hkxVertexSelectionChannel dest
+        );
+
+        public static partial void Move(
+            hkxVertexVectorDataChannel source,
+            hkxVertexVectorDataChannel dest
+        );
+        #endregion
     }
 }

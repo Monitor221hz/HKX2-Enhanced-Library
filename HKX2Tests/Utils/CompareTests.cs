@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Xml.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HKX2E.Tests;
 
@@ -11,7 +11,8 @@ public class CompareTests
 
     private string _testRootPath;
 
-    string rawValueLong = @"<hkobject name=""#1786"" class=""hkbStateMachineTransitionInfoArray"" signature=""0xe397b11e"">
+    string rawValueLong =
+        @"<hkobject name=""#1786"" class=""hkbStateMachineTransitionInfoArray"" signature=""0xe397b11e"">
       <!--memSizeAndFlags SERIALIZE_IGNORED-->
       <!--referenceCount SERIALIZE_IGNORED-->
       <hkparam name=""transitions"" numelements=""6"">
@@ -183,12 +184,14 @@ public class CompareTests
 
     [TestMethod]
     public void PartialDeserializeTest()
-	{
-        var rawValue = "<hkobject name=\"#0051\" class=\"hkbStateMachineStateInfo\" signature=\"0x0ed7f9d0\"><hkparam name=\"variableBindingSet\">null</hkparam><hkparam name=\"listeners\" numelements=\"0\"></hkparam><hkparam name=\"enterNotifyEvents\">null</hkparam><hkparam name=\"exitNotifyEvents\">null</hkparam><hkparam name=\"transitions\">null</hkparam><hkparam name=\"generator\">RootModifierGenerator</hkparam><hkparam name=\"name\">Root</hkparam><hkparam name=\"stateId\">0</hkparam><hkparam name=\"probability\">1.000000</hkparam><hkparam name=\"enable\">true</hkparam></hkobject>";
-
+    {
+        var rawValue =
+            "<hkobject name=\"#0051\" class=\"hkbStateMachineStateInfo\" signature=\"0x0ed7f9d0\"><hkparam name=\"variableBindingSet\">null</hkparam><hkparam name=\"listeners\" numelements=\"0\"></hkparam><hkparam name=\"enterNotifyEvents\">null</hkparam><hkparam name=\"exitNotifyEvents\">null</hkparam><hkparam name=\"transitions\">null</hkparam><hkparam name=\"generator\">RootModifierGenerator</hkparam><hkparam name=\"name\">Root</hkparam><hkparam name=\"stateId\">0</hkparam><hkparam name=\"probability\">1.000000</hkparam><hkparam name=\"enable\">true</hkparam></hkobject>";
 
         XElement element = XElement.Parse(rawValueLong);
-        HavokXmlDeserializerOptions options = HavokXmlDeserializerOptions.IgnoreNonFatalErrors | HavokXmlDeserializerOptions.IgnoreMissingPointers;
+        HavokXmlDeserializerOptions options =
+            HavokXmlDeserializerOptions.IgnoreNonFatalErrors
+            | HavokXmlDeserializerOptions.IgnoreMissingPointers;
         HavokXmlPartialDeserializer deserializer = new(options);
         var obj = deserializer.DeserializeRuntimeObject(element);
         RuntimePatcher.SetProperty(obj, "name", "piss");
@@ -196,10 +199,11 @@ public class CompareTests
         XElement outelement = serializer.SerializeObject(obj);
         Debug.WriteLine(outelement.ToString());
     }
+
     [TestMethod]
     public void TypeTest()
     {
-        IHavokObject obj = new hkbClipGenerator(); 
+        IHavokObject obj = new hkbClipGenerator();
         Debug.WriteLine(obj.GetType());
     }
 
@@ -208,14 +212,16 @@ public class CompareTests
     {
         var assemblyLocation = TestContext.DeploymentDirectory;
         var sourceFilePath = Path.Combine(assemblyLocation, "Assets", "chickenbehavior.hkx");
-        Assert.IsTrue(File.Exists(sourceFilePath), $"Test input file not found at: {sourceFilePath}");
+        Assert.IsTrue(
+            File.Exists(sourceFilePath),
+            $"Test input file not found at: {sourceFilePath}"
+        );
 
         var tempInputFile = Path.Combine(_testRootPath, "chickenbehavior_original.hkx");
         File.Copy(sourceFilePath, tempInputFile, true);
 
         var intermediateXmlPath = Path.Combine(_testRootPath, "chickenbehavior_intermediate.xml");
         var finalBinaryPath = Path.Combine(_testRootPath, "chickenbehavior_final.hkx");
-
 
         TestContext.WriteLine("Step 1: Deserializing Binary --> Object with reference tracking...");
         var binaryDeserializer = new MetaPackFileReferenceDeserializer();
@@ -227,7 +233,6 @@ public class CompareTests
         Assert.IsNotNull(objectFromBinary);
         TestContext.WriteLine("Step 1 complete.");
 
-
         TestContext.WriteLine("Step 2: Serializing Object --> XML...");
         var xmlSerializer = new HavokXmlMetaDataSerializer();
         xmlSerializer.ShareContext(binaryDeserializer.Context);
@@ -237,7 +242,6 @@ public class CompareTests
         }
         Assert.IsTrue(File.Exists(intermediateXmlPath), "Intermediate XML file was not created.");
         TestContext.WriteLine("Step 2 complete.");
-
 
         TestContext.WriteLine("Step 3: Deserializing XML --> Object with reference tracking...");
         var xmlDeserializer = new HavokXmlReferenceDeserializer();
@@ -249,17 +253,19 @@ public class CompareTests
         Assert.IsNotNull(objectFromXml);
         TestContext.WriteLine("Step 3 complete.");
 
-
         TestContext.WriteLine("Step 4: Serializing Object --> Binary...");
         var binarySerializer = new MetaPackFileSerializer();
         binarySerializer.ShareContext(xmlDeserializer.Context);
         using (var stream = File.Create(finalBinaryPath))
         {
-            binarySerializer.Serialize(objectFromXml, new BinaryWriterEx(stream), HKXHeader.SkyrimSE());
+            binarySerializer.Serialize(
+                objectFromXml,
+                new BinaryWriterEx(stream),
+                HKXHeader.SkyrimSE()
+            );
         }
         Assert.IsTrue(File.Exists(finalBinaryPath), "Final binary file was not created.");
         TestContext.WriteLine("Step 4 complete.");
-
 
         TestContext.WriteLine("Assert: Comparing original and final binary files...");
         var originalBytes = File.ReadAllBytes(tempInputFile);

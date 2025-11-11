@@ -6,10 +6,10 @@ namespace HKX2E
 {
     // hkpMotorAction Signatire: 0x8ff131d9 size: 96 flags: FLAGS_NONE
 
-    // axis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // spinRate class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // active class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
+    // axis class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // spinRate class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // gain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // active class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
     public partial class hkpMotorAction : hkpUnaryAction, IEquatable<hkpMotorAction?>
     {
         public Vector4 axis { set; get; }
@@ -66,13 +66,14 @@ namespace HKX2E
 
         public bool Equals(hkpMotorAction? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   axis.Equals(other.axis) &&
-                   spinRate.Equals(other.spinRate) &&
-                   gain.Equals(other.gain) &&
-                   active.Equals(other.active) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && axis.Equals(other.axis)
+                && spinRate.Equals(other.spinRate)
+                && gain.Equals(other.gain)
+                && active.Equals(other.active)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -88,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

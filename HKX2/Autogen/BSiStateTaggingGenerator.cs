@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // BSiStateTaggingGenerator Signatire: 0xf0826fc1 size: 96 flags: FLAGS_NONE
 
-    // pDefaultGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum: 
-    // iStateToSetAs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // iPriority class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    public partial class BSiStateTaggingGenerator : hkbGenerator, IEquatable<BSiStateTaggingGenerator?>
+    // pDefaultGenerator class: hkbGenerator Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: ALIGN_16|FLAGS_NONE enum:
+    // iStateToSetAs class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // iPriority class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    public partial class BSiStateTaggingGenerator
+        : hkbGenerator,
+            IEquatable<BSiStateTaggingGenerator?>
     {
         public hkbGenerator? pDefaultGenerator { set; get; }
         public int iStateToSetAs { set; get; }
@@ -37,7 +39,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(this, xe, nameof(pDefaultGenerator));
+            pDefaultGenerator = xd.ReadClassPointer<hkbGenerator>(
+                this,
+                xe,
+                nameof(pDefaultGenerator)
+            );
             iStateToSetAs = xd.ReadInt32(xe, nameof(iStateToSetAs));
             iPriority = xd.ReadInt32(xe, nameof(iPriority));
         }
@@ -57,12 +63,20 @@ namespace HKX2E
 
         public bool Equals(BSiStateTaggingGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((pDefaultGenerator is null && other.pDefaultGenerator is null) || (pDefaultGenerator is not null && other.pDefaultGenerator is not null && pDefaultGenerator.Equals((IHavokObject)other.pDefaultGenerator))) &&
-                   iStateToSetAs.Equals(other.iStateToSetAs) &&
-                   iPriority.Equals(other.iPriority) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (pDefaultGenerator is null && other.pDefaultGenerator is null)
+                    || (
+                        pDefaultGenerator is not null
+                        && other.pDefaultGenerator is not null
+                        && pDefaultGenerator.Equals((IHavokObject)other.pDefaultGenerator)
+                    )
+                )
+                && iStateToSetAs.Equals(other.iStateToSetAs)
+                && iPriority.Equals(other.iPriority)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +91,3 @@ namespace HKX2E
         }
     }
 }
-

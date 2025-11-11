@@ -5,17 +5,19 @@ namespace HKX2E
 {
     // hkbGeneratorTransitionEffectInternalState Signatire: 0xd6692b5d size: 40 flags: FLAGS_NONE
 
-    // timeInTransition class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // effectiveBlendInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // effectiveBlendOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
+    // timeInTransition class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // duration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // effectiveBlendInDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // effectiveBlendOutDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
     // toGeneratorState class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: ToGeneratorState
-    // echoTransitionGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 33 flags: FLAGS_NONE enum: 
-    // echoToGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 34 flags: FLAGS_NONE enum: 
-    // justActivated class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 35 flags: FLAGS_NONE enum: 
-    // updateActiveNodes class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
+    // echoTransitionGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 33 flags: FLAGS_NONE enum:
+    // echoToGenerator class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 34 flags: FLAGS_NONE enum:
+    // justActivated class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 35 flags: FLAGS_NONE enum:
+    // updateActiveNodes class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
     // stage class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 37 flags: FLAGS_NONE enum: Stage
-    public partial class hkbGeneratorTransitionEffectInternalState : hkReferencedObject, IEquatable<hkbGeneratorTransitionEffectInternalState?>
+    public partial class hkbGeneratorTransitionEffectInternalState
+        : hkReferencedObject,
+            IEquatable<hkbGeneratorTransitionEffectInternalState?>
     {
         public float timeInTransition { set; get; }
         public float duration { set; get; }
@@ -99,19 +101,20 @@ namespace HKX2E
 
         public bool Equals(hkbGeneratorTransitionEffectInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   timeInTransition.Equals(other.timeInTransition) &&
-                   duration.Equals(other.duration) &&
-                   effectiveBlendInDuration.Equals(other.effectiveBlendInDuration) &&
-                   effectiveBlendOutDuration.Equals(other.effectiveBlendOutDuration) &&
-                   toGeneratorState.Equals(other.toGeneratorState) &&
-                   echoTransitionGenerator.Equals(other.echoTransitionGenerator) &&
-                   echoToGenerator.Equals(other.echoToGenerator) &&
-                   justActivated.Equals(other.justActivated) &&
-                   updateActiveNodes.Equals(other.updateActiveNodes) &&
-                   stage.Equals(other.stage) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && timeInTransition.Equals(other.timeInTransition)
+                && duration.Equals(other.duration)
+                && effectiveBlendInDuration.Equals(other.effectiveBlendInDuration)
+                && effectiveBlendOutDuration.Equals(other.effectiveBlendOutDuration)
+                && toGeneratorState.Equals(other.toGeneratorState)
+                && echoTransitionGenerator.Equals(other.echoTransitionGenerator)
+                && echoToGenerator.Equals(other.echoToGenerator)
+                && justActivated.Equals(other.justActivated)
+                && updateActiveNodes.Equals(other.updateActiveNodes)
+                && stage.Equals(other.stage)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -133,4 +136,3 @@ namespace HKX2E
         }
     }
 }
-

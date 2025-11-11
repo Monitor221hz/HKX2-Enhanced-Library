@@ -6,9 +6,11 @@ namespace HKX2E
 {
     // hkbGetWorldFromModelModifier Signatire: 0x873fc6f7 size: 112 flags: FLAGS_NONE
 
-    // translationOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    public partial class hkbGetWorldFromModelModifier : hkbModifier, IEquatable<hkbGetWorldFromModelModifier?>
+    // translationOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // rotationOut class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    public partial class hkbGetWorldFromModelModifier
+        : hkbModifier,
+            IEquatable<hkbGetWorldFromModelModifier?>
     {
         public Vector4 translationOut { set; get; }
         public Quaternion rotationOut { set; get; }
@@ -50,11 +52,12 @@ namespace HKX2E
 
         public bool Equals(hkbGetWorldFromModelModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   translationOut.Equals(other.translationOut) &&
-                   rotationOut.Equals(other.rotationOut) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && translationOut.Equals(other.translationOut)
+                && rotationOut.Equals(other.rotationOut)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -68,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -7,16 +7,17 @@ namespace HKX2E
 {
     // hkxMeshSection Signatire: 0xe2286cf8 size: 64 flags: FLAGS_NONE
 
-    // vertexBuffer class: hkxVertexBuffer Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // indexBuffers class: hkxIndexBuffer Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // material class: hkxMaterial Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // userChannels class: hkReferencedObject Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // vertexBuffer class: hkxVertexBuffer Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // indexBuffers class: hkxIndexBuffer Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // material class: hkxMaterial Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // userChannels class: hkReferencedObject Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkxMeshSection : hkReferencedObject, IEquatable<hkxMeshSection?>
     {
         public hkxVertexBuffer? vertexBuffer { set; get; }
         public IList<hkxIndexBuffer> indexBuffers { set; get; } = Array.Empty<hkxIndexBuffer>();
         public hkxMaterial? material { set; get; }
-        public IList<hkReferencedObject> userChannels { set; get; } = Array.Empty<hkReferencedObject>();
+        public IList<hkReferencedObject> userChannels { set; get; } =
+            Array.Empty<hkReferencedObject>();
 
         public override uint Signature { set; get; } = 0xe2286cf8;
 
@@ -44,7 +45,11 @@ namespace HKX2E
             vertexBuffer = xd.ReadClassPointer<hkxVertexBuffer>(this, xe, nameof(vertexBuffer));
             indexBuffers = xd.ReadClassPointerArray<hkxIndexBuffer>(this, xe, nameof(indexBuffers));
             material = xd.ReadClassPointer<hkxMaterial>(this, xe, nameof(material));
-            userChannels = xd.ReadClassPointerArray<hkReferencedObject>(this, xe, nameof(userChannels));
+            userChannels = xd.ReadClassPointerArray<hkReferencedObject>(
+                this,
+                xe,
+                nameof(userChannels)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -63,13 +68,28 @@ namespace HKX2E
 
         public bool Equals(hkxMeshSection? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((vertexBuffer is null && other.vertexBuffer is null) || (vertexBuffer is not null && other.vertexBuffer is not null && vertexBuffer.Equals((IHavokObject)other.vertexBuffer))) &&
-                   indexBuffers.SequenceEqual(other.indexBuffers) &&
-                   ((material is null && other.material is null) || (material is not null && other.material is not null && material.Equals((IHavokObject)other.material))) &&
-                   userChannels.SequenceEqual(other.userChannels) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (vertexBuffer is null && other.vertexBuffer is null)
+                    || (
+                        vertexBuffer is not null
+                        && other.vertexBuffer is not null
+                        && vertexBuffer.Equals((IHavokObject)other.vertexBuffer)
+                    )
+                )
+                && indexBuffers.SequenceEqual(other.indexBuffers)
+                && (
+                    (material is null && other.material is null)
+                    || (
+                        material is not null
+                        && other.material is not null
+                        && material.Equals((IHavokObject)other.material)
+                    )
+                )
+                && userChannels.SequenceEqual(other.userChannels)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -85,4 +105,3 @@ namespace HKX2E
         }
     }
 }
-

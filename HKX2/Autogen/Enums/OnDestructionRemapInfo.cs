@@ -7,4 +7,3 @@ namespace HKX2E
         ON_DESTRUCTION_RESET_REMOVE = 2,
     }
 }
-

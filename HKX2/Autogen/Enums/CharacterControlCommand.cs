@@ -6,4 +6,3 @@ namespace HKX2E
         COMMAND_SHOW = 1,
     }
 }
-

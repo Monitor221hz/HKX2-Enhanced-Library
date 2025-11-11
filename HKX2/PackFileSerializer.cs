@@ -12,25 +12,31 @@ namespace HKX2E
         protected int _currentSerializationQueue;
         protected List<GlobalFixup> _globalFixups = new();
 
-        protected Dictionary<IHavokObject, uint> _globalLookup = new(ReferenceEqualityComparer.Instance);
+        protected Dictionary<IHavokObject, uint> _globalLookup = new(
+            ReferenceEqualityComparer.Instance
+        );
         public HKXHeader _header;
 
         protected List<LocalFixup> _localFixups = new();
         protected List<Queue<Action>> _localWriteQueues = new();
-        protected Dictionary<IHavokObject, List<uint>> _pendingGlobals = new(ReferenceEqualityComparer.Instance);
+        protected Dictionary<IHavokObject, List<uint>> _pendingGlobals = new(
+            ReferenceEqualityComparer.Instance
+        );
 
         protected HashSet<IHavokObject> _pendingVirtuals = new(ReferenceEqualityComparer.Instance);
         protected List<Queue<IHavokObject>> _serializationQueues = new();
 
-        protected HashSet<IHavokObject> _serializedObjects = new(ReferenceEqualityComparer.Instance);
+        protected HashSet<IHavokObject> _serializedObjects = new(
+            ReferenceEqualityComparer.Instance
+        );
         protected List<VirtualFixup> _virtualFixups = new();
         protected Dictionary<string, uint> _virtualLookup = new();
-
 
         private void PushLocalWriteQueue()
         {
             _currentLocalWriteQueue++;
-            if (_currentLocalWriteQueue == _localWriteQueues.Count) _localWriteQueues.Add(new Queue<Action>());
+            if (_currentLocalWriteQueue == _localWriteQueues.Count)
+                _localWriteQueues.Add(new Queue<Action>());
         }
 
         private void PopLocalWriteQueue()
@@ -50,7 +56,6 @@ namespace HKX2E
             _currentSerializationQueue--;
         }
 
-
         public virtual void Serialize(IHavokObject rootObject, BinaryWriterEx bw, HKXHeader header)
         {
             _header = header;
@@ -67,7 +72,9 @@ namespace HKX2E
 
             _localWriteQueues = new List<Queue<Action>>();
             _serializationQueues = new List<Queue<IHavokObject>>();
-            _pendingGlobals = new Dictionary<IHavokObject, List<uint>>(ReferenceEqualityComparer.Instance);
+            _pendingGlobals = new Dictionary<IHavokObject, List<uint>>(
+                ReferenceEqualityComparer.Instance
+            );
             _pendingVirtuals = new HashSet<IHavokObject>(ReferenceEqualityComparer.Instance);
 
             _serializedObjects = new HashSet<IHavokObject>(ReferenceEqualityComparer.Instance);
@@ -75,20 +82,34 @@ namespace HKX2E
             // Memory stream for writing all the class definitions
             var classms = new MemoryStream();
             var classbw = new BinaryWriterEx(
-                _header.Endian == 0, _header.PointerSize == 8, classms);
+                _header.Endian == 0,
+                _header.PointerSize == 8,
+                classms
+            );
 
             // Data memory stream for havok objects
             // debugging
             //var datams = new FileStream(".\\dump.hex", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite | FileShare.Delete, 1, FileOptions.WriteThrough);
             var datams = new MemoryStream();
-            var databw = new BinaryWriterEx(
-                _header.Endian == 0, _header.PointerSize == 8, datams);
+            var databw = new BinaryWriterEx(_header.Endian == 0, _header.PointerSize == 8, datams);
 
             // Populate class names with some stuff havok always has
             var hkClass = new HKXClassName { ClassName = "hkClass", Signature = 0x75585EF6 };
-            var hkClassMember = new HKXClassName { ClassName = "hkClassMember", Signature = 0x5C7EA4C2 };
-            var hkClassEnum = new HKXClassName { ClassName = "hkClassEnum", Signature = 0x8A3609CF };
-            var hkClassEnumItem = new HKXClassName { ClassName = "hkClassEnumItem", Signature = 0xCE6F8A6C };
+            var hkClassMember = new HKXClassName
+            {
+                ClassName = "hkClassMember",
+                Signature = 0x5C7EA4C2,
+            };
+            var hkClassEnum = new HKXClassName
+            {
+                ClassName = "hkClassEnum",
+                Signature = 0x8A3609CF,
+            };
+            var hkClassEnumItem = new HKXClassName
+            {
+                ClassName = "hkClassEnumItem",
+                Signature = 0xCE6F8A6C,
+            };
 
             hkClass.Write(classbw);
             hkClassMember.Write(classbw);
@@ -110,12 +131,14 @@ namespace HKX2E
                     sq = _serializationQueues.Last();
                 }
 
-                if (sq == null || sq.Count == 0) continue;
+                if (sq == null || sq.Count == 0)
+                    continue;
 
                 var obj = sq.Dequeue();
                 _currentSerializationQueue = _serializationQueues.Count - 1;
 
-                if (_serializedObjects.Contains(obj)) continue;
+                if (_serializedObjects.Contains(obj))
+                    continue;
 
                 // See if we need to add virtual bookkeeping
                 if (_pendingVirtuals.Contains(obj))
@@ -128,7 +151,7 @@ namespace HKX2E
                         var cname = new HKXClassName
                         {
                             ClassName = classname,
-                            Signature = obj.Signature
+                            Signature = obj.Signature,
                         };
                         var offset = (uint)classbw.Position;
                         cname.Write(classbw);
@@ -140,7 +163,7 @@ namespace HKX2E
                     {
                         Src = (uint)databw.Position,
                         DstSectionIndex = 0,
-                        Dst = _virtualLookup[classname]
+                        Dst = _virtualLookup[classname],
                     };
                     _virtualFixups.Add(vfu);
 
@@ -154,7 +177,7 @@ namespace HKX2E
                             {
                                 Src = src,
                                 DstSectionIndex = 2,
-                                Dst = (uint)databw.Position
+                                Dst = (uint)databw.Position,
                             };
                             _globalFixups.Add(gfu);
                         }
@@ -176,7 +199,8 @@ namespace HKX2E
                     var q = _localWriteQueues.Last();
                     while (q != null && q.Count == 0 && _localWriteQueues.Count > 1)
                     {
-                        if (_localWriteQueues.Count > 1) _localWriteQueues.RemoveAt(_localWriteQueues.Count - 1);
+                        if (_localWriteQueues.Count > 1)
+                            _localWriteQueues.RemoveAt(_localWriteQueues.Count - 1);
 
                         q = _localWriteQueues.Last();
 
@@ -203,9 +227,15 @@ namespace HKX2E
                 SectionID = 0,
                 SectionTag = "__classnames__",
                 SectionData = classms.ToArray(),
-                ContentsVersionString = _header.ContentsVersionString
+                ContentsVersionString = _header.ContentsVersionString,
             };
-            var types = new HKXSection { SectionID = 1, SectionTag = "__types__", SectionData = Array.Empty<byte>(), ContentsVersionString = _header.ContentsVersionString };
+            var types = new HKXSection
+            {
+                SectionID = 1,
+                SectionTag = "__types__",
+                SectionData = Array.Empty<byte>(),
+                ContentsVersionString = _header.ContentsVersionString,
+            };
             // debugging
             //var ms = new MemoryStream();
             //var tempPosition = datams.Position;
@@ -221,7 +251,7 @@ namespace HKX2E
                 LocalFixups = _localFixups.OrderBy(x => x.Dst).ToList(),
                 GlobalFixups = _globalFixups.OrderBy(x => x.Src).ToList(),
                 VirtualFixups = _virtualFixups,
-                ContentsVersionString = _header.ContentsVersionString
+                ContentsVersionString = _header.ContentsVersionString,
             };
 
             classNames.WriteHeader(bw);
@@ -237,7 +267,8 @@ namespace HKX2E
 
         private void PadToPointerSizeIfPaddingOption(BinaryWriterEx bw)
         {
-            if (_header.PaddingOption == 1) bw.Pad(_header.PointerSize);
+            if (_header.PaddingOption == 1)
+                bw.Pad(_header.PointerSize);
         }
 
         public void WriteVoidPointer(BinaryWriterEx bw)
@@ -253,7 +284,12 @@ namespace HKX2E
             bw.WriteUInt32(0 | ((uint)0x80 << 24));
         }
 
-        private void WriteArrayBase<T>(BinaryWriterEx bw, IList<T> l, Action<T> perElement, bool pad = false)
+        private void WriteArrayBase<T>(
+            BinaryWriterEx bw,
+            IList<T> l,
+            Action<T> perElement,
+            bool pad = false
+        )
         {
             PadToPointerSizeIfPaddingOption(bw);
 
@@ -264,40 +300,64 @@ namespace HKX2E
             bw.WriteUInt32(size);
             bw.WriteUInt32(size | ((uint)0x80 << 24));
 
-            if (size <= 0) return;
+            if (size <= 0)
+                return;
 
             var lfu = new LocalFixup { Src = src };
             _localFixups.Add(lfu);
-            _localWriteQueues[_currentLocalWriteQueue].Enqueue(() =>
-            {
-                bw.Pad(16);
-                lfu.Dst = (uint)bw.Position;
-                // This ensures any writes the array elements may have are top priority
-                PushLocalWriteQueue();
-                foreach (var item in l) perElement.Invoke(item);
+            _localWriteQueues[_currentLocalWriteQueue]
+                .Enqueue(() =>
+                {
+                    bw.Pad(16);
+                    lfu.Dst = (uint)bw.Position;
+                    // This ensures any writes the array elements may have are top priority
+                    PushLocalWriteQueue();
+                    foreach (var item in l)
+                        perElement.Invoke(item);
 
-                PopLocalWriteQueue();
-            });
-            if (pad) _localWriteQueues[_currentLocalWriteQueue].Enqueue(() => { bw.Pad(16); });
+                    PopLocalWriteQueue();
+                });
+            if (pad)
+                _localWriteQueues[_currentLocalWriteQueue]
+                    .Enqueue(() =>
+                    {
+                        bw.Pad(16);
+                    });
         }
 
-        public void WriteClassArray<T>(BinaryWriterEx bw, IList<T> d) where T : IHavokObject
+        public void WriteClassArray<T>(BinaryWriterEx bw, IList<T> d)
+            where T : IHavokObject
         {
-            WriteArrayBase(bw, d, e => { e.Write(this, bw); }, true);
+            WriteArrayBase(
+                bw,
+                d,
+                e =>
+                {
+                    e.Write(this, bw);
+                },
+                true
+            );
         }
 
-        public void WriteClassPointer<T>(BinaryWriterEx bw, T? d) where T : IHavokObject
+        public void WriteClassPointer<T>(BinaryWriterEx bw, T? d)
+            where T : IHavokObject
         {
             PadToPointerSizeIfPaddingOption(bw);
             var pos = (uint)bw.Position;
             bw.WriteUSize(0);
 
-            if (d == null) return;
+            if (d == null)
+                return;
 
             // If we're referencing an already serialized object, add a global ref
             if (_globalLookup.ContainsKey(d))
             {
-                var gfu = new GlobalFixup { Src = pos, DstSectionIndex = 2, Dst = _globalLookup[d] };
+                var gfu = new GlobalFixup
+                {
+                    Src = pos,
+                    DstSectionIndex = 2,
+                    Dst = _globalLookup[d],
+                };
                 _globalFixups.Add(gfu);
                 return;
             }
@@ -315,7 +375,8 @@ namespace HKX2E
             _pendingGlobals[d].Add(pos);
         }
 
-        public void WriteClassPointerArray<T>(BinaryWriterEx bw, IList<T> d) where T : IHavokObject
+        public void WriteClassPointerArray<T>(BinaryWriterEx bw, IList<T> d)
+            where T : IHavokObject
         {
             WriteArrayBase(bw, d, e => WriteClassPointer(bw, e));
         }
@@ -326,16 +387,18 @@ namespace HKX2E
             var src = (uint)bw.Position;
             bw.WriteUSize(0);
 
-            if (d == null) return;
+            if (d == null)
+                return;
 
             var lfu = new LocalFixup { Src = src };
             _localFixups.Add(lfu);
-            _localWriteQueues[_currentLocalWriteQueue].Enqueue(() =>
-            {
-                lfu.Dst = (uint)bw.Position;
-                bw.WriteASCII(d, true);
-                bw.Pad(padding);
-            });
+            _localWriteQueues[_currentLocalWriteQueue]
+                .Enqueue(() =>
+                {
+                    lfu.Dst = (uint)bw.Position;
+                    bw.WriteASCII(d, true);
+                    bw.Pad(padding);
+                });
         }
 
         public void WriteCString(BinaryWriterEx bw, string d, int padding = 16)
@@ -346,21 +409,30 @@ namespace HKX2E
             var src = (uint)bw.Position;
             bw.WriteUSize(0);
 
-            if (d == null || d == "" || d == "\u2400") return;
+            if (d == null || d == "" || d == "\u2400")
+                return;
 
             var lfu = new LocalFixup { Src = src };
             _localFixups.Add(lfu);
-            _localWriteQueues[_currentLocalWriteQueue].Enqueue(() =>
-            {
-                lfu.Dst = (uint)bw.Position;
-                bw.WriteASCII(d, true);
-                bw.Pad(padding);
-            });
+            _localWriteQueues[_currentLocalWriteQueue]
+                .Enqueue(() =>
+                {
+                    lfu.Dst = (uint)bw.Position;
+                    bw.WriteASCII(d, true);
+                    bw.Pad(padding);
+                });
         }
 
         public void WriteStringPointerArray(BinaryWriterEx bw, IList<string> d)
         {
-            WriteArrayBase(bw, d, e => { WriteStringPointer(bw, e, 2); });
+            WriteArrayBase(
+                bw,
+                d,
+                e =>
+                {
+                    WriteStringPointer(bw, e, 2);
+                }
+            );
         }
 
         public void WriteByte(BinaryWriterEx bw, byte d)
@@ -579,7 +651,11 @@ namespace HKX2E
 
         #region C Style Array
 
-        private void WriteCStyleArrayBase<T>(BinaryWriterEx bw, IList<T> content, Action<T> perElement)
+        private void WriteCStyleArrayBase<T>(
+            BinaryWriterEx bw,
+            IList<T> content,
+            Action<T> perElement
+        )
         {
             foreach (var item in content)
             {
@@ -677,7 +753,8 @@ namespace HKX2E
             WriteCStyleArrayBase(bw, d, e => WriteTransform(bw, e));
         }
 
-        public void WriteClassPointerCStyleArray<T>(BinaryWriterEx bw, T?[] d) where T : IHavokObject, new()
+        public void WriteClassPointerCStyleArray<T>(BinaryWriterEx bw, T?[] d)
+            where T : IHavokObject, new()
         {
             WriteCStyleArrayBase(bw, d, e => WriteClassPointer(bw, e));
         }
@@ -690,7 +767,8 @@ namespace HKX2E
             }
         }
 
-        public void WriteStructCStyleArray<T>(BinaryWriterEx bw, T[] d) where T : IHavokObject
+        public void WriteStructCStyleArray<T>(BinaryWriterEx bw, T[] d)
+            where T : IHavokObject
         {
             foreach (var item in d)
             {

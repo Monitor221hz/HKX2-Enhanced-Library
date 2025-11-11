@@ -5,11 +5,10 @@ namespace HKX2E
 {
     // hkpFixedRigidMotion Signatire: 0x64abf85c size: 320 flags: FLAGS_NONE
 
-
-    public partial class hkpFixedRigidMotion : hkpKeyframedRigidMotion, IEquatable<hkpFixedRigidMotion?>
+    public partial class hkpFixedRigidMotion
+        : hkpKeyframedRigidMotion,
+            IEquatable<hkpFixedRigidMotion?>
     {
-
-
         public override uint Signature { set; get; } = 0x64abf85c;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
@@ -39,9 +38,8 @@ namespace HKX2E
 
         public bool Equals(hkpFixedRigidMotion? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +51,3 @@ namespace HKX2E
         }
     }
 }
-

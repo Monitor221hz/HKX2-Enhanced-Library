@@ -5,19 +5,21 @@ namespace HKX2E
 {
     // BSEventOnFalseToTrueModifier Signatire: 0x81d0777a size: 160 flags: FLAGS_NONE
 
-    // bEnableEvent1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // bVariableToTest1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum: 
-    // EventToSend1 class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // bEnableEvent2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // bVariableToTest2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 105 flags: FLAGS_NONE enum: 
-    // EventToSend2 class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // bEnableEvent3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // bVariableToTest3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 129 flags: FLAGS_NONE enum: 
-    // EventToSend3 class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum: 
-    // bSlot1ActivatedLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bSlot2ActivatedLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 153 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bSlot3ActivatedLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 154 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BSEventOnFalseToTrueModifier : hkbModifier, IEquatable<BSEventOnFalseToTrueModifier?>
+    // bEnableEvent1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // bVariableToTest1 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 81 flags: FLAGS_NONE enum:
+    // EventToSend1 class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // bEnableEvent2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // bVariableToTest2 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 105 flags: FLAGS_NONE enum:
+    // EventToSend2 class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // bEnableEvent3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // bVariableToTest3 class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 129 flags: FLAGS_NONE enum:
+    // EventToSend3 class: hkbEventProperty Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 136 flags: FLAGS_NONE enum:
+    // bSlot1ActivatedLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bSlot2ActivatedLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 153 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bSlot3ActivatedLastFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 154 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BSEventOnFalseToTrueModifier
+        : hkbModifier,
+            IEquatable<BSEventOnFalseToTrueModifier?>
     {
         public bool bEnableEvent1 { set; get; }
         public bool bVariableToTest1 { set; get; }
@@ -114,18 +116,40 @@ namespace HKX2E
 
         public bool Equals(BSEventOnFalseToTrueModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   bEnableEvent1.Equals(other.bEnableEvent1) &&
-                   bVariableToTest1.Equals(other.bVariableToTest1) &&
-                   ((EventToSend1 is null && other.EventToSend1 is null) || (EventToSend1 is not null && other.EventToSend1 is not null && EventToSend1.Equals((IHavokObject)other.EventToSend1))) &&
-                   bEnableEvent2.Equals(other.bEnableEvent2) &&
-                   bVariableToTest2.Equals(other.bVariableToTest2) &&
-                   ((EventToSend2 is null && other.EventToSend2 is null) || (EventToSend2 is not null && other.EventToSend2 is not null && EventToSend2.Equals((IHavokObject)other.EventToSend2))) &&
-                   bEnableEvent3.Equals(other.bEnableEvent3) &&
-                   bVariableToTest3.Equals(other.bVariableToTest3) &&
-                   ((EventToSend3 is null && other.EventToSend3 is null) || (EventToSend3 is not null && other.EventToSend3 is not null && EventToSend3.Equals((IHavokObject)other.EventToSend3))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && bEnableEvent1.Equals(other.bEnableEvent1)
+                && bVariableToTest1.Equals(other.bVariableToTest1)
+                && (
+                    (EventToSend1 is null && other.EventToSend1 is null)
+                    || (
+                        EventToSend1 is not null
+                        && other.EventToSend1 is not null
+                        && EventToSend1.Equals((IHavokObject)other.EventToSend1)
+                    )
+                )
+                && bEnableEvent2.Equals(other.bEnableEvent2)
+                && bVariableToTest2.Equals(other.bVariableToTest2)
+                && (
+                    (EventToSend2 is null && other.EventToSend2 is null)
+                    || (
+                        EventToSend2 is not null
+                        && other.EventToSend2 is not null
+                        && EventToSend2.Equals((IHavokObject)other.EventToSend2)
+                    )
+                )
+                && bEnableEvent3.Equals(other.bEnableEvent3)
+                && bVariableToTest3.Equals(other.bVariableToTest3)
+                && (
+                    (EventToSend3 is null && other.EventToSend3 is null)
+                    || (
+                        EventToSend3 is not null
+                        && other.EventToSend3 is not null
+                        && EventToSend3.Equals((IHavokObject)other.EventToSend3)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -146,4 +170,3 @@ namespace HKX2E
         }
     }
 }
-

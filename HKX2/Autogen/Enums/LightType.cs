@@ -7,4 +7,3 @@ namespace HKX2E
         SPOT_LIGHT = 2,
     }
 }
-

@@ -6,12 +6,14 @@ namespace HKX2E
 {
     // hkbCharacterControllerControlData Signatire: 0x5b6c03d9 size: 32 flags: FLAGS_NONE
 
-    // desiredVelocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // verticalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // horizontalCatchUpGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // maxVerticalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // maxHorizontalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    public partial class hkbCharacterControllerControlData : IHavokObject, IEquatable<hkbCharacterControllerControlData?>
+    // desiredVelocity class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // verticalGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // horizontalCatchUpGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // maxVerticalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // maxHorizontalSeparation class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    public partial class hkbCharacterControllerControlData
+        : IHavokObject,
+            IEquatable<hkbCharacterControllerControlData?>
     {
         public Vector4 desiredVelocity { set; get; }
         public float verticalGain { set; get; }
@@ -64,13 +66,14 @@ namespace HKX2E
 
         public bool Equals(hkbCharacterControllerControlData? other)
         {
-            return other is not null &&
-                   desiredVelocity.Equals(other.desiredVelocity) &&
-                   verticalGain.Equals(other.verticalGain) &&
-                   horizontalCatchUpGain.Equals(other.horizontalCatchUpGain) &&
-                   maxVerticalSeparation.Equals(other.maxVerticalSeparation) &&
-                   maxHorizontalSeparation.Equals(other.maxHorizontalSeparation) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && desiredVelocity.Equals(other.desiredVelocity)
+                && verticalGain.Equals(other.verticalGain)
+                && horizontalCatchUpGain.Equals(other.horizontalCatchUpGain)
+                && maxVerticalSeparation.Equals(other.maxVerticalSeparation)
+                && maxHorizontalSeparation.Equals(other.maxHorizontalSeparation)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -86,4 +89,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpSoftContactModifierConstraintAtom Signatire: 0xecb34e27 size: 64 flags: FLAGS_NONE
 
-    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // maxAcceleration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum: 
-    public partial class hkpSoftContactModifierConstraintAtom : hkpModifierConstraintAtom, IEquatable<hkpSoftContactModifierConstraintAtom?>
+    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // maxAcceleration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 52 flags: FLAGS_NONE enum:
+    public partial class hkpSoftContactModifierConstraintAtom
+        : hkpModifierConstraintAtom,
+            IEquatable<hkpSoftContactModifierConstraintAtom?>
     {
         public float tau { set; get; }
         public float maxAcceleration { set; get; }
@@ -51,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkpSoftContactModifierConstraintAtom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   tau.Equals(other.tau) &&
-                   maxAcceleration.Equals(other.maxAcceleration) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && tau.Equals(other.tau)
+                && maxAcceleration.Equals(other.maxAcceleration)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

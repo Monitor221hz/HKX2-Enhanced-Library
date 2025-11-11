@@ -7,14 +7,17 @@ namespace HKX2E
 {
     // hkMemoryResourceHandle Signatire: 0xbffac086 size: 48 flags: FLAGS_NONE
 
-    // variant class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // references class: hkMemoryResourceHandleExternalLink Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkMemoryResourceHandle : hkResourceHandle, IEquatable<hkMemoryResourceHandle?>
+    // variant class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // references class: hkMemoryResourceHandleExternalLink Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkMemoryResourceHandle
+        : hkResourceHandle,
+            IEquatable<hkMemoryResourceHandle?>
     {
         public hkReferencedObject? variant { set; get; }
         public string name { set; get; } = "";
-        public IList<hkMemoryResourceHandleExternalLink> references { set; get; } = Array.Empty<hkMemoryResourceHandleExternalLink>();
+        public IList<hkMemoryResourceHandleExternalLink> references { set; get; } =
+            Array.Empty<hkMemoryResourceHandleExternalLink>();
 
         public override uint Signature { set; get; } = 0xbffac086;
 
@@ -39,7 +42,10 @@ namespace HKX2E
             base.ReadXml(xd, xe);
             variant = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(variant));
             name = xd.ReadString(xe, nameof(name));
-            references = xd.ReadClassArray<hkMemoryResourceHandleExternalLink>(xe, nameof(references));
+            references = xd.ReadClassArray<hkMemoryResourceHandleExternalLink>(
+                xe,
+                nameof(references)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -57,12 +63,25 @@ namespace HKX2E
 
         public bool Equals(hkMemoryResourceHandle? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((variant is null && other.variant is null) || (variant is not null && other.variant is not null && variant.Equals((IHavokObject)other.variant))) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   references.SequenceEqual(other.references) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (variant is null && other.variant is null)
+                    || (
+                        variant is not null
+                        && other.variant is not null
+                        && variant.Equals((IHavokObject)other.variant)
+                    )
+                )
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && references.SequenceEqual(other.references)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -77,4 +96,3 @@ namespace HKX2E
         }
     }
 }
-

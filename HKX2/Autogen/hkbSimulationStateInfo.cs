@@ -6,7 +6,9 @@ namespace HKX2E
     // hkbSimulationStateInfo Signatire: 0xa40822b4 size: 24 flags: FLAGS_NONE
 
     // simulationState class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: SimulationState
-    public partial class hkbSimulationStateInfo : hkReferencedObject, IEquatable<hkbSimulationStateInfo?>
+    public partial class hkbSimulationStateInfo
+        : hkReferencedObject,
+            IEquatable<hkbSimulationStateInfo?>
     {
         public byte simulationState { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbSimulationStateInfo? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   simulationState.Equals(other.simulationState) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && simulationState.Equals(other.simulationState)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

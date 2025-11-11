@@ -7,12 +7,16 @@ namespace HKX2E
 {
     // hkpDisplayBindingData Signatire: 0xdc46c906 size: 48 flags: FLAGS_NONE
 
-    // rigidBodyBindings class: hkpDisplayBindingDataRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // physicsSystemBindings class: hkpDisplayBindingDataPhysicsSystem Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkpDisplayBindingData : hkReferencedObject, IEquatable<hkpDisplayBindingData?>
+    // rigidBodyBindings class: hkpDisplayBindingDataRigidBody Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // physicsSystemBindings class: hkpDisplayBindingDataPhysicsSystem Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkpDisplayBindingData
+        : hkReferencedObject,
+            IEquatable<hkpDisplayBindingData?>
     {
-        public IList<hkpDisplayBindingDataRigidBody> rigidBodyBindings { set; get; } = Array.Empty<hkpDisplayBindingDataRigidBody>();
-        public IList<hkpDisplayBindingDataPhysicsSystem> physicsSystemBindings { set; get; } = Array.Empty<hkpDisplayBindingDataPhysicsSystem>();
+        public IList<hkpDisplayBindingDataRigidBody> rigidBodyBindings { set; get; } =
+            Array.Empty<hkpDisplayBindingDataRigidBody>();
+        public IList<hkpDisplayBindingDataPhysicsSystem> physicsSystemBindings { set; get; } =
+            Array.Empty<hkpDisplayBindingDataPhysicsSystem>();
 
         public override uint Signature { set; get; } = 0xdc46c906;
 
@@ -20,7 +24,9 @@ namespace HKX2E
         {
             base.Read(des, br);
             rigidBodyBindings = des.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(br);
-            physicsSystemBindings = des.ReadClassPointerArray<hkpDisplayBindingDataPhysicsSystem>(br);
+            physicsSystemBindings = des.ReadClassPointerArray<hkpDisplayBindingDataPhysicsSystem>(
+                br
+            );
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -33,8 +39,16 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            rigidBodyBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(this, xe, nameof(rigidBodyBindings));
-            physicsSystemBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataPhysicsSystem>(this, xe, nameof(physicsSystemBindings));
+            rigidBodyBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataRigidBody>(
+                this,
+                xe,
+                nameof(rigidBodyBindings)
+            );
+            physicsSystemBindings = xd.ReadClassPointerArray<hkpDisplayBindingDataPhysicsSystem>(
+                this,
+                xe,
+                nameof(physicsSystemBindings)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -51,11 +65,12 @@ namespace HKX2E
 
         public bool Equals(hkpDisplayBindingData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   rigidBodyBindings.SequenceEqual(other.rigidBodyBindings) &&
-                   physicsSystemBindings.SequenceEqual(other.physicsSystemBindings) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && rigidBodyBindings.SequenceEqual(other.rigidBodyBindings)
+                && physicsSystemBindings.SequenceEqual(other.physicsSystemBindings)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +84,3 @@ namespace HKX2E
         }
     }
 }
-

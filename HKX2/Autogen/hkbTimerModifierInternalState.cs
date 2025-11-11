@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkbTimerModifierInternalState Signatire: 0x83ec2d42 size: 24 flags: FLAGS_NONE
 
-    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbTimerModifierInternalState : hkReferencedObject, IEquatable<hkbTimerModifierInternalState?>
+    // secondsElapsed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbTimerModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbTimerModifierInternalState?>
     {
         public float secondsElapsed { set; get; }
 
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbTimerModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   secondsElapsed.Equals(other.secondsElapsed) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && secondsElapsed.Equals(other.secondsElapsed)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

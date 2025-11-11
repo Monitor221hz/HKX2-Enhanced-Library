@@ -8,8 +8,10 @@ namespace HKX2E
 {
     // hkxAnimatedQuaternion Signatire: 0xb4f01baa size: 32 flags: FLAGS_NONE
 
-    // quaternions class:  Type.TYPE_ARRAY Type.TYPE_QUATERNION arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkxAnimatedQuaternion : hkReferencedObject, IEquatable<hkxAnimatedQuaternion?>
+    // quaternions class:  Type.TYPE_ARRAY Type.TYPE_QUATERNION arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkxAnimatedQuaternion
+        : hkReferencedObject,
+            IEquatable<hkxAnimatedQuaternion?>
     {
         public IList<Quaternion> quaternions { set; get; } = Array.Empty<Quaternion>();
 
@@ -46,10 +48,11 @@ namespace HKX2E
 
         public bool Equals(hkxAnimatedQuaternion? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   quaternions.SequenceEqual(other.quaternions) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && quaternions.SequenceEqual(other.quaternions)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -62,4 +65,3 @@ namespace HKX2E
         }
     }
 }
-

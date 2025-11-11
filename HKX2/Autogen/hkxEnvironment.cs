@@ -7,10 +7,11 @@ namespace HKX2E
 {
     // hkxEnvironment Signatire: 0x41e1aa5 size: 32 flags: FLAGS_NONE
 
-    // variables class: hkxEnvironmentVariable Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // variables class: hkxEnvironmentVariable Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     public partial class hkxEnvironment : hkReferencedObject, IEquatable<hkxEnvironment?>
     {
-        public IList<hkxEnvironmentVariable> variables { set; get; } = Array.Empty<hkxEnvironmentVariable>();
+        public IList<hkxEnvironmentVariable> variables { set; get; } =
+            Array.Empty<hkxEnvironmentVariable>();
 
         public override uint Signature { set; get; } = 0x41e1aa5;
 
@@ -45,10 +46,11 @@ namespace HKX2E
 
         public bool Equals(hkxEnvironment? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   variables.SequenceEqual(other.variables) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && variables.SequenceEqual(other.variables)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +63,3 @@ namespace HKX2E
         }
     }
 }
-

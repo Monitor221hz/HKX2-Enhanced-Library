@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpConvexTransformShapeBase Signatire: 0xfbd72f9 size: 64 flags: FLAGS_NONE
 
-    // childShape class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // childShapeSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkpConvexTransformShapeBase : hkpConvexShape, IEquatable<hkpConvexTransformShapeBase?>
+    // childShape class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // childShapeSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 56 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkpConvexTransformShapeBase
+        : hkpConvexShape,
+            IEquatable<hkpConvexTransformShapeBase?>
     {
         public hkpSingleShapeContainer childShape { set; get; } = new();
         private int childShapeSize { set; get; }
@@ -50,10 +52,18 @@ namespace HKX2E
 
         public bool Equals(hkpConvexTransformShapeBase? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((childShape is null && other.childShape is null) || (childShape is not null && other.childShape is not null && childShape.Equals((IHavokObject)other.childShape))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (childShape is null && other.childShape is null)
+                    || (
+                        childShape is not null
+                        && other.childShape is not null
+                        && childShape.Equals((IHavokObject)other.childShape)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -66,4 +76,3 @@ namespace HKX2E
         }
     }
 }
-

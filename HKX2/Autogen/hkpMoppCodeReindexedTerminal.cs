@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkpMoppCodeReindexedTerminal Signatire: 0x6ed8ac06 size: 8 flags: FLAGS_NONE
 
-    // origShapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // reindexedShapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    public partial class hkpMoppCodeReindexedTerminal : IHavokObject, IEquatable<hkpMoppCodeReindexedTerminal?>
+    // origShapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // reindexedShapeKey class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    public partial class hkpMoppCodeReindexedTerminal
+        : IHavokObject,
+            IEquatable<hkpMoppCodeReindexedTerminal?>
     {
         public uint origShapeKey { set; get; }
         public uint reindexedShapeKey { set; get; }
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkpMoppCodeReindexedTerminal? other)
         {
-            return other is not null &&
-                   origShapeKey.Equals(other.origShapeKey) &&
-                   reindexedShapeKey.Equals(other.reindexedShapeKey) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && origShapeKey.Equals(other.origShapeKey)
+                && reindexedShapeKey.Equals(other.reindexedShapeKey)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

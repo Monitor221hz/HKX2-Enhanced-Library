@@ -6,10 +6,10 @@ namespace HKX2E
 {
     // hkpTransformShape Signatire: 0x787ef513 size: 144 flags: FLAGS_NONE
 
-    // childShape class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // childShapeSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
+    // childShape class: hkpSingleShapeContainer Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // childShapeSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 48 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // rotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // transform class:  Type.TYPE_TRANSFORM Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
     public partial class hkpTransformShape : hkpShape, IEquatable<hkpTransformShape?>
     {
         public hkpSingleShapeContainer childShape { set; get; } = new();
@@ -63,12 +63,20 @@ namespace HKX2E
 
         public bool Equals(hkpTransformShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((childShape is null && other.childShape is null) || (childShape is not null && other.childShape is not null && childShape.Equals((IHavokObject)other.childShape))) &&
-                   rotation.Equals(other.rotation) &&
-                   transform.Equals(other.transform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (childShape is null && other.childShape is null)
+                    || (
+                        childShape is not null
+                        && other.childShape is not null
+                        && childShape.Equals((IHavokObject)other.childShape)
+                    )
+                )
+                && rotation.Equals(other.rotation)
+                && transform.Equals(other.transform)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -83,4 +91,3 @@ namespace HKX2E
         }
     }
 }
-

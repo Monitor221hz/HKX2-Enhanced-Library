@@ -7,13 +7,15 @@ namespace HKX2E
 {
     // hkpPoweredChainDataConstraintInfo Signatire: 0xf88aee25 size: 96 flags: FLAGS_NONE
 
-    // pivotInA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // pivotInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // aTc class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // bTc class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // motors class: hkpConstraintMotor Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 3 offset: 64 flags: FLAGS_NONE enum: 
-    // switchBodies class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    public partial class hkpPoweredChainDataConstraintInfo : IHavokObject, IEquatable<hkpPoweredChainDataConstraintInfo?>
+    // pivotInA class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // pivotInB class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // aTc class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // bTc class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // motors class: hkpConstraintMotor Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 3 offset: 64 flags: FLAGS_NONE enum:
+    // switchBodies class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    public partial class hkpPoweredChainDataConstraintInfo
+        : IHavokObject,
+            IEquatable<hkpPoweredChainDataConstraintInfo?>
     {
         public Vector4 pivotInA { set; get; }
         public Vector4 pivotInB { set; get; }
@@ -52,7 +54,12 @@ namespace HKX2E
             pivotInB = xd.ReadVector4(xe, nameof(pivotInB));
             aTc = xd.ReadQuaternion(xe, nameof(aTc));
             bTc = xd.ReadQuaternion(xe, nameof(bTc));
-            motors = xd.ReadClassPointerCStyleArray<hkpConstraintMotor>(this, xe, nameof(motors), 3);
+            motors = xd.ReadClassPointerCStyleArray<hkpConstraintMotor>(
+                this,
+                xe,
+                nameof(motors),
+                3
+            );
             switchBodies = xd.ReadBoolean(xe, nameof(switchBodies));
         }
 
@@ -73,14 +80,15 @@ namespace HKX2E
 
         public bool Equals(hkpPoweredChainDataConstraintInfo? other)
         {
-            return other is not null &&
-                   pivotInA.Equals(other.pivotInA) &&
-                   pivotInB.Equals(other.pivotInB) &&
-                   aTc.Equals(other.aTc) &&
-                   bTc.Equals(other.bTc) &&
-                   motors.SequenceEqual(other.motors) &&
-                   switchBodies.Equals(other.switchBodies) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && pivotInA.Equals(other.pivotInA)
+                && pivotInB.Equals(other.pivotInB)
+                && aTc.Equals(other.aTc)
+                && bTc.Equals(other.bTc)
+                && motors.SequenceEqual(other.motors)
+                && switchBodies.Equals(other.switchBodies)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -97,4 +105,3 @@ namespace HKX2E
         }
     }
 }
-

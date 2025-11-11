@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkbBlenderGeneratorChildInternalState Signatire: 0xff7327c0 size: 2 flags: FLAGS_NONE
 
-    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // syncNextFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 1 flags: FLAGS_NONE enum: 
-    public partial class hkbBlenderGeneratorChildInternalState : IHavokObject, IEquatable<hkbBlenderGeneratorChildInternalState?>
+    // isActive class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // syncNextFrame class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 1 flags: FLAGS_NONE enum:
+    public partial class hkbBlenderGeneratorChildInternalState
+        : IHavokObject,
+            IEquatable<hkbBlenderGeneratorChildInternalState?>
     {
         public bool isActive { set; get; }
         public bool syncNextFrame { set; get; }
@@ -45,10 +47,11 @@ namespace HKX2E
 
         public bool Equals(hkbBlenderGeneratorChildInternalState? other)
         {
-            return other is not null &&
-                   isActive.Equals(other.isActive) &&
-                   syncNextFrame.Equals(other.syncNextFrame) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && isActive.Equals(other.isActive)
+                && syncNextFrame.Equals(other.syncNextFrame)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

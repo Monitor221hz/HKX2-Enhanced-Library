@@ -8,38 +8,46 @@ namespace HKX2E
 {
     public class MetaPackFileDeserializer : PackFileDeserializer
     {
-        ulong nodeCount = 0; 
+        ulong nodeCount = 0;
         protected Dictionary<ulong, IHavokObject> nodeIDMap = new();
-        protected Dictionary<IHavokObject, ulong> objOrderLookup = new(ReferenceEqualityComparer.Instance);
+        protected Dictionary<IHavokObject, ulong> objOrderLookup = new(
+            ReferenceEqualityComparer.Instance
+        );
         public MetaPackFileDeserializerContext Context => new(nodeIDMap);
-        
-        public ulong GetOrder(IHavokObject havokObject) => objOrderLookup.TryGetValue(havokObject, out ulong order) ? order : 0; 
+
+        public ulong GetOrder(IHavokObject havokObject) =>
+            objOrderLookup.TryGetValue(havokObject, out ulong order) ? order : 0;
+
         protected override IHavokObject ConstructVirtualClass(BinaryReaderEx br, uint offset)
         {
-            if (_deserializedObjects.ContainsKey(offset)) return _deserializedObjects[offset];
+            if (_deserializedObjects.ContainsKey(offset))
+                return _deserializedObjects[offset];
 
             var fixup = _dataSection._virtualMap[offset];
             var hkClassName = _classnames.OffsetClassNamesMap[fixup.Dst].ClassName;
 
             var hkClass = System.Type.GetType($@"HKX2E.{hkClassName}");
-            if (hkClass is null) throw new Exception($@"Havok class type '{hkClassName}' not found!");
+            if (hkClass is null)
+                throw new Exception($@"Havok class type '{hkClassName}' not found!");
 
             var ret = (IHavokObject)Activator.CreateInstance(hkClass)!;
-            if (ret is null) throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
+            if (ret is null)
+                throw new Exception($@"Failed to Activator.CreateInstance({hkClass})");
 
             br.StepIn(offset);
-            var explicitID = ret.ReadMetaData(this, br); 
+            var explicitID = ret.ReadMetaData(this, br);
             if (explicitID > 0)
             {
                 nodeIDMap.TryAdd(explicitID, ret);
             }
-            objOrderLookup.TryAdd(ret, nodeCount++); 
+            objOrderLookup.TryAdd(ret, nodeCount++);
             ret.Read(this, br);
             br.StepOut();
 
             _deserializedObjects.Add(offset, ret);
             return ret;
         }
+
         public override void DeserializePartially(BinaryReaderEx br)
         {
             br.StepIn(0x11);
@@ -65,7 +73,11 @@ namespace HKX2E
             // Process the class names
             _classnames = _classSection.ReadClassnamesWithMetaData(br);
         }
-        public override IHavokObject Deserialize(BinaryReaderEx br, bool ignoreNonFatalError = false)
+
+        public override IHavokObject Deserialize(
+            BinaryReaderEx br,
+            bool ignoreNonFatalError = false
+        )
         {
             _ignoreNonFatalError = ignoreNonFatalError;
 
@@ -73,7 +85,11 @@ namespace HKX2E
 
             // Deserialize the objects
             _deserializedObjects = new Dictionary<uint, IHavokObject>();
-            var br2 = new BinaryReaderEx(_header.Endian == 0, _header.PointerSize == 8, _dataSection.SectionData);
+            var br2 = new BinaryReaderEx(
+                _header.Endian == 0,
+                _header.PointerSize == 8,
+                _dataSection.SectionData
+            );
             return ConstructVirtualClass(br2, 0);
         }
     }

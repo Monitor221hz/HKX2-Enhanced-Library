@@ -5,9 +5,11 @@ namespace HKX2E
 {
     // hkaAnnotationTrackAnnotation Signatire: 0x623bf34f size: 16 flags: FLAGS_NONE
 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // text class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    public partial class hkaAnnotationTrackAnnotation : IHavokObject, IEquatable<hkaAnnotationTrackAnnotation?>
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // text class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    public partial class hkaAnnotationTrackAnnotation
+        : IHavokObject,
+            IEquatable<hkaAnnotationTrackAnnotation?>
     {
         public float time { set; get; }
         public string text { set; get; } = "";
@@ -47,10 +49,16 @@ namespace HKX2E
 
         public bool Equals(hkaAnnotationTrackAnnotation? other)
         {
-            return other is not null &&
-                   time.Equals(other.time) &&
-                   (text is null && other.text is null || text == other.text || text is null && other.text == "" || text == "" && other.text is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && time.Equals(other.time)
+                && (
+                    text is null && other.text is null
+                    || text == other.text
+                    || text is null && other.text == ""
+                    || text == "" && other.text is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -63,4 +71,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkCustomAttributes Signatire: 0xbff19005 size: 16 flags: FLAGS_NONE
 
-    // attributes class: hkCustomAttributesAttribute Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
+    // attributes class: hkCustomAttributesAttribute Type.TYPE_SIMPLEARRAY Type.TYPE_STRUCT arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
     public partial class hkCustomAttributes : IHavokObject, IEquatable<hkCustomAttributes?>
     {
         public object? attributes { set; get; }
@@ -39,9 +39,10 @@ namespace HKX2E
 
         public bool Equals(hkCustomAttributes? other)
         {
-            return other is not null &&
-                   attributes!.Equals(other.attributes) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && attributes!.Equals(other.attributes)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +54,3 @@ namespace HKX2E
         }
     }
 }
-

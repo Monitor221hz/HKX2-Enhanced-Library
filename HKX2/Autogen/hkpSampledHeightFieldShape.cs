@@ -6,16 +6,18 @@ namespace HKX2E
 {
     // hkpSampledHeightFieldShape Signatire: 0x11213421 size: 112 flags: FLAGS_NONE
 
-    // xRes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // zRes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // heightCenter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // useProjectionBasedHeight class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
+    // xRes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // zRes class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // heightCenter class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // useProjectionBasedHeight class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
     // heightfieldType class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 45 flags: FLAGS_NONE enum: HeightFieldType
-    // intToFloatScale class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // floatToIntScale class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // floatToIntOffsetFloorCorrected class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // extents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    public partial class hkpSampledHeightFieldShape : hkpHeightFieldShape, IEquatable<hkpSampledHeightFieldShape?>
+    // intToFloatScale class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // floatToIntScale class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // floatToIntOffsetFloorCorrected class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // extents class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    public partial class hkpSampledHeightFieldShape
+        : hkpHeightFieldShape,
+            IEquatable<hkpSampledHeightFieldShape?>
     {
         public int xRes { set; get; }
         public int zRes { set; get; }
@@ -69,7 +71,10 @@ namespace HKX2E
             heightfieldType = xd.ReadFlag<HeightFieldType, byte>(xe, nameof(heightfieldType));
             intToFloatScale = xd.ReadVector4(xe, nameof(intToFloatScale));
             floatToIntScale = xd.ReadVector4(xe, nameof(floatToIntScale));
-            floatToIntOffsetFloorCorrected = xd.ReadVector4(xe, nameof(floatToIntOffsetFloorCorrected));
+            floatToIntOffsetFloorCorrected = xd.ReadVector4(
+                xe,
+                nameof(floatToIntOffsetFloorCorrected)
+            );
             extents = xd.ReadVector4(xe, nameof(extents));
         }
 
@@ -83,7 +88,11 @@ namespace HKX2E
             xs.WriteEnum<HeightFieldType, byte>(xe, nameof(heightfieldType), heightfieldType);
             xs.WriteVector4(xe, nameof(intToFloatScale), intToFloatScale);
             xs.WriteVector4(xe, nameof(floatToIntScale), floatToIntScale);
-            xs.WriteVector4(xe, nameof(floatToIntOffsetFloorCorrected), floatToIntOffsetFloorCorrected);
+            xs.WriteVector4(
+                xe,
+                nameof(floatToIntOffsetFloorCorrected),
+                floatToIntOffsetFloorCorrected
+            );
             xs.WriteVector4(xe, nameof(extents), extents);
         }
 
@@ -94,18 +103,19 @@ namespace HKX2E
 
         public bool Equals(hkpSampledHeightFieldShape? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   xRes.Equals(other.xRes) &&
-                   zRes.Equals(other.zRes) &&
-                   heightCenter.Equals(other.heightCenter) &&
-                   useProjectionBasedHeight.Equals(other.useProjectionBasedHeight) &&
-                   heightfieldType.Equals(other.heightfieldType) &&
-                   intToFloatScale.Equals(other.intToFloatScale) &&
-                   floatToIntScale.Equals(other.floatToIntScale) &&
-                   floatToIntOffsetFloorCorrected.Equals(other.floatToIntOffsetFloorCorrected) &&
-                   extents.Equals(other.extents) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && xRes.Equals(other.xRes)
+                && zRes.Equals(other.zRes)
+                && heightCenter.Equals(other.heightCenter)
+                && useProjectionBasedHeight.Equals(other.useProjectionBasedHeight)
+                && heightfieldType.Equals(other.heightfieldType)
+                && intToFloatScale.Equals(other.intToFloatScale)
+                && floatToIntScale.Equals(other.floatToIntScale)
+                && floatToIntOffsetFloorCorrected.Equals(other.floatToIntOffsetFloorCorrected)
+                && extents.Equals(other.extents)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -126,4 +136,3 @@ namespace HKX2E
         }
     }
 }
-

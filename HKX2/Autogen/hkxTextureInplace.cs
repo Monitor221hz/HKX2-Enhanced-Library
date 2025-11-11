@@ -7,10 +7,10 @@ namespace HKX2E
 {
     // hkxTextureInplace Signatire: 0xd45841d6 size: 56 flags: FLAGS_NONE
 
-    // fileType class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 4 offset: 16 flags: FLAGS_NONE enum: 
-    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // originalFilename class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // fileType class:  Type.TYPE_CHAR Type.TYPE_VOID arrSize: 4 offset: 16 flags: FLAGS_NONE enum:
+    // data class:  Type.TYPE_ARRAY Type.TYPE_UINT8 arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // name class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // originalFilename class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkxTextureInplace : hkReferencedObject, IEquatable<hkxTextureInplace?>
     {
         public string fileType { set; get; } = "";
@@ -65,13 +65,24 @@ namespace HKX2E
 
         public bool Equals(hkxTextureInplace? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   fileType.SequenceEqual(other.fileType) &&
-                   data.SequenceEqual(other.data) &&
-                   (name is null && other.name is null || name == other.name || name is null && other.name == "" || name == "" && other.name is null) &&
-                   (originalFilename is null && other.originalFilename is null || originalFilename == other.originalFilename || originalFilename is null && other.originalFilename == "" || originalFilename == "" && other.originalFilename is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && fileType.SequenceEqual(other.fileType)
+                && data.SequenceEqual(other.data)
+                && (
+                    name is null && other.name is null
+                    || name == other.name
+                    || name is null && other.name == ""
+                    || name == "" && other.name is null
+                )
+                && (
+                    originalFilename is null && other.originalFilename is null
+                    || originalFilename == other.originalFilename
+                    || originalFilename is null && other.originalFilename == ""
+                    || originalFilename == "" && other.originalFilename is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -87,4 +98,3 @@ namespace HKX2E
         }
     }
 }
-

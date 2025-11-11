@@ -6,12 +6,14 @@ namespace HKX2E
 {
     // BSDecomposeVectorModifier Signatire: 0x31f6b8b6 size: 112 flags: FLAGS_NONE
 
-    // vector class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // x class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // y class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // z class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // w class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    public partial class BSDecomposeVectorModifier : hkbModifier, IEquatable<BSDecomposeVectorModifier?>
+    // vector class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // x class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // y class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // z class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // w class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    public partial class BSDecomposeVectorModifier
+        : hkbModifier,
+            IEquatable<BSDecomposeVectorModifier?>
     {
         public Vector4 vector { set; get; }
         public float x { set; get; }
@@ -68,14 +70,15 @@ namespace HKX2E
 
         public bool Equals(BSDecomposeVectorModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   vector.Equals(other.vector) &&
-                   x.Equals(other.x) &&
-                   y.Equals(other.y) &&
-                   z.Equals(other.z) &&
-                   w.Equals(other.w) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && vector.Equals(other.vector)
+                && x.Equals(other.x)
+                && y.Equals(other.y)
+                && z.Equals(other.z)
+                && w.Equals(other.w)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -92,4 +95,3 @@ namespace HKX2E
         }
     }
 }
-

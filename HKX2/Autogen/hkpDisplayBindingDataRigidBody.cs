@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkpDisplayBindingDataRigidBody Signatire: 0xfe16e2a3 size: 96 flags: FLAGS_NONE
 
-    // rigidBody class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // displayObjectPtr class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // rigidBodyFromDisplayObjectTransform class:  Type.TYPE_MATRIX4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    public partial class hkpDisplayBindingDataRigidBody : hkReferencedObject, IEquatable<hkpDisplayBindingDataRigidBody?>
+    // rigidBody class: hkpRigidBody Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // displayObjectPtr class: hkReferencedObject Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // rigidBodyFromDisplayObjectTransform class:  Type.TYPE_MATRIX4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    public partial class hkpDisplayBindingDataRigidBody
+        : hkReferencedObject,
+            IEquatable<hkpDisplayBindingDataRigidBody?>
     {
         public hkpRigidBody? rigidBody { set; get; }
         public hkReferencedObject? displayObjectPtr { set; get; }
@@ -37,8 +39,15 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             rigidBody = xd.ReadClassPointer<hkpRigidBody>(this, xe, nameof(rigidBody));
-            displayObjectPtr = xd.ReadClassPointer<hkReferencedObject>(this, xe, nameof(displayObjectPtr));
-            rigidBodyFromDisplayObjectTransform = xd.ReadMatrix4(xe, nameof(rigidBodyFromDisplayObjectTransform));
+            displayObjectPtr = xd.ReadClassPointer<hkReferencedObject>(
+                this,
+                xe,
+                nameof(displayObjectPtr)
+            );
+            rigidBodyFromDisplayObjectTransform = xd.ReadMatrix4(
+                xe,
+                nameof(rigidBodyFromDisplayObjectTransform)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -46,7 +55,11 @@ namespace HKX2E
             base.WriteXml(xs, xe);
             xs.WriteClassPointer(xe, nameof(rigidBody), rigidBody);
             xs.WriteClassPointer(xe, nameof(displayObjectPtr), displayObjectPtr);
-            xs.WriteMatrix4(xe, nameof(rigidBodyFromDisplayObjectTransform), rigidBodyFromDisplayObjectTransform);
+            xs.WriteMatrix4(
+                xe,
+                nameof(rigidBodyFromDisplayObjectTransform),
+                rigidBodyFromDisplayObjectTransform
+            );
         }
 
         public override bool Equals(object? obj)
@@ -56,12 +69,29 @@ namespace HKX2E
 
         public bool Equals(hkpDisplayBindingDataRigidBody? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((rigidBody is null && other.rigidBody is null) || (rigidBody is not null && other.rigidBody is not null && rigidBody.Equals((IHavokObject)other.rigidBody))) &&
-                   ((displayObjectPtr is null && other.displayObjectPtr is null) || (displayObjectPtr is not null && other.displayObjectPtr is not null && displayObjectPtr.Equals((IHavokObject)other.displayObjectPtr))) &&
-                   rigidBodyFromDisplayObjectTransform.Equals(other.rigidBodyFromDisplayObjectTransform) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (rigidBody is null && other.rigidBody is null)
+                    || (
+                        rigidBody is not null
+                        && other.rigidBody is not null
+                        && rigidBody.Equals((IHavokObject)other.rigidBody)
+                    )
+                )
+                && (
+                    (displayObjectPtr is null && other.displayObjectPtr is null)
+                    || (
+                        displayObjectPtr is not null
+                        && other.displayObjectPtr is not null
+                        && displayObjectPtr.Equals((IHavokObject)other.displayObjectPtr)
+                    )
+                )
+                && rigidBodyFromDisplayObjectTransform.Equals(
+                    other.rigidBodyFromDisplayObjectTransform
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -76,4 +106,3 @@ namespace HKX2E
         }
     }
 }
-

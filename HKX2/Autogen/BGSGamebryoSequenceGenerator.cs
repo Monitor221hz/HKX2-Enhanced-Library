@@ -6,14 +6,16 @@ namespace HKX2E
 {
     // BGSGamebryoSequenceGenerator Signatire: 0xc8df2d77 size: 112 flags: FLAGS_NONE
 
-    // pSequence class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
+    // pSequence class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
     // eBlendModeFunction class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 80 flags: FLAGS_NONE enum: BlendModeFunction
-    // fPercent class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // events class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // fTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bDelayedActivate class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 108 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bLooping class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 109 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class BGSGamebryoSequenceGenerator : hkbGenerator, IEquatable<BGSGamebryoSequenceGenerator?>
+    // fPercent class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // events class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // fTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bDelayedActivate class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 108 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bLooping class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 109 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class BGSGamebryoSequenceGenerator
+        : hkbGenerator,
+            IEquatable<BGSGamebryoSequenceGenerator?>
     {
         public string pSequence { set; get; } = "";
         public sbyte eBlendModeFunction { set; get; }
@@ -57,7 +59,10 @@ namespace HKX2E
         {
             base.ReadXml(xd, xe);
             pSequence = xd.ReadString(xe, nameof(pSequence));
-            eBlendModeFunction = xd.ReadFlag<BlendModeFunction, sbyte>(xe, nameof(eBlendModeFunction));
+            eBlendModeFunction = xd.ReadFlag<BlendModeFunction, sbyte>(
+                xe,
+                nameof(eBlendModeFunction)
+            );
             fPercent = xd.ReadSingle(xe, nameof(fPercent));
         }
 
@@ -65,7 +70,11 @@ namespace HKX2E
         {
             base.WriteXml(xs, xe);
             xs.WriteString(xe, nameof(pSequence), pSequence);
-            xs.WriteEnum<BlendModeFunction, sbyte>(xe, nameof(eBlendModeFunction), eBlendModeFunction);
+            xs.WriteEnum<BlendModeFunction, sbyte>(
+                xe,
+                nameof(eBlendModeFunction),
+                eBlendModeFunction
+            );
             xs.WriteFloat(xe, nameof(fPercent), fPercent);
             xs.WriteSerializeIgnored(xe, nameof(events));
             xs.WriteSerializeIgnored(xe, nameof(fTime));
@@ -80,12 +89,18 @@ namespace HKX2E
 
         public bool Equals(BGSGamebryoSequenceGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (pSequence is null && other.pSequence is null || pSequence == other.pSequence || pSequence is null && other.pSequence == "" || pSequence == "" && other.pSequence is null) &&
-                   eBlendModeFunction.Equals(other.eBlendModeFunction) &&
-                   fPercent.Equals(other.fPercent) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    pSequence is null && other.pSequence is null
+                    || pSequence == other.pSequence
+                    || pSequence is null && other.pSequence == ""
+                    || pSequence == "" && other.pSequence is null
+                )
+                && eBlendModeFunction.Equals(other.eBlendModeFunction)
+                && fPercent.Equals(other.fPercent)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -100,4 +115,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -9,4 +9,3 @@ namespace HKX2E
         SPARKS = 4,
     }
 }
-

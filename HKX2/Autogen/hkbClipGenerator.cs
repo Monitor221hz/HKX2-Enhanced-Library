@@ -7,59 +7,62 @@ namespace HKX2E
 {
     // hkbClipGenerator Signatire: 0x333b85b9 size: 272 flags: FLAGS_NONE
 
-    // animationName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // triggers class: hkbClipTriggerArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // cropStartAmountLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    // cropEndAmountLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum: 
-    // startTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // playbackSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum: 
-    // enforcedDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum: 
-    // userControlledTimeFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum: 
-    // animationBindingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
+    // animationName class:  Type.TYPE_STRINGPTR Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // triggers class: hkbClipTriggerArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // cropStartAmountLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    // cropEndAmountLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 92 flags: FLAGS_NONE enum:
+    // startTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // playbackSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 100 flags: FLAGS_NONE enum:
+    // enforcedDuration class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 104 flags: FLAGS_NONE enum:
+    // userControlledTimeFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 108 flags: FLAGS_NONE enum:
+    // animationBindingIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
     // mode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 114 flags: FLAGS_NONE enum: PlaybackMode
-    // flags class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 115 flags: FLAGS_NONE enum: 
-    // animDatas class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // animationControl class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // originalTriggers class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // mapperData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // binding class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // mirroredAnimation class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // extractedMotion class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // echos class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 244 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // previousUserControlledTimeFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 252 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // echoBufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // atEnd class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 260 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // ignoreStartTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 261 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // pingPongBackward class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 262 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // flags class:  Type.TYPE_INT8 Type.TYPE_VOID arrSize: 0 offset: 115 flags: FLAGS_NONE enum:
+    // animDatas class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 120 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // animationControl class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 136 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // originalTriggers class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 144 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // mapperData class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 152 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // binding class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 160 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // mirroredAnimation class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 168 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // extractedMotion class:  Type.TYPE_QSTRANSFORM Type.TYPE_VOID arrSize: 0 offset: 176 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // echos class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // localTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 240 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // time class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 244 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // previousUserControlledTimeFraction class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 248 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 252 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // echoBufferSize class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 256 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // atEnd class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 260 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // ignoreStartTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 261 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // pingPongBackward class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 262 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkbClipGenerator : hkbGenerator, IEquatable<hkbClipGenerator?>
     {
-        public static hkbClipGenerator GetDefault() => new()
-        {
-			cropStartAmountLocalTime = 0.0f,
-			cropEndAmountLocalTime = 0.0f,
-			startTime = 0.0f,
-			playbackSpeed = 1.0f,
-			enforcedDuration = 0.0f,
-			userControlledTimeFraction = 0.0f,
-			animationBindingIndex = -1,
-			flags = 0,
-			userData = 0
-		};
+        public static hkbClipGenerator GetDefault() =>
+            new()
+            {
+                cropStartAmountLocalTime = 0.0f,
+                cropEndAmountLocalTime = 0.0f,
+                startTime = 0.0f,
+                playbackSpeed = 1.0f,
+                enforcedDuration = 0.0f,
+                userControlledTimeFraction = 0.0f,
+                animationBindingIndex = -1,
+                flags = 0,
+                userData = 0,
+            };
+
         public void SetDefault()
         {
-			cropStartAmountLocalTime = 0.0f;
-			cropEndAmountLocalTime = 0.0f;
-			startTime = 0.0f;
+            cropStartAmountLocalTime = 0.0f;
+            cropEndAmountLocalTime = 0.0f;
+            startTime = 0.0f;
             playbackSpeed = 1.0f;
-			enforcedDuration = 0.0f;
-			userControlledTimeFraction = 0.0f;
-			animationBindingIndex = -1;
-			flags = 0;
-			userData = 0;
-		}
+            enforcedDuration = 0.0f;
+            userControlledTimeFraction = 0.0f;
+            animationBindingIndex = -1;
+            flags = 0;
+            userData = 0;
+        }
+
         public string animationName { set; get; } = "";
         public hkbClipTriggerArray? triggers { set; get; }
         public float cropStartAmountLocalTime { set; get; }
@@ -213,20 +216,33 @@ namespace HKX2E
 
         public bool Equals(hkbClipGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   (animationName is null && other.animationName is null || animationName == other.animationName || animationName is null && other.animationName == "" || animationName == "" && other.animationName is null) &&
-                   ((triggers is null && other.triggers is null) || (triggers is not null && other.triggers is not null && triggers.Equals((IHavokObject)other.triggers))) &&
-                   cropStartAmountLocalTime.Equals(other.cropStartAmountLocalTime) &&
-                   cropEndAmountLocalTime.Equals(other.cropEndAmountLocalTime) &&
-                   startTime.Equals(other.startTime) &&
-                   playbackSpeed.Equals(other.playbackSpeed) &&
-                   enforcedDuration.Equals(other.enforcedDuration) &&
-                   userControlledTimeFraction.Equals(other.userControlledTimeFraction) &&
-                   animationBindingIndex.Equals(other.animationBindingIndex) &&
-                   mode.Equals(other.mode) &&
-                   flags.Equals(other.flags) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    animationName is null && other.animationName is null
+                    || animationName == other.animationName
+                    || animationName is null && other.animationName == ""
+                    || animationName == "" && other.animationName is null
+                )
+                && (
+                    (triggers is null && other.triggers is null)
+                    || (
+                        triggers is not null
+                        && other.triggers is not null
+                        && triggers.Equals((IHavokObject)other.triggers)
+                    )
+                )
+                && cropStartAmountLocalTime.Equals(other.cropStartAmountLocalTime)
+                && cropEndAmountLocalTime.Equals(other.cropEndAmountLocalTime)
+                && startTime.Equals(other.startTime)
+                && playbackSpeed.Equals(other.playbackSpeed)
+                && enforcedDuration.Equals(other.enforcedDuration)
+                && userControlledTimeFraction.Equals(other.userControlledTimeFraction)
+                && animationBindingIndex.Equals(other.animationBindingIndex)
+                && mode.Equals(other.mode)
+                && flags.Equals(other.flags)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -249,4 +265,3 @@ namespace HKX2E
         }
     }
 }
-

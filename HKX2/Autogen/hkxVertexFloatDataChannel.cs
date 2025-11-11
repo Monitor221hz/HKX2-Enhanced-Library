@@ -7,9 +7,11 @@ namespace HKX2E
 {
     // hkxVertexFloatDataChannel Signatire: 0xbeeb397c size: 40 flags: FLAGS_NONE
 
-    // perVertexFloats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
+    // perVertexFloats class:  Type.TYPE_ARRAY Type.TYPE_REAL arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
     // dimensions class:  Type.TYPE_ENUM Type.TYPE_UINT8 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: VertexFloatDimensions
-    public partial class hkxVertexFloatDataChannel : hkReferencedObject, IEquatable<hkxVertexFloatDataChannel?>
+    public partial class hkxVertexFloatDataChannel
+        : hkReferencedObject,
+            IEquatable<hkxVertexFloatDataChannel?>
     {
         public IList<float> perVertexFloats { set; get; } = Array.Empty<float>();
         public byte dimensions { set; get; }
@@ -53,11 +55,12 @@ namespace HKX2E
 
         public bool Equals(hkxVertexFloatDataChannel? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   perVertexFloats.SequenceEqual(other.perVertexFloats) &&
-                   dimensions.Equals(other.dimensions) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && perVertexFloats.SequenceEqual(other.perVertexFloats)
+                && dimensions.Equals(other.dimensions)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +74,3 @@ namespace HKX2E
         }
     }
 }
-

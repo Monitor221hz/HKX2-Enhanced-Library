@@ -7,19 +7,22 @@ namespace HKX2E
 {
     // hkpPoweredChainData Signatire: 0x38aeafc3 size: 96 flags: FLAGS_NONE
 
-    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // infos class: hkpPoweredChainDataConstraintInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // cfmLinAdd class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // cfmLinMul class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
-    // cfmAngAdd class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // cfmAngMul class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum: 
-    // maxErrorDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum: 
-    public partial class hkpPoweredChainData : hkpConstraintChainData, IEquatable<hkpPoweredChainData?>
+    // atoms class: hkpBridgeAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // infos class: hkpPoweredChainDataConstraintInfo Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // tau class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // damping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // cfmLinAdd class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // cfmLinMul class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
+    // cfmAngAdd class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // cfmAngMul class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 84 flags: FLAGS_NONE enum:
+    // maxErrorDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 88 flags: FLAGS_NONE enum:
+    public partial class hkpPoweredChainData
+        : hkpConstraintChainData,
+            IEquatable<hkpPoweredChainData?>
     {
         public hkpBridgeAtoms atoms { set; get; } = new();
-        public IList<hkpPoweredChainDataConstraintInfo> infos { set; get; } = Array.Empty<hkpPoweredChainDataConstraintInfo>();
+        public IList<hkpPoweredChainDataConstraintInfo> infos { set; get; } =
+            Array.Empty<hkpPoweredChainDataConstraintInfo>();
         public float tau { set; get; }
         public float damping { set; get; }
         public float cfmLinAdd { set; get; }
@@ -95,18 +98,26 @@ namespace HKX2E
 
         public bool Equals(hkpPoweredChainData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   infos.SequenceEqual(other.infos) &&
-                   tau.Equals(other.tau) &&
-                   damping.Equals(other.damping) &&
-                   cfmLinAdd.Equals(other.cfmLinAdd) &&
-                   cfmLinMul.Equals(other.cfmLinMul) &&
-                   cfmAngAdd.Equals(other.cfmAngAdd) &&
-                   cfmAngMul.Equals(other.cfmAngMul) &&
-                   maxErrorDistance.Equals(other.maxErrorDistance) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && infos.SequenceEqual(other.infos)
+                && tau.Equals(other.tau)
+                && damping.Equals(other.damping)
+                && cfmLinAdd.Equals(other.cfmLinAdd)
+                && cfmLinMul.Equals(other.cfmLinMul)
+                && cfmAngAdd.Equals(other.cfmAngAdd)
+                && cfmAngMul.Equals(other.cfmAngMul)
+                && maxErrorDistance.Equals(other.maxErrorDistance)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -127,4 +138,3 @@ namespace HKX2E
         }
     }
 }
-

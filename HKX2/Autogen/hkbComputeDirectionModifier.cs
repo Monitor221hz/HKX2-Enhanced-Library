@@ -6,18 +6,20 @@ namespace HKX2E
 {
     // hkbComputeDirectionModifier Signatire: 0xdf358bd3 size: 144 flags: FLAGS_NONE
 
-    // pointIn class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // pointOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum: 
-    // groundAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum: 
-    // upAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum: 
-    // verticalOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum: 
-    // reverseGroundAngle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum: 
-    // reverseUpAngle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 125 flags: FLAGS_NONE enum: 
-    // projectPoint class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 126 flags: FLAGS_NONE enum: 
-    // normalizePoint class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 127 flags: FLAGS_NONE enum: 
-    // computeOnlyOnce class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum: 
-    // computedOutput class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 129 flags: FLAGS_NONE enum: 
-    public partial class hkbComputeDirectionModifier : hkbModifier, IEquatable<hkbComputeDirectionModifier?>
+    // pointIn class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // pointOut class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 96 flags: FLAGS_NONE enum:
+    // groundAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 112 flags: FLAGS_NONE enum:
+    // upAngleOut class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 116 flags: FLAGS_NONE enum:
+    // verticalOffset class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 120 flags: FLAGS_NONE enum:
+    // reverseGroundAngle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 124 flags: FLAGS_NONE enum:
+    // reverseUpAngle class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 125 flags: FLAGS_NONE enum:
+    // projectPoint class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 126 flags: FLAGS_NONE enum:
+    // normalizePoint class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 127 flags: FLAGS_NONE enum:
+    // computeOnlyOnce class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 128 flags: FLAGS_NONE enum:
+    // computedOutput class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 129 flags: FLAGS_NONE enum:
+    public partial class hkbComputeDirectionModifier
+        : hkbModifier,
+            IEquatable<hkbComputeDirectionModifier?>
     {
         public Vector4 pointIn { set; get; }
         public Vector4 pointOut { set; get; }
@@ -106,20 +108,21 @@ namespace HKX2E
 
         public bool Equals(hkbComputeDirectionModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   pointIn.Equals(other.pointIn) &&
-                   pointOut.Equals(other.pointOut) &&
-                   groundAngleOut.Equals(other.groundAngleOut) &&
-                   upAngleOut.Equals(other.upAngleOut) &&
-                   verticalOffset.Equals(other.verticalOffset) &&
-                   reverseGroundAngle.Equals(other.reverseGroundAngle) &&
-                   reverseUpAngle.Equals(other.reverseUpAngle) &&
-                   projectPoint.Equals(other.projectPoint) &&
-                   normalizePoint.Equals(other.normalizePoint) &&
-                   computeOnlyOnce.Equals(other.computeOnlyOnce) &&
-                   computedOutput.Equals(other.computedOutput) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && pointIn.Equals(other.pointIn)
+                && pointOut.Equals(other.pointOut)
+                && groundAngleOut.Equals(other.groundAngleOut)
+                && upAngleOut.Equals(other.upAngleOut)
+                && verticalOffset.Equals(other.verticalOffset)
+                && reverseGroundAngle.Equals(other.reverseGroundAngle)
+                && reverseUpAngle.Equals(other.reverseUpAngle)
+                && projectPoint.Equals(other.projectPoint)
+                && normalizePoint.Equals(other.normalizePoint)
+                && computeOnlyOnce.Equals(other.computeOnlyOnce)
+                && computedOutput.Equals(other.computedOutput)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -142,4 +145,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -10,4 +10,3 @@ namespace HKX2E
         COSINE_ANGLE = 5,
     }
 }
-

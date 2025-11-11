@@ -7,10 +7,10 @@ namespace HKX2E
     // hkxLight Signatire: 0x81c86d42 size: 80 flags: FLAGS_NONE
 
     // type class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 16 flags: FLAGS_NONE enum: LightType
-    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // direction class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // color class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
+    // position class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // direction class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // color class:  Type.TYPE_UINT32 Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // angle class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
     public partial class hkxLight : hkReferencedObject, IEquatable<hkxLight?>
     {
         public sbyte type { set; get; }
@@ -72,14 +72,15 @@ namespace HKX2E
 
         public bool Equals(hkxLight? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   type.Equals(other.type) &&
-                   position.Equals(other.position) &&
-                   direction.Equals(other.direction) &&
-                   color.Equals(other.color) &&
-                   angle.Equals(other.angle) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && type.Equals(other.type)
+                && position.Equals(other.position)
+                && direction.Equals(other.direction)
+                && color.Equals(other.color)
+                && angle.Equals(other.angle)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -96,4 +97,3 @@ namespace HKX2E
         }
     }
 }
-

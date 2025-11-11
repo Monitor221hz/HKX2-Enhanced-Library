@@ -11,4 +11,3 @@ namespace HKX2E
         FLAG_NOT_CHARACTER_PROPERTY = 32,
     }
 }
-

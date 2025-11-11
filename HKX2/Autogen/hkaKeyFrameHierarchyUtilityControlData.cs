@@ -5,19 +5,21 @@ namespace HKX2E
 {
     // hkaKeyFrameHierarchyUtilityControlData Signatire: 0xa3d0ac71 size: 48 flags: FLAGS_NONE
 
-    // hierarchyGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // velocityDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // accelerationGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
-    // velocityGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum: 
-    // positionGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // positionMaxLinearVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum: 
-    // positionMaxAngularVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum: 
-    // snapGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum: 
-    // snapMaxLinearVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // snapMaxAngularVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum: 
-    // snapMaxLinearDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum: 
-    // snapMaxAngularDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum: 
-    public partial class hkaKeyFrameHierarchyUtilityControlData : IHavokObject, IEquatable<hkaKeyFrameHierarchyUtilityControlData?>
+    // hierarchyGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // velocityDamping class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // accelerationGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
+    // velocityGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 12 flags: FLAGS_NONE enum:
+    // positionGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // positionMaxLinearVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 20 flags: FLAGS_NONE enum:
+    // positionMaxAngularVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 24 flags: FLAGS_NONE enum:
+    // snapGain class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 28 flags: FLAGS_NONE enum:
+    // snapMaxLinearVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // snapMaxAngularVelocity class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 36 flags: FLAGS_NONE enum:
+    // snapMaxLinearDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 40 flags: FLAGS_NONE enum:
+    // snapMaxAngularDistance class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 44 flags: FLAGS_NONE enum:
+    public partial class hkaKeyFrameHierarchyUtilityControlData
+        : IHavokObject,
+            IEquatable<hkaKeyFrameHierarchyUtilityControlData?>
     {
         public float hierarchyGain { set; get; }
         public float velocityDamping { set; get; }
@@ -105,20 +107,21 @@ namespace HKX2E
 
         public bool Equals(hkaKeyFrameHierarchyUtilityControlData? other)
         {
-            return other is not null &&
-                   hierarchyGain.Equals(other.hierarchyGain) &&
-                   velocityDamping.Equals(other.velocityDamping) &&
-                   accelerationGain.Equals(other.accelerationGain) &&
-                   velocityGain.Equals(other.velocityGain) &&
-                   positionGain.Equals(other.positionGain) &&
-                   positionMaxLinearVelocity.Equals(other.positionMaxLinearVelocity) &&
-                   positionMaxAngularVelocity.Equals(other.positionMaxAngularVelocity) &&
-                   snapGain.Equals(other.snapGain) &&
-                   snapMaxLinearVelocity.Equals(other.snapMaxLinearVelocity) &&
-                   snapMaxAngularVelocity.Equals(other.snapMaxAngularVelocity) &&
-                   snapMaxLinearDistance.Equals(other.snapMaxLinearDistance) &&
-                   snapMaxAngularDistance.Equals(other.snapMaxAngularDistance) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && hierarchyGain.Equals(other.hierarchyGain)
+                && velocityDamping.Equals(other.velocityDamping)
+                && accelerationGain.Equals(other.accelerationGain)
+                && velocityGain.Equals(other.velocityGain)
+                && positionGain.Equals(other.positionGain)
+                && positionMaxLinearVelocity.Equals(other.positionMaxLinearVelocity)
+                && positionMaxAngularVelocity.Equals(other.positionMaxAngularVelocity)
+                && snapGain.Equals(other.snapGain)
+                && snapMaxLinearVelocity.Equals(other.snapMaxLinearVelocity)
+                && snapMaxAngularVelocity.Equals(other.snapMaxAngularVelocity)
+                && snapMaxLinearDistance.Equals(other.snapMaxLinearDistance)
+                && snapMaxAngularDistance.Equals(other.snapMaxAngularDistance)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -141,4 +144,3 @@ namespace HKX2E
         }
     }
 }
-

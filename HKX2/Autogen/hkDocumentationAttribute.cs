@@ -5,8 +5,10 @@ namespace HKX2E
 {
     // hkDocumentationAttribute Signatire: 0x630edd9e size: 8 flags: FLAGS_NONE
 
-    // docsSectionTag class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    public partial class hkDocumentationAttribute : IHavokObject, IEquatable<hkDocumentationAttribute?>
+    // docsSectionTag class:  Type.TYPE_CSTRING Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    public partial class hkDocumentationAttribute
+        : IHavokObject,
+            IEquatable<hkDocumentationAttribute?>
     {
         public string docsSectionTag { set; get; } = "";
 
@@ -39,9 +41,15 @@ namespace HKX2E
 
         public bool Equals(hkDocumentationAttribute? other)
         {
-            return other is not null &&
-                   (docsSectionTag is null && other.docsSectionTag is null || docsSectionTag == other.docsSectionTag || docsSectionTag is null && other.docsSectionTag == "" || docsSectionTag == "" && other.docsSectionTag is null) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && (
+                    docsSectionTag is null && other.docsSectionTag is null
+                    || docsSectionTag == other.docsSectionTag
+                    || docsSectionTag is null && other.docsSectionTag == ""
+                    || docsSectionTag == "" && other.docsSectionTag is null
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -53,4 +61,3 @@ namespace HKX2E
         }
     }
 }
-

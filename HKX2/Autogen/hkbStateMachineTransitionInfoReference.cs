@@ -5,10 +5,12 @@ namespace HKX2E
 {
     // hkbStateMachineTransitionInfoReference Signatire: 0x9810c2d0 size: 6 flags: FLAGS_NONE
 
-    // fromStateIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // transitionIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum: 
-    // stateMachineId class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    public partial class hkbStateMachineTransitionInfoReference : IHavokObject, IEquatable<hkbStateMachineTransitionInfoReference?>
+    // fromStateIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // transitionIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 2 flags: FLAGS_NONE enum:
+    // stateMachineId class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    public partial class hkbStateMachineTransitionInfoReference
+        : IHavokObject,
+            IEquatable<hkbStateMachineTransitionInfoReference?>
     {
         public short fromStateIndex { set; get; }
         public short transitionIndex { set; get; }
@@ -51,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkbStateMachineTransitionInfoReference? other)
         {
-            return other is not null &&
-                   fromStateIndex.Equals(other.fromStateIndex) &&
-                   transitionIndex.Equals(other.transitionIndex) &&
-                   stateMachineId.Equals(other.stateMachineId) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && fromStateIndex.Equals(other.fromStateIndex)
+                && transitionIndex.Equals(other.transitionIndex)
+                && stateMachineId.Equals(other.stateMachineId)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -69,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-

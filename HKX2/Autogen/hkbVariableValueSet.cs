@@ -8,14 +8,16 @@ namespace HKX2E
 {
     // hkbVariableValueSet Signatire: 0x27812d8d size: 64 flags: FLAGS_NONE
 
-    // wordVariableValues class: hkbVariableValue Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // quadVariableValues class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // variantVariableValues class: hkReferencedObject Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
+    // wordVariableValues class: hkbVariableValue Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // quadVariableValues class:  Type.TYPE_ARRAY Type.TYPE_VECTOR4 arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // variantVariableValues class: hkReferencedObject Type.TYPE_ARRAY Type.TYPE_POINTER arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
     public partial class hkbVariableValueSet : hkReferencedObject, IEquatable<hkbVariableValueSet?>
     {
-        public IList<hkbVariableValue> wordVariableValues { set; get; } = Array.Empty<hkbVariableValue>();
+        public IList<hkbVariableValue> wordVariableValues { set; get; } =
+            Array.Empty<hkbVariableValue>();
         public IList<Vector4> quadVariableValues { set; get; } = Array.Empty<Vector4>();
-        public IList<hkReferencedObject> variantVariableValues { set; get; } = Array.Empty<hkReferencedObject>();
+        public IList<hkReferencedObject> variantVariableValues { set; get; } =
+            Array.Empty<hkReferencedObject>();
 
         public override uint Signature { set; get; } = 0x27812d8d;
 
@@ -38,9 +40,16 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            wordVariableValues = xd.ReadClassArray<hkbVariableValue>(xe, nameof(wordVariableValues));
+            wordVariableValues = xd.ReadClassArray<hkbVariableValue>(
+                xe,
+                nameof(wordVariableValues)
+            );
             quadVariableValues = xd.ReadVector4Array(xe, nameof(quadVariableValues));
-            variantVariableValues = xd.ReadClassPointerArray<hkReferencedObject>(this, xe, nameof(variantVariableValues));
+            variantVariableValues = xd.ReadClassPointerArray<hkReferencedObject>(
+                this,
+                xe,
+                nameof(variantVariableValues)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -58,12 +67,13 @@ namespace HKX2E
 
         public bool Equals(hkbVariableValueSet? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   wordVariableValues.SequenceEqual(other.wordVariableValues) &&
-                   quadVariableValues.SequenceEqual(other.quadVariableValues) &&
-                   variantVariableValues.SequenceEqual(other.variantVariableValues) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && wordVariableValues.SequenceEqual(other.wordVariableValues)
+                && quadVariableValues.SequenceEqual(other.quadVariableValues)
+                && variantVariableValues.SequenceEqual(other.variantVariableValues)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -78,4 +88,3 @@ namespace HKX2E
         }
     }
 }
-

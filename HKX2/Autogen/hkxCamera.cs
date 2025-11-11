@@ -6,13 +6,13 @@ namespace HKX2E
 {
     // hkxCamera Signatire: 0xe3597b02 size: 80 flags: FLAGS_NONE
 
-    // from class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // focus class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum: 
-    // fov class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum: 
-    // far class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum: 
-    // near class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum: 
-    // leftHanded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum: 
+    // from class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // focus class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // up class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+    // fov class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 64 flags: FLAGS_NONE enum:
+    // far class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 68 flags: FLAGS_NONE enum:
+    // near class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 72 flags: FLAGS_NONE enum:
+    // leftHanded class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 76 flags: FLAGS_NONE enum:
     public partial class hkxCamera : hkReferencedObject, IEquatable<hkxCamera?>
     {
         public Vector4 from { set; get; }
@@ -82,16 +82,17 @@ namespace HKX2E
 
         public bool Equals(hkxCamera? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   from.Equals(other.from) &&
-                   focus.Equals(other.focus) &&
-                   up.Equals(other.up) &&
-                   fov.Equals(other.fov) &&
-                   far.Equals(other.far) &&
-                   near.Equals(other.near) &&
-                   leftHanded.Equals(other.leftHanded) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && from.Equals(other.from)
+                && focus.Equals(other.focus)
+                && up.Equals(other.up)
+                && fov.Equals(other.fov)
+                && far.Equals(other.far)
+                && near.Equals(other.near)
+                && leftHanded.Equals(other.leftHanded)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -110,4 +111,3 @@ namespace HKX2E
         }
     }
 }
-

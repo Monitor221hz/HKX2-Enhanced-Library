@@ -6,11 +6,12 @@ namespace HKX2E
 {
     // hkpSimpleShapePhantom Signatire: 0x32a2a8a8 size: 448 flags: FLAGS_NONE
 
-    // collisionDetails class: hkpSimpleShapePhantomCollisionDetail Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
+    // collisionDetails class: hkpSimpleShapePhantomCollisionDetail Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 416 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // orderDirty class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 432 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
     public partial class hkpSimpleShapePhantom : hkpShapePhantom, IEquatable<hkpSimpleShapePhantom?>
     {
-        public IList<hkpSimpleShapePhantomCollisionDetail> collisionDetails { set; get; } = Array.Empty<hkpSimpleShapePhantomCollisionDetail>();
+        public IList<hkpSimpleShapePhantomCollisionDetail> collisionDetails { set; get; } =
+            Array.Empty<hkpSimpleShapePhantomCollisionDetail>();
         private bool orderDirty { set; get; }
 
         public override uint Signature { set; get; } = 0x32a2a8a8;
@@ -50,9 +51,8 @@ namespace HKX2E
 
         public bool Equals(hkpSimpleShapePhantom? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   Signature == other.Signature; ;
+            return other is not null && base.Equals(other) && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -64,4 +64,3 @@ namespace HKX2E
         }
     }
 }
-

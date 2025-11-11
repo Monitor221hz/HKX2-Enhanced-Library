@@ -14,4 +14,3 @@ namespace HKX2E
         HKX_DU_USERDATA = 256,
     }
 }
-

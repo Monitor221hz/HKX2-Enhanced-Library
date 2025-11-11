@@ -5,7 +5,7 @@ namespace HKX2E
 {
     // hkpHingeLimitsData Signatire: 0xbd46760a size: 176 flags: FLAGS_NONE
 
-    // atoms class: hkpHingeLimitsDataAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: ALIGN_16|FLAGS_NONE enum: 
+    // atoms class: hkpHingeLimitsDataAtoms Type.TYPE_STRUCT Type.TYPE_VOID arrSize: 0 offset: 32 flags: ALIGN_16|FLAGS_NONE enum:
     public partial class hkpHingeLimitsData : hkpConstraintData, IEquatable<hkpHingeLimitsData?>
     {
         public hkpHingeLimitsDataAtoms atoms { set; get; } = new();
@@ -45,10 +45,18 @@ namespace HKX2E
 
         public bool Equals(hkpHingeLimitsData? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((atoms is null && other.atoms is null) || (atoms is not null && other.atoms is not null && atoms.Equals((IHavokObject)other.atoms))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (atoms is null && other.atoms is null)
+                    || (
+                        atoms is not null
+                        && other.atoms is not null
+                        && atoms.Equals((IHavokObject)other.atoms)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +69,3 @@ namespace HKX2E
         }
     }
 }
-

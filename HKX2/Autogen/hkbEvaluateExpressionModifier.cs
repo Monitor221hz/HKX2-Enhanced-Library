@@ -6,10 +6,12 @@ namespace HKX2E
 {
     // hkbEvaluateExpressionModifier Signatire: 0xf900f6be size: 112 flags: FLAGS_NONE
 
-    // expressions class: hkbExpressionDataArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum: 
-    // compiledExpressionSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // internalExpressionsData class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbEvaluateExpressionModifier : hkbModifier, IEquatable<hkbEvaluateExpressionModifier?>
+    // expressions class: hkbExpressionDataArray Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 80 flags: FLAGS_NONE enum:
+    // compiledExpressionSet class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 88 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // internalExpressionsData class:  Type.TYPE_ARRAY Type.TYPE_VOID arrSize: 0 offset: 96 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbEvaluateExpressionModifier
+        : hkbModifier,
+            IEquatable<hkbEvaluateExpressionModifier?>
     {
         public hkbExpressionDataArray? expressions { set; get; }
         private object? compiledExpressionSet { set; get; }
@@ -36,7 +38,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            expressions = xd.ReadClassPointer<hkbExpressionDataArray>(this, xe, nameof(expressions));
+            expressions = xd.ReadClassPointer<hkbExpressionDataArray>(
+                this,
+                xe,
+                nameof(expressions)
+            );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -54,10 +60,18 @@ namespace HKX2E
 
         public bool Equals(hkbEvaluateExpressionModifier? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   ((expressions is null && other.expressions is null) || (expressions is not null && other.expressions is not null && expressions.Equals((IHavokObject)other.expressions))) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && (
+                    (expressions is null && other.expressions is null)
+                    || (
+                        expressions is not null
+                        && other.expressions is not null
+                        && expressions.Equals((IHavokObject)other.expressions)
+                    )
+                )
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -70,4 +84,3 @@ namespace HKX2E
         }
     }
 }
-

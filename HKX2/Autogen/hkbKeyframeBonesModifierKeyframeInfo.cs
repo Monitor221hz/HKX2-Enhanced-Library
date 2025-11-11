@@ -6,11 +6,13 @@ namespace HKX2E
 {
     // hkbKeyframeBonesModifierKeyframeInfo Signatire: 0x72deb7a6 size: 48 flags: FLAGS_NONE
 
-    // keyframedPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum: 
-    // keyframedRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum: 
-    // isValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 34 flags: FLAGS_NONE enum: 
-    public partial class hkbKeyframeBonesModifierKeyframeInfo : IHavokObject, IEquatable<hkbKeyframeBonesModifierKeyframeInfo?>
+    // keyframedPosition class:  Type.TYPE_VECTOR4 Type.TYPE_VOID arrSize: 0 offset: 0 flags: FLAGS_NONE enum:
+    // keyframedRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    // boneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 32 flags: FLAGS_NONE enum:
+    // isValid class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 34 flags: FLAGS_NONE enum:
+    public partial class hkbKeyframeBonesModifierKeyframeInfo
+        : IHavokObject,
+            IEquatable<hkbKeyframeBonesModifierKeyframeInfo?>
     {
         public Vector4 keyframedPosition { set; get; }
         public Quaternion keyframedRotation { set; get; }
@@ -60,12 +62,13 @@ namespace HKX2E
 
         public bool Equals(hkbKeyframeBonesModifierKeyframeInfo? other)
         {
-            return other is not null &&
-                   keyframedPosition.Equals(other.keyframedPosition) &&
-                   keyframedRotation.Equals(other.keyframedRotation) &&
-                   boneIndex.Equals(other.boneIndex) &&
-                   isValid.Equals(other.isValid) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && keyframedPosition.Equals(other.keyframedPosition)
+                && keyframedRotation.Equals(other.keyframedRotation)
+                && boneIndex.Equals(other.boneIndex)
+                && isValid.Equals(other.isValid)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -80,4 +83,3 @@ namespace HKX2E
         }
     }
 }
-

@@ -7,17 +7,21 @@ namespace HKX2E
 {
     // hkbEvaluateExpressionModifierInternalState Signatire: 0xb414d58e size: 32 flags: FLAGS_NONE
 
-    // internalExpressionsData class: hkbEvaluateExpressionModifierInternalExpressionData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum: 
-    public partial class hkbEvaluateExpressionModifierInternalState : hkReferencedObject, IEquatable<hkbEvaluateExpressionModifierInternalState?>
+    // internalExpressionsData class: hkbEvaluateExpressionModifierInternalExpressionData Type.TYPE_ARRAY Type.TYPE_STRUCT arrSize: 0 offset: 16 flags: FLAGS_NONE enum:
+    public partial class hkbEvaluateExpressionModifierInternalState
+        : hkReferencedObject,
+            IEquatable<hkbEvaluateExpressionModifierInternalState?>
     {
-        public IList<hkbEvaluateExpressionModifierInternalExpressionData> internalExpressionsData { set; get; } = Array.Empty<hkbEvaluateExpressionModifierInternalExpressionData>();
+        public IList<hkbEvaluateExpressionModifierInternalExpressionData> internalExpressionsData { set; get; } =
+            Array.Empty<hkbEvaluateExpressionModifierInternalExpressionData>();
 
         public override uint Signature { set; get; } = 0xb414d58e;
 
         public override void Read(PackFileDeserializer des, BinaryReaderEx br)
         {
             base.Read(des, br);
-            internalExpressionsData = des.ReadClassArray<hkbEvaluateExpressionModifierInternalExpressionData>(br);
+            internalExpressionsData =
+                des.ReadClassArray<hkbEvaluateExpressionModifierInternalExpressionData>(br);
         }
 
         public override void Write(PackFileSerializer s, BinaryWriterEx bw)
@@ -29,7 +33,11 @@ namespace HKX2E
         public override void ReadXml(IHavokXmlReader xd, XElement xe)
         {
             base.ReadXml(xd, xe);
-            internalExpressionsData = xd.ReadClassArray<hkbEvaluateExpressionModifierInternalExpressionData>(xe, nameof(internalExpressionsData));
+            internalExpressionsData =
+                xd.ReadClassArray<hkbEvaluateExpressionModifierInternalExpressionData>(
+                    xe,
+                    nameof(internalExpressionsData)
+                );
         }
 
         public override void WriteXml(IHavokXmlWriter xs, XElement xe)
@@ -45,10 +53,11 @@ namespace HKX2E
 
         public bool Equals(hkbEvaluateExpressionModifierInternalState? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   internalExpressionsData.SequenceEqual(other.internalExpressionsData) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && internalExpressionsData.SequenceEqual(other.internalExpressionsData)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -61,4 +70,3 @@ namespace HKX2E
         }
     }
 }
-

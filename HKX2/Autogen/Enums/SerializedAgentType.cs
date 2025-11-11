@@ -14,4 +14,3 @@ namespace HKX2E
         COLLECTION_AGENT3 = 9,
     }
 }
-

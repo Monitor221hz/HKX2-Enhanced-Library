@@ -6,25 +6,27 @@ namespace HKX2E
 {
     // hkbPoseMatchingGenerator Signatire: 0x29e271b4 size: 240 flags: FLAGS_NONE
 
-    // worldFromModelRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum: 
-    // blendSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum: 
-    // minSpeedToSwitch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum: 
-    // minSwitchTimeNoError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum: 
-    // minSwitchTimeFullError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum: 
-    // startPlayingEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum: 
-    // startMatchingEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum: 
-    // rootBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum: 
-    // otherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 202 flags: FLAGS_NONE enum: 
-    // anotherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum: 
-    // pelvisIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 206 flags: FLAGS_NONE enum: 
+    // worldFromModelRotation class:  Type.TYPE_QUATERNION Type.TYPE_VOID arrSize: 0 offset: 160 flags: FLAGS_NONE enum:
+    // blendSpeed class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 176 flags: FLAGS_NONE enum:
+    // minSpeedToSwitch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 180 flags: FLAGS_NONE enum:
+    // minSwitchTimeNoError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 184 flags: FLAGS_NONE enum:
+    // minSwitchTimeFullError class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 188 flags: FLAGS_NONE enum:
+    // startPlayingEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 192 flags: FLAGS_NONE enum:
+    // startMatchingEventId class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 196 flags: FLAGS_NONE enum:
+    // rootBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 200 flags: FLAGS_NONE enum:
+    // otherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 202 flags: FLAGS_NONE enum:
+    // anotherBoneIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 204 flags: FLAGS_NONE enum:
+    // pelvisIndex class:  Type.TYPE_INT16 Type.TYPE_VOID arrSize: 0 offset: 206 flags: FLAGS_NONE enum:
     // mode class:  Type.TYPE_ENUM Type.TYPE_INT8 arrSize: 0 offset: 208 flags: FLAGS_NONE enum: Mode
-    // currentMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 212 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // bestMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // timeSinceBetterMatch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 220 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // error class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // resetCurrentMatchLocalTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 228 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    // poseMatchingUtility class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum: 
-    public partial class hkbPoseMatchingGenerator : hkbBlenderGenerator, IEquatable<hkbPoseMatchingGenerator?>
+    // currentMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 212 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // bestMatch class:  Type.TYPE_INT32 Type.TYPE_VOID arrSize: 0 offset: 216 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // timeSinceBetterMatch class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 220 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // error class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 224 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // resetCurrentMatchLocalTime class:  Type.TYPE_BOOL Type.TYPE_VOID arrSize: 0 offset: 228 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    // poseMatchingUtility class:  Type.TYPE_POINTER Type.TYPE_VOID arrSize: 0 offset: 232 flags: SERIALIZE_IGNORED|FLAGS_NONE enum:
+    public partial class hkbPoseMatchingGenerator
+        : hkbBlenderGenerator,
+            IEquatable<hkbPoseMatchingGenerator?>
     {
         public Quaternion worldFromModelRotation { set; get; }
         public float blendSpeed { set; get; }
@@ -144,21 +146,22 @@ namespace HKX2E
 
         public bool Equals(hkbPoseMatchingGenerator? other)
         {
-            return other is not null &&
-                   base.Equals(other) &&
-                   worldFromModelRotation.Equals(other.worldFromModelRotation) &&
-                   blendSpeed.Equals(other.blendSpeed) &&
-                   minSpeedToSwitch.Equals(other.minSpeedToSwitch) &&
-                   minSwitchTimeNoError.Equals(other.minSwitchTimeNoError) &&
-                   minSwitchTimeFullError.Equals(other.minSwitchTimeFullError) &&
-                   startPlayingEventId.Equals(other.startPlayingEventId) &&
-                   startMatchingEventId.Equals(other.startMatchingEventId) &&
-                   rootBoneIndex.Equals(other.rootBoneIndex) &&
-                   otherBoneIndex.Equals(other.otherBoneIndex) &&
-                   anotherBoneIndex.Equals(other.anotherBoneIndex) &&
-                   pelvisIndex.Equals(other.pelvisIndex) &&
-                   mode.Equals(other.mode) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && base.Equals(other)
+                && worldFromModelRotation.Equals(other.worldFromModelRotation)
+                && blendSpeed.Equals(other.blendSpeed)
+                && minSpeedToSwitch.Equals(other.minSpeedToSwitch)
+                && minSwitchTimeNoError.Equals(other.minSwitchTimeNoError)
+                && minSwitchTimeFullError.Equals(other.minSwitchTimeFullError)
+                && startPlayingEventId.Equals(other.startPlayingEventId)
+                && startMatchingEventId.Equals(other.startMatchingEventId)
+                && rootBoneIndex.Equals(other.rootBoneIndex)
+                && otherBoneIndex.Equals(other.otherBoneIndex)
+                && anotherBoneIndex.Equals(other.anotherBoneIndex)
+                && pelvisIndex.Equals(other.pelvisIndex)
+                && mode.Equals(other.mode)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -182,4 +185,3 @@ namespace HKX2E
         }
     }
 }
-

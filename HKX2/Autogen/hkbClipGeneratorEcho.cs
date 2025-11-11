@@ -5,9 +5,9 @@ namespace HKX2E
 {
     // hkbClipGeneratorEcho Signatire: 0x750edf40 size: 16 flags: FLAGS_NONE
 
-    // offsetLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum: 
-    // weight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum: 
-    // dwdt class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum: 
+    // offsetLocalTime class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 0 flags: ALIGN_16|FLAGS_NONE enum:
+    // weight class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 4 flags: FLAGS_NONE enum:
+    // dwdt class:  Type.TYPE_REAL Type.TYPE_VOID arrSize: 0 offset: 8 flags: FLAGS_NONE enum:
     public partial class hkbClipGeneratorEcho : IHavokObject, IEquatable<hkbClipGeneratorEcho?>
     {
         public float offsetLocalTime { set; get; }
@@ -53,11 +53,12 @@ namespace HKX2E
 
         public bool Equals(hkbClipGeneratorEcho? other)
         {
-            return other is not null &&
-                   offsetLocalTime.Equals(other.offsetLocalTime) &&
-                   weight.Equals(other.weight) &&
-                   dwdt.Equals(other.dwdt) &&
-                   Signature == other.Signature; ;
+            return other is not null
+                && offsetLocalTime.Equals(other.offsetLocalTime)
+                && weight.Equals(other.weight)
+                && dwdt.Equals(other.dwdt)
+                && Signature == other.Signature;
+            ;
         }
 
         public override int GetHashCode()
@@ -71,4 +72,3 @@ namespace HKX2E
         }
     }
 }
-
