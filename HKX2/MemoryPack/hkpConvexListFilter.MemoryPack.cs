@@ -2,5 +2,5 @@ using MemoryPack;
 
 namespace HKX2E;
 
-[MemoryPackable(GenerateType.CircularReference, SerializeLayout.Sequential)]
+[MemoryPackable(GenerateType.NoGenerate)]
 public partial class hkpConvexListFilter;
