@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Linq;
+using MemoryPack;
 
 namespace HKX2E
 {
@@ -14,6 +15,7 @@ namespace HKX2E
 
         public virtual uint Signature { set; get; } = 0x9e746ba2;
 
+        [MemoryPackConstructor]
         public hkbVariableInfo() { }
 
         public hkbVariableInfo(hkbVariableInfo other)

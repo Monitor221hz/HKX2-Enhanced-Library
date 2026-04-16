@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FastMember.Signed" Version="1.5.0" />
+    <PackageReference Include="MemoryPack" Version="1.21.4" />
     <PackageReference Include="Riok.Mapperly" Version="4.2.1" />
   </ItemGroup>
   <ItemGroup>
