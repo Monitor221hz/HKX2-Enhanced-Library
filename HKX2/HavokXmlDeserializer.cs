@@ -52,6 +52,17 @@ namespace HKX2E
             }
         }
 
+        public virtual bool TryGetCollectedElement(
+            string name,
+            [NotNullWhen(true)] out XElement? element
+        )
+        {
+            lock (elementNameMap)
+            {
+                return elementNameMap.TryGetValue(name, out element);
+            }
+        }
+
         public virtual void UpdateMapping(string name, IHavokObject newObject)
         {
             lock (objectNameMap)
