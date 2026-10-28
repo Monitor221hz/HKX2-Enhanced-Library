@@ -3,69 +3,69 @@ using System.Xml.Linq;
 
 namespace HKX2E
 {
-    // hkxSparselyAnimatedEnum Signatire: 0x68a47b64 size: 56 flags: FLAGS_NONE
+	// hkxSparselyAnimatedEnum Signatire: 0x68a47b64 size: 56 flags: FLAGS_NONE
 
-    //  enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
-    public partial class hkxSparselyAnimatedEnum
-        : hkxSparselyAnimatedInt,
-            IEquatable<hkxSparselyAnimatedEnum?>
-    {
-        public hkxEnum? _enum { set; get; }
+	//  enum class: hkxEnum Type.TYPE_POINTER Type.TYPE_STRUCT arrSize: 0 offset: 48 flags: FLAGS_NONE enum:
+	public partial class hkxSparselyAnimatedEnum
+		: hkxSparselyAnimatedInt,
+			IEquatable<hkxSparselyAnimatedEnum?>
+	{
+		public hkxEnum? _enum { set; get; }
 
-        public override uint Signature { set; get; } = 0x68a47b64;
+		public override uint Signature { set; get; } = 0x68a47b64;
 
-        public override void Read(PackFileDeserializer des, BinaryReaderEx br)
-        {
-            base.Read(des, br);
-            _enum = des.ReadClassPointer<hkxEnum>(br);
-        }
+		public override void Read(PackFileDeserializer des, BinaryReaderEx br)
+		{
+			base.Read(des, br);
+			_enum = des.ReadClassPointer<hkxEnum>(br);
+		}
 
-        public override void Write(PackFileSerializer s, BinaryWriterEx bw)
-        {
-            base.Write(s, bw);
-            s.WriteClassPointer(bw, _enum);
-        }
+		public override void Write(PackFileSerializer s, BinaryWriterEx bw)
+		{
+			base.Write(s, bw);
+			s.WriteClassPointer(bw, _enum);
+		}
 
-        public override void ReadXml(IHavokXmlReader xd, XElement xe)
-        {
-            base.ReadXml(xd, xe);
-            _enum = xd.ReadClassPointer<hkxEnum>(this, xe, LITERAL.ENUM);
-        }
+		public override void ReadXml(IHavokXmlReader xd, XElement xe)
+		{
+			base.ReadXml(xd, xe);
+			_enum = xd.ReadClassPointer<hkxEnum>(this, xe, LITERAL.ENUM);
+		}
 
-        public override void WriteXml(IHavokXmlWriter xs, XElement xe)
-        {
-            base.WriteXml(xs, xe);
-            xs.WriteClassPointer(xe, LITERAL.ENUM, _enum);
-        }
+		public override void WriteXml(IHavokXmlWriter xs, XElement xe)
+		{
+			base.WriteXml(xs, xe);
+			xs.WriteClassPointer(xe, LITERAL.ENUM, _enum);
+		}
 
-        public override bool Equals(object? obj)
-        {
-            return Equals(obj as hkxSparselyAnimatedEnum);
-        }
+		public override bool Equals(object? obj)
+		{
+			return Equals(obj as hkxSparselyAnimatedEnum);
+		}
 
-        public bool Equals(hkxSparselyAnimatedEnum? other)
-        {
-            return other is not null
-                && base.Equals(other)
-                && (
-                    (_enum is null && other._enum is null)
-                    || (
-                        _enum is not null
-                        && other._enum is not null
-                        && _enum.Equals((IHavokObject)other._enum)
-                    )
-                )
-                && Signature == other.Signature;
-            ;
-        }
+		public bool Equals(hkxSparselyAnimatedEnum? other)
+		{
+			return other is not null
+				&& base.Equals(other)
+				&& (
+					(_enum is null && other._enum is null)
+					|| (
+						_enum is not null
+						&& other._enum is not null
+						&& _enum.Equals((IHavokObject)other._enum)
+					)
+				)
+				&& Signature == other.Signature;
+			;
+		}
 
-        public override int GetHashCode()
-        {
-            var hashcode = new HashCode();
-            hashcode.Add(base.GetHashCode());
-            hashcode.Add(_enum);
-            hashcode.Add(Signature);
-            return hashcode.ToHashCode();
-        }
-    }
+		public override int GetHashCode()
+		{
+			var hashcode = new HashCode();
+			hashcode.Add(base.GetHashCode());
+			hashcode.Add(_enum);
+			hashcode.Add(Signature);
+			return hashcode.ToHashCode();
+		}
+	}
 }

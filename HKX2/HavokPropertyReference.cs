@@ -1,4 +1,4 @@
-﻿namespace HKX2E
+namespace HKX2E
 {
 	struct HavokPropertyReference : IHavokReference
 	{
@@ -14,7 +14,8 @@
 		public void Retarget(
 			IHavokObjectNameMap objectNameMap,
 			INameHavokObjectMap nameObjectMap
-		) { }
+		)
+		{ }
 
 		public void Update<T>(T value)
 			where T : IHavokObject
